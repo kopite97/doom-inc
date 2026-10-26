@@ -1,0 +1,37 @@
+using System;
+using MobileGame.Foundation;
+
+namespace MobileGame.Persistence
+{
+    // Serialization data only. Runtime ownership remains in ThingRegistry and GridMap.
+    [Serializable]
+    public sealed class SessionSnapshot
+    {
+        public int version;
+        public SessionPhase phase;
+        public long lastCreationOrder;
+        public int mapWidth;
+        public int mapHeight;
+        public ThingSnapshot[] things;
+        public PlacementSnapshot[] placements;
+    }
+
+    [Serializable]
+    public sealed class ThingSnapshot
+    {
+        public string id;
+        public string definitionId;
+        public long creationOrder;
+        public int quantity;
+        public string holderId;
+    }
+
+    [Serializable]
+    public sealed class PlacementSnapshot
+    {
+        public string thingId;
+        public int x;
+        public int y;
+        public int rotation;
+    }
+}

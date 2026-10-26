@@ -30,3 +30,4 @@
 | [TECH-001](TECH-001-thing-foundation.md) | 최소 SO 분류·Thing/컴포넌트·식별·단일 자원 소속 | [PLAN-003](../plans/PLAN-003-thing-foundation.md) |
 | [TECH-002](TECH-002-repository-layout.md) | 루트 단일 저장소·생성 파일 제외·Unity 바이너리 LFS 범위 | [PLAN-005](../plans/PLAN-005-repository-setup.md) |
 | [TECH-003](TECH-003-map-and-placement.md) | Map 단일 공간 상태·회전·공통 배치 명령·검증용 화면 | [PLAN-004](../plans/PLAN-004-map-and-commands.md) |
+| [TECH-004](TECH-004-session-and-persistence.md) | 한 판 단계·공통 갱신·JSON 단일 슬롯·검증 후 복원·실패 보존 | [PLAN-007](../plans/PLAN-007-gameflow-and-persistence.md) |

@@ -94,8 +94,8 @@ Unity의 `Packages/`, `ProjectSettings/`, 생성 캐시의 위치와 관리 정�
 
 ## 현재 구조에서 이관
 
-현재 `Assets/Game/`, `Assets/Tests/`에 있는 코드와 `Assets/Game/Definitions/`의 SO는 새 기준으로 이관할 대상이다.
-이 지침 추가 자체가 이관 완료를 뜻하지 않는다. 실제 이동·참조 정리·회귀 검증은 [PLAN-007](../plans/PLAN-007-gameflow-and-persistence.md)의 승인 후 선행 작업으로 수행한다.
+기존 `Assets/Game/`, `Assets/Tests/`의 코드는 `Assets/Scripts/`, 정의 SO는 `Assets/SO/`로 이관한다.
+실제 이관 범위·이동 목록·참조 검사·회귀 검증 결과는 [PLAN-007](../plans/PLAN-007-gameflow-and-persistence.md)에서 확인한다.
 
 1. 실제 파일·참조·고정 경로를 조사하고 주제별 목적지를 정한다. 분류만 바꾸며 게임 동작·클래스명·공개 API 변경을 섞지 않는다.
 2. [Unity 에셋 지침](unity-assets.md)에 따라 `.meta`·GUID를 보존한다. 폴더를 새로 만들 때의 메타데이터도 Unity에서 생성한다.

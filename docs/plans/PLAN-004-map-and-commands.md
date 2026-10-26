@@ -63,13 +63,13 @@ Thing의 배치 변경을 공통 Map에 일관되게 반영하고, 최소 화면
 
 | 담당 | 코드·에셋 |
 | --- | --- |
-| 공간 정의 | [FacilityDefinition](../../UnityProject/Assets/Game/Foundation/Definitions/FacilityDefinition.cs): 회전 전 점유 크기·고정 상호작용 상대 좌표 |
-| 공간 원본과 조회 | [GridMap](../../UnityProject/Assets/Game/Foundation/Spatial/GridMap.cs), [MapPlacement](../../UnityProject/Assets/Game/Foundation/Spatial/MapPlacement.cs): Thing ID별 배치와 점유·상호작용·통행 조회 |
-| 공통 조작 | [PlacementCommands](../../UnityProject/Assets/Game/Foundation/Spatial/PlacementCommands.cs), [PlacementResult](../../UnityProject/Assets/Game/Foundation/Spatial/PlacementResult.cs): 배치·해제·미리보기·확정·취소와 거부 이유 |
-| Thing 연결 | [Thing](../../UnityProject/Assets/Game/Foundation/Things/Thing.cs)의 Map/배치 조회, [registry](../../UnityProject/Assets/Game/Foundation/Things/ThingRegistry.cs)의 논리적 제거 시 Map 정리 |
-| 최소 PC 화면 | [MapFoundationView](../../UnityProject/Assets/Game/Presentation/MapFoundationView.cs), [준비 구성](../../UnityProject/Assets/Game/Presentation/MapFoundationScenario.cs), [검증 장면](../../UnityProject/Assets/Scenes/MapFoundation.unity) |
-| 에셋 작성 | [Editor 메뉴](../../UnityProject/Assets/Game/Editor/MapFoundationSceneAssets.cs): Unity API로 씬 생성·기존 저장소 공간 필드 추가. 기존 GUID 유지 |
-| 하네스 | [Map Edit Mode 검사](../../UnityProject/Assets/Tests/FoundationEditMode/GridMapTests.cs), [실제 씬 Play Mode 검사](../../UnityProject/Assets/Tests/SpatialPlayMode/MapFoundationViewTests.cs) |
+| 공간 정의 | [FacilityDefinition](../../UnityProject/Assets/Scripts/Data/Definitions/Facility/FacilityDefinition.cs): 회전 전 점유 크기·고정 상호작용 상대 좌표 |
+| 공간 원본과 조회 | [GridMap](../../UnityProject/Assets/Scripts/Core/Spatial/GridMap.cs), [MapPlacement](../../UnityProject/Assets/Scripts/Core/Spatial/MapPlacement.cs): Thing ID별 배치와 점유·상호작용·통행 조회 |
+| 공통 조작 | [PlacementCommands](../../UnityProject/Assets/Scripts/Core/Spatial/PlacementCommands.cs), [PlacementResult](../../UnityProject/Assets/Scripts/Core/Spatial/PlacementResult.cs): 배치·해제·미리보기·확정·취소와 거부 이유 |
+| Thing 연결 | [Thing](../../UnityProject/Assets/Scripts/Core/Things/Thing.cs)의 Map/배치 조회, [registry](../../UnityProject/Assets/Scripts/Core/Things/ThingRegistry.cs)의 논리적 제거 시 Map 정리 |
+| 최소 PC 화면 | [MapFoundationView](../../UnityProject/Assets/Scripts/Presentation/Diagnostics/Map/MapFoundationView.cs), [준비 구성](../../UnityProject/Assets/Scripts/Presentation/Diagnostics/Map/MapFoundationScenario.cs), [검증 장면](../../UnityProject/Assets/Scenes/Diagnostics/Map/MapFoundation.unity) |
+| 에셋 작성 | [Editor 메뉴](../../UnityProject/Assets/Scripts/Editor/Scenes/MapFoundationSceneAssets.cs): Unity API로 씬 생성·기존 저장소 공간 필드 추가. 기존 GUID 유지 |
+| 하네스 | [Map Edit Mode 검사](../../UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Spatial/GridMapTests.cs), [실제 씬 Play Mode 검사](../../UnityProject/Assets/Scripts/Tests/PlayMode/Spatial/MapFoundationViewTests.cs) |
 
 검증용 장면은 12×8 칸, 저장소 2개, 보조형 2개, 유기물 5개를 사용한다. 실제 게임 시작 구성이나 건설 완료 흐름이 아니다.
 대표 저장소의 초기 크기 3×2와 상호작용 상대 좌표 (1,-1)는 개발 위임 값이다. 최종 밸런스·건설 영역 크기를 확정하지 않는다.

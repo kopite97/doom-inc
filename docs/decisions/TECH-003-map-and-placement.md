@@ -10,12 +10,12 @@
 
 | 담당 | 적용 |
 | --- | --- |
-| 시설 SO | [FacilityDefinition](../../UnityProject/Assets/Game/Foundation/Definitions/FacilityDefinition.cs)의 회전 전 점유 크기와 고정 상호작용 상대 좌표 |
-| 공간 원본 | 일반 C# [GridMap](../../UnityProject/Assets/Game/Foundation/Spatial/GridMap.cs)의 Thing ID별 불변 배치 레코드 |
+| 시설 SO | [FacilityDefinition](../../UnityProject/Assets/Scripts/Data/Definitions/Facility/FacilityDefinition.cs)의 회전 전 점유 크기와 고정 상호작용 상대 좌표 |
+| 공간 원본 | 일반 C# [GridMap](../../UnityProject/Assets/Scripts/Core/Spatial/GridMap.cs)의 Thing ID별 불변 배치 레코드 |
 | Thing 연결 | Map 참조와 파생 `Placement`·`IsPlaced` 조회. Thing에 좌표 복사본을 두지 않음 |
-| 조회 | [MapPlacement](../../UnityProject/Assets/Game/Foundation/Spatial/MapPlacement.cs)의 읽기 전용 위치·회전·점유·상호작용 정보와 생성 순서로 정렬한 스냅샷 |
-| 변경·편집 | Map당 하나의 [PlacementCommands](../../UnityProject/Assets/Game/Foundation/Spatial/PlacementCommands.cs). Place·Unplace·BeginEdit·Preview·Confirm·Cancel |
-| 화면 | [MapFoundationView](../../UnityProject/Assets/Game/Presentation/MapFoundationView.cs)는 명령을 전달하고 실제 조회 결과를 표시 |
+| 조회 | [MapPlacement](../../UnityProject/Assets/Scripts/Core/Spatial/MapPlacement.cs)의 읽기 전용 위치·회전·점유·상호작용 정보와 생성 순서로 정렬한 스냅샷 |
+| 변경·편집 | Map당 하나의 [PlacementCommands](../../UnityProject/Assets/Scripts/Core/Spatial/PlacementCommands.cs). Place·Unplace·BeginEdit·Preview·Confirm·Cancel |
+| 화면 | [MapFoundationView](../../UnityProject/Assets/Scripts/Presentation/Diagnostics/Map/MapFoundationView.cs)는 명령을 전달하고 실제 조회 결과를 표시 |
 
 ## 배치와 생명주기
 
@@ -41,7 +41,7 @@
 
 점유 전용 격자 배열과 별도 Thing 좌표를 동시에 갱신하는 구조 대신, 단일 배치 레코드로 점유를 파생한다. 현재 조회 비용은 O(n)이며 실제 규모에 따라 파생 인덱스를 추가할 수 있다.
 실행 객체와 SO의 공개 상태는 조회 전용이며 Map·registry는 같은 시뮬레이션 스레드에서 사용한다. 실행 중 SO 변경은 지원하지 않는다.
-검증용 장면의 12×8 영역·저장소 둘·보조형 둘·유기물 5개는 [테스트 준비 구성](../../UnityProject/Assets/Game/Presentation/MapFoundationScenario.cs)이다. 승인된 게임 시작 상태를 대체하지 않는다.
+검증용 장면의 12×8 영역·저장소 둘·보조형 둘·유기물 5개는 [테스트 준비 구성](../../UnityProject/Assets/Scripts/Presentation/Diagnostics/Map/MapFoundationScenario.cs)이다. 승인된 게임 시작 상태를 대체하지 않는다.
 임시 PC 화면은 IMGUI로 시설 선택·후보 위치·회전·확정·취소를 제공한다. 모바일 최종 UI·세로 대응·건설 비용·생산·경로 탐색·저장은 후속 범위다.
-저장 단계에서는 Thing의 기존 ID·최초 생성 순서와 Map의 위치·회전을 함께 복원하고 공간 제약을 검증해야 한다.
+후속 [TECH-004](TECH-004-session-and-persistence.md)에서 기존 ID·최초 생성 순서와 Map의 위치·회전을 함께 복원하고 공간 제약을 검증했다. 편집 상태에 따른 연구소 갱신 제어도 연결했으며 실제 생산 시뮬레이션은 후속 범위다.
 실제 SO·공통 명령을 사용한 Edit Mode 검사와 저장된 장면의 Play Mode 검사·화면 증거는 PLAN-004에 기록한다.

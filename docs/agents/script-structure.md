@@ -49,7 +49,7 @@
 
 ## 기존 코드의 이관 기준
 
-| 현재 범위 | 목적지 기준 |
+| 이관 전 범위 | 목적지 기준 |
 | --- | --- |
 | `Assets/Game/Foundation/Definitions/` | `Scripts/Data/Definitions/`와 정의별 주제 폴더 |
 | `Assets/Game/Foundation/Things/` | Thing·Registry·기반 컴포넌트는 `Scripts/Core/Things/`, 자원 수량·보관 컴포넌트는 `Scripts/Core/Resource/` |

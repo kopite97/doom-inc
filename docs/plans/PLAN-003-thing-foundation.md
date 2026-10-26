@@ -61,11 +61,11 @@ updated: 2026-10-26
 
 | 구분 | 코드·에셋 | 이번 범위 |
 | --- | --- | --- |
-| SO 정의 | [ThingDefinition](../../UnityProject/Assets/Game/Foundation/Definitions/ThingDefinition.cs)과 자원·시설·생명체 하위 SO | 정의 ID·이름·현재 필요한 컴포넌트 종류·유효성 검사 |
-| 개별 상태 | [Thing](../../UnityProject/Assets/Game/Foundation/Things/Thing.cs), [ThingComponent](../../UnityProject/Assets/Game/Foundation/Things/ThingComponent.cs) | 읽기 전용 ID·생성 순서·정의·존재·소속 조회와 개별 컴포넌트 소유 |
-| 관계 관리 | [ThingRegistry](../../UnityProject/Assets/Game/Foundation/Things/ThingRegistry.cs) | 생성·식별 조회·단일 자원 소속 변경·수량 소비·논리적 제거 |
-| 대표 정의 | [유기물](../../UnityProject/Assets/Game/Definitions/OrganicMatter.asset), [저장소](../../UnityProject/Assets/Game/Definitions/Storage.asset), [시작 보조형](../../UnityProject/Assets/Game/Definitions/PrototypeSupport.asset) | 기존 콘텐츠에서 분류별 대표 1개. 전체 콘텐츠·생산 설정 완료가 아님 |
-| 검증 | [Thing 검사](../../UnityProject/Assets/Tests/FoundationEditMode/ThingFoundationTests.cs), [소속 검사](../../UnityProject/Assets/Tests/FoundationEditMode/ResourceOwnershipTests.cs), [정의 검사](../../UnityProject/Assets/Tests/FoundationEditMode/DefinitionFoundationTests.cs) | 실제 공개 API와 Unity SO 로딩 사용 |
+| SO 정의 | [ThingDefinition](../../UnityProject/Assets/Scripts/Data/Definitions/ThingDefinition.cs)과 자원·시설·생명체 하위 SO | 정의 ID·이름·현재 필요한 컴포넌트 종류·유효성 검사 |
+| 개별 상태 | [Thing](../../UnityProject/Assets/Scripts/Core/Things/Thing.cs), [ThingComponent](../../UnityProject/Assets/Scripts/Core/Things/ThingComponent.cs) | 읽기 전용 ID·생성 순서·정의·존재·소속 조회와 개별 컴포넌트 소유 |
+| 관계 관리 | [ThingRegistry](../../UnityProject/Assets/Scripts/Core/Things/ThingRegistry.cs) | 생성·식별 조회·단일 자원 소속 변경·수량 소비·논리적 제거 |
+| 대표 정의 | [유기물](../../UnityProject/Assets/SO/Resource/OrganicMatter.asset), [저장소](../../UnityProject/Assets/SO/Facility/Storage.asset), [시작 보조형](../../UnityProject/Assets/SO/Creature/PrototypeSupport.asset) | 기존 콘텐츠에서 분류별 대표 1개. 전체 콘텐츠·생산 설정 완료가 아님 |
+| 검증 | [Thing 검사](../../UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Things/ThingFoundationTests.cs), [소속 검사](../../UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Resource/ResourceOwnershipTests.cs), [정의 검사](../../UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Definitions/DefinitionFoundationTests.cs) | 실제 공개 API와 Unity SO 로딩 사용 |
 
 정의 설정에 따라 매번 새 C# 컴포넌트를 만들며 자원 소속은 `HolderId` 한 곳에서 관리한다. 구현 선택·대안·후속 영향은 [TECH-001](../decisions/TECH-001-thing-foundation.md)을 참조한다.
 Map·화면·저장·생산·운반 규칙은 추가하지 않았다. 용량을 검사하지 않는 기반 보관 기능을 게임 입고 규칙 구현으로 해석하지 않는다.

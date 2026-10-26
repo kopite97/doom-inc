@@ -82,7 +82,7 @@ unity command test run --mode playmode --filter SampleSceneExecutionTests --asyn
 unity command test status --project-path $projectPath --json
 ```
 
-- 위 필터는 [Edit Mode 환경 검사](../../UnityProject/Assets/Tests/EditMode/ProjectEnvironmentTests.cs)와 [Play Mode 실행 검사](../../UnityProject/Assets/Tests/PlayMode/SampleSceneExecutionTests.cs)를 대상으로 한다. 게임 규칙 검증은 해당 구현과 함께 추가한다.
+- 위 필터는 [Edit Mode 환경 검사](../../UnityProject/Assets/Scripts/Tests/EditMode/Environment/ProjectEnvironmentTests.cs)와 [Play Mode 실행 검사](../../UnityProject/Assets/Scripts/Tests/PlayMode/Environment/SampleSceneExecutionTests.cs)를 대상으로 한다. 게임 규칙 검증은 해당 구현과 함께 추가한다.
 - 테스트가 발견됐는지 확인하고, 동기 실행의 `data.result.Summary`, 비동기 완료의 `data.result.summary`와 개별 결과를 저장한다. `running` 응답의 0개는 완료 결과가 아니다.
 - 비동기 실행은 `test status`가 완료될 때까지 확인한다. 새 테스트 실행은 이전 실행의 완료 후에 한다.
 - 원본 JSON을 실행별 증거 경로로 보관한다. Unity가 출력한 XML은 콘솔의 실제 저장 위치를 확인해 다음 실행 전에 복사한다. 결과 XML의 기본 위치는 덮어써질 수 있다.
@@ -113,6 +113,8 @@ unity command test status --project-path $projectPath --json
 수동 조작은 해당 씬을 열고 Play에서 시설 선택 → Move / Rotate → 격자 클릭·Rotate → Confirm/Cancel 순서다.
 장면이 없을 때만 `Tools/Mobile Game/Create Map Foundation Scene` 메뉴를 실행한다. 기존 장면은 덮어쓰지 않는다.
 Play Mode 검사는 실제 씬·공통 명령·OnGUI 렌더링과 Temp의 화면 캡처를 확인한다. 마우스 이벤트 주입이나 실기기 터치 검사와는 구분한다. 결과·제한은 [PLAN-004](../plans/PLAN-004-map-and-commands.md)에 있다.
+
+GameFlow·저장 진단 씬의 생성/열기 메뉴와 전체 Edit·Play 실행법은 [PLAN-007 검증 기록](../plans/evidence/PLAN-007/README.md#재현-환경과-명령)을 따른다. 테스트 슬롯은 실제 진단 슬롯과 격리한다.
 
 ## Codex의 Unity MCP 연결
 

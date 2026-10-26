@@ -1,7 +1,7 @@
 ---
 id: PLAN-007
 type: development
-status: proposed
+status: completed
 title: GameFlow와 저장·복원 기반
 updated: 2026-10-26
 ---
@@ -25,8 +25,8 @@ updated: 2026-10-26
 - 제외: 실제 침공형 방출·외부 활동·성과·멸망 게이지·전과 보고·멸망 연출 에셋·최종 결과 UI, 전체 게임 사이클.
 - 제외: 다중 슬롯·클라우드 저장·계정·오프라인 보상·범용 마이그레이션 프레임워크, 모바일 최종 UI·Android 빌드·실기기 검증.
 
-사용자는 이 PLAN의 **proposed 작성만 요청**했다. 구현 실행·활성화 승인은 아직 없다.
-클래스명·저장 형식·주기·복원 순서·씬 구성은 D-059의 개발 위임에 따라 실행 승인 후 구체화한다. 이번 문서로 새 게임 규칙이나 초기 비용을 확정하지 않는다.
+2026-10-26 사용자가 이 PLAN 실행을 명시적으로 승인했다. 기존 Assets 이관·회귀 검증을 먼저 수행하고 GameFlow·저장 기반 구현을 이어간다.
+클래스명·저장 형식·주기·복원 순서·씬 구성은 D-059의 개발 위임에 따라 구체화한다. 이번 작업으로 새 게임 규칙이나 초기 비용을 확정하지 않는다.
 
 ## 기준 문서와 선행 조건
 
@@ -43,15 +43,15 @@ updated: 2026-10-26
 
 ## 현재 구현과 저장 대상
 
-기준 구현은 `0162869`의 PLAN-004 완료 상태다. 현재 GameFlow·파일 저장·복원 API·시간 갱신·외부 활동 상태는 없다.
+착수 기준은 `0162869`의 PLAN-004 구현을 포함한 `aeec4cc`다. 아래 기존 상태에 GameFlow·파일 저장·복원·공통 진행 제어를 추가했다. 실제 생산·외부 활동은 후속 범위다.
 
 | 현재 원본 | 이번 기반에서 보존·복원할 내용 |
 | --- | --- |
-| [ThingRegistry](../../UnityProject/Assets/Game/Foundation/Things/ThingRegistry.cs)·[Thing](../../UnityProject/Assets/Game/Foundation/Things/Thing.cs) | 존재하는 Thing의 ID·정의 ID·최초 생성 순서, 이후 생성에 사용할 순서의 최댓값. 제거된 Thing은 되살리지 않음 |
-| [자원 수량](../../UnityProject/Assets/Game/Foundation/Things/ResourceStackComponent.cs)·보관 관계 | 양의 수량과 자원 Thing의 HolderId. 보관처별 재고는 이 관계로 조회하며 중복 원본을 저장하지 않음 |
-| [GridMap](../../UnityProject/Assets/Game/Foundation/Spatial/GridMap.cs) | 영역 크기, 배치된 Thing ID·위치·90도 회전. 점유·상호작용 위치·통행 정보는 기존 규칙으로 재구성 |
+| [ThingRegistry](../../UnityProject/Assets/Scripts/Core/Things/ThingRegistry.cs)·[Thing](../../UnityProject/Assets/Scripts/Core/Things/Thing.cs) | 존재하는 Thing의 ID·정의 ID·최초 생성 순서, 이후 생성에 사용할 순서의 최댓값. 제거된 Thing은 되살리지 않음 |
+| [자원 수량](../../UnityProject/Assets/Scripts/Core/Resource/ResourceStackComponent.cs)·보관 관계 | 양의 수량과 자원 Thing의 HolderId. 보관처별 재고는 이 관계로 조회하며 중복 원본을 저장하지 않음 |
+| [GridMap](../../UnityProject/Assets/Scripts/Core/Spatial/GridMap.cs) | 영역 크기, 배치된 Thing ID·위치·90도 회전. 점유·상호작용 위치·통행 정보는 기존 규칙으로 재구성 |
 | Map에 없는 Thing | 존재와 컴포넌트·자원 소속 유지, 강제 좌표 부여 없음. 배치 해제한 생명체로 검증하며 외부 활동 구현으로 간주하지 않음 |
-| 이번에 추가할 GameFlow | 재개할 진행 단계와 필요한 최소 상태. 이어하기가 연출·결과 단계를 무조건 플레이로 바꾸지 않음 |
+| GameFlow | 재개할 진행 단계와 필요한 최소 상태. 이어하기가 연출·결과 단계를 무조건 플레이로 바꾸지 않음 |
 
 SO 자체·Unity InstanceID·화면 객체를 저장 원본으로 쓰지 않는다. 정의 ID로 동일 종류의 SO를 찾아 각 Thing에 독립된 실행 컴포넌트를 재구성한다.
 배치 후보·선택 표시 같은 임시 조작 상태와 확정된 게임 상태의 저장 경계를 구현 시 정한다. 편집 중 자동 저장이 미확정 위치를 적용하거나 복원 후 일시정지가 풀리지 않는 상태를 만들지 않아야 한다.
@@ -67,19 +67,19 @@ SO 자체·Unity InstanceID·화면 객체를 저장 원본으로 쓰지 않는�
 5. 배치 편집 중 연구소 진행 정지를 연결한다. 한 판 종료에 따른 전체 진행 정지와 구분하고, 확정·취소가 종료된 판을 재개하지 않게 한다. 화면 표시는 진행 정지 중에도 갱신한다.
 6. 최소 PC 화면과 하네스를 같은 경로에 연결하고 아래 검증을 수행한다. 주요 기술 선택은 docs/decisions에, 실제 방법·결과는 이 PLAN에 기록한다.
 
-신규 시작 구성은 주입·교체 가능한 경계로 둔다. 이 기반의 검증에는 명시적인 준비 데이터를 사용하며, [기존 MapFoundationScenario](../../UnityProject/Assets/Game/Presentation/MapFoundationScenario.cs)의 시설 2개·보조형 2개·유기물 5개를 실제 초기 상태로 채택하지 않는다.
+신규 시작 구성은 주입·교체 가능한 경계로 둔다. 이 기반의 검증에는 명시적인 준비 데이터를 사용하며, [기존 MapFoundationScenario](../../UnityProject/Assets/Scripts/Presentation/Diagnostics/Map/MapFoundationScenario.cs)의 시설 2개·보조형 2개·유기물 5개를 실제 초기 상태로 채택하지 않는다.
 D-071의 건설 비용·초기 지급량·전달 방식과 실제 시작 흐름은 1단계에서 연결한다. 이번 완료는 세션 초기화·저장 초기화를 검증한 것이며 실제 첫 건설까지 구현했다는 뜻이 아니다.
 현재 없는 생산·외부 활동 계산 대신 공통 진행 제어에 전달되는 갱신을 관찰해 정지·재개·종료 중 진행 없음을 확인한다. 후속 기능의 시간 계산을 테스트 전용으로 복제하지 않는다.
 
 ## 작업 목록
 
-- [ ] 기존 Assets를 역할·주제별 구조로 이관하고 GUID·참조·코드 경로·문서 링크·기존 회귀 검증 확인
-- [ ] 세션·GameFlow·저장 책임, 정의 조회와 저장 대상·임시 상태 경계 구체화
-- [ ] ID·생성 순서·컴포넌트·단일 자원 소속·Map의 복원과 데이터 유효성 검사 구현
-- [ ] 실제 1슬롯 파일 입출력·자동 저장·오류 처리·다시 시작 시 저장 교체 구현
-- [ ] 단계 전환·진행 제어·배치 편집 정지와 UI/하네스 공통 경로 연결
-- [ ] 최소 PC 화면·실제 파일 왕복·세션 재생성·정상/예외 검증 수행
-- [ ] 기존 기반 회귀 확인, 결과·증거·기술 결정·로드맵 갱신 후 완료 판정
+- [x] 기존 Assets를 역할·주제별 구조로 이관하고 GUID·참조·코드 경로·문서 링크·기존 회귀 검증 확인
+- [x] 세션·GameFlow·저장 책임, 정의 조회와 저장 대상·임시 상태 경계 구체화
+- [x] ID·생성 순서·컴포넌트·단일 자원 소속·Map의 복원과 데이터 유효성 검사 구현
+- [x] 실제 1슬롯 파일 입출력·자동 저장·오류 처리·다시 시작 시 저장 교체 구현
+- [x] 단계 전환·진행 제어·배치 편집 정지와 UI/하네스 공통 경로 연결
+- [x] 최소 PC 화면·실제 파일 왕복·세션 재생성·정상/예외 검증 수행
+- [x] 기존 기반 회귀 확인, 결과·증거·기술 결정·로드맵 갱신 후 완료 판정
 
 ## 완료 기준과 검증 방법
 
@@ -107,18 +107,38 @@ PC에서 검증한 파일 저장·Unity 생명주기 연결을 Android 강제 �
 - 2026-10-26: 확정 기획과 현재 코드를 읽고 범위·완료 기준·검증 방법을 작성했다. PLAN-003/004는 completed이며 PLAN-007은 proposed다.
 - 2026-10-26: 사용자 요청의 전체 디렉터리 지침을 추가하고 이관을 선행 정리 항목으로 반영했다. 현재는 문서만 갱신했으며 Assets 파일은 이동하지 않았다.
 - 2026-10-26: Aseprite 사용자 제작·Sprite 임포트 기본값·사용자 시각 검수·영문 Temp 표식을 지침에 반영했다. 실제 아트 임포트·에셋 생성·개명은 수행하지 않았다.
-- 실행 승인 전까지 구현·Unity 실행·게임 테스트를 시작하지 않는다. 다음 행동은 사용자 실행 승인 후 유일한 active PLAN으로 전환하고 세부 구조를 구체화하는 것이다.
-- 승인 대기로 active가 0개다. 검사 통과를 위해 PLAN-007이나 완료된 PLAN을 임의 활성화하지 않는다.
+- 2026-10-26: 사용자 실행 승인으로 유일한 active PLAN으로 전환했다. 현재는 Assets 이관 준비 단계이며, 이관 후 기존 회귀 검증을 통과한 뒤 기반 기능을 구현한다.
+- 2026-10-26: Assets 이관과 기존 회귀 검증 완료. 기존 메타/GUID 62개·어셈블리 7개 보존, Edit Mode 29/29·Play Mode 2/2 통과.
+- 2026-10-26: 세션 전환·저장·복원·실패 보존·실제 Update 연결을 구현했다. 테스트 타입 이름 충돌과 손상 저장의 예외 처리 누락을 수정해 재컴파일·Edit Mode 72/72, Play Mode 4/4를 통과했다. 검토에서 발견한 전환 후 알림 예외와 파일 실패의 경계도 분리하고 회귀 검사했다.
+- 2026-10-26: 최종 에셋 감사·독립 코드 검토·문서 정합성 확인 완료. 선행 기반 세 묶음의 마지막 완료 기준을 충족했다.
+- 다음 행동: 1단계 초기 건설·수집·저장 PLAN의 별도 작성·승인. 새 PLAN을 만들거나 활성화하지 않았으며 실제 게임 사이클 구현은 시작하지 않았다.
+
+## 구현 위치와 확인 범위
+
+- [SessionController](../../UnityProject/Assets/Scripts/GameFlow/Session/SessionController.cs): 신규 시작·이어하기·재시작·준비/플레이/연출/결과 단계·공통 진행 및 배치 명령. [Edit Mode 검사](../../UnityProject/Assets/Scripts/Tests/EditMode/Foundation/GameFlow/SessionControllerTests.cs).
+- [SessionSnapshotCodec](../../UnityProject/Assets/Scripts/Persistence/Serialization/SessionSnapshotCodec.cs)·[파일 저장](../../UnityProject/Assets/Scripts/Persistence/Storage/JsonFileSessionStore.cs): 버전 1 JSON, 별도 후보 그래프 검증, 실제 1슬롯 교체. [저장 검사](../../UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Persistence/SessionPersistenceTests.cs).
+- [진단 씬](../../UnityProject/Assets/Scenes/Diagnostics/Session/Temp_SessionFoundation.unity)·[화면 연결](../../UnityProject/Assets/Scripts/Presentation/Diagnostics/Session/SessionFoundationView.cs): 실제 Update·앱 중단·종료와 같은 명령 연결. [Play Mode 검사](../../UnityProject/Assets/Scripts/Tests/PlayMode/Session/SessionFoundationViewTests.cs)는 별도 임시 저장 경로에서 실행했다.
+- 기본 자동 저장은 실행 중 5초 간격과 단계 전환·앱 중단·종료 시점이다. 새 게임/재시작은 파일 교체 성공 후 현재 세션을 바꾸고, 잘못된 저장을 자동으로 새 게임으로 덮어쓰지 않는다. 상세 책임·오류 처리는 [TECH-004](../decisions/TECH-004-session-and-persistence.md).
+- 진단 씬·오브젝트는 임의(Temp) 검증용이다. 정식 게임 화면과 연결할 때 교체하며, 목적·구성과 실행법은 [증거 README](evidence/PLAN-007/README.md)에 기록했다. 새 Sprite를 사용하거나 요청하지 않았으므로 Require 폴더는 만들지 않았다.
+- PC에서 실제 파일·객체 재생성·화면 렌더링을 확인했다. 마우스 이벤트 주입·모바일 UI·Android 파일 교체/강제 종료/빌드/실기기 성능은 검증하지 않았다. 실제 건설·생산·침공과 해당 진행도 저장도 후속 단계다.
 
 ## 검증 결과
 
 | 날짜 | 대상·환경·실행 방법 | 실제 결과 | 판정·증거 |
 | --- | --- | --- | --- |
 | 2026-10-26 | 후보·구조/아트 지침·MAP·로드맵 / `node scripts/validate-agent-docs.mjs` | PLAN 7개와 목록 일치, 지침 줄 수·로컬 링크 920개 검사에서 오류 없음. active=0 조건만 오류 | 종료 코드 1. 승인 대기 상태를 유지하며 전체 검사 통과로 기록하지 않음 |
-| — | GameFlow·파일 저장·복원·Unity 통합 | 미실행 | proposed 작성 단계이며 기능 검증 완료를 주장하지 않음 |
+| 2026-10-26 | Assets 이관·Unity 재컴파일·기존 전체 회귀 | 컴파일 오류 0, Edit Mode 29/29, Play Mode 2/2, 건너뜀 0 | [이관 기록](evidence/PLAN-007/README.md), [컴파일](evidence/PLAN-007/migration-recompile-status.json), [Edit](evidence/PLAN-007/migration-editmode.json), [Play](evidence/PLAN-007/migration-playmode-status.json) |
+| 2026-10-26 | 첫 통합 컴파일·Edit Mode | SessionState 이름 충돌 1건 수정 후 재컴파일 성공. Edit 72건 중 71 통과·손상 저장 처리 1 실패, 예외 처리 수정 | [최초 컴파일 실패](evidence/PLAN-007/session-recompile-status.json), [수정 후 컴파일](evidence/PLAN-007/session-recompile-retry-status.json), [최초 Edit 결과](evidence/PLAN-007/session-editmode-first.json). 아래 최종 실행에서 재검증 완료 |
+| 2026-10-26 | Unity 6000.3.27f1·Windows Editor·Android 대상 / 전체 Edit Mode | 72/72 통과, 실패·건너뜀·판정 불가 0 | [최종 컴파일](evidence/PLAN-007/session-final-recompile-status.json), [전체 Edit JSON](evidence/PLAN-007/session-editmode-final.json) |
+| 2026-10-26 | 같은 Editor·전체 Play Mode / 실제 진단 씬·Update·파일·공통 명령 | 4/4 통과, 실패·건너뜀·판정 불가 0. 자동 저장, 새 그래프 복원, 단계 유지, 오프라인 추가 진행 없음, 재시작 파일 교체와 선택 초기화 확인 | [씬 생성](evidence/PLAN-007/session-scene-creation.json), [전체 Play JSON](evidence/PLAN-007/session-playmode-first-status.json), [XML](evidence/PLAN-007/session-playmode-final.xml), [화면](evidence/PLAN-007/session-foundation-playmode.png) |
+| 2026-10-26 | 종료 후 Editor·콘솔·화면 확인 | Play stopped, 컴파일 완료, 현재 콘솔 오류·경고 0. 화면의 격자·단계·저장 상태·조작 버튼 표시 확인 | [Editor](evidence/PLAN-007/session-final-editor-status.json), [콘솔](evidence/PLAN-007/session-final-console-status.json). 누적 버퍼 오류 2개는 이전 QuickInstaller 예외와 수정한 타입 이름 충돌이며 [이력](evidence/PLAN-007/session-final-console-history.json)을 보존함 |
+| 2026-10-26 | 최종 정적 검사·독립 코드 검토 | 기존 메타/GUID 62·asmdef 7 보존. C# 39개 모두 Scripts, 메타 116개 누락·중복 0, asmref 4·씬/SO 참조 정상. 추가 코드 결함 없음 | [에셋 감사](evidence/PLAN-007/session-asset-final-audit.json), [최종 소스 SHA-256](evidence/PLAN-007/session-source-manifest.json). `git diff --check` 통과 |
+| 2026-10-26 | `node scripts/validate-agent-docs.mjs` / 완료 전·후 | active PLAN-007 하나일 때 전체 통과. 완료 전환 후 PLAN 7개·목록·문서 줄 수·링크 오류 없이 active=0 조건만 오류 | [완료 전](evidence/PLAN-007/session-docs-active.txt), [완료 후](evidence/PLAN-007/session-docs-completed.txt). 완료 후 종료 코드 1은 다음 PLAN 승인 대기이며 전체 통과로 기록하지 않음 |
 
 ## 관련 결정과 상태 전환
 
-- 기존 결정: TECH-001·TECH-003. 저장 형식·복원 절차·GameFlow 구조의 새 기술 결정은 구현 때 작성한다.
+- 기존 결정: TECH-001·TECH-003. 이번 구조·저장·오류·시간 제어는 [TECH-004](../decisions/TECH-004-session-and-persistence.md)에 기록했다.
 - 2026-10-26: 사용자 요청 “PLAN-007을 proposed 상태로 작성해줘”에 따라 최초 생성 → proposed. 실행·활성화 승인은 없음.
+- 2026-10-26: 사용자 요청 “PLAN-007의 실행을 승인할게. 먼저 기존 Assets를 새 디렉터리 구조로 정리하고, GameFlow와 저장·복원 기반 구현을 진행해줘”에 따라 proposed → active.
+- 2026-10-26: Assets 이관, GameFlow·저장·복원 기반, 필수 Edit 72/72·Play 4/4와 최종 정적 검증 충족으로 active → completed. 실제 게임 기능·Android 검증은 명시한 후속 범위를 유지한다.
 - 완료 후에도 다음 PLAN을 자동 활성화하지 않는다. 1단계의 후보 작성·실행은 별도 작업으로 관리한다.
