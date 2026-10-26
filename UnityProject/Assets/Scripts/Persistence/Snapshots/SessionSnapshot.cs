@@ -8,12 +8,14 @@ namespace MobileGame.Persistence
     public sealed class SessionSnapshot
     {
         public int version;
+        public string runtimeKind;
         public SessionPhase phase;
         public long lastCreationOrder;
         public int mapWidth;
         public int mapHeight;
         public ThingSnapshot[] things;
         public PlacementSnapshot[] placements;
+        public LaboratorySnapshot laboratory;
     }
 
     [Serializable]

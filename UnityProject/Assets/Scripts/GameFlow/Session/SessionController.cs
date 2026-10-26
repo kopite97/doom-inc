@@ -29,7 +29,8 @@ namespace MobileGame.GameFlow
 
         public SessionState Current { get; private set; }
         public SessionPhase Phase { get; private set; } = SessionPhase.Preparing;
-        public bool CanAdvanceLaboratory => CanAdvanceExternal && !Current.Map.Commands.IsEditing;
+        public bool CanAdvanceLaboratory => CanAdvanceExternal && !Current.Map.Commands.IsEditing &&
+            (Current.Runtime == null || !Current.Runtime.IsEditing);
         public bool CanAdvanceExternal => Current != null && Phase == SessionPhase.Playing && !applicationPaused;
         public string LastError { get; private set; }
         public string LastSaveError { get; private set; }
@@ -131,7 +132,15 @@ namespace MobileGame.GameFlow
                 return;
             var generation = Generation;
             if (CanAdvanceLaboratory)
-                LaboratoryAdvanced?.Invoke(seconds);
+            {
+                Current.Runtime?.Advance(seconds);
+                // Runtime callbacks can finish or replace a session. Do not notify an old
+                // frame's observers or advance a newly published world with that frame.
+                if (generation != Generation)
+                    return;
+                if (CanAdvanceLaboratory)
+                    LaboratoryAdvanced?.Invoke(seconds);
+            }
             if (generation != Generation)
                 return;
             if (CanAdvanceExternal)
@@ -162,14 +171,24 @@ namespace MobileGame.GameFlow
                 Save();
         }
 
-        public bool BeginPlacement(Guid id) => RequirePlaying() &&
-            ApplyPlacementResult(Current.Map.Commands.BeginEdit(id));
+        public bool BeginPlacement(Guid id)
+        {
+            if (!RequirePlaying()) return false;
+            if (Current.Runtime != null && Current.Runtime.IsEditing)
+                return Reject("Finish or cancel the current edit first.");
+            return ApplyPlacementResult(Current.Map.Commands.BeginEdit(id));
+        }
 
         public bool PreviewPlacement(Vector2Int origin, QuarterTurn rotation) => RequirePlaying() &&
             ApplyPlacementResult(Current.Map.Commands.Preview(origin, rotation));
 
-        public bool ConfirmPlacement() => RequirePlaying() &&
-            ApplyPlacementResult(Current.Map.Commands.Confirm());
+        public bool ConfirmPlacement()
+        {
+            if (!RequirePlaying() || !ApplyPlacementResult(Current.Map.Commands.Confirm()))
+                return false;
+            Current.Runtime?.OnMapChanged();
+            return true;
+        }
 
         // Cancelling a transient edit is safe after a goal and must not change the phase.
         public bool CancelPlacement() => Current != null

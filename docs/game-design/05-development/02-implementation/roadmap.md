@@ -2,7 +2,7 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음 구현·검증 완료 / 후속 1~4단계 게임 사이클 구현 전
+- 상태: 선행 기반 세 묶음·1단계 초기 건설·수집·저장 완료 / 2~4단계 구현 전
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
 - 갱신일: 2026-10-26
@@ -10,7 +10,9 @@
 
 ## 현재 작업
 
-환경 준비 결과와 도구 호환 주의점은 [PLAN-002](../../../plans/PLAN-002-unity-environment.md)에 있다. 정의·Thing 최소 기반은 [PLAN-003](../../../plans/PLAN-003-thing-foundation.md), 공간·공통 조작·최소 화면은 [PLAN-004](../../../plans/PLAN-004-map-and-commands.md), 한 판·저장·복원 기반은 [PLAN-007](../../../plans/PLAN-007-gameflow-and-persistence.md)에서 구현·검증했다. 세 기반 묶음의 기준을 통과했으며 다음은 1단계 초기 건설·수집·저장이다. 전체 게임 사이클·후속 기능의 저장·Android 빌드·실기기 검증은 아직 수행하지 않았다.
+환경 준비 결과와 도구 호환 주의점은 [PLAN-002](../../../plans/PLAN-002-unity-environment.md)에 있다. 정의·Thing 최소 기반은 [PLAN-003](../../../plans/PLAN-003-thing-foundation.md), 공간·공통 조작·최소 화면은 [PLAN-004](../../../plans/PLAN-004-map-and-commands.md), 한 판·저장·복원 기반은 [PLAN-007](../../../plans/PLAN-007-gameflow-and-persistence.md)에서 구현·검증했다. 세 기반 묶음과 1단계를 완료했으며 다음은 2단계 가공·배양·보급형 운용이다. 전체 게임 사이클·후속 기능의 저장·Android 빌드·실기기 검증은 아직 수행하지 않았다.
+
+1단계의 초기 건설·수집·운반·입고 흐름과 중간 저장·복원·재시작은 [PLAN-008](../../../plans/PLAN-008-initial-construction-and-logistics.md)에서 구현·검증했다. PC 최소 플레이 화면과 하네스 검사를 통과했다. 후속 단계는 별도 proposed PLAN을 작성하고 사용자 실행 승인을 받은 뒤 진행한다.
 
 개별 작업 상태·다음 행동·검증 증거는 [PLAN MAP](../../../plans/README.md)에서 찾는다. 작업 대상은 유일한 active PLAN이며, 이 문서는 전체 단계·기획상 완료 기준과 요약 상태를 관리한다.
 
@@ -71,12 +73,13 @@
 이 문서에 개별 PLAN 상태·기술 결정·검증 로그를 다시 작성하지 않는다. 단계 요약은 증거 PLAN을 연결하여 갱신한다.
 문서 정비나 PLAN 활성화는 게임 구현·검증 완료를 의미하지 않는다.
 
-## 준비 작업 연결
+## 작업 PLAN 연결
 
 - [PLAN-001 지침 체계 정비](../../../plans/PLAN-001-agent-guidance.md)
 - [PLAN-002 Unity 개발 환경 준비](../../../plans/PLAN-002-unity-environment.md)
 - [PLAN-003 SO 정의와 Thing·컴포넌트 기반](../../../plans/PLAN-003-thing-foundation.md)
 - [PLAN-004 공간·공통 조작 기반](../../../plans/PLAN-004-map-and-commands.md)
 - [PLAN-007 GameFlow와 저장·복원 기반](../../../plans/PLAN-007-gameflow-and-persistence.md)
+- [PLAN-008 초기 건설·수집·저장](../../../plans/PLAN-008-initial-construction-and-logistics.md)
 
-이후 1~4단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.
+이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

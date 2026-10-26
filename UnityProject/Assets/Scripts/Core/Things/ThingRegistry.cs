@@ -11,6 +11,12 @@ namespace MobileGame.Foundation
         private readonly Dictionary<string, ThingDefinition> definitions =
             new Dictionary<string, ThingDefinition>(StringComparer.Ordinal);
         private long lastCreationOrder;
+        private readonly Action<Thing> initializeComponents;
+
+        public ThingRegistry(Action<Thing> initializeComponents = null)
+        {
+            this.initializeComponents = initializeComponents;
+        }
 
         public long LastCreationOrder => lastCreationOrder;
 
@@ -49,6 +55,40 @@ namespace MobileGame.Foundation
             RequireHolder(destination);
             // All validation precedes this single source-of-truth change. Same-holder transfer is harmless.
             resource.SetHolder(destination.Owner.Id);
+        }
+
+        public Thing TransferResource(Thing resource, ResourceContainerComponent destination, int amount)
+        {
+            var stack = RequireResource(resource);
+            RequireHolder(destination);
+            if (amount <= 0 || amount > stack.Quantity)
+                throw new ArgumentOutOfRangeException(nameof(amount));
+            if (amount == stack.Quantity)
+            {
+                resource.SetHolder(destination.Owner.Id);
+                return resource;
+            }
+
+            // Construct and initialize the new stack before changing the original quantity.
+            // Failed validation or component creation leaves inventory and identity order intact.
+            var split = Register((ResourceDefinition)resource.Definition, destination.Owner.Id, amount);
+            stack.SetQuantity(stack.Quantity - amount);
+            return split;
+        }
+
+        // Callers must settle references/reservations before retiring the source identity.
+        public void MergeResources(Thing destination, Thing source)
+        {
+            var destinationStack = RequireResource(destination);
+            var sourceStack = RequireResource(source);
+            if (ReferenceEquals(destination, source))
+                throw new ArgumentException("A resource cannot be merged with itself.", nameof(source));
+            if (destination.HolderId != source.HolderId || !ReferenceEquals(destination.Definition, source.Definition))
+                throw new ArgumentException("Only stacks of the same definition in the same holder can merge.", nameof(source));
+            var total = checked(destinationStack.Quantity + sourceStack.Quantity);
+            destinationStack.SetQuantity(total);
+            sourceStack.SetQuantity(0);
+            RemoveEntry(source);
         }
 
         public void ConsumeResource(Thing resource, int amount)
@@ -110,6 +150,7 @@ namespace MobileGame.Foundation
                 throw new ArgumentException("Only a resource may have a holder or quantity.");
 
             var thing = new Thing(this, id, creationOrder, definition, holderId, resourceQuantity);
+            initializeComponents?.Invoke(thing);
             things.Add(id, thing);
             definitions[definition.DefinitionId] = definition;
             lastCreationOrder = Math.Max(lastCreationOrder, creationOrder);
@@ -139,6 +180,7 @@ namespace MobileGame.Foundation
             Guid id;
             do { id = Guid.NewGuid(); } while (things.ContainsKey(id));
             var thing = new Thing(this, id, order, definition, holderId, resourceQuantity);
+            initializeComponents?.Invoke(thing);
             things.Add(id, thing);
             definitions[definition.DefinitionId] = definition;
             lastCreationOrder = order;

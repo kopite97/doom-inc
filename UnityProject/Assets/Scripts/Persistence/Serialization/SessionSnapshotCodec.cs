@@ -2,18 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using MobileGame.Foundation;
+using MobileGame.Gameplay;
 using UnityEngine;
 
 namespace MobileGame.Persistence
 {
     public sealed class SessionSnapshotCodec
     {
-        public const int CurrentVersion = 1;
+        public const int LegacyVersion = 1;
+        public const int CurrentVersion = 2;
+        private readonly bool requireLaboratory;
         private readonly Dictionary<string, ThingDefinition> definitions =
             new Dictionary<string, ThingDefinition>(StringComparer.Ordinal);
 
-        public SessionSnapshotCodec(IEnumerable<ThingDefinition> definitions)
+        public SessionSnapshotCodec(IEnumerable<ThingDefinition> definitions, bool requireLaboratory = false)
         {
+            this.requireLaboratory = requireLaboratory;
             if (definitions == null)
                 throw new ArgumentNullException(nameof(definitions));
             foreach (var definition in definitions)
@@ -34,6 +38,12 @@ namespace MobileGame.Persistence
                 throw new ArgumentNullException(nameof(state));
             if (!ReferenceEquals(state.Registry, state.Map.Registry))
                 throw Invalid("The session Map belongs to another registry.");
+            if (state.Runtime != null && !(state.Runtime is LaboratorySimulation))
+                throw Invalid("This session runtime has no supported save contract.");
+            var laboratory = state.Runtime as LaboratorySimulation;
+            if (laboratory != null && (!ReferenceEquals(laboratory.Registry, state.Registry) ||
+                !ReferenceEquals(laboratory.Map, state.Map)))
+                throw Invalid("The laboratory runtime belongs to another session.");
             var things = new List<ThingSnapshot>();
             foreach (var thing in state.Registry.Things)
             {
@@ -59,10 +69,12 @@ namespace MobileGame.Persistence
                 });
             var snapshot = new SessionSnapshot
             {
-                version = CurrentVersion, phase = phase,
+                version = laboratory == null ? LegacyVersion : CurrentVersion, phase = phase,
+                runtimeKind = laboratory == null ? null : "laboratory",
                 lastCreationOrder = state.Registry.LastCreationOrder,
                 mapWidth = state.Map.Width, mapHeight = state.Map.Height,
-                things = things.ToArray(), placements = placements.ToArray()
+                things = things.ToArray(), placements = placements.ToArray(),
+                laboratory = laboratory == null ? null : LaboratorySnapshotCodec.Capture(laboratory)
             };
             // Validate that the captured graph can actually be reconstructed before it
             // replaces a good save. No temporary edit/selection state is persisted.
@@ -73,9 +85,12 @@ namespace MobileGame.Persistence
         public SessionState Restore(SessionSnapshot snapshot)
         {
             ValidateStructure(snapshot);
+            if (requireLaboratory && snapshot.version != CurrentVersion)
+                throw Invalid("This play slot requires a laboratory session, not a diagnostic save.");
             try
             {
-                var registry = new ThingRegistry();
+                var registry = new ThingRegistry(snapshot.version == CurrentVersion
+                    ? GameplayComponentFactory.Attach : (Action<Thing>)null);
                 // Holder creation order may be later than a transferred resource's order.
                 foreach (var saved in snapshot.things)
                 {
@@ -97,7 +112,9 @@ namespace MobileGame.Persistence
                 // creatures first so replay order does not reject that legal saved state.
                 RestorePlacements(snapshot, registry, map, ThingKind.Creature);
                 RestorePlacements(snapshot, registry, map, ThingKind.Facility);
-                return new SessionState(registry, map);
+                var runtime = snapshot.version == CurrentVersion
+                    ? LaboratorySnapshotCodec.Restore(snapshot.laboratory, registry, map, GetDefinition) : null;
+                return new SessionState(registry, map, runtime);
             }
             catch (Exception exception) when (exception is ArgumentException ||
                 exception is InvalidOperationException || exception is OverflowException)
@@ -156,8 +173,17 @@ namespace MobileGame.Persistence
         {
             if (snapshot == null)
                 throw Invalid("The save has no session object.");
-            if (snapshot.version != CurrentVersion)
+            if (snapshot.version != LegacyVersion && snapshot.version != CurrentVersion)
                 throw Invalid("Unsupported save version: " + snapshot.version);
+            if (snapshot.version == CurrentVersion)
+            {
+                if (snapshot.runtimeKind != "laboratory")
+                    throw Invalid("Version 2 requires the laboratory runtime contract.");
+                LaboratorySnapshotCodec.ValidateStructure(snapshot.laboratory);
+            }
+            else if (!string.IsNullOrEmpty(snapshot.runtimeKind) ||
+                (snapshot.laboratory != null && !string.IsNullOrEmpty(snapshot.laboratory.organicDefinitionId)))
+                throw Invalid("A legacy save cannot contain laboratory state.");
             if (snapshot.phase != SessionPhase.Playing && snapshot.phase != SessionPhase.Destruction &&
                 snapshot.phase != SessionPhase.Results)
                 throw Invalid("Only a prepared session phase can be saved.");

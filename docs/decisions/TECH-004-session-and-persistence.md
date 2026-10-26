@@ -5,6 +5,7 @@
 - 관련 작업: [PLAN-007](../plans/PLAN-007-gameflow-and-persistence.md).
 - 기준: [GameFlow](../game-design/05-development/01-architecture/game-flow.md), [Thing 저장·복원](../game-design/05-development/01-architecture/thing-model.md), [플레이 환경](../game-design/04-delivery/01-platform/environment.md).
 - 관계: [TECH-001](TECH-001-thing-foundation.md)의 식별·단일 소속, [TECH-003](TECH-003-map-and-placement.md)의 공간·편집 기반을 확장한다. 기존 기획과 상태 원본은 유지한다.
+- 후속 확장: [TECH-005](TECH-005-initial-laboratory-and-jobs.md)가 실제 플레이의 Job·회차·예약과 v2 저장을 추가한다. 이 문서의 v1 진단 호환과 파일 실패 보존은 유지한다.
 
 ## 책임과 저장 범위
 

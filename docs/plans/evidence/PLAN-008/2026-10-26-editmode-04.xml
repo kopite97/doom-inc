@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="133" result="Passed" total="133" passed="133" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 08:14:24Z" end-time="2026-10-26 08:14:30Z" duration="6.2127693">
+  <test-suite type="TestSuite" id="1176" name="UnityProject" fullname="UnityProject" runstate="Runnable" testcasecount="133" result="Passed" start-time="2026-10-26 08:14:24Z" end-time="2026-10-26 08:14:30Z" duration="6.212769" total="133" passed="133" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1003" name="Environment.EditMode.Tests.dll" fullname="C:/Users/USER/Documents/ChatGPT/모바일 게임/UnityProject/Library/ScriptAssemblies/Environment.EditMode.Tests.dll" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-26 08:14:24Z" end-time="2026-10-26 08:14:25Z" duration="0.483319" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="1948" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1004" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-26 08:14:24Z" end-time="2026-10-26 08:14:25Z" duration="0.477452" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1005" name="EnvironmentTests" fullname="MobileGame.EnvironmentTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-26 08:14:24Z" end-time="2026-10-26 08:14:25Z" duration="0.473569" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="ProjectEnvironmentTests" fullname="MobileGame.EnvironmentTests.ProjectEnvironmentTests" classname="MobileGame.EnvironmentTests.ProjectEnvironmentTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-26 08:14:24Z" end-time="2026-10-26 08:14:25Z" duration="0.344962" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="ApprovedEditorAndroidAndUniversal2DConfigurationAreReady" fullname="MobileGame.EnvironmentTests.ProjectEnvironmentTests.ApprovedEditorAndroidAndUniversal2DConfigurationAreReady" methodname="ApprovedEditorAndroidAndUniversal2DConfigurationAreReady" classname="MobileGame.EnvironmentTests.ProjectEnvironmentTests" runstate="Runnable" seed="1708962285" result="Passed" start-time="2026-10-26 08:14:24Z" end-time="2026-10-26 08:14:25Z" duration="0.184808" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1164" name="MobileGame.Foundation.EditMode.Tests.dll" fullname="C:/Users/USER/Documents/ChatGPT/모바일 게임/UnityProject/Library/ScriptAssemblies/MobileGame.Foundation.EditMode.Tests.dll" runstate="Runnable" testcasecount="132" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:30Z" duration="5.612065" total="132" passed="132" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="1948" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1165" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="132" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:30Z" duration="5.595145" total="132" passed="132" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1166" name="Foundation" fullname="MobileGame.Foundation" runstate="Runnable" testcasecount="132" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:30Z" duration="5.581282" total="132" passed="132" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1167" name="Tests" fullname="MobileGame.Foundation.Tests" runstate="Runnable" testcasecount="132" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:30Z" duration="5.469906" total="132" passed="132" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1006" name="DefinitionFoundationTests" fullname="MobileGame.Foundation.Tests.DefinitionFoundationTests" classname="MobileGame.Foundation.Tests.DefinitionFoundationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.168668" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1007" name="DifferentAssetsCannotUseOneDefinitionIdButTheSameAssetCanBeShared" fullname="MobileGame.Foundation.Tests.DefinitionFoundationTests.DifferentAssetsCannotUseOneDefinitionIdButTheSameAssetCanBeShared" methodname="DifferentAssetsCannotUseOneDefinitionIdButTheSameAssetCanBeShared" classname="MobileGame.Foundation.Tests.DefinitionFoundationTests" runstate="Runnable" seed="608335346" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.119754" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1008" name="InvalidComponentDefinitionsAreRejectedBeforeRegisteringThings" fullname="MobileGame.Foundation.Tests.DefinitionFoundationTests.InvalidComponentDefinitionsAreRejectedBeforeRegisteringThings" methodname="InvalidComponentDefinitionsAreRejectedBeforeRegisteringThings" classname="MobileGame.Foundation.Tests.DefinitionFoundationTests" runstate="Runnable" seed="18162334" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.011875" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1009" name="RepresentativeAssetsImportAndCreateLogicalThingsWithoutChangingDefinitions" fullname="MobileGame.Foundation.Tests.DefinitionFoundationTests.RepresentativeAssetsImportAndCreateLogicalThingsWithoutChangingDefinitions" methodname="RepresentativeAssetsImportAndCreateLogicalThingsWithoutChangingDefinitions" classname="MobileGame.Foundation.Tests.DefinitionFoundationTests" runstate="Runnable" seed="1347470821" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.013921" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1156" name="GameplayComponentTests" fullname="MobileGame.Foundation.Tests.GameplayComponentTests" classname="MobileGame.Foundation.Tests.GameplayComponentTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.070009" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1159" name="GameplayDefinitionsRejectMissingResourcesAndInvalidSettings" fullname="MobileGame.Foundation.Tests.GameplayComponentTests.GameplayDefinitionsRejectMissingResourcesAndInvalidSettings" methodname="GameplayDefinitionsRejectMissingResourcesAndInvalidSettings" classname="MobileGame.Foundation.Tests.GameplayComponentTests" runstate="Runnable" seed="1078379248" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.027658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1157" name="InjectedFactoryAddsOnlyRoleFeaturesWithIndependentOwnersAndState" fullname="MobileGame.Foundation.Tests.GameplayComponentTests.InjectedFactoryAddsOnlyRoleFeaturesWithIndependentOwnersAndState" methodname="InjectedFactoryAddsOnlyRoleFeaturesWithIndependentOwnersAndState" classname="MobileGame.Foundation.Tests.GameplayComponentTests" runstate="Runnable" seed="1982504740" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.018690" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1158" name="InvalidFactoryAndDuplicateComponentsCannotPartiallyRegister" fullname="MobileGame.Foundation.Tests.GameplayComponentTests.InvalidFactoryAndDuplicateComponentsCannotPartiallyRegister" methodname="InvalidFactoryAndDuplicateComponentsCannotPartiallyRegister" classname="MobileGame.Foundation.Tests.GameplayComponentTests" runstate="Runnable" seed="854558939" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.016300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1134" name="GridMapTests" fullname="MobileGame.Foundation.Tests.GridMapTests" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.159748" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1141" name="CorridorAndInteractionBlockingDoNotBecomePlacementRestrictions" fullname="MobileGame.Foundation.Tests.GridMapTests.CorridorAndInteractionBlockingDoNotBecomePlacementRestrictions" methodname="CorridorAndInteractionBlockingDoNotBecomePlacementRestrictions" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="853385186" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.055667" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1142" name="CreaturesOverlapWithoutBlockingButCannotBePlacedInsideFacility" fullname="MobileGame.Foundation.Tests.GridMapTests.CreaturesOverlapWithoutBlockingButCannotBePlacedInsideFacility" methodname="CreaturesOverlapWithoutBlockingButCannotBePlacedInsideFacility" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="2041679659" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.020356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1145" name="FailedConfirmationKeepsEditingAndCanBeCorrected" fullname="MobileGame.Foundation.Tests.GridMapTests.FailedConfirmationKeepsEditingAndCanBeCorrected" methodname="FailedConfirmationKeepsEditingAndCanBeCorrected" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="162231173" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.011075" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1140" name="InvalidMoveAndRotationAreAtomicIncludingIntegerExtremes" fullname="MobileGame.Foundation.Tests.GridMapTests.InvalidMoveAndRotationAreAtomicIncludingIntegerExtremes" methodname="InvalidMoveAndRotationAreAtomicIncludingIntegerExtremes" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="2066031780" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.006659" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1143" name="MovingOneSharedDefinitionPreservesIdentityInventoryAndOtherInstance" fullname="MobileGame.Foundation.Tests.GridMapTests.MovingOneSharedDefinitionPreservesIdentityInventoryAndOtherInstance" methodname="MovingOneSharedDefinitionPreservesIdentityInventoryAndOtherInstance" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="865839089" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.003380" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1146" name="NewPlacementCanBeCancelledWithoutDestroyingThing" fullname="MobileGame.Foundation.Tests.GridMapTests.NewPlacementCanBeCancelledWithoutDestroyingThing" methodname="NewPlacementCanBeCancelledWithoutDestroyingThing" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="1962636790" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.001952" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1144" name="PreviewAndCancelKeepOriginalOccupancyAndSuccessfulConfirmSwitchesOnce" fullname="MobileGame.Foundation.Tests.GridMapTests.PreviewAndCancelKeepOriginalOccupancyAndSuccessfulConfirmSwitchesOnce" methodname="PreviewAndCancelKeepOriginalOccupancyAndSuccessfulConfirmSwitchesOnce" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="768017370" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.003590" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1150" name="QueriesAreReadOnlySnapshotsAndInvalidDefinitionIsRejected" fullname="MobileGame.Foundation.Tests.GridMapTests.QueriesAreReadOnlySnapshotsAndInvalidDefinitionIsRejected" methodname="QueriesAreReadOnlySnapshotsAndInvalidDefinitionIsRejected" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="2061140283" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.008984" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1139" name="RectangularFacilityRotatesFootprintAndFixedInteraction" fullname="MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.009130" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1135" name="RectangularFacilityRotatesFootprintAndFixedInteraction(None,2,3,5,3)" fullname="MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(None,2,3,5,3)" methodname="RectangularFacilityRotatesFootprintAndFixedInteraction" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="513982745" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.002896" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1136" name="RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise90,3,2,3,4)" fullname="MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise90,3,2,3,4)" methodname="RectangularFacilityRotatesFootprintAndFixedInteraction" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="899109891" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.000770" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1137" name="RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise180,2,3,4,7)" fullname="MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise180,2,3,4,7)" methodname="RectangularFacilityRotatesFootprintAndFixedInteraction" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="1679864216" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.000756" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1138" name="RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise270,3,2,7,5)" fullname="MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise270,3,2,7,5)" methodname="RectangularFacilityRotatesFootprintAndFixedInteraction" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="271521675" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.001078" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1149" name="RejectsForeignRegistryOtherMapAndResourcesWithoutSideEffects" fullname="MobileGame.Foundation.Tests.GridMapTests.RejectsForeignRegistryOtherMapAndResourcesWithoutSideEffects" methodname="RejectsForeignRegistryOtherMapAndResourcesWithoutSideEffects" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="1453366967" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.004480" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1148" name="RemovedEditedTargetCannotBeResurrectedByConfirm" fullname="MobileGame.Foundation.Tests.GridMapTests.RemovedEditedTargetCannotBeResurrectedByConfirm" methodname="RemovedEditedTargetCannotBeResurrectedByConfirm" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="1865965259" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.004045" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1147" name="UnplacementPreservesExistenceAndInventoryAndRemovalCleansMap" fullname="MobileGame.Foundation.Tests.GridMapTests.UnplacementPreservesExistenceAndInventoryAndRemovalCleansMap" methodname="UnplacementPreservesExistenceAndInventoryAndRemovalCleansMap" classname="MobileGame.Foundation.Tests.GridMapTests" runstate="Runnable" seed="243040701" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.006338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1151" name="GridPathfinderTests" fullname="MobileGame.Foundation.Tests.GridPathfinderTests" classname="MobileGame.Foundation.Tests.GridPathfinderTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.027506" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1153" name="BlockedStartCanLeaveOnlyThroughAdjacentWalkableCell" fullname="MobileGame.Foundation.Tests.GridPathfinderTests.BlockedStartCanLeaveOnlyThroughAdjacentWalkableCell" methodname="BlockedStartCanLeaveOnlyThroughAdjacentWalkableCell" classname="MobileGame.Foundation.Tests.GridPathfinderTests" runstate="Runnable" seed="1192371329" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.013306" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1155" name="ConstructionCandidateUsesSameChecksWithoutCreatingThingsOrChangingMap" fullname="MobileGame.Foundation.Tests.GridPathfinderTests.ConstructionCandidateUsesSameChecksWithoutCreatingThingsOrChangingMap" methodname="ConstructionCandidateUsesSameChecksWithoutCreatingThingsOrChangingMap" classname="MobileGame.Foundation.Tests.GridPathfinderTests" runstate="Runnable" seed="1218934056" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.002827" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1154" name="LatestMapStateControlsBlockedRecoveredAndOutOfBoundsRoutes" fullname="MobileGame.Foundation.Tests.GridPathfinderTests.LatestMapStateControlsBlockedRecoveredAndOutOfBoundsRoutes" methodname="LatestMapStateControlsBlockedRecoveredAndOutOfBoundsRoutes" classname="MobileGame.Foundation.Tests.GridPathfinderTests" runstate="Runnable" seed="178927005" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.001685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1152" name="ShortestPathUsesFacilityOccupancyAndIgnoresCreatures" fullname="MobileGame.Foundation.Tests.GridPathfinderTests.ShortestPathUsesFacilityOccupancyAndIgnoresCreatures" methodname="ShortestPathUsesFacilityOccupancyAndIgnoresCreatures" classname="MobileGame.Foundation.Tests.GridPathfinderTests" runstate="Runnable" seed="1279030310" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:25Z" duration="0.006352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1027" name="InitialLaboratoryCycleTests" fullname="MobileGame.Foundation.Tests.InitialLaboratoryCycleTests" classname="MobileGame.Foundation.Tests.InitialLaboratoryCycleTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:27Z" duration="1.226944" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1028" name="FullStorageResumesThroughPaidConstructionAndActualPartialAdmissions" fullname="MobileGame.Foundation.Tests.InitialLaboratoryCycleTests.FullStorageResumesThroughPaidConstructionAndActualPartialAdmissions" methodname="FullStorageResumesThroughPaidConstructionAndActualPartialAdmissions" classname="MobileGame.Foundation.Tests.InitialLaboratoryCycleTests" runstate="Runnable" seed="479443283" result="Passed" start-time="2026-10-26 08:14:25Z" end-time="2026-10-26 08:14:27Z" duration="1.221748" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1064" name="LaboratoryCompatibilityTests" fullname="MobileGame.Foundation.Tests.LaboratoryCompatibilityTests" classname="MobileGame.Foundation.Tests.LaboratoryCompatibilityTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-26 08:14:27Z" end-time="2026-10-26 08:14:27Z" duration="0.030433" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1065" name="UpgradedSharedDefinitionStillLoadsLegacyDiagnosticButNotActualPlaySlot" fullname="MobileGame.Foundation.Tests.LaboratoryCompatibilityTests.UpgradedSharedDefinitionStillLoadsLegacyDiagnosticButNotActualPlaySlot" methodname="UpgradedSharedDefinitionStillLoadsLegacyDiagnosticButNotActualPlaySlot" classname="MobileGame.Foundation.Tests.LaboratoryCompatibilityTests" runstate="Runnable" seed="111666931" result="Passed" start-time="2026-10-26 08:14:27Z" end-time="2026-10-26 08:14:27Z" duration="0.020380" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1066" name="LaboratoryPersistenceTests" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-10-26 08:14:27Z" end-time="2026-10-26 08:14:28Z" duration="1.791465" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1071" name="ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-26 08:14:27Z" end-time="2026-10-26 08:14:27Z" duration="0.668056" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1067" name="ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(&quot;construction&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(&quot;construction&quot;)" methodname="ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1390566703" result="Passed" start-time="2026-10-26 08:14:27Z" end-time="2026-10-26 08:14:27Z" duration="0.252086" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1068" name="ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(&quot;gathering&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(&quot;gathering&quot;)" methodname="ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1307331516" result="Passed" start-time="2026-10-26 08:14:27Z" end-time="2026-10-26 08:14:27Z" duration="0.111650" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1069" name="ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(&quot;reserved&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(&quot;reserved&quot;)" methodname="ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1538529405" result="Passed" start-time="2026-10-26 08:14:27Z" end-time="2026-10-26 08:14:27Z" duration="0.141768" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1070" name="ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(&quot;carried&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(&quot;carried&quot;)" methodname="ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1626932314" result="Passed" start-time="2026-10-26 08:14:27Z" end-time="2026-10-26 08:14:27Z" duration="0.152711" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1076" name="BlockedBootstrapDeliveryPreservesOnlyItsReservedSubsetAsTheHeldJob" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.BlockedBootstrapDeliveryPreservesOnlyItsReservedSubsetAsTheHeldJob" methodname="BlockedBootstrapDeliveryPreservesOnlyItsReservedSubsetAsTheHeldJob" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="2118669435" result="Passed" start-time="2026-10-26 08:14:27Z" end-time="2026-10-26 08:14:27Z" duration="0.109119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1088" name="DuplicatedOutboundReservationCannotDoubleBookTheSameResourceAfterReload" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.DuplicatedOutboundReservationCannotDoubleBookTheSameResourceAfterReload" methodname="DuplicatedOutboundReservationCannotDoubleBookTheSameResourceAfterReload" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1781791126" result="Passed" start-time="2026-10-26 08:14:27Z" end-time="2026-10-26 08:14:27Z" duration="0.065160" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1073" name="HeldBatchWithoutDestinationAndCustomSettingsSurviveUntilActualAdmission" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.HeldBatchWithoutDestinationAndCustomSettingsSurviveUntilActualAdmission" methodname="HeldBatchWithoutDestinationAndCustomSettingsSurviveUntilActualAdmission" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1788966823" result="Passed" start-time="2026-10-26 08:14:27Z" end-time="2026-10-26 08:14:28Z" duration="0.138637" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1072" name="LegacyDiagnosticSaveRemainsVersionOneAndDoesNotGainGameplayComponents" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.LegacyDiagnosticSaveRemainsVersionOneAndDoesNotGainGameplayComponents" methodname="LegacyDiagnosticSaveRemainsVersionOneAndDoesNotGainGameplayComponents" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1274972260" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.018631" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1087" name="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.583323" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1077" name="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;no-laboratory&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;no-laboratory&quot;)" methodname="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="2129663928" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.083954" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1078" name="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;no-worker-state&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;no-worker-state&quot;)" methodname="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="2120002496" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.050445" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1079" name="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;duplicate-component-state&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;duplicate-component-state&quot;)" methodname="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1494313209" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.038866" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1080" name="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;missing-component-flag&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;missing-component-flag&quot;)" methodname="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1558479965" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.068108" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1081" name="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;unknown-component-owner&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;unknown-component-owner&quot;)" methodname="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="32555956" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.063586" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1082" name="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;unknown-job-target&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;unknown-job-target&quot;)" methodname="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="2065441790" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.065512" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1083" name="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;invalid-priorities&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;invalid-priorities&quot;)" methodname="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1735000739" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.055128" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1084" name="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;nan-progress&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;nan-progress&quot;)" methodname="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1527171624" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.066901" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1085" name="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;unsupported-version&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;unsupported-version&quot;)" methodname="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="250150535" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.035342" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1086" name="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;downgrade&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(&quot;downgrade&quot;)" methodname="MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="2043119295" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.030645" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1074" name="PartialAdmissionRestoresHeldRemainderAndCompletesTheSameBatchExactlyOnce" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.PartialAdmissionRestoresHeldRemainderAndCompletesTheSameBatchExactlyOnce" methodname="PartialAdmissionRestoresHeldRemainderAndCompletesTheSameBatchExactlyOnce" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1042104530" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.100466" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1075" name="TransientConstructionPreviewIsNotSavedAndGameFlowGatesActualWork" fullname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests.TransientConstructionPreviewIsNotSavedAndGameFlowGatesActualWork" methodname="TransientConstructionPreviewIsNotSavedAndGameFlowGatesActualWork" classname="MobileGame.Foundation.Tests.LaboratoryPersistenceTests" runstate="Runnable" seed="1091839199" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.080159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1029" name="LaboratoryValidationTests" fullname="MobileGame.Foundation.Tests.LaboratoryValidationTests" classname="MobileGame.Foundation.Tests.LaboratoryValidationTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:29Z" duration="0.322907" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1038" name="FacilityCoveringAWorkerRemainsLegalForIdleOrReachableMovingState" fullname="MobileGame.Foundation.Tests.LaboratoryValidationTests.FacilityCoveringAWorkerRemainsLegalForIdleOrReachableMovingState" classname="MobileGame.Foundation.Tests.LaboratoryValidationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.080718" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1036" name="FacilityCoveringAWorkerRemainsLegalForIdleOrReachableMovingState(False)" fullname="MobileGame.Foundation.Tests.LaboratoryValidationTests.FacilityCoveringAWorkerRemainsLegalForIdleOrReachableMovingState(False)" methodname="FacilityCoveringAWorkerRemainsLegalForIdleOrReachableMovingState" classname="MobileGame.Foundation.Tests.LaboratoryValidationTests" runstate="Runnable" seed="1400694327" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.048169" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1037" name="FacilityCoveringAWorkerRemainsLegalForIdleOrReachableMovingState(True)" fullname="MobileGame.Foundation.Tests.LaboratoryValidationTests.FacilityCoveringAWorkerRemainsLegalForIdleOrReachableMovingState(True)" methodname="FacilityCoveringAWorkerRemainsLegalForIdleOrReachableMovingState" classname="MobileGame.Foundation.Tests.LaboratoryValidationTests" runstate="Runnable" seed="1690169855" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:28Z" duration="0.030895" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1034" name="RejectsTwoWorkersClaimingOneFacilityEvenWhenBothStandAtItsInteractionCell" fullname="MobileGame.Foundation.Tests.LaboratoryValidationTests.RejectsTwoWorkersClaimingOneFacilityEvenWhenBothStandAtItsInteractionCell" methodname="RejectsTwoWorkersClaimingOneFacilityEvenWhenBothStandAtItsInteractionCell" classname="MobileGame.Foundation.Tests.LaboratoryValidationTests" runstate="Runnable" seed="1563438553" result="Passed" start-time="2026-10-26 08:14:28Z" end-time="2026-10-26 08:14:29Z" duration="0.060616" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1033" name="RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork" fullname="MobileGame.Foundation.Tests.LaboratoryValidationTests.RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork" classname="MobileGame.Foundation.Tests.LaboratoryValidationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.147732" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1030" name="RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork(&quot;working-away&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryValidationTests.RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork(&quot;working-away&quot;)" methodname="RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork" classname="MobileGame.Foundation.Tests.LaboratoryValidationTests" runstate="Runnable" seed="945516152" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.052921" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1031" name="RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork(&quot;worker-unplaced&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryValidationTests.RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork(&quot;worker-unplaced&quot;)" methodname="RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork" classname="MobileGame.Foundation.Tests.LaboratoryValidationTests" runstate="Runnable" seed="402276805" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.053243" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1032" name="RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork(&quot;idle-movement&quot;)" fullname="MobileGame.Foundation.Tests.LaboratoryValidationTests.RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork(&quot;idle-movement&quot;)" methodname="RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork" classname="MobileGame.Foundation.Tests.LaboratoryValidationTests" runstate="Runnable" seed="1542447261" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.038819" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1035" name="RejectsWorkWhoseTargetExistsButHasNoMapPlacement" fullname="MobileGame.Foundation.Tests.LaboratoryValidationTests.RejectsWorkWhoseTargetExistsButHasNoMapPlacement" methodname="RejectsWorkWhoseTargetExistsButHasNoMapPlacement" classname="MobileGame.Foundation.Tests.LaboratoryValidationTests" runstate="Runnable" seed="132778519" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.029446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1039" name="LogisticsTests" fullname="MobileGame.Foundation.Tests.LogisticsTests" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.393619" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1045" name="AllowanceChangeKeepsOutgoingConstructionReservation" fullname="MobileGame.Foundation.Tests.LogisticsTests.AllowanceChangeKeepsOutgoingConstructionReservation" methodname="AllowanceChangeKeepsOutgoingConstructionReservation" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="391087818" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.008689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1055" name="BlockingUnpickedInteractionReleasesBothReservationsAndMovingBlockerRecovers" fullname="MobileGame.Foundation.Tests.LogisticsTests.BlockingUnpickedInteractionReleasesBothReservationsAndMovingBlockerRecovers" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.043194" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1053" name="BlockingUnpickedInteractionReleasesBothReservationsAndMovingBlockerRecovers(True)" fullname="MobileGame.Foundation.Tests.LogisticsTests.BlockingUnpickedInteractionReleasesBothReservationsAndMovingBlockerRecovers(True)" methodname="BlockingUnpickedInteractionReleasesBothReservationsAndMovingBlockerRecovers" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="284103398" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.024548" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1054" name="BlockingUnpickedInteractionReleasesBothReservationsAndMovingBlockerRecovers(False)" fullname="MobileGame.Foundation.Tests.LogisticsTests.BlockingUnpickedInteractionReleasesBothReservationsAndMovingBlockerRecovers(False)" methodname="BlockingUnpickedInteractionReleasesBothReservationsAndMovingBlockerRecovers" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="1203870158" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.016411" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1047" name="DisablingWorkFinishesConstructionDeliveryWithoutForcingConstructionWork" fullname="MobileGame.Foundation.Tests.LogisticsTests.DisablingWorkFinishesConstructionDeliveryWithoutForcingConstructionWork" methodname="DisablingWorkFinishesConstructionDeliveryWithoutForcingConstructionWork" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="2057070270" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.021856" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1051" name="EditingFreezesMovementJobsReservationsAndBatchUntilCancelled" fullname="MobileGame.Foundation.Tests.LogisticsTests.EditingFreezesMovementJobsReservationsAndBatchUntilCancelled" methodname="EditingFreezesMovementJobsReservationsAndBatchUntilCancelled" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="1776801414" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.028692" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1052" name="ExcludedStoredStacksRelocateAsOneFullLoadAndKeepOutgoingWorkWhenAllowedAgain" fullname="MobileGame.Foundation.Tests.LogisticsTests.ExcludedStoredStacksRelocateAsOneFullLoadAndKeepOutgoingWorkWhenAllowedAgain" methodname="ExcludedStoredStacksRelocateAsOneFullLoadAndKeepOutgoingWorkWhenAllowedAgain" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="139472092" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.017832" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1048" name="ExcludingDestinationCancelsBothUnpickedReservationsAndSelectsAnotherStore" fullname="MobileGame.Foundation.Tests.LogisticsTests.ExcludingDestinationCancelsBothUnpickedReservationsAndSelectsAnotherStore" methodname="ExcludingDestinationCancelsBothUnpickedReservationsAndSelectsAnotherStore" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="1034841315" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.004867" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1056" name="MovingAndRotatingReachableDestinationKeepsPickedJobAndReservationUntilNewInteraction" fullname="MobileGame.Foundation.Tests.LogisticsTests.MovingAndRotatingReachableDestinationKeepsPickedJobAndReservationUntilNewInteraction" methodname="MovingAndRotatingReachableDestinationKeepsPickedJobAndReservationUntilNewInteraction" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="648988770" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.050597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1043" name="MultipleWorkersReserveOnlyRemainingStockAndCapacity" fullname="MobileGame.Foundation.Tests.LogisticsTests.MultipleWorkersReserveOnlyRemainingStockAndCapacity" methodname="MultipleWorkersReserveOnlyRemainingStockAndCapacity" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="704321293" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.104890" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1050" name="NormalHaulingKeepsItsTargetWhenCloserSupplyAndHigherPriorityWorkAppear" fullname="MobileGame.Foundation.Tests.LogisticsTests.NormalHaulingKeepsItsTargetWhenCloserSupplyAndHigherPriorityWorkAppear" methodname="NormalHaulingKeepsItsTargetWhenCloserSupplyAndHigherPriorityWorkAppear" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="813210873" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.023623" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1046" name="PickedConstructionMaterialsReturnToStorageWhenSiteBecomesUnreachable" fullname="MobileGame.Foundation.Tests.LogisticsTests.PickedConstructionMaterialsReturnToStorageWhenSiteBecomesUnreachable" methodname="PickedConstructionMaterialsReturnToStorageWhenSiteBecomesUnreachable" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="1262841448" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.012364" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1049" name="PickedOutputWaitsWithoutLossThenSplitsAcrossRecoveredStores" fullname="MobileGame.Foundation.Tests.LogisticsTests.PickedOutputWaitsWithoutLossThenSplitsAcrossRecoveredStores" methodname="PickedOutputWaitsWithoutLossThenSplitsAcrossRecoveredStores" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="1205300414" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.028909" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1044" name="PickupAndPartialIntakeDoNotFinishBatchBeforeEveryUnitIsStored" fullname="MobileGame.Foundation.Tests.LogisticsTests.PickupAndPartialIntakeDoNotFinishBatchBeforeEveryUnitIsStored" methodname="PickupAndPartialIntakeDoNotFinishBatchBeforeEveryUnitIsStored" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="168740159" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.019849" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1040" name="SelectsNearestSupplyFirstEvenWhenAnotherTotalTripIsShorter" fullname="MobileGame.Foundation.Tests.LogisticsTests.SelectsNearestSupplyFirstEvenWhenAnotherTotalTripIsShorter" methodname="SelectsNearestSupplyFirstEvenWhenAnotherTotalTripIsShorter" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="112389107" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.005503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1042" name="SupplyAndDestinationTiesKeepOriginalCreationOrderAfterMovement" fullname="MobileGame.Foundation.Tests.LogisticsTests.SupplyAndDestinationTiesKeepOriginalCreationOrderAfterMovement" methodname="SupplyAndDestinationTiesKeepOriginalCreationOrderAfterMovement" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="145906351" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.004848" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1041" name="UsesObstacleAvoidingPathInsteadOfStraightLineDistance" fullname="MobileGame.Foundation.Tests.LogisticsTests.UsesObstacleAvoidingPathInsteadOfStraightLineDistance" methodname="UsesObstacleAvoidingPathInsteadOfStraightLineDistance" classname="MobileGame.Foundation.Tests.LogisticsTests" runstate="Runnable" seed="2051452139" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.006093" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1122" name="PartialResourceTransferTests" fullname="MobileGame.Foundation.Tests.PartialResourceTransferTests" classname="MobileGame.Foundation.Tests.PartialResourceTransferTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.016946" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1124" name="InvalidOrFailedSplitLeavesOriginalAndCreationOrderUntouched" fullname="MobileGame.Foundation.Tests.PartialResourceTransferTests.InvalidOrFailedSplitLeavesOriginalAndCreationOrderUntouched" methodname="InvalidOrFailedSplitLeavesOriginalAndCreationOrderUntouched" classname="MobileGame.Foundation.Tests.PartialResourceTransferTests" runstate="Runnable" seed="635915168" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.004487" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1125" name="MergePreservesDestinationIdentityAndRejectsInvalidInputsAtomically" fullname="MobileGame.Foundation.Tests.PartialResourceTransferTests.MergePreservesDestinationIdentityAndRejectsInvalidInputsAtomically" methodname="MergePreservesDestinationIdentityAndRejectsInvalidInputsAtomically" classname="MobileGame.Foundation.Tests.PartialResourceTransferTests" runstate="Runnable" seed="2033082855" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.004557" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1123" name="PartialTransferConservesQuantityAndWholeTransferKeepsIdentity" fullname="MobileGame.Foundation.Tests.PartialResourceTransferTests.PartialTransferConservesQuantityAndWholeTransferKeepsIdentity" methodname="PartialTransferConservesQuantityAndWholeTransferKeepsIdentity" classname="MobileGame.Foundation.Tests.PartialResourceTransferTests" runstate="Runnable" seed="583451967" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.003982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1126" name="ResourceOwnershipTests" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.025549" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1128" name="ConsumingOneStackDoesNotChangeAnotherStackOrSharedDefinition" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.ConsumingOneStackDoesNotChangeAnotherStackOrSharedDefinition" methodname="ConsumingOneStackDoesNotChangeAnotherStackOrSharedDefinition" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="1413534201" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.002801" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1131" name="ForeignRegistryHoldersAndResourcesCannotCrossOwnershipBoundaries" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.ForeignRegistryHoldersAndResourcesCannotCrossOwnershipBoundaries" methodname="ForeignRegistryHoldersAndResourcesCannotCrossOwnershipBoundaries" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="1750243208" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.002304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1129" name="InvalidQuantitiesLeaveRegistryDefinitionsOwnershipAndQuantityUnchanged" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.InvalidQuantitiesLeaveRegistryDefinitionsOwnershipAndQuantityUnchanged" methodname="InvalidQuantitiesLeaveRegistryDefinitionsOwnershipAndQuantityUnchanged" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="210266643" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.004274" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1133" name="NonemptyHolderCannotBeRemovedAndFullConsumptionEndsResourceExistence" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.NonemptyHolderCannotBeRemovedAndFullConsumptionEndsResourceExistence" methodname="NonemptyHolderCannotBeRemovedAndFullConsumptionEndsResourceExistence" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="923389748" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.002719" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1130" name="NullInputsAreRejectedWithoutLosingExistingResources" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.NullInputsAreRejectedWithoutLosingExistingResources" methodname="NullInputsAreRejectedWithoutLosingExistingResources" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="1406336727" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.003778" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1132" name="RemovedHolderCannotReceiveNewOrExistingResources" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.RemovedHolderCannotReceiveNewOrExistingResources" methodname="RemovedHolderCannotReceiveNewOrExistingResources" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="1350832949" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.002183" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1127" name="ResourceHasOneHolderAtCreationAndAfterRepeatedTransfers" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.ResourceHasOneHolderAtCreationAndAfterRepeatedTransfers" methodname="ResourceHasOneHolderAtCreationAndAfterRepeatedTransfers" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="646883334" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.002703" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1010" name="SessionControllerTests" fullname="MobileGame.Foundation.Tests.SessionControllerTests" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:30Z" duration="0.725467" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1019" name="AutomaticAndLifecycleSavingUseActualFilesAndPauseDoesNotAccumulateTime" fullname="MobileGame.Foundation.Tests.SessionControllerTests.AutomaticAndLifecycleSavingUseActualFilesAndPauseDoesNotAccumulateTime" methodname="AutomaticAndLifecycleSavingUseActualFilesAndPauseDoesNotAccumulateTime" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="520660699" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.059159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1017" name="ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress" fullname="MobileGame.Foundation.Tests.SessionControllerTests.ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:30Z" duration="0.293850" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1014" name="ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress(Playing)" fullname="MobileGame.Foundation.Tests.SessionControllerTests.ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress(Playing)" methodname="ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="1186818015" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.126388" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1015" name="ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress(Destruction)" fullname="MobileGame.Foundation.Tests.SessionControllerTests.ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress(Destruction)" methodname="ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="2114302056" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:29Z" duration="0.075207" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1016" name="ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress(Results)" fullname="MobileGame.Foundation.Tests.SessionControllerTests.ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress(Results)" methodname="ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="1097626467" result="Passed" start-time="2026-10-26 08:14:29Z" end-time="2026-10-26 08:14:30Z" duration="0.089070" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1018" name="CorruptAndInvalidSavesDoNotBecomeFreshGamesOrReplaceCurrentState" fullname="MobileGame.Foundation.Tests.SessionControllerTests.CorruptAndInvalidSavesDoNotBecomeFreshGamesOrReplaceCurrentState" methodname="CorruptAndInvalidSavesDoNotBecomeFreshGamesOrReplaceCurrentState" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="758775829" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.058597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1012" name="EditingPausesOnlyLaboratoryAndSaveRestoresCommittedPlacementWithoutEdit" fullname="MobileGame.Foundation.Tests.SessionControllerTests.EditingPausesOnlyLaboratoryAndSaveRestoresCommittedPlacementWithoutEdit" methodname="EditingPausesOnlyLaboratoryAndSaveRestoresCommittedPlacementWithoutEdit" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="1706124806" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.045859" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1021" name="FailedAutoSaveKeepsSessionAndLastGoodFileAndRetriesOnNextInterval" fullname="MobileGame.Foundation.Tests.SessionControllerTests.FailedAutoSaveKeepsSessionAndLastGoodFileAndRetriesOnNextInterval" methodname="FailedAutoSaveKeepsSessionAndLastGoodFileAndRetriesOnNextInterval" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="849586013" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.033869" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1020" name="FailedRestartPreservesSessionAndFileWhileLaterSuccessClearsOldIdsAndEdits" fullname="MobileGame.Foundation.Tests.SessionControllerTests.FailedRestartPreservesSessionAndFileWhileLaterSuccessClearsOldIdsAndEdits" methodname="FailedRestartPreservesSessionAndFileWhileLaterSuccessClearsOldIdsAndEdits" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="1381252724" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.044561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1013" name="GoalStopsBothSystemsAndCancellingEditCannotResumeResults" fullname="MobileGame.Foundation.Tests.SessionControllerTests.GoalStopsBothSystemsAndCancellingEditCannotResumeResults" methodname="GoalStopsBothSystemsAndCancellingEditCannotResumeResults" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="609951565" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.076289" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1026" name="InvalidTimeInputDoesNotAdvanceOrSave" fullname="MobileGame.Foundation.Tests.SessionControllerTests.InvalidTimeInputDoesNotAdvanceOrSave" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.056655" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1023" name="InvalidTimeInputDoesNotAdvanceOrSave(-1.0d)" fullname="MobileGame.Foundation.Tests.SessionControllerTests.InvalidTimeInputDoesNotAdvanceOrSave(-1.0d)" methodname="InvalidTimeInputDoesNotAdvanceOrSave" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="1165415624" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.017657" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1024" name="InvalidTimeInputDoesNotAdvanceOrSave(double.NaN)" fullname="MobileGame.Foundation.Tests.SessionControllerTests.InvalidTimeInputDoesNotAdvanceOrSave(double.NaN)" methodname="InvalidTimeInputDoesNotAdvanceOrSave" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="1614050082" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.018232" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1025" name="InvalidTimeInputDoesNotAdvanceOrSave(double.PositiveInfinity)" fullname="MobileGame.Foundation.Tests.SessionControllerTests.InvalidTimeInputDoesNotAdvanceOrSave(double.PositiveInfinity)" methodname="InvalidTimeInputDoesNotAdvanceOrSave" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="1328199837" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.017151" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1022" name="PostCommitObserverFailureIsNotReportedAsFailedPersistence" fullname="MobileGame.Foundation.Tests.SessionControllerTests.PostCommitObserverFailureIsNotReportedAsFailedPersistence" methodname="PostCommitObserverFailureIsNotReportedAsFailedPersistence" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="1766370869" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.034974" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1011" name="PreparationDoesNotAdvanceAndFreshStartPublishesOnlyAfterSaving" fullname="MobileGame.Foundation.Tests.SessionControllerTests.PreparationDoesNotAdvanceAndFreshStartPublishesOnlyAfterSaving" methodname="PreparationDoesNotAdvanceAndFreshStartPublishesOnlyAfterSaving" classname="MobileGame.Foundation.Tests.SessionControllerTests" runstate="Runnable" seed="222023440" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.012997" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1089" name="SessionPersistenceTests" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" testcasecount="29" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.219389" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1090" name="ActualFileRoundTripRestoresIndependentObjectsAndSingleOwnership" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.ActualFileRoundTripRestoresIndependentObjectsAndSingleOwnership" methodname="ActualFileRoundTripRestoresIndependentObjectsAndSingleOwnership" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1549522299" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.030751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1119" name="CaptureRejectsAnUntrackedMapRatherThanSilentlyLosingPlacement" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.CaptureRejectsAnUntrackedMapRatherThanSilentlyLosingPlacement" methodname="CaptureRejectsAnUntrackedMapRatherThanSilentlyLosingPlacement" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1696269468" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.007029" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1120" name="DuplicateDefinitionIdsAcrossDistinctAssetsAreRejected" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.DuplicateDefinitionIdsAcrossDistinctAssetsAreRejected" methodname="DuplicateDefinitionIdsAcrossDistinctAssetsAreRejected" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="898130411" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.004567" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1093" name="EditingSavesOnlyCommittedPlacementAndDoesNotRestoreTransientPause" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.EditingSavesOnlyCommittedPlacementAndDoesNotRestoreTransientPause" methodname="EditingSavesOnlyCommittedPlacementAndDoesNotRestoreTransientPause" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="260820338" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.004693" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1121" name="FileOverwriteAndLockedFileFailurePreserveTheLastGoodSave" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.FileOverwriteAndLockedFileFailurePreserveTheLastGoodSave" methodname="FileOverwriteAndLockedFileFailurePreserveTheLastGoodSave" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="623738380" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.040023" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1107" name="InvalidSnapshotCannotMutateTheOriginalGraph" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.067600" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1094" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;duplicate-id&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;duplicate-id&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="113921735" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.007054" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1095" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;duplicate-order&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;duplicate-order&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="515995608" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.004640" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1096" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;low-high-water&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;low-high-water&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1419940208" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003793" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1097" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;missing-definition&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;missing-definition&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1895471164" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.004053" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1098" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;missing-holder&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;missing-holder&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="714565310" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.004291" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1099" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;resource-holder&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;resource-holder&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1967425042" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003976" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1100" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;zero-quantity&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;zero-quantity&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1130480593" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.004757" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1101" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;non-resource-quantity&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;non-resource-quantity&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1253814068" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003792" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1102" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;missing-placed-thing&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;missing-placed-thing&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1283120579" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003903" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1103" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;resource-placement&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;resource-placement&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="896171934" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003985" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1104" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;outside-map&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;outside-map&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="834238514" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.004190" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1105" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;duplicate-placement&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;duplicate-placement&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1062420640" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003793" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1106" name="InvalidSnapshotCannotMutateTheOriginalGraph(&quot;unknown-rotation&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(&quot;unknown-rotation&quot;)" methodname="InvalidSnapshotCannotMutateTheOriginalGraph" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="558580781" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.004427" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1092" name="LegalCreatureOverlapAndFacilityOverCreatureSurviveRestoreOrdering" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.LegalCreatureOverlapAndFacilityOverCreatureSurviveRestoreOrdering" methodname="LegalCreatureOverlapAndFacilityOverCreatureSurviveRestoreOrdering" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1362337427" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.006551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1115" name="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.030969" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1108" name="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(null)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(null)" methodname="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="469144820" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.004498" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1109" name="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot;&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot;&quot;)" methodname="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1542896222" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003997" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1110" name="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot; &quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot; &quot;)" methodname="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1732107160" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003291" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1111" name="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot;null&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot;null&quot;)" methodname="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1560815373" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003052" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1112" name="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot;{ not json&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot;{ not json&quot;)" methodname="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="505487005" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003406" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1113" name="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot;{}&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot;{}&quot;)" methodname="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="2013420531" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003216" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1114" name="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot;{\&quot;version\&quot;:999}&quot;)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(&quot;{\&quot;version\&quot;:999}&quot;)" methodname="MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1200647644" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003212" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1091" name="RemovedHighestOrderAndConsumedResourcesStayRemovedAfterRestore" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.RemovedHighestOrderAndConsumedResourcesStayRemovedAfterRestore" methodname="RemovedHighestOrderAndConsumedResourcesStayRemovedAfterRestore" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="114473392" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.005265" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1118" name="UnpreparedAndUnknownPhasesCannotBeSaved" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.UnpreparedAndUnknownPhasesCannotBeSaved" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.009610" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1116" name="UnpreparedAndUnknownPhasesCannotBeSaved(Preparing)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.UnpreparedAndUnknownPhasesCannotBeSaved(Preparing)" methodname="UnpreparedAndUnknownPhasesCannotBeSaved" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="1879767850" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.004295" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1117" name="UnpreparedAndUnknownPhasesCannotBeSaved(99)" fullname="MobileGame.Foundation.Tests.SessionPersistenceTests.UnpreparedAndUnknownPhasesCannotBeSaved(99)" methodname="UnpreparedAndUnknownPhasesCannotBeSaved" classname="MobileGame.Foundation.Tests.SessionPersistenceTests" runstate="Runnable" seed="621785464" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.003265" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="1160" name="ThingFoundationTests" fullname="MobileGame.Foundation.Tests.ThingFoundationTests" classname="MobileGame.Foundation.Tests.ThingFoundationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.014189" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1162" name="ComponentsBelongToExactlyTheirThingAndMissingLookupDoesNotAddAFeature" fullname="MobileGame.Foundation.Tests.ThingFoundationTests.ComponentsBelongToExactlyTheirThingAndMissingLookupDoesNotAddAFeature" methodname="ComponentsBelongToExactlyTheirThingAndMissingLookupDoesNotAddAFeature" classname="MobileGame.Foundation.Tests.ThingFoundationTests" runstate="Runnable" seed="1676912485" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.002708" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1161" name="FacilitiesShareDefinitionButKeepIndependentComponentsAndInventory" fullname="MobileGame.Foundation.Tests.ThingFoundationTests.FacilitiesShareDefinitionButKeepIndependentComponentsAndInventory" methodname="FacilitiesShareDefinitionButKeepIndependentComponentsAndInventory" classname="MobileGame.Foundation.Tests.ThingFoundationTests" runstate="Runnable" seed="194765435" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.001917" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1163" name="UniqueIdsAndCreationOrderStayStableAcrossResourceChanges" fullname="MobileGame.Foundation.Tests.ThingFoundationTests.UniqueIdsAndCreationOrderStayStableAcrossResourceChanges" methodname="UniqueIdsAndCreationOrderStayStableAcrossResourceChanges" classname="MobileGame.Foundation.Tests.ThingFoundationTests" runstate="Runnable" seed="1928456351" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.006413" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1057" name="WorkTests" fullname="MobileGame.Foundation.Tests.WorkTests" classname="MobileGame.Foundation.Tests.WorkTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.239809" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1063" name="ArrivalStillReconsidersChangedPriorityBeforeActualWorkStarts" fullname="MobileGame.Foundation.Tests.WorkTests.ArrivalStillReconsidersChangedPriorityBeforeActualWorkStarts" methodname="ArrivalStillReconsidersChangedPriorityBeforeActualWorkStarts" classname="MobileGame.Foundation.Tests.WorkTests" runstate="Runnable" seed="1465837558" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.044255" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1062" name="ConstructionChoosesNearestReachableSiteAcrossMaterialAndPaidWork" fullname="MobileGame.Foundation.Tests.WorkTests.ConstructionChoosesNearestReachableSiteAcrossMaterialAndPaidWork" methodname="ConstructionChoosesNearestReachableSiteAcrossMaterialAndPaidWork" classname="MobileGame.Foundation.Tests.WorkTests" runstate="Runnable" seed="1103798912" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.013338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1059" name="EditingAndMovingToChangedInteractionCellDoNotCountAsGatheringTime" fullname="MobileGame.Foundation.Tests.WorkTests.EditingAndMovingToChangedInteractionCellDoNotCountAsGatheringTime" methodname="EditingAndMovingToChangedInteractionCellDoNotCountAsGatheringTime" classname="MobileGame.Foundation.Tests.WorkTests" runstate="Runnable" seed="1296671228" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.021319" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1058" name="GatheringRequiresFiveActualSecondsAndWaitsForEveryOutputToBeStored" fullname="MobileGame.Foundation.Tests.WorkTests.GatheringRequiresFiveActualSecondsAndWaitsForEveryOutputToBeStored" methodname="GatheringRequiresFiveActualSecondsAndWaitsForEveryOutputToBeStored" classname="MobileGame.Foundation.Tests.WorkTests" runstate="Runnable" seed="2061147936" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.046883" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1060" name="OneWorkerUsesFacilityAndReplacementContinuesItsSavedProgress" fullname="MobileGame.Foundation.Tests.WorkTests.OneWorkerUsesFacilityAndReplacementContinuesItsSavedProgress" methodname="OneWorkerUsesFacilityAndReplacementContinuesItsSavedProgress" classname="MobileGame.Foundation.Tests.WorkTests" runstate="Runnable" seed="218972176" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.008907" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1061" name="PresetDisabledWorkOverrideAndEqualPriorityOrderUseCommonSettings" fullname="MobileGame.Foundation.Tests.WorkTests.PresetDisabledWorkOverrideAndEqualPriorityOrderUseCommonSettings" methodname="PresetDisabledWorkOverrideAndEqualPriorityOrderUseCommonSettings" classname="MobileGame.Foundation.Tests.WorkTests" runstate="Runnable" seed="2134198130" result="Passed" start-time="2026-10-26 08:14:30Z" end-time="2026-10-26 08:14:30Z" duration="0.004492" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

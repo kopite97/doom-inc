@@ -5,6 +5,7 @@ namespace MobileGame.Foundation
 {
     public sealed class Thing
     {
+        private readonly List<ThingComponent> configuredComponents = new List<ThingComponent>();
         private readonly IReadOnlyList<ThingComponent> components;
 
         internal Thing(ThingRegistry registry, Guid id, long creationOrder,
@@ -17,22 +18,21 @@ namespace MobileGame.Foundation
             HolderId = holderId;
             Exists = true;
 
-            var configured = new List<ThingComponent>();
+            components = configuredComponents.AsReadOnly();
             foreach (var kind in definition.ComponentKinds)
             {
                 switch (kind)
                 {
                     case ThingComponentKind.ResourceStack:
-                        configured.Add(new ResourceStackComponent(this, resourceQuantity));
+                        AddComponent(new ResourceStackComponent(this, resourceQuantity));
                         break;
                     case ThingComponentKind.ResourceContainer:
-                        configured.Add(new ResourceContainerComponent(this));
+                        AddComponent(new ResourceContainerComponent(this));
                         break;
                     default:
                         throw new InvalidOperationException($"Unsupported component: {kind}");
                 }
             }
-            components = configured.AsReadOnly();
         }
 
         internal ThingRegistry Registry { get; }
@@ -66,6 +66,17 @@ namespace MobileGame.Foundation
             if (TryGetComponent<T>(out var component))
                 return component;
             throw new InvalidOperationException($"Thing {Id} has no {typeof(T).Name}.");
+        }
+
+        internal void AddComponent(ThingComponent component)
+        {
+            if (component == null) throw new ArgumentNullException(nameof(component));
+            if (!ReferenceEquals(component.Owner, this))
+                throw new ArgumentException("A component must belong to this Thing.", nameof(component));
+            foreach (var existing in configuredComponents)
+                if (existing.GetType() == component.GetType())
+                    throw new InvalidOperationException($"Thing {Id} already has {component.GetType().Name}.");
+            configuredComponents.Add(component);
         }
 
         internal void SetHolder(Guid holderId) => HolderId = holderId;

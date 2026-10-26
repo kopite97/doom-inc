@@ -116,6 +116,8 @@ Play Mode 검사는 실제 씬·공통 명령·OnGUI 렌더링과 Temp의 화면
 
 GameFlow·저장 진단 씬의 생성/열기 메뉴와 전체 Edit·Play 실행법은 [PLAN-007 검증 기록](../plans/evidence/PLAN-007/README.md#재현-환경과-명령)을 따른다. 테스트 슬롯은 실제 진단 슬롯과 격리한다.
 
+실제 초기 건설·수집·저장 장면은 [PLAN-008 검증 기록](../plans/evidence/PLAN-008/README.md#재현-명령과-직접-실행)의 Open Laboratory Scene 메뉴·조작·Edit/Play 명령을 따른다. 기존 진단 장면과 실제 플레이 슬롯을 구분한다.
+
 ## Codex의 Unity MCP 연결
 
 `unity-mobile-game`은 이 PC의 Codex 사용자 설정에 등록했으며 프로젝트 경로를 고정했다.

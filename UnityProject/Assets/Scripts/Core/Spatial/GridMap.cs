@@ -47,6 +47,11 @@ namespace MobileGame.Foundation
         public PlacementResult CheckPlacement(Guid id, Vector2Int origin, QuarterTurn rotation)
             => BuildPlacement(id, origin, rotation, out _);
 
+        // A construction candidate is only definition + geometry until confirmed.
+        public PlacementResult CheckPlacement(FacilityDefinition definition, Vector2Int origin,
+            QuarterTurn rotation = QuarterTurn.None)
+            => CheckGeometry(definition, null, origin, rotation, out _, out _);
+
         internal PlacementResult ApplyPlacement(Guid id, Vector2Int origin, QuarterTurn rotation)
         {
             var result = BuildPlacement(id, origin, rotation, out var placement);
@@ -73,25 +78,37 @@ namespace MobileGame.Foundation
                 return PlacementResult.Reject(PlacementError.UnknownThing);
             if (thing.Map != null && !ReferenceEquals(thing.Map, this))
                 return PlacementResult.Reject(PlacementError.OtherMap);
-            if (thing.Definition.Kind == ThingKind.Resource)
+            var result = CheckGeometry(thing.Definition, id, origin, rotation, out var size, out var interaction);
+            if (!result.Succeeded) return result;
+            candidate = new MapPlacement(thing, origin, rotation, size, interaction);
+            return PlacementResult.Success;
+        }
+
+        private PlacementResult CheckGeometry(ThingDefinition definition, Guid? excludedId,
+            Vector2Int origin, QuarterTurn rotation, out Vector2Int size, out Vector2Int? interaction)
+        {
+            size = default;
+            interaction = null;
+            if (definition == null)
+                return PlacementResult.Reject(PlacementError.InvalidDefinition);
+            if (definition.Kind == ThingKind.Resource)
                 return PlacementResult.Reject(PlacementError.ResourceNotSpatial);
             if ((int)rotation < 0 || (int)rotation > 3)
                 return PlacementResult.Reject(PlacementError.InvalidRotation);
 
-            var facility = thing.Definition as FacilityDefinition;
-            try { thing.Definition.Validate(); }
+            var facility = definition as FacilityDefinition;
+            try { definition.Validate(); }
             catch (ArgumentException) { return PlacementResult.Reject(PlacementError.InvalidDefinition); }
             catch (InvalidOperationException) { return PlacementResult.Reject(PlacementError.InvalidDefinition); }
 
-            var originalSize = facility != null ? facility.Footprint : Vector2Int.one;
-            var size = (int)rotation % 2 == 0 ? originalSize : new Vector2Int(originalSize.y, originalSize.x);
+            size = facility != null ? FacilityGeometry.GetSize(facility, rotation) : Vector2Int.one;
             if (origin.x < 0 || origin.y < 0
                 || (long)origin.x + size.x > Width || (long)origin.y + size.y > Height)
                 return PlacementResult.Reject(PlacementError.OutsideBounds);
 
             foreach (var other in placements.Values)
             {
-                if (other.ThingId == id || other.Kind != ThingKind.Facility)
+                if (other.ThingId == excludedId || other.Kind != ThingKind.Facility)
                     continue;
                 var overlaps = (long)origin.x < (long)other.Origin.x + other.Footprint.x
                     && (long)other.Origin.x < (long)origin.x + size.x
@@ -102,19 +119,7 @@ namespace MobileGame.Foundation
                         ? PlacementError.FacilityOverlap : PlacementError.CellBlocked);
             }
 
-            Vector2Int? interaction = null;
-            if (facility != null)
-            {
-                var p = facility.InteractionOffset;
-                switch (rotation)
-                {
-                    case QuarterTurn.Clockwise90: p = new Vector2Int(p.y, originalSize.x - 1 - p.x); break;
-                    case QuarterTurn.Clockwise180: p = new Vector2Int(originalSize.x - 1 - p.x, originalSize.y - 1 - p.y); break;
-                    case QuarterTurn.Clockwise270: p = new Vector2Int(originalSize.y - 1 - p.y, p.x); break;
-                }
-                interaction = origin + p;
-            }
-            candidate = new MapPlacement(thing, origin, rotation, size, interaction);
+            if (facility != null) interaction = FacilityGeometry.GetInteractionCell(facility, origin, rotation);
             return PlacementResult.Success;
         }
     }
