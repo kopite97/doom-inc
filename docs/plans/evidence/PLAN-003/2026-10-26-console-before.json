@@ -1,0 +1,51 @@
+{
+  "success": true,
+  "command": "command console",
+  "data": {
+    "command": "console",
+    "parameters": {
+      "level": "warn",
+      "tail": "30"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 50,
+          "timestampUtc": "2026-10-26T04:05:24.8127068Z",
+          "level": "error",
+          "logType": "Exception",
+          "message": "ExecutionEngineException: String conversion error: Illegal byte sequence encounted in the input.",
+          "stackTrace": "System.Reflection.RuntimeAssembly.GetCodeBase (System.Reflection.Assembly a, System.Boolean escaped) (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.RuntimeAssembly.get_CodeBase () (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.AssemblyName.Create (System.Reflection.Assembly assembly, System.Boolean fillCodebase) (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.RuntimeAssembly.GetName (System.Boolean copiedName) (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.Assembly.GetName () (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nUnityEditor.QuickInstall.QuickInstaller.DetectPackagesFromLoadedAssemblies () (at <ec469c02784d460cac42a26b77624176>:0)\nUnityEditor.QuickInstall.QuickInstaller.PackageListHandler (UnityEditor.PackageManager.Requests.ListRequest request, UnityEditor.EditorApplication+CallbackFunction registeredCallback) (at <ec469c02784d460cac42a26b77624176>:0)\nUnityEditor.QuickInstall.QuickInstaller+<>c__DisplayClass21_0.<CreatePackageListHandler>b__0 () (at <ec469c02784d460cac42a26b77624176>:0)\nUnityEditor.EditorApplication.Internal_CallUpdateFunctions () (at <6719e354e74c4c6e92f6c272146c0b4b>:0)\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 50,
+      "session": "25c10938b69a4ebeae4e1bbf1b7d7f2f",
+      "returned": 1,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 1,
+        "warn": 0,
+        "log": 16
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-10-26T04:46:55.5294254Z",
+        "ageMs": 262,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 1,
+        "consoleWarnings": 0,
+        "consoleLogs": 9,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

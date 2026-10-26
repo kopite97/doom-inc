@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-10-26T05:10:19.460Z",
+  "scope": "Actual staged Git blobs before first commit",
+  "fileCount": 241,
+  "blobBytes": 5282484,
+  "groups": {
+    "docs/": 124,
+    "scripts/": 2,
+    "UnityProject/Assets/": 81,
+    "UnityProject/Packages/": 2,
+    "UnityProject/ProjectSettings/": 27
+  },
+  "unexpected": [],
+  "forbidden": [],
+  "missingMeta": [],
+  "missingFolderMeta": [],
+  "missingRequired": [],
+  "secretPatternFindings": [],
+  "sensitiveJsonAssignments": [],
+  "largeFiles": [
+    {
+      "file": "UnityProject/Assets/Settings/Lit2DSceneTemplate.scenetemplate",
+      "bytes": 3942809
+    }
+  ],
+  "evidenceLogCount": 10,
+  "lfsFiles": "",
+  "checksPassed": true,
+  "limits": [
+    "Pattern scan is not a guarantee that all secrets are detected.",
+    "Unity execution/tests not rerun for this publication-only task."
+  ]
+}

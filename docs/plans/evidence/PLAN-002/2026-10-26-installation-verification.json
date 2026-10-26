@@ -1,0 +1,233 @@
+{
+  "checkedAt": "2026-10-26T11:31:41.6295370+09:00",
+  "plan": "PLAN-002",
+  "scope": "Exact Editor and Android module installation; structural and command-line tool verification only",
+  "installCommand": "unity install 6000.3.27f1 --architecture x86_64 --module android --child-modules --yes --accept-eula --no-wait --json --non-interactive --no-banner",
+  "installProcessExitCode": 0,
+  "editor": {
+    "command": "Unity.exe -version",
+    "exitCode": 0,
+    "output": "6000.3.27f1",
+    "path": "C:/Program Files/Unity/Hub/Editor/6000.3.27f1/Editor/Unity.exe",
+    "productVersion": "6000.3.27f1_672d562a42a7"
+  },
+  "registeredEditors": [
+    {
+      "version": "6000.6.4f1",
+      "alias": "6.6.4f1",
+      "architecture": "x86_64",
+      "location": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.4f1\\Editor\\Unity.exe",
+      "modules": "Web",
+      "default": false
+    },
+    {
+      "version": "6000.5.9f1",
+      "alias": "6.5.9f1",
+      "architecture": "x86_64",
+      "location": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.9f1\\Editor\\Unity.exe",
+      "modules": "",
+      "default": false
+    },
+    {
+      "version": "6000.3.27f1",
+      "alias": "6.3.27f1",
+      "architecture": "x86_64",
+      "location": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1\\Editor\\Unity.exe",
+      "modules": "Android, Android SDK & NDK Tools, OpenJDK",
+      "default": false
+    }
+  ],
+  "structuralVerification": {
+    "version": "6000.3.27f1",
+    "architecture": "x86_64",
+    "ok": true,
+    "components": [
+      {
+        "component": "editor",
+        "kind": "editor",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1\\Editor\\Unity.exe"
+      },
+      {
+        "component": "android",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1"
+      },
+      {
+        "component": "android-open-jdk-17.0.18+8",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/OpenJDK"
+      },
+      {
+        "component": "android-sdk-ndk-tools",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK"
+      },
+      {
+        "component": "android-ndk-r27c",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK"
+      },
+      {
+        "component": "cmake-3.22.1",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/cmake/3.22.1"
+      },
+      {
+        "component": "android-sdk-build-tools-36.0.0",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/build-tools/36.0.0"
+      },
+      {
+        "component": "android-sdk-platform-tools-37.0.1",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK"
+      },
+      {
+        "component": "android-sdk-platforms-34",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/platforms"
+      },
+      {
+        "component": "android-sdk-platforms-35",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/platforms"
+      },
+      {
+        "component": "android-sdk-platforms-36",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/platforms"
+      },
+      {
+        "component": "android-sdk-platforms-37.0",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/platforms"
+      },
+      {
+        "component": "android-sdk-command-line-tools-16.0",
+        "kind": "module",
+        "status": "ok",
+        "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/cmdline-tools/16.0"
+      }
+    ]
+  },
+  "androidBuildSupportAssemblyPresent": true,
+  "ndkProperties": "Pkg.Desc = Android NDK\nPkg.Revision = 27.2.12479018\nPkg.BaseRevision = 27.2.12479018\nPkg.ReleaseName = r27c",
+  "sdkBuildToolsProperties": "Pkg.UserSrc=false\nPkg.Revision=36.0.0\n#Pkg.Revision=36.0.0 rc5",
+  "sdkPlatforms": [
+    {
+      "name": "android-34",
+      "androidJarPresent": true,
+      "sourceProperties": "Pkg.Desc=Android SDK Platform 14\nPkg.UserSrc=false\nPlatform.Version=14\nPlatform.CodeName=\nPkg.Revision=2\nAndroidVersion.ApiLevel=34\nAndroidVersion.ExtensionLevel=7\nAndroidVersion.IsBaseSdk=true\nLayoutlib.Api=15\nLayoutlib.Revision=1\nPlatform.MinToolsRev=22"
+    },
+    {
+      "name": "android-35",
+      "androidJarPresent": true,
+      "sourceProperties": "Pkg.Desc=Android SDK Platform 15\nPkg.UserSrc=false\nPlatform.Version=15\nPlatform.CodeName=\nPkg.Revision=1\nAndroidVersion.ApiLevel=35\nAndroidVersion.ExtensionLevel=13\nAndroidVersion.IsBaseSdk=true\nLayoutlib.Api=15\nLayoutlib.Revision=1\nPlatform.MinToolsRev=22"
+    },
+    {
+      "name": "android-36",
+      "androidJarPresent": true,
+      "sourceProperties": "Pkg.Desc=Android SDK Platform 16\nPkg.UserSrc=false\nPlatform.Version=16\nPlatform.CodeName=\nPkg.Revision=2\nAndroidVersion.ApiLevel=36\nAndroidVersion.ExtensionLevel=17\nAndroidVersion.IsBaseSdk=true\nLayoutlib.Api=15\nLayoutlib.Revision=1\nPlatform.MinToolsRev=22"
+    },
+    {
+      "name": "android-37.0",
+      "androidJarPresent": true,
+      "sourceProperties": "Pkg.Desc=Android SDK Platform 17\nPkg.UserSrc=false\nPlatform.Version=17\nPlatform.CodeName=\nPkg.Revision=2\nAndroidVersion.ApiLevel=37.0\nAndroidVersion.CodeName=\nAndroidVersion.ExtensionLevel=22\nAndroidVersion.IsBaseSdk=true\nAndroidVersion.PreviewSdkInt=0\nAndroidVersion.BetaVersion=\nLayoutlib.Api=15\nLayoutlib.Revision=1\nPlatform.MinToolsRev=22"
+    }
+  ],
+  "toolChecks": [
+    {
+      "name": "java",
+      "path": "C:/Program Files/Unity/Hub/Editor/6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/OpenJDK/bin/java.exe",
+      "arguments": [
+        "-version"
+      ],
+      "exitCode": 0,
+      "output": "openjdk version \"17.0.18\" 2026-01-20\r\nOpenJDK Runtime Environment Temurin-17.0.18+8 (build 17.0.18+8)\r\nOpenJDK 64-Bit Server VM Temurin-17.0.18+8 (build 17.0.18+8, mixed mode, sharing)"
+    },
+    {
+      "name": "javac",
+      "path": "C:/Program Files/Unity/Hub/Editor/6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/OpenJDK/bin/javac.exe",
+      "arguments": [
+        "-version"
+      ],
+      "exitCode": 0,
+      "output": "javac 17.0.18"
+    },
+    {
+      "name": "adb",
+      "path": "C:/Program Files/Unity/Hub/Editor/6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/platform-tools/adb.exe",
+      "arguments": [
+        "version"
+      ],
+      "exitCode": -1073740791,
+      "output": "10-26 11:30:26.729  9168 11672 F adb.exe : adb_utils.cpp:315 Cannot mkdir 'C:\\Users\\USER\\.android': Permission denied"
+    },
+    {
+      "name": "clang",
+      "path": "C:/Program Files/Unity/Hub/Editor/6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+      "arguments": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "output": "Android (12470979, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)\r\nTarget: x86_64-w64-windows-gnu\r\nThread model: posix\r\nInstalledDir: C:/Program Files/Unity/Hub/Editor/6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/bin"
+    },
+    {
+      "name": "sdkmanager",
+      "path": "C:/Program Files/Unity/Hub/Editor/6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/cmdline-tools/16.0/bin/sdkmanager.bat",
+      "arguments": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "output": "16.0"
+    },
+    {
+      "name": "aapt2",
+      "path": "C:/Program Files/Unity/Hub/Editor/6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/build-tools/36.0.0/aapt2.exe",
+      "arguments": [
+        "version"
+      ],
+      "exitCode": 0,
+      "output": "Android Asset Packaging Tool (aapt) 2.20-13193326"
+    },
+    {
+      "name": "cmake",
+      "path": "C:/Program Files/Unity/Hub/Editor/6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/cmake/3.22.1/bin/cmake.exe",
+      "arguments": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "output": "cmake version 3.22.1-g37088a8-dirty\r\n\r\nCMake suite maintained and supported by Kitware (kitware.com/cmake)."
+    }
+  ],
+  "adbHostRetry": {
+    "command": "adb version",
+    "execution": "host, outside restricted sandbox",
+    "path": "C:/Program Files/Unity/Hub/Editor/6000.3.27f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/platform-tools/adb.exe",
+    "exitCode": 0,
+    "output": "Android Debug Bridge version 1.0.41\r\nVersion 37.0.1-15733141\r\nInstalled as C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.27f1\\Editor\\Data\\PlaybackEngines\\AndroidPlayer\\SDK\\platform-tools\\adb.exe\r\nRunning on Windows 10.0.26200",
+    "note": "Restricted first run could not initialize the standard user .android directory; this retry uses the normal user environment. No device connection or adb server command was requested."
+  },
+  "allToolVersionChecksPassedWithHostAdbRetry": true,
+  "unchanged": "No existing editor removed. No project created. No persistent JAVA_HOME or PATH changes requested.",
+  "notVerified": [
+    "Unity license activation",
+    "Unity project import and compilation",
+    "Play Mode",
+    "CLI/MCP project connection",
+    "Unity tests",
+    "Android APK build and device execution"
+  ]
+}

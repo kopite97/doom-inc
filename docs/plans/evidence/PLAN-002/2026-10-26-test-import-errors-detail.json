@@ -1,0 +1,60 @@
+{
+  "success": true,
+  "command": "command console",
+  "data": {
+    "command": "console",
+    "parameters": {
+      "level": "error",
+      "tail": "10"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 32,
+          "timestampUtc": "2026-10-26T03:57:56.3899447Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Tests\\EditMode\\ProjectEnvironmentTests.cs(29,58): error CS0246: The type or namespace name 'Renderer2DData' could not be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 33,
+          "timestampUtc": "2026-10-26T04:03:14.0965008Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ExecuteCommandByName: No command named 'console entries' is available. Run 'unity command' to list the commands this instance exposes.",
+          "stackTrace": "UnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer:CommandNotFound (Unity.Pipeline.BasePipelineServer/RawCommandMiss) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/BasePipelineServer.cs:3034)\nUnity.Pipeline.BasePipelineServer:ResolveRawCommand (System.Collections.Generic.IReadOnlyList`1<string>,Unity.Pipeline.Commands.CommandIndex) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/BasePipelineServer.cs:2971)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Bind (Unity.Pipeline.Commands.CommandRequest,Newtonsoft.Json.Linq.JObject&) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:61)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Execute (Unity.Pipeline.Commands.CommandRequest) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:27)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__148:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/BasePipelineServer.cs:2462)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<int>:SetResult (int)\nUnity.Pipeline.MaxLengthStream/<ReadAsync>d__6:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/MaxLengthStream.cs:46)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 33,
+      "session": "25c10938b69a4ebeae4e1bbf1b7d7f2f",
+      "returned": 2,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 2,
+        "warn": 0,
+        "log": 0
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-10-26T04:03:49.5342232Z",
+        "ageMs": 142,
+        "compilationFailed": true,
+        "compiling": false,
+        "consoleErrors": 2,
+        "consoleWarnings": 0,
+        "consoleLogs": 0,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

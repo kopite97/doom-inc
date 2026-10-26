@@ -1,0 +1,249 @@
+{
+  "success": true,
+  "command": "command console",
+  "data": {
+    "command": "console",
+    "parameters": {
+      "level": "log",
+      "tail": "50"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 34,
+          "timestampUtc": "2026-10-26T04:04:46.5028479Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Running 1 tests (explicit tests excluded)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner/<>c__DisplayClass9_0:<ExecuteTestsInternal>b__0 (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:359)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 35,
+          "timestampUtc": "2026-10-26T04:04:50.8352184Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 36,
+          "timestampUtc": "2026-10-26T04:04:51.2457062Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 1 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 37,
+          "timestampUtc": "2026-10-26T04:04:52.0440249Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 38,
+          "timestampUtc": "2026-10-26T04:04:52.2302037Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 1 total, 1 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 39,
+          "timestampUtc": "2026-10-26T04:04:52.4340543Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 40,
+          "timestampUtc": "2026-10-26T04:05:05.3180429Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 41,
+          "timestampUtc": "2026-10-26T04:05:06.6592092Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Reattaching result collector after domain reload",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner:CheckForPendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:508)\nUnity.Pipeline.Editor.Testing.PipelineTestReloader:ResumePendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestReloader.cs:60)\nUnity.Pipeline.Editor.Testing.PipelineTestReloader:CheckForPendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestReloader.cs:34)\nUnityEditor.EditorApplication:Internal_CallDelayFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 42,
+          "timestampUtc": "2026-10-26T04:05:06.6948662Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 1 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 43,
+          "timestampUtc": "2026-10-26T04:05:06.6948662Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 1 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 44,
+          "timestampUtc": "2026-10-26T04:05:06.6948662Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 1 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 45,
+          "timestampUtc": "2026-10-26T04:05:07.1191009Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 46,
+          "timestampUtc": "2026-10-26T04:05:07.1216478Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Ignoring duplicate RunFinished (already completed)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:89)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 47,
+          "timestampUtc": "2026-10-26T04:05:07.1216478Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 1 total, 1 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 48,
+          "timestampUtc": "2026-10-26T04:05:07.1340886Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 1 total, 1 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 49,
+          "timestampUtc": "2026-10-26T04:05:07.546735Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 50,
+          "timestampUtc": "2026-10-26T04:05:24.8127068Z",
+          "level": "error",
+          "logType": "Exception",
+          "message": "ExecutionEngineException: String conversion error: Illegal byte sequence encounted in the input.",
+          "stackTrace": "System.Reflection.RuntimeAssembly.GetCodeBase (System.Reflection.Assembly a, System.Boolean escaped) (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.RuntimeAssembly.get_CodeBase () (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.AssemblyName.Create (System.Reflection.Assembly assembly, System.Boolean fillCodebase) (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.RuntimeAssembly.GetName (System.Boolean copiedName) (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.Assembly.GetName () (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nUnityEditor.QuickInstall.QuickInstaller.DetectPackagesFromLoadedAssemblies () (at <ec469c02784d460cac42a26b77624176>:0)\nUnityEditor.QuickInstall.QuickInstaller.PackageListHandler (UnityEditor.PackageManager.Requests.ListRequest request, UnityEditor.EditorApplication+CallbackFunction registeredCallback) (at <ec469c02784d460cac42a26b77624176>:0)\nUnityEditor.QuickInstall.QuickInstaller+<>c__DisplayClass21_0.<CreatePackageListHandler>b__0 () (at <ec469c02784d460cac42a26b77624176>:0)\nUnityEditor.EditorApplication.Internal_CallUpdateFunctions () (at <6719e354e74c4c6e92f6c272146c0b4b>:0)\n",
+          "seeded": false
+        },
+        {
+          "seq": 51,
+          "timestampUtc": "2026-10-26T04:50:00.780519Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Running 13 tests (explicit tests excluded)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner/<>c__DisplayClass9_0:<ExecuteTestsInternal>b__0 (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:359)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 52,
+          "timestampUtc": "2026-10-26T04:50:03.0613414Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 53,
+          "timestampUtc": "2026-10-26T04:50:03.4740502Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 14 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 54,
+          "timestampUtc": "2026-10-26T04:50:04.3026695Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 55,
+          "timestampUtc": "2026-10-26T04:50:04.3968488Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 13 total, 13 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 56,
+          "timestampUtc": "2026-10-26T04:50:04.5641319Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 56,
+      "session": "25c10938b69a4ebeae4e1bbf1b7d7f2f",
+      "returned": 23,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 1,
+        "warn": 0,
+        "log": 22
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-10-26T04:50:31.2088119Z",
+        "ageMs": 281,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 6,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

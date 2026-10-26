@@ -1,0 +1,41 @@
+{
+  "success": true,
+  "command": "command script",
+  "data": {
+    "command": "script",
+    "parameters": {
+      "code": "var failures = new System.Collections.Generic.List<object>();\nvar assemblies = System.AppDomain.CurrentDomain.GetAssemblies();\nforeach (var assembly in assemblies)\n{\n    try { assembly.GetName(); }\n    catch (System.Exception error)\n    {\n        string location;\n        try { location = assembly.Location; } catch (System.Exception locationError) { location = locationError.GetType().Name; }\n        failures.Add(new { assembly = assembly.FullName, location, error = error.GetType().Name, message = error.Message });\n    }\n}\nreturn new { inspected = assemblies.Length, failures, compiling = UnityEditor.EditorApplication.isCompiling, playing = UnityEditor.EditorApplication.isPlaying };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "inspected": 294,
+        "failures": [
+          {
+            "assembly": "PipelineEval_05ff6546, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "location": "",
+            "error": "ExecutionEngineException",
+            "message": "String conversion error: Illegal byte sequence encounted in the input."
+          },
+          {
+            "assembly": "PipelineEval_4493f567, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "location": "",
+            "error": "ExecutionEngineException",
+            "message": "String conversion error: Illegal byte sequence encounted in the input."
+          }
+        ],
+        "compiling": false,
+        "playing": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "command": "command test",
+  "data": {
+    "command": "test",
+    "parameters": {
+      "mode": "all"
+    },
+    "result": {
+      "Mode": "All",
+      "Count": 2,
+      "Tests": [
+        {
+          "FullName": "MobileGame.EnvironmentTests.ProjectEnvironmentTests.ApprovedEditorAndroidAndUniversal2DConfigurationAreReady",
+          "Mode": "EditMode",
+          "Assembly": "Environment.EditMode.Tests",
+          "Categories": [
+            "Uncategorized"
+          ],
+          "Explicit": false
+        },
+        {
+          "FullName": "MobileGame.EnvironmentTests.SampleSceneExecutionTests.SampleSceneUsesUniversal2DAndAdvancesFramesAndTime",
+          "Mode": "PlayMode",
+          "Assembly": "Environment.PlayMode.Tests",
+          "Categories": [
+            "Uncategorized"
+          ],
+          "Explicit": false
+        }
+      ],
+      "success": true,
+      "result": null,
+      "message": "Found 2 test(s)."
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

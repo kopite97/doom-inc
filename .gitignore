@@ -1,0 +1,37 @@
+# Shared OS and IDE state; Unity-specific rules live in UnityProject/.gitignore.
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vs/
+.idea/
+*.user
+*.suo
+*.swp
+*~
+
+# Local dependencies and root-level build/test output.
+node_modules/
+/Build/
+/Builds/
+/Logs/
+/Temp/
+/TestResults/
+/TestResults.xml
+/coverage/
+*.apk
+*.aab
+*.apks
+*.ipa
+
+# Local credentials and signing material; keep sanitized examples trackable.
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.mobileprovision
+
+# Do not ignore all *.log: docs/plans/evidence contains reviewed test evidence.

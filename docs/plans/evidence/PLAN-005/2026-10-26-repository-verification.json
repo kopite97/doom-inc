@@ -1,0 +1,422 @@
+{
+  "checkedAt": "2026-10-26T05:06:25.335Z",
+  "git": "git version 2.55.0.windows.5",
+  "lfs": "git-lfs/3.7.1 (GitHub; windows amd64; go 1.25.1; git b84b3384)",
+  "branch": "main",
+  "origin": "https://github.com/kopite97/doom-inc.git",
+  "remoteRefs": [],
+  "candidateFileCount": 238,
+  "totalCandidateBytes": 5270084,
+  "largestCandidates": [
+    {
+      "file": "UnityProject/Assets/Settings/Lit2DSceneTemplate.scenetemplate",
+      "bytes": 3942809
+    },
+    {
+      "file": "docs/plans/evidence/PLAN-002/2026-10-26-unity-mcp-after-reload.json",
+      "bytes": 159401
+    },
+    {
+      "file": "docs/plans/evidence/PLAN-002/2026-10-26-unity-mcp-scene.json",
+      "bytes": 159401
+    },
+    {
+      "file": "docs/plans/evidence/PLAN-002/2026-10-26-unity-mcp-call.json",
+      "bytes": 159227
+    },
+    {
+      "file": "docs/plans/evidence/PLAN-002/2026-10-26-codex-mcp-discovery.json",
+      "bytes": 118659
+    }
+  ],
+  "lfsTrackedFiles": "",
+  "configurationHashes": [
+    {
+      "file": ".gitignore",
+      "sha256": "c087969d116ee51649f60ff9b3a5a71050dc27815aa54fcb01c96311a8ded6fb"
+    },
+    {
+      "file": ".gitattributes",
+      "sha256": "6004adcf0ad897d1cd4ee969ff8d642b26afca23b016b4b8f328572f2c4b5a39"
+    },
+    {
+      "file": "UnityProject/.gitignore",
+      "sha256": "a926a46cfdb7f855c6e56ee24bc82425b6e2f26206613f2fe559973041ea2593"
+    }
+  ],
+  "checks": [
+    {
+      "name": "root_repository",
+      "passed": true
+    },
+    {
+      "name": "unity_uses_same_repository",
+      "passed": true
+    },
+    {
+      "name": "no_nested_repository",
+      "passed": true
+    },
+    {
+      "name": "main_branch",
+      "passed": true
+    },
+    {
+      "name": "origin",
+      "passed": true
+    },
+    {
+      "name": "remote_read_access",
+      "passed": true
+    },
+    {
+      "name": "remote_has_no_refs_at_check",
+      "passed": true
+    },
+    {
+      "name": "ignored:UnityProject/Library/test.bin",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:2:/[Ll]ibrary/\tUnityProject/Library/test.bin"
+    },
+    {
+      "name": "ignored:UnityProject/Temp/test.json",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:3:/[Tt]emp/\tUnityProject/Temp/test.json"
+    },
+    {
+      "name": "ignored:UnityProject/Logs/Editor.log",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:5:/[Ll]ogs/\tUnityProject/Logs/Editor.log"
+    },
+    {
+      "name": "ignored:UnityProject/UserSettings/EditorUserSettings.asset",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:6:/[Uu]ser[Ss]ettings/\tUnityProject/UserSettings/EditorUserSettings.asset"
+    },
+    {
+      "name": "ignored:UnityProject/Obj/test.o",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:4:/[Oo]bj/\tUnityProject/Obj/test.o"
+    },
+    {
+      "name": "ignored:UnityProject/Build/test.exe",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:7:/[Bb]uild/\tUnityProject/Build/test.exe"
+    },
+    {
+      "name": "ignored:UnityProject/Builds/test.apk",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:8:/[Bb]uilds/\tUnityProject/Builds/test.apk"
+    },
+    {
+      "name": "ignored:UnityProject/.vs/test.db",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:19:/.vs/\tUnityProject/.vs/test.db"
+    },
+    {
+      "name": "ignored:UnityProject/MobileGame.Foundation.csproj",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:21:/*.csproj\tUnityProject/MobileGame.Foundation.csproj"
+    },
+    {
+      "name": "ignored:UnityProject/UnityProject.slnx",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:23:/*.slnx\tUnityProject/UnityProject.slnx"
+    },
+    {
+      "name": "ignored:UnityProject/TestResults.xml",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:14:/TestResults.xml\tUnityProject/TestResults.xml"
+    },
+    {
+      "name": "ignored:UnityProject/MemoryCaptures/test.snap",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:9:/[Mm]emoryCaptures/\tUnityProject/MemoryCaptures/test.snap"
+    },
+    {
+      "name": "ignored:UnityProject/Recordings/test.mp4",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:10:/[Rr]ecordings/\tUnityProject/Recordings/test.mp4"
+    },
+    {
+      "name": "ignored:UnityProject/Artifacts/test.bin",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:11:/[Aa]rtifacts/\tUnityProject/Artifacts/test.bin"
+    },
+    {
+      "name": "ignored:UnityProject/Game_BackUpThisFolder_ButDontShipItWithYourGame/test.cpp",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:15:/*_BackUpThisFolder_ButDontShipItWithYourGame/\tUnityProject/Game_BackUpThisFolder_ButDontShipItWithYourGame/test.cpp"
+    },
+    {
+      "name": "ignored:UnityProject/Game_BurstDebugInformation_DoNotShip/test.txt",
+      "passed": true,
+      "detail": "UnityProject/.gitignore:16:/*_BurstDebugInformation_DoNotShip/\tUnityProject/Game_BurstDebugInformation_DoNotShip/test.txt"
+    },
+    {
+      "name": "ignored:Builds/game.apk",
+      "passed": true,
+      "detail": ".gitignore:15:/Builds/\tBuilds/game.apk"
+    },
+    {
+      "name": "ignored:test.aab",
+      "passed": true,
+      "detail": ".gitignore:22:*.aab\ttest.aab"
+    },
+    {
+      "name": "ignored:.env",
+      "passed": true,
+      "detail": ".gitignore:27:.env\t.env"
+    },
+    {
+      "name": "ignored:UnityProject/upload.keystore",
+      "passed": true,
+      "detail": ".gitignore:31:*.keystore\tUnityProject/upload.keystore"
+    },
+    {
+      "name": "ignored:node_modules/test/index.js",
+      "passed": true,
+      "detail": ".gitignore:13:node_modules/\tnode_modules/test/index.js"
+    },
+    {
+      "name": "included:AGENTS.md",
+      "passed": true
+    },
+    {
+      "name": "included:docs/game-design/README.md",
+      "passed": true
+    },
+    {
+      "name": "included:docs/plans/evidence/PLAN-003/2026-10-26-doc-validation.log",
+      "passed": true
+    },
+    {
+      "name": "included:scripts/validate-agent-docs.mjs",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/.vsconfig",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/Assets/Game/Foundation/Things/Thing.cs",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/Assets/Game/Foundation/Things/Thing.cs.meta",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/Assets/Scenes/SampleScene.unity",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/Assets/Game/Definitions/Storage.asset",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/Assets/Game/Definitions/Storage.asset.meta",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/Assets/Game.meta",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/Packages/manifest.json",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/Packages/packages-lock.json",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/ProjectSettings/ProjectSettings.asset",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/Assets/Plugins/example.dll",
+      "passed": true
+    },
+    {
+      "name": "included:UnityProject/Assets/Plugins/Android/example.so",
+      "passed": true
+    },
+    {
+      "name": "included:.env.example",
+      "passed": true
+    },
+    {
+      "name": "asset_meta_pairs",
+      "passed": true,
+      "detail": {
+        "assetFiles": 81,
+        "missingMeta": []
+      }
+    },
+    {
+      "name": "folder_meta_pairs",
+      "passed": true,
+      "detail": {
+        "folders": 13,
+        "missingFolderMeta": []
+      }
+    },
+    {
+      "name": "no_generated_candidates",
+      "passed": true
+    },
+    {
+      "name": "evidence_logs_preserved",
+      "passed": true
+    },
+    {
+      "name": "lfs:UnityProject/Assets/probe.png",
+      "passed": true,
+      "detail": {
+        "filter": "lfs",
+        "diff": "lfs",
+        "merge": "lfs",
+        "text": "unset"
+      }
+    },
+    {
+      "name": "lfs:UnityProject/Assets/Art/Probe.PNG",
+      "passed": true,
+      "detail": {
+        "filter": "lfs",
+        "diff": "lfs",
+        "merge": "lfs",
+        "text": "unset"
+      }
+    },
+    {
+      "name": "lfs:UnityProject/Assets/Audio/test.wav",
+      "passed": true,
+      "detail": {
+        "filter": "lfs",
+        "diff": "lfs",
+        "merge": "lfs",
+        "text": "unset"
+      }
+    },
+    {
+      "name": "lfs:UnityProject/Assets/Models/test.fbx",
+      "passed": true,
+      "detail": {
+        "filter": "lfs",
+        "diff": "lfs",
+        "merge": "lfs",
+        "text": "unset"
+      }
+    },
+    {
+      "name": "lfs:UnityProject/Assets/Fonts/test.ttf",
+      "passed": true,
+      "detail": {
+        "filter": "lfs",
+        "diff": "lfs",
+        "merge": "lfs",
+        "text": "unset"
+      }
+    },
+    {
+      "name": "ordinary_git:UnityProject/Assets/Game/Foundation/Things/Thing.cs",
+      "passed": true,
+      "detail": {
+        "filter": "unspecified",
+        "diff": "unspecified",
+        "merge": "unspecified",
+        "text": "set"
+      }
+    },
+    {
+      "name": "ordinary_git:UnityProject/Assets/Scenes/SampleScene.unity",
+      "passed": true,
+      "detail": {
+        "filter": "unspecified",
+        "diff": "unspecified",
+        "merge": "unspecified",
+        "text": "set"
+      }
+    },
+    {
+      "name": "ordinary_git:UnityProject/Assets/Game/Definitions/Storage.asset",
+      "passed": true,
+      "detail": {
+        "filter": "unspecified",
+        "diff": "unspecified",
+        "merge": "unspecified",
+        "text": "auto"
+      }
+    },
+    {
+      "name": "ordinary_git:UnityProject/Assets/Game/Definitions/Storage.asset.meta",
+      "passed": true,
+      "detail": {
+        "filter": "unspecified",
+        "diff": "unspecified",
+        "merge": "unspecified",
+        "text": "set"
+      }
+    },
+    {
+      "name": "ordinary_git:UnityProject/Assets/Settings/Lit2DSceneTemplate.scenetemplate",
+      "passed": true,
+      "detail": {
+        "filter": "unspecified",
+        "diff": "unspecified",
+        "merge": "unspecified",
+        "text": "auto"
+      }
+    },
+    {
+      "name": "ordinary_git:docs/plans/evidence/PLAN-002/2026-10-26-game-view.png",
+      "passed": true,
+      "detail": {
+        "filter": "unspecified",
+        "diff": "unspecified",
+        "merge": "unspecified",
+        "text": "auto"
+      }
+    },
+    {
+      "name": "local_lfs_required",
+      "passed": true
+    },
+    {
+      "name": "local_lfs_process",
+      "passed": true
+    },
+    {
+      "name": "lfs_pre_push_hook",
+      "passed": true
+    },
+    {
+      "name": "lfs_clean_pointer",
+      "passed": true
+    },
+    {
+      "name": "lfs_local_round_trip",
+      "passed": true,
+      "detail": {
+        "bytes": 8024,
+        "sha256": "103b10719dfb73e9b3acd67b7bf5df912723eb34fd9110654a353478307a2e41"
+      }
+    },
+    {
+      "name": "no_index_changes",
+      "passed": true
+    },
+    {
+      "name": "no_local_commit",
+      "passed": true
+    }
+  ],
+  "checksPassed": true,
+  "limits": [
+    "No commit or push executed.",
+    "No LFS server upload/download performed; only local clean/smudge verified.",
+    "No Unity compile or game test required for repository-only changes."
+  ]
+}

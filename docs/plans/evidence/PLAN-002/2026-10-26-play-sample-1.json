@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "command": "command script",
+  "data": {
+    "command": "script",
+    "parameters": {
+      "code": "return new { playing = UnityEditor.EditorApplication.isPlaying, paused = UnityEditor.EditorApplication.isPaused, frame = UnityEngine.Time.frameCount, time = UnityEngine.Time.time, realtime = UnityEngine.Time.realtimeSinceStartup, pipeline = UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline.GetType().FullName, renderer = UnityEngine.Rendering.RenderPipelineManager.currentPipeline.GetType().FullName, scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().path };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "playing": true,
+        "paused": false,
+        "frame": 14502,
+        "time": 25.822155,
+        "realtime": 26.9992752,
+        "pipeline": "UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset",
+        "renderer": "UnityEngine.Rendering.Universal.UniversalRenderPipeline",
+        "scene": "Assets/Scenes/SampleScene.unity"
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

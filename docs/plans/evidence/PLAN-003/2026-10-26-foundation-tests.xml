@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="13" result="Passed" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 04:50:03Z" end-time="2026-10-26 04:50:04Z" duration="0.7225216">
+  <test-suite type="TestSuite" id="1034" name="UnityProject" fullname="UnityProject" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-26 04:50:03Z" end-time="2026-10-26 04:50:04Z" duration="0.722522" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1022" name="MobileGame.Foundation.EditMode.Tests.dll" fullname="C:/Users/USER/Documents/ChatGPT/모바일 게임/UnityProject/Library/ScriptAssemblies/MobileGame.Foundation.EditMode.Tests.dll" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-26 04:50:03Z" end-time="2026-10-26 04:50:04Z" duration="0.607568" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="1948" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1023" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-26 04:50:03Z" end-time="2026-10-26 04:50:04Z" duration="0.589931" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1024" name="Foundation" fullname="MobileGame.Foundation" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-26 04:50:03Z" end-time="2026-10-26 04:50:04Z" duration="0.587649" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1025" name="Tests" fullname="MobileGame.Foundation.Tests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-26 04:50:03Z" end-time="2026-10-26 04:50:04Z" duration="0.484223" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1006" name="DefinitionFoundationTests" fullname="MobileGame.Foundation.Tests.DefinitionFoundationTests" classname="MobileGame.Foundation.Tests.DefinitionFoundationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 04:50:03Z" end-time="2026-10-26 04:50:04Z" duration="0.352715" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1007" name="DifferentAssetsCannotUseOneDefinitionIdButTheSameAssetCanBeShared" fullname="MobileGame.Foundation.Tests.DefinitionFoundationTests.DifferentAssetsCannotUseOneDefinitionIdButTheSameAssetCanBeShared" methodname="DifferentAssetsCannotUseOneDefinitionIdButTheSameAssetCanBeShared" classname="MobileGame.Foundation.Tests.DefinitionFoundationTests" runstate="Runnable" seed="767290080" result="Passed" start-time="2026-10-26 04:50:03Z" end-time="2026-10-26 04:50:04Z" duration="0.143850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1008" name="InvalidComponentDefinitionsAreRejectedBeforeRegisteringThings" fullname="MobileGame.Foundation.Tests.DefinitionFoundationTests.InvalidComponentDefinitionsAreRejectedBeforeRegisteringThings" methodname="InvalidComponentDefinitionsAreRejectedBeforeRegisteringThings" classname="MobileGame.Foundation.Tests.DefinitionFoundationTests" runstate="Runnable" seed="338970381" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.010195" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1009" name="RepresentativeAssetsImportAndCreateLogicalThingsWithoutChangingDefinitions" fullname="MobileGame.Foundation.Tests.DefinitionFoundationTests.RepresentativeAssetsImportAndCreateLogicalThingsWithoutChangingDefinitions" methodname="RepresentativeAssetsImportAndCreateLogicalThingsWithoutChangingDefinitions" classname="MobileGame.Foundation.Tests.DefinitionFoundationTests" runstate="Runnable" seed="791499158" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.051292" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1010" name="ResourceOwnershipTests" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.095601" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1012" name="ConsumingOneStackDoesNotChangeAnotherStackOrSharedDefinition" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.ConsumingOneStackDoesNotChangeAnotherStackOrSharedDefinition" methodname="ConsumingOneStackDoesNotChangeAnotherStackOrSharedDefinition" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="1666268186" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.012912" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1015" name="ForeignRegistryHoldersAndResourcesCannotCrossOwnershipBoundaries" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.ForeignRegistryHoldersAndResourcesCannotCrossOwnershipBoundaries" methodname="ForeignRegistryHoldersAndResourcesCannotCrossOwnershipBoundaries" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="1085684198" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.019056" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1013" name="InvalidQuantitiesLeaveRegistryDefinitionsOwnershipAndQuantityUnchanged" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.InvalidQuantitiesLeaveRegistryDefinitionsOwnershipAndQuantityUnchanged" methodname="InvalidQuantitiesLeaveRegistryDefinitionsOwnershipAndQuantityUnchanged" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="434250579" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.018433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1017" name="NonemptyHolderCannotBeRemovedAndFullConsumptionEndsResourceExistence" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.NonemptyHolderCannotBeRemovedAndFullConsumptionEndsResourceExistence" methodname="NonemptyHolderCannotBeRemovedAndFullConsumptionEndsResourceExistence" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="1930924537" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.013560" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1014" name="NullInputsAreRejectedWithoutLosingExistingResources" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.NullInputsAreRejectedWithoutLosingExistingResources" methodname="NullInputsAreRejectedWithoutLosingExistingResources" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="221805128" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.008020" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1016" name="RemovedHolderCannotReceiveNewOrExistingResources" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.RemovedHolderCannotReceiveNewOrExistingResources" methodname="RemovedHolderCannotReceiveNewOrExistingResources" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="1392551381" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.005944" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1011" name="ResourceHasOneHolderAtCreationAndAfterRepeatedTransfers" fullname="MobileGame.Foundation.Tests.ResourceOwnershipTests.ResourceHasOneHolderAtCreationAndAfterRepeatedTransfers" methodname="ResourceHasOneHolderAtCreationAndAfterRepeatedTransfers" classname="MobileGame.Foundation.Tests.ResourceOwnershipTests" runstate="Runnable" seed="1423394840" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.004949" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1018" name="ThingFoundationTests" fullname="MobileGame.Foundation.Tests.ThingFoundationTests" classname="MobileGame.Foundation.Tests.ThingFoundationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.025819" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1020" name="ComponentsBelongToExactlyTheirThingAndMissingLookupDoesNotAddAFeature" fullname="MobileGame.Foundation.Tests.ThingFoundationTests.ComponentsBelongToExactlyTheirThingAndMissingLookupDoesNotAddAFeature" methodname="ComponentsBelongToExactlyTheirThingAndMissingLookupDoesNotAddAFeature" classname="MobileGame.Foundation.Tests.ThingFoundationTests" runstate="Runnable" seed="1414693441" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.003797" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1019" name="FacilitiesShareDefinitionButKeepIndependentComponentsAndInventory" fullname="MobileGame.Foundation.Tests.ThingFoundationTests.FacilitiesShareDefinitionButKeepIndependentComponentsAndInventory" methodname="FacilitiesShareDefinitionButKeepIndependentComponentsAndInventory" classname="MobileGame.Foundation.Tests.ThingFoundationTests" runstate="Runnable" seed="47708076" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.001956" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1021" name="UniqueIdsAndCreationOrderStayStableAcrossResourceChanges" fullname="MobileGame.Foundation.Tests.ThingFoundationTests.UniqueIdsAndCreationOrderStayStableAcrossResourceChanges" methodname="UniqueIdsAndCreationOrderStayStableAcrossResourceChanges" classname="MobileGame.Foundation.Tests.ThingFoundationTests" runstate="Runnable" seed="436941857" result="Passed" start-time="2026-10-26 04:50:04Z" end-time="2026-10-26 04:50:04Z" duration="0.016893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

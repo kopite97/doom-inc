@@ -1,0 +1,84 @@
+{
+  "checkedAt": "2026-10-26T13:51:45.1562711+09:00",
+  "plan": "PLAN-003",
+  "scope": "SO categories, plain C# Thing/components, identity, single resource ownership; first foundation bundle only",
+  "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject",
+  "unityVersion": "6000.3.27f1",
+  "buildTarget": "Android (unchanged from PLAN-002; no APK/AAB build run)",
+  "command": "unity command test run --mode editor --filter MobileGame.Foundation.EditMode.Tests --filter_type assembly --project-path <absolute UnityProject path> --json --non-interactive --no-banner",
+  "compilation": {
+    "status": "completed",
+    "failed": false,
+    "errors": [],
+    "compilationFailed": false
+  },
+  "tests": {
+    "Total": 13,
+    "Passed": 13,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "resultNames": [
+    "MobileGame.Foundation.Tests.DefinitionFoundationTests.DifferentAssetsCannotUseOneDefinitionIdButTheSameAssetCanBeShared",
+    "MobileGame.Foundation.Tests.DefinitionFoundationTests.InvalidComponentDefinitionsAreRejectedBeforeRegisteringThings",
+    "MobileGame.Foundation.Tests.DefinitionFoundationTests.RepresentativeAssetsImportAndCreateLogicalThingsWithoutChangingDefinitions",
+    "MobileGame.Foundation.Tests.ResourceOwnershipTests.ConsumingOneStackDoesNotChangeAnotherStackOrSharedDefinition",
+    "MobileGame.Foundation.Tests.ResourceOwnershipTests.ForeignRegistryHoldersAndResourcesCannotCrossOwnershipBoundaries",
+    "MobileGame.Foundation.Tests.ResourceOwnershipTests.InvalidQuantitiesLeaveRegistryDefinitionsOwnershipAndQuantityUnchanged",
+    "MobileGame.Foundation.Tests.ResourceOwnershipTests.NonemptyHolderCannotBeRemovedAndFullConsumptionEndsResourceExistence",
+    "MobileGame.Foundation.Tests.ResourceOwnershipTests.NullInputsAreRejectedWithoutLosingExistingResources",
+    "MobileGame.Foundation.Tests.ResourceOwnershipTests.RemovedHolderCannotReceiveNewOrExistingResources",
+    "MobileGame.Foundation.Tests.ResourceOwnershipTests.ResourceHasOneHolderAtCreationAndAfterRepeatedTransfers",
+    "MobileGame.Foundation.Tests.ThingFoundationTests.ComponentsBelongToExactlyTheirThingAndMissingLookupDoesNotAddAFeature",
+    "MobileGame.Foundation.Tests.ThingFoundationTests.FacilitiesShareDefinitionButKeepIndependentComponentsAndInventory",
+    "MobileGame.Foundation.Tests.ThingFoundationTests.UniqueIdsAndCreationOrderStayStableAcrossResourceChanges"
+  ],
+  "nunitXml": {
+    "file": "2026-10-26-foundation-tests.xml",
+    "result": "Passed",
+    "total": 13,
+    "passed": 13,
+    "startTimeUtc": "2026-10-26 04:50:03Z",
+    "endTimeUtc": "2026-10-26 04:50:04Z"
+  },
+  "consoleObservation": {
+    "baselineCursor": 50,
+    "finalCursor": 56,
+    "newErrors": 0,
+    "newWarnings": 0,
+    "groundTruth": {
+      "sampledUtc": "2026-10-26T04:50:31.2088119Z",
+      "ageMs": 281,
+      "compilationFailed": false,
+      "compiling": false,
+      "consoleErrors": 0,
+      "consoleWarnings": 0,
+      "consoleLogs": 6,
+      "seeded": true
+    },
+    "priorIssue": "PLAN-002 QuickInstaller exception remains in captured Pipeline history, predates this run, and was not reproduced in the new entries; underlying issue not claimed fixed."
+  },
+  "editor": {
+    "status": "ready",
+    "compiling": false,
+    "domainReloadInProgress": false,
+    "playMode": "stopped",
+    "runInBackground": false,
+    "lastHeartbeat": "2026-10-26T04:50:31.4124796Z",
+    "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject",
+    "unityVersion": "6000.3.27f1",
+    "role": "main",
+    "instanceName": "Main Editor"
+  },
+  "sourceAudit": "2026-10-26-source-and-meta-audit.json",
+  "authoredAssetsAndSources": 22,
+  "folderMetaCount": 7,
+  "notVerified": [
+    "Map and common screen commands",
+    "GameFlow and file save/restore",
+    "Gameplay production/construction/transport",
+    "New PlayMode or Android build/device test in this PLAN"
+  ],
+  "checksPassed": true
+}

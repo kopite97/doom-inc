@@ -1,0 +1,55 @@
+# Detect text automatically; keep binary assets byte-for-byte.
+* text=auto
+*.md text eol=lf
+*.cs text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.asmdef text eol=lf
+*.asmref text eol=lf
+*.inputactions text eol=lf
+*.unity text eol=lf
+*.prefab text eol=lf
+*.meta text eol=lf
+*.asset text=auto eol=lf
+*.mat text=auto eol=lf
+*.anim text=auto eol=lf
+*.controller text=auto eol=lf
+*.scenetemplate text=auto eol=lf
+*.shader text eol=lf
+*.hlsl text eol=lf
+*.shadergraph text eol=lf
+*.sh text eol=lf
+*.ps1 text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# LFS applies only to Unity source media, not documentation screenshots.
+# Character classes also match uppercase file extensions.
+UnityProject/Assets/**/*.[pP][nN][gG] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[jJ][pP][gG] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[jJ][pP][eE][gG] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[tT][gG][aA] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[tT][iI][fF] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[tT][iI][fF][fF] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[pP][sS][dD] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[pP][sS][bB] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[eE][xX][rR] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[hH][dD][rR] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[bB][mM][pP] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[gG][iI][fF] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[wW][eE][bB][pP] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[fF][bB][xX] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[bB][lL][eE][nN][dD] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[gG][lL][bB] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[wW][aA][vV] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[oO][gG][gG] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[mM][pP][33] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[aA][iI][fF] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[aA][iI][fF][fF] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[fF][lL][aA][cC] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[mM][pP][44] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[mM][oO][vV] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[wW][eE][bB][mM] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[tT][tT][fF] filter=lfs diff=lfs merge=lfs -text
+UnityProject/Assets/**/*.[oO][tT][fF] filter=lfs diff=lfs merge=lfs -text
+

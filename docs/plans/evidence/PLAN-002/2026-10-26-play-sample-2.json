@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "command": "command script",
+  "data": {
+    "command": "script",
+    "parameters": {
+      "code": "return new { playing = UnityEditor.EditorApplication.isPlaying, paused = UnityEditor.EditorApplication.isPaused, frame = UnityEngine.Time.frameCount, time = UnityEngine.Time.time, realtime = UnityEngine.Time.realtimeSinceStartup };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "playing": true,
+        "paused": false,
+        "frame": 364490,
+        "time": 503.409973,
+        "realtime": 504.5737
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

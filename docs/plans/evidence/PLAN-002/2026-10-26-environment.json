@@ -1,0 +1,112 @@
+{
+  "observedOn": "2026-10-26",
+  "timezone": "Asia/Seoul",
+  "plan": "PLAN-002",
+  "scope": "Read-only installed-tool inventory. No software installation, project creation, configuration change, Editor launch, build, or game test.",
+  "workspace": {
+    "path": "C:/Users/USER/Documents/ChatGPT/모바일 게임",
+    "unityProjectFound": false,
+    "gitRepositoryFound": false,
+    "checked": "Workspace file search plus ProjectSettings/ProjectVersion.txt and .git existence checks"
+  },
+  "unity": {
+    "requiredEditor": "6000.3.27f1",
+    "requiredEditorFoundInRegisteredInstallations": false,
+    "hub": {
+      "version": "3.22.1",
+      "executable": "C:/Program Files/Unity Hub/Unity Hub.exe"
+    },
+    "editors": [
+      {
+        "version": "6000.6.4f1",
+        "productVersion": "6000.6.4f1_12bfff696524",
+        "executable": "C:/Program Files/Unity/Hub/Editor/6000.6.4f1/Editor/Unity.exe",
+        "cliListedModules": "Web",
+        "androidPlayerDirectoryExists": false
+      },
+      {
+        "version": "6000.5.9f1",
+        "productVersion": "6000.5.9f1_b57deb96f08d",
+        "executable": "C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Unity.exe",
+        "cliListedModules": "",
+        "androidPlayerDirectoryExists": false
+      }
+    ],
+    "cli": {
+      "version": "1.0.0-beta.12",
+      "executable": "C:/Users/USER/AppData/Local/Unity/bin/unity.exe",
+      "versionAndHelpExecuted": true,
+      "installedEditorsQuerySucceeded": true,
+      "mcpCommandHelpAvailable": true,
+      "mcpConfiguredByThisTask": false
+    },
+    "installPathQuery": {
+      "path": "C:/Program Files/Unity/Hub/Editor",
+      "warning": "secondaryInstallPath.json could not be read; CLI returned its default install path, not a confirmed custom setting."
+    },
+    "connectionQuery": {
+      "command": "unity status --json --non-interactive --no-banner",
+      "success": false,
+      "reportedInstances": 0,
+      "errorCode": "STATUS_NO_INSTANCES",
+      "warning": "CLI could not determine which Editors were running, so the report may omit instances.",
+      "conclusion": "No connected Pipeline Editor was discovered in this execution context; connection success and other projects' Pipeline installations remain unverified."
+    },
+    "unityToolsExposedInCurrentAgentSession": false,
+    "licenseActivationVerified": false
+  },
+  "android": {
+    "sdkDirectoriesCheckedAndAbsent": [
+      "C:/Users/USER/AppData/Local/Android/Sdk",
+      "C:/Android/Sdk",
+      "C:/Android/android-sdk"
+    ],
+    "embeddedTools": "AndroidPlayer absent in both registered Editor installations; embedded SDK, NDK, and OpenJDK not found there.",
+    "environmentVariablesEmptyAtProcessUserMachineScopes": ["ANDROID_HOME", "ANDROID_SDK_ROOT", "ANDROID_NDK_HOME"],
+    "adbFoundOnCommandSearchPath": false,
+    "deviceConnectionTested": false,
+    "limitation": "Custom SDK locations were not exhaustively searched. Existing external JDKs do not establish Unity Android build readiness."
+  },
+  "developmentTools": {
+    "visualStudio": {
+      "edition": "Community 2026",
+      "version": "18.10.3",
+      "path": "C:/Program Files/Microsoft Visual Studio/18/Community",
+      "installedComponentsVerifiedByVswhere": [
+        "Microsoft.VisualStudio.Workload.ManagedGame",
+        "Microsoft.VisualStudio.Component.Unity",
+        "Microsoft.VisualStudio.Component.VC.Tools.x86.x64"
+      ]
+    },
+    "rider": {"version": "2026.2.3", "path": "C:/Program Files/JetBrains/JetBrains Rider 2026.2.3"},
+    "dotnetSdk": "10.0.401",
+    "externalJdks": [
+      {"version": "Temurin 21.0.12.1", "path": "C:/Program Files/Eclipse Adoptium/jdk-21.0.12.101-hotspot", "javaHomeProcessAndMachine": true},
+      {"version": "Temurin 17.0.20.1", "path": "C:/Program Files/Eclipse Adoptium/jdk-17.0.20.101-hotspot", "javaHomeProcessAndMachine": false}
+    ],
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "git": "2.55.0.windows.5",
+    "vsCode": {"commandPath": "C:/Users/USER/AppData/Local/Programs/Microsoft VS Code/bin/code.cmd", "versionAndLaunchVerified": false}
+  },
+  "inspectionLimitations": [
+    "LOCALAPPDATA in the execution shell points into a sandbox package; discovered executable paths and the actual user AppData directory were also checked.",
+    "CIM OS query was unavailable in this execution context. No privilege escalation was required for the relevant installed-file and CLI checks.",
+    "C: reported approximately 622 GiB free at inspection time; this is not an installation-space requirement calculation."
+  ],
+  "reproductionCommands": [
+    "Get-Command unity,node,npm,git,dotnet,java,adb,code,rider -ErrorAction SilentlyContinue",
+    "unity --version",
+    "unity editors --installed --json --non-interactive --no-banner",
+    "unity install-path --get --json --non-interactive --no-banner",
+    "unity status --json --non-interactive --no-banner",
+    "unity mcp --help",
+    "dotnet --list-sdks",
+    "node --version",
+    "npm --version",
+    "git --version",
+    "& 'C:/Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe' -all -products '*' -requires Microsoft.VisualStudio.Workload.ManagedGame -property installationPath",
+    "& 'C:/Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe' -all -products '*' -requires Microsoft.VisualStudio.Component.Unity -property installationPath",
+    "& 'C:/Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe' -all -products '*' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath"
+  ]
+}

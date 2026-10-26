@@ -1,0 +1,142 @@
+{
+  "checkedAt": "2026-10-26T12:06:52.5990817+09:00",
+  "plan": "PLAN-002",
+  "projectRelativePath": "UnityProject",
+  "scope": "Universal 2D Android project creation, Editor import and compilation, official CLI/Pipeline connection, Play Mode progression and exit",
+  "creation": {
+    "path": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject",
+    "version": "6000.3.27f1",
+    "architecture": "x86_64",
+    "template": "com.unity.template.universal-2d",
+    "opened": false,
+    "pipeline": {
+      "requested": true,
+      "installed": true,
+      "packageId": "com.unity.pipeline",
+      "version": "0.9.1-exp.1",
+      "alreadyInstalled": false
+    },
+    "diagnostics": {
+      "buildDefault": {
+        "source": "ProjectSettings/UnityConnectSettings.asset",
+        "state": "enabled"
+      },
+      "buildProfiles": {
+        "searched": "Assets/Settings/Build Profiles",
+        "profiles": []
+      },
+      "cloud": {
+        "linked": false,
+        "cloudProjectId": null,
+        "organizationId": null
+      }
+    }
+  },
+  "packageVersions": {
+    "urp": "17.3.0",
+    "pipeline": "0.9.1-exp.1",
+    "testFramework": "1.6.0"
+  },
+  "runtimeConfiguration": {
+    "unityVersion": "6000.3.27f1",
+    "buildTarget": "Android",
+    "compiling": false,
+    "playing": false,
+    "scene": "Assets/Scenes/SampleScene.unity",
+    "pipeline": "UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset",
+    "pipelineAsset": "Assets/Settings/UniversalRP.asset",
+    "renderer": "UnityEngine.Rendering.Universal.Renderer2DData",
+    "roots": [
+      "Main Camera",
+      "Global Light 2D"
+    ],
+    "orthographic": true,
+    "runInBackground": false
+  },
+  "playSamples": [
+    {
+      "playing": true,
+      "paused": false,
+      "frame": 14502,
+      "time": 25.822155,
+      "realtime": 26.9992752,
+      "pipeline": "UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset",
+      "renderer": "UnityEngine.Rendering.Universal.UniversalRenderPipeline",
+      "scene": "Assets/Scenes/SampleScene.unity"
+    },
+    {
+      "playing": true,
+      "paused": false,
+      "frame": 364490,
+      "time": 503.409973,
+      "realtime": 504.5737
+    }
+  ],
+  "frameDelta": 349988,
+  "gameTimeDeltaSeconds": 477.58781799999997,
+  "finalEditorState": {
+    "status": "ready",
+    "compiling": false,
+    "domainReloadInProgress": false,
+    "playMode": "stopped",
+    "runInBackground": false,
+    "lastHeartbeat": "2026-10-26T03:05:02.9250864Z",
+    "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject",
+    "unityVersion": "6000.3.27f1",
+    "role": "main",
+    "instanceName": "Main Editor"
+  },
+  "playAndExitConsole": {
+    "sampledUtc": "2026-10-26T03:05:02.8127765Z",
+    "ageMs": 232,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 0,
+    "consoleLogs": 0,
+    "seeded": true
+  },
+  "initialMessages": {
+    "handling": "Initial messages archived before console reset. Group and subcommand must be separate CLI arguments. Windows security policy and package code were not modified.",
+    "urpShaderWarnings": 18,
+    "burstCodeIntegrityWarnings": 11,
+    "correctedCliInvocationErrors": 2
+  },
+  "screenshot": "2026-10-26-game-view.png",
+  "backgroundOverrideRestored": true,
+  "editorLeftOpen": true,
+  "checksPassed": true,
+  "fileHashes": [
+    {
+      "path": "UnityProject/ProjectSettings/ProjectVersion.txt",
+      "sha256": "56AEAD51018C992AF406752E47C49E8D9458C70F00B983F4BB603B1B3AFC223E"
+    },
+    {
+      "path": "UnityProject/Packages/manifest.json",
+      "sha256": "4BB32C7FCE9057507B5D8626C1EF807922C0A6157956BF3119853B019691FAA3"
+    },
+    {
+      "path": "UnityProject/Packages/packages-lock.json",
+      "sha256": "97048678CFB553778F375EA80EF9BA4F64740A4A06B7AC678969CFE9DF02F52E"
+    },
+    {
+      "path": "UnityProject/Assets/Scenes/SampleScene.unity",
+      "sha256": "387D8216A517BE775B6ECC2AB55B97ECE687C3372322DA2BA027A96908014912"
+    },
+    {
+      "path": "UnityProject/Assets/Settings/UniversalRP.asset",
+      "sha256": "7CDCC79DEDADBDE17803800F44ECB6FFD08B71E83AE56EBBF6DB4ADB555613E7"
+    },
+    {
+      "path": "UnityProject/Assets/Settings/Renderer2D.asset",
+      "sha256": "900455794D0D788504847C3AA54E03A0374FD3635AFA295ED05C2F646F974705"
+    }
+  ],
+  "notVerified": [
+    "MCP client connection",
+    "Unity Test Framework tests",
+    "Android APK/AAB build",
+    "Android physical-device behavior",
+    "Game systems and game harness"
+  ]
+}

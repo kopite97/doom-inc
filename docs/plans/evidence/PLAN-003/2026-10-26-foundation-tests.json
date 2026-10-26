@@ -1,0 +1,127 @@
+{
+  "success": true,
+  "command": "command test",
+  "data": {
+    "command": "test",
+    "parameters": {
+      "mode": "editor",
+      "filter": "MobileGame.Foundation.EditMode.Tests",
+      "filter_type": "assembly"
+    },
+    "result": {
+      "Summary": {
+        "Total": 13,
+        "Passed": 13,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "MobileGame.Foundation.Tests.DefinitionFoundationTests.DifferentAssetsCannotUseOneDefinitionIdButTheSameAssetCanBeShared",
+          "Status": "Passed",
+          "Duration": 0.1438499,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.DefinitionFoundationTests.InvalidComponentDefinitionsAreRejectedBeforeRegisteringThings",
+          "Status": "Passed",
+          "Duration": 0.010195,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.DefinitionFoundationTests.RepresentativeAssetsImportAndCreateLogicalThingsWithoutChangingDefinitions",
+          "Status": "Passed",
+          "Duration": 0.051292,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.ConsumingOneStackDoesNotChangeAnotherStackOrSharedDefinition",
+          "Status": "Passed",
+          "Duration": 0.0129115,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.ForeignRegistryHoldersAndResourcesCannotCrossOwnershipBoundaries",
+          "Status": "Passed",
+          "Duration": 0.0190556,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.InvalidQuantitiesLeaveRegistryDefinitionsOwnershipAndQuantityUnchanged",
+          "Status": "Passed",
+          "Duration": 0.0184333,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.NonemptyHolderCannotBeRemovedAndFullConsumptionEndsResourceExistence",
+          "Status": "Passed",
+          "Duration": 0.01356,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.NullInputsAreRejectedWithoutLosingExistingResources",
+          "Status": "Passed",
+          "Duration": 0.0080198,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.RemovedHolderCannotReceiveNewOrExistingResources",
+          "Status": "Passed",
+          "Duration": 0.0059441,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.ResourceHasOneHolderAtCreationAndAfterRepeatedTransfers",
+          "Status": "Passed",
+          "Duration": 0.0049491,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ThingFoundationTests.ComponentsBelongToExactlyTheirThingAndMissingLookupDoesNotAddAFeature",
+          "Status": "Passed",
+          "Duration": 0.0037974,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ThingFoundationTests.FacilitiesShareDefinitionButKeepIndependentComponentsAndInventory",
+          "Status": "Passed",
+          "Duration": 0.0019555,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ThingFoundationTests.UniqueIdsAndCreationOrderStayStableAcrossResourceChanges",
+          "Status": "Passed",
+          "Duration": 0.0168933,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 3.97,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "assembly: MobileGame.Foundation.EditMode.Tests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

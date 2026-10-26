@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "command": "command script",
+  "data": {
+    "command": "script",
+    "parameters": {
+      "code": "return new { unityVersion = UnityEngine.Application.unityVersion, buildTarget = UnityEditor.EditorUserBuildSettings.activeBuildTarget.ToString(), compiling = UnityEditor.EditorApplication.isCompiling, playing = UnityEditor.EditorApplication.isPlaying, scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().path, pipeline = UnityEngine.QualitySettings.renderPipeline.GetType().FullName, pipelineAsset = UnityEditor.AssetDatabase.GetAssetPath(UnityEngine.QualitySettings.renderPipeline), renderer = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.ScriptableObject>(\"Assets/Settings/Renderer2D.asset\").GetType().FullName, roots = System.Array.ConvertAll(UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects(), x => x.name), orthographic = UnityEngine.Camera.main.orthographic, runInBackground = UnityEngine.Application.runInBackground };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "unityVersion": "6000.3.27f1",
+        "buildTarget": "Android",
+        "compiling": false,
+        "playing": false,
+        "scene": "Assets/Scenes/SampleScene.unity",
+        "pipeline": "UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset",
+        "pipelineAsset": "Assets/Settings/UniversalRP.asset",
+        "renderer": "UnityEngine.Rendering.Universal.Renderer2DData",
+        "roots": [
+          "Main Camera",
+          "Global Light 2D"
+        ],
+        "orthographic": true,
+        "runInBackground": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

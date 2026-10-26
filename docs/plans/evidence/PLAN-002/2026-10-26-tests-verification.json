@@ -1,0 +1,186 @@
+{
+  "checkedAt": "2026-10-26T13:08:04.2569628+09:00",
+  "plan": "PLAN-002",
+  "scope": "Live existing Editor: discover, compile, run one EditMode and one PlayMode environment test; archive actual results",
+  "projectRelativePath": "UnityProject",
+  "unityVersion": "6000.3.27f1",
+  "pipelineVersion": "0.9.1-exp.1",
+  "testFrameworkVersion": "1.6.0",
+  "initialDiscovery": {
+    "count": 0,
+    "cause": "CS0246: Renderer2DData belongs to the separate Unity.RenderPipelines.Universal.2D.Runtime assembly",
+    "fix": "Added the missing reference to the EditMode test asmdef",
+    "evidence": "2026-10-26-test-import-errors-detail.json",
+    "resolvedCompilation": {
+      "status": "completed",
+      "failed": false,
+      "errors": [],
+      "compilationFailed": false
+    }
+  },
+  "editMode": {
+    "command": "unity command test run --mode editor --filter MobileGame.EnvironmentTests.ProjectEnvironmentTests.ApprovedEditorAndroidAndUniversal2DConfigurationAreReady --project-path <absolute UnityProject path> --json --non-interactive --no-banner",
+    "summary": {
+      "Total": 1,
+      "Passed": 1,
+      "Failed": 0,
+      "Skipped": 0,
+      "Inconclusive": 0
+    },
+    "results": [
+      {
+        "FullName": "MobileGame.EnvironmentTests.ProjectEnvironmentTests.ApprovedEditorAndroidAndUniversal2DConfigurationAreReady",
+        "Status": "Passed",
+        "Duration": 0.2625483,
+        "Message": null,
+        "StackTrace": null
+      }
+    ],
+    "evidence": "2026-10-26-editmode-tests.json",
+    "xml": "Not retained: Unity wrote the default TestResults.xml and the following PlayMode run replaced it. Actual JSON results are preserved; no repeat performed only for XML."
+  },
+  "playMode": {
+    "command": "unity command test run --mode playmode --filter MobileGame.EnvironmentTests.SampleSceneExecutionTests.SampleSceneUsesUniversal2DAndAdvancesFramesAndTime --async_tests true --project-path <absolute UnityProject path> --json --non-interactive --no-banner",
+    "status": "completed",
+    "summary": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0
+    },
+    "results": [
+      {
+        "FullName": "MobileGame.EnvironmentTests.SampleSceneExecutionTests.SampleSceneUsesUniversal2DAndAdvancesFramesAndTime",
+        "Status": "Passed",
+        "Duration": 0.4090672,
+        "Message": null,
+        "StackTrace": null
+      }
+    ],
+    "evidence": "2026-10-26-playmode-tests-status.json",
+    "rawStatus": "2026-10-26-playmode-tests-raw.json",
+    "xml": "2026-10-26-playmode-tests.xml",
+    "xmlSource": "C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject/TestResults.xml",
+    "xmlResult": "Passed",
+    "xmlTotal": 1,
+    "xmlStartTime": "2026-10-26 04:05:06Z",
+    "xmlEndTime": "2026-10-26 04:05:07Z"
+  },
+  "totals": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "finalEditorState": {
+    "status": "ready",
+    "compiling": false,
+    "domainReloadInProgress": false,
+    "playMode": "stopped",
+    "runInBackground": false,
+    "lastHeartbeat": "2026-10-26T04:06:24.4069307Z",
+    "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject",
+    "unityVersion": "6000.3.27f1",
+    "role": "main",
+    "instanceName": "Main Editor"
+  },
+  "remainingEditorIssue": {
+    "observed": [
+      {
+        "seq": 50,
+        "timestampUtc": "2026-10-26T04:05:24.8127068Z",
+        "level": "error",
+        "logType": "Exception",
+        "message": "ExecutionEngineException: String conversion error: Illegal byte sequence encounted in the input.",
+        "stackTrace": "System.Reflection.RuntimeAssembly.GetCodeBase (System.Reflection.Assembly a, System.Boolean escaped) (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.RuntimeAssembly.get_CodeBase () (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.AssemblyName.Create (System.Reflection.Assembly assembly, System.Boolean fillCodebase) (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.RuntimeAssembly.GetName (System.Boolean copiedName) (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nSystem.Reflection.Assembly.GetName () (at <16ec009baa7541e7b79bc4548f1d744c>:0)\nUnityEditor.QuickInstall.QuickInstaller.DetectPackagesFromLoadedAssemblies () (at <ec469c02784d460cac42a26b77624176>:0)\nUnityEditor.QuickInstall.QuickInstaller.PackageListHandler (UnityEditor.PackageManager.Requests.ListRequest request, UnityEditor.EditorApplication+CallbackFunction registeredCallback) (at <ec469c02784d460cac42a26b77624176>:0)\nUnityEditor.QuickInstall.QuickInstaller+<>c__DisplayClass21_0.<CreatePackageListHandler>b__0 () (at <ec469c02784d460cac42a26b77624176>:0)\nUnityEditor.EditorApplication.Internal_CallUpdateFunctions () (at <6719e354e74c4c6e92f6c272146c0b4b>:0)\n",
+        "seeded": false
+      }
+    ],
+    "groundTruth": {
+      "sampledUtc": "2026-10-26T04:06:26.3340579Z",
+      "ageMs": 184,
+      "compilationFailed": false,
+      "compiling": false,
+      "consoleErrors": 1,
+      "consoleWarnings": 0,
+      "consoleLogs": 9,
+      "seeded": true
+    },
+    "diagnostic": {
+      "inspected": 294,
+      "failures": [
+        {
+          "assembly": "PipelineEval_05ff6546, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "location": "",
+          "error": "ExecutionEngineException",
+          "message": "String conversion error: Illegal byte sequence encounted in the input."
+        },
+        {
+          "assembly": "PipelineEval_4493f567, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "location": "",
+          "error": "ExecutionEngineException",
+          "message": "String conversion error: Illegal byte sequence encounted in the input."
+        }
+      ],
+      "compiling": false,
+      "playing": false
+    },
+    "sourceModule": "C:/Program Files/Unity/Hub/Editor/6000.3.27f1/Editor/Data/Managed/UnityEngine/UnityEditor.QuickInstallModule.dll",
+    "sourceAvailability": "Installed Editor module DLL/XML present; no QuickInstaller C# source found in project package cache.",
+    "interpretation": "After test completion, QuickInstaller package discovery threw while reading Assembly.GetName/CodeBase. Read-only enumeration reproduced the error only for two in-memory PipelineEval assemblies. Editor status and CLI/eval remained functional, and compilationFailed=false. An Editor/Pipeline dynamic-assembly integration issue is indicated; root cause and recurrence are not resolved. No evidence establishes the project Unicode path as the cause.",
+    "handling": "Preserved without clearing after occurrence. No security settings, package source, project path, or Editor installation were changed."
+  },
+  "testAssets": [
+    {
+      "path": "UnityProject/Assets/Tests/EditMode/Environment.EditMode.Tests.asmdef",
+      "sha256": "2F6C5DC6B0EDF4DA1C13870FD6BA0D0A372C1C024C0DD52757C08A09AA4DDA62",
+      "metaPresent": true,
+      "metaSha256": "782AC150968D337D6BC0AFB4966B6126FC0C006D8F9EFA610A2E547A4ECD0D95",
+      "guid": "bb74abfdaf351b742907fc703b31e202"
+    },
+    {
+      "path": "UnityProject/Assets/Tests/EditMode/ProjectEnvironmentTests.cs",
+      "sha256": "2850CC82B9E0F951ACCF08AD525F181A65A237C6416FB1CC18220625B334970F",
+      "metaPresent": true,
+      "metaSha256": "7521FA53C37A09C346AE051A136F693023F40D390361A2CE19590F315CF5E523",
+      "guid": "a5bf7eb94f802c34cbe4ad55820e4bac"
+    },
+    {
+      "path": "UnityProject/Assets/Tests/PlayMode/Environment.PlayMode.Tests.asmdef",
+      "sha256": "359E540B21119C938F53C835C7425C679CDC2E5CCAA1FDB003272921D9753275",
+      "metaPresent": true,
+      "metaSha256": "3FF6B2D2ACFDB7545EC5B33B466DC3E03C1F5BCC805B6AD4E3C6CA2A9083363A",
+      "guid": "6c869cca6168e0746b226ad8e5aa96d7"
+    },
+    {
+      "path": "UnityProject/Assets/Tests/PlayMode/SampleSceneExecutionTests.cs",
+      "sha256": "08623D3D05BBA2DDA3ABD60516E20F0C41B155B8DDDFAB7BB0B96B222625B0AF",
+      "metaPresent": true,
+      "metaSha256": "BE60CF876AAE4C2892C3A17A8BF69D240AE7F6F3C04A91C28920512AB0094035",
+      "guid": "acc81e5bbaac8b84b92e7909a11e48d8"
+    }
+  ],
+  "folderMetadata": [
+    {
+      "path": "UnityProject/Assets/Tests.meta",
+      "exists": true
+    },
+    {
+      "path": "UnityProject/Assets/Tests/EditMode.meta",
+      "exists": true
+    },
+    {
+      "path": "UnityProject/Assets/Tests/PlayMode.meta",
+      "exists": true
+    }
+  ],
+  "notVerified": [
+    "Android APK/AAB build",
+    "Android physical-device behavior",
+    "Game systems and game harness",
+    "Resolution of the post-test QuickInstaller exception"
+  ],
+  "mcp": "Handled separately by parent agent; not claimed by this test record"
+}

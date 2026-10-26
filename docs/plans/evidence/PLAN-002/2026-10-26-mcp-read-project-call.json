@@ -1,0 +1,7 @@
+{
+  "name": "eval",
+  "arguments": {
+    "code": "return new { projectPath = System.IO.Path.GetDirectoryName(UnityEngine.Application.dataPath), unityVersion = UnityEngine.Application.unityVersion, activeBuildTarget = UnityEditor.EditorUserBuildSettings.activeBuildTarget.ToString(), compiling = UnityEditor.EditorApplication.isCompiling };",
+    "timeout": 30
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-26T13:07:03.7399840+09:00",
+  "plan": "PLAN-002",
+  "serverName": "unity-mobile-game",
+  "client": "Codex app-server standalone stdio client (no LLM turn or thread created)",
+  "discovery": {
+    "serverVersion": "1.0.0-beta.12",
+    "toolCount": 110,
+    "toolsError": null,
+    "passed": true
+  },
+  "invocation": {
+    "client": "Node stdio MCP verification client",
+    "serverVersion": "1.0.0-beta.12",
+    "tool": "eval",
+    "protocolVersion": "2025-03-26",
+    "payload": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject",
+        "unityVersion": "6000.3.27f1",
+        "activeBuildTarget": "Android",
+        "compiling": false
+      }
+    },
+    "projectMatches": true
+  },
+  "checksPassed": true,
+  "limitations": [
+    "Current running desktop chat tool-list hot reload was not verified.",
+    "This is environment integration verification; no game harness or Android build was tested."
+  ],
+  "evidence": [
+    "2026-10-26-codex-mcp-config.json",
+    "2026-10-26-codex-mcp-discovery.json",
+    "2026-10-26-unity-mcp-call.json",
+    "2026-10-26-mcp-read-project-call.json"
+  ]
+}

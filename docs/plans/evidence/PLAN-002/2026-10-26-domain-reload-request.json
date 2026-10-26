@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command script",
+  "data": {
+    "command": "script",
+    "parameters": {
+      "code": "UnityEditor.EditorApplication.delayCall += () => UnityEditor.EditorUtility.RequestScriptReload(); return \"Domain reload queued\";"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "Domain reload queued"
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
