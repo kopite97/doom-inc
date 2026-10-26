@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace MobileGame.Foundation
 {
     // One instance per running world/session; no static identity or mutable gameplay state.
-    // Call on the simulation thread. Map, jobs, capacity and reservations are later layers.
+    // Call on the simulation thread. Jobs, capacity and reservations are later layers.
     public sealed class ThingRegistry
     {
         private readonly Dictionary<Guid, Thing> things = new Dictionary<Guid, Thing>();
@@ -133,6 +133,7 @@ namespace MobileGame.Foundation
 
         private void RemoveEntry(Thing thing)
         {
+            thing.Map?.Detach(thing);
             things.Remove(thing.Id);
             thing.MarkRemoved();
         }

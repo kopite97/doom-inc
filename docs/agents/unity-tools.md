@@ -97,6 +97,21 @@ unity command test run --mode editor --filter MobileGame.Foundation.EditMode.Tes
 
 `$projectPath`는 위와 같이 작업공간의 `UnityProject` 절대 경로다. 검사 범위와 증거는 [PLAN-003](../plans/PLAN-003-thing-foundation.md), 코드 경계는 [TECH-001](../decisions/TECH-001-thing-foundation.md)을 참조한다.
 
+## 공간·공통 조작 기반 검증
+
+제공된 검증 장면은 실제 게임 시작 구성이 아니다. 아래 명령은 기존 Editor에서 실행하며 `$projectPath`는 위와 같다.
+
+```powershell
+unity command editor invoke_menu --path 'Tools/Mobile Game/Open Map Foundation Scene' --project-path $projectPath --json
+unity command test run --mode editor --project-path $projectPath --json
+unity command test run --mode playmode --filter MapFoundationViewTests --async_tests true --project-path $projectPath --json
+unity command test status --project-path $projectPath --json
+```
+
+수동 조작은 해당 씬을 열고 Play에서 시설 선택 → Move / Rotate → 격자 클릭·Rotate → Confirm/Cancel 순서다.
+장면이 없을 때만 `Tools/Mobile Game/Create Map Foundation Scene` 메뉴를 실행한다. 기존 장면은 덮어쓰지 않는다.
+Play Mode 검사는 실제 씬·공통 명령·OnGUI 렌더링과 Temp의 화면 캡처를 확인한다. 마우스 이벤트 주입이나 실기기 터치 검사와는 구분한다. 결과·제한은 [PLAN-004](../plans/PLAN-004-map-and-commands.md)에 있다.
+
 ## Codex의 Unity MCP 연결
 
 `unity-mobile-game`은 이 PC의 Codex 사용자 설정에 등록했으며 프로젝트 경로를 고정했다.

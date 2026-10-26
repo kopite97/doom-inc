@@ -16,7 +16,7 @@ namespace MobileGame.Foundation
         public IReadOnlyList<ThingComponentKind> ComponentKinds =>
             Array.AsReadOnly(components ?? Array.Empty<ThingComponentKind>());
 
-        public void Validate()
+        public virtual void Validate()
         {
             if (string.IsNullOrWhiteSpace(definitionId))
                 throw new ArgumentException("A definition must have a nonblank ID.", nameof(definitionId));

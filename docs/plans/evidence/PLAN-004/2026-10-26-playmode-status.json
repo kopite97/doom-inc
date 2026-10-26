@@ -1,0 +1,35 @@
+{
+  "success": true,
+  "command": "command test",
+  "data": {
+    "command": "test",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 0.46,
+      "summary": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.MapFoundationViewTests.SceneViewAndHarnessShareMoveRotateRejectCancelAndRenderActualState",
+          "Status": "Failed",
+          "Duration": 0.4455126,
+          "Message": "Unhandled log message: '[Log] Map foundation rendered screenshot: C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Temp\\MapFoundation-verification.png'. Use UnityEngine.TestTools.LogAssert.Expect",
+          "StackTrace": "MobileGame.SpatialTests.MapFoundationViewTests/<SceneViewAndHarnessShareMoveRotateRejectCancelAndRenderActualState>d__1:MoveNext () (at Assets/Tests/SpatialPlayMode/MapFoundationViewTests.cs:104)\r\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\r\n\r\n"
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

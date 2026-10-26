@@ -6,6 +6,7 @@
 - 기준 기획: [Thing 모델](../game-design/05-development/01-architecture/thing-model.md)의 D-072·D-073·D-075·D-078·D-082~D-084, [로드맵](../game-design/05-development/02-implementation/roadmap.md)의 첫 기반 묶음
 - 적용: `UnityProject/Assets/Game/Foundation/`와 Editor 전용 정의 작성기
 - 대체 관계: 없음
+- 후속 확장: 공간 좌표·배치·Map 연결은 [TECH-003](TECH-003-map-and-placement.md)에 추가했다. 아래 미구현 범위는 PLAN-003 완료 당시 기준이다.
 
 ## 문제와 제약
 

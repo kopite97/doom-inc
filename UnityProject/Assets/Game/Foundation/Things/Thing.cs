@@ -40,6 +40,10 @@ namespace MobileGame.Foundation
         public long CreationOrder { get; }
         public ThingDefinition Definition { get; }
         public bool Exists { get; private set; }
+        public GridMap Map { get; internal set; }
+        public MapPlacement Placement => Map != null && Map.TryGetPlacement(Id, out var placement)
+            ? placement : null;
+        public bool IsPlaced => Placement != null;
         public Guid? HolderId { get; private set; }
         public IReadOnlyList<ThingComponent> Components => components;
 
