@@ -1,7 +1,7 @@
 # 저장소 관리 지침
 
 Git 루트는 AGENTS.md가 있는 최상위 폴더이고 Unity에서 여는 프로젝트는 `UnityProject/`다.
-[작업 절차](workflow.md)에 따라 유일한 active PLAN과 사용자 요청 범위에서 작업한다.
+[작업 절차](workflow.md)에 따라 유일한 active PLAN과 사용자 요청 범위에서 작업한다. [독립 Sprite 작업](art-assets.md#sprite-requests)의 저장소 확인·사용자가 요청한 커밋도 해당 독립 범위를 따른다.
 설정 근거는 [TECH-002](../decisions/TECH-002-repository-layout.md), 최초 검증은 [PLAN-005](../plans/PLAN-005-repository-setup.md)를 따른다.
 
 ## 경계와 추적 대상

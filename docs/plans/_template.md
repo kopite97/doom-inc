@@ -1,5 +1,6 @@
 ---
 id: PLAN-NNN
+type: development
 status: proposed
 title: 검증 가능한 작업 결과
 updated: YYYY-MM-DD
@@ -29,6 +30,9 @@ updated: YYYY-MM-DD
 - [ ] 해당 범위의 필수 검증과 기록
 
 ## 완료 기준과 검증 방법
+
+[타입별 완료 판정](AGETNS.md#타입과-완료-판정)에 따라 작성한다. 아트 변경이 주목적이면 type을 `art`로 지정한다.
+development의 남은 Sprite 요청은 별도 README에 연결하고, art는 자기 범위의 필수 적용·기술 검증·사용자 시각 확인을 기준에 포함한다.
 
 | 기준 | 실행할 검증 | 필요한 증거 |
 | --- | --- | --- |

@@ -7,7 +7,7 @@
 
 ## 에이전트의 읽기 순서
 
-작업은 [루트 에이전트 MAP](../../AGENTS.md)에서 시작하고 [PLAN MAP](../plans/README.md)의 유일한 active PLAN 범위만 진행한다. 아래는 해당 PLAN에서 기획을 조회하는 순서다.
+작업은 [루트 에이전트 MAP](../../AGENTS.md)에서 시작하고 PLAN 작업은 [PLAN MAP](../plans/README.md)의 유일한 active PLAN 범위만 진행한다. [독립 Sprite 작업](../agents/art-assets.md#sprite-requests)은 별도 절차를 따르며, 아래는 PLAN에서 기획을 조회하는 순서다.
 
 1. [문서 관리 규칙](00-management/01-workflow/document-rules.md)에서 확정 범위와 개발 위임의 구분을 확인한다.
 2. [구현 계획](05-development/02-implementation/roadmap.md)에서 현재 단계·참조 문서·완료 기준을 확인한다.

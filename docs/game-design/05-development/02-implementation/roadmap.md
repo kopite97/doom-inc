@@ -10,7 +10,7 @@
 
 ## 현재 작업
 
-환경 준비 결과와 도구 호환 주의점은 [PLAN-002](../../../plans/PLAN-002-unity-environment.md)에 있다. 정의·Thing 최소 기반은 [PLAN-003](../../../plans/PLAN-003-thing-foundation.md), 공간·공통 조작·최소 화면은 [PLAN-004](../../../plans/PLAN-004-map-and-commands.md)에서 구현·검증했다. 다음은 한 판·저장 기반이며 새 PLAN은 proposed로 작성하고 사용자 승인 후 활성화한다. 전체 게임 사이클·저장/복원·Android 빌드·실기기 검증은 아직 수행하지 않았다.
+환경 준비 결과와 도구 호환 주의점은 [PLAN-002](../../../plans/PLAN-002-unity-environment.md)에 있다. 정의·Thing 최소 기반은 [PLAN-003](../../../plans/PLAN-003-thing-foundation.md), 공간·공통 조작·최소 화면은 [PLAN-004](../../../plans/PLAN-004-map-and-commands.md)에서 구현·검증했다. 다음 한 판·저장 기반은 [PLAN-007](../../../plans/PLAN-007-gameflow-and-persistence.md)에 proposed로 정리했으며 사용자 실행 승인 후 활성화한다. 전체 게임 사이클·저장/복원·Android 빌드·실기기 검증은 아직 수행하지 않았다.
 
 개별 작업 상태·다음 행동·검증 증거는 [PLAN MAP](../../../plans/README.md)에서 찾는다. 작업 대상은 유일한 active PLAN이며, 이 문서는 전체 단계·기획상 완료 기준과 요약 상태를 관리한다.
 
@@ -36,7 +36,7 @@
 | --- | --- | --- | --- |
 | 정의·Thing 기반 | SO 정의 확인, Thing 생성, 컴포넌트 연결·조회, ID와 소속 관리 | 같은 정의를 사용하는 두 개체가 독립된 상태를 갖고 필요한 기능을 조회할 수 있다. | [완료·검증](../../../plans/PLAN-003-thing-foundation.md) |
 | 공간·공통 조작 기반 | Thing과 Map의 기본 배치 정보 연결, 공통 명령·규칙 검사·상태 조회 | 배치 변경이 Map에 일관되게 반영되고, 화면과 하네스가 같은 처리 경로를 사용한다. | [완료·검증](../../../plans/PLAN-004-map-and-commands.md) |
-| 한 판·저장 기반 | 신규 시작·초기화·복원 흐름, 현재 구현된 상태와 관계의 저장·복원 | 자원 소속과 Map 밖 개체를 복원하고, 다시 시작하면 이전 개체·관계가 남지 않는다. | 미구현·미검증 |
+| 한 판·저장 기반 | 신규 시작·초기화·복원 흐름, 현재 구현된 상태와 관계의 저장·복원 | 자원 소속과 Map 밖 개체를 복원하고, 다시 시작하면 이전 개체·관계가 남지 않는다. | [후보·미구현·미검증](../../../plans/PLAN-007-gameflow-and-persistence.md) |
 
 기반 단계에서는 같은 SO를 공유하는 시설 두 개의 실행 상태 독립성, 복원 후 자원이 정확히 한 보관처에 속하는지 등을 확인한다. 현재 구현한 기반 상태와 관계가 검증 대상이며, 후속 생산·운반 기능 전체를 먼저 완성할 필요는 없다.
 
@@ -77,5 +77,6 @@
 - [PLAN-002 Unity 개발 환경 준비](../../../plans/PLAN-002-unity-environment.md)
 - [PLAN-003 SO 정의와 Thing·컴포넌트 기반](../../../plans/PLAN-003-thing-foundation.md)
 - [PLAN-004 공간·공통 조작 기반](../../../plans/PLAN-004-map-and-commands.md)
+- [PLAN-007 GameFlow와 저장·복원 기반](../../../plans/PLAN-007-gameflow-and-persistence.md)
 
-나머지 기반 묶음과 이후 1~4단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 작성한다.
+이후 1~4단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

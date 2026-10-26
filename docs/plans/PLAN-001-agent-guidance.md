@@ -1,5 +1,6 @@
 ---
 id: PLAN-001
+type: development
 status: completed
 title: 에이전트 지침과 개발 문서 체계 정비
 updated: 2026-10-26

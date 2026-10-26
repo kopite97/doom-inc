@@ -1,5 +1,6 @@
 ---
 id: PLAN-002
+type: development
 status: completed
 title: Unity 개발 환경과 실행·검증 경로 준비
 updated: 2026-10-26

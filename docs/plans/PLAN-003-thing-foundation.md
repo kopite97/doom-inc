@@ -1,5 +1,6 @@
 ---
 id: PLAN-003
+type: development
 status: completed
 title: SO 정의와 Thing·컴포넌트 기반
 updated: 2026-10-26

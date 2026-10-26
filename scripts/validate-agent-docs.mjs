@@ -2,10 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// Read-only checks. PLAN status is read from its front matter, never an index.
+// Read-only checks. PLAN type/status are read from front matter, never an index.
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const errors = [];
 const allowedStates = new Set(['proposed', 'active', 'completed', 'rejected', 'on hold']);
+const allowedTypes = new Set(['development', 'art']);
 const relative = file => path.relative(root, file).replaceAll(path.sep, '/');
 const read = file => fs.readFileSync(file, 'utf8').replace(/^\uFEFF/, '');
 const lineCount = text => text.length ? text.replace(/\r?\n$/, '').split(/\r?\n/).length : 0;
@@ -60,17 +61,19 @@ for (const file of planFiles) {
     if (fields.has(match[1])) errors.push(`Duplicate PLAN field ${match[1]}: ${relative(file)}`);
     fields.set(match[1], match[2]);
   }
-  for (const key of ['id', 'status', 'title', 'updated']) {
+  for (const key of ['id', 'type', 'status', 'title', 'updated']) {
     if (!fields.get(key)) errors.push(`Missing PLAN field ${key}: ${relative(file)}`);
   }
   const id = fields.get('id');
+  const type = fields.get('type');
   const status = fields.get('status');
-  planMetadata.set(file, { id, status });
+  planMetadata.set(file, { id, type, status });
   if (!/^PLAN-\d{3,}$/.test(id ?? '') || !name.startsWith(`${id}-`)) {
     errors.push(`PLAN ID and filename mismatch: ${relative(file)}`);
   }
   if (ids.has(id)) errors.push(`Duplicate PLAN ID: ${id}`);
   ids.add(id);
+  if (!allowedTypes.has(type)) errors.push(`Invalid PLAN type ${JSON.stringify(type)}: ${relative(file)}`);
   if (!allowedStates.has(status)) errors.push(`Invalid PLAN status ${JSON.stringify(status)}: ${relative(file)}`);
   if (status === 'active') activePlans.push(file);
 }
@@ -78,7 +81,7 @@ if (activePlans.length !== 1) errors.push(`Expected exactly 1 active PLAN; found
 console.log(`PLANS total=${planFiles.length}, active=${activePlans.length}`);
 for (const file of activePlans) console.log(`ACTIVE ${relative(file)}`);
 
-// README is a status summary; each PLAN's front matter remains authoritative.
+// README summarizes type/status; each PLAN's front matter remains authoritative.
 const planIndex = path.join(root, 'docs/plans/README.md');
 const indexedPlans = new Set();
 if (!fs.existsSync(planIndex)) {
@@ -91,9 +94,11 @@ if (!fs.existsSync(planIndex)) {
     if (!link) continue;
     const file = path.resolve(path.dirname(planIndex), link[2]);
     const metadata = planMetadata.get(file);
-    const summaryStatus = columns[2]?.replace(/^`|`$/g, '');
+    const summaryType = columns[2]?.replace(/^`|`$/g, '');
+    const summaryStatus = columns[3]?.replace(/^`|`$/g, '');
     if (!metadata || metadata.id !== link[1]) errors.push(`Unknown PLAN index entry: ${link[1]}`);
     if (indexedPlans.has(file)) errors.push(`Duplicate PLAN index entry: ${link[1]}`);
+    if (metadata && summaryType !== metadata.type) errors.push(`PLAN index type mismatch: ${link[1]}`);
     if (metadata && summaryStatus !== metadata.status) errors.push(`PLAN index status mismatch: ${link[1]}`);
     indexedPlans.add(file);
   }
@@ -128,5 +133,5 @@ if (errors.length) {
   for (const error of errors) console.error(`ERROR ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS agent guidance, PLAN metadata/index, single active PLAN, local file links');
+  console.log('PASS agent guidance, PLAN type/status metadata/index, single active PLAN, local file links');
 }

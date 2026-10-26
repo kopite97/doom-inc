@@ -1,5 +1,6 @@
 ---
 id: PLAN-004
+type: development
 status: completed
 title: 공간·공통 조작 기반
 updated: 2026-10-26

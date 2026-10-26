@@ -1,5 +1,6 @@
 ---
 id: PLAN-006
+type: development
 status: completed
 title: 기획·Unity 소스 최초 커밋과 GitHub 업로드
 updated: 2026-10-26

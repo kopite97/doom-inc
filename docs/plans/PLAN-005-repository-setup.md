@@ -1,5 +1,6 @@
 ---
 id: PLAN-005
+type: development
 status: completed
 title: 루트 Git 저장소와 LFS 설정
 updated: 2026-10-26
