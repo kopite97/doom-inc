@@ -14,6 +14,7 @@
 | 모든 작업·재개·PLAN 전환 | [작업 절차](docs/agents/workflow.md) |
 | PLAN 조회·작성·상태 관리 | [PLAN 관리 지침](docs/plans/AGETNS.md) |
 | 폴더·파일·에셋 생성·배치·이동·이름 변경 | [프로젝트 구조](docs/agents/project-structure.md) |
+| 코드·폴더·에셋 명명과 기존 이름 정비 | [명명 규칙](docs/agents/naming.md) |
 | C#·어셈블리 생성·배치·이동 | [스크립트 구조](docs/agents/script-structure.md) |
 | Thing·SO·Job·Map·저장·GameFlow 설계 및 변경 | [아키텍처](docs/agents/architecture.md) |
 | 씬·프리팹·SO·스크립트 에셋 변경 | [Unity 에셋](docs/agents/unity-assets.md) |

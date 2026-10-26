@@ -10,3 +10,4 @@
 | [PLAN-006](PLAN-006-initial-publish.md) | 기획·Unity 소스 최초 커밋과 GitHub 업로드 | `development` | `completed` |
 | [PLAN-007](PLAN-007-gameflow-and-persistence.md) | GameFlow와 저장·복원 기반 | `development` | `completed` |
 | [PLAN-008](PLAN-008-initial-construction-and-logistics.md) | 초기 건설·수집·저장 | `development` | `completed` |
+| [PLAN-009](PLAN-009-processing-cultivation-and-workers.md) | 가공·배양·보급형 운용과 시스템 책임·명명 정비 | `development` | `proposed` |

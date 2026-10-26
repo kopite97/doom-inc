@@ -2,7 +2,7 @@
 
 - 갱신일: 2026-10-26
 - 기획 상태: **프로토타입 개발 전 1차 기획 완료**. 필수 1·2·3·4·6·7은 완료이며, 필수 5의 기본 규칙은 확정하고 초기값·조정 수치는 개발에 위임했다.
-- 개발 상태: **환경 준비 완료 / 선행 기반 세 묶음 완료**. 환경 결과는 [PLAN-002](../plans/PLAN-002-unity-environment.md), 정의·Thing은 [PLAN-003](../plans/PLAN-003-thing-foundation.md), Map·공통 조작은 [PLAN-004](../plans/PLAN-004-map-and-commands.md), GameFlow·저장·복원은 [PLAN-007](../plans/PLAN-007-gameflow-and-persistence.md)에서 검증했다. 실제 초기 건설부터의 게임 사이클·Android 빌드·실기기 검증은 후속 단계다.
+- 개발 상태: **환경·선행 기반 세 묶음·1단계 초기 건설·수집·저장 완료**. 단계별 결과는 [구현 로드맵](05-development/02-implementation/roadmap.md)과 [PLAN-008](../plans/PLAN-008-initial-construction-and-logistics.md)에서 확인한다. 2단계 가공·배양·보급형 운용은 [PLAN-009](../plans/PLAN-009-processing-cultivation-and-workers.md) proposed이며, 전체 게임 사이클·Android 빌드·실기기 검증은 후속 단계다.
 - 목표: 에셋 종류를 제한하면서 기본 게임 사이클을 충분히 반복할 수 있는 프로토타입을 완성한다.
 
 ## 에이전트의 읽기 순서

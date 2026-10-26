@@ -14,6 +14,8 @@
 
 1단계의 초기 건설·수집·운반·입고 흐름과 중간 저장·복원·재시작은 [PLAN-008](../../../plans/PLAN-008-initial-construction-and-logistics.md)에서 구현·검증했다. PC 최소 플레이 화면과 하네스 검사를 통과했다. 후속 단계는 별도 proposed PLAN을 작성하고 사용자 실행 승인을 받은 뒤 진행한다.
 
+2단계의 가공·배양·보급형 운용 범위·완료 기준·검증 방법은 [PLAN-009](../../../plans/PLAN-009-processing-cultivation-and-workers.md)에 정리했다. 기존 클래스의 Manager 책임 분리·명명 정비와 회귀 검증을 먼저 수행하는 범위를 포함한다. 현재 proposed이며 구현 착수 전이다.
+
 개별 작업 상태·다음 행동·검증 증거는 [PLAN MAP](../../../plans/README.md)에서 찾는다. 작업 대상은 유일한 active PLAN이며, 이 문서는 전체 단계·기획상 완료 기준과 요약 상태를 관리한다.
 
 확정한 Unity 버전·Universal 2D(URP)·Android 대상과 연동 방향은 [플레이 환경](../../04-delivery/01-platform/environment.md)을 따른다. 구현할 작업의 필수 참조를 아래에서 읽고, 승인 규칙 안에서 필요한 세부 설계를 구체화한다.
@@ -81,5 +83,6 @@
 - [PLAN-004 공간·공통 조작 기반](../../../plans/PLAN-004-map-and-commands.md)
 - [PLAN-007 GameFlow와 저장·복원 기반](../../../plans/PLAN-007-gameflow-and-persistence.md)
 - [PLAN-008 초기 건설·수집·저장](../../../plans/PLAN-008-initial-construction-and-logistics.md)
+- [PLAN-009 가공·배양·보급형 운용과 시스템 책임·명명 정비](../../../plans/PLAN-009-processing-cultivation-and-workers.md)
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

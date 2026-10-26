@@ -10,6 +10,7 @@
 3. 단계 전환·시작·복원 작업이면 [GameFlow](../game-design/05-development/01-architecture/game-flow.md)를 읽는다.
 4. 생산·운반·공간 등 상세 규칙은 [기획 MAP](../game-design/README.md)의 담당 문서에서 확인한다.
 5. 코드 위치·기능별 분류는 [스크립트 구조](script-structure.md)를 따른다. 폴더 분류를 상태 소유나 어셈블리 분할과 혼동하지 않는다.
+6. 클래스 역할·Manager 책임과 이름은 [명명 규칙](naming.md)을 함께 확인한다.
 
 이 문서는 변경 시 확인할 경계를 안내한다. 게임 수치·예약 예외·레시피의 원본을 복제하지 않는다.
 
