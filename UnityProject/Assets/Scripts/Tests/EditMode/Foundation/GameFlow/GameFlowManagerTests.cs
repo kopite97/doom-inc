@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.IO;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace MobileGame.Foundation.Tests
 {
     public sealed class GameFlowManagerTests : FoundationTestFixture
     {
-        private FacilityDefinition storage;
-        private CreatureDefinition creature;
-        private ResourceDefinition resource;
+        private FacilityData storage;
+        private CreatureData creature;
+        private ResourceData resource;
         private SessionSnapshotCodec codec;
         private string directory;
         private string slot;
@@ -21,9 +22,9 @@ namespace MobileGame.Foundation.Tests
         public void SetUp()
         {
             storage = CreateStorageDefinition();
-            creature = CreateDefinition<CreatureDefinition>("fixture.creature", ThingComponentKind.ResourceContainer);
+            creature = CreateDefinition<CreatureData>("fixture.creature", ThingComponentKind.ResourceContainer);
             resource = CreateResourceDefinition();
-            codec = new SessionSnapshotCodec(new ThingDefinition[] { storage, creature, resource });
+            codec = new SessionSnapshotCodec(new ThingData[] { storage, creature, resource });
             directory = Path.Combine(Path.GetTempPath(), "DoomInc.SessionTests", Guid.NewGuid().ToString("N"));
             slot = Path.Combine(directory, "session.json");
         }

@@ -11,9 +11,6 @@ namespace MobileGame.Presentation
     // Temporary diagnostic surface. GameFlowManager owns commands, time gating and saves.
     public sealed class SessionFoundationView : MonoBehaviour
     {
-        [SerializeField] private FacilityDefinition storage;
-        [SerializeField] private CreatureDefinition creature;
-        [SerializeField] private ResourceDefinition resource;
         private GUIStyle cellStyle;
         private GUIStyle wrappedLabelStyle;
         private Vector2 panelScroll;
@@ -28,22 +25,16 @@ namespace MobileGame.Presentation
         public double LaboratorySecondsObserved { get; private set; }
         public double ExternalSecondsObserved { get; private set; }
 
-        private void Start()
-        {
-            if (Controller == null)
-                Initialize(storage, creature, resource,
-                    Path.Combine(Application.persistentDataPath, "Diagnostics", "PLAN-007", "session.json"));
-        }
 
         // A caller may initialize before Start to isolate its diagnostic/test save slot.
-        public void Initialize(FacilityDefinition storageDefinition, CreatureDefinition creatureDefinition,
-            ResourceDefinition resourceDefinition, string savePath, double autoSaveSeconds = 5)
+        public void Initialize(FacilityData storageDefinition, CreatureData creatureDefinition,
+            ResourceData resourceDefinition, string savePath, double autoSaveSeconds = 5)
         {
             if (Controller != null)
                 throw new InvalidOperationException("This view already has a session controller.");
             if (string.IsNullOrWhiteSpace(savePath))
                 throw new ArgumentException("Provide a diagnostic save path.", nameof(savePath));
-            var codec = new SessionSnapshotCodec(new ThingDefinition[]
+            var codec = new SessionSnapshotCodec(new ThingData[]
                 { storageDefinition, creatureDefinition, resourceDefinition });
             SavePath = Path.GetFullPath(savePath);
             Controller = new GameFlowManager(codec, new JsonFileSessionStore(SavePath), () =>

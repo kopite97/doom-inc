@@ -9,7 +9,7 @@ namespace MobileGame.Foundation
         private readonly IReadOnlyList<ThingComponent> components;
 
         internal Thing(ThingRegistry registry, Guid id, long creationOrder,
-            ThingDefinition definition, Guid? holderId, int resourceQuantity)
+            ThingData definition, Guid? holderId, int resourceQuantity)
         {
             Registry = registry;
             Id = id;
@@ -38,7 +38,7 @@ namespace MobileGame.Foundation
         internal ThingRegistry Registry { get; }
         public Guid Id { get; }
         public long CreationOrder { get; }
-        public ThingDefinition Definition { get; }
+        public ThingData Definition { get; }
         public bool Exists { get; private set; }
         public GridMap Map { get; internal set; }
         public MapPlacement Placement => Map != null && Map.TryGetPlacement(Id, out var placement)

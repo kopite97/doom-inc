@@ -2,9 +2,10 @@
 
 - 갱신일: 2026-10-28
 - 기획 상태: **프로토타입 개발 전 1차 기획 완료**. 필수 1·2·3·4·6·7은 완료이며, 필수 5의 기본 규칙은 확정하고 초기값·조정 수치는 개발에 위임했다.
-- 개발 상태: **환경·선행 기반 세 묶음·1~3단계 완료**. 초기 건설·수집·저장은 [PLAN-008](../plans/PLAN-008-initial-construction-and-logistics.md), 가공·배양·보급형 운용은 [PLAN-009](../plans/PLAN-009-processing-cultivation-and-workers.md)에서 구현·검증했다. 다음 범위는 [구현 로드맵](05-development/02-implementation/roadmap.md)의 4단계 세로 대응·병목/반복 종합 검증·Android 빌드/실기기다.
+- 개발 상태: **환경·선행 기반 세 묶음·1~3단계 완료**. 초기 건설·수집·저장은 [PLAN-008](../plans/PLAN-008-initial-construction-and-logistics.md), 가공·배양·보급형 운용은 [PLAN-009](../plans/PLAN-009-processing-cultivation-and-workers.md)에서 구현·검증했다. [구현 로드맵](05-development/02-implementation/roadmap.md)의 4단계 세로 대응·병목/반복 종합 검증·Android 빌드/실기기에 앞서 PLAN-012 데이터 기반 정비를 완료했다.
 - 3단계 완료: [PLAN-010 침공형 방출·외부 활동·성과 누적·전과 보고](../plans/PLAN-010-invasion-activity-and-reports.md)와 [PLAN-011 멸망 연출·결과 화면·한 판 종료와 재시작 완결](../plans/PLAN-011-destruction-results-and-restart.md)은 completed다. PC 가로에서 유료 생산부터 목표·연출·결과·재시작·두 번째 판 종료까지 검증했다.
-- 최근 완료: PLAN-011은 Edit 212/212·Play 10/10·오류/경고 0으로 종료 단계 저장/복원과 실패 보존을 확인했다. active PLAN은 없으며 후속은 별도 작성·실행 승인을 거친다. 모바일 최종 완료 판정은 남아 있다.
+- 최근 완료: PLAN-012는 Edit 236/236·Domain Reload 양쪽 Play 각 13/13·오류/경고 0으로 데이터 이관·저장 호환성과 기존 두 판 흐름을 확인했다. Android 스크립트 컴파일·CSV 참조 검사까지 완료했으며 모바일 최종 완료 판정은 남아 있다.
+- 현재 작업: [PLAN-012 CSV·SO 분리와 GameDataStore 초기 로딩](../plans/PLAN-012-csv-so-data-and-game-data-store.md)은 completed다. 현재 active PLAN은 없으며 다음 작업은 승인 대기다. 실제 Google Sheets 연결·원격 운영은 별도 후속 범위다.
 - 목표: 에셋 종류를 제한하면서 기본 게임 사이클을 충분히 반복할 수 있는 프로토타입을 완성한다.
 
 ## 에이전트의 읽기 순서

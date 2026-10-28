@@ -15,7 +15,7 @@ namespace MobileGame.Gameplay
         {
             if ((target != CultivationTarget.Support && target != CultivationTarget.Invader) ||
                 !laboratory.Registry.TryGet(facilityId, out var facility) || !laboratory.IsComplete(facility) ||
-                !(facility.Definition is FacilityDefinition definition) || definition.Role != FacilityRole.Cultivation)
+                !(facility.Definition is FacilityData definition) || definition.Role != FacilityRole.Cultivation)
             { LastError = "Select a completed cultivator and a support or invader target."; return false; }
             facility.GetComponent<ProductionComponent>().SelectedTarget = target;
             LastError = null;
@@ -23,13 +23,13 @@ namespace MobileGame.Gameplay
         }
 
         public int InputCount(Thing facility) => facility.GetComponent<ResourceContainerComponent>().Contents
-            .Where(t => t.Definition == ((FacilityDefinition)facility.Definition).InputResource)
+            .Where(t => t.Definition == ((FacilityData)facility.Definition).InputResource)
             .Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
 
         public int InputNeeded(Thing facility)
         {
             if (!laboratory.IsComplete(facility) || !facility.TryGetComponent<ProductionComponent>(out var state)) return 0;
-            var definition = (FacilityDefinition)facility.Definition;
+            var definition = (FacilityData)facility.Definition;
             if (state.InProgress || state.Outstanding > 0 ||
                 (definition.Role == FacilityRole.Cultivation && state.SelectedTarget == CultivationTarget.None)) return 0;
             return Math.Max(0, definition.InputAmount - InputCount(facility));
@@ -44,7 +44,7 @@ namespace MobileGame.Gameplay
         {
             if (!laboratory.IsComplete(facility) || !facility.TryGetComponent<ProductionComponent>(out var state)
                 || state.Outstanding > 0 || !Accessible(facility)) return false;
-            var definition = (FacilityDefinition)facility.Definition;
+            var definition = (FacilityData)facility.Definition;
             return state.InProgress || ((definition.Role == FacilityRole.Processing || state.SelectedTarget != CultivationTarget.None)
                 && InputCount(facility) == definition.InputAmount);
         }
@@ -52,7 +52,7 @@ namespace MobileGame.Gameplay
         public string WaitReason(Thing facility)
         {
             var state = facility.GetComponent<ProductionComponent>();
-            var definition = (FacilityDefinition)facility.Definition;
+            var definition = (FacilityData)facility.Definition;
             if (!laboratory.IsComplete(facility)) return "Construction incomplete";
             if (state.Outstanding > 0) return "Completed output awaits actual storage admission";
             if (!state.InProgress && definition.Role == FacilityRole.Cultivation && state.SelectedTarget == CultivationTarget.None)
@@ -68,7 +68,7 @@ namespace MobileGame.Gameplay
                 .OrderBy(t => t.CreationOrder).ToArray())
             {
                 if (!CanOperate(facility)) continue;
-                var definition = (FacilityDefinition)facility.Definition;
+                var definition = (FacilityData)facility.Definition;
                 var state = facility.GetComponent<ProductionComponent>();
                 if (!state.InProgress)
                 {
@@ -79,7 +79,7 @@ namespace MobileGame.Gameplay
                     state.Progress = 0;
                 }
                 state.Progress = Math.Min(definition.ProductionSeconds,
-                    state.Progress + seconds * (staffed.Contains(facility.Id) ? 1 : 0.2));
+                    state.Progress + seconds * (staffed.Contains(facility.Id) ? laboratory.Settings.StaffedRate : laboratory.Settings.UnattendedRate));
                 if (state.Progress + 1e-9 < definition.ProductionSeconds) continue;
                 state.InProgress = false;
                 if (definition.Role == FacilityRole.Processing)

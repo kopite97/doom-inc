@@ -7,14 +7,20 @@ namespace MobileGame.Foundation
     [Serializable]
     public sealed class InvasionSettings
     {
-        [SerializeField] private double activitySeconds = 5;
-        [SerializeField] private int smallScore = 2;
-        [SerializeField] private int majorScore = 10;
-        [SerializeField] private int majorEvery = 4;
-        [SerializeField] private long targetScore = 120;
-        [SerializeField] private long detailedUntilScore = 60;
-        [SerializeField] private int reportLimit = 20;
+        [SerializeField] private double activitySeconds;
+        [SerializeField] private int smallScore;
+        [SerializeField] private int majorScore;
+        [SerializeField] private int majorEvery;
+        [SerializeField] private long targetScore;
+        [SerializeField] private long detailedUntilScore;
+        [SerializeField] private int reportLimit;
 
+        public InvasionSettings(double activitySeconds, int smallScore, int majorScore, int majorEvery, long targetScore, long detailedUntilScore, int reportLimit)
+        {
+            this.activitySeconds = activitySeconds; this.smallScore = smallScore; this.majorScore = majorScore;
+            this.majorEvery = majorEvery; this.targetScore = targetScore; this.detailedUntilScore = detailedUntilScore; this.reportLimit = reportLimit;
+            Validate();
+        }
         public double ActivitySeconds => activitySeconds;
         public int SmallScore => smallScore;
         public int MajorScore => majorScore;

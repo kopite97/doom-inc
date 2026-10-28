@@ -8,9 +8,6 @@ namespace MobileGame.Presentation
     // Temporary PC interaction surface. Rules and state changes are owned by Map.Commands.
     public sealed class MapFoundationView : MonoBehaviour
     {
-        [SerializeField] private FacilityDefinition storage;
-        [SerializeField] private CreatureDefinition creature;
-        [SerializeField] private ResourceDefinition resource;
         private GUIStyle cellStyle;
 
         public MapFoundationScenario Session { get; private set; }
@@ -18,14 +15,9 @@ namespace MobileGame.Presentation
         public PlacementResult LastResult { get; private set; }
         public int RepaintCount { get; private set; }
 
-        private void Start()
-        {
-            if (Session == null)
-                Initialize(storage, creature, resource);
-        }
 
-        public void Initialize(FacilityDefinition storageDefinition, CreatureDefinition creatureDefinition,
-            ResourceDefinition resourceDefinition)
+        public void Initialize(FacilityData storageDefinition, CreatureData creatureDefinition,
+            ResourceData resourceDefinition)
         {
             if (Session != null)
                 throw new InvalidOperationException("This view already has a session.");

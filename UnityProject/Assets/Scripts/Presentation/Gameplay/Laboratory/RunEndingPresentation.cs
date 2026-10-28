@@ -7,7 +7,7 @@ namespace MobileGame.Presentation
     // Transient presentation clock. Both the real view and harness use this implementation.
     public sealed class RunEndingPresentation : IDisposable
     {
-        public const double Duration = 4;
+        public double Duration { get; }
         public const double MaximumFrameSeconds = 0.1;
         private readonly GameFlowManager flow;
         private readonly GameFlowManager.EndingBinding binding;
@@ -16,9 +16,11 @@ namespace MobileGame.Presentation
         private bool visible = true;
         private bool skipDelta = true;
         private bool disposed;
-        public RunEndingPresentation(GameFlowManager flow)
+        public RunEndingPresentation(GameFlowManager flow, double duration)
         {
             this.flow = flow ?? throw new ArgumentNullException(nameof(flow));
+            if (double.IsNaN(duration) || double.IsInfinity(duration) || duration <= 0) throw new ArgumentOutOfRangeException(nameof(duration));
+            Duration = duration;
             binding = flow.BindEndingPresentation();
             Synchronize();
         }

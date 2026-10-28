@@ -13,3 +13,4 @@
 | [PLAN-009](PLAN-009-processing-cultivation-and-workers.md) | 가공·배양·보급형 운용과 시스템 책임·명명 정비 | `development` | `completed` |
 | [PLAN-010](PLAN-010-invasion-activity-and-reports.md) | 침공형 방출·외부 활동·성과 누적·전과 보고 | `development` | `completed` |
 | [PLAN-011](PLAN-011-destruction-results-and-restart.md) | 멸망 연출·결과 화면·한 판 종료와 재시작 완결 | `development` | `completed` |
+| [PLAN-012](PLAN-012-csv-so-data-and-game-data-store.md) | CSV·SO 분리와 GameDataStore 초기 로딩 | `development` | `completed` |

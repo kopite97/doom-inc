@@ -58,7 +58,7 @@ namespace MobileGame.Presentation
             var previewValid = constructing ? Simulation.ConstructionValidation.Succeeded : edit?.Validation.Succeeded ?? false;
             var previewDefinition = Simulation.ConstructionDefinition;
             if (previewDefinition == null && edit != null && Simulation.Registry.TryGet(edit.ThingId, out var moving))
-                previewDefinition = moving.Definition as FacilityDefinition;
+                previewDefinition = moving.Definition as FacilityData;
             var previewRotation = constructing ? Simulation.ConstructionRotation : edit?.Rotation ?? QuarterTurn.None;
             var previewArea = previewDefinition != null && previewOrigin.HasValue
                 ? new RectInt(previewOrigin.Value, FacilityGeometry.GetSize(previewDefinition, previewRotation))
@@ -78,7 +78,7 @@ namespace MobileGame.Presentation
                 Guid selected = Guid.Empty;
                 if (facility != null && Simulation.Registry.TryGet(facility.ThingId, out var thing))
                 {
-                    var definition = (FacilityDefinition)thing.Definition;
+                    var definition = (FacilityData)thing.Definition;
                     label = (definition.Role == FacilityRole.Gathering ? "G" : definition.Role == FacilityRole.Storage ? "S"
                         : definition.Role == FacilityRole.Processing ? "F" : "C") + thing.CreationOrder;
                     tint = thing.GetComponent<ConstructionComponent>().IsComplete
@@ -87,7 +87,7 @@ namespace MobileGame.Presentation
                 }
                 else if (worker != null)
                 {
-                    var role = ((CreatureDefinition)Simulation.Registry.Things.First(t => t.Id == worker.ThingId).Definition).Role;
+                    var role = ((CreatureData)Simulation.Registry.Things.First(t => t.Id == worker.ThingId).Definition).Role;
                     label = role == CreatureRole.Prototype ? "P" : role == CreatureRole.Support ? "W" : "V";
                     tint = new Color(0.72f, 0.4f, 0.16f);
                     selected = worker.ThingId;
@@ -220,7 +220,7 @@ namespace MobileGame.Presentation
                     GUILayout.Label(group.Key.DisplayName + ": " + group.Sum(t => t.GetComponent<ResourceStackComponent>().Quantity));
             if (selected.TryGetComponent<ConstructionComponent>(out var construction))
             {
-                var definition = (FacilityDefinition)selected.Definition;
+                var definition = (FacilityData)selected.Definition;
                 GUILayout.Label(construction.IsComplete ? "Construction complete" : "Build: "
                     + construction.Progress.ToString("F1") + " / " + definition.BuildSeconds.ToString("F1") + "s; material "
                     + construction.Delivered + " / " + definition.BuildCost, wrappedStyle);
@@ -231,13 +231,13 @@ namespace MobileGame.Presentation
             if (selected.TryGetComponent<GatheringComponent>(out var gatheringState))
             {
                 GUILayout.Label("Gathering: " + gatheringState.Progress.ToString("F1") + " / "
-                    + ((FacilityDefinition)selected.Definition).GatheringSeconds.ToString("F1") + "s");
+                    + ((FacilityData)selected.Definition).GatheringSeconds.ToString("F1") + "s");
                 GUILayout.Label("Awaiting actual storage admission: " + gatheringState.Outstanding, wrappedStyle);
             }
             if (selected.TryGetComponent<ProductionComponent>(out var productionState)) DrawProduction(selected, productionState);
             if (selected.TryGetComponent<StorageComponent>(out var storageState))
             {
-                GUILayout.Label("Capacity: " + ((FacilityDefinition)selected.Definition).StorageCapacity);
+                GUILayout.Label("Capacity: " + ((FacilityData)selected.Definition).StorageCapacity);
                 GUILayout.Label("Incoming reserved: " + Simulation.Reservations.Where(r => r.DestinationId == selected.Id).Sum(r => r.Amount)
                     + " / Outgoing reserved: " + Simulation.Reservations.Where(r => r.SourceId == selected.Id && !r.PickedUp).Sum(r => r.Amount), wrappedStyle);
                 var allowed = GUILayout.Toggle(storageState.AllowsOrganic, "Allow organic matter");
@@ -253,7 +253,7 @@ namespace MobileGame.Presentation
                 GUILayout.Label(worker.Job == null ? "Job: idle" : "Job: " + worker.Job.Kind + " / " + worker.Job.Stage, wrappedStyle);
                 if (worker.Job != null) GUILayout.Label("Target: " + ThingLabel(worker.Job.TargetId), wrappedStyle);
                 if (!string.IsNullOrWhiteSpace(worker.WaitReason)) GUILayout.Label("Waiting: " + worker.WaitReason, wrappedStyle);
-                if (((CreatureDefinition)selected.Definition).CanOperate)
+                if (((CreatureData)selected.Definition).CanOperate)
                 {
                     GUILayout.Label("Assigned: " + (worker.AssignedFacilityId.HasValue ? ThingLabel(worker.AssignedFacilityId.Value) : "None"), wrappedStyle);
                     if (GUILayout.Button("Unassign")) AssignWorker(selected.Id, null);
@@ -270,7 +270,7 @@ namespace MobileGame.Presentation
 
         private void DrawProduction(Thing facility, ProductionComponent state)
         {
-            var definition = (FacilityDefinition)facility.Definition;
+            var definition = (FacilityData)facility.Definition;
             var working = Simulation.Registry.Things.Any(t => t.TryGetComponent<WorkerComponent>(out var w)
                 && w.Job != null && w.Job.Kind == WorkKind.Production && w.Job.Stage == JobStage.Working && w.Job.TargetId == facility.Id);
             GUILayout.Label("Cycle: " + state.Progress.ToString("F1") + " / " + definition.ProductionSeconds + "s");

@@ -1,0 +1,688 @@
+{
+    "version": 5,
+    "dataHash": "2578869b88b49ba4855785cf587d8cf2f0cfd0dd8ba1fbfc2cd3fb8d2ca7f195",
+    "runtimeKind": "laboratory",
+    "phase": 3,
+    "lastCreationOrder": 56,
+    "mapWidth": 16,
+    "mapHeight": 10,
+    "things": [
+        {
+            "id": "2d4d7b532c9044dbb0874954031b3a89",
+            "definitionId": "creature.support.prototype",
+            "creationOrder": 1,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "beed82e27af740dab272e3df1ca042b7",
+            "definitionId": "facility.gathering",
+            "creationOrder": 3,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "7a930caf61cf43a088f7c4d5ffd272df",
+            "definitionId": "facility.storage",
+            "creationOrder": 4,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "fb195b4087674d9ca6441d50ef376ddc",
+            "definitionId": "facility.processing",
+            "creationOrder": 7,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "230a2558f5444c18a67664ed0732498b",
+            "definitionId": "facility.cultivation",
+            "creationOrder": 8,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "578927386dce411b96ebff8a8c710114",
+            "definitionId": "facility.storage",
+            "creationOrder": 9,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "3b792218df0044938890f36e527df598",
+            "definitionId": "resource.organic",
+            "creationOrder": 12,
+            "quantity": 20,
+            "holderId": "7a930caf61cf43a088f7c4d5ffd272df"
+        },
+        {
+            "id": "e21dd613f529476f89a0af68c4a12109",
+            "definitionId": "creature.support",
+            "creationOrder": 34,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "a60d17dfdcb749e092dc6a49be92e207",
+            "definitionId": "resource.culture-medium",
+            "creationOrder": 39,
+            "quantity": 4,
+            "holderId": "578927386dce411b96ebff8a8c710114"
+        },
+        {
+            "id": "d8365b498df546a3b23f39f630b22736",
+            "definitionId": "resource.organic",
+            "creationOrder": 53,
+            "quantity": 4,
+            "holderId": "beed82e27af740dab272e3df1ca042b7"
+        },
+        {
+            "id": "0c77c61e9d1d497aa713562691df9bc6",
+            "definitionId": "resource.culture-medium",
+            "creationOrder": 55,
+            "quantity": 1,
+            "holderId": "2d4d7b532c9044dbb0874954031b3a89"
+        },
+        {
+            "id": "eb1dd01302c247fe8b370a6bff7cc964",
+            "definitionId": "creature.invader",
+            "creationOrder": 56,
+            "quantity": 0,
+            "holderId": ""
+        }
+    ],
+    "placements": [
+        {
+            "thingId": "2d4d7b532c9044dbb0874954031b3a89",
+            "x": 3,
+            "y": 6,
+            "rotation": 0
+        },
+        {
+            "thingId": "beed82e27af740dab272e3df1ca042b7",
+            "x": 3,
+            "y": 3,
+            "rotation": 0
+        },
+        {
+            "thingId": "7a930caf61cf43a088f7c4d5ffd272df",
+            "x": 8,
+            "y": 3,
+            "rotation": 0
+        },
+        {
+            "thingId": "fb195b4087674d9ca6441d50ef376ddc",
+            "x": 3,
+            "y": 7,
+            "rotation": 0
+        },
+        {
+            "thingId": "230a2558f5444c18a67664ed0732498b",
+            "x": 8,
+            "y": 7,
+            "rotation": 0
+        },
+        {
+            "thingId": "578927386dce411b96ebff8a8c710114",
+            "x": 12,
+            "y": 3,
+            "rotation": 0
+        },
+        {
+            "thingId": "e21dd613f529476f89a0af68c4a12109",
+            "x": 3,
+            "y": 6,
+            "rotation": 0
+        }
+    ],
+    "laboratory": {
+        "organicDefinitionId": "resource.organic",
+        "cultureDefinitionId": "resource.culture-medium",
+        "preset": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "things": [
+            {
+                "thingId": "2d4d7b532c9044dbb0874954031b3a89",
+                "hasProduction": false,
+                "production": {
+                    "selectedTarget": 0,
+                    "activeTarget": 0,
+                    "inProgress": false,
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "hasConstruction": false,
+                "hasGathering": false,
+                "hasStorage": false,
+                "hasWorker": true,
+                "construction": {
+                    "delivered": 0,
+                    "progress": 0.0,
+                    "isComplete": false
+                },
+                "gathering": {
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "storage": {
+                    "allowsOrganic": false,
+                    "allowsCulture": false
+                },
+                "worker": {
+                    "assignedFacilityId": "",
+                    "job": {
+                        "kind": 2,
+                        "stage": 1,
+                        "targetId": "578927386dce411b96ebff8a8c710114",
+                        "sourceId": "fb195b4087674d9ca6441d50ef376ddc",
+                        "resourceId": "0c77c61e9d1d497aa713562691df9bc6",
+                        "amount": 1,
+                        "batchOriginId": "fb195b4087674d9ca6441d50ef376ddc"
+                    },
+                    "hasJob": true,
+                    "moveProgress": 0.1,
+                    "priorities": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "usesPreset": true
+                }
+            },
+            {
+                "thingId": "beed82e27af740dab272e3df1ca042b7",
+                "hasProduction": false,
+                "production": {
+                    "selectedTarget": 0,
+                    "activeTarget": 0,
+                    "inProgress": false,
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "hasConstruction": true,
+                "hasGathering": true,
+                "hasStorage": false,
+                "hasWorker": false,
+                "construction": {
+                    "delivered": 2,
+                    "progress": 3.0,
+                    "isComplete": true
+                },
+                "gathering": {
+                    "progress": 5.0,
+                    "outstanding": 4
+                },
+                "storage": {
+                    "allowsOrganic": false,
+                    "allowsCulture": false
+                },
+                "worker": {
+                    "assignedFacilityId": "",
+                    "job": {
+                        "kind": 0,
+                        "stage": 0,
+                        "targetId": "",
+                        "sourceId": "",
+                        "resourceId": "",
+                        "amount": 0,
+                        "batchOriginId": ""
+                    },
+                    "hasJob": false,
+                    "moveProgress": 0.0,
+                    "priorities": [],
+                    "usesPreset": false
+                }
+            },
+            {
+                "thingId": "7a930caf61cf43a088f7c4d5ffd272df",
+                "hasProduction": false,
+                "production": {
+                    "selectedTarget": 0,
+                    "activeTarget": 0,
+                    "inProgress": false,
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "hasConstruction": true,
+                "hasGathering": false,
+                "hasStorage": true,
+                "hasWorker": false,
+                "construction": {
+                    "delivered": 2,
+                    "progress": 3.0,
+                    "isComplete": true
+                },
+                "gathering": {
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "storage": {
+                    "allowsOrganic": true,
+                    "allowsCulture": false
+                },
+                "worker": {
+                    "assignedFacilityId": "",
+                    "job": {
+                        "kind": 0,
+                        "stage": 0,
+                        "targetId": "",
+                        "sourceId": "",
+                        "resourceId": "",
+                        "amount": 0,
+                        "batchOriginId": ""
+                    },
+                    "hasJob": false,
+                    "moveProgress": 0.0,
+                    "priorities": [],
+                    "usesPreset": false
+                }
+            },
+            {
+                "thingId": "fb195b4087674d9ca6441d50ef376ddc",
+                "hasProduction": true,
+                "production": {
+                    "selectedTarget": 0,
+                    "activeTarget": 0,
+                    "inProgress": false,
+                    "progress": 10.0,
+                    "outstanding": 1
+                },
+                "hasConstruction": true,
+                "hasGathering": false,
+                "hasStorage": false,
+                "hasWorker": false,
+                "construction": {
+                    "delivered": 2,
+                    "progress": 3.0,
+                    "isComplete": true
+                },
+                "gathering": {
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "storage": {
+                    "allowsOrganic": false,
+                    "allowsCulture": false
+                },
+                "worker": {
+                    "assignedFacilityId": "",
+                    "job": {
+                        "kind": 0,
+                        "stage": 0,
+                        "targetId": "",
+                        "sourceId": "",
+                        "resourceId": "",
+                        "amount": 0,
+                        "batchOriginId": ""
+                    },
+                    "hasJob": false,
+                    "moveProgress": 0.0,
+                    "priorities": [],
+                    "usesPreset": false
+                }
+            },
+            {
+                "thingId": "230a2558f5444c18a67664ed0732498b",
+                "hasProduction": true,
+                "production": {
+                    "selectedTarget": 2,
+                    "activeTarget": 0,
+                    "inProgress": false,
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "hasConstruction": true,
+                "hasGathering": false,
+                "hasStorage": false,
+                "hasWorker": false,
+                "construction": {
+                    "delivered": 2,
+                    "progress": 3.0,
+                    "isComplete": true
+                },
+                "gathering": {
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "storage": {
+                    "allowsOrganic": false,
+                    "allowsCulture": false
+                },
+                "worker": {
+                    "assignedFacilityId": "",
+                    "job": {
+                        "kind": 0,
+                        "stage": 0,
+                        "targetId": "",
+                        "sourceId": "",
+                        "resourceId": "",
+                        "amount": 0,
+                        "batchOriginId": ""
+                    },
+                    "hasJob": false,
+                    "moveProgress": 0.0,
+                    "priorities": [],
+                    "usesPreset": false
+                }
+            },
+            {
+                "thingId": "578927386dce411b96ebff8a8c710114",
+                "hasProduction": false,
+                "production": {
+                    "selectedTarget": 0,
+                    "activeTarget": 0,
+                    "inProgress": false,
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "hasConstruction": true,
+                "hasGathering": false,
+                "hasStorage": true,
+                "hasWorker": false,
+                "construction": {
+                    "delivered": 2,
+                    "progress": 3.0,
+                    "isComplete": true
+                },
+                "gathering": {
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "storage": {
+                    "allowsOrganic": false,
+                    "allowsCulture": true
+                },
+                "worker": {
+                    "assignedFacilityId": "",
+                    "job": {
+                        "kind": 0,
+                        "stage": 0,
+                        "targetId": "",
+                        "sourceId": "",
+                        "resourceId": "",
+                        "amount": 0,
+                        "batchOriginId": ""
+                    },
+                    "hasJob": false,
+                    "moveProgress": 0.0,
+                    "priorities": [],
+                    "usesPreset": false
+                }
+            },
+            {
+                "thingId": "e21dd613f529476f89a0af68c4a12109",
+                "hasProduction": false,
+                "production": {
+                    "selectedTarget": 0,
+                    "activeTarget": 0,
+                    "inProgress": false,
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "hasConstruction": false,
+                "hasGathering": false,
+                "hasStorage": false,
+                "hasWorker": true,
+                "construction": {
+                    "delivered": 0,
+                    "progress": 0.0,
+                    "isComplete": false
+                },
+                "gathering": {
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "storage": {
+                    "allowsOrganic": false,
+                    "allowsCulture": false
+                },
+                "worker": {
+                    "assignedFacilityId": "fb195b4087674d9ca6441d50ef376ddc",
+                    "job": {
+                        "kind": 0,
+                        "stage": 0,
+                        "targetId": "",
+                        "sourceId": "",
+                        "resourceId": "",
+                        "amount": 0,
+                        "batchOriginId": ""
+                    },
+                    "hasJob": false,
+                    "moveProgress": 0.0,
+                    "priorities": [
+                        2,
+                        3,
+                        4,
+                        1
+                    ],
+                    "usesPreset": false
+                }
+            }
+        ],
+        "reservations": [
+            {
+                "workerId": "2d4d7b532c9044dbb0874954031b3a89",
+                "sourceId": "fb195b4087674d9ca6441d50ef376ddc",
+                "destinationId": "578927386dce411b96ebff8a8c710114",
+                "resourceId": "0c77c61e9d1d497aa713562691df9bc6",
+                "amount": 1,
+                "pickedUp": true,
+                "batchOriginId": "fb195b4087674d9ca6441d50ef376ddc",
+                "purpose": 2
+            }
+        ]
+    },
+    "invasion": {
+        "schemaVersion": 1,
+        "settings": {
+            "activitySeconds": 5.0,
+            "smallScore": 2,
+            "majorScore": 10,
+            "majorEvery": 4,
+            "targetScore": 120,
+            "detailedUntilScore": 60,
+            "reportLimit": 20
+        },
+        "score": 128,
+        "activitySequence": 32,
+        "elapsed": "571.50000000002854",
+        "goalReached": true,
+        "legacyEndVersion": 0,
+        "invaders": [
+            {
+                "thingId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 32
+            }
+        ],
+        "reports": [
+            {
+                "sequence": 1,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 1,
+                "score": 2,
+                "isMajor": false,
+                "time": "416.50000000006042",
+                "totalScore": 2
+            },
+            {
+                "sequence": 2,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 2,
+                "score": 2,
+                "isMajor": false,
+                "time": "421.50000000006156",
+                "totalScore": 4
+            },
+            {
+                "sequence": 3,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 3,
+                "score": 2,
+                "isMajor": false,
+                "time": "426.50000000006264",
+                "totalScore": 6
+            },
+            {
+                "sequence": 4,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 4,
+                "score": 10,
+                "isMajor": true,
+                "time": "431.50000000006378",
+                "totalScore": 16
+            },
+            {
+                "sequence": 5,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 5,
+                "score": 2,
+                "isMajor": false,
+                "time": "436.50000000006492",
+                "totalScore": 18
+            },
+            {
+                "sequence": 6,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 6,
+                "score": 2,
+                "isMajor": false,
+                "time": "441.50000000006605",
+                "totalScore": 20
+            },
+            {
+                "sequence": 7,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 7,
+                "score": 2,
+                "isMajor": false,
+                "time": "446.50000000006719",
+                "totalScore": 22
+            },
+            {
+                "sequence": 8,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 8,
+                "score": 10,
+                "isMajor": true,
+                "time": "451.50000000006833",
+                "totalScore": 32
+            },
+            {
+                "sequence": 9,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 9,
+                "score": 2,
+                "isMajor": false,
+                "time": "456.50000000006946",
+                "totalScore": 34
+            },
+            {
+                "sequence": 10,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 10,
+                "score": 2,
+                "isMajor": false,
+                "time": "461.5000000000706",
+                "totalScore": 36
+            },
+            {
+                "sequence": 11,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 11,
+                "score": 2,
+                "isMajor": false,
+                "time": "466.50000000007174",
+                "totalScore": 38
+            },
+            {
+                "sequence": 12,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 12,
+                "score": 10,
+                "isMajor": true,
+                "time": "471.50000000007287",
+                "totalScore": 48
+            },
+            {
+                "sequence": 13,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 13,
+                "score": 2,
+                "isMajor": false,
+                "time": "476.500000000074",
+                "totalScore": 50
+            },
+            {
+                "sequence": 14,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 14,
+                "score": 2,
+                "isMajor": false,
+                "time": "481.50000000007515",
+                "totalScore": 52
+            },
+            {
+                "sequence": 15,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 15,
+                "score": 2,
+                "isMajor": false,
+                "time": "486.50000000007628",
+                "totalScore": 54
+            },
+            {
+                "sequence": 16,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 16,
+                "score": 10,
+                "isMajor": true,
+                "time": "491.50000000007742",
+                "totalScore": 64
+            },
+            {
+                "sequence": 20,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 20,
+                "score": 10,
+                "isMajor": true,
+                "time": "511.50000000008197",
+                "totalScore": 80
+            },
+            {
+                "sequence": 24,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 24,
+                "score": 10,
+                "isMajor": true,
+                "time": "531.50000000006469",
+                "totalScore": 96
+            },
+            {
+                "sequence": 28,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 28,
+                "score": 10,
+                "isMajor": true,
+                "time": "551.50000000004661",
+                "totalScore": 112
+            },
+            {
+                "sequence": 32,
+                "invaderId": "eb1dd01302c247fe8b370a6bff7cc964",
+                "activity": 32,
+                "score": 10,
+                "isMajor": true,
+                "time": "571.50000000002854",
+                "totalScore": 128
+            }
+        ]
+    }
+}

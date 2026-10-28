@@ -21,8 +21,8 @@ namespace MobileGame.Gameplay
                 var source = Require(reservation.SourceId);
                 var destination = Require(reservation.DestinationId);
                 var resource = Require(reservation.ResourceId);
-                if (!worker.TryGetComponent<WorkerComponent>(out var state) || !(worker.Definition is CreatureDefinition definition) ||
-                    !simulation.Supports(resource.Definition as ResourceDefinition) || !resource.TryGetComponent<ResourceStackComponent>(out _) ||
+                if (!worker.TryGetComponent<WorkerComponent>(out var state) || !(worker.Definition is CreatureData definition) ||
+                    !simulation.Supports(resource.Definition as ResourceData) || !resource.TryGetComponent<ResourceStackComponent>(out _) ||
                     reservation.SourceId == reservation.DestinationId || reservation.Amount > definition.CarryCapacity ||
                     Quantity(resource) < reservation.Amount)
                     throw Invalid("Reservation endpoints or resource quantity are invalid.");
@@ -62,7 +62,7 @@ namespace MobileGame.Gameplay
                     if (destination.TryGetComponent<ProductionComponent>(out _) &&
                         (reservation.BatchOriginId.HasValue || !source.TryGetComponent<StorageComponent>(out _)))
                         throw Invalid("Production input must come from actual storage admission.");
-                    if (!Accepts(destination, (ResourceDefinition)resource.Definition) || DestinationFree(destination, (ResourceDefinition)resource.Definition, reservation) < reservation.Amount)
+                    if (!Accepts(destination, (ResourceData)resource.Definition) || DestinationFree(destination, (ResourceData)resource.Definition, reservation) < reservation.Amount)
                         throw Invalid("Storage incoming reservations exceed allowed space.");
                     if ((source.TryGetComponent<GatheringComponent>(out _) || source.TryGetComponent<ProductionComponent>(out _)) && reservation.BatchOriginId != source.Id)
                         throw Invalid("Gathering output lost its batch origin.");
@@ -86,7 +86,7 @@ namespace MobileGame.Gameplay
                     !job.ResourceId.HasValue || !job.SourceId.HasValue || job.Amount <= 0)
                     throw Invalid("Transport Job has missing resource relationships.");
                 var resource = Require(job.ResourceId.Value);
-                if (!simulation.Supports(resource.Definition as ResourceDefinition) || !resource.TryGetComponent<ResourceStackComponent>(out _))
+                if (!simulation.Supports(resource.Definition as ResourceData) || !resource.TryGetComponent<ResourceStackComponent>(out _))
                     throw Invalid("Transport Job references a non-resource Thing.");
                 if (!reservedWorkers.Contains(worker.Id))
                 {
@@ -100,7 +100,7 @@ namespace MobileGame.Gameplay
                     if (job.Kind != WorkKind.Hauling || !simulation.IsComplete(origin) ||
                         (!origin.TryGetComponent<GatheringComponent>(out _) && !origin.TryGetComponent<ProductionComponent>(out _)))
                         throw Invalid("A carried batch has no completed gathering origin.");
-                    var originDefinition = (FacilityDefinition)origin.Definition;
+                    var originDefinition = (FacilityData)origin.Definition;
                     if (resource.Definition != (originDefinition.Role == FacilityRole.Gathering
                         ? originDefinition.Resource : originDefinition.OutputResource))
                         throw Invalid("Carried output does not match its origin's recipe.");
@@ -124,7 +124,7 @@ namespace MobileGame.Gameplay
                 if (thing.TryGetComponent<ProductionComponent>(out var production))
                 {
                     heldBatchAmounts.TryGetValue(thing.Id, out var held);
-                    var definition = (FacilityDefinition)thing.Definition;
+                    var definition = (FacilityData)thing.Definition;
                     var unadmitted = thing.GetComponent<ResourceContainerComponent>().Contents
                         .Where(t => t.Definition == definition.OutputResource).Sum(Quantity);
                     if (production.Outstanding != checked(unadmitted + held))

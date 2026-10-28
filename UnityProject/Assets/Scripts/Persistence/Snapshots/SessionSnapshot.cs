@@ -8,6 +8,7 @@ namespace MobileGame.Persistence
     public sealed class SessionSnapshot
     {
         public int version;
+        public string dataHash;
         public string runtimeKind;
         public SessionPhase phase;
         public long lastCreationOrder;

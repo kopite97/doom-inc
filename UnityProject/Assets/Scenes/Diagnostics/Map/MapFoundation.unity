@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 203391142}
   - component: {fileID: 203391141}
+  - component: {fileID: 203391143}
   m_Layer: 0
   m_Name: Map Foundation View
   m_TagString: Untagged
@@ -148,9 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc80e11739333646969b05d33bbec57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MobileGame.Presentation::MobileGame.Presentation.MapFoundationView
-  storage: {fileID: 11400000, guid: b5f49bc24388afc40b862757b5028777, type: 2}
-  creature: {fileID: 11400000, guid: 045f47f61d05f2240997854a34008db7, type: 2}
-  resource: {fileID: 11400000, guid: c8ffc990ee3e89e43a6413bde46a7b8c, type: 2}
 --- !u!4 &203391142
 Transform:
   m_ObjectHideFlags: 0
@@ -166,6 +164,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &203391143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203391140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01645dddeb12a3b4cb8c2927977e1ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MobileGame.Presentation::MobileGame.Presentation.GameBootstrap
+  resources: {fileID: 11400000, guid: 219bf04932378ea45915df8341debf91, type: 2}
+  creatures: {fileID: 11400000, guid: a232e3e7ae7ebe441bd2e8d53eef04ee, type: 2}
+  facilities: {fileID: 11400000, guid: 272220a303bf5f242abf957f71a076a7, type: 2}
+  csvTables:
+  - {fileID: 4900000, guid: ed8a033b0263b624f806dfb61b4c8a90, type: 3}
+  - {fileID: 4900000, guid: 67f5b75e1a9fd0c43a914c1e28152416, type: 3}
+  - {fileID: 4900000, guid: c808f3a890f87464a9d08d3c94d4f90d, type: 3}
+  - {fileID: 4900000, guid: 55f321c81bba6ed428651f6e5641d1bc, type: 3}
+  - {fileID: 4900000, guid: 588de0d8fea1c5e48bb6b057f55f34c8, type: 3}
 --- !u!1 &1366129467
 GameObject:
   m_ObjectHideFlags: 0

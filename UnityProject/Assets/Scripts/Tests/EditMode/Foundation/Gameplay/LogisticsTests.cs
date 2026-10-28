@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -14,20 +15,20 @@ namespace MobileGame.Foundation.Tests
         private ThingRegistry registry;
         private GridMap map;
         private LaboratoryManager simulation;
-        private ResourceDefinition organic;
-        private CreatureDefinition prototype;
-        private FacilityDefinition gathering;
+        private ResourceData organic;
+        private CreatureData prototype;
+        private FacilityData gathering;
         private int definitions;
 
         [SetUp]
         public void PrepareLaboratory()
         {
             organic = CreateResourceDefinition("logistics.organic");
-            prototype = CreateDefinition<CreatureDefinition>("logistics.prototype", ThingComponentKind.ResourceContainer);
+            prototype = CreateDefinition<CreatureData>("logistics.prototype", ThingComponentKind.ResourceContainer);
             registry = new ThingRegistry(GameplayComponentFactory.Attach);
             map = new GridMap(registry, 16, 12);
             simulation = new LaboratoryManager(registry, map, organic);
-            gathering = FacilityDefinition(FacilityRole.Gathering);
+            gathering = FacilityData(FacilityRole.Gathering);
         }
 
         [Test]
@@ -57,7 +58,7 @@ namespace MobileGame.Foundation.Tests
             var pathNear = CompletedGathering(0, 7);
             Store(8, 8);
             var wallDefinition = CreateStorageDefinition("logistics.wall");
-            using (var serialized = new SerializedObject(wallDefinition))
+            using (var serialized = new DataFixtureEditor(wallDefinition))
             {
                 serialized.FindProperty("footprint").vector2IntValue = new Vector2Int(1, 6);
                 serialized.ApplyModifiedPropertiesWithoutUndo();
@@ -97,7 +98,7 @@ namespace MobileGame.Foundation.Tests
         [Test]
         public void MultipleWorkersReserveOnlyRemainingStockAndCapacity()
         {
-            using (var serialized = new SerializedObject(prototype))
+            using (var serialized = new DataFixtureEditor(prototype))
             {
                 serialized.FindProperty("carryCapacity").intValue = 3;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
@@ -148,7 +149,7 @@ namespace MobileGame.Foundation.Tests
             var worker = Worker(0, 1);
             var source = Store(3, 3);
             registry.CreateResource(organic, 5, source.GetComponent<ResourceContainerComponent>());
-            var site = registry.Create(FacilityDefinition(FacilityRole.Storage));
+            var site = registry.Create(FacilityData(FacilityRole.Storage));
             Assert.That(map.Commands.Place(site.Id, new Vector2Int(8, 3)).Succeeded, Is.True);
             Assert.That(simulation.SetWorkerPriorities(worker.Id, new[] { 1, 0, 2 }), Is.True);
             simulation.Advance(0.01);
@@ -167,7 +168,7 @@ namespace MobileGame.Foundation.Tests
             var worker = Worker(0, 1);
             var source = Store(3, 3);
             registry.CreateResource(organic, 5, source.GetComponent<ResourceContainerComponent>());
-            var site = registry.Create(FacilityDefinition(FacilityRole.Storage));
+            var site = registry.Create(FacilityData(FacilityRole.Storage));
             Assert.That(map.Commands.Place(site.Id, new Vector2Int(8, 3)).Succeeded, Is.True);
             Assert.That(simulation.SetWorkerPriorities(worker.Id, new[] { 1, 0, 2 }), Is.True);
             AdvanceUntil(() => simulation.TotalAt(worker.Id) == 2, "Construction materials were never picked up.");
@@ -192,7 +193,7 @@ namespace MobileGame.Foundation.Tests
             var worker = Worker(0, 1);
             var source = Store(3, 3);
             registry.CreateResource(organic, 5, source.GetComponent<ResourceContainerComponent>());
-            var site = registry.Create(FacilityDefinition(FacilityRole.Storage));
+            var site = registry.Create(FacilityData(FacilityRole.Storage));
             Assert.That(map.Commands.Place(site.Id, new Vector2Int(8, 3)).Succeeded, Is.True);
             Assert.That(simulation.SetWorkerPriorities(worker.Id, new[] { 1, 0, 2 }), Is.True);
             simulation.Advance(0.01);
@@ -270,7 +271,7 @@ namespace MobileGame.Foundation.Tests
             var original = simulation.Reservations.Single();
             Assert.That(original.SourceId, Is.EqualTo(originalSupply.Id));
             CompletedGathering(1, 3);
-            var construction = registry.Create(FacilityDefinition(FacilityRole.Storage));
+            var construction = registry.Create(FacilityData(FacilityRole.Storage));
             Assert.That(map.Commands.Place(construction.Id, new Vector2Int(2, 5)).Succeeded, Is.True);
             Assert.That(simulation.SetWorkerPriorities(worker.Id, new[] { 1, 2, 3 }), Is.True);
             simulation.OnMapChanged();
@@ -426,12 +427,12 @@ namespace MobileGame.Foundation.Tests
 
         private Thing Store(int x, int y, int capacity = 20, bool allowed = true)
         {
-            var store = CompleteFacility(FacilityDefinition(FacilityRole.Storage, capacity), x, y);
+            var store = CompleteFacility(FacilityData(FacilityRole.Storage, capacity), x, y);
             Assert.That(simulation.SetAllowed(store.Id, allowed), Is.True);
             return store;
         }
 
-        private Thing CompleteFacility(FacilityDefinition definition, int x, int y)
+        private Thing CompleteFacility(FacilityData definition, int x, int y)
         {
             var facility = registry.Create(definition);
             Assert.That(map.Commands.Place(facility.Id, new Vector2Int(x, y)).Succeeded, Is.True);
@@ -442,10 +443,10 @@ namespace MobileGame.Foundation.Tests
             return facility;
         }
 
-        private FacilityDefinition FacilityDefinition(FacilityRole role, int capacity = 20)
+        private FacilityData FacilityData(FacilityRole role, int capacity = 20)
         {
-            var definition = CreateDefinition<FacilityDefinition>("logistics.facility." + ++definitions, ThingComponentKind.ResourceContainer);
-            using (var serialized = new SerializedObject(definition))
+            var definition = CreateDefinition<FacilityData>("logistics.facility." + ++definitions, ThingComponentKind.ResourceContainer);
+            using (var serialized = new DataFixtureEditor(definition))
             {
                 serialized.FindProperty("role").intValue = (int)role;
                 serialized.FindProperty("resource").objectReferenceValue = organic;

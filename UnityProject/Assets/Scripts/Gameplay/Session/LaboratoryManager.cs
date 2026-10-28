@@ -13,7 +13,7 @@ namespace MobileGame.Gameplay
         private readonly WorkerManager workers;
         public ConstructionManager Construction { get; }
 
-        public LaboratoryManager(ThingRegistry registry, GridMap map, ResourceDefinition organic, ResourceDefinition culture = null,
+        public LaboratoryManager(ThingRegistry registry, GridMap map, ResourceData organic, ResourceData culture = null,
             InvasionSettings invasionSettings = null)
         {
             Registry = registry ?? throw new ArgumentNullException(nameof(registry));
@@ -32,35 +32,36 @@ namespace MobileGame.Gameplay
             Logistics = new LogisticsManager(this);
             workers = new WorkerManager(this);
             Construction = new ConstructionManager(this);
-            Invasion = new InvasionManager(this, invasionSettings ?? new InvasionSettings());
+            Invasion = new InvasionManager(this, invasionSettings ?? organic.Settings.Invasion);
         }
 
+        public GameSettings Settings => Organic.Settings;
         public ThingRegistry Registry { get; }
         public GridMap Map { get; }
-        public ResourceDefinition Organic { get; }
-        public ResourceDefinition Culture { get; }
+        public ResourceData Organic { get; }
+        public ResourceData Culture { get; }
         public ProductionManager Production { get; }
         public InvasionManager Invasion { get; }
         public double SecondsUntilExternalEvent => Invasion.SecondsUntilEvent;
         public bool HasReachedGoal => Invasion.State.GoalReached;
         public void AdvanceExternal(double seconds) => Invasion.Advance(seconds);
-        public bool Supports(ResourceDefinition resource) => resource != null && (resource == Organic || resource == Culture);
+        public bool Supports(ResourceData resource) => resource != null && (resource == Organic || resource == Culture);
         public IReadOnlyList<int> Preset => workers.Preset;
         public LogisticsManager Logistics { get; }
         public IReadOnlyList<TransportReservation> Reservations => Logistics.Reservations;
         public bool IsEditing => Construction.IsEditing;
-        public FacilityDefinition ConstructionDefinition => Construction.ConstructionDefinition;
+        public FacilityData ConstructionDefinition => Construction.ConstructionDefinition;
         public Vector2Int ConstructionOrigin => Construction.ConstructionOrigin;
         public QuarterTurn ConstructionRotation => Construction.ConstructionRotation;
         public PlacementResult ConstructionValidation => Construction.ConstructionValidation;
         public string LastError { get; private set; }
 
-        public bool BeginConstruction(FacilityDefinition definition) => Result(Construction.BeginConstruction(definition), Construction.LastError);
+        public bool BeginConstruction(FacilityData definition) => Result(Construction.BeginConstruction(definition), Construction.LastError);
         public bool PreviewConstruction(Vector2Int origin, QuarterTurn rotation) => Result(Construction.PreviewConstruction(origin, rotation), Construction.LastError);
         public bool ConfirmConstruction() => Result(Construction.ConfirmConstruction(), Construction.LastError);
         public bool CancelConstruction() => Result(Construction.CancelConstruction(), Construction.LastError);
         public bool SetAllowed(Guid id, bool allowed) => Result(Logistics.SetAllowed(id, allowed), Logistics.LastError);
-        public bool SetAllowed(Guid id, ResourceDefinition resource, bool allowed) => Result(Logistics.SetAllowed(id, resource, allowed), Logistics.LastError);
+        public bool SetAllowed(Guid id, ResourceData resource, bool allowed) => Result(Logistics.SetAllowed(id, resource, allowed), Logistics.LastError);
         public bool SelectCultivation(Guid id, CultivationTarget target) => Result(Production.Select(id, target), Production.LastError);
         public bool AssignWorker(Guid id, Guid? facility) => Result(workers.Assign(id, facility), workers.LastError);
         public bool SetPreset(int[] priorities) => Result(workers.SetPreset(priorities), workers.LastError);

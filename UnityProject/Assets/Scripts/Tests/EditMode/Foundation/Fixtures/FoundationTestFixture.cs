@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -8,14 +9,14 @@ namespace MobileGame.Foundation.Tests
 {
     public abstract class FoundationTestFixture
     {
-        private readonly List<ScriptableObject> definitions = new List<ScriptableObject>();
+        private readonly List<ThingData> definitions = new List<ThingData>();
 
         protected T CreateDefinition<T>(string id, params ThingComponentKind[] components)
-            where T : ThingDefinition
+            where T : ThingData
         {
-            var definition = ScriptableObject.CreateInstance<T>();
+            var definition = DataTestAssets.Create<T>();
             definitions.Add(definition);
-            using (var serialized = new SerializedObject(definition))
+            using (var serialized = new DataFixtureEditor(definition))
             {
                 serialized.FindProperty("definitionId").stringValue = id;
                 serialized.FindProperty("displayName").stringValue = id + " fixture";
@@ -32,18 +33,18 @@ namespace MobileGame.Foundation.Tests
             return definition;
         }
 
-        protected FacilityDefinition CreateStorageDefinition(string id = "fixture.storage")
+        protected FacilityData CreateStorageDefinition(string id = "fixture.storage")
         {
-            return CreateDefinition<FacilityDefinition>(id, ThingComponentKind.ResourceContainer);
+            return CreateDefinition<FacilityData>(id, ThingComponentKind.ResourceContainer);
         }
 
-        protected ResourceDefinition CreateResourceDefinition(string id = "fixture.resource")
+        protected ResourceData CreateResourceDefinition(string id = "fixture.resource")
         {
-            return CreateDefinition<ResourceDefinition>(id, ThingComponentKind.ResourceStack);
+            return CreateDefinition<ResourceData>(id, ThingComponentKind.ResourceStack);
         }
 
         protected static ResourceContainerComponent CreateHolder(ThingRegistry registry,
-            ThingDefinition definition)
+            ThingData definition)
         {
             return registry.Create(definition).GetComponent<ResourceContainerComponent>();
         }
@@ -62,7 +63,7 @@ namespace MobileGame.Foundation.Tests
         {
             foreach (var definition in definitions)
             {
-                Object.DestroyImmediate(definition);
+                // Plain fixture Data is garbage collected.
             }
 
             definitions.Clear();

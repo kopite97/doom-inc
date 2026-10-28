@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using MobileGame.TestSupport;
 using System;
 using System.Collections;
 using System.IO;
@@ -28,13 +29,13 @@ namespace MobileGame.SpatialTests
             {
                 Assert.That(EditorApplication.ExecuteMenuItem("Window/General/Game"), Is.True);
                 yield return LoadIsolatedScene(Path.Combine(directory, "view.json"), 5, loaded => { view = loaded; view.SimulationRate = 0; });
-                using (var serialized = new SerializedObject(view))
-                    Assert.That(serialized.FindProperty("invasion").objectReferenceValue, Is.TypeOf<InvasionDefinition>());
+                Assert.That(GameDataStore.Instance.State, Is.EqualTo(GameDataLoadState.Ready));
+                Assert.That(view.Simulation.Invasion.State.Settings.TargetScore, Is.EqualTo(GameDataStore.Instance.Catalog.Settings.Invasion.TargetScore));
                 var catalog = new[] { "Resource/OrganicMatter", "Resource/CultureMedium", "Facility/Gathering", "Facility/Storage",
                     "Facility/Processing", "Facility/Cultivation", "Creature/PrototypeSupport", "Creature/Support", "Creature/Invader" }
-                    .Select(path => AssetDatabase.LoadAssetAtPath<ThingDefinition>("Assets/SO/" + path + ".asset")).ToArray();
+                    .Select(path => DataTestAssets.LoadAssetAtPath<ThingData>("Assets/SO/" + path + ".asset")).ToArray();
                 var codec = new SessionSnapshotCodec(catalog, true);
-                var organic = (ResourceDefinition)catalog[0]; var culture = (ResourceDefinition)catalog[1];
+                var organic = (ResourceData)catalog[0]; var culture = (ResourceData)catalog[1];
                 Assert.That(view.BeginGatheringConstruction(), Is.True); Place(view, 3, 3);
                 Assert.That(view.BeginStorageConstruction(), Is.True); Place(view, 8, 3);
                 yield return AdvanceUntil(view, () => view.Simulation.Registry.Things.Any(t => t.Definition == catalog[3] && view.Simulation.TotalAt(t.Id) >= 5), 120);

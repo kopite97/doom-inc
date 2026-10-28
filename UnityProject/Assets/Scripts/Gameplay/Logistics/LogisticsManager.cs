@@ -24,7 +24,7 @@ namespace MobileGame.Gameplay
         public bool SetAllowed(Guid storageId, bool allowed)
             => SetAllowed(storageId, simulation.Organic, allowed);
 
-        public bool SetAllowed(Guid storageId, ResourceDefinition resource, bool allowed)
+        public bool SetAllowed(Guid storageId, ResourceData resource, bool allowed)
         {
             if (!simulation.Supports(resource) || !simulation.Registry.TryGet(storageId, out var thing) || !thing.TryGetComponent<StorageComponent>(out var storage))
             { LastError = "Select a storage facility."; return false; }
@@ -63,7 +63,7 @@ namespace MobileGame.Gameplay
                 foreach (var stock in Stocks(source).Where(t => t.Definition == simulation.Organic))
                 {
                     var available = Quantity(stock) - OutgoingReserved(stock.Id);
-                    var limit = ((CreatureDefinition)worker.Definition).CarryCapacity;
+                    var limit = ((CreatureData)worker.Definition).CarryCapacity;
                     if (source.Id != worker.Id) limit -= simulation.TotalAt(worker.Id);
                     var amount = Math.Min(missing, Math.Min(limit, available));
                     if (amount <= 0) continue;
@@ -77,13 +77,13 @@ namespace MobileGame.Gameplay
         public bool TryCreateHaulingJob(Thing worker)
         {
             if (!CanChoose(worker)) return false;
-            var limit = ((CreatureDefinition)worker.Definition).CarryCapacity - simulation.TotalAt(worker.Id);
+            var limit = ((CreatureData)worker.Definition).CarryCapacity - simulation.TotalAt(worker.Id);
             if (limit <= 0) return false;
             foreach (var source in Reachable(worker, simulation.Registry.Things.Where(IsHaulingSource)))
             {
                 NormalizeStock(source);
                 var candidates = Stocks(source).Where(stock => Quantity(stock) > OutgoingReserved(stock.Id))
-                    .SelectMany(stock => Destinations(source, (ResourceDefinition)stock.Definition)
+                    .SelectMany(stock => Destinations(source, (ResourceData)stock.Definition)
                         .Select(destination => new { Stock = stock, Destination = destination, Distance = simulation.Distance(source, destination) }))
                     .Where(candidate => candidate.Distance.HasValue)
                     .OrderBy(candidate => candidate.Distance.Value).ThenBy(candidate => candidate.Destination.CreationOrder)
@@ -92,7 +92,7 @@ namespace MobileGame.Gameplay
                 {
                     var stock = candidate.Stock;
                     var destination = candidate.Destination;
-                    var resource = (ResourceDefinition)stock.Definition;
+                    var resource = (ResourceData)stock.Definition;
                     var amount = Math.Min(limit, Math.Min(Quantity(stock) - OutgoingReserved(stock.Id), DestinationFree(destination, resource)));
                     if (amount <= 0) continue;
                     var batchOrigin = source.TryGetComponent<GatheringComponent>(out _) || source.TryGetComponent<ProductionComponent>(out _)
@@ -104,7 +104,7 @@ namespace MobileGame.Gameplay
             return false;
         }
 
-        private IEnumerable<Thing> Destinations(Thing source, ResourceDefinition resource)
+        private IEnumerable<Thing> Destinations(Thing source, ResourceData resource)
         {
             // Output always visits storage; accepted storage stock only supplies current production inputs.
             var supplyProduction = source.TryGetComponent<StorageComponent>(out _) && StorageAllows(source, resource);
@@ -216,8 +216,8 @@ namespace MobileGame.Gameplay
                 return;
             }
 
-            var accepted = destination == null ? 0 : Math.Min(reservation.Amount, DestinationFree(destination, (ResourceDefinition)held.Definition, reservation));
-            if (!HeldBy(held, worker) || !Accepts(destination, (ResourceDefinition)held.Definition) || accepted <= 0)
+            var accepted = destination == null ? 0 : Math.Min(reservation.Amount, DestinationFree(destination, (ResourceData)held.Definition, reservation));
+            if (!HeldBy(held, worker) || !Accepts(destination, (ResourceData)held.Definition) || accepted <= 0)
             { Reroute(worker); return; }
             var before = Quantity(held);
             simulation.Registry.TransferResource(held, destination.GetComponent<ResourceContainerComponent>(), accepted);
@@ -277,8 +277,8 @@ namespace MobileGame.Gameplay
                 return;
             }
             var held = Require(reservation.ResourceId);
-            if (!simulation.Registry.TryGet(reservation.DestinationId, out var destination) || !Accepts(destination, (ResourceDefinition)held.Definition) ||
-                DestinationFree(destination, (ResourceDefinition)held.Definition, reservation) < reservation.Amount || !simulation.Distance(worker, destination).HasValue)
+            if (!simulation.Registry.TryGet(reservation.DestinationId, out var destination) || !Accepts(destination, (ResourceData)held.Definition) ||
+                DestinationFree(destination, (ResourceData)held.Definition, reservation) < reservation.Amount || !simulation.Distance(worker, destination).HasValue)
                 Reroute(worker);
         }
 
@@ -292,7 +292,7 @@ namespace MobileGame.Gameplay
                 return false;
             return reservation.Purpose == WorkKind.Construction
                 ? IsUnfinished(destination) && ConstructionFree(destination, reservation) >= reservation.Amount
-                : Accepts(destination, (ResourceDefinition)resource.Definition) && DestinationFree(destination, (ResourceDefinition)resource.Definition, reservation) >= reservation.Amount;
+                : Accepts(destination, (ResourceData)resource.Definition) && DestinationFree(destination, (ResourceData)resource.Definition, reservation) >= reservation.Amount;
         }
 
         private void CancelUnpicked(Thing worker, TransportReservation reservation)
@@ -309,10 +309,10 @@ namespace MobileGame.Gameplay
             if (old != null) reservations.Remove(old);
             if (job?.ResourceId == null || !simulation.Registry.TryGet(job.ResourceId.Value, out var held) || !HeldBy(held, worker))
                 throw Invalid("A carried transport Job has lost its resource.");
-            var destination = NearestStore(worker, (ResourceDefinition)held.Definition);
+            var destination = NearestStore(worker, (ResourceData)held.Definition);
             if (destination != null)
             {
-                var amount = Math.Min(Quantity(held), DestinationFree(destination, (ResourceDefinition)held.Definition));
+                var amount = Math.Min(Quantity(held), DestinationFree(destination, (ResourceData)held.Definition));
                 Assign(worker, worker, destination, held, amount, true, job.BatchOriginId, WorkKind.Hauling);
                 return;
             }
@@ -325,7 +325,7 @@ namespace MobileGame.Gameplay
             state.WaitReason = "Holding resources; no reachable allowed storage space";
         }
 
-        private Thing NearestStore(Thing source, ResourceDefinition resource, Guid? excluded = null) => Reachable(source,
+        private Thing NearestStore(Thing source, ResourceData resource, Guid? excluded = null) => Reachable(source,
             CompletedStores().Where(t => t.Id != excluded && DestinationFree(t, resource) > 0)).FirstOrDefault();
         private IEnumerable<Thing> CompletedStores() => simulation.Registry.Things.Where(t =>
             simulation.IsComplete(t) && t.TryGetComponent<StorageComponent>(out _));
@@ -334,33 +334,33 @@ namespace MobileGame.Gameplay
             .Where(t => t.Distance.HasValue).OrderBy(t => t.Distance.Value)
             .ThenBy(t => t.Thing.CreationOrder).Select(t => t.Thing).ToArray();
         private IEnumerable<Thing> Stocks(Thing holder) => holder.GetComponent<ResourceContainerComponent>().Contents
-            .Where(t => simulation.Supports(t.Definition as ResourceDefinition)).OrderBy(t => t.CreationOrder).ToArray();
+            .Where(t => simulation.Supports(t.Definition as ResourceData)).OrderBy(t => t.CreationOrder).ToArray();
         private bool IsHaulingSource(Thing thing) => simulation.IsComplete(thing) &&
             (thing.TryGetComponent<StorageComponent>(out _) ||
              (thing.TryGetComponent<GatheringComponent>(out var gathering) && gathering.Outstanding > 0) ||
              (thing.TryGetComponent<ProductionComponent>(out var production) && production.Outstanding > 0)) &&
             Stocks(thing).Any(t => Quantity(t) - OutgoingReserved(t.Id) > 0);
-        private bool StorageAllows(Thing thing, ResourceDefinition resource) => simulation.Supports(resource) &&
+        private bool StorageAllows(Thing thing, ResourceData resource) => simulation.Supports(resource) &&
             thing.TryGetComponent<StorageComponent>(out var storage) &&
             (resource == simulation.Organic ? storage.AllowsOrganic : storage.AllowsCulture);
-        private bool Accepts(Thing thing, ResourceDefinition resource) => thing != null && simulation.IsComplete(thing) &&
+        private bool Accepts(Thing thing, ResourceData resource) => thing != null && simulation.IsComplete(thing) &&
             (thing.TryGetComponent<StorageComponent>(out _) ? StorageAllows(thing, resource) :
-                thing.TryGetComponent<ProductionComponent>(out _) && ((FacilityDefinition)thing.Definition).InputResource == resource &&
+                thing.TryGetComponent<ProductionComponent>(out _) && ((FacilityData)thing.Definition).InputResource == resource &&
                 simulation.Production.InputNeeded(thing) > 0);
         private bool IsUnfinished(Thing thing) => thing != null && thing.Exists && thing.IsPlaced &&
             thing.TryGetComponent<ConstructionComponent>(out var state) && !state.IsComplete;
         private bool CanChoose(Thing worker) => worker != null && worker.IsPlaced &&
             worker.TryGetComponent<WorkerComponent>(out var state) && state.Job == null && ReservationFor(worker.Id) == null;
-        private int DestinationFree(Thing destination, ResourceDefinition resource, TransportReservation excluding = null)
+        private int DestinationFree(Thing destination, ResourceData resource, TransportReservation excluding = null)
         {
             if (!Accepts(destination, resource)) return 0;
             var available = destination.TryGetComponent<StorageComponent>(out _)
-                ? ((FacilityDefinition)destination.Definition).StorageCapacity - simulation.TotalAt(destination.Id)
+                ? ((FacilityData)destination.Definition).StorageCapacity - simulation.TotalAt(destination.Id)
                 : simulation.Production.InputNeeded(destination);
             return Math.Max(0, available - reservations.Where(r => r.DestinationId == destination.Id && !ReferenceEquals(r, excluding)).Sum(r => r.Amount));
         }
         private int ConstructionFree(Thing target, TransportReservation excluding = null) => !IsUnfinished(target) ? 0 :
-            Math.Max(0, ((FacilityDefinition)target.Definition).BuildCost - target.GetComponent<ConstructionComponent>().Delivered -
+            Math.Max(0, ((FacilityData)target.Definition).BuildCost - target.GetComponent<ConstructionComponent>().Delivered -
                 reservations.Where(r => r.DestinationId == target.Id && !ReferenceEquals(r, excluding)).Sum(r => r.Amount));
         private TransportReservation ReservationFor(Guid worker) => reservations.FirstOrDefault(r => r.WorkerId == worker);
 

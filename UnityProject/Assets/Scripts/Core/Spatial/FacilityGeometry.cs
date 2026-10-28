@@ -7,14 +7,14 @@ namespace MobileGame.Foundation
     // Geometry does not imply that the footprint is inside the map or unobstructed.
     public static class FacilityGeometry
     {
-        public static Vector2Int GetSize(FacilityDefinition definition, QuarterTurn rotation)
+        public static Vector2Int GetSize(FacilityData definition, QuarterTurn rotation)
         {
             Require(definition, rotation);
             var original = definition.Footprint;
             return (int)rotation % 2 == 0 ? original : new Vector2Int(original.y, original.x);
         }
 
-        public static Vector2Int GetInteractionCell(FacilityDefinition definition, Vector2Int origin,
+        public static Vector2Int GetInteractionCell(FacilityData definition, Vector2Int origin,
             QuarterTurn rotation)
         {
             Require(definition, rotation);
@@ -35,7 +35,7 @@ namespace MobileGame.Foundation
             return origin + offset;
         }
 
-        private static void Require(FacilityDefinition definition, QuarterTurn rotation)
+        private static void Require(FacilityData definition, QuarterTurn rotation)
         {
             if (definition == null) throw new ArgumentNullException(nameof(definition));
             if ((int)rotation < 0 || (int)rotation > 3) throw new ArgumentOutOfRangeException(nameof(rotation));

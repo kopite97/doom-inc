@@ -1,0 +1,698 @@
+{
+  "comparedFields": 94,
+  "differences": [],
+  "normalizedUnused": [
+    {
+      "id": "facility.cultivation",
+      "field": "storageCapacity",
+      "before": "20",
+      "after": 0
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "gatheringAmount",
+      "before": "5",
+      "after": 0
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "gatheringSeconds",
+      "before": "5",
+      "after": 0
+    },
+    {
+      "id": "facility.gathering",
+      "field": "storageCapacity",
+      "before": "20",
+      "after": 0
+    },
+    {
+      "id": "facility.gathering",
+      "field": "supportOutput",
+      "before": "",
+      "after": ""
+    },
+    {
+      "id": "facility.gathering",
+      "field": "invaderOutput",
+      "before": "",
+      "after": ""
+    },
+    {
+      "id": "facility.gathering",
+      "field": "inputAmount",
+      "before": "0",
+      "after": 0
+    },
+    {
+      "id": "facility.gathering",
+      "field": "outputAmount",
+      "before": "0",
+      "after": 0
+    },
+    {
+      "id": "facility.gathering",
+      "field": "productionSeconds",
+      "before": "0",
+      "after": 0
+    },
+    {
+      "id": "facility.processing",
+      "field": "storageCapacity",
+      "before": "20",
+      "after": 0
+    },
+    {
+      "id": "facility.processing",
+      "field": "gatheringAmount",
+      "before": "5",
+      "after": 0
+    },
+    {
+      "id": "facility.processing",
+      "field": "gatheringSeconds",
+      "before": "5",
+      "after": 0
+    },
+    {
+      "id": "facility.processing",
+      "field": "supportOutput",
+      "before": "creature.support",
+      "after": ""
+    },
+    {
+      "id": "facility.processing",
+      "field": "invaderOutput",
+      "before": "creature.invader",
+      "after": ""
+    },
+    {
+      "id": "facility.storage",
+      "field": "gatheringAmount",
+      "before": "5",
+      "after": 0
+    },
+    {
+      "id": "facility.storage",
+      "field": "gatheringSeconds",
+      "before": "5",
+      "after": 0
+    },
+    {
+      "id": "facility.storage",
+      "field": "supportOutput",
+      "before": "",
+      "after": ""
+    },
+    {
+      "id": "facility.storage",
+      "field": "invaderOutput",
+      "before": "",
+      "after": ""
+    },
+    {
+      "id": "facility.storage",
+      "field": "inputAmount",
+      "before": "0",
+      "after": 0
+    },
+    {
+      "id": "facility.storage",
+      "field": "outputAmount",
+      "before": "0",
+      "after": 0
+    },
+    {
+      "id": "facility.storage",
+      "field": "productionSeconds",
+      "before": "0",
+      "after": 0
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "creature.invader",
+      "field": "definitionId",
+      "before": "creature.invader",
+      "after": "creature.invader"
+    },
+    {
+      "id": "creature.invader",
+      "field": "displayName",
+      "before": "침공형",
+      "after": "침공형"
+    },
+    {
+      "id": "creature.invader",
+      "field": "components",
+      "before": "ResourceContainer",
+      "after": "ResourceContainer"
+    },
+    {
+      "id": "creature.invader",
+      "field": "role",
+      "before": "Invader",
+      "after": "Invader"
+    },
+    {
+      "id": "creature.invader",
+      "field": "carryCapacity",
+      "before": "5",
+      "after": "5"
+    },
+    {
+      "id": "creature.invader",
+      "field": "moveSecondsPerCell",
+      "before": "0.25",
+      "after": "0.25"
+    },
+    {
+      "id": "creature.support.prototype",
+      "field": "definitionId",
+      "before": "creature.support.prototype",
+      "after": "creature.support.prototype"
+    },
+    {
+      "id": "creature.support.prototype",
+      "field": "displayName",
+      "before": "보조형 프로토타입",
+      "after": "보조형 프로토타입"
+    },
+    {
+      "id": "creature.support.prototype",
+      "field": "components",
+      "before": "ResourceContainer",
+      "after": "ResourceContainer"
+    },
+    {
+      "id": "creature.support.prototype",
+      "field": "role",
+      "before": "Prototype",
+      "after": "Prototype"
+    },
+    {
+      "id": "creature.support.prototype",
+      "field": "carryCapacity",
+      "before": "5",
+      "after": "5"
+    },
+    {
+      "id": "creature.support.prototype",
+      "field": "moveSecondsPerCell",
+      "before": "0.25",
+      "after": "0.25"
+    },
+    {
+      "id": "creature.support",
+      "field": "definitionId",
+      "before": "creature.support",
+      "after": "creature.support"
+    },
+    {
+      "id": "creature.support",
+      "field": "displayName",
+      "before": "보급형",
+      "after": "보급형"
+    },
+    {
+      "id": "creature.support",
+      "field": "components",
+      "before": "ResourceContainer",
+      "after": "ResourceContainer"
+    },
+    {
+      "id": "creature.support",
+      "field": "role",
+      "before": "Support",
+      "after": "Support"
+    },
+    {
+      "id": "creature.support",
+      "field": "carryCapacity",
+      "before": "5",
+      "after": "5"
+    },
+    {
+      "id": "creature.support",
+      "field": "moveSecondsPerCell",
+      "before": "0.25",
+      "after": "0.25"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "definitionId",
+      "before": "facility.cultivation",
+      "after": "facility.cultivation"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "displayName",
+      "before": "공용 배양시설",
+      "after": "공용 배양시설"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "components",
+      "before": "ResourceContainer",
+      "after": "ResourceContainer"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "role",
+      "before": "Cultivation",
+      "after": "Cultivation"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "width",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "height",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "interactionX",
+      "before": "0",
+      "after": "0"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "interactionY",
+      "before": "-1",
+      "after": "-1"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "resource",
+      "before": "resource.organic",
+      "after": "resource.organic"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "buildCost",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "buildSeconds",
+      "before": "3",
+      "after": "3"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "inputResource",
+      "before": "resource.culture-medium",
+      "after": "resource.culture-medium"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "outputResource",
+      "before": "",
+      "after": ""
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "supportOutput",
+      "before": "creature.support",
+      "after": "creature.support"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "invaderOutput",
+      "before": "creature.invader",
+      "after": "creature.invader"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "inputAmount",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "outputAmount",
+      "before": "1",
+      "after": "1"
+    },
+    {
+      "id": "facility.cultivation",
+      "field": "productionSeconds",
+      "before": "20",
+      "after": "20"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "definitionId",
+      "before": "facility.gathering",
+      "after": "facility.gathering"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "displayName",
+      "before": "기초 자원 획득 시설",
+      "after": "기초 자원 획득 시설"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "components",
+      "before": "ResourceContainer",
+      "after": "ResourceContainer"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "role",
+      "before": "Gathering",
+      "after": "Gathering"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "width",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "height",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "interactionX",
+      "before": "0",
+      "after": "0"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "interactionY",
+      "before": "-1",
+      "after": "-1"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "resource",
+      "before": "resource.organic",
+      "after": "resource.organic"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "buildCost",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "buildSeconds",
+      "before": "3",
+      "after": "3"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "gatheringAmount",
+      "before": "5",
+      "after": "5"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "gatheringSeconds",
+      "before": "5",
+      "after": "5"
+    },
+    {
+      "id": "facility.gathering",
+      "field": "inputResource",
+      "before": "",
+      "after": ""
+    },
+    {
+      "id": "facility.gathering",
+      "field": "outputResource",
+      "before": "",
+      "after": ""
+    },
+    {
+      "id": "facility.processing",
+      "field": "definitionId",
+      "before": "facility.processing",
+      "after": "facility.processing"
+    },
+    {
+      "id": "facility.processing",
+      "field": "displayName",
+      "before": "재료 가공시설",
+      "after": "재료 가공시설"
+    },
+    {
+      "id": "facility.processing",
+      "field": "components",
+      "before": "ResourceContainer",
+      "after": "ResourceContainer"
+    },
+    {
+      "id": "facility.processing",
+      "field": "role",
+      "before": "Processing",
+      "after": "Processing"
+    },
+    {
+      "id": "facility.processing",
+      "field": "width",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.processing",
+      "field": "height",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.processing",
+      "field": "interactionX",
+      "before": "0",
+      "after": "0"
+    },
+    {
+      "id": "facility.processing",
+      "field": "interactionY",
+      "before": "-1",
+      "after": "-1"
+    },
+    {
+      "id": "facility.processing",
+      "field": "resource",
+      "before": "resource.organic",
+      "after": "resource.organic"
+    },
+    {
+      "id": "facility.processing",
+      "field": "buildCost",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.processing",
+      "field": "buildSeconds",
+      "before": "3",
+      "after": "3"
+    },
+    {
+      "id": "facility.processing",
+      "field": "inputResource",
+      "before": "resource.organic",
+      "after": "resource.organic"
+    },
+    {
+      "id": "facility.processing",
+      "field": "outputResource",
+      "before": "resource.culture-medium",
+      "after": "resource.culture-medium"
+    },
+    {
+      "id": "facility.processing",
+      "field": "inputAmount",
+      "before": "5",
+      "after": "5"
+    },
+    {
+      "id": "facility.processing",
+      "field": "outputAmount",
+      "before": "1",
+      "after": "1"
+    },
+    {
+      "id": "facility.processing",
+      "field": "productionSeconds",
+      "before": "10",
+      "after": "10"
+    },
+    {
+      "id": "facility.storage",
+      "field": "definitionId",
+      "before": "facility.storage",
+      "after": "facility.storage"
+    },
+    {
+      "id": "facility.storage",
+      "field": "displayName",
+      "before": "범용 저장소",
+      "after": "범용 저장소"
+    },
+    {
+      "id": "facility.storage",
+      "field": "components",
+      "before": "ResourceContainer",
+      "after": "ResourceContainer"
+    },
+    {
+      "id": "facility.storage",
+      "field": "role",
+      "before": "Storage",
+      "after": "Storage"
+    },
+    {
+      "id": "facility.storage",
+      "field": "width",
+      "before": "3",
+      "after": "3"
+    },
+    {
+      "id": "facility.storage",
+      "field": "height",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.storage",
+      "field": "interactionX",
+      "before": "1",
+      "after": "1"
+    },
+    {
+      "id": "facility.storage",
+      "field": "interactionY",
+      "before": "-1",
+      "after": "-1"
+    },
+    {
+      "id": "facility.storage",
+      "field": "resource",
+      "before": "resource.organic",
+      "after": "resource.organic"
+    },
+    {
+      "id": "facility.storage",
+      "field": "buildCost",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "facility.storage",
+      "field": "buildSeconds",
+      "before": "3",
+      "after": "3"
+    },
+    {
+      "id": "facility.storage",
+      "field": "storageCapacity",
+      "before": "20",
+      "after": "20"
+    },
+    {
+      "id": "facility.storage",
+      "field": "inputResource",
+      "before": "",
+      "after": ""
+    },
+    {
+      "id": "facility.storage",
+      "field": "outputResource",
+      "before": "",
+      "after": ""
+    },
+    {
+      "id": "resource.culture-medium",
+      "field": "definitionId",
+      "before": "resource.culture-medium",
+      "after": "resource.culture-medium"
+    },
+    {
+      "id": "resource.culture-medium",
+      "field": "displayName",
+      "before": "배양액",
+      "after": "배양액"
+    },
+    {
+      "id": "resource.culture-medium",
+      "field": "components",
+      "before": "ResourceStack",
+      "after": "ResourceStack"
+    },
+    {
+      "id": "resource.organic",
+      "field": "definitionId",
+      "before": "resource.organic",
+      "after": "resource.organic"
+    },
+    {
+      "id": "resource.organic",
+      "field": "displayName",
+      "before": "유기물",
+      "after": "유기물"
+    },
+    {
+      "id": "resource.organic",
+      "field": "components",
+      "before": "ResourceStack",
+      "after": "ResourceStack"
+    },
+    {
+      "id": "settings.invasion",
+      "field": "activitySeconds",
+      "before": "5",
+      "after": "5"
+    },
+    {
+      "id": "settings.invasion",
+      "field": "smallScore",
+      "before": "2",
+      "after": "2"
+    },
+    {
+      "id": "settings.invasion",
+      "field": "majorScore",
+      "before": "10",
+      "after": "10"
+    },
+    {
+      "id": "settings.invasion",
+      "field": "majorEvery",
+      "before": "4",
+      "after": "4"
+    },
+    {
+      "id": "settings.invasion",
+      "field": "targetScore",
+      "before": "120",
+      "after": "120"
+    },
+    {
+      "id": "settings.invasion",
+      "field": "detailedUntilScore",
+      "before": "60",
+      "after": "60"
+    },
+    {
+      "id": "settings.invasion",
+      "field": "reportLimit",
+      "before": "20",
+      "after": "20"
+    }
+  ]
+}

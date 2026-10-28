@@ -6,8 +6,8 @@ namespace MobileGame.Gameplay
 {
     public static class LaboratorySessionFactory
     {
-        public static SessionState Create(ResourceDefinition organic, FacilityDefinition gathering,
-            FacilityDefinition storage, CreatureDefinition prototype, ResourceDefinition culture = null, InvasionSettings invasionSettings = null)
+        public static SessionState Create(ResourceData organic, FacilityData gathering,
+            FacilityData storage, CreatureData prototype, ResourceData culture = null, InvasionSettings invasionSettings = null)
         {
             if (organic == null || gathering == null || storage == null || prototype == null)
                 throw new ArgumentNullException("Laboratory definitions are required.");
@@ -19,9 +19,9 @@ namespace MobileGame.Gameplay
             if (startingAmount > prototype.CarryCapacity)
                 throw new ArgumentException("The initial worker must be able to hold both initial construction costs.");
             var registry = new ThingRegistry(GameplayComponentFactory.Attach);
-            var map = new GridMap(registry, 16, 10);
+            var map = new GridMap(registry, organic.Settings.MapWidth, organic.Settings.MapHeight);
             var worker = registry.Create(prototype);
-            var placement = map.Commands.Place(worker.Id, Vector2Int.one);
+            var placement = map.Commands.Place(worker.Id, new Vector2Int(organic.Settings.StartX, organic.Settings.StartY));
             if (!placement.Succeeded) throw new InvalidOperationException(placement.ToString());
             registry.CreateResource(organic, startingAmount, worker.GetComponent<ResourceContainerComponent>());
             return new SessionState(registry, map, new LaboratoryManager(registry, map, organic, culture, invasionSettings));

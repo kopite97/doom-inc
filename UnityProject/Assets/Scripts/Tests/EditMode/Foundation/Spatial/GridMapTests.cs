@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,16 @@ namespace MobileGame.Foundation.Tests
 {
     public sealed class GridMapTests : FoundationTestFixture
     {
-        private FacilityDefinition Facility(int width = 2, int height = 3)
+        private FacilityData Facility(int width = 2, int height = 3)
         {
             var definition = CreateStorageDefinition();
             Configure(definition, new Vector2Int(width, height), new Vector2Int(1, -1));
             return definition;
         }
 
-        private static void Configure(FacilityDefinition definition, Vector2Int size, Vector2Int interaction)
+        private static void Configure(FacilityData definition, Vector2Int size, Vector2Int interaction)
         {
-            using (var serialized = new SerializedObject(definition))
+            using (var serialized = new DataFixtureEditor(definition))
             {
                 serialized.FindProperty("footprint").vector2IntValue = size;
                 serialized.FindProperty("interactionOffset").vector2IntValue = interaction;
@@ -91,7 +92,7 @@ namespace MobileGame.Foundation.Tests
         public void CreaturesOverlapWithoutBlockingButCannotBePlacedInsideFacility()
         {
             var registry = new ThingRegistry();
-            var creature = CreateDefinition<CreatureDefinition>("fixture.creature");
+            var creature = CreateDefinition<CreatureData>("fixture.creature");
             var a = registry.Create(creature);
             var b = registry.Create(creature);
             var facility = registry.Create(CreateStorageDefinition());
@@ -116,7 +117,7 @@ namespace MobileGame.Foundation.Tests
         {
             var registry = new ThingRegistry();
             var definition = Facility();
-            var originalDefinition = EditorJsonUtility.ToJson(definition);
+            var originalDefinition = DataFixtureSnapshot.ToJson(definition);
             var first = registry.Create(definition);
             var second = registry.Create(definition);
             var held = registry.CreateResource(CreateResourceDefinition(), 5, first.GetComponent<ResourceContainerComponent>());
@@ -133,7 +134,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(held.GetComponent<ResourceStackComponent>().Quantity, Is.EqualTo(5));
             Assert.That(held.Map, Is.Null);
             Assert.That(second.Placement, Is.SameAs(secondPlacement));
-            Assert.That(EditorJsonUtility.ToJson(definition), Is.EqualTo(originalDefinition));
+            Assert.That(DataFixtureSnapshot.ToJson(definition), Is.EqualTo(originalDefinition));
         }
 
         [Test]

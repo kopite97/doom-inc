@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using MobileGame.TestSupport;
 using System;
 using System.Collections;
 using System.IO;
@@ -17,9 +18,9 @@ namespace MobileGame.SpatialTests
 {
     public sealed partial class LaboratoryViewTests
     {
-        private static ThingDefinition[] EndingCatalog() => new[] { "Resource/OrganicMatter", "Resource/CultureMedium", "Facility/Gathering", "Facility/Storage",
+        private static ThingData[] EndingCatalog() => new[] { "Resource/OrganicMatter", "Resource/CultureMedium", "Facility/Gathering", "Facility/Storage",
             "Facility/Processing", "Facility/Cultivation", "Creature/PrototypeSupport", "Creature/Support", "Creature/Invader" }
-            .Select(path => AssetDatabase.LoadAssetAtPath<ThingDefinition>("Assets/SO/" + path + ".asset")).ToArray();
+            .Select(path => DataTestAssets.LoadAssetAtPath<ThingData>("Assets/SO/" + path + ".asset")).ToArray();
 
         [UnityTest]
         public IEnumerator EndingSceneCompletesTwoPaidRunsAndPreservesFileOnFailedRestart()
@@ -76,7 +77,7 @@ namespace MobileGame.SpatialTests
                         var harness = new GameFlowManager(codec, new JsonFileSessionStore(Path.Combine(directory, "harness.json")), () => codec.Restore(goal));
                         File.WriteAllText(Path.Combine(directory, "harness.json"), codec.Serialize(goal));
                         Assert.That(harness.StartOrContinue(), Is.True);
-                        using var visual = new RunEndingPresentation(harness);
+                        using var visual = new RunEndingPresentation(harness, DataTestAssets.Catalog.Settings.EndingSeconds);
                         for (var frame = 0; frame < 50; frame++)
                         {
                             view.AdvanceFrame(0, 0.1); visual.Advance(0.1);
@@ -127,9 +128,9 @@ namespace MobileGame.SpatialTests
             }
         }
 
-        private static IEnumerator ProducePaidInvader(LaboratoryView view, ThingDefinition[] catalog)
+        private static IEnumerator ProducePaidInvader(LaboratoryView view, ThingData[] catalog)
         {
-            var organic = (ResourceDefinition)catalog[0]; var culture = (ResourceDefinition)catalog[1];
+            var organic = (ResourceData)catalog[0]; var culture = (ResourceData)catalog[1];
             Assert.That(view.BeginGatheringConstruction(), Is.True); Place(view, 3, 3);
             Assert.That(view.BeginStorageConstruction(), Is.True); Place(view, 8, 3);
             yield return AdvanceUntil(view, () => view.Simulation.Registry.Things.Any(t => t.Definition == catalog[3] && view.Simulation.TotalAt(t.Id) >= 5), 120);
@@ -163,7 +164,7 @@ namespace MobileGame.SpatialTests
                 var path = Path.Combine(directory, "view.json"); var catalog = EndingCatalog();
                 var codec = new SessionSnapshotCodec(catalog, true);
                 var flow = new GameFlowManager(codec, new JsonFileSessionStore(path), () => LaboratorySessionFactory.Create(
-                    (ResourceDefinition)catalog[0], (FacilityDefinition)catalog[2], (FacilityDefinition)catalog[3], (CreatureDefinition)catalog[6], (ResourceDefinition)catalog[1]));
+                    (ResourceData)catalog[0], (FacilityData)catalog[2], (FacilityData)catalog[3], (CreatureData)catalog[6], (ResourceData)catalog[1]));
                 Assert.That(flow.StartOrContinue(), Is.True);
                 // Rare-boundary fixture, separate from the two actual paid runs above.
                 var invader = flow.Current.Registry.Create(catalog[8]);

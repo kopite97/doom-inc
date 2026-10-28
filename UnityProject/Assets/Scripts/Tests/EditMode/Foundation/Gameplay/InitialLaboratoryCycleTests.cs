@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.IO;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace MobileGame.Foundation.Tests
         public void FullStorageResumesThroughPaidConstructionAndActualPartialAdmissions()
         {
             var organic = CreateResourceDefinition("cycle.organic");
-            var prototype = CreateDefinition<CreatureDefinition>("cycle.prototype", ThingComponentKind.ResourceContainer);
+            var prototype = CreateDefinition<CreatureData>("cycle.prototype", ThingComponentKind.ResourceContainer);
             var gatheringDefinition = Facility("cycle.gathering", FacilityRole.Gathering, organic,
                 new Vector2Int(2, 2), new Vector2Int(0, -1));
             var storageDefinition = Facility("cycle.storage", FacilityRole.Storage, organic,
@@ -24,7 +25,7 @@ namespace MobileGame.Foundation.Tests
             var directory = Path.Combine(Path.GetTempPath(), "MobileGame-PLAN008-Cycle-" + Guid.NewGuid().ToString("N"));
             try
             {
-                var codec = new SessionSnapshotCodec(new ThingDefinition[]
+                var codec = new SessionSnapshotCodec(new ThingData[]
                     { organic, prototype, gatheringDefinition, storageDefinition }, true);
                 var controller = new GameFlowManager(codec,
                     new JsonFileSessionStore(Path.Combine(directory, "session.json")),
@@ -105,7 +106,7 @@ namespace MobileGame.Foundation.Tests
             }
         }
 
-        private static void Build(LaboratoryCommands commands, FacilityDefinition definition, Vector2Int position)
+        private static void Build(LaboratoryCommands commands, FacilityData definition, Vector2Int position)
         {
             Assert.That(commands.BeginConstruction(definition), Is.True);
             Assert.That(commands.PreviewConstruction(position, QuarterTurn.None), Is.True);
@@ -121,11 +122,11 @@ namespace MobileGame.Foundation.Tests
         private static int TotalOrganic(LaboratoryManager simulation) => simulation.Registry.Things
             .Where(t => t.Definition.Kind == ThingKind.Resource).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
 
-        private FacilityDefinition Facility(string id, FacilityRole role, ResourceDefinition organic,
+        private FacilityData Facility(string id, FacilityRole role, ResourceData organic,
             Vector2Int footprint, Vector2Int interaction)
         {
             var definition = CreateStorageDefinition(id);
-            using (var serialized = new SerializedObject(definition))
+            using (var serialized = new DataFixtureEditor(definition))
             {
                 serialized.FindProperty("role").intValue = (int)role;
                 serialized.FindProperty("resource").objectReferenceValue = organic;

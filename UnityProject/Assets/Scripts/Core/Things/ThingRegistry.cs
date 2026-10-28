@@ -8,8 +8,8 @@ namespace MobileGame.Foundation
     public sealed class ThingRegistry
     {
         private readonly Dictionary<Guid, Thing> things = new Dictionary<Guid, Thing>();
-        private readonly Dictionary<string, ThingDefinition> definitions =
-            new Dictionary<string, ThingDefinition>(StringComparer.Ordinal);
+        private readonly Dictionary<string, ThingData> definitions =
+            new Dictionary<string, ThingData>(StringComparer.Ordinal);
         private long lastCreationOrder;
         private readonly Action<Thing> initializeComponents;
 
@@ -31,7 +31,7 @@ namespace MobileGame.Foundation
 
         public bool TryGet(Guid id, out Thing thing) => things.TryGetValue(id, out thing);
 
-        public Thing Create(ThingDefinition definition)
+        public Thing Create(ThingData definition)
         {
             ValidateDefinition(definition);
             if (definition.Kind == ThingKind.Resource)
@@ -39,7 +39,7 @@ namespace MobileGame.Foundation
             return Register(definition, null, 0);
         }
 
-        public Thing CreateResource(ResourceDefinition definition, int quantity,
+        public Thing CreateResource(ResourceData definition, int quantity,
             ResourceContainerComponent holder)
         {
             ValidateDefinition(definition);
@@ -71,7 +71,7 @@ namespace MobileGame.Foundation
 
             // Construct and initialize the new stack before changing the original quantity.
             // Failed validation or component creation leaves inventory and identity order intact.
-            var split = Register((ResourceDefinition)resource.Definition, destination.Owner.Id, amount);
+            var split = Register((ResourceData)resource.Definition, destination.Owner.Id, amount);
             stack.SetQuantity(stack.Quantity - amount);
             return split;
         }
@@ -127,7 +127,7 @@ namespace MobileGame.Foundation
 
         // Restore into a new, unpublished registry. Persistence owns snapshot validation,
         // while this boundary still enforces the normal identity and ownership invariants.
-        internal Thing RestoreThing(Guid id, long creationOrder, ThingDefinition definition,
+        internal Thing RestoreThing(Guid id, long creationOrder, ThingData definition,
             Guid? holderId, int resourceQuantity)
         {
             ValidateDefinition(definition);
@@ -164,7 +164,7 @@ namespace MobileGame.Foundation
             lastCreationOrder = value;
         }
 
-        private void ValidateDefinition(ThingDefinition definition)
+        private void ValidateDefinition(ThingData definition)
         {
             if (definition == null)
                 throw new ArgumentNullException(nameof(definition));
@@ -174,7 +174,7 @@ namespace MobileGame.Foundation
                 throw new ArgumentException($"Definition ID already refers to another asset: {definition.DefinitionId}", nameof(definition));
         }
 
-        private Thing Register(ThingDefinition definition, Guid? holderId, int resourceQuantity)
+        private Thing Register(ThingData definition, Guid? holderId, int resourceQuantity)
         {
             var order = checked(lastCreationOrder + 1);
             Guid id;

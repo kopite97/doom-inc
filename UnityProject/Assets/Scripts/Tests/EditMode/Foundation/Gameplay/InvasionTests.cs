@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.IO;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace MobileGame.Foundation.Tests
 {
     public sealed partial class InvasionTests
     {
-        private ThingDefinition[] catalog;
-        private ResourceDefinition organic, culture;
-        private FacilityDefinition gathering, storage, processing, cultivation;
-        private CreatureDefinition prototype, support, invader;
+        private ThingData[] catalog;
+        private ResourceData organic, culture;
+        private FacilityData gathering, storage, processing, cultivation;
+        private CreatureData prototype, support, invader;
         private SessionSnapshotCodec codec;
         private string directory;
 
@@ -25,12 +26,12 @@ namespace MobileGame.Foundation.Tests
         {
             catalog = new[] { "Resource/OrganicMatter", "Resource/CultureMedium", "Facility/Gathering", "Facility/Storage",
                 "Facility/Processing", "Facility/Cultivation", "Creature/PrototypeSupport", "Creature/Support", "Creature/Invader" }
-                .Select(path => AssetDatabase.LoadAssetAtPath<ThingDefinition>("Assets/SO/" + path + ".asset")).ToArray();
+                .Select(path => DataTestAssets.LoadAssetAtPath<ThingData>("Assets/SO/" + path + ".asset")).ToArray();
             Assert.That(catalog.All(d => d != null), Is.True);
-            organic = (ResourceDefinition)catalog[0]; culture = (ResourceDefinition)catalog[1];
-            gathering = (FacilityDefinition)catalog[2]; storage = (FacilityDefinition)catalog[3];
-            processing = (FacilityDefinition)catalog[4]; cultivation = (FacilityDefinition)catalog[5];
-            prototype = (CreatureDefinition)catalog[6]; support = (CreatureDefinition)catalog[7]; invader = (CreatureDefinition)catalog[8];
+            organic = (ResourceData)catalog[0]; culture = (ResourceData)catalog[1];
+            gathering = (FacilityData)catalog[2]; storage = (FacilityData)catalog[3];
+            processing = (FacilityData)catalog[4]; cultivation = (FacilityData)catalog[5];
+            prototype = (CreatureData)catalog[6]; support = (CreatureData)catalog[7]; invader = (CreatureData)catalog[8];
             codec = new SessionSnapshotCodec(catalog, true);
             directory = Path.Combine(Path.GetTempPath(), "MobileGame-PLAN010-" + Guid.NewGuid().ToString("N"));
         }
@@ -220,7 +221,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(session.Map.Commands.Place(thing.Id, new Vector2Int(1, 1)).Succeeded, Is.True);
             return thing;
         }
-        private Thing CompleteFacility(SessionState session, FacilityDefinition definition, Vector2Int cell)
+        private Thing CompleteFacility(SessionState session, FacilityData definition, Vector2Int cell)
         {
             var thing = session.Registry.Create(definition);
             Assert.That(session.Map.Commands.Place(thing.Id, cell).Succeeded, Is.True);
@@ -237,7 +238,7 @@ namespace MobileGame.Foundation.Tests
         private string Capture(GameFlowManager flow) => codec.Serialize(codec.Capture(flow.Current, flow.Phase));
         private static InvasionSettings Settings(long target)
         {
-            var settings = new InvasionSettings(); Field(settings, "targetScore", target);
+            var settings = DataTestAssets.Catalog.Settings.Invasion.Copy(); Field(settings, "targetScore", target);
             Field(settings, "detailedUntilScore", Math.Min(60, target)); return settings;
         }
         private static void Field(object target, string field, object value) => target.GetType().GetField(field, BindingFlags.Instance | BindingFlags.NonPublic).SetValue(target, value);

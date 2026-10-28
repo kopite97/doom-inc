@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.IO;
 using System.Linq;
@@ -14,10 +15,10 @@ namespace MobileGame.Foundation.Tests
     // Explicit fixtures isolate rare boundaries. RealInitialCycle uses only paid commands and real work.
     public sealed partial class ProductionTests : FoundationTestFixture
     {
-        private ResourceDefinition organic, culture;
-        private FacilityDefinition gathering, storage, processing, cultivation;
-        private CreatureDefinition prototype, support, invader;
-        private ThingDefinition[] catalog;
+        private ResourceData organic, culture;
+        private FacilityData gathering, storage, processing, cultivation;
+        private CreatureData prototype, support, invader;
+        private ThingData[] catalog;
         private LaboratoryManager lab;
         private ThingRegistry registry;
         private GridMap map;
@@ -26,16 +27,16 @@ namespace MobileGame.Foundation.Tests
         [SetUp]
         public void Prepare()
         {
-            organic = Load<ResourceDefinition>("Resource/OrganicMatter");
-            culture = Load<ResourceDefinition>("Resource/CultureMedium");
-            gathering = Load<FacilityDefinition>("Facility/Gathering");
-            storage = Load<FacilityDefinition>("Facility/Storage");
-            processing = Load<FacilityDefinition>("Facility/Processing");
-            cultivation = Load<FacilityDefinition>("Facility/Cultivation");
-            prototype = Load<CreatureDefinition>("Creature/PrototypeSupport");
-            support = Load<CreatureDefinition>("Creature/Support");
-            invader = Load<CreatureDefinition>("Creature/Invader");
-            catalog = new ThingDefinition[] { organic, culture, gathering, storage, processing, cultivation, prototype, support, invader };
+            organic = Load<ResourceData>("Resource/OrganicMatter");
+            culture = Load<ResourceData>("Resource/CultureMedium");
+            gathering = Load<FacilityData>("Facility/Gathering");
+            storage = Load<FacilityData>("Facility/Storage");
+            processing = Load<FacilityData>("Facility/Processing");
+            cultivation = Load<FacilityData>("Facility/Cultivation");
+            prototype = Load<CreatureData>("Creature/PrototypeSupport");
+            support = Load<CreatureData>("Creature/Support");
+            invader = Load<CreatureData>("Creature/Invader");
+            catalog = new ThingData[] { organic, culture, gathering, storage, processing, cultivation, prototype, support, invader };
             registry = new ThingRegistry(GameplayComponentFactory.Attach);
             map = new GridMap(registry, 16, 10);
             lab = new LaboratoryManager(registry, map, organic, culture);
@@ -326,13 +327,13 @@ namespace MobileGame.Foundation.Tests
                 new JsonFileSessionStore(Path.Combine(directory, "session.json")), create, 5);
             Assert.That(flow.StartOrContinue(), Is.True, flow.LastError); return flow;
         }
-        private Thing Worker(CreatureDefinition definition, int x, int y, int[] priorities)
+        private Thing Worker(CreatureData definition, int x, int y, int[] priorities)
         {
             var thing = registry.Create(definition);
             Assert.That(map.Commands.Place(thing.Id, new Vector2Int(x, y)).Succeeded, Is.True);
             Assert.That(lab.SetWorkerPriorities(thing.Id, priorities), Is.True); return thing;
         }
-        private Thing Facility(FacilityDefinition definition, int x, int y)
+        private Thing Facility(FacilityData definition, int x, int y)
         {
             var thing = registry.Create(definition);
             Assert.That(map.Commands.Place(thing.Id, new Vector2Int(x, y)).Succeeded, Is.True);
@@ -340,11 +341,11 @@ namespace MobileGame.Foundation.Tests
             Set(state, "Delivered", definition.BuildCost); Set(state, "Progress", (double)definition.BuildSeconds); Set(state, "IsComplete", true);
             return thing;
         }
-        private void Stock(Thing holder, ResourceDefinition definition, int amount) => registry.CreateResource(definition, amount, holder.GetComponent<ResourceContainerComponent>());
-        private int Total(ResourceDefinition definition) => registry.Things.Where(t => t.Definition == definition).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
-        private static T Load<T>(string path) where T : ThingDefinition => AssetDatabase.LoadAssetAtPath<T>("Assets/SO/" + path + ".asset");
+        private void Stock(Thing holder, ResourceData definition, int amount) => registry.CreateResource(definition, amount, holder.GetComponent<ResourceContainerComponent>());
+        private int Total(ResourceData definition) => registry.Things.Where(t => t.Definition == definition).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
+        private static T Load<T>(string path) where T : ThingData => DataTestAssets.LoadAssetAtPath<T>("Assets/SO/" + path + ".asset");
         private static void Set(object target, string property, object value) => target.GetType().GetProperty(property).GetSetMethod(true).Invoke(target, new[] { value });
-        private static void Build(LaboratoryCommands commands, FacilityDefinition definition, int x, int y)
+        private static void Build(LaboratoryCommands commands, FacilityData definition, int x, int y)
         { Assert.That(commands.BeginConstruction(definition), Is.True); Assert.That(commands.PreviewConstruction(new Vector2Int(x,y), QuarterTurn.None), Is.True); Assert.That(commands.ConfirmConstruction(), Is.True); }
         private static void Until(Action<double> advance, Func<bool> condition, double maximum = 120)
         {

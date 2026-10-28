@@ -1,0 +1,5 @@
+definitionId,displayName,components,role,width,height,interactionX,interactionY,resource,buildCost,buildSeconds,storageCapacity,gatheringAmount,gatheringSeconds,inputResource,outputResource,supportOutput,invaderOutput,inputAmount,outputAmount,productionSeconds
+facility.cultivation,공용 배양시설,ResourceContainer,Cultivation,2,2,0,-1,resource.organic,2,3,0,0,0,resource.culture-medium,,creature.support,creature.invader,2,1,20
+facility.gathering,기초 자원 획득 시설,ResourceContainer,Gathering,2,2,0,-1,resource.organic,2,3,0,5,5,,,,,0,0,0
+facility.processing,재료 가공시설,ResourceContainer,Processing,2,2,0,-1,resource.organic,2,3,0,0,0,resource.organic,resource.culture-medium,,,5,1,10
+facility.storage,범용 저장소,ResourceContainer,Storage,3,2,1,-1,resource.organic,2,3,20,0,0,,,,,0,0,0

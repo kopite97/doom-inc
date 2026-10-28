@@ -14,7 +14,7 @@
 
 | 역할 폴더 | 책임 | 기능 하위 폴더 예시 |
 | --- | --- | --- |
-| `Data/` | 종류별 공통 SO 정의·정의 관련 자료형. 개별 실행 상태를 두지 않음 | `Definitions/` 아래 `Resource/`, `Facility/`, `Creature/` |
+| `Data/` | CSV 계약·파서·읽기 전용 Data·SO 바인딩·Registry. 개별 실행 상태를 두지 않음 | `Definitions/` 아래 `Resource/`, `Facility/`, `Creature/` |
 | `Core/` | 이 게임의 공통 실행 기반. Thing·컴포넌트·식별·단일 소속·Map | `Things/`, `Resource/`, `Spatial/` |
 | `Gameplay/` | 건설·생산·운반·배양·생명체 행동 등 기능별 게임 규칙 | `Construction/`, `Production/`, `Logistics/`, `Creature/`, 필요 시 `Player/` |
 | `GameFlow/` | 한 판의 준비·진행 단계·전환·정지·다시 시작 조정 | `Session/`, `Transitions/`, `Progression/` |

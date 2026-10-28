@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System.Linq;
 using NUnit.Framework;
 using UnityEditor;
@@ -24,13 +25,13 @@ namespace MobileGame.Foundation.Tests
         [Test]
         public void InvalidComponentDefinitionsAreRejectedBeforeRegisteringThings()
         {
-            var invalidDefinitions = new ThingDefinition[]
+            var invalidDefinitions = new ThingData[]
             {
-                CreateDefinition<ResourceDefinition>("fixture.missing-stack"),
-                CreateDefinition<ResourceDefinition>("fixture.extra-container",
+                CreateDefinition<ResourceData>("fixture.missing-stack"),
+                CreateDefinition<ResourceData>("fixture.extra-container",
                     ThingComponentKind.ResourceStack, ThingComponentKind.ResourceContainer),
-                CreateDefinition<CreatureDefinition>("fixture.creature-stack", ThingComponentKind.ResourceStack),
-                CreateDefinition<FacilityDefinition>("fixture.duplicate-component",
+                CreateDefinition<CreatureData>("fixture.creature-stack", ThingComponentKind.ResourceStack),
+                CreateDefinition<FacilityData>("fixture.duplicate-component",
                     ThingComponentKind.ResourceContainer, ThingComponentKind.ResourceContainer)
             };
             var registry = new ThingRegistry();
@@ -38,7 +39,7 @@ namespace MobileGame.Foundation.Tests
 
             foreach (var definition in invalidDefinitions)
             {
-                if (definition is ResourceDefinition resourceDefinition)
+                if (definition is ResourceData resourceDefinition)
                 {
                     AssertRejectedWithoutRegistryChange(registry,
                         () => registry.CreateResource(resourceDefinition, 1, holder));
@@ -55,17 +56,17 @@ namespace MobileGame.Foundation.Tests
         [Test]
         public void RepresentativeAssetsImportAndCreateLogicalThingsWithoutChangingDefinitions()
         {
-            var resource = AssetDatabase.LoadAssetAtPath<ResourceDefinition>(
+            var resource = DataTestAssets.LoadAssetAtPath<ResourceData>(
                 "Assets/SO/Resource/OrganicMatter.asset");
-            var storage = AssetDatabase.LoadAssetAtPath<FacilityDefinition>(
+            var storage = DataTestAssets.LoadAssetAtPath<FacilityData>(
                 "Assets/SO/Facility/Storage.asset");
-            var prototype = AssetDatabase.LoadAssetAtPath<CreatureDefinition>(
+            var prototype = DataTestAssets.LoadAssetAtPath<CreatureData>(
                 "Assets/SO/Creature/PrototypeSupport.asset");
             Assert.That(resource, Is.Not.Null, "Import the representative organic matter definition.");
             Assert.That(storage, Is.Not.Null, "Import the representative storage definition.");
             Assert.That(prototype, Is.Not.Null, "Import the representative support prototype definition.");
-            var definitions = new ThingDefinition[] { resource, storage, prototype };
-            var before = definitions.Select(definition => EditorJsonUtility.ToJson(definition)).ToArray();
+            var definitions = new ThingData[] { resource, storage, prototype };
+            var before = definitions.Select(definition => DataFixtureSnapshot.ToJson(definition)).ToArray();
             Assert.That(definitions.Select(definition => definition.DefinitionId).Distinct().Count(),
                 Is.EqualTo(definitions.Length));
             foreach (var definition in definitions)
@@ -86,7 +87,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(prototype.Kind, Is.EqualTo(ThingKind.Creature));
             Assert.That(storageHolder.Contents, Is.Empty);
             Assert.That(prototypeHolder.Contents, Is.EquivalentTo(new[] { stack }));
-            Assert.That(definitions.Select(definition => EditorJsonUtility.ToJson(definition)).ToArray(),
+            Assert.That(definitions.Select(definition => DataFixtureSnapshot.ToJson(definition)).ToArray(),
                 Is.EqualTo(before), "Creating or transferring runtime Things must not modify the SO assets.");
         }
     }

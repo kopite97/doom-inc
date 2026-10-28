@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.IO;
 using System.Linq;
@@ -30,16 +31,16 @@ namespace MobileGame.Foundation.Tests
         public void ActualFileRoundTripRestoresIndependentObjectsAndSingleOwnership()
         {
             var storage = CreateStorageDefinition();
-            using (var serialized = new SerializedObject(storage))
+            using (var serialized = new DataFixtureEditor(storage))
             {
                 serialized.FindProperty("footprint").vector2IntValue = new Vector2Int(2, 1);
                 serialized.FindProperty("interactionOffset").vector2IntValue = new Vector2Int(1, -1);
                 serialized.ApplyModifiedPropertiesWithoutUndo();
             }
-            var creature = CreateDefinition<CreatureDefinition>("fixture.carrier", ThingComponentKind.ResourceContainer);
+            var creature = CreateDefinition<CreatureData>("fixture.carrier", ThingComponentKind.ResourceContainer);
             var resource = CreateResourceDefinition();
-            var definitionsBefore = EditorJsonUtility.ToJson(storage);
-            var codec = new SessionSnapshotCodec(new ThingDefinition[] { storage, creature, resource });
+            var definitionsBefore = DataFixtureSnapshot.ToJson(storage);
+            var codec = new SessionSnapshotCodec(new ThingData[] { storage, creature, resource });
             var registry = new ThingRegistry();
             var first = registry.Create(storage);
             var movedResource = registry.CreateResource(resource, 7, first.GetComponent<ResourceContainerComponent>());
@@ -93,7 +94,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(restoredResource.GetComponent<ResourceStackComponent>().Quantity, Is.EqualTo(5));
             Assert.That(movedResource.GetComponent<ResourceStackComponent>().Quantity, Is.EqualTo(7));
             Assert.That(Find(restored, carried.Id).GetComponent<ResourceStackComponent>().Quantity, Is.EqualTo(3));
-            Assert.That(EditorJsonUtility.ToJson(storage), Is.EqualTo(definitionsBefore));
+            Assert.That(DataFixtureSnapshot.ToJson(storage), Is.EqualTo(definitionsBefore));
         }
 
         [Test]
@@ -101,7 +102,7 @@ namespace MobileGame.Foundation.Tests
         {
             var storage = CreateStorageDefinition();
             var resource = CreateResourceDefinition();
-            var codec = new SessionSnapshotCodec(new ThingDefinition[] { storage, resource });
+            var codec = new SessionSnapshotCodec(new ThingData[] { storage, resource });
             var registry = new ThingRegistry();
             var holder = registry.Create(storage);
             var consumed = registry.CreateResource(resource, 5, holder.GetComponent<ResourceContainerComponent>());
@@ -121,8 +122,8 @@ namespace MobileGame.Foundation.Tests
         public void LegalCreatureOverlapAndFacilityOverCreatureSurviveRestoreOrdering()
         {
             var storage = CreateStorageDefinition();
-            var creature = CreateDefinition<CreatureDefinition>("fixture.creature");
-            var codec = new SessionSnapshotCodec(new ThingDefinition[] { storage, creature });
+            var creature = CreateDefinition<CreatureData>("fixture.creature");
+            var codec = new SessionSnapshotCodec(new ThingData[] { storage, creature });
             var registry = new ThingRegistry();
             var facility = registry.Create(storage);
             var a = registry.Create(creature);
@@ -232,7 +233,7 @@ namespace MobileGame.Foundation.Tests
         {
             var first = CreateStorageDefinition();
             var duplicate = CreateStorageDefinition();
-            Assert.That(() => new SessionSnapshotCodec(new ThingDefinition[] { first, duplicate }),
+            Assert.That(() => new SessionSnapshotCodec(new ThingData[] { first, duplicate }),
                 Throws.ArgumentException);
         }
 
@@ -261,7 +262,7 @@ namespace MobileGame.Foundation.Tests
         {
             var storageDefinition = CreateStorageDefinition();
             var resourceDefinition = CreateResourceDefinition();
-            codec = new SessionSnapshotCodec(new ThingDefinition[] { storageDefinition, resourceDefinition });
+            codec = new SessionSnapshotCodec(new ThingData[] { storageDefinition, resourceDefinition });
             var registry = new ThingRegistry();
             facility = registry.Create(storageDefinition);
             resource = registry.CreateResource(resourceDefinition, 5, facility.GetComponent<ResourceContainerComponent>());

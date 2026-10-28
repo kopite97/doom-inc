@@ -10,14 +10,14 @@ namespace MobileGame.Gameplay
         public ConstructionManager(LaboratoryManager laboratory) { this.laboratory = laboratory; }
         private ThingRegistry Registry => laboratory.Registry;
         private GridMap Map => laboratory.Map;
-        private ResourceDefinition Organic => laboratory.Organic;
+        private ResourceData Organic => laboratory.Organic;
         public bool IsEditing => ConstructionDefinition != null;
-        public FacilityDefinition ConstructionDefinition { get; private set; }
+        public FacilityData ConstructionDefinition { get; private set; }
         public Vector2Int ConstructionOrigin { get; private set; }
         public QuarterTurn ConstructionRotation { get; private set; }
         public PlacementResult ConstructionValidation { get; private set; }
         public string LastError { get; private set; }
-        public bool BeginConstruction(FacilityDefinition definition)
+        public bool BeginConstruction(FacilityData definition)
         {
             if (IsEditing || Map.Commands.IsEditing) return Reject("Finish or cancel the current edit first.");
             if (definition == null || definition.Role == FacilityRole.None ||

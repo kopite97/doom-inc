@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.Linq;
 using MobileGame.GameFlow;
@@ -30,7 +31,7 @@ namespace MobileGame.Foundation.Tests
         [Test]
         public void EndingClockHasVisibleEntryBoundaryAndTwoAutomaticFiles()
         {
-            var flow = EndingFlow(out var store); using var visual = new RunEndingPresentation(flow);
+            var flow = EndingFlow(out var store); using var visual = new RunEndingPresentation(flow, DataTestAssets.Catalog.Settings.EndingSeconds);
             flow.Advance(10000); visual.Advance(10000);
             Assert.That(visual.Elapsed, Is.Zero, "The goal frame cannot consume presentation time.");
             Assert.That(codec.Deserialize(store.Read()).phase, Is.EqualTo(SessionPhase.Destruction));
@@ -60,7 +61,7 @@ namespace MobileGame.Foundation.Tests
         public void EndingPauseVisibilityAndStallsDoNotCatchUp()
         {
             var flow = EndingFlow(out _); flow.Advance(5);
-            using var visual = new RunEndingPresentation(flow);
+            using var visual = new RunEndingPresentation(flow, DataTestAssets.Catalog.Settings.EndingSeconds);
             visual.Advance(0); visual.Advance(1000);
             Assert.That(visual.Elapsed, Is.EqualTo(0.1));
             var stale = visual.Request;
@@ -84,8 +85,8 @@ namespace MobileGame.Foundation.Tests
             Assert.That(flow.AcquireEndingRequest(null), Is.Null);
             Assert.That(flow.FinishDestruction(null), Is.False);
             flow.Advance(5);
-            using var first = new RunEndingPresentation(flow); var original = first.Request;
-            using var replacement = new RunEndingPresentation(flow);
+            using var first = new RunEndingPresentation(flow, DataTestAssets.Catalog.Settings.EndingSeconds); var original = first.Request;
+            using var replacement = new RunEndingPresentation(flow, DataTestAssets.Catalog.Settings.EndingSeconds);
             Assert.That(flow.FinishDestruction(original), Is.False, "Same-session screen replacement revokes old requests.");
             first.Advance(1000); Assert.That(flow.IsCurrentEndingRequest(replacement.Request), Is.True);
             var beforeReload = replacement.Request;
@@ -118,7 +119,7 @@ namespace MobileGame.Foundation.Tests
             flow.Advance(5);
             if (failGoal) Assert.That(store.DurableRead(), Is.EqualTo(playing));
             var goalFile = store.DurableRead(); store.FailWrite = true;
-            using var visual = new RunEndingPresentation(flow); FinishVisual(visual, flow);
+            using var visual = new RunEndingPresentation(flow, DataTestAssets.Catalog.Settings.EndingSeconds); FinishVisual(visual, flow);
             Assert.That(flow.LastSaveError, Is.Not.Null.Or.Empty);
             Assert.That(store.DurableRead(), Is.EqualTo(goalFile));
             Assert.That(flow.CanAdvanceExternal || flow.CanAdvanceLaboratory, Is.False);
@@ -142,7 +143,7 @@ namespace MobileGame.Foundation.Tests
         public void EndingReloadFailurePreservesScreenClockAndRestartLease()
         {
             var flow = EndingFlow(out var store); flow.Advance(5);
-            using var visual = new RunEndingPresentation(flow); visual.Advance(0); visual.Advance(0.1);
+            using var visual = new RunEndingPresentation(flow, DataTestAssets.Catalog.Settings.EndingSeconds); visual.Advance(0); visual.Advance(0.1);
             var request = visual.Request; var current = flow.Current; var file = store.DurableRead();
             store.ReadOverride = "broken";
             Assert.That(flow.Reload(), Is.False); visual.Synchronize();
@@ -173,7 +174,7 @@ namespace MobileGame.Foundation.Tests
             if (version == 2) saved.laboratory.cultureDefinitionId = null;
             var store = new FaultStore(Slot()); store.Write(codec.Serialize(saved));
             var flow = new GameFlowManager(codec, store, () => Fresh()); Assert.That(flow.StartOrContinue(), Is.True);
-            using var visual = new RunEndingPresentation(flow);
+            using var visual = new RunEndingPresentation(flow, DataTestAssets.Catalog.Settings.EndingSeconds);
             Assert.That(flow.Phase, Is.EqualTo(phase)); FinishVisual(visual, flow);
             Assert.That(flow.Save(), Is.True); Assert.That(flow.Reload(), Is.True); visual.Synchronize();
             Assert.That(Lab(flow.Current).Invasion.State.LegacyEndVersion, Is.EqualTo(version));
@@ -188,7 +189,7 @@ namespace MobileGame.Foundation.Tests
         {
             var flow = EndingFlow(out var store, 3); AddInvader(flow.Current);
             Assert.That(new LaboratoryCommands(flow).ReleaseInvaders(), Is.True); flow.Advance(5);
-            using var visual = new RunEndingPresentation(flow); FinishVisual(visual, flow);
+            using var visual = new RunEndingPresentation(flow, DataTestAssets.Catalog.Settings.EndingSeconds); FinishVisual(visual, flow);
             Assert.That(Lab(flow.Current).Invasion.State.Score, Is.EqualTo(4));
             var frozen = store.Read();
             for (var i = 0; i < 20; i++) { var ignored = Lab(flow.Current).Invasion.State.Reports.Count; visual.Advance(1); }

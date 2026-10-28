@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System.Linq;
 using NUnit.Framework;
 using UnityEditor;
@@ -35,7 +36,7 @@ namespace MobileGame.Foundation.Tests
             var registry = new ThingRegistry();
             var holder = CreateHolder(registry, CreateStorageDefinition());
             var definition = CreateResourceDefinition();
-            var definitionBefore = EditorJsonUtility.ToJson(definition);
+            var definitionBefore = DataFixtureSnapshot.ToJson(definition);
             var first = registry.CreateResource(definition, 5, holder);
             var second = registry.CreateResource(definition, 5, holder);
             var firstStack = first.GetComponent<ResourceStackComponent>();
@@ -49,7 +50,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(firstStack.Quantity, Is.EqualTo(3));
             Assert.That(secondStack.Quantity, Is.EqualTo(5));
             Assert.That(holder.Contents, Is.EquivalentTo(new[] { first, second }));
-            Assert.That(EditorJsonUtility.ToJson(definition), Is.EqualTo(definitionBefore));
+            Assert.That(DataFixtureSnapshot.ToJson(definition), Is.EqualTo(definitionBefore));
         }
 
         [Test]

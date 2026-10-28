@@ -48,7 +48,7 @@ namespace MobileGame.Foundation
             => BuildPlacement(id, origin, rotation, out _);
 
         // A construction candidate is only definition + geometry until confirmed.
-        public PlacementResult CheckPlacement(FacilityDefinition definition, Vector2Int origin,
+        public PlacementResult CheckPlacement(FacilityData definition, Vector2Int origin,
             QuarterTurn rotation = QuarterTurn.None)
             => CheckGeometry(definition, null, origin, rotation, out _, out _);
 
@@ -84,7 +84,7 @@ namespace MobileGame.Foundation
             return PlacementResult.Success;
         }
 
-        private PlacementResult CheckGeometry(ThingDefinition definition, Guid? excludedId,
+        private PlacementResult CheckGeometry(ThingData definition, Guid? excludedId,
             Vector2Int origin, QuarterTurn rotation, out Vector2Int size, out Vector2Int? interaction)
         {
             size = default;
@@ -96,7 +96,7 @@ namespace MobileGame.Foundation
             if ((int)rotation < 0 || (int)rotation > 3)
                 return PlacementResult.Reject(PlacementError.InvalidRotation);
 
-            var facility = definition as FacilityDefinition;
+            var facility = definition as FacilityData;
             try { definition.Validate(); }
             catch (ArgumentException) { return PlacementResult.Reject(PlacementError.InvalidDefinition); }
             catch (InvalidOperationException) { return PlacementResult.Reject(PlacementError.InvalidDefinition); }

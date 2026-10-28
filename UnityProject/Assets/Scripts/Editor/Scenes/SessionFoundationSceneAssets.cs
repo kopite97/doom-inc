@@ -42,13 +42,7 @@ namespace MobileGame.Foundation.Editor
                 var viewObject = new GameObject("Temp_SessionFoundationView");
                 SceneManager.MoveGameObjectToScene(viewObject, scene);
                 var view = viewObject.AddComponent<SessionFoundationView>();
-                using (var serialized = new SerializedObject(view))
-                {
-                    serialized.FindProperty("storage").objectReferenceValue = storage;
-                    serialized.FindProperty("creature").objectReferenceValue = creature;
-                    serialized.FindProperty("resource").objectReferenceValue = resource;
-                    serialized.ApplyModifiedPropertiesWithoutUndo();
-                }
+                GameDataAssets.Configure(view.gameObject);
                 if (!EditorSceneManager.SaveScene(scene, ScenePath))
                     throw new InvalidOperationException("Could not save Temp_SessionFoundation.");
             }

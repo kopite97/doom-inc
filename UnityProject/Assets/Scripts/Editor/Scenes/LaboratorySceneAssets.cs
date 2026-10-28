@@ -20,14 +20,7 @@ namespace MobileGame.Foundation.Editor
             ProductionDefinitionAssets.CreateMissing();
             var view = UnityEngine.Object.FindFirstObjectByType<LaboratoryView>();
             if (view == null) throw new InvalidOperationException("Laboratory view is missing.");
-            using (var serialized = new SerializedObject(view))
-            {
-                var names = new[] { "culture", "processing", "cultivation", "support", "invader" };
-                var definitions = ProductionDefinitionAssets.LoadDefinitions();
-                for (var index = 0; index < names.Length; index++)
-                    serialized.FindProperty(names[index]).objectReferenceValue = definitions[index];
-                serialized.ApplyModifiedPropertiesWithoutUndo();
-            }
+            GameDataAssets.Configure(view.gameObject);
             EditorSceneManager.MarkSceneDirty(view.gameObject.scene);
             if (!EditorSceneManager.SaveScene(view.gameObject.scene)) throw new InvalidOperationException("Could not save laboratory.");
         }
@@ -57,18 +50,7 @@ namespace MobileGame.Foundation.Editor
                 var viewObject = new GameObject("Temp_LaboratoryView");
                 SceneManager.MoveGameObjectToScene(viewObject, scene);
                 var view = viewObject.AddComponent<LaboratoryView>();
-                using (var serialized = new SerializedObject(view))
-                {
-                    serialized.FindProperty("organic").objectReferenceValue =
-                        AssetDatabase.LoadAssetAtPath<ResourceDefinition>(LaboratoryDefinitionAssets.ResourcePath);
-                    serialized.FindProperty("gathering").objectReferenceValue =
-                        AssetDatabase.LoadAssetAtPath<FacilityDefinition>(LaboratoryDefinitionAssets.GatheringPath);
-                    serialized.FindProperty("storage").objectReferenceValue =
-                        AssetDatabase.LoadAssetAtPath<FacilityDefinition>(LaboratoryDefinitionAssets.StoragePath);
-                    serialized.FindProperty("prototype").objectReferenceValue =
-                        AssetDatabase.LoadAssetAtPath<CreatureDefinition>(LaboratoryDefinitionAssets.PrototypePath);
-                    serialized.ApplyModifiedPropertiesWithoutUndo();
-                }
+                GameDataAssets.Configure(view.gameObject);
                 if (!EditorSceneManager.SaveScene(scene, ScenePath))
                     throw new InvalidOperationException("Could not save Temp_Laboratory.");
             }

@@ -8,7 +8,7 @@ namespace MobileGame.Presentation
     // Explicit foundation fixture, NOT the game's initial inventory/construction flow.
     public sealed class MapFoundationScenario
     {
-        public MapFoundationScenario(FacilityDefinition storage, CreatureDefinition creature, ResourceDefinition resource)
+        public MapFoundationScenario(FacilityData storage, CreatureData creature, ResourceData resource)
         {
             Registry = new ThingRegistry();
             Map = new GridMap(Registry, 12, 8);

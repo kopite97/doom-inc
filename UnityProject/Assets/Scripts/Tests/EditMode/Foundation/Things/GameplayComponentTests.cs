@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.Linq;
 using MobileGame.Gameplay;
@@ -14,14 +15,14 @@ namespace MobileGame.Foundation.Tests
             var resource = CreateResourceDefinition();
             var storage = Facility("fixture.storage", FacilityRole.Storage, resource);
             var gathering = Facility("fixture.gathering", FacilityRole.Gathering, resource);
-            var creature = CreateDefinition<CreatureDefinition>("fixture.worker", ThingComponentKind.ResourceContainer);
+            var creature = CreateDefinition<CreatureData>("fixture.worker", ThingComponentKind.ResourceContainer);
             var registry = new ThingRegistry(GameplayComponentFactory.Attach);
             var first = registry.Create(storage);
             var second = registry.Create(storage);
             var production = registry.Create(gathering);
             var worker = registry.Create(creature);
             var another = registry.Create(creature);
-            var before = EditorJsonUtility.ToJson(storage);
+            var before = DataFixtureSnapshot.ToJson(storage);
 
             Assert.That(first.GetComponent<ConstructionComponent>().IsComplete, Is.False);
             Assert.That(first.GetComponent<StorageComponent>().AllowsOrganic, Is.True);
@@ -33,7 +34,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(worker.GetComponent<WorkerComponent>().Job, Is.Null);
             worker.GetComponent<WorkerComponent>().Priorities[0] = 0;
             Assert.That(another.GetComponent<WorkerComponent>().Priorities[0], Is.EqualTo(1));
-            Assert.That(EditorJsonUtility.ToJson(storage), Is.EqualTo(before));
+            Assert.That(DataFixtureSnapshot.ToJson(storage), Is.EqualTo(before));
 
             var baseline = new ThingRegistry().Create(storage);
             Assert.That(baseline.TryGetComponent<ConstructionComponent>(out _), Is.False,
@@ -43,12 +44,12 @@ namespace MobileGame.Foundation.Tests
         [Test]
         public void InvalidFactoryAndDuplicateComponentsCannotPartiallyRegister()
         {
-            var invalid = CreateDefinition<CreatureDefinition>("fixture.missing-container");
+            var invalid = CreateDefinition<CreatureData>("fixture.missing-container");
             var registry = new ThingRegistry(GameplayComponentFactory.Attach);
             Assert.Throws<InvalidOperationException>(() => registry.Create(invalid));
             Assert.That(registry.Things, Is.Empty);
             Assert.That(registry.LastCreationOrder, Is.Zero);
-            var replacement = CreateDefinition<CreatureDefinition>(invalid.DefinitionId, ThingComponentKind.ResourceContainer);
+            var replacement = CreateDefinition<CreatureData>(invalid.DefinitionId, ThingComponentKind.ResourceContainer);
             var valid = registry.Create(replacement);
             var before = valid.Components.ToArray();
             Assert.Throws<InvalidOperationException>(() => GameplayComponentFactory.Attach(valid));
@@ -62,21 +63,21 @@ namespace MobileGame.Foundation.Tests
             var resource = CreateResourceDefinition();
             var storage = Facility("fixture.storage", FacilityRole.Storage, resource);
             storage.Validate();
-            using (var serialized = new SerializedObject(storage))
+            using (var serialized = new DataFixtureEditor(storage))
             {
                 serialized.FindProperty("storageCapacity").intValue = 0;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
             }
             Assert.Throws<ArgumentException>(() => storage.Validate());
-            using (var serialized = new SerializedObject(storage))
+            using (var serialized = new DataFixtureEditor(storage))
             {
                 serialized.FindProperty("storageCapacity").intValue = 20;
                 serialized.FindProperty("resource").objectReferenceValue = null;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
             }
             Assert.Throws<ArgumentException>(() => storage.Validate());
-            var creature = CreateDefinition<CreatureDefinition>("fixture.creature", ThingComponentKind.ResourceContainer);
-            using (var serialized = new SerializedObject(creature))
+            var creature = CreateDefinition<CreatureData>("fixture.creature", ThingComponentKind.ResourceContainer);
+            using (var serialized = new DataFixtureEditor(creature))
             {
                 serialized.FindProperty("moveSecondsPerCell").floatValue = float.NaN;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
@@ -84,10 +85,10 @@ namespace MobileGame.Foundation.Tests
             Assert.Throws<ArgumentException>(() => creature.Validate());
         }
 
-        private FacilityDefinition Facility(string id, FacilityRole role, ResourceDefinition resource)
+        private FacilityData Facility(string id, FacilityRole role, ResourceData resource)
         {
             var result = CreateStorageDefinition(id);
-            using (var serialized = new SerializedObject(result))
+            using (var serialized = new DataFixtureEditor(result))
             {
                 serialized.FindProperty("role").intValue = (int)role;
                 serialized.FindProperty("resource").objectReferenceValue = resource;

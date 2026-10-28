@@ -11,12 +11,13 @@ namespace MobileGame.Persistence
     public sealed class SessionSnapshotCodec
     {
         public const int LegacyVersion = 1;
-        public const int CurrentVersion = 4;
+        public const int CurrentVersion = 5;
         private readonly bool requireLaboratory;
-        private readonly Dictionary<string, ThingDefinition> definitions =
-            new Dictionary<string, ThingDefinition>(StringComparer.Ordinal);
+        private string DataHash => definitions.Values.FirstOrDefault()?.Settings?.CompatibilityHash;
+        private readonly Dictionary<string, ThingData> definitions =
+            new Dictionary<string, ThingData>(StringComparer.Ordinal);
 
-        public SessionSnapshotCodec(IEnumerable<ThingDefinition> definitions, bool requireLaboratory = false)
+        public SessionSnapshotCodec(IEnumerable<ThingData> definitions, bool requireLaboratory = false)
         {
             this.requireLaboratory = requireLaboratory;
             if (definitions == null)
@@ -70,6 +71,7 @@ namespace MobileGame.Persistence
                 });
             var snapshot = new SessionSnapshot
             {
+                dataHash = DataHash,
                 version = laboratory == null ? LegacyVersion : CurrentVersion, phase = phase,
                 runtimeKind = laboratory == null ? null : "laboratory",
                 lastCreationOrder = state.Registry.LastCreationOrder,
@@ -87,6 +89,13 @@ namespace MobileGame.Persistence
         public SessionState Restore(SessionSnapshot snapshot)
         {
             ValidateStructure(snapshot);
+            if (string.IsNullOrEmpty(snapshot.dataHash))
+            {
+                if (snapshot.version >= CurrentVersion || DataHash != LegacyDataBaseline.Hash)
+                    throw Invalid("Legacy save requires the baseline data. Preserve the save and restart with matching data, or explicitly start a new run.");
+            }
+            else if (snapshot.dataHash != DataHash)
+                throw Invalid("Saved balance differs from loaded data. Restart the app with matching data, or explicitly start a new run. The save is preserved.");
             if (requireLaboratory && snapshot.version < 2)
                 throw Invalid("This play slot requires a laboratory session, not a diagnostic save.");
             try
@@ -116,7 +125,7 @@ namespace MobileGame.Persistence
                 RestorePlacements(snapshot, registry, map, ThingKind.Facility);
                 var runtime = snapshot.version >= 2
                     ? LaboratorySnapshotCodec.Restore(snapshot.laboratory, registry, map, GetDefinition, snapshot.version,
-                        definitions.Values.OfType<FacilityDefinition>().FirstOrDefault(d => d.Role == FacilityRole.Processing)?.OutputResource,
+                        definitions.Values.OfType<FacilityData>().FirstOrDefault(d => d.Role == FacilityRole.Processing)?.OutputResource,
                         snapshot.version >= 4 ? snapshot.invasion.settings : null) : null;
                 if (runtime != null)
                 {
@@ -152,7 +161,7 @@ namespace MobileGame.Persistence
             return snapshot;
         }
 
-        private ThingDefinition GetDefinition(string id)
+        private ThingData GetDefinition(string id)
         {
             if (!definitions.TryGetValue(id, out var definition) || definition == null)
                 throw Invalid("Missing definition: " + id);
@@ -182,7 +191,7 @@ namespace MobileGame.Persistence
         {
             if (snapshot == null)
                 throw Invalid("The save has no session object.");
-            if (snapshot.version != LegacyVersion && snapshot.version != 2 && snapshot.version != 3 && snapshot.version != CurrentVersion)
+            if (snapshot.version != LegacyVersion && snapshot.version != 2 && snapshot.version != 3 && snapshot.version != 4 && snapshot.version != CurrentVersion)
                 throw Invalid("Unsupported save version: " + snapshot.version);
             if (snapshot.version >= 4) InvasionSnapshotCodec.ValidateStructure(snapshot.invasion);
             // JsonUtility materializes null nested classes as empty objects. The

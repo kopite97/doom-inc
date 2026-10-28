@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.IO;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace MobileGame.Foundation.Tests
                     Lab(session).SetWorkerPriorities(worker.Id, new[] { 1, 2, 3 }, true);
             }
             var saved = codec.Capture(session, SessionPhase.Playing);
-            saved.version = version; saved.phase = phase; saved.invasion = null;
+            saved.version = version; saved.dataHash = null; saved.phase = phase; saved.invasion = null;
             if (version == 2) saved.laboratory.cultureDefinitionId = null;
             var store = new FaultStore(Slot()); store.Write(codec.Serialize(saved));
             var flow = new GameFlowManager(codec, store, () => Fresh());
@@ -68,7 +69,8 @@ namespace MobileGame.Foundation.Tests
             Assert.That(Lab(flow.Current).Invasion.ExternalCount, Is.Zero);
             Assert.That(state.LegacyEndVersion, Is.EqualTo(phase == SessionPhase.Playing ? 0 : version));
             Assert.That(flow.Save(), Is.True, flow.LastSaveError);
-            Assert.That(codec.Deserialize(store.Read()).version, Is.EqualTo(4));
+            Assert.That(codec.Deserialize(store.Read()).version, Is.EqualTo(SessionSnapshotCodec.CurrentVersion));
+            Assert.That(codec.Deserialize(store.Read()).dataHash, Is.EqualTo(LegacyDataBaseline.Hash));
             Assert.That(flow.Reload(), Is.True, flow.LastError);
             Assert.That(flow.Phase, Is.EqualTo(phase));
             if (phase != SessionPhase.Playing)
@@ -201,7 +203,7 @@ namespace MobileGame.Foundation.Tests
             flow.Advance(100); Assert.That(Capture(flow), Is.EqualTo(stopped));
         }
 
-        private static void Build(LaboratoryCommands commands, FacilityDefinition definition, int x, int y)
+        private static void Build(LaboratoryCommands commands, FacilityData definition, int x, int y)
         {
             Assert.That(commands.BeginConstruction(definition), Is.True);
             Assert.That(commands.PreviewConstruction(new Vector2Int(x, y), QuarterTurn.None), Is.True);

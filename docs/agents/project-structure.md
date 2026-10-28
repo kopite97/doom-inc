@@ -41,7 +41,8 @@ Unity의 `Packages/`, `ProjectSettings/`, 생성 캐시의 위치와 관리 정�
 | 상위 경로 | 담을 파일 | 하위 분류 예시 |
 | --- | --- | --- |
 | `Scripts/` | 프로젝트 C#·관련 어셈블리 설정. Editor·테스트 코드 포함 | 역할 → 기능. [상세 기준](script-structure.md) |
-| `SO/` | 게임 정의·시작 설정 등 프로젝트가 작성한 SO 인스턴스 | `Resource/`, `Facility/`, `Creature/`, `Session/` |
+| `CSV/` | 밸런스·정의 값의 CSV 원본 | `Balance/` |
+| `SO/` | 정의 ID·Unity 에셋 바인딩·주제별 Registry SO 인스턴스 | `Resource/`, `Facility/`, `Creature/`, `Session/` |
 | `Scenes/` | 실제 플레이·검증 장면 | `Gameplay/`, `Diagnostics/` → 담당 기능 |
 | `Prefabs/` | 재사용할 GameObject 구성 | `Creature/`, `Facility/`, `UI/`, `VFX/` |
 | `Sprites/` | 스프라이트 이미지·시트·아틀라스 | `Creature/`, `Facility/`, `UI/`, `World/`, `VFX/` |

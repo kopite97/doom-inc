@@ -78,11 +78,11 @@ namespace MobileGame.Persistence
         }
 
         public static LaboratoryManager Restore(LaboratorySnapshot saved, ThingRegistry registry,
-            GridMap map, Func<string, ThingDefinition> getDefinition, int version, ResourceDefinition defaultCulture,
+            GridMap map, Func<string, ThingData> getDefinition, int version, ResourceData defaultCulture,
             InvasionSettings invasionSettings = null)
         {
             ValidateStructure(saved);
-            if (!(getDefinition(saved.organicDefinitionId) is ResourceDefinition organic))
+            if (!(getDefinition(saved.organicDefinitionId) is ResourceData organic))
                 throw Invalid("The laboratory resource definition is not a resource.");
             var byId = saved.things.ToDictionary(state => ParseId(state.thingId));
             foreach (var thing in registry.Things)
@@ -151,7 +151,7 @@ namespace MobileGame.Persistence
                 BatchOriginId = ParseOptionalId(reservation.batchOriginId), Purpose = reservation.purpose
             }).ToArray();
             var culture = string.IsNullOrEmpty(saved.cultureDefinitionId) ? (version == 2 ? defaultCulture : null)
-                : getDefinition(saved.cultureDefinitionId) as ResourceDefinition ?? throw Invalid("Invalid culture definition.");
+                : getDefinition(saved.cultureDefinitionId) as ResourceData ?? throw Invalid("Invalid culture definition.");
             var runtime = new LaboratoryManager(registry, map, organic, culture, invasionSettings);
             runtime.RestoreState(saved.preset.ToArray(), reservations);
             // Validate the whole graph only after external component state is restored.

@@ -1,0 +1,170 @@
+{
+  "hash": "2578869b88b49ba4855785cf587d8cf2f0cfd0dd8ba1fbfc2cd3fb8d2ca7f195",
+  "tables": {
+    "resources": [
+      {
+        "definitionId": "resource.culture-medium",
+        "displayName": "배양액",
+        "components": "ResourceStack"
+      },
+      {
+        "definitionId": "resource.organic",
+        "displayName": "유기물",
+        "components": "ResourceStack"
+      }
+    ],
+    "creatures": [
+      {
+        "definitionId": "creature.invader",
+        "displayName": "침공형",
+        "components": "ResourceContainer",
+        "role": "Invader",
+        "carryCapacity": "5",
+        "moveSecondsPerCell": "0.25"
+      },
+      {
+        "definitionId": "creature.support",
+        "displayName": "보급형",
+        "components": "ResourceContainer",
+        "role": "Support",
+        "carryCapacity": "5",
+        "moveSecondsPerCell": "0.25"
+      },
+      {
+        "definitionId": "creature.support.prototype",
+        "displayName": "보조형 프로토타입",
+        "components": "ResourceContainer",
+        "role": "Prototype",
+        "carryCapacity": "5",
+        "moveSecondsPerCell": "0.25"
+      }
+    ],
+    "facilities": [
+      {
+        "definitionId": "facility.cultivation",
+        "displayName": "공용 배양시설",
+        "components": "ResourceContainer",
+        "role": "Cultivation",
+        "width": "2",
+        "height": "2",
+        "interactionX": "0",
+        "interactionY": "-1",
+        "resource": "resource.organic",
+        "buildCost": "2",
+        "buildSeconds": "3",
+        "storageCapacity": 0,
+        "gatheringAmount": 0,
+        "gatheringSeconds": 0,
+        "inputResource": "resource.culture-medium",
+        "outputResource": "",
+        "supportOutput": "creature.support",
+        "invaderOutput": "creature.invader",
+        "inputAmount": "2",
+        "outputAmount": "1",
+        "productionSeconds": "20"
+      },
+      {
+        "definitionId": "facility.gathering",
+        "displayName": "기초 자원 획득 시설",
+        "components": "ResourceContainer",
+        "role": "Gathering",
+        "width": "2",
+        "height": "2",
+        "interactionX": "0",
+        "interactionY": "-1",
+        "resource": "resource.organic",
+        "buildCost": "2",
+        "buildSeconds": "3",
+        "storageCapacity": 0,
+        "gatheringAmount": "5",
+        "gatheringSeconds": "5",
+        "inputResource": "",
+        "outputResource": "",
+        "supportOutput": "",
+        "invaderOutput": "",
+        "inputAmount": 0,
+        "outputAmount": 0,
+        "productionSeconds": 0
+      },
+      {
+        "definitionId": "facility.processing",
+        "displayName": "재료 가공시설",
+        "components": "ResourceContainer",
+        "role": "Processing",
+        "width": "2",
+        "height": "2",
+        "interactionX": "0",
+        "interactionY": "-1",
+        "resource": "resource.organic",
+        "buildCost": "2",
+        "buildSeconds": "3",
+        "storageCapacity": 0,
+        "gatheringAmount": 0,
+        "gatheringSeconds": 0,
+        "inputResource": "resource.organic",
+        "outputResource": "resource.culture-medium",
+        "supportOutput": "",
+        "invaderOutput": "",
+        "inputAmount": "5",
+        "outputAmount": "1",
+        "productionSeconds": "10"
+      },
+      {
+        "definitionId": "facility.storage",
+        "displayName": "범용 저장소",
+        "components": "ResourceContainer",
+        "role": "Storage",
+        "width": "3",
+        "height": "2",
+        "interactionX": "1",
+        "interactionY": "-1",
+        "resource": "resource.organic",
+        "buildCost": "2",
+        "buildSeconds": "3",
+        "storageCapacity": "20",
+        "gatheringAmount": 0,
+        "gatheringSeconds": 0,
+        "inputResource": "",
+        "outputResource": "",
+        "supportOutput": "",
+        "invaderOutput": "",
+        "inputAmount": 0,
+        "outputAmount": 0,
+        "productionSeconds": 0
+      }
+    ],
+    "invasion": [
+      {
+        "definitionId": "settings.invasion",
+        "activitySeconds": "5",
+        "smallScore": "2",
+        "majorScore": "10",
+        "majorEvery": "4",
+        "targetScore": "120",
+        "detailedUntilScore": "60",
+        "reportLimit": "20"
+      }
+    ],
+    "session": [
+      {
+        "definitionId": "settings.session",
+        "mapWidth": 16,
+        "mapHeight": 10,
+        "startX": 1,
+        "startY": 1,
+        "organicId": "resource.organic",
+        "cultureId": "resource.culture-medium",
+        "gatheringId": "facility.gathering",
+        "storageId": "facility.storage",
+        "prototypeId": "creature.support.prototype",
+        "processingId": "facility.processing",
+        "cultivationId": "facility.cultivation",
+        "supportId": "creature.support",
+        "invaderId": "creature.invader",
+        "staffedRate": 1,
+        "unattendedRate": 0.2,
+        "endingSeconds": 4
+      }
+    ]
+  }
+}

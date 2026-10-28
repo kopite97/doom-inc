@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using MobileGame.TestSupport;
 using System;
 using System.Collections;
 using System.IO;
@@ -154,10 +155,10 @@ namespace MobileGame.SpatialTests
             try
             {
                 yield return LoadIsolatedScene(Path.Combine(directory, "view.json"), 30, loaded => view = loaded);
-                var storage = AssetDatabase.LoadAssetAtPath<FacilityDefinition>("Assets/SO/Facility/Storage.asset");
-                var creature = AssetDatabase.LoadAssetAtPath<CreatureDefinition>("Assets/SO/Creature/PrototypeSupport.asset");
-                var resource = AssetDatabase.LoadAssetAtPath<ResourceDefinition>("Assets/SO/Resource/OrganicMatter.asset");
-                var harness = new GameFlowManager(new SessionSnapshotCodec(new ThingDefinition[] { storage, creature, resource }),
+                var storage = DataTestAssets.LoadAssetAtPath<FacilityData>("Assets/SO/Facility/Storage.asset");
+                var creature = DataTestAssets.LoadAssetAtPath<CreatureData>("Assets/SO/Creature/PrototypeSupport.asset");
+                var resource = DataTestAssets.LoadAssetAtPath<ResourceData>("Assets/SO/Resource/OrganicMatter.asset");
+                var harness = new GameFlowManager(new SessionSnapshotCodec(new ThingData[] { storage, creature, resource }),
                     new JsonFileSessionStore(Path.Combine(directory, "harness.json")), () =>
                     {
                         var fixture = new MapFoundationScenario(storage, creature, resource);
@@ -208,23 +209,14 @@ namespace MobileGame.SpatialTests
                 {
                     initialized = scene.GetRootGameObjects().Select(root => root.GetComponent<SessionFoundationView>())
                         .Single(view => view != null);
-                    using (var serialized = new SerializedObject(initialized))
-                    {
-                        var storage = serialized.FindProperty("storage").objectReferenceValue as FacilityDefinition;
-                        var creature = serialized.FindProperty("creature").objectReferenceValue as CreatureDefinition;
-                        var resource = serialized.FindProperty("resource").objectReferenceValue as ResourceDefinition;
-                        Assert.That(storage, Is.Not.Null, "The saved scene must retain its facility SO reference.");
-                        Assert.That(creature, Is.Not.Null, "The saved scene must retain its creature SO reference.");
-                        Assert.That(resource, Is.Not.Null, "The saved scene must retain its resource SO reference.");
-                        initialized.Initialize(storage, creature, resource, savePath, autoSaveSeconds);
-                    }
+                    initialized.GetComponent<GameBootstrap>().SetSaveSlotBeforeStart(savePath, autoSaveSeconds);
                     loaded(initialized);
                 }
                 catch (Exception error)
                 {
                     initializationError = error;
                     // Failed test injection must never fall back to the normal diagnostic slot in Start.
-                    if (initialized != null) initialized.enabled = false;
+                    if (initialized != null) { initialized.enabled = false; initialized.GetComponent<GameBootstrap>().enabled = false; }
                 }
             }
             SceneManager.sceneLoaded += InitializeBeforeStart;
@@ -234,6 +226,7 @@ namespace MobileGame.SpatialTests
                 yield return WaitFor(() => load.isDone, "The diagnostic scene did not load.");
                 Assert.That(initializationError, Is.Null, initializationError?.ToString());
                 Assert.That(initialized, Is.Not.Null);
+                yield return WaitFor(() => initialized.Controller != null, "Bootstrap did not initialize diagnostic.");
                 Assert.That(initialized.SavePath, Is.EqualTo(Path.GetFullPath(savePath)), "Never use the player's diagnostic slot in tests.");
                 Assert.That(initialized.Controller.Current, Is.Not.Null, initialized.Controller.LastError);
                 yield return null;

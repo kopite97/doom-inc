@@ -2,7 +2,7 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1~3단계 완료 / PC 가로의 목표·멸망 연출·결과·재시작·두 번째 판 종료 검증 / 4단계 구현 전
+- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 구현 전
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
 - 갱신일: 2026-10-28
@@ -20,7 +20,9 @@
 
 개별 작업 상태·다음 행동·검증 증거는 [PLAN MAP](../../../plans/README.md)에서 찾는다. 작업 대상은 유일한 active PLAN이며, 이 문서는 전체 단계·기획상 완료 기준과 요약 상태를 관리한다.
 
-3단계의 잔여 종료 연결 [PLAN-011](../../../plans/PLAN-011-destruction-results-and-restart.md)은 completed다. 간단한 멸망 연출·결과 화면·다시 시작, 종료 단계 저장/복원·실패 보존과 PC 가로의 실제 두 판을 Edit 212/212·Play 10/10·오류/경고 0으로 검증하여 3단계를 완료했다. [실행 증거](../../../plans/evidence/PLAN-011/README.md)를 따른다. active PLAN은 없으며 4단계의 세로·모바일·종합 검증은 별도 작성·승인 후 진행한다.
+3단계의 잔여 종료 연결 [PLAN-011](../../../plans/PLAN-011-destruction-results-and-restart.md)은 completed다. 간단한 멸망 연출·결과 화면·다시 시작, 종료 단계 저장/복원·실패 보존과 PC 가로의 실제 두 판을 Edit 212/212·Play 10/10·오류/경고 0으로 검증하여 3단계를 완료했다. [실행 증거](../../../plans/evidence/PLAN-011/README.md)를 따른다. 4단계의 세로·모바일·종합 검증은 별도 작성·승인 후 진행한다.
+
+최근 완료 [PLAN-012](../../../plans/PLAN-012-csv-so-data-and-game-data-store.md)는 completed다. CSV와 주제별 Registry SO를 결합한 Data를 초기 로딩하여 영속 GameDataStore에서 공유하고, 취득부 교체와 저장 호환성 검사를 구현했다. Edit 236/236·Domain Reload 양쪽 Play 각 13/13·Android 스크립트 컴파일과 CSV 참조 검사를 통과했다. 현재 active PLAN은 없으며 후속 승인 대기다. 실제 Google Sheets 연결과 4단계 최종 모바일 검증은 남아 있다.
 
 확정한 Unity 버전·Universal 2D(URP)·Android 대상과 연동 방향은 [플레이 환경](../../04-delivery/01-platform/environment.md)을 따른다. 구현할 작업의 필수 참조를 아래에서 읽고, 승인 규칙 안에서 필요한 세부 설계를 구체화한다.
 
@@ -90,5 +92,6 @@
 - [PLAN-009 가공·배양·보급형 운용과 시스템 책임·명명 정비](../../../plans/PLAN-009-processing-cultivation-and-workers.md): 2단계 개발 완료·검증. 3단계 방출/외부 활동과 4단계 모바일 최종 검증은 후속 범위.
 - [PLAN-010 침공형 방출·외부 활동·성과 누적·전과 보고](../../../plans/PLAN-010-invasion-activity-and-reports.md): completed. 3단계 방출·외부 활동·성과/보고·목표 정지 구현·검증 완료.
 - [PLAN-011 멸망 연출·결과 화면·한 판 종료와 재시작 완결](../../../plans/PLAN-011-destruction-results-and-restart.md): completed. 후보 등록·사용자 실행 승인 후 3단계 잔여 종료 연결과 실제 두 판을 구현·검증 완료.
+- [PLAN-012 CSV·SO 분리와 GameDataStore 초기 로딩](../../../plans/PLAN-012-csv-so-data-and-game-data-store.md): completed. 교체 가능한 CSV 취득부·Registry 결합 Data·영속 싱글턴·저장 호환성과 기존 게임 회귀 검증 완료.
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

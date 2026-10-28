@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.Linq;
 using NUnit.Framework;
@@ -13,7 +14,7 @@ namespace MobileGame.Foundation.Tests
             var registry = new ThingRegistry();
             var storageDefinition = CreateStorageDefinition();
             var resourceDefinition = CreateResourceDefinition();
-            var definitionBefore = EditorJsonUtility.ToJson(storageDefinition);
+            var definitionBefore = DataFixtureSnapshot.ToJson(storageDefinition);
             var first = CreateHolder(registry, storageDefinition);
             var second = CreateHolder(registry, storageDefinition);
             var resource = registry.CreateResource(resourceDefinition, 5, first);
@@ -28,7 +29,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(first.Contents.Single().GetComponent<ResourceStackComponent>().Quantity,
                 Is.EqualTo(3));
             Assert.That(second.Contents, Is.Empty);
-            Assert.That(EditorJsonUtility.ToJson(storageDefinition), Is.EqualTo(definitionBefore),
+            Assert.That(DataFixtureSnapshot.ToJson(storageDefinition), Is.EqualTo(definitionBefore),
                 "Changing an individual facility's inventory must not modify its shared SO.");
         }
 
@@ -39,7 +40,7 @@ namespace MobileGame.Foundation.Tests
             var storageDefinition = CreateStorageDefinition();
             var first = registry.Create(storageDefinition);
             var second = registry.Create(storageDefinition);
-            var creature = registry.Create(CreateDefinition<CreatureDefinition>("fixture.no-features"));
+            var creature = registry.Create(CreateDefinition<CreatureData>("fixture.no-features"));
 
             Assert.That(first.TryGetComponent<ResourceContainerComponent>(out var firstContainer), Is.True);
             Assert.That(second.TryGetComponent<ResourceContainerComponent>(out var secondContainer), Is.True);

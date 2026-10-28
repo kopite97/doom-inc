@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -12,8 +13,8 @@ namespace MobileGame.Foundation.Tests
     // covered separately through the laboratory commands and resource delivery path.
     public sealed class WorkTests : FoundationTestFixture
     {
-        private ResourceDefinition organic;
-        private CreatureDefinition prototype;
+        private ResourceData organic;
+        private CreatureData prototype;
         private ThingRegistry registry;
         private GridMap map;
         private LaboratoryManager simulation;
@@ -23,7 +24,7 @@ namespace MobileGame.Foundation.Tests
         public void SetUpLaboratory()
         {
             organic = CreateResourceDefinition("work.organic");
-            prototype = CreateDefinition<CreatureDefinition>("work.prototype", ThingComponentKind.ResourceContainer);
+            prototype = CreateDefinition<CreatureData>("work.prototype", ThingComponentKind.ResourceContainer);
             registry = new ThingRegistry(GameplayComponentFactory.Attach);
             map = new GridMap(registry, 16, 10);
             simulation = new LaboratoryManager(registry, map, organic);
@@ -168,7 +169,7 @@ namespace MobileGame.Foundation.Tests
         private Thing CompletedGathering(int x, int y)
         {
             var facility = Facility(FacilityRole.Gathering, x, y);
-            var definition = (FacilityDefinition)facility.Definition;
+            var definition = (FacilityData)facility.Definition;
             var construction = facility.GetComponent<ConstructionComponent>();
             Set(construction, "Delivered", definition.BuildCost);
             Set(construction, "Progress", definition.BuildSeconds);
@@ -179,7 +180,7 @@ namespace MobileGame.Foundation.Tests
         private Thing Facility(FacilityRole role, int x, int y)
         {
             var definition = CreateStorageDefinition("work.facility." + definitionNumber++);
-            using (var serialized = new SerializedObject(definition))
+            using (var serialized = new DataFixtureEditor(definition))
             {
                 serialized.FindProperty("role").intValue = (int)role;
                 serialized.FindProperty("resource").objectReferenceValue = organic;

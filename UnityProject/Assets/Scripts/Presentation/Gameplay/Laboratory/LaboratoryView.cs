@@ -12,16 +12,16 @@ namespace MobileGame.Presentation
     // Temporary presentation only: all commands, production and time gating belong to the shared runtime.
     public sealed partial class LaboratoryView : MonoBehaviour
     {
-        [SerializeField] private ResourceDefinition organic;
-        [SerializeField] private FacilityDefinition gathering;
-        [SerializeField] private FacilityDefinition storage;
-        [SerializeField] private CreatureDefinition prototype;
-        [SerializeField] private ResourceDefinition culture;
-        [SerializeField] private FacilityDefinition processing;
-        [SerializeField] private FacilityDefinition cultivation;
-        [SerializeField] private CreatureDefinition support;
-        [SerializeField] private CreatureDefinition invader;
-        [SerializeField] private InvasionDefinition invasion;
+        private ResourceData organic;
+        private FacilityData gathering;
+        private FacilityData storage;
+        private CreatureData prototype;
+        private ResourceData culture;
+        private FacilityData processing;
+        private FacilityData cultivation;
+        private CreatureData support;
+        private CreatureData invader;
+
         private bool skipNextDelta = true;
         private bool applicationPaused;
         private bool applicationFocused = true;
@@ -52,31 +52,21 @@ namespace MobileGame.Presentation
             }
         }
 
-        private void Start()
-        {
-            if (Controller == null)
-                Initialize(organic, gathering, storage, prototype,
-                    Path.Combine(Application.persistentDataPath, "Gameplay", "session.json"));
-        }
-
-        public void Initialize(ResourceDefinition organicDefinition, FacilityDefinition gatheringDefinition,
-            FacilityDefinition storageDefinition, CreatureDefinition prototypeDefinition,
-            string savePath, double autoSaveSeconds = 5)
+        public void Initialize(GameDataCatalog data, string savePath, double autoSaveSeconds = 5)
         {
             if (Controller != null) throw new InvalidOperationException("This view already has a session.");
+            if (data == null) throw new ArgumentNullException(nameof(data));
             if (string.IsNullOrWhiteSpace(savePath)) throw new ArgumentException("Provide a save slot.", nameof(savePath));
-            organic = organicDefinition;
-            gathering = gatheringDefinition;
-            storage = storageDefinition;
-            prototype = prototypeDefinition;
+            organic = data.Selected<ResourceData>("organicId"); culture = data.Selected<ResourceData>("cultureId");
+            gathering = data.Selected<FacilityData>("gatheringId"); storage = data.Selected<FacilityData>("storageId");
+            processing = data.Selected<FacilityData>("processingId"); cultivation = data.Selected<FacilityData>("cultivationId");
+            prototype = data.Selected<CreatureData>("prototypeId"); support = data.Selected<CreatureData>("supportId"); invader = data.Selected<CreatureData>("invaderId");
             SavePath = Path.GetFullPath(savePath);
-            var codec = new SessionSnapshotCodec(new ThingDefinition[]
-                { organic, gathering, storage, prototype, culture, processing, cultivation, support, invader }.Where(d => d != null),
-                requireLaboratory: true);
+            var codec = new SessionSnapshotCodec(data.Definitions.Values, requireLaboratory: true);
             Controller = new GameFlowManager(codec, new JsonFileSessionStore(SavePath),
-                () => LaboratorySessionFactory.Create(organic, gathering, storage, prototype, culture, invasion?.CreateSettings()), autoSaveSeconds);
+                () => LaboratorySessionFactory.Create(organic, gathering, storage, prototype, culture, data.Settings.Invasion), autoSaveSeconds);
             Commands = new LaboratoryCommands(Controller);
-            Ending = new RunEndingPresentation(Controller);
+            Ending = new RunEndingPresentation(Controller, data.Settings.EndingSeconds);
             Controller.SessionChanged += OnSessionChanged;
             Record("Start / Continue", Controller.StartOrContinue());
             Controller.NotifyApplicationPause(applicationPaused || !applicationFocused);
@@ -159,7 +149,7 @@ namespace MobileGame.Presentation
         public bool BeginStorageConstruction() => BeginConstruction(storage);
         public bool BeginProcessingConstruction() => BeginConstruction(processing);
         public bool BeginCultivationConstruction() => BeginConstruction(cultivation);
-        public bool BeginConstruction(FacilityDefinition definition) => Record("Designate construction", Commands.BeginConstruction(definition));
+        public bool BeginConstruction(FacilityData definition) => Record("Designate construction", Commands.BeginConstruction(definition));
         public bool BeginPlacement() => Record("Move facility", Controller.BeginPlacement(SelectedId));
         public bool PreviewAt(Vector2Int origin)
         {
@@ -183,7 +173,7 @@ namespace MobileGame.Presentation
         public bool CancelPlacement() => Record("Cancel", Simulation.ConstructionDefinition != null
             ? Commands.CancelConstruction() : Controller.CancelPlacement());
         public bool SetAllowed(Guid storageId, bool allowed) => Record("Storage allowance", Commands.SetAllowed(storageId, allowed));
-        public bool SetAllowed(Guid storageId, ResourceDefinition resource, bool allowed) =>
+        public bool SetAllowed(Guid storageId, ResourceData resource, bool allowed) =>
             Record("Storage allowance", Commands.SetAllowed(storageId, resource, allowed));
         public bool SelectCultivation(Guid id, CultivationTarget target) => Record("Cultivation target", Commands.SelectCultivation(id, target));
         public bool AssignWorker(Guid id, Guid? facilityId) => Record("Worker assignment", Commands.AssignWorker(id, facilityId));

@@ -44,7 +44,7 @@ namespace MobileGame.Gameplay
         public ISet<Guid> ProducingFacilities { get; } = new HashSet<Guid>();
         public bool Assign(Guid workerId, Guid? facilityId)
         {
-            if (!simulation.Registry.TryGet(workerId, out var thing) || !(thing.Definition is CreatureDefinition definition)
+            if (!simulation.Registry.TryGet(workerId, out var thing) || !(thing.Definition is CreatureData definition)
                 || !definition.CanOperate || !thing.TryGetComponent<WorkerComponent>(out var worker))
                 return Reject("Only support creatures can be assigned.");
             if (facilityId.HasValue && (!simulation.Registry.TryGet(facilityId.Value, out var facility)
@@ -167,7 +167,7 @@ namespace MobileGame.Gameplay
             }
 
             worker.WaitReason = string.Empty;
-            var stepSeconds = ((CreatureDefinition)thing.Definition).MoveSecondsPerCell;
+            var stepSeconds = ((CreatureData)thing.Definition).MoveSecondsPerCell;
             worker.MoveProgress += seconds;
             foreach (var cell in path)
             {
@@ -219,7 +219,7 @@ namespace MobileGame.Gameplay
             foreach (var target in ReachableTargets(worker).Where(thing =>
                 thing.TryGetComponent<ConstructionComponent>(out var construction) && !construction.IsComplete))
             {
-                var definition = (FacilityDefinition)target.Definition;
+                var definition = (FacilityData)target.Definition;
                 var construction = target.GetComponent<ConstructionComponent>();
                 if (construction.Delivered < definition.BuildCost)
                 {
@@ -265,7 +265,7 @@ namespace MobileGame.Gameplay
                 Clear(worker, "Another worker is using this facility");
                 return;
             }
-            var definition = (FacilityDefinition)target.Definition;
+            var definition = (FacilityData)target.Definition;
             if (worker.Job.Kind == WorkKind.Production)
             { ProducingFacilities.Add(target.Id); return; }
             if (worker.Job.Kind == WorkKind.Construction)
@@ -294,14 +294,14 @@ namespace MobileGame.Gameplay
         }
 
         private IEnumerable<Thing> ReachableTargets(Thing worker) => simulation.Registry.Things
-            .Where(thing => thing.IsPlaced && thing.Definition is FacilityDefinition)
+            .Where(thing => thing.IsPlaced && thing.Definition is FacilityData)
             .Select(thing => new { Thing = thing, Distance = simulation.Distance(worker, thing) })
             .Where(item => item.Distance.HasValue).OrderBy(item => item.Distance.Value)
             .ThenBy(item => item.Thing.CreationOrder).Select(item => item.Thing);
 
         private bool ValidWorkTarget(Thing target, WorkKind kind)
         {
-            if (!(target.Definition is FacilityDefinition definition)) return false;
+            if (!(target.Definition is FacilityData definition)) return false;
             if (kind == WorkKind.Production) return simulation.Production.CanOperate(target);
             if (kind == WorkKind.Construction)
                 return target.TryGetComponent<ConstructionComponent>(out var construction)

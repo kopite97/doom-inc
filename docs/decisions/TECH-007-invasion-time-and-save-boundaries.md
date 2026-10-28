@@ -15,7 +15,7 @@
 
 ## 위임된 초기값과 보고
 
-- `Data/Definitions/Invasion`의 `InvasionSettings` 한 곳에 기본값을 둔다. 실제 씬은 `SO/Session/Invasion.asset`의 `InvasionDefinition`을 참조한다.
+- 최초 구현에서는 `InvasionSettings`와 `SO/Session/Invasion.asset`을 사용했다. PLAN-012에서 초기값 원본을 [invasion.csv](../../UnityProject/Assets/CSV/Balance/invasion.csv)로 이관하고 숫자 전용 SO를 제거했다. 현재 취득·저장 호환성 정책은 [TECH-009](TECH-009-csv-data-catalog.md)가 대체한다.
 - 시작 시 설정을 복사하고 저장에 포함한다. 기존 한 판의 설정은 SO 조정으로 소급 변경하지 않는다. 구버전/기존 테스트의 미지정 설정에는 같은 기본값을 적용한다.
 - 5초마다 활동 1회, 보통 성과 2, 4번째마다 큰 공적 10, 목표 120. 난수·레벨·해금 없음. 성과는 완료 활동별로 반영한다.
 - 활동 직전 누적 성과가 60 미만이면 상세 보고, 이후에는 큰 공적만 보고한다. 최신 20개를 유지한다. 보고는 활동 순번·개체 ID·회차·성과·게임 경과 시간·당시 누적 성과를 기록한다.
@@ -41,7 +41,7 @@
 
 ## 검증 연결
 
-적용 위치: [InvasionManager](../../UnityProject/Assets/Scripts/Gameplay/Invasion/InvasionManager.cs), [InvasionState](../../UnityProject/Assets/Scripts/Gameplay/Invasion/InvasionState.cs), [GameFlowManager](../../UnityProject/Assets/Scripts/GameFlow/Session/GameFlowManager.cs), [InvasionSnapshotCodec](../../UnityProject/Assets/Scripts/Persistence/Serialization/InvasionSnapshotCodec.cs), [실제 설정 SO](../../UnityProject/Assets/SO/Session/Invasion.asset), [화면](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.Gui.cs).
+적용 위치: [InvasionManager](../../UnityProject/Assets/Scripts/Gameplay/Invasion/InvasionManager.cs), [InvasionState](../../UnityProject/Assets/Scripts/Gameplay/Invasion/InvasionState.cs), [GameFlowManager](../../UnityProject/Assets/Scripts/GameFlow/Session/GameFlowManager.cs), [InvasionSnapshotCodec](../../UnityProject/Assets/Scripts/Persistence/Serialization/InvasionSnapshotCodec.cs), [현재 설정 CSV](../../UnityProject/Assets/CSV/Balance/invasion.csv), [화면](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.Gui.cs).
 
 대안인 UI 이벤트 구독 구동은 세션 재연결과 저장 순서에 의존해 채택하지 않았다. 전체 delta를 연구소에 먼저 적용한 뒤 목표를 처리하는 방식은 목표 이후 시간이 생산에 반영되어 사용하지 않는다. 저장 복원 시 종료 단계를 강제로 Playing으로 바꾸거나 목표 성과를 지급하는 대안도 기존 단계/실제 성과를 훼손하므로 제외했다.
 

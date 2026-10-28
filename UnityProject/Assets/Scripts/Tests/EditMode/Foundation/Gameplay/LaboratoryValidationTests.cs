@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.IO;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace MobileGame.Foundation.Tests
         private LaboratoryManager simulation;
         private SessionSnapshotCodec codec;
         private JsonFileSessionStore store;
-        private CreatureDefinition prototype;
+        private CreatureData prototype;
         private string saveDirectory;
         private Thing worker;
         private Thing gathering;
@@ -25,15 +26,15 @@ namespace MobileGame.Foundation.Tests
         public void BuildAndSaveActualGatheringCheckpoint()
         {
             var organic = CreateResourceDefinition("validation.organic");
-            prototype = CreateDefinition<CreatureDefinition>("validation.prototype", ThingComponentKind.ResourceContainer);
+            prototype = CreateDefinition<CreatureData>("validation.prototype", ThingComponentKind.ResourceContainer);
             var gatheringDefinition = Facility("validation.gathering", FacilityRole.Gathering, organic);
             var storageDefinition = Facility("validation.storage", FacilityRole.Storage, organic);
             state = LaboratorySessionFactory.Create(organic, gatheringDefinition, storageDefinition, prototype);
             simulation = (LaboratoryManager)state.Runtime;
-            codec = new SessionSnapshotCodec(new ThingDefinition[] { organic, prototype, gatheringDefinition, storageDefinition }, true);
+            codec = new SessionSnapshotCodec(new ThingData[] { organic, prototype, gatheringDefinition, storageDefinition }, true);
             Build(gatheringDefinition, new Vector2Int(4, 4));
             Build(storageDefinition, new Vector2Int(7, 4));
-            worker = state.Registry.Things.Single(t => t.Definition is CreatureDefinition);
+            worker = state.Registry.Things.Single(t => t.Definition is CreatureData);
             gathering = state.Registry.Things.Single(t => ReferenceEquals(t.Definition, gatheringDefinition));
             for (var elapsed = 0; elapsed < 2400 && gathering.GetComponent<GatheringComponent>().Progress < 1; elapsed++)
                 simulation.Advance(0.05);
@@ -107,7 +108,7 @@ namespace MobileGame.Foundation.Tests
         [TestCase(true)]
         public void FacilityCoveringAWorkerRemainsLegalForIdleOrReachableMovingState(bool idle)
         {
-            var storage = state.Registry.Things.Single(t => t.Definition is FacilityDefinition facility
+            var storage = state.Registry.Things.Single(t => t.Definition is FacilityData facility
                 && facility.Role == FacilityRole.Storage);
             Assert.That(state.Map.Commands.Place(gathering.Id, new Vector2Int(9, 4)).Succeeded, Is.True);
             Assert.That(state.Map.Commands.Place(storage.Id, worker.Placement.Origin).Succeeded, Is.True);
@@ -152,17 +153,17 @@ namespace MobileGame.Foundation.Tests
 
         private void SaveCheckpoint() => store.Write(codec.Serialize(codec.Capture(state, SessionPhase.Playing)));
 
-        private void Build(FacilityDefinition definition, Vector2Int position)
+        private void Build(FacilityData definition, Vector2Int position)
         {
             Assert.That(simulation.BeginConstruction(definition), Is.True);
             Assert.That(simulation.PreviewConstruction(position, QuarterTurn.None), Is.True);
             Assert.That(simulation.ConfirmConstruction(), Is.True);
         }
 
-        private FacilityDefinition Facility(string id, FacilityRole role, ResourceDefinition organic)
+        private FacilityData Facility(string id, FacilityRole role, ResourceData organic)
         {
             var definition = CreateStorageDefinition(id);
-            using (var serialized = new SerializedObject(definition))
+            using (var serialized = new DataFixtureEditor(definition))
             {
                 serialized.FindProperty("role").intValue = (int)role;
                 serialized.FindProperty("resource").objectReferenceValue = organic;

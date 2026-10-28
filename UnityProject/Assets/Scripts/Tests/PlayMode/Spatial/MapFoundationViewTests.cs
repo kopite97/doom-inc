@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using MobileGame.TestSupport;
 using System;
 using System.Collections;
 using System.IO;
@@ -48,9 +49,9 @@ namespace MobileGame.SpatialTests
                 var view = UnityEngine.Object.FindFirstObjectByType<MapFoundationView>();
                 Assert.That(view, Is.Not.Null, "The saved scene must deserialize the real view.");
                 Assert.That(view.Session, Is.Not.Null, "Scene SO references must create the fixture.");
-                var storage = AssetDatabase.LoadAssetAtPath<FacilityDefinition>("Assets/SO/Facility/Storage.asset");
-                var creature = AssetDatabase.LoadAssetAtPath<CreatureDefinition>("Assets/SO/Creature/PrototypeSupport.asset");
-                var resource = AssetDatabase.LoadAssetAtPath<ResourceDefinition>("Assets/SO/Resource/OrganicMatter.asset");
+                var storage = DataTestAssets.LoadAssetAtPath<FacilityData>("Assets/SO/Facility/Storage.asset");
+                var creature = DataTestAssets.LoadAssetAtPath<CreatureData>("Assets/SO/Creature/PrototypeSupport.asset");
+                var resource = DataTestAssets.LoadAssetAtPath<ResourceData>("Assets/SO/Resource/OrganicMatter.asset");
                 var definitionBefore = EditorJsonUtility.ToJson(storage);
                 var harness = new MapFoundationScenario(storage, creature, resource);
                 var uiThing = view.Session.Facilities[0];

@@ -27,12 +27,7 @@ namespace MobileGame.Foundation.Editor
             var creature = AssetDatabase.LoadAssetAtPath<CreatureDefinition>("Assets/SO/Creature/PrototypeSupport.asset");
             var resource = AssetDatabase.LoadAssetAtPath<ResourceDefinition>("Assets/SO/Resource/OrganicMatter.asset");
             // Development tuning for the representative store, not a finalized balance value.
-            using (var serialized = new SerializedObject(storage))
-            {
-                serialized.FindProperty("footprint").vector2IntValue = new Vector2Int(3, 2);
-                serialized.FindProperty("interactionOffset").vector2IntValue = new Vector2Int(1, -1);
-                serialized.ApplyModifiedPropertiesWithoutUndo();
-            }
+            storage.Validate();
             storage.Validate();
             AssetDatabase.SaveAssetIfDirty(storage);
 
@@ -53,13 +48,7 @@ namespace MobileGame.Foundation.Editor
                 var viewObject = new GameObject("Map Foundation View");
                 SceneManager.MoveGameObjectToScene(viewObject, scene);
                 var view = viewObject.AddComponent<MapFoundationView>();
-                using (var serialized = new SerializedObject(view))
-                {
-                    serialized.FindProperty("storage").objectReferenceValue = storage;
-                    serialized.FindProperty("creature").objectReferenceValue = creature;
-                    serialized.FindProperty("resource").objectReferenceValue = resource;
-                    serialized.ApplyModifiedPropertiesWithoutUndo();
-                }
+                GameDataAssets.Configure(view.gameObject);
                 if (!EditorSceneManager.SaveScene(scene, ScenePath))
                     throw new InvalidOperationException("Could not save MapFoundation.");
             }

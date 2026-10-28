@@ -17,15 +17,15 @@ namespace MobileGame.Gameplay
             var workClaims = new HashSet<Guid>();
             foreach (var thing in simulation.Registry.Things)
             {
-                if (thing.Definition is ResourceDefinition)
+                if (thing.Definition is ResourceData)
                 {
-                    if (!simulation.Supports(thing.Definition as ResourceDefinition))
+                    if (!simulation.Supports(thing.Definition as ResourceData))
                         throw Invalid("Unsupported laboratory resource.");
                     continue;
                 }
-                if (thing.Definition is FacilityDefinition facility && facility.Role != FacilityRole.None)
+                if (thing.Definition is FacilityData facility && facility.Role != FacilityRole.None)
                     ValidateFacility(simulation, thing, facility);
-                if (thing.Definition is CreatureDefinition creature)
+                if (thing.Definition is CreatureData creature)
                 {
                     if (creature.CanWork) ValidateWorker(simulation, thing, creature, workClaims);
                 }
@@ -34,7 +34,7 @@ namespace MobileGame.Gameplay
             simulation.Invasion.ValidateState();
         }
 
-        private static void ValidateFacility(LaboratoryManager simulation, Thing thing, FacilityDefinition definition)
+        private static void ValidateFacility(LaboratoryManager simulation, Thing thing, FacilityData definition)
         {
             if (!ReferenceEquals(definition.Resource, simulation.Organic) ||
                 !thing.TryGetComponent<ConstructionComponent>(out var construction))
@@ -64,7 +64,7 @@ namespace MobileGame.Gameplay
         }
 
         private static void ValidateWorker(LaboratoryManager simulation, Thing thing,
-            CreatureDefinition definition, HashSet<Guid> workClaims)
+            CreatureData definition, HashSet<Guid> workClaims)
         {
             if (!thing.TryGetComponent<WorkerComponent>(out var worker) ||
                 !LaboratoryManager.ValidPriorities(worker.Priorities) ||
@@ -89,7 +89,7 @@ namespace MobileGame.Gameplay
                 return; // Transport links, held batches and reservations are validated together below.
             if (job.SourceId.HasValue || job.BatchOriginId.HasValue ||
                 !simulation.Registry.TryGet(job.TargetId, out var target) ||
-                !(target.Definition is FacilityDefinition targetDefinition) ||
+                !(target.Definition is FacilityData targetDefinition) ||
                 !target.TryGetComponent<ConstructionComponent>(out var construction))
                 throw Invalid("Worker Job references an invalid facility.");
             if (job.Stage != JobStage.Working && job.Stage != JobStage.ToDestination && job.Stage != JobStage.Waiting)
@@ -111,7 +111,7 @@ namespace MobileGame.Gameplay
                 throw Invalid("Gathering work requires an available completed gathering facility.");
         }
 
-        private static void ValidateProduction(LaboratoryManager simulation, Thing thing, FacilityDefinition definition,
+        private static void ValidateProduction(LaboratoryManager simulation, Thing thing, FacilityData definition,
             ConstructionComponent construction)
         {
             var state = thing.GetComponent<ProductionComponent>();

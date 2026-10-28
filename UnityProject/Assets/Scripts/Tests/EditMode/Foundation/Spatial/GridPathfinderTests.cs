@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System.Linq;
 using NUnit.Framework;
 using UnityEditor;
@@ -12,7 +13,7 @@ namespace MobileGame.Foundation.Tests
         {
             var registry = new ThingRegistry();
             var wall = registry.Create(Facility("fixture.wall", 1, 4));
-            var creature = registry.Create(CreateDefinition<CreatureDefinition>("fixture.creature"));
+            var creature = registry.Create(CreateDefinition<CreatureData>("fixture.creature"));
             var map = new GridMap(registry, 7, 5);
             map.Commands.Place(wall.Id, new Vector2Int(3, 0));
             map.Commands.Place(creature.Id, new Vector2Int(3, 4));
@@ -90,7 +91,7 @@ namespace MobileGame.Foundation.Tests
                 Assert.That(map.CheckPlacement(definition, position, rotation).Error,
                     Is.EqualTo(map.CheckPlacement(unplaced.Id, position, rotation).Error));
 
-            Assert.That(map.CheckPlacement((FacilityDefinition)null, Vector2Int.zero).Error,
+            Assert.That(map.CheckPlacement((FacilityData)null, Vector2Int.zero).Error,
                 Is.EqualTo(PlacementError.InvalidDefinition));
             Assert.That(registry.Things, Is.EquivalentTo(before));
             Assert.That(registry.LastCreationOrder, Is.EqualTo(orderBefore));
@@ -98,10 +99,10 @@ namespace MobileGame.Foundation.Tests
             Assert.That(unplaced.IsPlaced, Is.False);
         }
 
-        private FacilityDefinition Facility(string id, int width, int height)
+        private FacilityData Facility(string id, int width, int height)
         {
             var result = CreateStorageDefinition(id);
-            using (var serialized = new SerializedObject(result))
+            using (var serialized = new DataFixtureEditor(result))
             {
                 serialized.FindProperty("footprint").vector2IntValue = new Vector2Int(width, height);
                 serialized.FindProperty("interactionOffset").vector2IntValue = new Vector2Int(0, -1);

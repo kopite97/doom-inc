@@ -1,3 +1,4 @@
+using MobileGame.TestSupport;
 using System;
 using System.IO;
 using System.Linq;
@@ -12,10 +13,10 @@ namespace MobileGame.Foundation.Tests
 {
     public sealed class LaboratoryPersistenceTests : FoundationTestFixture
     {
-        private ResourceDefinition organic;
-        private CreatureDefinition prototype;
-        private FacilityDefinition gathering;
-        private FacilityDefinition storage;
+        private ResourceData organic;
+        private CreatureData prototype;
+        private FacilityData gathering;
+        private FacilityData storage;
         private SessionSnapshotCodec codec;
         private string directory;
         private string slot;
@@ -24,10 +25,10 @@ namespace MobileGame.Foundation.Tests
         public void Prepare()
         {
             organic = CreateResourceDefinition("persistence.organic");
-            prototype = CreateDefinition<CreatureDefinition>("persistence.prototype", ThingComponentKind.ResourceContainer);
+            prototype = CreateDefinition<CreatureData>("persistence.prototype", ThingComponentKind.ResourceContainer);
             gathering = GameplayFacility("persistence.gathering", FacilityRole.Gathering);
             storage = GameplayFacility("persistence.storage", FacilityRole.Storage);
-            codec = new SessionSnapshotCodec(new ThingDefinition[] { organic, prototype, gathering, storage });
+            codec = new SessionSnapshotCodec(new ThingData[] { organic, prototype, gathering, storage });
             directory = Path.Combine(Path.GetTempPath(), "DoomInc-LaboratoryPersistence", Guid.NewGuid().ToString("N"));
             slot = Path.Combine(directory, "session.json");
         }
@@ -38,10 +39,10 @@ namespace MobileGame.Foundation.Tests
             if (Directory.Exists(directory)) Directory.Delete(directory, true);
         }
 
-        private FacilityDefinition GameplayFacility(string id, FacilityRole role)
+        private FacilityData GameplayFacility(string id, FacilityRole role)
         {
-            var definition = CreateDefinition<FacilityDefinition>(id, ThingComponentKind.ResourceContainer);
-            using (var serialized = new SerializedObject(definition))
+            var definition = CreateDefinition<FacilityData>(id, ThingComponentKind.ResourceContainer);
+            using (var serialized = new DataFixtureEditor(definition))
             {
                 serialized.FindProperty("role").intValue = (int)role;
                 serialized.FindProperty("resource").objectReferenceValue = organic;
@@ -163,12 +164,12 @@ namespace MobileGame.Foundation.Tests
         public void PartialAdmissionRestoresHeldRemainderAndCompletesTheSameBatchExactlyOnce()
         {
             var smallDefinition = GameplayFacility("persistence.small-storage", FacilityRole.Storage);
-            using (var serialized = new SerializedObject(smallDefinition))
+            using (var serialized = new DataFixtureEditor(smallDefinition))
             {
                 serialized.FindProperty("storageCapacity").intValue = 2;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
             }
-            codec = new SessionSnapshotCodec(new ThingDefinition[] { organic, prototype, gathering, storage, smallDefinition });
+            codec = new SessionSnapshotCodec(new ThingData[] { organic, prototype, gathering, storage, smallDefinition });
             var state = PendingConstruction();
             var simulation = (LaboratoryManager)state.Runtime;
             var mainStore = Facility(state, FacilityRole.Storage);
@@ -214,13 +215,13 @@ namespace MobileGame.Foundation.Tests
         [Test]
         public void TransientConstructionPreviewIsNotSavedAndGameFlowGatesActualWork()
         {
-            var invaderDefinition = CreateDefinition<CreatureDefinition>("persistence.invader", ThingComponentKind.ResourceContainer);
-            using (var serialized = new SerializedObject(invaderDefinition))
+            var invaderDefinition = CreateDefinition<CreatureData>("persistence.invader", ThingComponentKind.ResourceContainer);
+            using (var serialized = new DataFixtureEditor(invaderDefinition))
             {
                 serialized.FindProperty("role").intValue = (int)CreatureRole.Invader;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
             }
-            codec = new SessionSnapshotCodec(new ThingDefinition[] { organic, prototype, gathering, storage, invaderDefinition });
+            codec = new SessionSnapshotCodec(new ThingData[] { organic, prototype, gathering, storage, invaderDefinition });
             var controller = Controller(() => LaboratorySessionFactory.Create(organic, gathering, storage, prototype));
             Assert.That(controller.StartOrContinue(), Is.True, controller.LastError);
             var state = controller.Current;
@@ -394,7 +395,7 @@ namespace MobileGame.Foundation.Tests
         }
 
         private static Thing Facility(SessionState state, FacilityRole role) => state.Registry.Things.Single(t =>
-            t.Definition is FacilityDefinition definition && definition.Role == role);
+            t.Definition is FacilityData definition && definition.Role == role);
         private static int Stored(SessionState state) => Facility(state, FacilityRole.Storage)
             .GetComponent<ResourceContainerComponent>().Contents.Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
         private static int TotalResource(SessionState state) => state.Registry.Things

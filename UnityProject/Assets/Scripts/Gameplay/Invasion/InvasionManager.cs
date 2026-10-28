@@ -96,7 +96,7 @@ namespace MobileGame.Gameplay
             long score = 0, activities = 0;
             foreach (var thing in laboratory.Registry.Things)
             {
-                var isInvader = thing.Definition is CreatureDefinition definition && definition.Role == CreatureRole.Invader;
+                var isInvader = thing.Definition is CreatureData definition && definition.Role == CreatureRole.Invader;
                 var hasState = thing.TryGetComponent<InvaderComponent>(out var invader);
                 if (isInvader != hasState) throw new InvalidDataException("Wrong model for invasion state.");
                 if (!hasState) continue;

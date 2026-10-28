@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using MobileGame.TestSupport;
 using System;
 using System.Collections;
 using System.IO;
@@ -104,7 +105,7 @@ namespace MobileGame.SpatialTests
                 view.SimulationRate = 12;
                 yield return WaitFor(() => restored.Registry.Things.Where(t => t.Definition.Kind == ThingKind.Facility)
                     .All(t => t.GetComponent<ConstructionComponent>().IsComplete), "Both facilities were not completed.");
-                var store = restored.Registry.Things.Single(t => t.Definition is FacilityDefinition def && def.Role == FacilityRole.Storage);
+                var store = restored.Registry.Things.Single(t => t.Definition is FacilityData def && def.Role == FacilityRole.Storage);
                 yield return WaitFor(() => StoredQuantity(store) >= 10,
                     "The actual worker did not repeat gathering, movement and storage admission.");
                 view.SimulationRate = 0;
@@ -150,11 +151,11 @@ namespace MobileGame.SpatialTests
                     view = loaded;
                     view.SimulationRate = 0;
                 });
-                var organic = AssetDatabase.LoadAssetAtPath<ResourceDefinition>("Assets/SO/Resource/OrganicMatter.asset");
-                var gathering = AssetDatabase.LoadAssetAtPath<FacilityDefinition>("Assets/SO/Facility/Gathering.asset");
-                var storage = AssetDatabase.LoadAssetAtPath<FacilityDefinition>("Assets/SO/Facility/Storage.asset");
-                var prototype = AssetDatabase.LoadAssetAtPath<CreatureDefinition>("Assets/SO/Creature/PrototypeSupport.asset");
-                var harness = new GameFlowManager(new SessionSnapshotCodec(new ThingDefinition[] { organic, gathering, storage, prototype }),
+                var organic = DataTestAssets.LoadAssetAtPath<ResourceData>("Assets/SO/Resource/OrganicMatter.asset");
+                var gathering = DataTestAssets.LoadAssetAtPath<FacilityData>("Assets/SO/Facility/Gathering.asset");
+                var storage = DataTestAssets.LoadAssetAtPath<FacilityData>("Assets/SO/Facility/Storage.asset");
+                var prototype = DataTestAssets.LoadAssetAtPath<CreatureData>("Assets/SO/Creature/PrototypeSupport.asset");
+                var harness = new GameFlowManager(new SessionSnapshotCodec(new ThingData[] { organic, gathering, storage, prototype }),
                     new JsonFileSessionStore(Path.Combine(directory, "harness.json")),
                     () => LaboratorySessionFactory.Create(organic, gathering, storage, prototype), 30);
                 Assert.That(harness.StartOrContinue(), Is.True);
@@ -217,25 +218,14 @@ namespace MobileGame.SpatialTests
                 {
                     initialized = scene.GetRootGameObjects().Select(root => root.GetComponent<LaboratoryView>())
                         .Single(candidate => candidate != null);
-                    using (var serialized = new SerializedObject(initialized))
-                    {
-                        var organic = serialized.FindProperty("organic").objectReferenceValue as ResourceDefinition;
-                        var gathering = serialized.FindProperty("gathering").objectReferenceValue as FacilityDefinition;
-                        var storage = serialized.FindProperty("storage").objectReferenceValue as FacilityDefinition;
-                        var prototype = serialized.FindProperty("prototype").objectReferenceValue as CreatureDefinition;
-                        Assert.That(organic, Is.Not.Null);
-                        Assert.That(gathering, Is.Not.Null);
-                        Assert.That(storage, Is.Not.Null);
-                        Assert.That(prototype, Is.Not.Null);
-                        initialized.Initialize(organic, gathering, storage, prototype, path, interval);
-                    }
+                    initialized.GetComponent<GameBootstrap>().SetSaveSlotBeforeStart(path, interval);
                     loaded(initialized);
                     if (keepFocused) initialized.StartCoroutine(KeepScenarioFocused(initialized));
                 }
                 catch (Exception error)
                 {
                     failure = error;
-                    if (initialized != null) initialized.enabled = false;
+                    if (initialized != null) { initialized.enabled = false; initialized.GetComponent<GameBootstrap>().enabled = false; }
                 }
             }
             SceneManager.sceneLoaded += InitializeBeforeStart;
@@ -245,6 +235,7 @@ namespace MobileGame.SpatialTests
                 yield return WaitFor(() => load.isDone, "The laboratory scene did not load.");
                 Assert.That(failure, Is.Null, failure?.ToString());
                 Assert.That(initialized, Is.Not.Null);
+                yield return WaitFor(() => initialized.Controller != null, "Bootstrap did not initialize laboratory: " + initialized.GetComponent<GameBootstrap>().Error);
                 Assert.That(initialized.SavePath, Is.EqualTo(Path.GetFullPath(path)), "Tests must not touch the real gameplay slot.");
                 Assert.That(initialized.Simulation, Is.Not.Null, initialized.Controller.LastError);
                 yield return null;
