@@ -1,0 +1,35 @@
+{
+  "success": true,
+  "command": "command test",
+  "data": {
+    "command": "test",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 0.45,
+      "summary": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.ResponsiveLayoutsPreserveSessionAndDraftAcrossSixScreenSizes",
+          "Status": "Failed",
+          "Duration": 0.4427567,
+          "Message": "Unhandled log message: '[Error] Invalid index 0 18 1'. Use UnityEngine.TestTools.LogAssert.Expect",
+          "StackTrace": "System.Reflection.MethodBase:Invoke (object,object[])\r\nMobileGame.Foundation.Editor.LaboratoryGameViewSize:Dispose () (at Assets/Scripts/Editor/Validation/LaboratoryGameViewSize.cs:41)\r\nMobileGame.SpatialTests.LaboratoryViewTests/<ResponsiveLayoutsPreserveSessionAndDraftAcrossSixScreenSizes>d__13:<>m__Finally2 ()\r\nMobileGame.SpatialTests.LaboratoryViewTests/<ResponsiveLayoutsPreserveSessionAndDraftAcrossSixScreenSizes>d__13:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.Layout.cs:58)\r\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\r\n\r\n"
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

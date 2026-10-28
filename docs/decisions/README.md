@@ -35,5 +35,5 @@
 | [TECH-006](TECH-006-production-and-manager-boundaries.md) | Manager 책임·명명 정비와 가공·배양 확장 | [PLAN-009](../plans/PLAN-009-processing-cultivation-and-workers.md) |
 | [TECH-007](TECH-007-invasion-time-and-save-boundaries.md) | 외부 활동·보고 분리·목표 시각 분할과 저장 v4/종료 이관 | [PLAN-010](../plans/PLAN-010-invasion-activity-and-reports.md) |
 | [TECH-008](TECH-008-run-ending-presentation.md) | 일시적 멸망 연출 시계·화면 요청 식별·결과 조회·종료 복원과 재시작 | [PLAN-011](../plans/PLAN-011-destruction-results-and-restart.md) |
-
-- [TECH-009 CSV·Registry·Data와 초기 로딩](TECH-009-csv-data-catalog.md): PLAN-012에서 구현·검증 완료.
+| [TECH-009](TECH-009-csv-data-catalog.md) | CSV·Registry·Data와 초기 로딩 | [PLAN-012](../plans/PLAN-012-csv-so-data-and-game-data-store.md) |
+| [TECH-010](TECH-010-responsive-ui-and-mobile-input.md) | uGUI·EnhancedTouch·안전 영역·입력 취소와 실제 Android 진입 | [PLAN-013](../plans/PLAN-013-responsive-ui-and-mobile-input.md) |

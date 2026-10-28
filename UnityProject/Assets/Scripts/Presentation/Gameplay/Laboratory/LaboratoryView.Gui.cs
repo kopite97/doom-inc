@@ -3,311 +3,338 @@ using System.Linq;
 using MobileGame.Foundation;
 using MobileGame.Gameplay;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MobileGame.Presentation
 {
     public sealed partial class LaboratoryView
     {
-        private GUIStyle cellStyle;
-        private GUIStyle wrappedStyle;
         private Vector2 panelScroll;
+        private LaboratoryUiCanvas screen;
+        private RectTransform playRoot;
+        private Text titleText;
+        private Text hudText;
+        private RectTransform worldGauge;
+        private RectTransform worldGaugeFill;
+        private Text editText;
+        private RectTransform toolRoot;
+        private ScrollRect controlsScroll;
+        private LaboratoryUiList controls;
+        private LaboratoryUiButton collapseButton;
+        private LaboratoryUiButton rotateButton;
+        private LaboratoryUiButton confirmButton;
+        private LaboratoryUiButton cancelButton;
+        private LaboratoryUiButton zoomInButton;
+        private LaboratoryUiButton zoomOutButton;
+        private LaboratoryUiButton fitButton;
+        private LaboratoryMapView mapScreen;
+        private bool controlsCollapsed;
+        private int screenGeneration = -1;
+        private SessionPhase screenPhase;
 
-        private void OnGUI()
+        public RectTransform MapViewport { get; private set; }
+        public Canvas UiCanvas => screen?.Canvas;
+        public RectTransform UiSafeRoot => screen?.SafeRoot;
+        public bool ControlsCollapsed => controlsCollapsed;
+        public LaboratoryUiButton FindUiButton(string key) => UiCanvas == null ? null
+            : UiCanvas.GetComponentsInChildren<LaboratoryUiButton>(true).FirstOrDefault(b => b.name == key);
+
+        private void EnsureScreen()
+        {
+            if (screen != null) return;
+            screen = new LaboratoryUiCanvas(transform, "Temp_LaboratoryCanvas", 10);
+            playRoot = LaboratoryUiWidgets.Panel("PlayScreen", screen.SafeRoot, LaboratoryUiWidgets.Background).rectTransform;
+            titleText = LaboratoryUiWidgets.Label("Title", playRoot, 24); titleText.text = "DOOM INC / LABORATORY";
+            hudText = LaboratoryUiWidgets.Label("Resources", playRoot, 17);
+            worldGauge = LaboratoryUiWidgets.Panel("WorldProgress", playRoot, new Color(0.18f, 0.2f, 0.25f)).rectTransform;
+            worldGaugeFill = LaboratoryUiWidgets.Panel("Progress", worldGauge, new Color(0.85f, 0.3f, 0.2f)).rectTransform;
+            collapseButton = LaboratoryUiWidgets.Button("ToggleControls", playRoot, "Hide controls", () => screen.LayoutEpoch);
+            collapseButton.Bind(() => { if (!CanClickScreen()) return; controlsCollapsed = !controlsCollapsed; screen.InvalidatePointers(); }, "screen");
+            var mapBackground = LaboratoryUiWidgets.Panel("MapViewport", playRoot, new Color(0.025f, 0.04f, 0.065f));
+            MapViewport = mapBackground.rectTransform; MapViewport.gameObject.AddComponent<RectMask2D>();
+            // The map owns drawing and gesture interpretation; UI never mutates grid coordinates directly.
+            mapScreen = MapViewport.gameObject.AddComponent<LaboratoryMapView>(); mapScreen.Initialize(this);
+            toolRoot = LaboratoryUiWidgets.Rect("MapTools", playRoot);
+            editText = LaboratoryUiWidgets.Label("PlacementStatus", toolRoot, 16);
+            rotateButton = MakeTool("Rotate", "Rotate", () => RotatePreview());
+            confirmButton = MakeTool("Confirm", "Confirm", () => ConfirmPlacement());
+            cancelButton = MakeTool("Cancel", "Cancel", () => CancelPlacement());
+            zoomInButton = MakeTool("ZoomIn", "+", () => mapScreen.ZoomBy(1.3f));
+            zoomOutButton = MakeTool("ZoomOut", "−", () => mapScreen.ZoomBy(1 / 1.3f));
+            fitButton = MakeTool("FitMap", "Fit", () => mapScreen.Fit());
+            controlsScroll = LaboratoryUiWidgets.Scroll("Controls", playRoot, out var content);
+            controls = new LaboratoryUiList(content, () => screen.LayoutEpoch);
+            CreateEndingScreen();
+        }
+
+        private LaboratoryUiButton MakeTool(string key, string label, Action action)
+        {
+            var button = LaboratoryUiWidgets.Button(key, toolRoot, label, () => screen.LayoutEpoch);
+            button.Bind(() => { if (CanInteract) action(); }, "initial");
+            return button;
+        }
+        private bool CanClickScreen() => isActiveAndEnabled && Controller != null && !Controller.IsApplicationPaused;
+        private string UiContext => Controller == null ? "none" : Controller.Generation + ":" + Controller.Phase;
+        private void BindTool(LaboratoryUiButton button, Action action, bool enabled)
+        {
+            var generation = Controller.Generation; var selection = SelectedId; var editing = IsEditing;
+            button.Bind(() => { if (CanInteract && generation == Controller.Generation && selection == SelectedId && editing == IsEditing) action(); }, UiContext + ":" + SelectedId + ":" + IsEditing);
+            button.interactable = enabled && CanInteract;
+        }
+        private void UpdateScreen()
         {
             if (Controller == null) return;
-            if (Event.current.type == EventType.Repaint) RepaintCount++;
-            if (Ending?.IsEnding == true) { DrawEnding(); return; }
-            GUI.color = Color.white;
-            GUI.Label(new Rect(20, 10, Screen.width - 40, 25), "DOOM INC / LABORATORY");
-            GUI.Label(new Rect(20, 36, Screen.width - 40, 25),
-                "Build, process, cultivate. Release waiting invaders and follow their achievements.");
-            var panelWidth = Mathf.Min(390, Screen.width * 0.43f);
-            var gridWidth = Mathf.Max(100, Screen.width - panelWidth - 60);
-            if (Simulation != null)
+            EnsureScreen(); screen.RefreshLayout();
+            screen.SetVisible(isActiveAndEnabled);
+            if (screenGeneration != Controller.Generation || screenPhase != Controller.Phase)
             {
-                var map = Simulation.Map;
-                var size = Mathf.Max(8, Mathf.Min(52, gridWidth / map.Width, (Screen.height - 200f) / map.Height));
-                var grid = new Rect(20, 90, size * map.Width, size * map.Height);
-                DrawGrid(grid, size);
-                GUI.Label(new Rect(20, grid.yMax + 10, gridWidth, 22), "G: gatherer  S: storage  F: processing  C: cultivation");
-                GUI.Label(new Rect(20, grid.yMax + 34, gridWidth, 22), "P: prototype  W: support  V: invader  I: interaction | Yellow: building");
-                GUI.Label(new Rect(20, grid.yMax + 60, gridWidth, 42),
-                    "Organic matter: " + Simulation.Registry.Things.Where(t => t.Definition == organic)
-                        .Sum(t => t.GetComponent<ResourceStackComponent>().Quantity)
-                    + " | Culture: " + Simulation.Registry.Things.Where(t => t.Definition == culture)
-                        .Sum(t => t.GetComponent<ResourceStackComponent>().Quantity) + " | Reservations: " + Simulation.Reservations.Count
-                    + "\nLaboratory: " + (Controller.CanAdvanceLaboratory ? "running" : "paused")
-                    + " | Phase: " + Controller.Phase);
+                screen.InvalidatePointers();
+                if (screenGeneration != Controller.Generation)
+                {
+                    controlsScroll.StopMovement(); resultScroll.StopMovement();
+                    controlsScroll.content.anchoredPosition = panelScroll;
+                    resultScroll.content.anchoredPosition = endingScroll;
+                }
+                screenGeneration = Controller.Generation; screenPhase = Controller.Phase;
             }
-            DrawPanel(new Rect(Screen.width - panelWidth - 20, 72, panelWidth, Mathf.Max(120, Screen.height - 86)));
+            var ending = Ending?.IsEnding == true;
+            playRoot.gameObject.SetActive(!ending);
+            endingRoot.gameObject.SetActive(ending);
+            if (ending) UpdateEndingScreen();
+            else
+            {
+                LayoutPlayScreen(); UpdateHud(); UpdateTools(); UpdateControls();
+            }
+            RepaintCount++;
         }
 
-        private void DrawGrid(Rect grid, float size)
+        private void LayoutPlayScreen()
         {
-            if (cellStyle == null)
+            var size = screen.Size; var w = size.x; var h = size.y; var margin = 12f;
+            LaboratoryUiWidgets.Place(playRoot, 0, 0, w, h);
+            LaboratoryUiWidgets.Place(titleText.rectTransform, margin, 10, w - 180, 34);
+            LaboratoryUiWidgets.Place(collapseButton.GetComponent<RectTransform>(), w - 156, 8, 144, 48);
+            collapseButton.GetComponentInChildren<Text>().text = controlsCollapsed ? "Show controls" : "Hide controls";
+            collapseButton.interactable = CanClickScreen();
+            LaboratoryUiWidgets.Place(hudText.rectTransform, margin, 50, w - 24, 56);
+            LaboratoryUiWidgets.Place(worldGauge, margin, 101, w - 24, 6);
+            var top = 112f;
+            controlsScroll.gameObject.SetActive(!controlsCollapsed);
+            if (screen.Portrait)
             {
-                cellStyle = new GUIStyle { alignment = TextAnchor.MiddleCenter, fontSize = 12 };
-                cellStyle.normal.textColor = Color.white;
-                cellStyle.hover.textColor = Color.white;
-                cellStyle.active.textColor = Color.white;
+                var toolbarHeight = ToolbarHeight(w - margin * 2);
+                var panelHeight = controlsCollapsed ? 0 : Mathf.Clamp(h * 0.37f, 210, 430);
+                var mapHeight = Mathf.Max(100, h - top - toolbarHeight - panelHeight - 32);
+                LaboratoryUiWidgets.Place(MapViewport, margin, top, w - margin * 2, mapHeight);
+                LaboratoryUiWidgets.Place(toolRoot, margin, top + mapHeight + 4, w - margin * 2, toolbarHeight);
+                LaboratoryUiWidgets.Place((RectTransform)controlsScroll.transform, margin, top + mapHeight + toolbarHeight + 12, w - margin * 2, panelHeight);
             }
-            var placements = Simulation.Map.GetPlacements();
-            var edit = Simulation.Map.Commands.Edit;
-            var constructing = Simulation.ConstructionDefinition != null;
-            var previewOrigin = constructing ? Simulation.ConstructionOrigin : edit?.Origin;
-            var previewValid = constructing ? Simulation.ConstructionValidation.Succeeded : edit?.Validation.Succeeded ?? false;
-            var previewDefinition = Simulation.ConstructionDefinition;
-            if (previewDefinition == null && edit != null && Simulation.Registry.TryGet(edit.ThingId, out var moving))
-                previewDefinition = moving.Definition as FacilityData;
-            var previewRotation = constructing ? Simulation.ConstructionRotation : edit?.Rotation ?? QuarterTurn.None;
-            var previewArea = previewDefinition != null && previewOrigin.HasValue
-                ? new RectInt(previewOrigin.Value, FacilityGeometry.GetSize(previewDefinition, previewRotation))
-                : new RectInt();
-            var previewInteraction = previewDefinition != null && previewOrigin.HasValue
-                ? (Vector2Int?)FacilityGeometry.GetInteractionCell(previewDefinition, previewOrigin.Value, previewRotation) : null;
-            for (var y = 0; y < Simulation.Map.Height; y++)
-            for (var x = 0; x < Simulation.Map.Width; x++)
+            else
             {
-                var cell = new Vector2Int(x, y);
-                var rect = new Rect(grid.x + x * size, grid.y + (Simulation.Map.Height - 1 - y) * size, size - 2, size - 2);
-                var facility = placements.FirstOrDefault(p => p.Kind == ThingKind.Facility && p.Contains(cell));
-                var worker = placements.FirstOrDefault(p => p.Kind == ThingKind.Creature && p.Contains(cell));
-                var interaction = placements.FirstOrDefault(p => p.InteractionCell == cell);
-                var tint = new Color(0.13f, 0.17f, 0.23f);
-                var label = interaction != null ? "I" : "";
-                Guid selected = Guid.Empty;
-                if (facility != null && Simulation.Registry.TryGet(facility.ThingId, out var thing))
-                {
-                    var definition = (FacilityData)thing.Definition;
-                    label = (definition.Role == FacilityRole.Gathering ? "G" : definition.Role == FacilityRole.Storage ? "S"
-                        : definition.Role == FacilityRole.Processing ? "F" : "C") + thing.CreationOrder;
-                    tint = thing.GetComponent<ConstructionComponent>().IsComplete
-                        ? new Color(0.18f, 0.42f, 0.62f) : new Color(0.56f, 0.43f, 0.12f);
-                    selected = thing.Id;
-                }
-                else if (worker != null)
-                {
-                    var role = ((CreatureData)Simulation.Registry.Things.First(t => t.Id == worker.ThingId).Definition).Role;
-                    label = role == CreatureRole.Prototype ? "P" : role == CreatureRole.Support ? "W" : "V";
-                    tint = new Color(0.72f, 0.4f, 0.16f);
-                    selected = worker.ThingId;
-                }
-                if (selected != Guid.Empty && selected == SelectedId) tint *= 1.4f;
-                if (previewOrigin.HasValue && previewArea.Contains(cell))
-                {
-                    tint = previewValid ? new Color(0.12f, 0.55f, 0.32f) : new Color(0.65f, 0.15f, 0.18f);
-                    label = "+";
-                }
-                else if (previewInteraction.HasValue && previewInteraction.Value == cell)
-                {
-                    tint = new Color(0.38f, 0.24f, 0.55f);
-                    label = "I+";
-                }
-                GUI.color = tint;
-                GUI.DrawTexture(rect, Texture2D.whiteTexture);
-                GUI.color = Color.white;
-                if (GUI.Button(rect, label, cellStyle))
-                {
-                    if (IsEditing) PreviewAt(cell);
-                    else if (selected != Guid.Empty) SelectThing(selected);
-                }
+                var panelWidth = controlsCollapsed ? 0 : Mathf.Clamp(w * 0.39f, 300, 430);
+                var mapWidth = w - margin * 2 - (controlsCollapsed ? 0 : panelWidth + margin);
+                var toolbarHeight = ToolbarHeight(mapWidth);
+                var mapHeight = Mathf.Max(100, h - top - toolbarHeight - 20);
+                LaboratoryUiWidgets.Place(MapViewport, margin, top, mapWidth, mapHeight);
+                LaboratoryUiWidgets.Place(toolRoot, margin, top + mapHeight + 4, mapWidth, toolbarHeight);
+                LaboratoryUiWidgets.Place((RectTransform)controlsScroll.transform, w - margin - panelWidth, top, panelWidth, h - top - margin);
             }
         }
 
-        private void DrawPanel(Rect rect)
+        private int ToolbarColumns(float width)
         {
-            if (wrappedStyle == null) wrappedStyle = new GUIStyle(GUI.skin.label) { wordWrap = true };
-            GUILayout.BeginArea(rect, GUI.skin.box);
-            panelScroll = GUILayout.BeginScrollView(panelScroll);
-            if (Simulation != null) DrawInvasion();
-            GUILayout.Label("CONSTRUCTION");
-            GUI.enabled = Simulation != null && Controller.Phase == SessionPhase.Playing && !IsEditing;
-            if (GUILayout.Button("Build gatherer (" + gathering.BuildCost + " organic)")) BeginGatheringConstruction();
-            if (GUILayout.Button("Build storage (" + storage.BuildCost + " organic)")) BeginStorageConstruction();
-            if (processing != null && GUILayout.Button("Build processing (" + processing.BuildCost + " organic)")) BeginProcessingConstruction();
-            if (cultivation != null && GUILayout.Button("Build cultivation (" + cultivation.BuildCost + " organic)")) BeginCultivationConstruction();
-            GUI.enabled = true;
+            // Labels need room inside the 8px horizontal padding, beyond the touch target minimum.
+            var columns = Mathf.Max(1, Mathf.Min(IsEditing ? 6 : 3, Mathf.FloorToInt((width + 6) / 96)));
+            return IsEditing && columns > 3 && columns < 6 ? 3 : columns;
+        }
+        private float ToolbarHeight(float width)
+        {
+            var count = IsEditing ? 6 : 3; var rows = Mathf.CeilToInt((float)count / ToolbarColumns(width));
+            return (IsEditing ? 60 : 28) + 4 + rows * 48 + (rows - 1) * 6;
+        }
+
+        private void UpdateHud()
+        {
+            LaboratoryUiWidgets.Place(worldGaugeFill, 0, 0, worldGauge.rect.width * (Invasion == null ? 0
+                : (float)Math.Min(1, (double)Invasion.Score / Invasion.Settings.TargetScore)), 6);
+            if (Simulation == null) { hudText.text = "The saved run could not be loaded. Retry loading or explicitly start a new run."; return; }
+            var registry = Simulation.Registry;
+            var organicCount = registry.Things.Where(t => t.Definition == organic).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
+            var cultureCount = registry.Things.Where(t => t.Definition == culture).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
+            var creatureCount = registry.Things.Count(t => t.Definition.Kind == ThingKind.Creature);
+            hudText.text = "Organic " + organicCount + "   Culture " + cultureCount + "   Creatures " + creatureCount
+                + "\nWorld " + Invasion.Score + " / " + Invasion.Settings.TargetScore + "   Waiting " + Simulation.Invasion.WaitingCount
+                + " / Outside " + Simulation.Invasion.ExternalCount + (IsEditing ? "   Laboratory paused" : "");
+        }
+
+        private void UpdateTools()
+        {
+            var editing = IsEditing; var width = toolRoot.rect.width;
+            var detailHeight = editing ? 60 : 28;
+            LaboratoryUiWidgets.Place(editText.rectTransform, 0, 0, width, detailHeight);
+            if (editing)
+            {
+                var edit = Simulation.Map.Commands.Edit;
+                editText.text = Simulation.ConstructionDefinition != null
+                    ? "Build " + Simulation.ConstructionDefinition.DisplayName + " at " + Simulation.ConstructionOrigin + " / "
+                        + (int)Simulation.ConstructionRotation * 90 + "°  " + Simulation.ConstructionValidation
+                    : "Move at " + edit.Origin + " / " + (int)edit.Rotation * 90 + "°  " + edit.Validation;
+            }
+            else editText.text = "Tap to select · Drag to move · Pinch / scroll to zoom";
+            var tools = editing ? new[] { rotateButton, confirmButton, cancelButton, zoomInButton, zoomOutButton, fitButton }
+                : new[] { zoomInButton, zoomOutButton, fitButton };
+            rotateButton.gameObject.SetActive(editing); confirmButton.gameObject.SetActive(editing); cancelButton.gameObject.SetActive(editing);
+            var columns = ToolbarColumns(width); var buttonWidth = (width - (columns - 1) * 6) / columns;
+            for (var i = 0; i < tools.Length; i++) LaboratoryUiWidgets.Place((RectTransform)tools[i].transform,
+                (i % columns) * (buttonWidth + 6), detailHeight + 4 + (i / columns) * 54, buttonWidth, 48);
+            BindTool(rotateButton, () => RotatePreview(), editing);
+            BindTool(confirmButton, () => ConfirmPlacement(), editing && (Simulation.ConstructionDefinition != null
+                ? Simulation.ConstructionValidation.Succeeded : Simulation.Map.Commands.Edit.Validation.Succeeded));
+            BindTool(cancelButton, () => CancelPlacement(), editing);
+            BindTool(zoomInButton, () => mapScreen.ZoomBy(1.3f), Simulation != null);
+            BindTool(zoomOutButton, () => mapScreen.ZoomBy(1 / 1.3f), Simulation != null);
+            BindTool(fitButton, () => mapScreen.Fit(), Simulation != null);
+        }
+
+        private void UiAction(string key, string label, Action action, bool enabled = true, Guid? selected = null)
+        {
+            var generation = Controller.Generation; var phase = Controller.Phase;
+            controls.Action(key, label, () =>
+            {
+                if (!CanClickScreen() || Controller.Generation != generation || Controller.Phase != phase
+                    || (selected.HasValue && SelectedId != selected.Value)) return;
+                action();
+            }, enabled && CanClickScreen(), UiContext + (selected.HasValue ? ":" + selected : ""));
+        }
+
+        private void UpdateControls()
+        {
+            controls.Begin(Mathf.Max(100, ((RectTransform)controlsScroll.transform).rect.width - 16));
             if (Simulation != null)
             {
-                if (IsEditing) DrawEdit();
-                GUILayout.Space(8);
-                if (Simulation.Registry.TryGet(SelectedId, out var selected)) DrawSelected(selected);
-                GUILayout.Space(8);
-                GUILayout.Label("FACILITIES / CREATURES");
-                foreach (var thing in Simulation.Registry.Things.Where(t => t.Definition.Kind != ThingKind.Resource && t.IsPlaced)
-                    .OrderBy(t => t.CreationOrder))
+                var canOperate = CanInteract && !IsEditing;
+                controls.Text("WorldTitle", "WORLD ACTIVITY", 22);
+                UiAction("Release", "Release waiting invaders (" + Simulation.Invasion.WaitingCount + ")", () => ReleaseInvaders(), canOperate && Simulation.Invasion.WaitingCount > 0);
+                UiAction("Reports", ReportsExpanded ? "Hide reports" : "Show reports (" + Invasion.Reports.Count + ")", ToggleReports);
+                if (ReportsExpanded)
                 {
-                    GUI.enabled = !IsEditing;
-                    if (GUILayout.Button(thing.Definition.DisplayName + " #" + thing.CreationOrder
-                        + (SelectedId == thing.Id ? " [selected]" : ""))) SelectThing(thing.Id);
+                    controls.Text("ReportMode", Invasion.DetailedReports ? "Detailed field reports" : "Major achievements");
+                    if (Invasion.Reports.Count == 0) controls.Text("NoReports", "No field activity yet.");
+                    foreach (var report in Invasion.Reports.Reverse()) controls.Text("Report_" + report.Sequence,
+                        "#" + report.Sequence + " | " + ThingLabel(report.InvaderId) + "\n" + report.Text + " +" + report.Score + " (" + report.Time.ToString("F1") + "s)");
                 }
-                GUI.enabled = true;
-                GUILayout.Space(10);
-                GUILayout.Label("DEFAULT PRIORITIES (0 = off; lower = first)");
-                DrawPriorities(Simulation.Preset.ToArray(), values => SetPreset(values));
-                GUILayout.Label("Ties: Build > Gather > Haul > Produce.", wrappedStyle);
-                GUILayout.Label("RESERVATIONS: " + Simulation.Reservations.Count);
+                if (!string.IsNullOrEmpty(Simulation.Invasion.LastError)) controls.Text("InvasionError", Simulation.Invasion.LastError);
+                if (Simulation.Registry.TryGet(SelectedId, out var selected)) AddSelectedControls(selected);
+                controls.Text("ConstructionTitle", "CONSTRUCTION", 22);
+                UiAction("BuildGathering", "Build " + gathering.DisplayName + " (" + gathering.BuildCost + " organic)", () => BeginGatheringConstruction(), canOperate);
+                UiAction("BuildStorage", "Build " + storage.DisplayName + " (" + storage.BuildCost + " organic)", () => BeginStorageConstruction(), canOperate);
+                UiAction("BuildProcessing", "Build " + processing.DisplayName + " (" + processing.BuildCost + " organic)", () => BeginProcessingConstruction(), canOperate);
+                UiAction("BuildCultivation", "Build " + cultivation.DisplayName + " (" + cultivation.BuildCost + " organic)", () => BeginCultivationConstruction(), canOperate);
+                controls.Text("RosterTitle", "FACILITIES / CREATURES", 22);
+                controls.Text("RosterHint", "Use this list to select each creature, including those sharing the same cell.", 16);
+                foreach (var thing in Simulation.Registry.Things.Where(t => t.Definition.Kind != ThingKind.Resource && t.IsPlaced).OrderBy(t => t.CreationOrder))
+                {
+                    var id = thing.Id;
+                    UiAction("Select_" + id.ToString("N"), thing.Definition.DisplayName + " #" + thing.CreationOrder + (id == SelectedId ? " [selected]" : ""), () => SelectThing(id), canOperate);
+                }
+                controls.Text("PresetTitle", "DEFAULT PRIORITIES", 22);
+                controls.Text("PresetHint", "0 = off; lower = first. Ties: Build > Gather > Haul > Produce.", 16);
+                AddPriorities("Preset", Simulation.Preset.ToArray(), values => SetPreset(values), canOperate);
+                controls.Text("Reservations", "Reservations: " + Simulation.Reservations.Count);
                 foreach (var reservation in Simulation.Reservations)
-                    GUILayout.Label(ThingLabel(reservation.WorkerId) + ": " + reservation.Amount + " " + ResourceLabel(reservation.ResourceId) + " / "
+                    controls.Text("Reservation_" + reservation.WorkerId + "_" + reservation.ResourceId,
+                        ThingLabel(reservation.WorkerId) + ": " + reservation.Amount + " " + ResourceLabel(reservation.ResourceId) + " / "
                         + (reservation.PickedUp ? "carrying" : "outgoing + incoming reserved") + "\n"
-                        + ThingLabel(reservation.SourceId) + " > " + ThingLabel(reservation.DestinationId), wrappedStyle);
+                        + ThingLabel(reservation.SourceId) + " > " + ThingLabel(reservation.DestinationId));
             }
-            GUILayout.Space(10);
-            GUILayout.Label("SAVE / CONTINUE");
-            GUILayout.Label("Automatic saves: " + Controller.SuccessfulSaves);
-            if (GUILayout.Button("Save now")) Save();
-            if (GUILayout.Button("Continue last saved state")) Reload();
-            if (GUILayout.Button("Restart laboratory")) Restart();
-            GUILayout.Label(LastCommand ?? "", wrappedStyle);
-            if (!string.IsNullOrEmpty(Controller.LastError)) GUILayout.Label("Command: " + Controller.LastError, wrappedStyle);
-            if (!string.IsNullOrEmpty(Controller.LastSaveError)) GUILayout.Label("Save: " + Controller.LastSaveError, wrappedStyle);
-            GUILayout.EndScrollView();
-            GUILayout.EndArea();
+            controls.Text("SaveTitle", "SAVE / CONTINUE", 22);
+            controls.Text("SaveCount", "Successful saves: " + Controller.SuccessfulSaves);
+            UiAction("Save", "Save now", () => Save(), Controller.Current != null);
+            UiAction("Reload", "Continue last saved state", () => Reload());
+            UiAction("Restart", "Start a new run", () => Restart());
+            if (!string.IsNullOrEmpty(LastCommand)) controls.Text("LastCommand", LastCommand, 16);
+            if (!string.IsNullOrEmpty(Controller.LastError)) controls.Text("LoadError", Controller.LastError);
+            if (!string.IsNullOrEmpty(Controller.LastSaveError)) controls.Text("SaveError", "Save failed: " + Controller.LastSaveError);
+            controls.End(); panelScroll = controlsScroll.content.anchoredPosition;
         }
 
-        private void DrawEdit()
+        private void AddSelectedControls(Thing selected)
         {
-            var edit = Simulation.Map.Commands.Edit;
-            GUILayout.Label("Placement pauses laboratory work.", wrappedStyle);
-            GUILayout.Label(Simulation.ConstructionDefinition != null
-                ? "Construction at " + Simulation.ConstructionOrigin + " / " + ((int)Simulation.ConstructionRotation * 90)
-                    + " degrees / " + Simulation.ConstructionValidation
-                : "Move to " + edit.Origin + " / " + ((int)edit.Rotation * 90) + " degrees / " + edit.Validation, wrappedStyle);
-            if (GUILayout.Button("Rotate 90 degrees")) RotatePreview();
-            if (GUILayout.Button("Confirm location")) ConfirmPlacement();
-            if (GUILayout.Button("Cancel")) CancelPlacement();
-        }
-
-        private void DrawInvasion()
-        {
-            var manager = Simulation.Invasion;
-            var state = manager.State;
-            GUILayout.Label("WORLD DESTRUCTION: " + state.Score + " / " + state.Settings.TargetScore);
-            var bar = GUILayoutUtility.GetRect(80, 14, GUILayout.ExpandWidth(true));
-            GUI.color = new Color(0.18f, 0.2f, 0.25f);
-            GUI.DrawTexture(bar, Texture2D.whiteTexture);
-            GUI.color = new Color(0.85f, 0.3f, 0.2f);
-            GUI.DrawTexture(new Rect(bar.x, bar.y, bar.width * (float)Math.Min(1, (double)state.Score / state.Settings.TargetScore), bar.height), Texture2D.whiteTexture);
-            GUI.color = Color.white;
-            GUILayout.Label("Waiting: " + manager.WaitingCount + " | Outside: " + manager.ExternalCount);
-            if (Controller.Phase != SessionPhase.Playing)
-                GUILayout.Label(state.GoalReached ? "GOAL REACHED - laboratory and outside activity stopped."
-                    : "Saved world ended - all activity stopped.", wrappedStyle);
-            else if (IsEditing) GUILayout.Label("Placement paused. Outside activity continues.", wrappedStyle);
-            GUI.enabled = Controller.CanAdvanceExternal && !IsEditing && manager.WaitingCount > 0;
-            if (GUILayout.Button("Release all waiting invaders")) ReleaseInvaders();
-            GUI.enabled = true;
-            if (GUILayout.Button((ReportsExpanded ? "Hide" : "Show") + " reports (" + state.Reports.Count + ")")) ToggleReports();
-            if (ReportsExpanded)
-            {
-                GUILayout.Label(state.DetailedReports ? "Detailed field reports" : "Major achievements", wrappedStyle);
-                if (state.Reports.Count == 0) GUILayout.Label("No field activity yet.");
-                foreach (var report in state.Reports.Reverse())
-                    GUILayout.Label("#" + report.Sequence + " | " + ThingLabel(report.InvaderId) + "\n"
-                        + report.Text + " +" + report.Score + " (" + report.Time.ToString("F1") + "s)", wrappedStyle);
-            }
-            if (!string.IsNullOrEmpty(manager.LastError)) GUILayout.Label(manager.LastError, wrappedStyle);
-            GUILayout.Space(10);
-        }
-
-        private void DrawSelected(Thing selected)
-        {
-            GUILayout.Space(8);
-            GUILayout.Label("SELECTED: " + selected.Definition.DisplayName + " #" + selected.CreationOrder, wrappedStyle);
-            GUILayout.Label(selected.Placement == null ? "Outside map" : "Position: " + selected.Placement.Origin);
+            var id = selected.Id; var canOperate = CanInteract && !IsEditing;
+            controls.Text("SelectedTitle", selected.Definition.DisplayName + " #" + selected.CreationOrder, 22);
+            controls.Text("SelectedPosition", selected.Placement == null ? "Outside map" : "Position: " + selected.Placement.Origin);
             if (selected.TryGetComponent<ResourceContainerComponent>(out var container))
-                foreach (var group in container.Contents.GroupBy(t => t.Definition))
-                    GUILayout.Label(group.Key.DisplayName + ": " + group.Sum(t => t.GetComponent<ResourceStackComponent>().Quantity));
+                foreach (var group in container.Contents.GroupBy(t => t.Definition)) controls.Text("Stored_" + group.Key.DefinitionId, group.Key.DisplayName + ": " + group.Sum(t => t.GetComponent<ResourceStackComponent>().Quantity));
             if (selected.TryGetComponent<ConstructionComponent>(out var construction))
             {
                 var definition = (FacilityData)selected.Definition;
-                GUILayout.Label(construction.IsComplete ? "Construction complete" : "Build: "
-                    + construction.Progress.ToString("F1") + " / " + definition.BuildSeconds.ToString("F1") + "s; material "
-                    + construction.Delivered + " / " + definition.BuildCost, wrappedStyle);
-                GUI.enabled = construction.IsComplete && !IsEditing;
-                if (GUILayout.Button("Move / rotate facility")) BeginPlacement();
-                GUI.enabled = true;
+                controls.Text("ConstructionState", construction.IsComplete ? "Construction complete" : "Build: " + construction.Progress.ToString("F1") + " / " + definition.BuildSeconds + "s; material " + construction.Delivered + " / " + definition.BuildCost);
+                UiAction("Move", "Move / rotate facility", () => BeginPlacement(), construction.IsComplete && canOperate, id);
             }
-            if (selected.TryGetComponent<GatheringComponent>(out var gatheringState))
+            if (selected.TryGetComponent<GatheringComponent>(out var gatheringState)) controls.Text("GatheringState", "Gathering: " + gatheringState.Progress.ToString("F1") + " / " + ((FacilityData)selected.Definition).GatheringSeconds + "s\nAwaiting storage admission: " + gatheringState.Outstanding);
+            if (selected.TryGetComponent<ProductionComponent>(out var production))
             {
-                GUILayout.Label("Gathering: " + gatheringState.Progress.ToString("F1") + " / "
-                    + ((FacilityData)selected.Definition).GatheringSeconds.ToString("F1") + "s");
-                GUILayout.Label("Awaiting actual storage admission: " + gatheringState.Outstanding, wrappedStyle);
+                var definition = (FacilityData)selected.Definition;
+                controls.Text("ProductionState", "Cycle: " + production.Progress.ToString("F1") + " / " + definition.ProductionSeconds + "s\nInput: " + Simulation.Production.InputCount(selected) + " / " + definition.InputAmount + " " + definition.InputResource.DisplayName + (production.InProgress ? " (consumed)" : ""));
+                var working = Simulation.Registry.Things.Any(t => t.TryGetComponent<WorkerComponent>(out var worker) && worker.Job != null && worker.Job.Kind == WorkKind.Production && worker.Job.Stage == JobStage.Working && worker.Job.TargetId == id);
+                var reason = Simulation.Production.WaitReason(selected);
+                controls.Text("ProductionReason", !Controller.CanAdvanceLaboratory ? "Paused" : !string.IsNullOrEmpty(reason) ? reason : (working ? "Working: " + (definition.Settings.StaffedRate * 100).ToString("0.#") : "Automatic: " + (definition.Settings.UnattendedRate * 100).ToString("0.#")) + "%");
+                if (definition.Role == FacilityRole.Cultivation)
+                {
+                    controls.Text("CultivationState", "Current: " + (production.InProgress ? production.ActiveTarget.ToString() : "None") + " | Next: " + production.SelectedTarget);
+                    UiAction("CultivateSupport", "Cultivate support (" + definition.InputAmount + " culture)", () => SelectCultivation(id, CultivationTarget.Support), canOperate && selected.GetComponent<ConstructionComponent>().IsComplete, id);
+                    UiAction("CultivateInvader", "Cultivate invader (" + definition.InputAmount + " culture)", () => SelectCultivation(id, CultivationTarget.Invader), canOperate && selected.GetComponent<ConstructionComponent>().IsComplete, id);
+                }
             }
-            if (selected.TryGetComponent<ProductionComponent>(out var productionState)) DrawProduction(selected, productionState);
             if (selected.TryGetComponent<StorageComponent>(out var storageState))
             {
-                GUILayout.Label("Capacity: " + ((FacilityData)selected.Definition).StorageCapacity);
-                GUILayout.Label("Incoming reserved: " + Simulation.Reservations.Where(r => r.DestinationId == selected.Id).Sum(r => r.Amount)
-                    + " / Outgoing reserved: " + Simulation.Reservations.Where(r => r.SourceId == selected.Id && !r.PickedUp).Sum(r => r.Amount), wrappedStyle);
-                var allowed = GUILayout.Toggle(storageState.AllowsOrganic, "Allow organic matter");
-                if (allowed != storageState.AllowsOrganic) SetAllowed(selected.Id, allowed);
-                if (culture != null)
-                {
-                    var allowCulture = GUILayout.Toggle(storageState.AllowsCulture, "Allow culture medium");
-                    if (allowCulture != storageState.AllowsCulture) SetAllowed(selected.Id, culture, allowCulture);
-                }
+                controls.Text("StorageState", "Capacity: " + ((FacilityData)selected.Definition).StorageCapacity + "\nIncoming reserved: " + Simulation.Reservations.Where(r => r.DestinationId == id).Sum(r => r.Amount) + " / Outgoing reserved: " + Simulation.Reservations.Where(r => r.SourceId == id && !r.PickedUp).Sum(r => r.Amount));
+                UiAction("AllowOrganic", "Organic matter: " + (storageState.AllowsOrganic ? "allowed" : "blocked"), () => SetAllowed(id, organic, !storageState.AllowsOrganic), canOperate, id);
+                UiAction("AllowCulture", "Culture medium: " + (storageState.AllowsCulture ? "allowed" : "blocked"), () => SetAllowed(id, culture, !storageState.AllowsCulture), canOperate, id);
             }
-            if (selected.TryGetComponent<WorkerComponent>(out var worker))
+            if (selected.TryGetComponent<WorkerComponent>(out var workerState))
             {
-                GUILayout.Label(worker.Job == null ? "Job: idle" : "Job: " + worker.Job.Kind + " / " + worker.Job.Stage, wrappedStyle);
-                if (worker.Job != null) GUILayout.Label("Target: " + ThingLabel(worker.Job.TargetId), wrappedStyle);
-                if (!string.IsNullOrWhiteSpace(worker.WaitReason)) GUILayout.Label("Waiting: " + worker.WaitReason, wrappedStyle);
+                controls.Text("WorkerJob", workerState.Job == null ? "Job: idle" : "Job: " + workerState.Job.Kind + " / " + workerState.Job.Stage + "\nTarget: " + ThingLabel(workerState.Job.TargetId));
+                if (!string.IsNullOrWhiteSpace(workerState.WaitReason)) controls.Text("WorkerWait", "Waiting: " + workerState.WaitReason);
                 if (((CreatureData)selected.Definition).CanOperate)
                 {
-                    GUILayout.Label("Assigned: " + (worker.AssignedFacilityId.HasValue ? ThingLabel(worker.AssignedFacilityId.Value) : "None"), wrappedStyle);
-                    if (GUILayout.Button("Unassign")) AssignWorker(selected.Id, null);
+                    controls.Text("Assigned", "Assigned: " + (workerState.AssignedFacilityId.HasValue ? ThingLabel(workerState.AssignedFacilityId.Value) : "None"));
+                    UiAction("Unassign", "Unassign", () => AssignWorker(id, null), canOperate, id);
                     foreach (var facility in Simulation.Registry.Things.Where(t => t.TryGetComponent<ProductionComponent>(out _) && t.GetComponent<ConstructionComponent>().IsComplete))
-                        if (GUILayout.Button("Assign: " + ThingLabel(facility.Id))) AssignWorker(selected.Id, facility.Id);
+                    {
+                        var facilityId = facility.Id;
+                        UiAction("Assign_" + facilityId.ToString("N"), "Assign: " + ThingLabel(facilityId), () => AssignWorker(id, facilityId), canOperate, id);
+                    }
                 }
-                GUILayout.Label(worker.UsesPreset ? "Priorities: default preset" : "Priorities: individual override");
-                DrawPriorities(worker.UsesPreset ? Simulation.Preset.ToArray() : worker.Priorities.ToArray(),
-                    values => SetWorkerPriorities(selected.Id, values));
-                if (!worker.UsesPreset && GUILayout.Button("Use default preset"))
-                    SetWorkerPriorities(selected.Id, Simulation.Preset.ToArray(), true);
+                controls.Text("WorkerPriorities", workerState.UsesPreset ? "Priorities: default preset" : "Priorities: individual override");
+                AddPriorities("WorkerPriority", workerState.UsesPreset ? Simulation.Preset.ToArray() : workerState.Priorities.ToArray(), values => SetWorkerPriorities(id, values), canOperate, id);
+                if (!workerState.UsesPreset) UiAction("UsePreset", "Use default preset", () => SetWorkerPriorities(id, Simulation.Preset.ToArray(), true), canOperate, id);
             }
         }
 
-        private void DrawProduction(Thing facility, ProductionComponent state)
+        private void AddPriorities(string key, int[] values, Action<int[]> apply, bool enabled, Guid? selected = null)
         {
-            var definition = (FacilityData)facility.Definition;
-            var working = Simulation.Registry.Things.Any(t => t.TryGetComponent<WorkerComponent>(out var w)
-                && w.Job != null && w.Job.Kind == WorkKind.Production && w.Job.Stage == JobStage.Working && w.Job.TargetId == facility.Id);
-            GUILayout.Label("Cycle: " + state.Progress.ToString("F1") + " / " + definition.ProductionSeconds + "s");
-            GUILayout.Label("Input: " + Simulation.Production.InputCount(facility) + " / " + definition.InputAmount
-                + " " + definition.InputResource.DisplayName + (state.InProgress ? " (consumed for current cycle)" : ""), wrappedStyle);
-            var reason = Simulation.Production.WaitReason(facility);
-            GUILayout.Label(!Controller.CanAdvanceLaboratory ? "Paused" : !string.IsNullOrEmpty(reason) ? reason
-                : working ? "Working: 100%" : "Automatic: 20%", wrappedStyle);
-            if (definition.Role == FacilityRole.Cultivation)
-            {
-                GUILayout.Label("Current: " + (state.InProgress ? state.ActiveTarget.ToString() : "None")
-                    + " | Next: " + state.SelectedTarget, wrappedStyle);
-                GUI.enabled = facility.GetComponent<ConstructionComponent>().IsComplete && !IsEditing;
-                if (GUILayout.Button("Cultivate support (2 culture)")) SelectCultivation(facility.Id, CultivationTarget.Support);
-                if (GUILayout.Button("Cultivate invader (2 culture)")) SelectCultivation(facility.Id, CultivationTarget.Invader);
-                GUI.enabled = true;
-            }
-        }
-
-        private string ResourceLabel(Guid id) => Simulation.Registry.TryGet(id, out var resource) ? resource.Definition.DisplayName : "resource";
-
-        private string ThingLabel(Guid id) => Simulation.Registry.TryGet(id, out var thing)
-            ? thing.Definition.DisplayName + " #" + thing.CreationOrder : "Unassigned";
-
-        private static void DrawPriorities(int[] values, Action<int[]> apply)
-        {
-            GUILayout.BeginHorizontal();
             var names = new[] { "Build", "Gather", "Haul", "Produce" };
-            if (values.Length == 3) values = values.Concat(new[] { 4 }).ToArray();
-            for (var index = 0; index < values.Length; index++)
+            for (var index = 0; index < values.Length && index < names.Length; index++)
             {
-                if (!GUILayout.Button(names[index] + ": " + values[index])) continue;
-                var changed = (int[])values.Clone();
-                changed[index] = (values[index] + 1) % 5;
-                apply(changed);
+                var slot = index;
+                UiAction(key + "_" + slot, names[slot] + ": " + values[slot], () =>
+                {
+                    if (!CanInteract || IsEditing) return;
+                    var changed = Simulation.Preset.ToArray();
+                    if (selected.HasValue)
+                    {
+                        if (!Simulation.Registry.TryGet(selected.Value, out var thing) || !thing.TryGetComponent<WorkerComponent>(out var worker)) return;
+                        if (!worker.UsesPreset) changed = worker.Priorities.ToArray();
+                    }
+                    changed[slot] = (changed[slot] + 1) % 5; apply(changed);
+                }, enabled, selected);
             }
-            GUILayout.EndHorizontal();
         }
+        private string ThingLabel(Guid id) => Simulation.Registry.TryGet(id, out var thing) ? thing.Definition.DisplayName + " #" + thing.CreationOrder : "Unassigned";
+        private string ResourceLabel(Guid id) => Simulation.Registry.TryGet(id, out var resource) ? resource.Definition.DisplayName : "resource";
+        private void InvalidateScreenInput() => screen?.InvalidatePointers();
+        private void SetScreenVisible(bool visible) => screen?.SetVisible(visible);
+        private void DisposeScreen() { screen?.Dispose(); screen = null; MapViewport = null; }
     }
 }

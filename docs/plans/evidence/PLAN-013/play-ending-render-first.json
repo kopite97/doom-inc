@@ -1,0 +1,35 @@
+{
+  "success": true,
+  "command": "command test",
+  "data": {
+    "command": "test",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 0.8,
+      "summary": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible",
+          "Status": "Failed",
+          "Duration": 0.7667216,
+          "Message": "System.IO.InvalidDataException : The active definition differs from the catalog: creature.support.prototype",
+          "StackTrace": "  at MobileGame.Persistence.SessionSnapshotCodec.Capture (MobileGame.Foundation.SessionState state, MobileGame.Foundation.SessionPhase phase) [0x000c3] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Persistence\\Serialization\\SessionSnapshotCodec.cs:53 \r\n  at MobileGame.SpatialTests.LaboratoryViewTests+<EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible>d__26.MoveNext () [0x00313] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.ScreenStates.cs:140 \r\n  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44 "
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -37,6 +37,8 @@ namespace MobileGame.Presentation
         public string SavePath { get; private set; }
         public string LastCommand { get; private set; }
         public int RepaintCount { get; private set; }
+        public bool CanInteract => isActiveAndEnabled && !applicationPaused && applicationFocused
+            && Controller?.Phase == SessionPhase.Playing && Simulation != null;
         public bool IsEditing => Simulation != null && (Simulation.ConstructionDefinition != null
             || Controller.Current.Map.Commands.IsEditing);
 
@@ -73,8 +75,9 @@ namespace MobileGame.Presentation
             UpdateEndingVisibility();
         }
 
-        private void OnEnable() { skipNextDelta = true; UpdateEndingVisibility(); }
-        private void OnDisable() { skipNextDelta = true; Ending?.SetVisible(false); }
+        private void OnEnable() { skipNextDelta = true; UpdateEndingVisibility(); SetScreenVisible(true); }
+        private void OnDisable() { skipNextDelta = true; InvalidateInput(); Ending?.SetVisible(false); SetScreenVisible(false); }
+        private void LateUpdate() => UpdateScreen();
 
         private void Update()
         {
@@ -105,6 +108,7 @@ namespace MobileGame.Presentation
 
         private void OnApplicationPause(bool paused)
         {
+            InvalidateInput();
             applicationPaused = paused;
             skipNextDelta = true;
             Controller?.NotifyApplicationPause(paused || !applicationFocused);
@@ -114,6 +118,7 @@ namespace MobileGame.Presentation
         private void OnApplicationFocus(bool focused)
         {
             if (applicationFocused == focused) return;
+            InvalidateInput();
             applicationFocused = focused;
             skipNextDelta = true;
             Controller?.NotifyApplicationPause(applicationPaused || !focused);
@@ -123,18 +128,26 @@ namespace MobileGame.Presentation
         private void OnApplicationQuit() => Controller?.NotifyApplicationQuit();
         private void OnDestroy()
         {
+            DisposeScreen();
             Ending?.Dispose();
             if (Controller != null) Controller.SessionChanged -= OnSessionChanged;
         }
 
         private void OnSessionChanged()
         {
+            InvalidateInput();
             SelectedId = Guid.Empty;
             ReportsExpanded = false;
             skipNextDelta = true;
             panelScroll = Vector2.zero;
             endingScroll = Vector2.zero;
             SynchronizeEnding();
+        }
+
+        private void InvalidateInput()
+        {
+            InvalidateScreenInput();
+            if (MapViewport != null) MapViewport.GetComponent<LaboratoryMapView>()?.CancelInput();
         }
 
         public bool SelectThing(Guid id)

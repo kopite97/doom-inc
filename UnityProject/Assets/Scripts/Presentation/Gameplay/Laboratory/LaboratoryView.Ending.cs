@@ -1,101 +1,104 @@
 using System;
 using MobileGame.Foundation;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MobileGame.Presentation
 {
     public sealed partial class LaboratoryView
     {
         private Vector2 endingScroll;
-        // Temp geometric artwork; replace DrawEndingWorld for final art without changing the flow.
-        private void DrawEnding()
+        private RectTransform endingRoot;
+        private Text endingTitle;
+        private Text endingCaption;
+        private LaboratoryUiWorld endingWorld;
+        private ScrollRect resultScroll;
+        private LaboratoryUiList resultRows;
+        private LaboratoryUiButton newRunButton;
+        private LaboratoryUiButton retrySaveButton;
+        private Text restartCaption;
+
+        private void CreateEndingScreen()
         {
-            GUI.enabled = true;
-            Fill(new Rect(0, 0, Screen.width, Screen.height), new Color(0.025f, 0.035f, 0.055f));
+            endingRoot = LaboratoryUiWidgets.Panel("EndingScreen", screen.SafeRoot, LaboratoryUiWidgets.Background).rectTransform;
+            endingTitle = LaboratoryUiWidgets.Label("EndingTitle", endingRoot, 30); endingTitle.alignment = TextAnchor.MiddleCenter;
+            endingTitle.color = new Color(1f, 0.65f, 0.4f);
+            var worldRect = LaboratoryUiWidgets.Rect("Temp_EndingWorld", endingRoot);
+            endingWorld = worldRect.gameObject.AddComponent<LaboratoryUiWorld>(); endingWorld.raycastTarget = false;
+            endingCaption = LaboratoryUiWidgets.Label("EndingCaption", endingRoot, 18); endingCaption.alignment = TextAnchor.MiddleCenter;
+            resultScroll = LaboratoryUiWidgets.Scroll("ResultDetails", endingRoot, out var content);
+            resultRows = new LaboratoryUiList(content, () => screen.LayoutEpoch);
+            newRunButton = LaboratoryUiWidgets.Button("RestartFromResults", endingRoot, "START A NEW RUN", () => screen.LayoutEpoch);
+            retrySaveButton = LaboratoryUiWidgets.Button("RetrySave", endingRoot, "Retry save", () => screen.LayoutEpoch);
+            restartCaption = LaboratoryUiWidgets.Label("RestartCaption", endingRoot, 16);
+            restartCaption.text = "Start with one prototype and initial resources. The saved run is replaced only after saving succeeds.";
+            endingRoot.gameObject.SetActive(false);
+        }
+
+        private void UpdateEndingScreen()
+        {
+            var size = screen.Size; var w = size.x; var h = size.y;
+            LaboratoryUiWidgets.Place(endingRoot, 0, 0, w, h);
             var results = Controller.Phase == SessionPhase.Results;
+            var error = !string.IsNullOrEmpty(Controller.LastSaveError) || !string.IsNullOrEmpty(Controller.LastError);
+            endingTitle.text = results ? "WORLD ENDED / RUN COMPLETE" : "THE FINAL SIGNAL";
+            LaboratoryUiWidgets.Place(endingTitle.rectTransform, 16, 14, w - 32, 74);
             var progress = results ? 1f : (float)Ending.Progress;
-            var title = new GUIStyle(GUI.skin.label) { fontSize = 28, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
-            var center = new GUIStyle(GUI.skin.label) { fontSize = 16, alignment = TextAnchor.MiddleCenter, wordWrap = true };
-            var muted = new GUIStyle(center); muted.normal.textColor = new Color(0.65f, 0.71f, 0.78f);
-            title.normal.textColor = new Color(1f, 0.67f, 0.45f);
-            center.normal.textColor = Color.white;
-            var left = new Rect(24, 26, Screen.width * 0.48f - 24, Screen.height - 52);
-            var right = new Rect(Screen.width * 0.52f, 26, Screen.width * 0.48f - 24, Screen.height - 52);
-            GUI.Label(new Rect(left.x, left.y, left.width, 40), results ? "WORLD ENDED" : "THE FINAL SIGNAL", title);
-            var size = Mathf.Min(left.width - 24, left.height - 150, 370);
-            DrawEndingWorld(new Rect(left.center.x - size / 2, left.y + 62, size, size), progress);
-            GUI.Label(new Rect(left.x, left.y + 72 + size, left.width, 42),
-                results ? "No signals remain." : progress < 0.33f ? "The last defenses fall."
-                    : progress < 0.72f ? "The world fractures." : "The signals fade into silence.", center);
-            Fill(new Rect(left.x + 20, left.yMax - 30, left.width - 40, 4), new Color(0.14f, 0.18f, 0.24f));
-            Fill(new Rect(left.x + 20, left.yMax - 30, (left.width - 40) * progress, 4), new Color(0.95f, 0.4f, 0.22f));
-            GUILayout.BeginArea(right);
-            endingScroll = GUILayout.BeginScrollView(endingScroll);
-            GUILayout.Space(18);
-            GUILayout.Label(results ? "RUN COMPLETE" : "GOAL REACHED", title);
-            GUILayout.Space(16);
-            GUILayout.Label("Laboratory and outside activity have stopped.", muted);
-            GUILayout.Space(20);
-            if (Invasion.LegacyEndVersion > 0)
-                GUILayout.Label("This world ended in an earlier save.\nActivity records are unavailable.", center);
+            endingWorld.Progress = progress;
+            endingCaption.text = results ? "No signals remain." : progress < 0.33f ? "The last defenses fall."
+                : progress < 0.72f ? "The world fractures." : "The signals fade into silence.";
+            var detailsX = 16f; var detailsY = 90f; var detailsWidth = w - 32;
+            if (screen.Portrait)
+            {
+                var worldSize = Mathf.Min(220, w - 64, h * 0.25f);
+                LaboratoryUiWidgets.Place(endingWorld.rectTransform, (w - worldSize) / 2, 82, worldSize, worldSize);
+                LaboratoryUiWidgets.Place(endingCaption.rectTransform, 16, 86 + worldSize, w - 32, 40);
+                detailsY = 132 + worldSize;
+            }
             else
             {
-                GUILayout.Label("WORLD SCORE", muted);
-                GUILayout.Label(Invasion.Score + " / " + Invasion.Settings.TargetScore, title);
-                GUILayout.Space(14);
-                GUILayout.Label("Completed activities: " + Invasion.ActivitySequence, center);
-                GUILayout.Label("Invaders outside: " + Simulation.Invasion.ExternalCount, center);
-                GUILayout.Label("Active time: " + Invasion.Elapsed.ToString("0.0") + " s", center);
+                var worldSize = Mathf.Min(w * 0.43f - 32, h - 180);
+                LaboratoryUiWidgets.Place(endingWorld.rectTransform, 16 + (w * 0.43f - worldSize) / 2, 90, worldSize, worldSize);
+                LaboratoryUiWidgets.Place(endingCaption.rectTransform, 16, 106 + worldSize, w * 0.43f, 48);
+                detailsX = w * 0.47f; detailsWidth = w - detailsX - 16;
             }
-            GUILayout.Space(12);
-            GUILayout.EndScrollView();
+            var footerHeight = (results ? 112 : 0) + (error ? 58 : 0);
+            var scrollHeight = Mathf.Max(80, h - detailsY - footerHeight - 22);
+            LaboratoryUiWidgets.Place((RectTransform)resultScroll.transform, detailsX, detailsY, detailsWidth, scrollHeight);
+            var footerY = detailsY + scrollHeight + 8;
+            newRunButton.gameObject.SetActive(results); restartCaption.gameObject.SetActive(results);
+            retrySaveButton.gameObject.SetActive(error);
             if (results)
             {
-                // Capture this screen's lease, not a delegate that resolves a future session.
-                var request = Ending.Request;
-                if (GUILayout.Button("START A NEW RUN", GUILayout.Height(44))) RestartFromResults(request);
-                GUILayout.Label("Start with one prototype and initial resources.\nThe saved run is replaced after saving succeeds.", muted);
+                LaboratoryUiWidgets.Place((RectTransform)newRunButton.transform, detailsX, footerY, detailsWidth, 48);
+                LaboratoryUiWidgets.Place(restartCaption.rectTransform, detailsX, footerY + 54, detailsWidth, 52);
+                footerY += 112;
             }
-            else GUILayout.Label("Final sequence in progress…", muted);
-            if (!string.IsNullOrEmpty(Controller.LastSaveError) || !string.IsNullOrEmpty(Controller.LastError))
+            if (error) LaboratoryUiWidgets.Place((RectTransform)retrySaveButton.transform, detailsX, footerY, detailsWidth, 48);
+            var request = Ending.Request; var generation = Controller.Generation;
+            newRunButton.Bind(() => { if (CanClickScreen() && generation == Controller.Generation) RestartFromResults(request); }, UiContext + ":" + request?.GetHashCode());
+            newRunButton.interactable = CanClickScreen() && request != null;
+            retrySaveButton.Bind(() => { if (CanClickScreen() && generation == Controller.Generation) Save(); }, UiContext);
+            retrySaveButton.interactable = CanClickScreen();
+            resultRows.Begin(detailsWidth - 16);
+            resultRows.Text("Stopped", "Laboratory and outside activity have stopped.");
+            if (Invasion.LegacyEndVersion > 0) resultRows.Text("LegacyResult", "This world ended in an earlier save. Activity records are unavailable.");
+            else
             {
-                GUILayout.Space(12);
-                GUILayout.Label(!string.IsNullOrEmpty(Controller.LastSaveError)
-                    ? "The run could not be saved." : "The saved run could not be loaded.", center);
-                GUILayout.Label("The current run remains stopped. The last successful save is preserved.", muted);
-                if (GUILayout.Button("Retry save", GUILayout.Height(30))) Save();
+                resultRows.Text("WorldScore", "WORLD SCORE\n" + Invasion.Score + " / " + Invasion.Settings.TargetScore, 26);
+                resultRows.Text("ActivityCount", "Completed activities: " + Invasion.ActivitySequence);
+                resultRows.Text("OutsideCount", "Invaders outside: " + Simulation.Invasion.ExternalCount);
+                resultRows.Text("ActiveTime", "Active time: " + Invasion.Elapsed.ToString("0.0") + " s");
             }
-            if (LastCommand != null && LastCommand.StartsWith("Start new run", StringComparison.Ordinal)
-                && LastCommand.EndsWith(": rejected / failed", StringComparison.Ordinal))
-                GUILayout.Label(LastCommand, muted);
-            GUILayout.EndArea();
-            GUI.color = Color.white;
-        }
-
-        private static void DrawEndingWorld(Rect rect, float progress)
-        {
-            const int width = 19;
-            var cell = rect.width / width;
-            for (var y = 0; y < width; y++)
-                for (var x = 0; x < width; x++)
-                {
-                    var dx = x - 9; var dy = y - 9;
-                    if (dx * dx + dy * dy > 80) continue;
-                    var pattern = ((x * 31 + y * 17) % 29) / 29f;
-                    var burning = progress > pattern * 0.7f;
-                    var color = burning ? Color.Lerp(new Color(1f, 0.42f, 0.12f), new Color(0.12f, 0.07f, 0.08f), progress)
-                        : pattern < 0.5f ? new Color(0.2f, 0.55f, 0.42f) : new Color(0.13f, 0.3f, 0.55f);
-                    var scatter = Mathf.Max(0, progress - 0.35f) * 0.22f;
-                    Fill(new Rect(rect.x + (x + dx * scatter) * cell, rect.y + (y + dy * scatter) * cell,
-                        cell * (1 - progress * 0.4f), cell * (1 - progress * 0.4f)), color);
-                }
-        }
-
-        private static void Fill(Rect rect, Color color)
-        {
-            GUI.color = color;
-            GUI.DrawTexture(rect, Texture2D.whiteTexture);
-            GUI.color = Color.white;
+            if (!results) resultRows.Text("InProgress", "Final sequence in progress…");
+            if (error)
+            {
+                resultRows.Text("EndingError", !string.IsNullOrEmpty(Controller.LastSaveError) ? "The run could not be saved.\n" + Controller.LastSaveError : "The saved run could not be loaded.\n" + Controller.LastError);
+                resultRows.Text("SavePreserved", "The current run remains stopped. The last successful save is preserved.");
+            }
+            if (LastCommand != null && LastCommand.StartsWith("Start new run", StringComparison.Ordinal) && LastCommand.EndsWith(": rejected / failed", StringComparison.Ordinal))
+                resultRows.Text("RestartError", LastCommand);
+            resultRows.End(); endingScroll = resultScroll.content.anchoredPosition;
         }
     }
 }

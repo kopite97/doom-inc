@@ -16,6 +16,9 @@ namespace MobileGame.Presentation
         private string savePath;
         private double autoSaveSeconds = 5;
         private bool starting;
+        private bool applicationPaused;
+        private bool applicationFocused = true;
+        private BootstrapLoadingView loadingView;
         public string Error { get; private set; }
         public bool Ready { get; private set; }
         public void SetSaveSlotBeforeStart(string path, double interval = 5)
@@ -57,12 +60,18 @@ namespace MobileGame.Presentation
             catch (Exception e) { if (this != null) Error = e.Message; }
             finally { if (this != null) starting = false; }
         }
-        private void OnGUI()
+        private void LateUpdate()
         {
-            if (Ready) return;
-            GUI.Box(new Rect(20, 20, Mathf.Max(300, Screen.width - 40), 140), "Game data");
-            GUI.Label(new Rect(40, 50, Screen.width - 80, 60), Error ?? "Loading definitions...");
-            if (!starting && Error != null && GUI.Button(new Rect(40, 115, 140, 30), "Retry loading")) _ = StartSessionAsync();
+            if (Ready) { loadingView?.Dispose(); loadingView = null; return; }
+            if (loadingView == null) loadingView = new BootstrapLoadingView(transform);
+            loadingView.Update(Error, starting, () =>
+            {
+                if (!starting && !applicationPaused && applicationFocused) _ = StartSessionAsync();
+            });
         }
+        private void OnApplicationPause(bool paused) { applicationPaused = paused; loadingView?.InvalidateInput(); }
+        private void OnApplicationFocus(bool focused) { applicationFocused = focused; loadingView?.InvalidateInput(); }
+        private void OnDisable() => loadingView?.SetVisible(false);
+        private void OnDestroy() { loadingView?.Dispose(); loadingView = null; }
     }
 }
