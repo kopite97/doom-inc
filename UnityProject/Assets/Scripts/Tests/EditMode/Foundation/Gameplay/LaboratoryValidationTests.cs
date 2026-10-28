@@ -13,7 +13,7 @@ namespace MobileGame.Foundation.Tests
     public sealed class LaboratoryValidationTests : FoundationTestFixture
     {
         private SessionState state;
-        private LaboratorySimulation simulation;
+        private LaboratoryManager simulation;
         private SessionSnapshotCodec codec;
         private JsonFileSessionStore store;
         private CreatureDefinition prototype;
@@ -29,7 +29,7 @@ namespace MobileGame.Foundation.Tests
             var gatheringDefinition = Facility("validation.gathering", FacilityRole.Gathering, organic);
             var storageDefinition = Facility("validation.storage", FacilityRole.Storage, organic);
             state = LaboratorySessionFactory.Create(organic, gatheringDefinition, storageDefinition, prototype);
-            simulation = (LaboratorySimulation)state.Runtime;
+            simulation = (LaboratoryManager)state.Runtime;
             codec = new SessionSnapshotCodec(new ThingDefinition[] { organic, prototype, gatheringDefinition, storageDefinition }, true);
             Build(gatheringDefinition, new Vector2Int(4, 4));
             Build(storageDefinition, new Vector2Int(7, 4));

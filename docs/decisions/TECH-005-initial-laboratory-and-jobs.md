@@ -76,3 +76,7 @@ Gameplay 컴포넌트 부착 함수를 Registry에 주입한다. Core가 Gamepla
 `Temp_Laboratory` 씬의 임의(Temp) 표현은 Unity 기본 도형·문자이며 새 Sprite를 생성하지 않는다. 정식 아트·모바일 터치·세로 UI를 완료한 것으로 보지 않는다.
 검증은 실제 신규 시작과 격리된 복수 개체/시설 검사 상태를 구분한다. 후자의 준비 데이터를 실제 무료 건설이나 추가 시작 개체로 노출하지 않는다.
 구현·검증 진행과 실제 통과 수·로그·화면 증거는 PLAN-008 한 곳에 기록한다. 이 기술 결정의 작성 자체는 검증 완료를 뜻하지 않는다.
+
+## PLAN-009 후속 이관
+
+현재 담당 이름·생산/두 자원 물류·저장 버전 3 확장은 [TECH-006](TECH-006-production-and-manager-boundaries.md)을 따른다. 이 문서의 WorkerSystem·LogisticsSystem·LaboratorySimulation·SessionController는 PLAN-008 당시 이름이며 각각 WorkerManager·LogisticsManager·LaboratoryManager·GameFlowManager로 이관됐다. 당시 수집/건설 규칙과 검증 기록은 유지한다.

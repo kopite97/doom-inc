@@ -115,7 +115,7 @@ PC에서 검증한 파일 저장·Unity 생명주기 연결을 Android 강제 �
 
 ## 구현 위치와 확인 범위
 
-- [SessionController](../../UnityProject/Assets/Scripts/GameFlow/Session/SessionController.cs): 신규 시작·이어하기·재시작·준비/플레이/연출/결과 단계·공통 진행 및 배치 명령. [Edit Mode 검사](../../UnityProject/Assets/Scripts/Tests/EditMode/Foundation/GameFlow/SessionControllerTests.cs).
+- [GameFlowManager](../../UnityProject/Assets/Scripts/GameFlow/Session/GameFlowManager.cs): 신규 시작·이어하기·재시작·준비/플레이/연출/결과 단계·공통 진행 및 배치 명령. [Edit Mode 검사](../../UnityProject/Assets/Scripts/Tests/EditMode/Foundation/GameFlow/GameFlowManagerTests.cs).
 - [SessionSnapshotCodec](../../UnityProject/Assets/Scripts/Persistence/Serialization/SessionSnapshotCodec.cs)·[파일 저장](../../UnityProject/Assets/Scripts/Persistence/Storage/JsonFileSessionStore.cs): 버전 1 JSON, 별도 후보 그래프 검증, 실제 1슬롯 교체. [저장 검사](../../UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Persistence/SessionPersistenceTests.cs).
 - [진단 씬](../../UnityProject/Assets/Scenes/Diagnostics/Session/Temp_SessionFoundation.unity)·[화면 연결](../../UnityProject/Assets/Scripts/Presentation/Diagnostics/Session/SessionFoundationView.cs): 실제 Update·앱 중단·종료와 같은 명령 연결. [Play Mode 검사](../../UnityProject/Assets/Scripts/Tests/PlayMode/Session/SessionFoundationViewTests.cs)는 별도 임시 저장 경로에서 실행했다.
 - 기본 자동 저장은 실행 중 5초 간격과 단계 전환·앱 중단·종료 시점이다. 새 게임/재시작은 파일 교체 성공 후 현재 세션을 바꾸고, 잘못된 저장을 자동으로 새 게임으로 덮어쓰지 않는다. 상세 책임·오류 처리는 [TECH-004](../decisions/TECH-004-session-and-persistence.md).

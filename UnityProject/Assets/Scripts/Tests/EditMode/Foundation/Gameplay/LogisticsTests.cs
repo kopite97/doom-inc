@@ -13,7 +13,7 @@ namespace MobileGame.Foundation.Tests
     {
         private ThingRegistry registry;
         private GridMap map;
-        private LaboratorySimulation simulation;
+        private LaboratoryManager simulation;
         private ResourceDefinition organic;
         private CreatureDefinition prototype;
         private FacilityDefinition gathering;
@@ -26,7 +26,7 @@ namespace MobileGame.Foundation.Tests
             prototype = CreateDefinition<CreatureDefinition>("logistics.prototype", ThingComponentKind.ResourceContainer);
             registry = new ThingRegistry(GameplayComponentFactory.Attach);
             map = new GridMap(registry, 16, 12);
-            simulation = new LaboratorySimulation(registry, map, organic);
+            simulation = new LaboratoryManager(registry, map, organic);
             gathering = FacilityDefinition(FacilityRole.Gathering);
         }
 

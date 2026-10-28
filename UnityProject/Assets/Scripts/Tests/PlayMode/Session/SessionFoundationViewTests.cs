@@ -157,7 +157,7 @@ namespace MobileGame.SpatialTests
                 var storage = AssetDatabase.LoadAssetAtPath<FacilityDefinition>("Assets/SO/Facility/Storage.asset");
                 var creature = AssetDatabase.LoadAssetAtPath<CreatureDefinition>("Assets/SO/Creature/PrototypeSupport.asset");
                 var resource = AssetDatabase.LoadAssetAtPath<ResourceDefinition>("Assets/SO/Resource/OrganicMatter.asset");
-                var harness = new SessionController(new SessionSnapshotCodec(new ThingDefinition[] { storage, creature, resource }),
+                var harness = new GameFlowManager(new SessionSnapshotCodec(new ThingDefinition[] { storage, creature, resource }),
                     new JsonFileSessionStore(Path.Combine(directory, "harness.json")), () =>
                     {
                         var fixture = new MapFoundationScenario(storage, creature, resource);

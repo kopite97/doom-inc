@@ -4,6 +4,8 @@ namespace MobileGame.Foundation
     {
         None = 0,
         Gathering = 1,
-        Storage = 2
+        Storage = 2,
+        Processing = 3,
+        Cultivation = 4
     }
 }

@@ -10,28 +10,31 @@ namespace MobileGame.Gameplay
     // alone are insufficient: component roles and references must describe real work.
     internal static class LaboratoryStateValidator
     {
-        public static void Validate(LaboratorySimulation simulation)
+        public static void Validate(LaboratoryManager simulation)
         {
-            if (!LaboratorySimulation.ValidPriorities(simulation.Preset.ToArray()))
+            if (!LaboratoryManager.ValidPriorities(simulation.Preset.ToArray()))
                 throw Invalid("Invalid laboratory priorities.");
             var workClaims = new HashSet<Guid>();
             foreach (var thing in simulation.Registry.Things)
             {
                 if (thing.Definition is ResourceDefinition)
                 {
-                    if (!ReferenceEquals(thing.Definition, simulation.Organic))
+                    if (!simulation.Supports(thing.Definition as ResourceDefinition))
                         throw Invalid("Unsupported laboratory resource.");
                     continue;
                 }
                 if (thing.Definition is FacilityDefinition facility && facility.Role != FacilityRole.None)
                     ValidateFacility(simulation, thing, facility);
                 if (thing.Definition is CreatureDefinition creature)
-                    ValidateWorker(simulation, thing, creature, workClaims);
+                {
+                    if (creature.CanWork) ValidateWorker(simulation, thing, creature, workClaims);
+                }
             }
             simulation.Logistics.Validate();
+            simulation.Invasion.ValidateState();
         }
 
-        private static void ValidateFacility(LaboratorySimulation simulation, Thing thing, FacilityDefinition definition)
+        private static void ValidateFacility(LaboratoryManager simulation, Thing thing, FacilityDefinition definition)
         {
             if (!ReferenceEquals(definition.Resource, simulation.Organic) ||
                 !thing.TryGetComponent<ConstructionComponent>(out var construction))
@@ -50,6 +53,7 @@ namespace MobileGame.Gameplay
                     (gathering.Outstanding > 0) != (gathering.Progress >= definition.GatheringSeconds))
                     throw Invalid("Gathering progress and the outstanding batch disagree.");
             }
+            if (definition.HasProduction) ValidateProduction(simulation, thing, definition, construction);
             if (definition.Role == FacilityRole.Storage)
             {
                 if (!thing.TryGetComponent<StorageComponent>(out _) ||
@@ -59,15 +63,19 @@ namespace MobileGame.Gameplay
             }
         }
 
-        private static void ValidateWorker(LaboratorySimulation simulation, Thing thing,
+        private static void ValidateWorker(LaboratoryManager simulation, Thing thing,
             CreatureDefinition definition, HashSet<Guid> workClaims)
         {
             if (!thing.TryGetComponent<WorkerComponent>(out var worker) ||
-                !LaboratorySimulation.ValidPriorities(worker.Priorities) ||
+                !LaboratoryManager.ValidPriorities(worker.Priorities) ||
                 !InRange(worker.MoveProgress, definition.MoveSecondsPerCell) ||
                 worker.MoveProgress >= definition.MoveSecondsPerCell ||
                 simulation.TotalAt(thing.Id) > definition.CarryCapacity)
                 throw Invalid("Invalid worker state or carrying capacity.");
+            if (worker.AssignedFacilityId.HasValue && (!definition.CanOperate ||
+                !simulation.Registry.TryGet(worker.AssignedFacilityId.Value, out var assigned) ||
+                !simulation.IsComplete(assigned) || !assigned.TryGetComponent<ProductionComponent>(out _)))
+                throw Invalid("Invalid worker production assignment.");
             var job = worker.Job;
             if (job == null)
             {
@@ -96,9 +104,43 @@ namespace MobileGame.Gameplay
             if (job.Kind == WorkKind.Construction &&
                 (construction.IsComplete || construction.Delivered != targetDefinition.BuildCost))
                 throw Invalid("Construction work requires delivered materials and an unfinished site.");
+            if (job.Kind == WorkKind.Production && (worker.AssignedFacilityId != target.Id ||
+                !simulation.Production.CanOperate(target))) throw Invalid("Invalid production work target.");
             if (job.Kind == WorkKind.Gathering &&
                 (!construction.IsComplete || !target.TryGetComponent<GatheringComponent>(out var gathering) || gathering.Outstanding != 0))
                 throw Invalid("Gathering work requires an available completed gathering facility.");
+        }
+
+        private static void ValidateProduction(LaboratoryManager simulation, Thing thing, FacilityDefinition definition,
+            ConstructionComponent construction)
+        {
+            var state = thing.GetComponent<ProductionComponent>();
+            if (!simulation.Supports(definition.InputResource) ||
+                (definition.Role == FacilityRole.Processing && !simulation.Supports(definition.OutputResource)) ||
+                !Enum.IsDefined(typeof(CultivationTarget), state.SelectedTarget) ||
+                !Enum.IsDefined(typeof(CultivationTarget), state.ActiveTarget) ||
+                !InRange(state.Progress, definition.ProductionSeconds) || state.Outstanding < 0 || state.Outstanding > definition.OutputAmount)
+                throw Invalid("Invalid production definition or progress.");
+            if (definition.Role == FacilityRole.Processing && (state.SelectedTarget != CultivationTarget.None || state.ActiveTarget != CultivationTarget.None))
+                throw Invalid("Processing cannot select a creature.");
+            if (definition.Role == FacilityRole.Cultivation && (state.Outstanding != 0 ||
+                state.InProgress != (state.ActiveTarget != CultivationTarget.None)))
+                throw Invalid("Cultivation active target and cycle disagree.");
+            if ((state.InProgress && (state.Outstanding != 0 || state.Progress >= definition.ProductionSeconds)) ||
+                (!state.InProgress && state.Outstanding == 0 && state.Progress != 0) ||
+                (state.Outstanding > 0 && state.Progress != definition.ProductionSeconds))
+                throw Invalid("Production lifecycle is inconsistent.");
+            var inputs = simulation.Production.InputCount(thing);
+            if (inputs > definition.InputAmount || ((state.InProgress || state.Outstanding > 0) && inputs != 0) ||
+                (definition.Role == FacilityRole.Cultivation && state.SelectedTarget == CultivationTarget.None && inputs != 0))
+                throw Invalid("Production input stock exceeds its current cycle.");
+            foreach (var resource in thing.GetComponent<ResourceContainerComponent>().Contents)
+                if (resource.Definition != definition.InputResource &&
+                    !(definition.Role == FacilityRole.Processing && state.Outstanding > 0 && resource.Definition == definition.OutputResource))
+                    throw Invalid("Facility holds an incompatible production resource.");
+            if (!construction.IsComplete && (state.SelectedTarget != CultivationTarget.None || state.InProgress ||
+                state.Progress != 0 || state.Outstanding != 0 || simulation.TotalAt(thing.Id) != 0))
+                throw Invalid("Unfinished facility cannot hold production state.");
         }
 
         private static bool InRange(double value, double maximum) =>

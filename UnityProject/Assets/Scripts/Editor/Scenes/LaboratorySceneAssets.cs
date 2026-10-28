@@ -13,6 +13,25 @@ namespace MobileGame.Foundation.Editor
     {
         public const string ScenePath = "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity";
 
+        [MenuItem("Tools/Mobile Game/Upgrade Production Laboratory")]
+        public static void UpgradeProduction()
+        {
+            Open(); // Checks Play Mode and unsaved scenes before touching assets.
+            ProductionDefinitionAssets.CreateMissing();
+            var view = UnityEngine.Object.FindFirstObjectByType<LaboratoryView>();
+            if (view == null) throw new InvalidOperationException("Laboratory view is missing.");
+            using (var serialized = new SerializedObject(view))
+            {
+                var names = new[] { "culture", "processing", "cultivation", "support", "invader" };
+                var definitions = ProductionDefinitionAssets.LoadDefinitions();
+                for (var index = 0; index < names.Length; index++)
+                    serialized.FindProperty(names[index]).objectReferenceValue = definitions[index];
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+            }
+            EditorSceneManager.MarkSceneDirty(view.gameObject.scene);
+            if (!EditorSceneManager.SaveScene(view.gameObject.scene)) throw new InvalidOperationException("Could not save laboratory.");
+        }
+
         [MenuItem("Tools/Mobile Game/Create Laboratory Scene")]
         public static void Create()
         {

@@ -32,3 +32,6 @@
 | [TECH-003](TECH-003-map-and-placement.md) | Map 단일 공간 상태·회전·공통 배치 명령·검증용 화면 | [PLAN-004](../plans/PLAN-004-map-and-commands.md) |
 | [TECH-004](TECH-004-session-and-persistence.md) | 한 판 단계·공통 갱신·JSON 단일 슬롯·검증 후 복원·실패 보존 | [PLAN-007](../plans/PLAN-007-gameflow-and-persistence.md) |
 | [TECH-005](TECH-005-initial-laboratory-and-jobs.md) | 실제 시작·건설/수집 Job·운반 예약·전량 입고 회차·플레이 저장 v2 | [PLAN-008](../plans/PLAN-008-initial-construction-and-logistics.md) |
+| [TECH-006](TECH-006-production-and-manager-boundaries.md) | Manager 책임·명명 정비와 가공·배양 확장 | [PLAN-009](../plans/PLAN-009-processing-cultivation-and-workers.md) |
+| [TECH-007](TECH-007-invasion-time-and-save-boundaries.md) | 외부 활동·보고 분리·목표 시각 분할과 저장 v4/종료 이관 | [PLAN-010](../plans/PLAN-010-invasion-activity-and-reports.md) |
+| [TECH-008](TECH-008-run-ending-presentation.md) | 일시적 멸망 연출 시계·화면 요청 식별·결과 조회·종료 복원과 재시작 | [PLAN-011](../plans/PLAN-011-destruction-results-and-restart.md) |

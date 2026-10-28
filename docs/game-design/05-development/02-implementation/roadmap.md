@@ -2,21 +2,25 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1단계 초기 건설·수집·저장 완료 / 2~4단계 구현 전
+- 상태: 선행 기반 세 묶음·1~3단계 완료 / PC 가로의 목표·멸망 연출·결과·재시작·두 번째 판 종료 검증 / 4단계 구현 전
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
-- 갱신일: 2026-10-26
+- 갱신일: 2026-10-28
 - 탐색: [기획 MAP](../../README.md), [Thing과 정의 데이터](../01-architecture/thing-model.md), [GameFlow와 시스템 책임](../01-architecture/game-flow.md), [플레이 환경](../../04-delivery/01-platform/environment.md)
 
 ## 현재 작업
 
-환경 준비 결과와 도구 호환 주의점은 [PLAN-002](../../../plans/PLAN-002-unity-environment.md)에 있다. 정의·Thing 최소 기반은 [PLAN-003](../../../plans/PLAN-003-thing-foundation.md), 공간·공통 조작·최소 화면은 [PLAN-004](../../../plans/PLAN-004-map-and-commands.md), 한 판·저장·복원 기반은 [PLAN-007](../../../plans/PLAN-007-gameflow-and-persistence.md)에서 구현·검증했다. 세 기반 묶음과 1단계를 완료했으며 다음은 2단계 가공·배양·보급형 운용이다. 전체 게임 사이클·후속 기능의 저장·Android 빌드·실기기 검증은 아직 수행하지 않았다.
+환경 준비 결과와 도구 호환 주의점은 [PLAN-002](../../../plans/PLAN-002-unity-environment.md)에 있다. 정의·Thing 최소 기반은 [PLAN-003](../../../plans/PLAN-003-thing-foundation.md), 공간·공통 조작·최소 화면은 [PLAN-004](../../../plans/PLAN-004-map-and-commands.md), 한 판·저장·복원 기반은 [PLAN-007](../../../plans/PLAN-007-gameflow-and-persistence.md)에서 구현·검증했다. 세 기반 묶음과 1~3단계를 완료했다. 세로 대응·병목/반복 종합 검증·Android 빌드·실기기 검증은 후속 4단계 범위다.
 
 1단계의 초기 건설·수집·운반·입고 흐름과 중간 저장·복원·재시작은 [PLAN-008](../../../plans/PLAN-008-initial-construction-and-logistics.md)에서 구현·검증했다. PC 최소 플레이 화면과 하네스 검사를 통과했다. 후속 단계는 별도 proposed PLAN을 작성하고 사용자 실행 승인을 받은 뒤 진행한다.
 
-2단계의 가공·배양·보급형 운용 범위·완료 기준·검증 방법은 [PLAN-009](../../../plans/PLAN-009-processing-cultivation-and-workers.md)에 정리했다. 기존 클래스의 Manager 책임 분리·명명 정비와 회귀 검증을 먼저 수행하는 범위를 포함한다. 현재 proposed이며 구현 착수 전이다.
+2단계의 가공·배양·보급형 운용은 [PLAN-009](../../../plans/PLAN-009-processing-cultivation-and-workers.md)에서 구현·검증했다. Manager 책임·명명 정비와 기존 회귀 검증을 먼저 수행한 뒤 생산·배정·두 자원 물류·저장 복원·PC 가로 화면을 연결했다. 완료 결과는 해당 PLAN의 검증 기록을 따른다.
+
+3단계의 첫 작업 [PLAN-010](../../../plans/PLAN-010-invasion-activity-and-reports.md)은 completed다. 방출·외부 활동·성과 누적·전과 보고와 저장 복원, 목표 도달 시 진행 정지·GameFlow 전환을 구현하고 Edit 201/201·Play 8/8과 PC 화면을 검증했다. 검토에서 보완한 자동 목표 저장 확정 순서·단계/목표 교차 검증과 구버전 종료 이관도 포함한다. 잔여 종료 연결은 PLAN-011에서 이어 완료했다.
 
 개별 작업 상태·다음 행동·검증 증거는 [PLAN MAP](../../../plans/README.md)에서 찾는다. 작업 대상은 유일한 active PLAN이며, 이 문서는 전체 단계·기획상 완료 기준과 요약 상태를 관리한다.
+
+3단계의 잔여 종료 연결 [PLAN-011](../../../plans/PLAN-011-destruction-results-and-restart.md)은 completed다. 간단한 멸망 연출·결과 화면·다시 시작, 종료 단계 저장/복원·실패 보존과 PC 가로의 실제 두 판을 Edit 212/212·Play 10/10·오류/경고 0으로 검증하여 3단계를 완료했다. [실행 증거](../../../plans/evidence/PLAN-011/README.md)를 따른다. active PLAN은 없으며 4단계의 세로·모바일·종합 검증은 별도 작성·승인 후 진행한다.
 
 확정한 Unity 버전·Universal 2D(URP)·Android 대상과 연동 방향은 [플레이 환경](../../04-delivery/01-platform/environment.md)을 따른다. 구현할 작업의 필수 참조를 아래에서 읽고, 승인 규칙 안에서 필요한 세부 설계를 구체화한다.
 
@@ -83,6 +87,8 @@
 - [PLAN-004 공간·공통 조작 기반](../../../plans/PLAN-004-map-and-commands.md)
 - [PLAN-007 GameFlow와 저장·복원 기반](../../../plans/PLAN-007-gameflow-and-persistence.md)
 - [PLAN-008 초기 건설·수집·저장](../../../plans/PLAN-008-initial-construction-and-logistics.md)
-- [PLAN-009 가공·배양·보급형 운용과 시스템 책임·명명 정비](../../../plans/PLAN-009-processing-cultivation-and-workers.md)
+- [PLAN-009 가공·배양·보급형 운용과 시스템 책임·명명 정비](../../../plans/PLAN-009-processing-cultivation-and-workers.md): 2단계 개발 완료·검증. 3단계 방출/외부 활동과 4단계 모바일 최종 검증은 후속 범위.
+- [PLAN-010 침공형 방출·외부 활동·성과 누적·전과 보고](../../../plans/PLAN-010-invasion-activity-and-reports.md): completed. 3단계 방출·외부 활동·성과/보고·목표 정지 구현·검증 완료.
+- [PLAN-011 멸망 연출·결과 화면·한 판 종료와 재시작 완결](../../../plans/PLAN-011-destruction-results-and-restart.md): completed. 후보 등록·사용자 실행 승인 후 3단계 잔여 종료 연결과 실제 두 판을 구현·검증 완료.
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

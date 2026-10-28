@@ -6,6 +6,7 @@ namespace MobileGame.Gameplay
     {
         internal StorageComponent(Thing owner) : base(owner) { }
 
+        public bool AllowsCulture { get; internal set; } = true;
         public bool AllowsOrganic { get; internal set; } = true;
     }
 }

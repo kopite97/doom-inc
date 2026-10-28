@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using MobileGame.Foundation;
 using MobileGame.Gameplay;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace MobileGame.Persistence
     public sealed class SessionSnapshotCodec
     {
         public const int LegacyVersion = 1;
-        public const int CurrentVersion = 2;
+        public const int CurrentVersion = 4;
         private readonly bool requireLaboratory;
         private readonly Dictionary<string, ThingDefinition> definitions =
             new Dictionary<string, ThingDefinition>(StringComparer.Ordinal);
@@ -38,9 +39,9 @@ namespace MobileGame.Persistence
                 throw new ArgumentNullException(nameof(state));
             if (!ReferenceEquals(state.Registry, state.Map.Registry))
                 throw Invalid("The session Map belongs to another registry.");
-            if (state.Runtime != null && !(state.Runtime is LaboratorySimulation))
+            if (state.Runtime != null && !(state.Runtime is LaboratoryManager))
                 throw Invalid("This session runtime has no supported save contract.");
-            var laboratory = state.Runtime as LaboratorySimulation;
+            var laboratory = state.Runtime as LaboratoryManager;
             if (laboratory != null && (!ReferenceEquals(laboratory.Registry, state.Registry) ||
                 !ReferenceEquals(laboratory.Map, state.Map)))
                 throw Invalid("The laboratory runtime belongs to another session.");
@@ -74,7 +75,8 @@ namespace MobileGame.Persistence
                 lastCreationOrder = state.Registry.LastCreationOrder,
                 mapWidth = state.Map.Width, mapHeight = state.Map.Height,
                 things = things.ToArray(), placements = placements.ToArray(),
-                laboratory = laboratory == null ? null : LaboratorySnapshotCodec.Capture(laboratory)
+                laboratory = laboratory == null ? null : LaboratorySnapshotCodec.Capture(laboratory),
+                invasion = laboratory == null ? null : InvasionSnapshotCodec.Capture(laboratory, phase)
             };
             // Validate that the captured graph can actually be reconstructed before it
             // replaces a good save. No temporary edit/selection state is persisted.
@@ -85,11 +87,11 @@ namespace MobileGame.Persistence
         public SessionState Restore(SessionSnapshot snapshot)
         {
             ValidateStructure(snapshot);
-            if (requireLaboratory && snapshot.version != CurrentVersion)
+            if (requireLaboratory && snapshot.version < 2)
                 throw Invalid("This play slot requires a laboratory session, not a diagnostic save.");
             try
             {
-                var registry = new ThingRegistry(snapshot.version == CurrentVersion
+                var registry = new ThingRegistry(snapshot.version >= 2
                     ? GameplayComponentFactory.Attach : (Action<Thing>)null);
                 // Holder creation order may be later than a transferred resource's order.
                 foreach (var saved in snapshot.things)
@@ -112,8 +114,15 @@ namespace MobileGame.Persistence
                 // creatures first so replay order does not reject that legal saved state.
                 RestorePlacements(snapshot, registry, map, ThingKind.Creature);
                 RestorePlacements(snapshot, registry, map, ThingKind.Facility);
-                var runtime = snapshot.version == CurrentVersion
-                    ? LaboratorySnapshotCodec.Restore(snapshot.laboratory, registry, map, GetDefinition) : null;
+                var runtime = snapshot.version >= 2
+                    ? LaboratorySnapshotCodec.Restore(snapshot.laboratory, registry, map, GetDefinition, snapshot.version,
+                        definitions.Values.OfType<FacilityDefinition>().FirstOrDefault(d => d.Role == FacilityRole.Processing)?.OutputResource,
+                        snapshot.version >= 4 ? snapshot.invasion.settings : null) : null;
+                if (runtime != null)
+                {
+                    InvasionSnapshotCodec.Restore(snapshot.invasion, runtime, snapshot.version, snapshot.phase);
+                    runtime.ValidateState();
+                }
                 return new SessionState(registry, map, runtime);
             }
             catch (Exception exception) when (exception is ArgumentException ||
@@ -173,13 +182,26 @@ namespace MobileGame.Persistence
         {
             if (snapshot == null)
                 throw Invalid("The save has no session object.");
-            if (snapshot.version != LegacyVersion && snapshot.version != CurrentVersion)
+            if (snapshot.version != LegacyVersion && snapshot.version != 2 && snapshot.version != 3 && snapshot.version != CurrentVersion)
                 throw Invalid("Unsupported save version: " + snapshot.version);
-            if (snapshot.version == CurrentVersion)
+            if (snapshot.version >= 4) InvasionSnapshotCodec.ValidateStructure(snapshot.invasion);
+            // JsonUtility materializes null nested classes as empty objects. The
+            // discriminator distinguishes an absent legacy extension from real data.
+            else if (snapshot.invasion != null && (snapshot.invasion.schemaVersion != 0 ||
+                snapshot.invasion.score != 0 || snapshot.invasion.activitySequence != 0 || !string.IsNullOrEmpty(snapshot.invasion.elapsed) ||
+                snapshot.invasion.goalReached || snapshot.invasion.legacyEndVersion != 0 ||
+                (snapshot.invasion.invaders?.Length ?? 0) != 0 || (snapshot.invasion.reports?.Length ?? 0) != 0))
+                throw Invalid("External activity requires save version 4.");
+            if (snapshot.version >= 2)
             {
                 if (snapshot.runtimeKind != "laboratory")
                     throw Invalid("Version 2 requires the laboratory runtime contract.");
                 LaboratorySnapshotCodec.ValidateStructure(snapshot.laboratory);
+                if (snapshot.version == 2 && (!string.IsNullOrEmpty(snapshot.laboratory.cultureDefinitionId) ||
+                    snapshot.laboratory.preset.Length != 3 || snapshot.laboratory.things.Any(t => t.hasProduction ||
+                        (t.hasWorker && (!string.IsNullOrEmpty(t.worker.assignedFacilityId) || t.worker.priorities.Length != 3 ||
+                            (t.worker.hasJob && t.worker.job.kind == WorkKind.Production))))))
+                    throw Invalid("Production state requires save version 3.");
             }
             else if (!string.IsNullOrEmpty(snapshot.runtimeKind) ||
                 (snapshot.laboratory != null && !string.IsNullOrEmpty(snapshot.laboratory.organicDefinitionId)))

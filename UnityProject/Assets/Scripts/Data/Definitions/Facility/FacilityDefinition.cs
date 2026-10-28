@@ -16,6 +16,22 @@ namespace MobileGame.Foundation
         [SerializeField] private int gatheringAmount = 5;
         [SerializeField] private float gatheringSeconds = 5f;
 
+        [SerializeField] private ResourceDefinition inputResource;
+        [SerializeField] private ResourceDefinition outputResource;
+        [SerializeField] private CreatureDefinition supportOutput;
+        [SerializeField] private CreatureDefinition invaderOutput;
+        [SerializeField] private int inputAmount = 5;
+        [SerializeField] private int outputAmount = 1;
+        [SerializeField] private float productionSeconds = 10f;
+        public ResourceDefinition InputResource => inputResource;
+        public ResourceDefinition OutputResource => outputResource;
+        public CreatureDefinition SupportOutput => supportOutput;
+        public CreatureDefinition InvaderOutput => invaderOutput;
+        public int InputAmount => inputAmount;
+        public int OutputAmount => outputAmount;
+        public double ProductionSeconds => productionSeconds;
+        public bool HasProduction => role == FacilityRole.Processing || role == FacilityRole.Cultivation;
+
         public override ThingKind Kind => ThingKind.Facility;
         public Vector2Int Footprint => footprint;
         public Vector2Int InteractionOffset => interactionOffset;
@@ -53,6 +69,20 @@ namespace MobileGame.Foundation
             if (role == FacilityRole.Gathering && (gatheringAmount <= 0 || gatheringSeconds <= 0
                 || float.IsNaN(gatheringSeconds) || float.IsInfinity(gatheringSeconds)))
                 throw new ArgumentException("Gathering output and finite work duration must be positive.");
+            if (HasProduction)
+            {
+                if (inputResource == null || inputAmount <= 0 || outputAmount != 1 || productionSeconds <= 0
+                    || float.IsNaN(productionSeconds) || float.IsInfinity(productionSeconds))
+                    throw new ArgumentException("Production requires input, a single output and finite positive work.");
+                inputResource.Validate();
+                if (role == FacilityRole.Processing && (outputResource == null || outputResource == inputResource))
+                    throw new ArgumentException("Processing needs a distinct output resource.");
+                if (role == FacilityRole.Cultivation && (supportOutput == null || invaderOutput == null ||
+                    supportOutput.Role != CreatureRole.Support || invaderOutput.Role != CreatureRole.Invader))
+                    throw new ArgumentException("Cultivation needs support and invader definitions.");
+                if (role == FacilityRole.Processing) outputResource.Validate();
+                else { supportOutput.Validate(); invaderOutput.Validate(); }
+            }
             var hasContainer = false;
             foreach (var component in ComponentKinds)
                 if (component == ThingComponentKind.ResourceContainer) hasContainer = true;

@@ -1,0 +1,11 @@
+
+> C:\Users\USER\AppData\Local\Unity\Editor\Editor.log:2232:InvalidOperationException: Resource 'resource.culture-medium' must have only ResourceStack.
+  C:\Users\USER\AppData\Local\Unity\Editor\Editor.log:2233:  at MobileGame.Foundation.ThingDefinition.Validate () [0x0016b] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Data\Definitions\ThingDefinition.cs:48 
+  C:\Users\USER\AppData\Local\Unity\Editor\Editor.log:2234:  at MobileGame.Foundation.Editor.ProductionDefinitionAssets.Create[T] (System.String path, System.String id, System.String name, System.Action`1[T] configure) [0x000d6] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Editor\Definitions\ProductionDefinitionAssets.cs:97 
+  C:\Users\USER\AppData\Local\Unity\Editor\Editor.log:2235:  at MobileGame.Foundation.Editor.ProductionDefinitionAssets.CreateMissing () [0x00031] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Editor\Definitions\ProductionDefinitionAssets.cs:23 
+  C:\Users\USER\AppData\Local\Unity\Editor\Editor.log:2236:  at MobileGame.Foundation.Editor.LaboratorySceneAssets.UpgradeProduction () [0x00005] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Editor\Scenes\LaboratorySceneAssets.cs:20 
+  C:\Users\USER\AppData\Local\Unity\Editor\Editor.log:2237:UnityEditor.EditorApplication:ExecuteMenuItemInternal_Injected(ManagedSpanWrapper&, Boolean)
+  C:\Users\USER\AppData\Local\Unity\Editor\Editor.log:2238:UnityEditor.EditorApplication:ExecuteMenuItemInternal(String, Boolean)
+  C:\Users\USER\AppData\Local\Unity\Editor\Editor.log:2239:UnityEditor.EditorApplication:ExecuteMenuItem(String)
+  C:\Users\USER\AppData\Local\Unity\Editor\Editor.log:2240:Unity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu(String) (at .\Library\PackageCache\com.unity.pipeline@363b8bb9e91d\Editor\Commands\MenuItemCommand.cs:75)
+

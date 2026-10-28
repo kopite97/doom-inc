@@ -16,7 +16,7 @@ namespace MobileGame.Foundation.Tests
         private CreatureDefinition prototype;
         private ThingRegistry registry;
         private GridMap map;
-        private LaboratorySimulation simulation;
+        private LaboratoryManager simulation;
         private int definitionNumber;
 
         [SetUp]
@@ -26,7 +26,7 @@ namespace MobileGame.Foundation.Tests
             prototype = CreateDefinition<CreatureDefinition>("work.prototype", ThingComponentKind.ResourceContainer);
             registry = new ThingRegistry(GameplayComponentFactory.Attach);
             map = new GridMap(registry, 16, 10);
-            simulation = new LaboratorySimulation(registry, map, organic);
+            simulation = new LaboratoryManager(registry, map, organic);
         }
 
         [Test]

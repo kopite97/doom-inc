@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace MobileGame.Presentation
 {
-    // Temporary diagnostic surface. SessionController owns commands, time gating and saves.
+    // Temporary diagnostic surface. GameFlowManager owns commands, time gating and saves.
     public sealed class SessionFoundationView : MonoBehaviour
     {
         [SerializeField] private FacilityDefinition storage;
@@ -20,7 +20,7 @@ namespace MobileGame.Presentation
         private bool skipNextDelta = true;
         private bool applicationPaused;
 
-        public SessionController Controller { get; private set; }
+        public GameFlowManager Controller { get; private set; }
         public Guid SelectedId { get; private set; }
         public string SavePath { get; private set; }
         public string LastCommand { get; private set; }
@@ -46,7 +46,7 @@ namespace MobileGame.Presentation
             var codec = new SessionSnapshotCodec(new ThingDefinition[]
                 { storageDefinition, creatureDefinition, resourceDefinition });
             SavePath = Path.GetFullPath(savePath);
-            Controller = new SessionController(codec, new JsonFileSessionStore(SavePath), () =>
+            Controller = new GameFlowManager(codec, new JsonFileSessionStore(SavePath), () =>
             {
                 // Reuse an explicit fixture; this is not the approved game's start configuration.
                 var fixture = new MapFoundationScenario(storageDefinition, creatureDefinition, resourceDefinition);

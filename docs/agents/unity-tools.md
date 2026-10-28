@@ -118,6 +118,8 @@ GameFlow·저장 진단 씬의 생성/열기 메뉴와 전체 Edit·Play 실행�
 
 실제 초기 건설·수집·저장 장면은 [PLAN-008 검증 기록](../plans/evidence/PLAN-008/README.md#재현-명령과-직접-실행)의 Open Laboratory Scene 메뉴·조작·Edit/Play 명령을 따른다. 기존 진단 장면과 실제 플레이 슬롯을 구분한다.
 
+멸망 연출·결과·재시작과 앱 포커스/정지 검증은 [PLAN-011 실행 기록](../plans/evidence/PLAN-011/README.md)을 따른다. 일반 격리 Play 시나리오의 활성 상태 준비와, 이를 끄고 포커스 상실/앱 정지를 주입하는 생명주기 검사를 구분한다.
+
 ## Codex의 Unity MCP 연결
 
 `unity-mobile-game`은 이 PC의 Codex 사용자 설정에 등록했으며 프로젝트 경로를 고정했다.

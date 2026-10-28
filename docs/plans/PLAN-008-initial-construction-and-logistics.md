@@ -47,7 +47,7 @@ updated: 2026-10-26
 | [Thing 정의](../../UnityProject/Assets/Scripts/Data/Definitions/ThingDefinition.cs)·[시설 정의](../../UnityProject/Assets/Scripts/Data/Definitions/Facility/FacilityDefinition.cs) | 종류별 비용·크기·작업·수집·저장 설정 등 필요한 공통 정의. 개별 진행도는 SO에 저장하지 않음 |
 | [ThingRegistry](../../UnityProject/Assets/Scripts/Core/Things/ThingRegistry.cs)·[자원 보관](../../UnityProject/Assets/Scripts/Core/Resource/ResourceContainerComponent.cs) | 현재는 수량·단일 소속·묶음 전체 이전이 중심. 부분 분할/이전, 예약과 게임의 수용 조건을 담당 기능으로 연결 |
 | [GridMap](../../UnityProject/Assets/Scripts/Core/Spatial/GridMap.cs)·[배치 명령](../../UnityProject/Assets/Scripts/Core/Spatial/PlacementCommands.cs) | 현재 점유·고정 상호작용 위치를 실제 경로·이동에서 사용하고 새 건설의 후보/확정 상태를 연결 |
-| [SessionState](../../UnityProject/Assets/Scripts/Core/Session/SessionState.cs)·[SessionController](../../UnityProject/Assets/Scripts/GameFlow/Session/SessionController.cs) | 현재 Registry·Map과 공통 진행 제어에 실제 시작 구성·담당 시스템·연구소 갱신을 연결 |
+| [SessionState](../../UnityProject/Assets/Scripts/Core/Session/SessionState.cs)·[GameFlowManager](../../UnityProject/Assets/Scripts/GameFlow/Session/GameFlowManager.cs) | 현재 Registry·Map과 공통 진행 제어에 실제 시작 구성·담당 시스템·연구소 갱신을 연결 |
 | [저장 DTO](../../UnityProject/Assets/Scripts/Persistence/Snapshots/SessionSnapshot.cs)·[복원](../../UnityProject/Assets/Scripts/Persistence/Serialization/SessionSnapshotCodec.cs) | 현재 식별·수량·소속·배치·단계에 건설/수집 진행·Job·운반물·예약·설정·입고 대기를 확장 |
 | [기존 진단 화면](../../UnityProject/Assets/Scripts/Presentation/Diagnostics/Session/SessionFoundationView.cs) | 기존 기반 진단을 유지하고 실제 시작 상태의 최소 플레이 화면을 연결. 시설 2개·보조형 2개·유기물 5개인 진단 구성을 실제 시작으로 쓰지 않음 |
 

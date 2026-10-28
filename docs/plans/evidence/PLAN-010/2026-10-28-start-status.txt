@@ -1,0 +1,92 @@
+ M UnityProject/Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity
+ M UnityProject/Assets/Scripts/Data/Definitions/Creature/CreatureDefinition.cs
+ M UnityProject/Assets/Scripts/Data/Definitions/Facility/FacilityDefinition.cs
+ M UnityProject/Assets/Scripts/Data/Definitions/Facility/FacilityRole.cs
+ M UnityProject/Assets/Scripts/Editor/Scenes/LaboratorySceneAssets.cs
+ M UnityProject/Assets/Scripts/GameFlow/Laboratory/LaboratoryCommands.cs
+ D UnityProject/Assets/Scripts/GameFlow/Session/SessionController.cs
+ D UnityProject/Assets/Scripts/GameFlow/Session/SessionController.cs.meta
+ M UnityProject/Assets/Scripts/Gameplay/Creature/WorkerComponent.cs
+ M UnityProject/Assets/Scripts/Gameplay/Creature/WorkerJob.cs
+ D UnityProject/Assets/Scripts/Gameplay/Creature/WorkerSystem.cs
+ D UnityProject/Assets/Scripts/Gameplay/Creature/WorkerSystem.cs.meta
+ D UnityProject/Assets/Scripts/Gameplay/Logistics/LogisticsStateValidation.cs
+ D UnityProject/Assets/Scripts/Gameplay/Logistics/LogisticsStateValidation.cs.meta
+ D UnityProject/Assets/Scripts/Gameplay/Logistics/LogisticsSystem.cs
+ D UnityProject/Assets/Scripts/Gameplay/Logistics/LogisticsSystem.cs.meta
+ M UnityProject/Assets/Scripts/Gameplay/Logistics/StorageComponent.cs
+ M UnityProject/Assets/Scripts/Gameplay/Session/GameplayComponentFactory.cs
+ M UnityProject/Assets/Scripts/Gameplay/Session/LaboratorySessionFactory.cs
+ D UnityProject/Assets/Scripts/Gameplay/Session/LaboratorySimulation.cs
+ D UnityProject/Assets/Scripts/Gameplay/Session/LaboratorySimulation.cs.meta
+ M UnityProject/Assets/Scripts/Gameplay/Session/LaboratoryStateValidator.cs
+ M UnityProject/Assets/Scripts/Persistence/Serialization/LaboratorySnapshotCodec.cs
+ M UnityProject/Assets/Scripts/Persistence/Serialization/SessionSnapshotCodec.cs
+ M UnityProject/Assets/Scripts/Persistence/Snapshots/LaboratorySnapshot.cs
+ M UnityProject/Assets/Scripts/Presentation/Diagnostics/Session/SessionFoundationView.cs
+ M UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.Gui.cs
+ M UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.cs
+ D UnityProject/Assets/Scripts/Tests/EditMode/Foundation/GameFlow/SessionControllerTests.cs
+ D UnityProject/Assets/Scripts/Tests/EditMode/Foundation/GameFlow/SessionControllerTests.cs.meta
+ M UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Gameplay/InitialLaboratoryCycleTests.cs
+ M UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Gameplay/LaboratoryValidationTests.cs
+ M UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Gameplay/LogisticsTests.cs
+ M UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Gameplay/WorkTests.cs
+ M UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Persistence/LaboratoryPersistenceTests.cs
+ M UnityProject/Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.cs
+ M UnityProject/Assets/Scripts/Tests/PlayMode/Session/SessionFoundationViewTests.cs
+ M docs/decisions/README.md
+ M docs/decisions/TECH-004-session-and-persistence.md
+ M docs/decisions/TECH-005-initial-laboratory-and-jobs.md
+ M docs/game-design/05-development/02-implementation/roadmap.md
+ M docs/game-design/README.md
+ M docs/plans/PLAN-007-gameflow-and-persistence.md
+ M docs/plans/PLAN-008-initial-construction-and-logistics.md
+ M docs/plans/PLAN-009-processing-cultivation-and-workers.md
+ M docs/plans/README.md
+?? UnityProject/Assets/SO/Creature/Invader.asset
+?? UnityProject/Assets/SO/Creature/Invader.asset.meta
+?? UnityProject/Assets/SO/Creature/Support.asset
+?? UnityProject/Assets/SO/Creature/Support.asset.meta
+?? UnityProject/Assets/SO/Facility/Cultivation.asset
+?? UnityProject/Assets/SO/Facility/Cultivation.asset.meta
+?? UnityProject/Assets/SO/Facility/Processing.asset
+?? UnityProject/Assets/SO/Facility/Processing.asset.meta
+?? UnityProject/Assets/SO/Resource/CultureMedium.asset
+?? UnityProject/Assets/SO/Resource/CultureMedium.asset.meta
+?? UnityProject/Assets/Scripts/Core/Session/IExternalSessionRuntime.cs
+?? UnityProject/Assets/Scripts/Data/Definitions/Creature/CreatureRole.cs
+?? UnityProject/Assets/Scripts/Data/Definitions/Creature/CreatureRole.cs.meta
+?? UnityProject/Assets/Scripts/Data/Definitions/Invasion/
+?? UnityProject/Assets/Scripts/Editor/Definitions/ProductionDefinitionAssets.cs
+?? UnityProject/Assets/Scripts/Editor/Definitions/ProductionDefinitionAssets.cs.meta
+?? UnityProject/Assets/Scripts/GameFlow/Session/GameFlowManager.cs
+?? UnityProject/Assets/Scripts/GameFlow/Session/GameFlowManager.cs.meta
+?? UnityProject/Assets/Scripts/Gameplay/Construction/ConstructionManager.cs
+?? UnityProject/Assets/Scripts/Gameplay/Construction/ConstructionManager.cs.meta
+?? UnityProject/Assets/Scripts/Gameplay/Creature/WorkerManager.cs
+?? UnityProject/Assets/Scripts/Gameplay/Creature/WorkerManager.cs.meta
+?? UnityProject/Assets/Scripts/Gameplay/Invasion/
+?? UnityProject/Assets/Scripts/Gameplay/Logistics/LogisticsManager.Validation.cs
+?? UnityProject/Assets/Scripts/Gameplay/Logistics/LogisticsManager.Validation.cs.meta
+?? UnityProject/Assets/Scripts/Gameplay/Logistics/LogisticsManager.cs
+?? UnityProject/Assets/Scripts/Gameplay/Logistics/LogisticsManager.cs.meta
+?? UnityProject/Assets/Scripts/Gameplay/Production/ProductionComponent.cs
+?? UnityProject/Assets/Scripts/Gameplay/Production/ProductionComponent.cs.meta
+?? UnityProject/Assets/Scripts/Gameplay/Production/ProductionManager.cs
+?? UnityProject/Assets/Scripts/Gameplay/Production/ProductionManager.cs.meta
+?? UnityProject/Assets/Scripts/Gameplay/Session/LaboratoryManager.cs
+?? UnityProject/Assets/Scripts/Gameplay/Session/LaboratoryManager.cs.meta
+?? UnityProject/Assets/Scripts/Tests/EditMode/Foundation/GameFlow/GameFlowManagerTests.cs
+?? UnityProject/Assets/Scripts/Tests/EditMode/Foundation/GameFlow/GameFlowManagerTests.cs.meta
+?? UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Gameplay/ProductionTests.Persistence.cs
+?? UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Gameplay/ProductionTests.Persistence.cs.meta
+?? UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Gameplay/ProductionTests.Transitions.cs
+?? UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Gameplay/ProductionTests.Transitions.cs.meta
+?? UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Gameplay/ProductionTests.cs
+?? UnityProject/Assets/Scripts/Tests/EditMode/Foundation/Gameplay/ProductionTests.cs.meta
+?? UnityProject/Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.Production.cs
+?? UnityProject/Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.Production.cs.meta
+?? docs/decisions/TECH-006-production-and-manager-boundaries.md
+?? docs/plans/PLAN-010-invasion-activity-and-reports.md
+?? docs/plans/evidence/PLAN-009/

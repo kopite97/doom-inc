@@ -7,7 +7,7 @@ namespace MobileGame.Gameplay
     public static class LaboratorySessionFactory
     {
         public static SessionState Create(ResourceDefinition organic, FacilityDefinition gathering,
-            FacilityDefinition storage, CreatureDefinition prototype)
+            FacilityDefinition storage, CreatureDefinition prototype, ResourceDefinition culture = null, InvasionSettings invasionSettings = null)
         {
             if (organic == null || gathering == null || storage == null || prototype == null)
                 throw new ArgumentNullException("Laboratory definitions are required.");
@@ -24,7 +24,7 @@ namespace MobileGame.Gameplay
             var placement = map.Commands.Place(worker.Id, Vector2Int.one);
             if (!placement.Succeeded) throw new InvalidOperationException(placement.ToString());
             registry.CreateResource(organic, startingAmount, worker.GetComponent<ResourceContainerComponent>());
-            return new SessionState(registry, map, new LaboratorySimulation(registry, map, organic));
+            return new SessionState(registry, map, new LaboratoryManager(registry, map, organic, culture, invasionSettings));
         }
     }
 }

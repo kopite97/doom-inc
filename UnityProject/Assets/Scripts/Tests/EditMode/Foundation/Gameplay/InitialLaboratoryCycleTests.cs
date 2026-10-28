@@ -26,12 +26,12 @@ namespace MobileGame.Foundation.Tests
             {
                 var codec = new SessionSnapshotCodec(new ThingDefinition[]
                     { organic, prototype, gatheringDefinition, storageDefinition }, true);
-                var controller = new SessionController(codec,
+                var controller = new GameFlowManager(codec,
                     new JsonFileSessionStore(Path.Combine(directory, "session.json")),
                     () => LaboratorySessionFactory.Create(organic, gatheringDefinition, storageDefinition, prototype));
                 Assert.That(controller.StartOrContinue(), Is.True);
                 var commands = new LaboratoryCommands(controller);
-                var simulation = (LaboratorySimulation)controller.Current.Runtime;
+                var simulation = (LaboratoryManager)controller.Current.Runtime;
                 Assert.That(simulation.Registry.Things.Count(t => t.Definition.Kind == ThingKind.Creature), Is.EqualTo(1));
                 Assert.That(simulation.Registry.Things.Count(t => t.Definition.Kind == ThingKind.Facility), Is.Zero);
                 Assert.That(TotalOrganic(simulation), Is.EqualTo(4));
@@ -112,13 +112,13 @@ namespace MobileGame.Foundation.Tests
             Assert.That(commands.ConfirmConstruction(), Is.True);
         }
 
-        private static void AdvanceUntil(SessionController controller, Func<bool> condition, string failure)
+        private static void AdvanceUntil(GameFlowManager controller, Func<bool> condition, string failure)
         {
             for (var step = 0; step < 2400 && !condition(); step++) controller.Advance(0.05);
             Assert.That(condition(), Is.True, failure + " (120 simulated seconds maximum)");
         }
 
-        private static int TotalOrganic(LaboratorySimulation simulation) => simulation.Registry.Things
+        private static int TotalOrganic(LaboratoryManager simulation) => simulation.Registry.Things
             .Where(t => t.Definition.Kind == ThingKind.Resource).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
 
         private FacilityDefinition Facility(string id, FacilityRole role, ResourceDefinition organic,

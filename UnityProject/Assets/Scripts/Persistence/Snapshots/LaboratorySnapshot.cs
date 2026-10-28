@@ -9,6 +9,7 @@ namespace MobileGame.Persistence
     public sealed class LaboratorySnapshot
     {
         public string organicDefinitionId;
+        public string cultureDefinitionId;
         public int[] preset;
         public GameplayThingSnapshot[] things;
         public ReservationSnapshot[] reservations;
@@ -18,6 +19,8 @@ namespace MobileGame.Persistence
     public sealed class GameplayThingSnapshot
     {
         public string thingId;
+        public bool hasProduction;
+        public ProductionSnapshot production;
         public bool hasConstruction;
         public bool hasGathering;
         public bool hasStorage;
@@ -26,6 +29,16 @@ namespace MobileGame.Persistence
         public GatheringSnapshot gathering;
         public StorageSnapshot storage;
         public WorkerSnapshot worker;
+    }
+
+    [Serializable]
+    public sealed class ProductionSnapshot
+    {
+        public CultivationTarget selectedTarget;
+        public CultivationTarget activeTarget;
+        public bool inProgress;
+        public double progress;
+        public int outstanding;
     }
 
     [Serializable]
@@ -47,11 +60,13 @@ namespace MobileGame.Persistence
     public sealed class StorageSnapshot
     {
         public bool allowsOrganic;
+        public bool allowsCulture;
     }
 
     [Serializable]
     public sealed class WorkerSnapshot
     {
+        public string assignedFacilityId;
         public WorkerJobSnapshot job;
         public bool hasJob;
         public double moveProgress;

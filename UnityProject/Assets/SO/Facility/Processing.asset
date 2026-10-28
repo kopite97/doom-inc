@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f54624226f83e4fb1934a43aeafb36, type: 3}
+  m_Name: Processing
+  m_EditorClassIdentifier: MobileGame.Foundation::MobileGame.Foundation.FacilityDefinition
+  definitionId: facility.processing
+  displayName: "\uC7AC\uB8CC \uAC00\uACF5\uC2DC\uC124"
+  components: 01000000
+  footprint: {x: 2, y: 2}
+  interactionOffset: {x: 0, y: -1}
+  role: 3
+  resource: {fileID: 11400000, guid: c8ffc990ee3e89e43a6413bde46a7b8c, type: 2}
+  buildCost: 2
+  buildSeconds: 3
+  storageCapacity: 20
+  gatheringAmount: 5
+  gatheringSeconds: 5
+  inputResource: {fileID: 11400000, guid: c8ffc990ee3e89e43a6413bde46a7b8c, type: 2}
+  outputResource: {fileID: 11400000, guid: 80d43451e0e91634b8f3b79428248d44, type: 2}
+  supportOutput: {fileID: 11400000, guid: d7d281609aeb8e24a8f9c2a98d1ef9e4, type: 2}
+  invaderOutput: {fileID: 11400000, guid: fca63c086eed1424bb23583191a4c8a2, type: 2}
+  inputAmount: 5
+  outputAmount: 1
+  productionSeconds: 10

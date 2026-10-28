@@ -2,7 +2,7 @@ using System;
 
 namespace MobileGame.Gameplay
 {
-    public enum WorkKind { Construction = 0, Gathering = 1, Hauling = 2 }
+    public enum WorkKind { Construction = 0, Gathering = 1, Hauling = 2, Production = 3 }
     public enum JobStage { ToSupply = 0, ToDestination = 1, Working = 2, Waiting = 3 }
 
     public sealed class WorkerJob

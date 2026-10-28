@@ -64,20 +64,20 @@ namespace MobileGame.Foundation.Tests
             Require(map.Commands.Place(store.Id, new Vector2Int(6, 2)));
             registry.CreateResource(organic, gathering.BuildCost + storage.BuildCost,
                 worker.GetComponent<ResourceContainerComponent>());
-            return new SessionState(registry, map, new LaboratorySimulation(registry, map, organic));
+            return new SessionState(registry, map, new LaboratoryManager(registry, map, organic));
         }
 
-        private SessionController Controller(Func<SessionState> factory = null)
-            => new SessionController(codec, new JsonFileSessionStore(slot), factory ?? PendingConstruction, 10000);
+        private GameFlowManager Controller(Func<SessionState> factory = null)
+            => new GameFlowManager(codec, new JsonFileSessionStore(slot), factory ?? PendingConstruction, 10000);
 
         private SessionState RoundTrip(SessionState state)
         {
             var captured = codec.Capture(state, SessionPhase.Playing);
-            Assert.That(captured.version, Is.EqualTo(2));
+            Assert.That(captured.version, Is.EqualTo(SessionSnapshotCodec.CurrentVersion));
             var json = codec.Serialize(captured);
             new JsonFileSessionStore(slot).Write(json);
             var restored = codec.Restore(codec.Deserialize(new JsonFileSessionStore(slot).Read()));
-            Assert.That(restored.Runtime, Is.TypeOf<LaboratorySimulation>());
+            Assert.That(restored.Runtime, Is.TypeOf<LaboratoryManager>());
             Assert.That(restored.Registry, Is.Not.SameAs(state.Registry));
             Assert.That(restored.Map, Is.Not.SameAs(state.Map));
             Assert.That(restored.Runtime, Is.Not.SameAs(state.Runtime));
@@ -99,11 +99,11 @@ namespace MobileGame.Foundation.Tests
         public void ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(string checkpoint)
         {
             var state = PendingConstruction();
-            var simulation = (LaboratorySimulation)state.Runtime;
+            var simulation = (LaboratoryManager)state.Runtime;
             if (checkpoint == "reserved") PrepareRemoteCarrier(state);
             RunUntil(state, () => AtCheckpoint(state, checkpoint), checkpoint);
             var restored = RoundTrip(state);
-            var loaded = (LaboratorySimulation)restored.Runtime;
+            var loaded = (LaboratoryManager)restored.Runtime;
             RunUntil(state, () => Stored(state) >= 5, "original first admission");
             RunUntil(restored, () => Stored(restored) >= 5, "restored first admission");
             Assert.That(Stored(restored), Is.EqualTo(5));
@@ -137,7 +137,7 @@ namespace MobileGame.Foundation.Tests
         {
             var state = PendingConstruction();
             RunUntil(state, () => AtCheckpoint(state, "carried"), "picked-up first batch");
-            var simulation = (LaboratorySimulation)state.Runtime;
+            var simulation = (LaboratoryManager)state.Runtime;
             var worker = state.Registry.Things.Single(t => t.Definition.Kind == ThingKind.Creature);
             var storageId = Facility(state, FacilityRole.Storage).Id;
             Assert.That(simulation.SetAllowed(storageId, false), Is.True);
@@ -146,7 +146,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(simulation.Reservations, Is.Empty);
             Assert.That(worker.GetComponent<WorkerComponent>().Job.Stage, Is.EqualTo(JobStage.Waiting));
             var restored = RoundTrip(state);
-            var loaded = (LaboratorySimulation)restored.Runtime;
+            var loaded = (LaboratoryManager)restored.Runtime;
             var restoredWorker = restored.Registry.Things.Single(t => t.Id == worker.Id).GetComponent<WorkerComponent>();
             Assert.That(restoredWorker.Priorities, Is.EqualTo(new[] { 2, 3, 1 }));
             Assert.That(restoredWorker.UsesPreset, Is.False);
@@ -170,7 +170,7 @@ namespace MobileGame.Foundation.Tests
             }
             codec = new SessionSnapshotCodec(new ThingDefinition[] { organic, prototype, gathering, storage, smallDefinition });
             var state = PendingConstruction();
-            var simulation = (LaboratorySimulation)state.Runtime;
+            var simulation = (LaboratoryManager)state.Runtime;
             var mainStore = Facility(state, FacilityRole.Storage);
             var worker = state.Registry.Things.Single(t => t.Definition == prototype);
             // Only this extra completed, initially disabled store is fixture setup.
@@ -197,7 +197,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(TotalResource(state), Is.EqualTo(5));
 
             var restored = RoundTrip(state);
-            var loaded = (LaboratorySimulation)restored.Runtime;
+            var loaded = (LaboratoryManager)restored.Runtime;
             Assert.That(loaded.TotalAt(smallStore.Id), Is.EqualTo(2));
             Assert.That(loaded.TotalAt(worker.Id), Is.EqualTo(3));
             Assert.That(Facility(restored, FacilityRole.Gathering).GetComponent<GatheringComponent>().Outstanding, Is.EqualTo(3));
@@ -214,10 +214,17 @@ namespace MobileGame.Foundation.Tests
         [Test]
         public void TransientConstructionPreviewIsNotSavedAndGameFlowGatesActualWork()
         {
+            var invaderDefinition = CreateDefinition<CreatureDefinition>("persistence.invader", ThingComponentKind.ResourceContainer);
+            using (var serialized = new SerializedObject(invaderDefinition))
+            {
+                serialized.FindProperty("role").intValue = (int)CreatureRole.Invader;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+            }
+            codec = new SessionSnapshotCodec(new ThingDefinition[] { organic, prototype, gathering, storage, invaderDefinition });
             var controller = Controller(() => LaboratorySessionFactory.Create(organic, gathering, storage, prototype));
             Assert.That(controller.StartOrContinue(), Is.True, controller.LastError);
             var state = controller.Current;
-            var simulation = (LaboratorySimulation)state.Runtime;
+            var simulation = (LaboratoryManager)state.Runtime;
             var commands = new LaboratoryCommands(controller);
             var initialIds = state.Registry.Things.Select(t => t.Id).ToArray();
             Assert.That(commands.BeginConstruction(gathering), Is.True);
@@ -237,8 +244,12 @@ namespace MobileGame.Foundation.Tests
             controller.NotifyApplicationPause(false);
             controller.Advance(0.05);
             Assert.That(state.Registry.Things.Single(t => t.Definition == prototype).GetComponent<WorkerComponent>().Job, Is.Not.Null);
+            var invader = state.Registry.Create(invaderDefinition);
+            Require(state.Map.Commands.Place(invader.Id, Vector2Int.one));
+            Assert.That(commands.ReleaseInvaders(), Is.True);
             Assert.That(commands.BeginConstruction(storage), Is.True);
-            Assert.That(controller.ReachGoal(), Is.True);
+            Assert.That(controller.ReachGoal(), Is.False, "A real session cannot end before actual achievements.");
+            controller.Advance(200);
             Assert.That(commands.CancelConstruction(), Is.True, "Cancel a transient preview without resuming the ended session.");
             Assert.That(controller.Phase, Is.EqualTo(SessionPhase.Destruction));
             Assert.That(controller.CanAdvanceLaboratory, Is.False);
@@ -259,7 +270,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(commands.ConfirmConstruction(), Is.True);
             controller.Advance(0.05);
             var state = controller.Current;
-            var simulation = (LaboratorySimulation)state.Runtime;
+            var simulation = (LaboratoryManager)state.Runtime;
             var worker = state.Registry.Things.Single(t => t.Definition == prototype);
             var site = state.Registry.Things.Single(t => t.Definition == gathering);
             var reservation = simulation.Reservations.Single();
@@ -329,7 +340,7 @@ namespace MobileGame.Foundation.Tests
         public void DuplicatedOutboundReservationCannotDoubleBookTheSameResourceAfterReload()
         {
             var state = PendingConstruction();
-            var simulation = (LaboratorySimulation)state.Runtime;
+            var simulation = (LaboratoryManager)state.Runtime;
             PrepareRemoteCarrier(state);
             RunUntil(state, () => AtCheckpoint(state, "reserved"), "outbound reservation");
             var snapshot = codec.Capture(state, SessionPhase.Playing);
@@ -341,7 +352,7 @@ namespace MobileGame.Foundation.Tests
 
         private static bool AtCheckpoint(SessionState state, string checkpoint)
         {
-            var simulation = (LaboratorySimulation)state.Runtime;
+            var simulation = (LaboratoryManager)state.Runtime;
             var gathering = Facility(state, FacilityRole.Gathering).GetComponent<GatheringComponent>();
             switch (checkpoint)
             {
@@ -356,7 +367,7 @@ namespace MobileGame.Foundation.Tests
 
         private void PrepareRemoteCarrier(SessionState state)
         {
-            var simulation = (LaboratorySimulation)state.Runtime;
+            var simulation = (LaboratoryManager)state.Runtime;
             var builder = state.Registry.Things.Single(t => t.Definition.Kind == ThingKind.Creature);
             Assert.That(simulation.SetWorkerPriorities(builder.Id, new[] { 1, 2, 0 }), Is.True);
             // Explicit multi-worker fixture: the collector remains at its facility,
@@ -368,7 +379,7 @@ namespace MobileGame.Foundation.Tests
 
         private void RunUntil(SessionState state, Func<bool> condition, string description)
         {
-            var controller = new SessionController(codec, new MemoryStore(), () => state, 10000);
+            var controller = new GameFlowManager(codec, new MemoryStore(), () => state, 10000);
             Assert.That(controller.StartOrContinue(), Is.True, controller.LastError);
             for (var step = 0; step < 20000 && !condition(); step++) controller.Advance(0.05);
             Assert.That(condition(), Is.True, "Timed out: " + description);

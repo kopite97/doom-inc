@@ -12,7 +12,7 @@
 | 담당 | 적용 |
 | --- | --- |
 | 세션 상태 묶음 | [SessionState](../../UnityProject/Assets/Scripts/Core/Session/SessionState.cs)의 Registry·Map 참조. 재고·좌표를 복사해 소유하지 않음 |
-| 단계·명령·진행 제어 | [SessionController](../../UnityProject/Assets/Scripts/GameFlow/Session/SessionController.cs)의 준비·플레이·멸망 연출·결과, 시작·이어하기·재시작·저장·배치 조작 |
+| 단계·명령·진행 제어 | [GameFlowManager](../../UnityProject/Assets/Scripts/GameFlow/Session/GameFlowManager.cs)의 준비·플레이·멸망 연출·결과, 시작·이어하기·재시작·저장·배치 조작 |
 | 저장 계약 | [SessionSnapshot](../../UnityProject/Assets/Scripts/Persistence/Snapshots/SessionSnapshot.cs)의 버전 1 DTO. 실행 객체와 분리 |
 | 수집·검사·복원 | [SessionSnapshotCodec](../../UnityProject/Assets/Scripts/Persistence/Serialization/SessionSnapshotCodec.cs)의 정의 ID 조회·JSON 변환·새 객체 그래프 구성 |
 | 파일 입출력 | [JsonFileSessionStore](../../UnityProject/Assets/Scripts/Persistence/Storage/JsonFileSessionStore.cs), 주입 가능한 [ISessionStore](../../UnityProject/Assets/Scripts/Persistence/Storage/ISessionStore.cs) |

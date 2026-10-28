@@ -9,7 +9,7 @@ namespace MobileGame.Persistence
 {
     internal static class LaboratorySnapshotCodec
     {
-        public static LaboratorySnapshot Capture(LaboratorySimulation simulation)
+        public static LaboratorySnapshot Capture(LaboratoryManager simulation)
         {
             simulation.ValidateState();
             var things = new List<GameplayThingSnapshot>();
@@ -31,16 +31,24 @@ namespace MobileGame.Persistence
                     saved.gathering = new GatheringSnapshot
                     { progress = gathering.Progress, outstanding = gathering.Outstanding };
                 }
+                if (thing.TryGetComponent<ProductionComponent>(out var production))
+                {
+                    saved.hasProduction = true;
+                    saved.production = new ProductionSnapshot { selectedTarget = production.SelectedTarget,
+                        activeTarget = production.ActiveTarget, inProgress = production.InProgress,
+                        progress = production.Progress, outstanding = production.Outstanding };
+                }
                 if (thing.TryGetComponent<StorageComponent>(out var storage))
                 {
                     saved.hasStorage = true;
-                    saved.storage = new StorageSnapshot { allowsOrganic = storage.AllowsOrganic };
+                    saved.storage = new StorageSnapshot { allowsOrganic = storage.AllowsOrganic, allowsCulture = storage.AllowsCulture };
                 }
                 if (thing.TryGetComponent<WorkerComponent>(out var worker))
                 {
                     saved.hasWorker = true;
                     saved.worker = new WorkerSnapshot
                     {
+                        assignedFacilityId = Id(worker.AssignedFacilityId),
                         moveProgress = worker.MoveProgress, usesPreset = worker.UsesPreset,
                         priorities = worker.Priorities?.ToArray(), hasJob = worker.Job != null,
                         job = worker.Job == null ? null : new WorkerJobSnapshot
@@ -57,7 +65,7 @@ namespace MobileGame.Persistence
             }
             return new LaboratorySnapshot
             {
-                organicDefinitionId = simulation.Organic.DefinitionId,
+                organicDefinitionId = simulation.Organic.DefinitionId, cultureDefinitionId = simulation.Culture?.DefinitionId,
                 preset = simulation.Preset.ToArray(), things = things.ToArray(),
                 reservations = simulation.Reservations.Select(reservation => new ReservationSnapshot
                 {
@@ -69,8 +77,9 @@ namespace MobileGame.Persistence
             };
         }
 
-        public static LaboratorySimulation Restore(LaboratorySnapshot saved, ThingRegistry registry,
-            GridMap map, Func<string, ThingDefinition> getDefinition)
+        public static LaboratoryManager Restore(LaboratorySnapshot saved, ThingRegistry registry,
+            GridMap map, Func<string, ThingDefinition> getDefinition, int version, ResourceDefinition defaultCulture,
+            InvasionSettings invasionSettings = null)
         {
             ValidateStructure(saved);
             if (!(getDefinition(saved.organicDefinitionId) is ResourceDefinition organic))
@@ -78,6 +87,7 @@ namespace MobileGame.Persistence
             var byId = saved.things.ToDictionary(state => ParseId(state.thingId));
             foreach (var thing in registry.Things)
             {
+                var hasProduction = thing.TryGetComponent<ProductionComponent>(out var production);
                 var hasConstruction = thing.TryGetComponent<ConstructionComponent>(out var construction);
                 var hasGathering = thing.TryGetComponent<GatheringComponent>(out var gathering);
                 var hasStorage = thing.TryGetComponent<StorageComponent>(out var storage);
@@ -89,7 +99,7 @@ namespace MobileGame.Persistence
                     continue;
                 }
                 if (!hasState || state.hasConstruction != hasConstruction || state.hasGathering != hasGathering ||
-                    state.hasStorage != hasStorage || state.hasWorker != hasWorker)
+                    state.hasStorage != hasStorage || state.hasWorker != hasWorker || state.hasProduction != hasProduction)
                     throw Invalid("Missing or incompatible component state for Thing " + thing.Id);
                 byId.Remove(thing.Id);
                 if (hasConstruction)
@@ -103,9 +113,22 @@ namespace MobileGame.Persistence
                     gathering.Progress = state.gathering.progress;
                     gathering.Outstanding = state.gathering.outstanding;
                 }
-                if (hasStorage) storage.AllowsOrganic = state.storage.allowsOrganic;
+                if (hasProduction)
+                {
+                    production.SelectedTarget = state.production.selectedTarget;
+                    production.ActiveTarget = state.production.activeTarget;
+                    production.InProgress = state.production.inProgress;
+                    production.Progress = state.production.progress;
+                    production.Outstanding = state.production.outstanding;
+                }
+                if (hasStorage)
+                {
+                    storage.AllowsOrganic = state.storage.allowsOrganic;
+                    storage.AllowsCulture = version == 2 || state.storage.allowsCulture;
+                }
                 if (hasWorker)
                 {
+                    worker.AssignedFacilityId = ParseOptionalId(state.worker.assignedFacilityId);
                     worker.MoveProgress = state.worker.moveProgress;
                     worker.Priorities = state.worker.priorities.ToArray();
                     worker.UsesPreset = state.worker.usesPreset;
@@ -127,9 +150,11 @@ namespace MobileGame.Persistence
                 Amount = reservation.amount, PickedUp = reservation.pickedUp,
                 BatchOriginId = ParseOptionalId(reservation.batchOriginId), Purpose = reservation.purpose
             }).ToArray();
-            var runtime = new LaboratorySimulation(registry, map, organic);
+            var culture = string.IsNullOrEmpty(saved.cultureDefinitionId) ? (version == 2 ? defaultCulture : null)
+                : getDefinition(saved.cultureDefinitionId) as ResourceDefinition ?? throw Invalid("Invalid culture definition.");
+            var runtime = new LaboratoryManager(registry, map, organic, culture, invasionSettings);
             runtime.RestoreState(saved.preset.ToArray(), reservations);
-            runtime.ValidateState();
+            // Validate the whole graph only after external component state is restored.
             return runtime;
         }
 
@@ -153,12 +178,15 @@ namespace MobileGame.Persistence
                 if (thing.hasGathering && (thing.gathering == null || thing.gathering.outstanding < 0 ||
                     !NonNegativeFinite(thing.gathering.progress)))
                     throw Invalid("Invalid gathering state.");
+                if (thing.hasProduction && (thing.production == null || !NonNegativeFinite(thing.production.progress)
+                    || thing.production.outstanding < 0)) throw Invalid("Invalid production state.");
                 if (thing.hasStorage && thing.storage == null)
                     throw Invalid("Storage settings are missing.");
                 if (thing.hasWorker)
                 {
                     if (thing.worker == null || !NonNegativeFinite(thing.worker.moveProgress))
                         throw Invalid("Invalid worker movement state.");
+                    ParseOptionalId(thing.worker.assignedFacilityId);
                     ValidatePriorities(thing.worker.priorities);
                     if (thing.worker.hasJob) ValidateJob(thing.worker.job);
                 }
@@ -189,7 +217,7 @@ namespace MobileGame.Persistence
 
         private static void ValidatePriorities(int[] priorities)
         {
-            if (priorities == null || priorities.Length != 3 || priorities.Any(priority => priority < 0))
+            if (priorities == null || (priorities.Length != 3 && priorities.Length != 4) || priorities.Any(priority => priority < 0))
                 throw Invalid("Each work kind requires a nonnegative priority.");
         }
 

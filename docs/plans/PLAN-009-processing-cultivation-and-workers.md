@@ -1,9 +1,9 @@
 ---
 id: PLAN-009
 type: development
-status: proposed
+status: completed
 title: 가공·배양·보급형 운용과 시스템 책임·명명 정비
-updated: 2026-10-26
+updated: 2026-10-28
 ---
 
 # PLAN-009 가공·배양·보급형 운용과 시스템 책임·명명 정비
@@ -25,7 +25,7 @@ PLAN-008의 실제 초기 건설·수집·저장에서 이어서 가공시설과
 - 제외: 침공형 방출·외부 활동·전과 보고·멸망·결과의 실제 사이클(3단계), 세로 대응·Android 빌드/실기기·최종 성능 검증(4단계).
 - 제외: 고급형·특화형, 시작 프로토타입의 추가 배양·모델 업그레이드, 배양 선택 해제/중지 버튼, 새로운 해금·강제 배양 순서·콘텐츠 제한·정식 아트 제작.
 
-사용자는 다음 단계의 PLAN 작성을 요청했다. **실행 승인은 아직 없으며 proposed를 유지한다.** 이번 문서 작성은 게임 구현·Unity 실행·PLAN 활성화를 포함하지 않는다.
+2026-10-28 사용자가 PLAN-009 실행을 승인했다. Manager 책임·명명 정비와 기존 기능 회귀 검증을 먼저 마친 뒤 가공·배양·보급형 운용을 구현한다.
 후속 요청으로 Manager 책임 분리와 이미 구현된 클래스의 명명 정비를 이 PLAN의 실행 범위에 추가했다. 범위 추가는 PLAN 전체 실행 승인과 구분한다.
 시작 상태는 계속 프로토타입 1개체·보급형/침공형 0개체·선배치 시설 없음이다. 추가 시설 건설 자원은 실제 수집으로 마련하며 무료 지급·선배치로 진입을 우회하지 않는다.
 
@@ -48,9 +48,9 @@ PLAN-008의 실제 초기 건설·수집·저장에서 이어서 가공시설과
 | --- | --- |
 | [시설 정의](../../UnityProject/Assets/Scripts/Data/Definitions/Facility/FacilityDefinition.cs)의 단일 Resource, 건설/수집 설정 | 모든 시설의 유기물 건설 재료와 가공·배양의 투입/결과를 구분. 승인 레시피는 정의 한 곳에서 관리 |
 | [생명체 정의](../../UnityProject/Assets/Scripts/Data/Definitions/Creature/CreatureDefinition.cs)·[컴포넌트 구성](../../UnityProject/Assets/Scripts/Gameplay/Session/GameplayComponentFactory.cs)은 모든 생명체에 Worker를 구성 | 프로토타입·보급형·침공형의 기능 자격을 구분. 침공형이 건설/수집/운반 작업자가 되지 않게 함 |
-| [수집 상태](../../UnityProject/Assets/Scripts/Gameplay/Production/GatheringComponent.cs)·[연구소 갱신](../../UnityProject/Assets/Scripts/Gameplay/Session/LaboratorySimulation.cs) | 개체 부재에도 갱신되는 시설 회차, 소비 상태·완료품 입고 대기·배양 선택과 진행 중 대상의 구분 |
-| [개체 Job](../../UnityProject/Assets/Scripts/Gameplay/Creature/WorkerJob.cs)·[작업 선택](../../UnityProject/Assets/Scripts/Gameplay/Creature/WorkerSystem.cs)은 건설/수집/운반 3종 | 배정 관계와 현재 Job 분리, 담당 생산 작업 후보·우선순위·실제 작업 여부 및 전환 시점 |
-| [물류](../../UnityProject/Assets/Scripts/Gameplay/Logistics/LogisticsSystem.cs)는 유기물, [저장 설정](../../UnityProject/Assets/Scripts/Gameplay/Logistics/StorageComponent.cs)은 AllowsOrganic 중심 | 두 자원별 허용/수요와 회차 부족분·예약, 저장소 공급·가공 출력 운반, 공용 용량·단일 종류 운반 유지 |
+| [수집 상태](../../UnityProject/Assets/Scripts/Gameplay/Production/GatheringComponent.cs)·[연구소 갱신](../../UnityProject/Assets/Scripts/Gameplay/Session/LaboratoryManager.cs) | 개체 부재에도 갱신되는 시설 회차, 소비 상태·완료품 입고 대기·배양 선택과 진행 중 대상의 구분 |
+| [개체 Job](../../UnityProject/Assets/Scripts/Gameplay/Creature/WorkerJob.cs)·[작업 선택](../../UnityProject/Assets/Scripts/Gameplay/Creature/WorkerManager.cs)은 건설/수집/운반 3종 | 배정 관계와 현재 Job 분리, 담당 생산 작업 후보·우선순위·실제 작업 여부 및 전환 시점 |
+| [물류](../../UnityProject/Assets/Scripts/Gameplay/Logistics/LogisticsManager.cs)는 유기물, [저장 설정](../../UnityProject/Assets/Scripts/Gameplay/Logistics/StorageComponent.cs)은 AllowsOrganic 중심 | 두 자원별 허용/수요와 회차 부족분·예약, 저장소 공급·가공 출력 운반, 공용 용량·단일 종류 운반 유지 |
 | [저장 DTO](../../UnityProject/Assets/Scripts/Persistence/Snapshots/LaboratorySnapshot.cs)·[코덱](../../UnityProject/Assets/Scripts/Persistence/Serialization/LaboratorySnapshotCodec.cs)은 실제 플레이 v2 | 새 정의·회차·선택·배정·Job·자원·예약·대기 개체의 저장 계약, 기존 저장 호환과 후보 검증 |
 | [시작 구성](../../UnityProject/Assets/Scripts/Gameplay/Session/LaboratorySessionFactory.cs)·[명령](../../UnityProject/Assets/Scripts/GameFlow/Laboratory/LaboratoryCommands.cs)·[화면](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.cs) | 실제 시작 유지, 두 시설 건설·배양 대상·배정 조작과 재료/진행/속도/대기 이유 표시 |
 
@@ -68,14 +68,14 @@ PLAN-008의 실제 초기 건설·수집·저장에서 이어서 가공시설과
 | `LogisticsSystem` | `LogisticsManager` | 공급처/목적지 선택·운반 수량·예약·수령/입고·운반 예외 |
 | 가공·배양 생산 담당 추가 | `ProductionManager` | 시설 회차의 시작 조건·속도·진행·완료. 수집 회차와 공유할 경계도 함께 검토 |
 
-위 이름은 이번 정비의 기준안이다. 착수 시 실제 책임을 확인해 최종 이름과 분할 범위를 기록하고 적용한다. 한 줄짜리 전달 클래스나 역할이 겹치는 Manager를 늘리지 않는다.
+위 이름으로 책임·명명 정비를 적용했고 ConstructionManager·ProductionManager를 구성했다. 최종 이관·유지 예외는 [TECH-006](../decisions/TECH-006-production-and-manager-boundaries.md)에 기록했다. 한 줄짜리 전달 클래스나 역할이 겹치는 Manager를 늘리지 않는다.
 시설 진행·소비·완료품 대기, 개체 배정·Job은 기존 Thing 컴포넌트에 원본을 유지한다. Manager는 담당 기능을 통해 이를 갱신하며 예약 등 여러 개체에 걸친 상태는 해당 시스템이 관리한다.
 Manager는 세션에 속하는 일반 C# 객체로 구성하고 필요한 의존성을 명시적으로 전달한다. Unity의 Update·입력은 기존 화면/실행 연결 경계를 통과하며, 화면과 하네스가 같은 조율 경로를 사용한다.
 
 ### 역할별 이름 기준
 
 영문 표기·역할별 접미사·Manager·파일명 기준은 [명명 규칙](../agents/naming.md)을 적용한다. 이 PLAN은 실제 변경 대상·이관 표·검증 결과를 관리한다.
-현재 `LogisticsStateValidation.cs`는 `LogisticsSystem`의 partial 선언이므로 본체와 함께 점검한다. 관련 API·멤버·테스트·Editor 도구도 변경 대상에 포함한다.
+기존 `LogisticsStateValidation.cs`는 `LogisticsManager.Validation.cs`로 본체와 함께 이관했다. 관련 API·테스트·Editor 도구의 타입 참조도 갱신했다.
 변경 전/후 이름·경로·책임과 유지하는 예외를 이관 표로 남기고, 선택 이유·담당 상태·명령/갱신 경로는 기술 결정에서 연결한다.
 
 ### 안전한 이관과 추적
@@ -117,20 +117,20 @@ Manager는 세션에 속하는 일반 C# 객체로 구성하고 필요한 의존
 - 기존 실제 플레이 v2와 진단 v1 저장의 호환/이행 또는 명시적 거부 방침을 정하고 검증한다. 손상·미지원 저장을 자동 초기화해 덮어쓰지 않고, 후보 전체 검증과 실패 시 정상 파일 보존을 유지한다.
 - 여러 자원을 가진 같은 공급처의 동률 등 위임된 선택 순서는 최소한으로 정해 기록한다. 자원 종류보다 운반 가능한 공급처의 거리·생성 순서 규칙을 먼저 적용한다.
 
-중요한 상태·저장 계약 선택은 실행 승인 후 `docs/decisions/`에 기록한다. 위임 범위를 넘는 규칙 공백·충돌이 발견되면 해당 항목을 분리하여 사용자와 논의한다.
+중요한 상태·저장 계약 선택은 [TECH-006](../decisions/TECH-006-production-and-manager-boundaries.md)에 기록했다. 위임 범위를 넘는 규칙 공백·충돌이 발견되면 해당 항목을 분리하여 사용자와 논의한다.
 
 ## 작업 목록
 
-- [ ] 기존 클래스 책임·호출 관계·명명 현황 점검, Manager 경계·이관 표·역할별 명명 기준 정리
-- [ ] 기존 클래스/파일/참조 정비, 지침·기술 결정 연결, 기존 동작·저장·Unity 참조 회귀 검증
-- [ ] 최소 정의·모델별 기능·가공/배양 회차·배정 상태 설계 및 신규 시설 건설 연결
-- [ ] 두 자원 저장·허용 목록·공급/출력 운반·현재 회차 부족분 예약 확장
-- [ ] 가공 생산·소비·20%/100% 전환·전량 실제 입고 대기 구현
-- [ ] 배양 선택·반복·변경·생명체 출현·보급형 합류·침공형 대기 구현
-- [ ] 보급형 배정·해제·자동 작업·우선순위·예외 전환 연결
-- [ ] 새 상태·관계 저장·복원·재시작과 정지/이동 상태 보존 검증
-- [ ] 실제 시작부터 첫 보급형·생산 개선·침공형 대기까지 PC 화면·하네스·회귀 검증
-- [ ] 기술 결정·PLAN·로드맵 갱신, Sprite 요청 유무 확인 후 완료 판정
+- [x] 기존 클래스 책임·호출 관계·명명 현황 점검, Manager 경계·이관 표·역할별 명명 기준 정리
+- [x] 기존 클래스/파일/참조 정비, 지침·기술 결정 연결, 기존 동작·저장·Unity 참조 회귀 검증
+- [x] 최소 정의·모델별 기능·가공/배양 회차·배정 상태 설계 및 신규 시설 건설 연결
+- [x] 두 자원 저장·허용 목록·공급/출력 운반·현재 회차 부족분 예약 확장
+- [x] 가공 생산·소비·20%/100% 전환·전량 실제 입고 대기 구현
+- [x] 배양 선택·반복·변경·생명체 출현·보급형 합류·침공형 대기 구현
+- [x] 보급형 배정·해제·자동 작업·우선순위·예외 전환 연결
+- [x] 새 상태·관계 저장·복원·재시작과 정지/이동 상태 보존 검증
+- [x] 실제 시작부터 첫 보급형·생산 개선·침공형 대기까지 PC 화면·하네스·회귀 검증
+- [x] 기술 결정·PLAN·로드맵 갱신, Sprite 요청 유무 확인 후 완료 판정
 
 ## 완료 기준과 검증 방법
 
@@ -154,7 +154,7 @@ Manager는 세션에 속하는 일반 C# 객체로 구성하고 필요한 의존
 
 공통 게임 갱신으로 시간을 진행하며 무료 자원·즉시 건설·강제 개체 생성으로 실제 진입 검증을 대신하지 않는다. 복수 개체·희귀 예외의 격리 준비 상태는 실제 신규 시작과 구분한다.
 생산 속도는 같은 작업 조건의 진행량으로 비교하며 이동·공급·입고 대기를 기준 작업시간에 포함하지 않는다. 검증용 시간 가속도 같은 규칙·정지 경로를 사용한다.
-실행 승인 후 새 결과·명령·환경·실패/재검증 기록은 `docs/plans/evidence/PLAN-009/`에 남긴다. 테스트 저장은 실제 플레이 슬롯과 격리하고, PC 검증을 Android·전체 게임 완료로 표현하지 않는다.
+새 결과·명령·환경·실패/재검증 기록은 [실행 증거](evidence/PLAN-009/README.md)에 남겼다. 테스트 저장은 실제 플레이 슬롯과 격리하고, PC 검증을 Android·전체 게임 완료로 표현하지 않는다.
 
 ## 아트와 완료 판정
 
@@ -164,11 +164,12 @@ Manager는 세션에 속하는 일반 C# 객체로 구성하고 필요한 의존
 
 ## 현재 상황과 다음 행동
 
-- 2026-10-26: PLAN-001~008 completed, main `c1668c5`에서 현재 기획·코드·검증 증거를 읽고 작성했다. active PLAN은 0개다.
-- 현재: 사용자 후속 요청으로 Manager 책임 분리와 기존 클래스 명명 규격화를 범위에 반영했다. 실제 이름 변경·구조 정비·기능 구현·Unity 검증은 미실행이며 Sprite 요청도 없다.
-- 명명 규칙은 후속 사용자 요청에 따라 전용 지침으로 작성·연결했다. 기존 코드에 적용하는 작업은 이 PLAN의 실행 승인 후 진행한다.
-- 다음 행동: 사용자 실행 승인 후 유일한 active로 전환·검사하고 기존 클래스의 책임·명명·이관부터 정리한다. 기존 동작의 회귀 검증을 통과한 뒤 정의·회차·배정·자원별 공급을 확장한다.
-- 선행 구현 미완료로 확인된 차단 사항은 없다. 위임된 상세는 승인 후 결정하며, 3단계 방출·외부 활동은 별도 PLAN으로 다룬다.
+- 2026-10-28: 승인 후 유일한 active PLAN으로 전환하고 Manager 이관을 먼저 수행했다. 생산 확장 전 새 실행에서 Edit 133/133·Play 6/6이 통과했다.
+- 가공·배양·보급형 운용, 두 자원 물류, 저장 버전 3과 버전 2 복원, PC 가로 화면을 구현했다. 실제 시작에서 추가 자원을 수집해 네 시설 종류와 배양액 전용 두 번째 저장소를 건설하고 첫 보급형·100% 작업·침공형 대기까지 검증했다.
+- 최종 새 기능 포함 Edit 163/163·Play 7/7 통과, 실패·건너뜀 0. 콘솔 오류·경고 0, Play 종료·컴파일 완료를 확인하고 completed로 전환했다. [실행 증거](evidence/PLAN-009/README.md)에 실패 원본·재검증·화면·소스 식별을 보존했다.
+- 기존 meta 167개(이름 변경 6개 포함)의 GUID·내용 일치, 누락 meta·중복 GUID·이전 타입 코드 참조 0개를 확인했다.
+- 신규 Sprite 사용·교체 요청은 없다. 기존 Temp 격자·단색·문자 화면을 확장했고 Require 폴더를 만들지 않았다. 정식 아트와 사용자 시각 검수 완료를 뜻하지 않는다.
+- 침공형 방출·외부 활동·결과 사이클, 세로 대응·Android 실기기는 이번 범위에 포함하지 않았다. 다음 PLAN을 자동 생성·활성화하지 않는다.
 
 ## 검증 결과
 
@@ -178,11 +179,18 @@ Manager는 세션에 속하는 일반 C# 객체로 구성하고 필요한 의존
 | 2026-10-26 | PLAN·목록·로드맵·기획 MAP 갱신 후 문서 검사 | PLAN 9개·목록 일치, 지침 줄 수·로컬 링크 1152개 정상. active=0 조건만 오류 | 종료 코드 1. PLAN-009 proposed·기존 8개 completed 유지. 실행 승인 대기를 전체 검사 통과로 기록하지 않음 |
 | 2026-10-26 | Manager 책임·명명 정비 범위 추가 후 문서 검사 | PLAN 9개·목록 일치, 지침 줄 수·로컬 링크 1154개 정상. active=0 조건만 오류, 공백 검사 정상 | 종료 코드 1은 실행 승인 대기. 코드 이름 변경·Unity 테스트는 미실행 |
 | 2026-10-26 | 독립 명명 지침 작성·MAP 연결·중복 규칙 정리 후 문서 검사 | 루트 39/100줄·명명 지침 41/150줄, PLAN 목록·로컬 링크 1165개 정상. active=0 조건만 오류 | 종료 코드 1은 실행 승인 대기. PLAN-009 proposed 유지, 코드 변경 없음 |
+| 2026-10-28 | 책임·명명 이관 후, 새 생산 확장 전 | Edit 133/133·Play 6/6 통과 | [순서·결과](evidence/PLAN-009/README.md#순서와-결과) |
+| 2026-10-28 | 생산 확장·실제 시작·예외·중간 저장·화면 | 최종 Edit 163/163·Play 7/7, 오류·경고 0 | [검증 범위와 원본](evidence/PLAN-009/README.md), [TECH-006](../decisions/TECH-006-production-and-manager-boundaries.md) |
+| 2026-10-28 | GUID·이름·문서·완료 상태 | 기존 meta 167개 동일, 누락/중복/이전 코드 타입 0. 완료 직전 문서 통과, 완료 후 active=0 조건만 오류 | [meta 검사](evidence/PLAN-009/2026-10-28-meta-audit.json), [완료 문서 검사](evidence/PLAN-009/2026-10-28-docs-completed.txt) |
 
 문서 검사와 게임 검증을 구분한다. 선행 PLAN의 통과 수를 이번 PLAN의 실행 결과로 기록하지 않는다.
 
 ## 관련 결정과 상태 전환
 
-- TECH-005·TECH-004를 참조한다. Manager 방향과 명명 정비는 사용자 요청 범위이며, 최종 클래스별 책임·이름·이관 선택과 저장 확장 결정은 실행 승인 후 기록한다.
+- 2026-10-28: 승인 범위 구현·회귀·신규 검증·Unity 참조/화면·문서 정리를 마치고 active → completed. Sprite 요청 없음. 다음 PLAN은 활성화하지 않음.
+
+- 2026-10-28: 사용자 요청 “PLAN-009 실행을 승인할게. 먼저 Manager 책임과 명명 정비를 진행하고, 기존 기능 회귀 검증 후 가공·배양·보급형 운용 구현을 시작해줘.” 및 재확인 “PLAN-009 실행을 승인할게”에 따라 proposed → active.
+
+- TECH-005·TECH-004의 후속 변경을 [TECH-006](../decisions/TECH-006-production-and-manager-boundaries.md)에 기록했다. Manager 경계, D-059 수치·선택 순서, 저장 버전 3/버전 2 호환과 유지 예외가 해당 기록의 범위다.
 - 2026-10-26: 사용자 요청 “다음 단계로, 가공/배양/보급형 운용 PLAN작성해줘.”에 따라 최초 생성 → proposed. 실행·활성화 승인은 없음.
 - 2026-10-26: 사용자 요청에 따라 단일 책임 Manager 구성과 기존 클래스 명명 규격화를 이 PLAN의 범위·선행 순서·완료 기준에 추가. proposed 유지.

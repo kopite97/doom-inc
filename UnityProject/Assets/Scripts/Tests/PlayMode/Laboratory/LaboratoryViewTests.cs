@@ -17,7 +17,7 @@ using UnityEngine.TestTools;
 
 namespace MobileGame.SpatialTests
 {
-    public sealed class LaboratoryViewTests
+    public sealed partial class LaboratoryViewTests
     {
         private const string ScenePath = "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity";
 
@@ -154,7 +154,7 @@ namespace MobileGame.SpatialTests
                 var gathering = AssetDatabase.LoadAssetAtPath<FacilityDefinition>("Assets/SO/Facility/Gathering.asset");
                 var storage = AssetDatabase.LoadAssetAtPath<FacilityDefinition>("Assets/SO/Facility/Storage.asset");
                 var prototype = AssetDatabase.LoadAssetAtPath<CreatureDefinition>("Assets/SO/Creature/PrototypeSupport.asset");
-                var harness = new SessionController(new SessionSnapshotCodec(new ThingDefinition[] { organic, gathering, storage, prototype }),
+                var harness = new GameFlowManager(new SessionSnapshotCodec(new ThingDefinition[] { organic, gathering, storage, prototype }),
                     new JsonFileSessionStore(Path.Combine(directory, "harness.json")),
                     () => LaboratorySessionFactory.Create(organic, gathering, storage, prototype), 30);
                 Assert.That(harness.StartOrContinue(), Is.True);
@@ -172,7 +172,7 @@ namespace MobileGame.SpatialTests
                     harness.Advance(0.1);
                 }
                 var viewStore = view.Simulation.Registry.Things.Single(t => t.Definition.Kind == ThingKind.Facility);
-                var harnessSimulation = (LaboratorySimulation)harness.Current.Runtime;
+                var harnessSimulation = (LaboratoryManager)harness.Current.Runtime;
                 var harnessStore = harnessSimulation.Registry.Things.Single(t => t.Definition.Kind == ThingKind.Facility);
                 Assert.That(viewStore.GetComponent<ConstructionComponent>().IsComplete, Is.True);
                 Assert.That(harnessStore.GetComponent<ConstructionComponent>().IsComplete, Is.True);
@@ -206,7 +206,7 @@ namespace MobileGame.SpatialTests
         private static int StoredQuantity(Thing holder) => holder.GetComponent<ResourceContainerComponent>()
             .Contents.Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
 
-        private static IEnumerator LoadIsolatedScene(string path, double interval, Action<LaboratoryView> loaded)
+        private static IEnumerator LoadIsolatedScene(string path, double interval, Action<LaboratoryView> loaded, bool keepFocused = true)
         {
             Exception failure = null;
             LaboratoryView initialized = null;
@@ -230,6 +230,7 @@ namespace MobileGame.SpatialTests
                         initialized.Initialize(organic, gathering, storage, prototype, path, interval);
                     }
                     loaded(initialized);
+                    if (keepFocused) initialized.StartCoroutine(KeepScenarioFocused(initialized));
                 }
                 catch (Exception error)
                 {
@@ -249,6 +250,17 @@ namespace MobileGame.SpatialTests
                 yield return null;
             }
             finally { SceneManager.sceneLoaded -= InitializeBeforeStart; }
+        }
+
+        // Scenario setup: model an active app even when the host switches away from Game View.
+        // The lifecycle scenario opts out and explicitly verifies real pause/focus callbacks.
+        private static IEnumerator KeepScenarioFocused(LaboratoryView view)
+        {
+            while (view != null)
+            {
+                view.SendMessage("OnApplicationFocus", true);
+                yield return null;
+            }
         }
 
         private static IEnumerator WaitFor(Func<bool> condition, string message)

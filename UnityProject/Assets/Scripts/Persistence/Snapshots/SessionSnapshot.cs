@@ -16,6 +16,7 @@ namespace MobileGame.Persistence
         public ThingSnapshot[] things;
         public PlacementSnapshot[] placements;
         public LaboratorySnapshot laboratory;
+        public InvasionSnapshot invasion;
     }
 
     [Serializable]

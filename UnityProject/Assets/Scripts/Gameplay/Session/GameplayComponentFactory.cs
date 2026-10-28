@@ -17,12 +17,16 @@ namespace MobileGame.Gameplay
                     thing.AddComponent(new GatheringComponent(thing));
                 else if (facility.Role == FacilityRole.Storage)
                     thing.AddComponent(new StorageComponent(thing));
+                else if (facility.HasProduction)
+                    thing.AddComponent(new ProductionComponent(thing));
             }
-            else if (thing.Definition is CreatureDefinition)
+            else if (thing.Definition is CreatureDefinition creature && creature.CanWork)
             {
                 thing.GetComponent<ResourceContainerComponent>();
                 thing.AddComponent(new WorkerComponent(thing));
             }
+            else if (thing.Definition is CreatureDefinition invader && invader.Role == CreatureRole.Invader)
+                thing.AddComponent(new InvaderComponent(thing));
         }
     }
 }

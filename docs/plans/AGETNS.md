@@ -8,7 +8,9 @@ PLAN은 검증 가능한 작업 단위의 목표·범위·현재 진행·다음 
 
 - 실제 PLAN은 이 디렉터리의 `PLAN-NNN-주제.md` 파일이다. README·AGETNS·템플릿은 PLAN이 아니다.
 - 타입과 상태의 원본은 각 PLAN 상단의 `type`·`status` 필드다. README의 type·status 열은 원본을 보여주는 요약이다.
-- PLAN 생성·타입 변경·상태 전환 시 README 목록도 함께 갱신한다. 검사기로 원본과 목록의 일치를 확인한다.
+- PLAN 생성·타입 변경·상태 전환 시 [PLAN 목록 README](README.md)도 반드시 함께 갱신한다.
+- PLAN 상태를 바꾸면 [구현 로드맵](../game-design/05-development/02-implementation/roadmap.md)의 현재 작업·작업 PLAN 연결과 [기획 MAP README](../game-design/README.md)의 관련 상태 요약도 같은 변경에서 반드시 반영한다. 후보·진행·완료 표기를 원본과 맞추고, 단계 완료는 검증 결과에 따라 별도로 판정한다.
+- 검사기로 PLAN 원본과 목록의 일치를 확인하고, 로드맵과 기획 MAP의 상태 표기도 직접 대조한다.
 - 저장소 루트에서 `node scripts/validate-agent-docs.mjs`를 실행해 유일한 `active` PLAN을 확인한다.
 - 작업 가능한 PLAN은 `active` 하나뿐이다. 개수가 0개 또는 2개 이상이면 기능 작업을 시작하지 않는다.
 - 상태 전환과 문서 체계 복구는 [작업 절차](../agents/workflow.md)에 따른다.
