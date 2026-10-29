@@ -5,7 +5,7 @@
 - 개발 상태: **환경·선행 기반 세 묶음·1~3단계 완료**. 초기 건설·수집·저장은 [PLAN-008](../plans/PLAN-008-initial-construction-and-logistics.md), 가공·배양·보급형 운용은 [PLAN-009](../plans/PLAN-009-processing-cultivation-and-workers.md)에서 구현·검증했다. [구현 로드맵](05-development/02-implementation/roadmap.md)의 4단계 세로 대응·병목/반복 종합 검증·Android 빌드/실기기에 앞서 PLAN-012 데이터 기반 정비를 완료했다.
 - 3단계 완료: [PLAN-010 침공형 방출·외부 활동·성과 누적·전과 보고](../plans/PLAN-010-invasion-activity-and-reports.md)와 [PLAN-011 멸망 연출·결과 화면·한 판 종료와 재시작 완결](../plans/PLAN-011-destruction-results-and-restart.md)은 completed다. PC 가로에서 유료 생산부터 목표·연출·결과·재시작·두 번째 판 종료까지 검증했다.
 - 데이터 기반 완료: PLAN-012는 Edit 236/236·Domain Reload 양쪽 Play 각 13/13·오류/경고 0으로 데이터 이관·저장 호환성과 기존 두 판 흐름을 확인했다. Android 스크립트 컴파일·CSV 참조 검사까지 완료했다.
-- 현재 개발 상태: [PLAN-013 가로·세로 UI와 모바일 입력 대응](../plans/PLAN-013-responsive-ui-and-mobile-input.md)은 completed다. 양방향 UI·입력·상태 보존 구현, PC 검사·APK 빌드에 이어 2026-10-29 실기기의 오프라인 초기 진입·운영·물리 제스처/회전·앱 복귀·한 판 종료/재시작을 확인했다. 다음 PLAN 작성·승인 대기이며 병목/반복·종합 성능 최종 판정과 실제 Google Sheets 연결은 별도 후속 범위다.
+- 현재 개발 상태: [PLAN-013 가로·세로 UI와 모바일 입력 대응](../plans/PLAN-013-responsive-ui-and-mobile-input.md)과 [PLAN-014 모바일 UI·UX와 시설 상태 표시 정비](../plans/PLAN-014-mobile-ui-ux-and-facility-status.md)는 completed다. 양방향 UI·입력·상태 보존에 이어 임시 에셋의 목적별 탐색·작은 아이콘·시설 상태 표시 ON/OFF·표식 재탭을 구현하고 PC 검사·APK·실기기 운영·한 판 종료/재시작·원상 복원을 확인했다. active PLAN은 없으며 다음 PLAN은 사용자 승인 후 실행한다. 정식 아트 교체는 별도 art PLAN으로 진행하고 병목/반복·종합 성능 최종 판정과 실제 Google Sheets 연결은 후속 범위다.
 - 목표: 에셋 종류를 제한하면서 기본 게임 사이클을 충분히 반복할 수 있는 프로토타입을 완성한다.
 
 ## 에이전트의 읽기 순서

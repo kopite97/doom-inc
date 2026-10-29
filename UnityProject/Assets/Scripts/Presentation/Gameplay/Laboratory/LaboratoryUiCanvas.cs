@@ -23,6 +23,21 @@ namespace MobileGame.Presentation
         private static int users;
         private bool disposed;
         private int layoutEpoch;
+        private readonly float deviceDensity = ReadDeviceDensity();
+        public float MinimumTouchSize => Mathf.Max(48, 48 * deviceDensity / Mathf.Max(0.01f, Canvas.scaleFactor));
+
+        private static float ReadDeviceDensity()
+        {
+#if UNITY_ANDROID && !UNITY_EDITOR
+            using (var player = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            using (var activity = player.GetStatic<AndroidJavaObject>("currentActivity"))
+            using (var resources = activity.Call<AndroidJavaObject>("getResources"))
+            using (var metrics = resources.Call<AndroidJavaObject>("getDisplayMetrics"))
+                return metrics.Get<float>("density");
+#else
+            return 1;
+#endif
+        }
 
         public LaboratoryUiCanvas(Transform parent, string name, int order)
         {

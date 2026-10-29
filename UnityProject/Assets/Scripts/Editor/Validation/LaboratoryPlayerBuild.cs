@@ -23,6 +23,7 @@ namespace MobileGame.Foundation.Editor
 
         [Serializable] private sealed class BuildEvidence
         {
+            public string plan;
             public string attempt;
             public string startedUtc;
             public string finishedUtc;
@@ -70,20 +71,25 @@ namespace MobileGame.Foundation.Editor
         }
 
         [MenuItem("Tools/Mobile Game/Build PLAN-013 Android APK")]
-        public static void BuildAndroidApk()
+        public static void BuildAndroidApk() => BuildAndroidForPlan("PLAN-013");
+
+        [MenuItem("Tools/Mobile Game/Build PLAN-014 Android APK")]
+        public static void BuildAndroidPlan014() => BuildAndroidForPlan("PLAN-014");
+
+        private static void BuildAndroidForPlan(string planId)
         {
             RequireIdleEditor();
             var attempt = DateTime.UtcNow.ToString("yyyyMMdd-HHmmss-fff");
             var project = Directory.GetParent(Application.dataPath).FullName;
-            var evidenceDirectory = Path.Combine(Directory.GetParent(project).FullName, "docs/plans/evidence/PLAN-013");
-            var outputDirectory = Path.Combine(project, "Builds/PLAN-013");
+            var evidenceDirectory = Path.Combine(Directory.GetParent(project).FullName, "docs/plans/evidence", planId);
+            var outputDirectory = Path.Combine(project, "Builds", planId);
             Directory.CreateDirectory(evidenceDirectory);
             Directory.CreateDirectory(outputDirectory);
             var output = Path.Combine(outputDirectory, "Temp_Laboratory-" + attempt + ".apk");
             var options = BuildOptions.Development | BuildOptions.DetailedBuildReport;
             var evidence = new BuildEvidence
             {
-                attempt = attempt, startedUtc = DateTime.UtcNow.ToString("O"), unityVersion = Application.unityVersion,
+                plan = planId, attempt = attempt, startedUtc = DateTime.UtcNow.ToString("O"), unityVersion = Application.unityVersion,
                 host = SystemInfo.operatingSystem, target = EditorUserBuildSettings.activeBuildTarget.ToString(),
                 applicationId = PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Android),
                 backend = PlayerSettings.GetScriptingBackend(NamedBuildTarget.Android).ToString(),
@@ -94,7 +100,7 @@ namespace MobileGame.Foundation.Editor
                 landscapeLeft = PlayerSettings.allowedAutorotateToLandscapeLeft, landscapeRight = PlayerSettings.allowedAutorotateToLandscapeRight,
                 scenes = new[] { LaboratorySceneAssets.ScenePath },
                 editorScenes = EditorBuildSettings.scenes.Select(s => new SceneEntry { path = s.path, enabled = s.enabled }).ToArray(),
-                buildOptions = options.ToString(), apk = "UnityProject/Builds/PLAN-013/" + Path.GetFileName(output), result = "NotStarted"
+                buildOptions = options.ToString(), apk = "UnityProject/Builds/" + planId + "/" + Path.GetFileName(output), result = "NotStarted"
             };
             var originalBundle = EditorUserBuildSettings.buildAppBundle;
             var originalExport = EditorUserBuildSettings.exportAsGoogleAndroidProject;
@@ -140,7 +146,7 @@ namespace MobileGame.Foundation.Editor
                     throw new InvalidOperationException("Android verification build did not produce a successful APK: " + evidence.result);
                 using (var stream = File.OpenRead(output))
                 using (var hash = SHA256.Create()) evidence.sha256 = BitConverter.ToString(hash.ComputeHash(stream)).Replace("-", "").ToLowerInvariant();
-                Debug.Log("PLAN-013 APK ready: " + output + "; sha256=" + evidence.sha256);
+                Debug.Log(planId + " APK ready: " + output + "; sha256=" + evidence.sha256);
             }
             catch (Exception error)
             {

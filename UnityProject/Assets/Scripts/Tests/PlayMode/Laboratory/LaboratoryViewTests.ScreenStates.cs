@@ -148,7 +148,7 @@ namespace MobileGame.SpatialTests
                     Assert.That(view.Controller.Current, Is.SameAs(session)); Assert.That(GameDataStore.Instance, Is.SameAs(store));
                     Assert.That(store.Catalog, Is.SameAs(catalog));
                     Assert.That(view.FindUiButton("RestartFromResults").gameObject.activeInHierarchy, Is.False);
-                    Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "EndingTitle").text, Does.Contain("FINAL SIGNAL"));
+                    Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "EndingTitle").text, Does.Contain("마지막 신호"));
                     AssertWorldGraphicRenders(view);
                     yield return CaptureScreenState("destruction-rotation", view, null);
                 }

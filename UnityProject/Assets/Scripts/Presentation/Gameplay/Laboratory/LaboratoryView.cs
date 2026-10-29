@@ -64,6 +64,7 @@ namespace MobileGame.Presentation
             processing = data.Selected<FacilityData>("processingId"); cultivation = data.Selected<FacilityData>("cultivationId");
             prototype = data.Selected<CreatureData>("prototypeId"); support = data.Selected<CreatureData>("supportId"); invader = data.Selected<CreatureData>("invaderId");
             SavePath = Path.GetFullPath(savePath);
+            InitializeUiSettings();
             var codec = new SessionSnapshotCodec(data.Definitions.Values, requireLaboratory: true);
             Controller = new GameFlowManager(codec, new JsonFileSessionStore(SavePath),
                 () => LaboratorySessionFactory.Create(organic, gathering, storage, prototype, culture, data.Settings.Invasion), autoSaveSeconds);
@@ -82,6 +83,7 @@ namespace MobileGame.Presentation
         private void Update()
         {
             if (Controller == null || applicationPaused || !applicationFocused) return;
+            PollBack();
             if (skipNextDelta) { skipNextDelta = false; return; }
             AdvanceFrame(Time.unscaledDeltaTime * simulationRate, Time.unscaledDeltaTime);
         }
@@ -136,6 +138,7 @@ namespace MobileGame.Presentation
         private void OnSessionChanged()
         {
             InvalidateInput();
+            ResetNavigation();
             SelectedId = Guid.Empty;
             ReportsExpanded = false;
             skipNextDelta = true;
@@ -155,6 +158,7 @@ namespace MobileGame.Presentation
             if (Simulation == null || IsEditing || !Simulation.Registry.TryGet(id, out var thing)
                 || thing.Definition.Kind == ThingKind.Resource || !thing.IsPlaced) return false;
             SelectedId = id;
+            SelectionChanged();
             return true;
         }
 
@@ -162,8 +166,16 @@ namespace MobileGame.Presentation
         public bool BeginStorageConstruction() => BeginConstruction(storage);
         public bool BeginProcessingConstruction() => BeginConstruction(processing);
         public bool BeginCultivationConstruction() => BeginConstruction(cultivation);
-        public bool BeginConstruction(FacilityData definition) => Record("Designate construction", Commands.BeginConstruction(definition));
-        public bool BeginPlacement() => Record("Move facility", Controller.BeginPlacement(SelectedId));
+        public bool BeginConstruction(FacilityData definition)
+        {
+            var success = Record("Designate construction", Commands.BeginConstruction(definition));
+            if (success) EnterEditingPresentation(); return success;
+        }
+        public bool BeginPlacement()
+        {
+            var success = Record("Move facility", Controller.BeginPlacement(SelectedId));
+            if (success) EnterEditingPresentation(); return success;
+        }
         public bool PreviewAt(Vector2Int origin)
         {
             if (Simulation.ConstructionDefinition != null)
@@ -181,10 +193,18 @@ namespace MobileGame.Presentation
             return Record("Rotate move", edit != null && Controller.PreviewPlacement(edit.Origin, NextRotation(edit.Rotation)));
         }
 
-        public bool ConfirmPlacement() => Record("Confirm", Simulation.ConstructionDefinition != null
-            ? Commands.ConfirmConstruction() : Controller.ConfirmPlacement());
-        public bool CancelPlacement() => Record("Cancel", Simulation.ConstructionDefinition != null
-            ? Commands.CancelConstruction() : Controller.CancelPlacement());
+        public bool ConfirmPlacement()
+        {
+            var success = Record("Confirm", Simulation.ConstructionDefinition != null
+                ? Commands.ConfirmConstruction() : Controller.ConfirmPlacement());
+            if (success) LeaveEditingPresentation(); return success;
+        }
+        public bool CancelPlacement()
+        {
+            var success = Record("Cancel", Simulation.ConstructionDefinition != null
+                ? Commands.CancelConstruction() : Controller.CancelPlacement());
+            if (success) LeaveEditingPresentation(); return success;
+        }
         public bool SetAllowed(Guid storageId, bool allowed) => Record("Storage allowance", Commands.SetAllowed(storageId, allowed));
         public bool SetAllowed(Guid storageId, ResourceData resource, bool allowed) =>
             Record("Storage allowance", Commands.SetAllowed(storageId, resource, allowed));
@@ -201,8 +221,7 @@ namespace MobileGame.Presentation
         public bool ReleaseInvaders()
         {
             var succeeded = Commands.ReleaseInvaders();
-            if (succeeded && Simulation.Registry.TryGet(SelectedId, out var selected) && !selected.IsPlaced)
-                SelectedId = Guid.Empty;
+            // External invaders remain real Things; the details/roster show their outside activity.
             return Record("Release all waiting invaders", succeeded);
         }
 
@@ -210,6 +229,8 @@ namespace MobileGame.Presentation
         private bool Record(string command, bool succeeded)
         {
             LastCommand = command + (succeeded ? ": OK" : ": rejected / failed");
+            if (!command.StartsWith("Preview", StringComparison.Ordinal))
+                uiNotice = succeeded ? "요청을 반영했습니다." : "요청을 반영하지 못했습니다. 상태와 조건을 확인하세요.";
             return succeeded;
         }
     }

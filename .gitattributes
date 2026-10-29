@@ -26,6 +26,12 @@
 # Preserve the recorded byte sizes and SHA-256 hashes of device-run evidence.
 docs/plans/evidence/PLAN-013/android-device-run/*-save.json -text whitespace=trailing-space,space-before-tab,cr-at-eol
 docs/plans/evidence/PLAN-013/android-device-run/actions.jsonl -text
+docs/plans/evidence/PLAN-014/android-device-run/*-session.json -text whitespace=trailing-space,space-before-tab,cr-at-eol
+docs/plans/evidence/PLAN-014/android-device-run/*-ui-settings.json -text whitespace=trailing-space,space-before-tab,cr-at-eol
+docs/plans/evidence/PLAN-014/android-device-run/actions-selected.jsonl -text whitespace=trailing-space,space-before-tab,cr-at-eol
+
+# Keep the bundled upstream license byte-for-byte alongside its recorded hash.
+UnityProject/Assets/Fonts/NanumGothic/OFL.txt -text
 
 # LFS applies only to Unity source media, not documentation screenshots.
 # Character classes also match uppercase file extensions.

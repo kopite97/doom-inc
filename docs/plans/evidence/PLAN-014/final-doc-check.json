@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-29T14:13:54.6100622Z",
+  "command": "node scripts/validate-agent-docs.mjs",
+  "exitCode": 1,
+  "output": [
+    "LINES AGENTS.md: 39/100",
+    "LINES docs/plans/AGETNS.md: 75/150",
+    "LINES docs/agents/architecture.md: 49/150",
+    "LINES docs/agents/art-assets.md: 109/150",
+    "LINES docs/agents/harness.md: 57/150",
+    "LINES docs/agents/naming.md: 41/150",
+    "LINES docs/agents/project-structure.md: 103/150",
+    "LINES docs/agents/repository.md: 43/150",
+    "LINES docs/agents/script-structure.md: 62/150",
+    "LINES docs/agents/unity-assets.md: 52/150",
+    "LINES docs/agents/unity-tools.md: 148/150",
+    "LINES docs/agents/verification.md: 71/150",
+    "LINES docs/agents/workflow.md: 79/150",
+    "PLANS total=14, active=0",
+    "PLAN_INDEX entries=14",
+    "LOCAL_LINKS checked=1913 (file targets only)",
+    "ERROR Expected exactly 1 active PLAN; found 0"
+  ],
+  "expectedNoActiveWhileAwaitingNextApproval": true,
+  "fullValidatorPass": false,
+  "whitespaceCommand": "git diff --check",
+  "whitespaceExitCode": 0,
+  "whitespaceOutput": [
+    "warning: in the working copy of 'UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.Ending.cs', CRLF will be replaced by LF the next time Git touches it",
+    "warning: in the working copy of 'UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.Gui.cs', CRLF will be replaced by LF the next time Git touches it"
+  ],
+  "statusSynchronization": "PLAN-014 and PLAN index completed; implementation roadmap and design MAP completed; no next PLAN activated."
+}

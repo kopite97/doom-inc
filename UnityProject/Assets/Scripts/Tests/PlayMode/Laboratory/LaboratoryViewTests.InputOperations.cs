@@ -161,6 +161,7 @@ namespace MobileGame.SpatialTests
                 Assert.That(view.Simulation.Map.Commands.Place(cornerWorker.Id, lastCell).Succeeded, Is.True);
                 yield return input.Tap(50, map.CellScreenPoint(prototype.Placement.Origin));
                 Assert.That(view.SelectedId, Is.EqualTo(prototype.Id));
+                yield return ClickVisibleButton(input, "Details");
                 var accepted = map.AcceptedTaps;
                 var scroll = view.UiCanvas.GetComponentsInChildren<ScrollRect>().Single(s => s.name == "Controls");
                 Assert.That(scroll.content.rect.height, Is.GreaterThan(scroll.viewport.rect.height));

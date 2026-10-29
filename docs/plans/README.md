@@ -15,3 +15,4 @@
 | [PLAN-011](PLAN-011-destruction-results-and-restart.md) | 멸망 연출·결과 화면·한 판 종료와 재시작 완결 | `development` | `completed` |
 | [PLAN-012](PLAN-012-csv-so-data-and-game-data-store.md) | CSV·SO 분리와 GameDataStore 초기 로딩 | `development` | `completed` |
 | [PLAN-013](PLAN-013-responsive-ui-and-mobile-input.md) | 가로·세로 UI와 모바일 입력 대응 | `development` | `completed` |
+| [PLAN-014](PLAN-014-mobile-ui-ux-and-facility-status.md) | 모바일 UI·UX와 시설 상태 표시 정비 | `development` | `completed` |

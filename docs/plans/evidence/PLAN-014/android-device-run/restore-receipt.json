@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "plan": "PLAN-014",
+  "utc": "2026-10-29T13:58:57.2180000+00:00",
+  "sourceEvent": "restored",
+  "verificationMethod": "Local helper verifies original file presence and exact content hash, then compares all network and rotation settings before writing restored event.",
+  "session": {
+    "originallyPresent": true,
+    "restoredPresenceVerified": true,
+    "originalContentHashMatched": true
+  },
+  "uiSettings": {
+    "originallyPresent": false,
+    "absenceRestoredVerified": true
+  },
+  "deviceSettings": {
+    "rotation": "0",
+    "autoRotation": "0",
+    "wifi": "1",
+    "mobile": "1",
+    "airplane": "0",
+    "allMatchedOriginal": true
+  },
+  "application": {
+    "stopped": true,
+    "installedApkRetained": true,
+    "installedApkSha256": "26946b22789989c5ed38ea41ec6fb45aceec56dcedff80be85a601a957375173"
+  },
+  "privacy": {
+    "originalContentsIncluded": false,
+    "originalContentHashesIncluded": false,
+    "deviceSerialIncluded": false
+  }
+}

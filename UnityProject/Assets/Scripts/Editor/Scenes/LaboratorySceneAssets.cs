@@ -13,6 +13,18 @@ namespace MobileGame.Foundation.Editor
     {
         public const string ScenePath = "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity";
 
+        [MenuItem("Tools/Mobile Game/Upgrade Mobile Laboratory UI")]
+        public static void UpgradeMobileUi()
+        {
+            Open();
+            var view = UnityEngine.Object.FindFirstObjectByType<LaboratoryView>();
+            if (view == null) throw new InvalidOperationException("Laboratory view is missing.");
+            view.ConfigureUiAssets(LaboratoryUiAssetBuilder.CreateMissing());
+            EditorUtility.SetDirty(view);
+            EditorSceneManager.MarkSceneDirty(view.gameObject.scene);
+            if (!EditorSceneManager.SaveScene(view.gameObject.scene)) throw new InvalidOperationException("Could not save laboratory UI bindings.");
+        }
+
         [MenuItem("Tools/Mobile Game/Upgrade Production Laboratory")]
         public static void UpgradeProduction()
         {
@@ -50,6 +62,7 @@ namespace MobileGame.Foundation.Editor
                 var viewObject = new GameObject("Temp_LaboratoryView");
                 SceneManager.MoveGameObjectToScene(viewObject, scene);
                 var view = viewObject.AddComponent<LaboratoryView>();
+                view.ConfigureUiAssets(LaboratoryUiAssetBuilder.CreateMissing());
                 GameDataAssets.Configure(view.gameObject);
                 if (!EditorSceneManager.SaveScene(scene, ScenePath))
                     throw new InvalidOperationException("Could not save Temp_Laboratory.");

@@ -65,10 +65,13 @@ namespace MobileGame.SpatialTests
                 var harness = new GameFlowManager(codec, new JsonFileSessionStore(Path.Combine(directory, "harness.json")), () => codec.Restore(checkpoint));
                 Assert.That(harness.StartOrContinue(), Is.True);
                 Assert.That(view.ReleaseInvaders(), Is.EqualTo(new LaboratoryCommands(harness).ReleaseInvaders()));
-                Assert.That(view.SelectedId, Is.EqualTo(Guid.Empty));
+                Assert.That(view.SelectedId, Is.EqualTo(waiting.Id), "The selected invader changes to its external-activity details.");
                 Assert.That(view.SelectThing(waiting.Id), Is.False);
                 Assert.That(view.Invasion.Score, Is.Zero);
                 Assert.That(waiting.IsPlaced, Is.False);
+                Assert.That(view.Simulation.Map.GetPlacements().Any(placement => placement.ThingId == waiting.Id), Is.False);
+                view.ExpandSelection(); yield return null;
+                Assert.That(VisibleUiText(view), Does.Contain("외부 활동 중"));
                 var beforeToggle = codec.Serialize(codec.Capture(view.Controller.Current, view.Controller.Phase));
                 for (var index = 0; index < 9; index++) view.ToggleReports();
                 Assert.That(view.ReportsExpanded, Is.True);

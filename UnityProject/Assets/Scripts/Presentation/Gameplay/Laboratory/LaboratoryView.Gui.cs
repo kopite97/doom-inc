@@ -11,22 +11,14 @@ namespace MobileGame.Presentation
     {
         private Vector2 panelScroll;
         private LaboratoryUiCanvas screen;
-        private RectTransform playRoot;
-        private Text titleText;
-        private Text hudText;
-        private RectTransform worldGauge;
-        private RectTransform worldGaugeFill;
-        private Text editText;
-        private RectTransform toolRoot;
+        private RectTransform playRoot, toolRoot, cameraTools, navigationRoot, summaryRoot;
+        private Text titleText, hudText, editText, summaryText, feedbackText;
+        private RectTransform worldGauge, worldGaugeFill;
         private ScrollRect controlsScroll;
         private LaboratoryUiList controls;
-        private LaboratoryUiButton collapseButton;
-        private LaboratoryUiButton rotateButton;
-        private LaboratoryUiButton confirmButton;
-        private LaboratoryUiButton cancelButton;
-        private LaboratoryUiButton zoomInButton;
-        private LaboratoryUiButton zoomOutButton;
-        private LaboratoryUiButton fitButton;
+        private LaboratoryUiButton collapseButton, rotateButton, confirmButton, cancelButton;
+        private LaboratoryUiButton zoomInButton, zoomOutButton, fitButton, statusButton, gameMenuButton;
+        private LaboratoryUiButton buildMenuButton, creatureMenuButton, invasionMenuButton, detailsButton, closeButton;
         private LaboratoryMapView mapScreen;
         private bool controlsCollapsed;
         private int screenGeneration = -1;
@@ -44,297 +36,363 @@ namespace MobileGame.Presentation
             if (screen != null) return;
             screen = new LaboratoryUiCanvas(transform, "Temp_LaboratoryCanvas", 10);
             playRoot = LaboratoryUiWidgets.Panel("PlayScreen", screen.SafeRoot, LaboratoryUiWidgets.Background).rectTransform;
-            titleText = LaboratoryUiWidgets.Label("Title", playRoot, 24); titleText.text = "DOOM INC / LABORATORY";
+            titleText = LaboratoryUiWidgets.Label("Title", playRoot, 24); titleText.text = "DOOM INC · 연구소";
             hudText = LaboratoryUiWidgets.Label("Resources", playRoot, 17);
-            worldGauge = LaboratoryUiWidgets.Panel("WorldProgress", playRoot, new Color(0.18f, 0.2f, 0.25f)).rectTransform;
-            worldGaugeFill = LaboratoryUiWidgets.Panel("Progress", worldGauge, new Color(0.85f, 0.3f, 0.2f)).rectTransform;
-            collapseButton = LaboratoryUiWidgets.Button("ToggleControls", playRoot, "Hide controls", () => screen.LayoutEpoch);
-            collapseButton.Bind(() => { if (!CanClickScreen()) return; controlsCollapsed = !controlsCollapsed; screen.InvalidatePointers(); }, "screen");
-            var mapBackground = LaboratoryUiWidgets.Panel("MapViewport", playRoot, new Color(0.025f, 0.04f, 0.065f));
+            worldGauge = LaboratoryUiWidgets.Panel("WorldProgress", playRoot, new Color(.18f, .2f, .25f)).rectTransform;
+            worldGaugeFill = LaboratoryUiWidgets.Panel("Progress", worldGauge, new Color(.85f, .3f, .2f)).rectTransform;
+            gameMenuButton = IconButton("GameMenu", playRoot, LaboratoryIcon.More, "메뉴", () => OpenPanel(LaboratoryPanel.Game));
+            collapseButton = LaboratoryUiWidgets.Button("ToggleControls", playRoot, "접기", () => screen.LayoutEpoch);
+            collapseButton.GetComponentInChildren<LaboratoryUiText>().Initialize(14);
+            SetCompactButtonLabel(collapseButton);
+            collapseButton.Bind(() => { if (!CanClickScreen()) return; controlsCollapsed = !controlsCollapsed; InvalidateInput(); }, "screen");
+            var mapBackground = LaboratoryUiWidgets.Panel("MapViewport", playRoot, new Color(.025f, .04f, .065f));
             MapViewport = mapBackground.rectTransform; MapViewport.gameObject.AddComponent<RectMask2D>();
-            // The map owns drawing and gesture interpretation; UI never mutates grid coordinates directly.
             mapScreen = MapViewport.gameObject.AddComponent<LaboratoryMapView>(); mapScreen.Initialize(this);
-            toolRoot = LaboratoryUiWidgets.Rect("MapTools", playRoot);
-            editText = LaboratoryUiWidgets.Label("PlacementStatus", toolRoot, 16);
-            rotateButton = MakeTool("Rotate", "Rotate", () => RotatePreview());
-            confirmButton = MakeTool("Confirm", "Confirm", () => ConfirmPlacement());
-            cancelButton = MakeTool("Cancel", "Cancel", () => CancelPlacement());
-            zoomInButton = MakeTool("ZoomIn", "+", () => mapScreen.ZoomBy(1.3f));
-            zoomOutButton = MakeTool("ZoomOut", "−", () => mapScreen.ZoomBy(1 / 1.3f));
-            fitButton = MakeTool("FitMap", "Fit", () => mapScreen.Fit());
+            cameraTools = LaboratoryUiWidgets.Rect("CameraTools", playRoot);
+            zoomOutButton = IconButton("ZoomOut", cameraTools, LaboratoryIcon.ZoomOut, "축소", () => mapScreen.ZoomBy(1 / 1.3f), true);
+            zoomInButton = IconButton("ZoomIn", cameraTools, LaboratoryIcon.ZoomIn, "확대", () => mapScreen.ZoomBy(1.3f), true);
+            fitButton = IconButton("FitMap", cameraTools, LaboratoryIcon.FitMap, "전체 보기", () => mapScreen.Fit(), true);
+            statusButton = IconButton("ToggleStatus", cameraTools, LaboratoryIcon.ShowStatus, "상태 ON", () => SetUiPreferences(!ShowFacilityStatus, LargeText), true);
+            toolRoot = LaboratoryUiWidgets.Rect("PlacementTools", playRoot);
+            editText = LaboratoryUiWidgets.Label("PlacementStatus", playRoot, 16);
+            rotateButton = LaboratoryUiWidgets.Button("Rotate", toolRoot, "90° 회전", () => screen.LayoutEpoch);
+            confirmButton = LaboratoryUiWidgets.Button("Confirm", toolRoot, "배치 확정", () => screen.LayoutEpoch);
+            cancelButton = LaboratoryUiWidgets.Button("Cancel", toolRoot, "취소", () => screen.LayoutEpoch);
+            navigationRoot = LaboratoryUiWidgets.Rect("Navigation", playRoot);
+            buildMenuButton = IconButton("NavBuild", navigationRoot, LaboratoryIcon.Build, "건설", () => OpenPanel(LaboratoryPanel.Build));
+            creatureMenuButton = IconButton("NavCreatures", navigationRoot, LaboratoryIcon.Creatures, "생명체", () => OpenPanel(LaboratoryPanel.Creatures));
+            invasionMenuButton = IconButton("NavInvasion", navigationRoot, LaboratoryIcon.Invasion, "침공·보고", () => OpenPanel(LaboratoryPanel.Invasion));
             controlsScroll = LaboratoryUiWidgets.Scroll("Controls", playRoot, out var content);
             controls = new LaboratoryUiList(content, () => screen.LayoutEpoch);
+            summaryRoot = LaboratoryUiWidgets.Panel("SelectionSummary", playRoot, LaboratoryUiWidgets.PanelColor).rectTransform;
+            summaryText = LaboratoryUiWidgets.Label("Summary", summaryRoot, 18);
+            detailsButton = LaboratoryUiWidgets.Button("Details", summaryRoot, "상세 보기", () => screen.LayoutEpoch);
+            detailsButton.Bind(ExpandSelection, "details");
+            closeButton = LaboratoryUiWidgets.Button("ClosePanel", playRoot, "닫기", () => screen.LayoutEpoch);
+            closeButton.GetComponentInChildren<LaboratoryUiText>().Initialize(14);
+            SetCompactButtonLabel(closeButton);
+            closeButton.Bind(Back, "close");
+            feedbackText = LaboratoryUiWidgets.Label("Feedback", playRoot, 15);
             CreateEndingScreen();
         }
-
-        private LaboratoryUiButton MakeTool(string key, string label, Action action)
+        private LaboratoryUiButton IconButton(string key, Transform parent, LaboratoryIcon icon, string label, Action action, bool compact = false)
         {
-            var button = LaboratoryUiWidgets.Button(key, toolRoot, label, () => screen.LayoutEpoch);
-            button.Bind(() => { if (CanInteract) action(); }, "initial");
-            return button;
+            var button = LaboratoryUiWidgets.Button(key, parent, label, () => screen.LayoutEpoch);
+            button.Bind(() => { if (CanClickScreen() && pendingSessionAction == LaboratorySessionAction.None) action(); }, key);
+            SetIcon(button, icon, label, compact); return button;
+        }
+        private static void SetCompactButtonLabel(LaboratoryUiButton button)
+        {
+            var rect = button.GetComponentInChildren<Text>().rectTransform;
+            rect.offsetMin = new Vector2(4, 4); rect.offsetMax = new Vector2(-4, -4);
+        }
+        private void SetIcon(LaboratoryUiButton button, LaboratoryIcon icon, string label, bool compact = false)
+        {
+            var graphic = button.transform.Find("Icon")?.GetComponent<Image>();
+            if (graphic == null)
+            {
+                graphic = LaboratoryUiWidgets.Panel("Icon", button.transform, Color.white);
+                graphic.raycastTarget = false; graphic.preserveAspect = true;
+            }
+            graphic.rectTransform.anchorMin = graphic.rectTransform.anchorMax = new Vector2(.5f, compact ? .5f : .76f);
+            graphic.rectTransform.pivot = new Vector2(.5f, .5f);
+            graphic.rectTransform.sizeDelta = new Vector2(22, 22);
+            graphic.rectTransform.anchoredPosition = Vector2.zero;
+            if (compact)
+            {
+                // Keep the full density-aware button as the hit target; only the visible plate is small.
+                var hitArea = button.GetComponent<Image>(); hitArea.color = Color.clear; hitArea.raycastTarget = true;
+                var plate = button.transform.Find("IconPlate")?.GetComponent<Image>();
+                if (plate == null)
+                {
+                    plate = LaboratoryUiWidgets.Panel("IconPlate", button.transform, new Color(.16f, .23f, .31f));
+                    plate.raycastTarget = false; plate.transform.SetAsFirstSibling();
+                    plate.rectTransform.anchorMin = plate.rectTransform.anchorMax = plate.rectTransform.pivot = new Vector2(.5f, .5f);
+                    plate.rectTransform.anchoredPosition = Vector2.zero;
+                    plate.rectTransform.sizeDelta = new Vector2(36, 36);
+                }
+                if (button.targetGraphic != plate) button.targetGraphic = plate;
+            }
+            graphic.sprite = uiAssets?.GetIcon(icon); graphic.gameObject.SetActive(graphic.sprite != null);
+            var text = button.GetComponentInChildren<Text>(); text.text = label;
+            // Preserve the functional name and use it as the visible fallback if an icon is unavailable.
+            text.enabled = !compact || graphic.sprite == null;
+            text.alignment = compact || graphic.sprite == null ? TextAnchor.MiddleCenter : TextAnchor.LowerCenter;
+            var style = text.GetComponent<LaboratoryUiText>();
+            if (style.BaseSize != 13) style.Initialize(13);
+            text.rectTransform.anchorMin = Vector2.zero;
+            text.rectTransform.anchorMax = compact || graphic.sprite == null ? Vector2.one : new Vector2(1, 0);
+            text.rectTransform.pivot = new Vector2(.5f, 0);
+            text.rectTransform.offsetMin = new Vector2(2, 2);
+            text.rectTransform.offsetMax = compact || graphic.sprite == null ? new Vector2(-2, -2) : new Vector2(-2, 22);
         }
         private bool CanClickScreen() => isActiveAndEnabled && Controller != null && !Controller.IsApplicationPaused;
         private string UiContext => Controller == null ? "none" : Controller.Generation + ":" + Controller.Phase;
         private void BindTool(LaboratoryUiButton button, Action action, bool enabled)
         {
             var generation = Controller.Generation; var selection = SelectedId; var editing = IsEditing;
-            button.Bind(() => { if (CanInteract && generation == Controller.Generation && selection == SelectedId && editing == IsEditing) action(); }, UiContext + ":" + SelectedId + ":" + IsEditing);
-            button.interactable = enabled && CanInteract;
+            button.Bind(() => { if (CanUseMap && generation == Controller.Generation && selection == SelectedId && editing == IsEditing) action(); }, UiContext + ":" + SelectedId + ":" + IsEditing);
+            button.interactable = enabled && CanUseMap;
         }
         private void UpdateScreen()
         {
             if (Controller == null) return;
-            EnsureScreen(); screen.RefreshLayout();
-            screen.SetVisible(isActiveAndEnabled);
+            EnsureScreen(); screen.RefreshLayout(); screen.SetVisible(isActiveAndEnabled);
             if (screenGeneration != Controller.Generation || screenPhase != Controller.Phase)
             {
-                screen.InvalidatePointers();
+                InvalidateInput();
                 if (screenGeneration != Controller.Generation)
                 {
                     controlsScroll.StopMovement(); resultScroll.StopMovement();
-                    controlsScroll.content.anchoredPosition = panelScroll;
-                    resultScroll.content.anchoredPosition = endingScroll;
+                    controlsScroll.content.anchoredPosition = panelScroll; resultScroll.content.anchoredPosition = endingScroll;
                 }
                 screenGeneration = Controller.Generation; screenPhase = Controller.Phase;
             }
             var ending = Ending?.IsEnding == true;
-            playRoot.gameObject.SetActive(!ending);
-            endingRoot.gameObject.SetActive(ending);
+            playRoot.gameObject.SetActive(!ending); endingRoot.gameObject.SetActive(ending);
             if (ending) UpdateEndingScreen();
-            else
-            {
-                LayoutPlayScreen(); UpdateHud(); UpdateTools(); UpdateControls();
-            }
+            else { SelectionUnavailable(); RestorePanelPosition(); LayoutPlayScreen(); UpdateHud(); UpdateTools(); UpdateControls(); }
             RepaintCount++;
         }
-
+        private bool HasSelection => Simulation != null && SelectedId != Guid.Empty && Simulation.Registry.TryGet(SelectedId, out _);
+        private bool HasPanel => !controlsCollapsed && (panel != LaboratoryPanel.None && panel != LaboratoryPanel.Selection
+            || panel == LaboratoryPanel.Selection && HasSelection && (!screen.Portrait || detailsExpanded));
+        private bool HasSummary => !controlsCollapsed && screen.Portrait && panel == LaboratoryPanel.Selection && HasSelection && !detailsExpanded;
         private void LayoutPlayScreen()
         {
-            var size = screen.Size; var w = size.x; var h = size.y; var margin = 12f;
+            var w = screen.Size.x; var h = screen.Size.y; var margin = 12f; var touch = MinimumTouchSize;
+            var collapseWidth = Mathf.Max(touch, 64);
+            var top = screen.Portrait ? Mathf.Max(116, touch + 66) : Mathf.Max(touch + 16, 100 * UiTextScale);
+            var footer = touch + 32; var cameraHeight = screen.Portrait ? touch + 6 : 0;
+            var collapseX = w - touch - collapseWidth - margin - 8;
+            var cameraWidth = 4 * touch + 18;
+            var cameraX = collapseX - cameraWidth - 8;
+            var headerWidth = screen.Portrait ? w - touch - collapseWidth - 42 : cameraX - margin - 12;
+            // A smaller landscape title leaves two full HUD lines above the gauge, including large text.
+            var titleSize = screen.Portrait ? 24 : 18;
+            var titleStyle = titleText.GetComponent<LaboratoryUiText>();
+            if (titleStyle.BaseSize != titleSize) titleStyle.Initialize(titleSize);
+            var titleHeight = screen.Portrait ? 36 : 28 * UiTextScale;
+            var hudY = 8 + titleHeight + 2;
             LaboratoryUiWidgets.Place(playRoot, 0, 0, w, h);
-            LaboratoryUiWidgets.Place(titleText.rectTransform, margin, 10, w - 180, 34);
-            LaboratoryUiWidgets.Place(collapseButton.GetComponent<RectTransform>(), w - 156, 8, 144, 48);
-            collapseButton.GetComponentInChildren<Text>().text = controlsCollapsed ? "Show controls" : "Hide controls";
-            collapseButton.interactable = CanClickScreen();
-            LaboratoryUiWidgets.Place(hudText.rectTransform, margin, 50, w - 24, 56);
-            LaboratoryUiWidgets.Place(worldGauge, margin, 101, w - 24, 6);
-            var top = 112f;
-            controlsScroll.gameObject.SetActive(!controlsCollapsed);
-            if (screen.Portrait)
+            LaboratoryUiWidgets.Place(titleText.rectTransform, margin, 8, headerWidth, titleHeight);
+            LaboratoryUiWidgets.Place(gameMenuButton.GetComponent<RectTransform>(), w - touch - margin, 8, touch, touch);
+            LaboratoryUiWidgets.Place(collapseButton.GetComponent<RectTransform>(), collapseX, 8, collapseWidth, touch);
+            collapseButton.GetComponentInChildren<Text>().text = controlsCollapsed ? "펼치기" : "접기";
+            collapseButton.interactable = CanClickScreen() && pendingSessionAction == LaboratorySessionAction.None;
+            LaboratoryUiWidgets.Place(hudText.rectTransform, margin, hudY, headerWidth, top - hudY - 12);
+            LaboratoryUiWidgets.Place(worldGauge, margin, top - 10, w - margin * 2, 6);
+            var panelWidth = !screen.Portrait && HasPanel ? Mathf.Clamp(w * .34f, 310, 430) : 0;
+            var panelHeight = screen.Portrait && HasPanel ? Mathf.Clamp(h * .37f, 230, 470) : HasSummary ? Mathf.Max(92, touch + 24) : 0;
+            var panelGap = panelWidth > 0 ? 12 : 0;
+            var mapWidth = w - 24 - panelWidth - panelGap;
+            var mapHeight = Mathf.Max(80, h - top - footer - cameraHeight - panelHeight - 30 - (IsEditing ? 48 : 0));
+            LaboratoryUiWidgets.Place(MapViewport, margin, top, mapWidth, mapHeight);
+            // This toolbar remains a playRoot sibling of the clipped map, never a map overlay.
+            LaboratoryUiWidgets.Place(cameraTools, screen.Portrait ? margin + mapWidth - cameraWidth : cameraX,
+                screen.Portrait ? top + mapHeight + 4 : 8, cameraWidth, touch);
+            var cameraButtons = new[] { zoomOutButton, zoomInButton, fitButton, statusButton };
+            for (var i = 0; i < cameraButtons.Length; i++) LaboratoryUiWidgets.Place((RectTransform)cameraButtons[i].transform,
+                i * (touch + 6), 0, touch, touch);
+            var panelY = top + mapHeight + cameraHeight + 10;
+            controlsScroll.gameObject.SetActive(HasPanel); summaryRoot.gameObject.SetActive(HasSummary);
+            closeButton.gameObject.SetActive(HasPanel || HasSummary);
+            closeButton.interactable = pendingSessionAction == LaboratorySessionAction.None;
+            if (HasPanel)
             {
-                var toolbarHeight = ToolbarHeight(w - margin * 2);
-                var panelHeight = controlsCollapsed ? 0 : Mathf.Clamp(h * 0.37f, 210, 430);
-                var mapHeight = Mathf.Max(100, h - top - toolbarHeight - panelHeight - 32);
-                LaboratoryUiWidgets.Place(MapViewport, margin, top, w - margin * 2, mapHeight);
-                LaboratoryUiWidgets.Place(toolRoot, margin, top + mapHeight + 4, w - margin * 2, toolbarHeight);
-                LaboratoryUiWidgets.Place((RectTransform)controlsScroll.transform, margin, top + mapHeight + toolbarHeight + 12, w - margin * 2, panelHeight);
+                var x = screen.Portrait ? margin : w - panelWidth - margin;
+                var y = screen.Portrait ? panelY : top;
+                var width = screen.Portrait ? w - 24 : panelWidth;
+                var height = screen.Portrait ? panelHeight : h - top - footer - 8;
+                LaboratoryUiWidgets.Place((RectTransform)closeButton.transform, x + width - touch, y, touch, touch);
+                LaboratoryUiWidgets.Place((RectTransform)controlsScroll.transform, x, y + touch + 4, width, Mathf.Max(60, height - touch - 4));
             }
-            else
+            if (HasSummary)
             {
-                var panelWidth = controlsCollapsed ? 0 : Mathf.Clamp(w * 0.39f, 300, 430);
-                var mapWidth = w - margin * 2 - (controlsCollapsed ? 0 : panelWidth + margin);
-                var toolbarHeight = ToolbarHeight(mapWidth);
-                var mapHeight = Mathf.Max(100, h - top - toolbarHeight - 20);
-                LaboratoryUiWidgets.Place(MapViewport, margin, top, mapWidth, mapHeight);
-                LaboratoryUiWidgets.Place(toolRoot, margin, top + mapHeight + 4, mapWidth, toolbarHeight);
-                LaboratoryUiWidgets.Place((RectTransform)controlsScroll.transform, w - margin - panelWidth, top, panelWidth, h - top - margin);
+                var detailsWidth = Mathf.Max(touch + 12, 120);
+                LaboratoryUiWidgets.Place(summaryRoot, margin, panelY, w - 24, panelHeight);
+                LaboratoryUiWidgets.Place(summaryText.rectTransform, 10, 8, w - touch - detailsWidth - 60, panelHeight - 12);
+                LaboratoryUiWidgets.Place((RectTransform)detailsButton.transform, w - touch - detailsWidth - 42, 8, detailsWidth, touch);
+                LaboratoryUiWidgets.Place((RectTransform)closeButton.transform, w - touch - margin, panelY + 8, touch, touch);
+                summaryText.text = SelectionSummary();
             }
+            navigationRoot.gameObject.SetActive(!IsEditing); toolRoot.gameObject.SetActive(IsEditing);
+            LaboratoryUiWidgets.Place(navigationRoot, margin, h - footer, w - 24, touch);
+            LaboratoryUiWidgets.Place(toolRoot, margin, h - footer, w - 24, touch);
+            var nav = new[] { buildMenuButton, creatureMenuButton, invasionMenuButton };
+            var tools = new[] { cancelButton, rotateButton, confirmButton };
+            var itemWidth = (w - 40) / 3;
+            for (var i = 0; i < 3; i++)
+            {
+                LaboratoryUiWidgets.Place((RectTransform)nav[i].transform, i * (itemWidth + 8), 0, itemWidth, touch);
+                LaboratoryUiWidgets.Place((RectTransform)tools[i].transform, i * (itemWidth + 8), 0, itemWidth, touch);
+                nav[i].interactable = CanUseMap && !IsEditing;
+            }
+            editText.gameObject.SetActive(IsEditing);
+            LaboratoryUiWidgets.Place(editText.rectTransform, margin, h - footer - 44, w - 24, 42);
+            LaboratoryUiWidgets.Place(feedbackText.rectTransform, margin, h - 28, w - 24, 26);
+            feedbackText.text = uiNotice ?? "";
         }
-
-        private int ToolbarColumns(float width)
+        private string SelectionSummary()
         {
-            // Labels need room inside the 8px horizontal padding, beyond the touch target minimum.
-            var columns = Mathf.Max(1, Mathf.Min(IsEditing ? 6 : 3, Mathf.FloorToInt((width + 6) / 96)));
-            return IsEditing && columns > 3 && columns < 6 ? 3 : columns;
+            if (!HasSelection) return "";
+            Simulation.Registry.TryGet(SelectedId, out var selected);
+            if (selected.Definition.Kind == ThingKind.Facility)
+            {
+                var status = StatusFor(selected);
+                return ThingLabel(selected.Id) + "\n" + LaboratoryStatusText.Short(status)
+                    + (status.HasProgress ? " · 진행 " + (status.ProgressFraction * 100).ToString("0") + "%" : "");
+            }
+            return ThingLabel(selected.Id) + "\n" + (!selected.IsPlaced ? "외부 활동 중" : selected.TryGetComponent<WorkerComponent>(out var worker)
+                ? (worker.Job == null ? "작업 대기" : "작업 중 · 상세에서 확인") : "방출 대기");
         }
-        private float ToolbarHeight(float width)
-        {
-            var count = IsEditing ? 6 : 3; var rows = Mathf.CeilToInt((float)count / ToolbarColumns(width));
-            return (IsEditing ? 60 : 28) + 4 + rows * 48 + (rows - 1) * 6;
-        }
-
         private void UpdateHud()
         {
-            LaboratoryUiWidgets.Place(worldGaugeFill, 0, 0, worldGauge.rect.width * (Invasion == null ? 0
-                : (float)Math.Min(1, (double)Invasion.Score / Invasion.Settings.TargetScore)), 6);
-            if (Simulation == null) { hudText.text = "The saved run could not be loaded. Retry loading or explicitly start a new run."; return; }
-            var registry = Simulation.Registry;
-            var organicCount = registry.Things.Where(t => t.Definition == organic).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
-            var cultureCount = registry.Things.Where(t => t.Definition == culture).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
-            var creatureCount = registry.Things.Count(t => t.Definition.Kind == ThingKind.Creature);
-            hudText.text = "Organic " + organicCount + "   Culture " + cultureCount + "   Creatures " + creatureCount
-                + "\nWorld " + Invasion.Score + " / " + Invasion.Settings.TargetScore + "   Waiting " + Simulation.Invasion.WaitingCount
-                + " / Outside " + Simulation.Invasion.ExternalCount + (IsEditing ? "   Laboratory paused" : "");
+            LaboratoryUiWidgets.Place(worldGaugeFill, 0, 0, worldGauge.rect.width * (Invasion == null ? 0 : (float)Math.Min(1, (double)Invasion.Score / Invasion.Settings.TargetScore)), 6);
+            if (Simulation == null) { hudText.text = "저장을 불러오지 못했습니다. 게임 메뉴에서 재시도하세요."; panel = LaboratoryPanel.Game; return; }
+            var things = Simulation.Registry.Things;
+            var organicCount = things.Where(t => t.Definition == organic).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
+            var cultureCount = things.Where(t => t.Definition == culture).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
+            hudText.text = "유기물 " + organicCount + " · 배양액 " + cultureCount + " · 생명체 " + things.Count(t => t.Definition.Kind == ThingKind.Creature)
+                + "\n멸망 " + Invasion.Score + " / " + Invasion.Settings.TargetScore + (IsEditing ? " · 연구소 일시정지" : "");
         }
-
         private void UpdateTools()
         {
-            var editing = IsEditing; var width = toolRoot.rect.width;
-            var detailHeight = editing ? 60 : 28;
-            LaboratoryUiWidgets.Place(editText.rectTransform, 0, 0, width, detailHeight);
+            var editing = IsEditing;
             if (editing)
             {
+                var constructing = Simulation.ConstructionDefinition != null;
                 var edit = Simulation.Map.Commands.Edit;
-                editText.text = Simulation.ConstructionDefinition != null
-                    ? "Build " + Simulation.ConstructionDefinition.DisplayName + " at " + Simulation.ConstructionOrigin + " / "
-                        + (int)Simulation.ConstructionRotation * 90 + "°  " + Simulation.ConstructionValidation
-                    : "Move at " + edit.Origin + " / " + (int)edit.Rotation * 90 + "°  " + edit.Validation;
+                var origin = constructing ? Simulation.ConstructionOrigin : edit.Origin;
+                var valid = constructing ? Simulation.ConstructionValidation.Succeeded : edit.Validation.Succeeded;
+                editText.text = (constructing ? "새 건설" : "시설 이동") + " · 위치 " + origin + (valid ? " · 확정 가능 (자재는 이후 운반)" : " · 겹침/영역 경계를 확인하세요.");
             }
-            else editText.text = "Tap to select · Drag to move · Pinch / scroll to zoom";
-            var tools = editing ? new[] { rotateButton, confirmButton, cancelButton, zoomInButton, zoomOutButton, fitButton }
-                : new[] { zoomInButton, zoomOutButton, fitButton };
-            rotateButton.gameObject.SetActive(editing); confirmButton.gameObject.SetActive(editing); cancelButton.gameObject.SetActive(editing);
-            var columns = ToolbarColumns(width); var buttonWidth = (width - (columns - 1) * 6) / columns;
-            for (var i = 0; i < tools.Length; i++) LaboratoryUiWidgets.Place((RectTransform)tools[i].transform,
-                (i % columns) * (buttonWidth + 6), detailHeight + 4 + (i / columns) * 54, buttonWidth, 48);
             BindTool(rotateButton, () => RotatePreview(), editing);
-            BindTool(confirmButton, () => ConfirmPlacement(), editing && (Simulation.ConstructionDefinition != null
-                ? Simulation.ConstructionValidation.Succeeded : Simulation.Map.Commands.Edit.Validation.Succeeded));
+            BindTool(confirmButton, () => ConfirmPlacement(), editing && (Simulation.ConstructionDefinition != null ? Simulation.ConstructionValidation.Succeeded : Simulation.Map.Commands.Edit.Validation.Succeeded));
             BindTool(cancelButton, () => CancelPlacement(), editing);
             BindTool(zoomInButton, () => mapScreen.ZoomBy(1.3f), Simulation != null);
             BindTool(zoomOutButton, () => mapScreen.ZoomBy(1 / 1.3f), Simulation != null);
             BindTool(fitButton, () => mapScreen.Fit(), Simulation != null);
+            BindTool(statusButton, () => SetUiPreferences(!ShowFacilityStatus, LargeText), Simulation != null);
+            SetIcon(statusButton, ShowFacilityStatus ? LaboratoryIcon.ShowStatus : LaboratoryIcon.HideStatus, ShowFacilityStatus ? "상태 ON" : "상태 OFF", true);
         }
-
         private void UiAction(string key, string label, Action action, bool enabled = true, Guid? selected = null)
         {
-            var generation = Controller.Generation; var phase = Controller.Phase;
+            var generation = Controller.Generation; var phase = Controller.Phase; var currentPanel = panel; var confirmation = pendingSessionAction;
             controls.Action(key, label, () =>
             {
-                if (!CanClickScreen() || Controller.Generation != generation || Controller.Phase != phase
-                    || (selected.HasValue && SelectedId != selected.Value)) return;
+                if (!CanClickScreen() || Controller.Generation != generation || Controller.Phase != phase || panel != currentPanel
+                    || confirmation != pendingSessionAction || (selected.HasValue && SelectedId != selected.Value)) return;
                 action();
-            }, enabled && CanClickScreen(), UiContext + (selected.HasValue ? ":" + selected : ""));
+            }, enabled && CanClickScreen(), UiContext + ":" + panel + ":" + pendingSessionAction + (selected.HasValue ? ":" + selected : ""));
         }
-
         private void UpdateControls()
         {
+            if (!HasPanel) return;
+            float anchorOffset = 0;
+            var reportAnchor = panel == LaboratoryPanel.Invasion && ReportsExpanded
+                ? controls.CaptureAnchor("Report_", controlsScroll.content.anchoredPosition.y, out anchorOffset) : null;
             controls.Begin(Mathf.Max(100, ((RectTransform)controlsScroll.transform).rect.width - 16));
-            if (Simulation != null)
+            var canOperate = CanUseMap && !IsEditing;
+            if (panel == LaboratoryPanel.Game) AddGameControls();
+            else if (panel == LaboratoryPanel.License)
+                controls.Text("FontLicense", uiAssets?.FontLicense != null ? uiAssets.FontLicense.text : "글꼴 라이선스를 찾을 수 없습니다.", 16);
+            else if (Simulation != null)
             {
-                var canOperate = CanInteract && !IsEditing;
-                controls.Text("WorldTitle", "WORLD ACTIVITY", 22);
-                UiAction("Release", "Release waiting invaders (" + Simulation.Invasion.WaitingCount + ")", () => ReleaseInvaders(), canOperate && Simulation.Invasion.WaitingCount > 0);
-                UiAction("Reports", ReportsExpanded ? "Hide reports" : "Show reports (" + Invasion.Reports.Count + ")", ToggleReports);
-                if (ReportsExpanded)
+                switch (panel)
                 {
-                    controls.Text("ReportMode", Invasion.DetailedReports ? "Detailed field reports" : "Major achievements");
-                    if (Invasion.Reports.Count == 0) controls.Text("NoReports", "No field activity yet.");
-                    foreach (var report in Invasion.Reports.Reverse()) controls.Text("Report_" + report.Sequence,
-                        "#" + report.Sequence + " | " + ThingLabel(report.InvaderId) + "\n" + report.Text + " +" + report.Score + " (" + report.Time.ToString("F1") + "s)");
+                    case LaboratoryPanel.Selection:
+                        if (Simulation.Registry.TryGet(SelectedId, out var selected)) AddSelectedControls(selected);
+                        break;
+                    case LaboratoryPanel.Build:
+                        controls.Text("ConstructionTitle", "건설", 24);
+                        controls.Text("BuildHint", "부지를 확정하면 자재 운반 후 시공합니다. 자재가 부족해도 부지를 지정할 수 있습니다.", 16);
+                        UiAction("BuildGathering", "채집 시설 · 유기물 " + gathering.BuildCost, () => BeginGatheringConstruction(), canOperate);
+                        UiAction("BuildStorage", "저장소 · 유기물 " + storage.BuildCost, () => BeginStorageConstruction(), canOperate);
+                        UiAction("BuildProcessing", "가공 시설 · 유기물 " + processing.BuildCost, () => BeginProcessingConstruction(), canOperate);
+                        UiAction("BuildCultivation", "배양 시설 · 유기물 " + cultivation.BuildCost, () => BeginCultivationConstruction(), canOperate);
+                        controls.Text("Facilities", "설치한 시설", 22); AddRoster(ThingKind.Facility, canOperate); break;
+                    case LaboratoryPanel.Creatures:
+                        controls.Text("Creatures", "생명체", 24); AddRoster(ThingKind.Creature, canOperate);
+                        controls.Text("PresetTitle", "기본 작업 우선순위", 22);
+                        controls.Text("PresetHint", "0: 사용 안 함 · 낮은 숫자 우선\n동률: 건설 → 채집 → 운반 → 생산", 16);
+                        AddPriorities("Preset", Simulation.Preset.ToArray(), values => SetPreset(values), canOperate); break;
+                    case LaboratoryPanel.Candidates:
+                        controls.Text("Candidates", "겹친 대상 선택", 22);
+                        foreach (var id in candidates.ToArray()) if (Simulation.Registry.TryGet(id, out var candidate) && candidate.IsPlaced)
+                            UiAction("Select_" + id.ToString("N"), ThingLabel(id) + " · " + CreatureActivity(candidate), () => SelectThing(id), canOperate);
+                        break;
+                    case LaboratoryPanel.Invasion: AddInvasionControls(canOperate); break;
                 }
-                if (!string.IsNullOrEmpty(Simulation.Invasion.LastError)) controls.Text("InvasionError", Simulation.Invasion.LastError);
-                if (Simulation.Registry.TryGet(SelectedId, out var selected)) AddSelectedControls(selected);
-                controls.Text("ConstructionTitle", "CONSTRUCTION", 22);
-                UiAction("BuildGathering", "Build " + gathering.DisplayName + " (" + gathering.BuildCost + " organic)", () => BeginGatheringConstruction(), canOperate);
-                UiAction("BuildStorage", "Build " + storage.DisplayName + " (" + storage.BuildCost + " organic)", () => BeginStorageConstruction(), canOperate);
-                UiAction("BuildProcessing", "Build " + processing.DisplayName + " (" + processing.BuildCost + " organic)", () => BeginProcessingConstruction(), canOperate);
-                UiAction("BuildCultivation", "Build " + cultivation.DisplayName + " (" + cultivation.BuildCost + " organic)", () => BeginCultivationConstruction(), canOperate);
-                controls.Text("RosterTitle", "FACILITIES / CREATURES", 22);
-                controls.Text("RosterHint", "Use this list to select each creature, including those sharing the same cell.", 16);
-                foreach (var thing in Simulation.Registry.Things.Where(t => t.Definition.Kind != ThingKind.Resource && t.IsPlaced).OrderBy(t => t.CreationOrder))
-                {
-                    var id = thing.Id;
-                    UiAction("Select_" + id.ToString("N"), thing.Definition.DisplayName + " #" + thing.CreationOrder + (id == SelectedId ? " [selected]" : ""), () => SelectThing(id), canOperate);
-                }
-                controls.Text("PresetTitle", "DEFAULT PRIORITIES", 22);
-                controls.Text("PresetHint", "0 = off; lower = first. Ties: Build > Gather > Haul > Produce.", 16);
-                AddPriorities("Preset", Simulation.Preset.ToArray(), values => SetPreset(values), canOperate);
-                controls.Text("Reservations", "Reservations: " + Simulation.Reservations.Count);
-                foreach (var reservation in Simulation.Reservations)
-                    controls.Text("Reservation_" + reservation.WorkerId + "_" + reservation.ResourceId,
-                        ThingLabel(reservation.WorkerId) + ": " + reservation.Amount + " " + ResourceLabel(reservation.ResourceId) + " / "
-                        + (reservation.PickedUp ? "carrying" : "outgoing + incoming reserved") + "\n"
-                        + ThingLabel(reservation.SourceId) + " > " + ThingLabel(reservation.DestinationId));
             }
-            controls.Text("SaveTitle", "SAVE / CONTINUE", 22);
-            controls.Text("SaveCount", "Successful saves: " + Controller.SuccessfulSaves);
-            UiAction("Save", "Save now", () => Save(), Controller.Current != null);
-            UiAction("Reload", "Continue last saved state", () => Reload());
-            UiAction("Restart", "Start a new run", () => Restart());
-            if (!string.IsNullOrEmpty(LastCommand)) controls.Text("LastCommand", LastCommand, 16);
-            if (!string.IsNullOrEmpty(Controller.LastError)) controls.Text("LoadError", Controller.LastError);
-            if (!string.IsNullOrEmpty(Controller.LastSaveError)) controls.Text("SaveError", "Save failed: " + Controller.LastSaveError);
-            controls.End(); panelScroll = controlsScroll.content.anchoredPosition;
+            if (!string.IsNullOrEmpty(Controller.LastError)) controls.Text("LoadError", "진행을 불러오지 못했습니다.\n" + Controller.LastError);
+            if (!string.IsNullOrEmpty(Controller.LastSaveError)) controls.Text("SaveError", "저장 실패 · 이전 저장은 유지됩니다.\n" + Controller.LastSaveError);
+            controls.End();
+            if (reportAnchor != null)
+            {
+                if (!controls.TryRestoreAnchor(reportAnchor, anchorOffset, out var y) && Invasion.Reports.Count > 0)
+                {
+                    controls.TryRestoreAnchor("Report_" + Invasion.Reports.First().Sequence, 0, out y);
+                    uiNotice = "보존 기간이 지난 보고가 정리되어 남은 기록으로 이동했습니다.";
+                }
+                if (Mathf.Abs(controlsScroll.content.anchoredPosition.y - y) > .1f)
+                { controlsScroll.StopMovement(); controlsScroll.content.anchoredPosition = new Vector2(0, y); }
+            }
+            panelScroll = controlsScroll.content.anchoredPosition;
         }
-
-        private void AddSelectedControls(Thing selected)
+        private void AddRoster(ThingKind kind, bool canOperate)
         {
-            var id = selected.Id; var canOperate = CanInteract && !IsEditing;
-            controls.Text("SelectedTitle", selected.Definition.DisplayName + " #" + selected.CreationOrder, 22);
-            controls.Text("SelectedPosition", selected.Placement == null ? "Outside map" : "Position: " + selected.Placement.Origin);
-            if (selected.TryGetComponent<ResourceContainerComponent>(out var container))
-                foreach (var group in container.Contents.GroupBy(t => t.Definition)) controls.Text("Stored_" + group.Key.DefinitionId, group.Key.DisplayName + ": " + group.Sum(t => t.GetComponent<ResourceStackComponent>().Quantity));
-            if (selected.TryGetComponent<ConstructionComponent>(out var construction))
+            var entries = Simulation.Registry.Things.Where(t => t.Definition.Kind == kind).OrderBy(t => t.CreationOrder).ToArray();
+            if (entries.Length == 0) controls.Text("EmptyRoster", kind == ThingKind.Facility ? "아직 시설이 없습니다." : "아직 생명체가 없습니다.");
+            foreach (var thing in entries)
             {
-                var definition = (FacilityData)selected.Definition;
-                controls.Text("ConstructionState", construction.IsComplete ? "Construction complete" : "Build: " + construction.Progress.ToString("F1") + " / " + definition.BuildSeconds + "s; material " + construction.Delivered + " / " + definition.BuildCost);
-                UiAction("Move", "Move / rotate facility", () => BeginPlacement(), construction.IsComplete && canOperate, id);
-            }
-            if (selected.TryGetComponent<GatheringComponent>(out var gatheringState)) controls.Text("GatheringState", "Gathering: " + gatheringState.Progress.ToString("F1") + " / " + ((FacilityData)selected.Definition).GatheringSeconds + "s\nAwaiting storage admission: " + gatheringState.Outstanding);
-            if (selected.TryGetComponent<ProductionComponent>(out var production))
-            {
-                var definition = (FacilityData)selected.Definition;
-                controls.Text("ProductionState", "Cycle: " + production.Progress.ToString("F1") + " / " + definition.ProductionSeconds + "s\nInput: " + Simulation.Production.InputCount(selected) + " / " + definition.InputAmount + " " + definition.InputResource.DisplayName + (production.InProgress ? " (consumed)" : ""));
-                var working = Simulation.Registry.Things.Any(t => t.TryGetComponent<WorkerComponent>(out var worker) && worker.Job != null && worker.Job.Kind == WorkKind.Production && worker.Job.Stage == JobStage.Working && worker.Job.TargetId == id);
-                var reason = Simulation.Production.WaitReason(selected);
-                controls.Text("ProductionReason", !Controller.CanAdvanceLaboratory ? "Paused" : !string.IsNullOrEmpty(reason) ? reason : (working ? "Working: " + (definition.Settings.StaffedRate * 100).ToString("0.#") : "Automatic: " + (definition.Settings.UnattendedRate * 100).ToString("0.#")) + "%");
-                if (definition.Role == FacilityRole.Cultivation)
+                var id = thing.Id;
+                UiAction("Select_" + id.ToString("N"), ThingLabel(id) + " · " + CreatureActivity(thing), () =>
                 {
-                    controls.Text("CultivationState", "Current: " + (production.InProgress ? production.ActiveTarget.ToString() : "None") + " | Next: " + production.SelectedTarget);
-                    UiAction("CultivateSupport", "Cultivate support (" + definition.InputAmount + " culture)", () => SelectCultivation(id, CultivationTarget.Support), canOperate && selected.GetComponent<ConstructionComponent>().IsComplete, id);
-                    UiAction("CultivateInvader", "Cultivate invader (" + definition.InputAmount + " culture)", () => SelectCultivation(id, CultivationTarget.Invader), canOperate && selected.GetComponent<ConstructionComponent>().IsComplete, id);
-                }
-            }
-            if (selected.TryGetComponent<StorageComponent>(out var storageState))
-            {
-                controls.Text("StorageState", "Capacity: " + ((FacilityData)selected.Definition).StorageCapacity + "\nIncoming reserved: " + Simulation.Reservations.Where(r => r.DestinationId == id).Sum(r => r.Amount) + " / Outgoing reserved: " + Simulation.Reservations.Where(r => r.SourceId == id && !r.PickedUp).Sum(r => r.Amount));
-                UiAction("AllowOrganic", "Organic matter: " + (storageState.AllowsOrganic ? "allowed" : "blocked"), () => SetAllowed(id, organic, !storageState.AllowsOrganic), canOperate, id);
-                UiAction("AllowCulture", "Culture medium: " + (storageState.AllowsCulture ? "allowed" : "blocked"), () => SetAllowed(id, culture, !storageState.AllowsCulture), canOperate, id);
-            }
-            if (selected.TryGetComponent<WorkerComponent>(out var workerState))
-            {
-                controls.Text("WorkerJob", workerState.Job == null ? "Job: idle" : "Job: " + workerState.Job.Kind + " / " + workerState.Job.Stage + "\nTarget: " + ThingLabel(workerState.Job.TargetId));
-                if (!string.IsNullOrWhiteSpace(workerState.WaitReason)) controls.Text("WorkerWait", "Waiting: " + workerState.WaitReason);
-                if (((CreatureData)selected.Definition).CanOperate)
-                {
-                    controls.Text("Assigned", "Assigned: " + (workerState.AssignedFacilityId.HasValue ? ThingLabel(workerState.AssignedFacilityId.Value) : "None"));
-                    UiAction("Unassign", "Unassign", () => AssignWorker(id, null), canOperate, id);
-                    foreach (var facility in Simulation.Registry.Things.Where(t => t.TryGetComponent<ProductionComponent>(out _) && t.GetComponent<ConstructionComponent>().IsComplete))
-                    {
-                        var facilityId = facility.Id;
-                        UiAction("Assign_" + facilityId.ToString("N"), "Assign: " + ThingLabel(facilityId), () => AssignWorker(id, facilityId), canOperate, id);
-                    }
-                }
-                controls.Text("WorkerPriorities", workerState.UsesPreset ? "Priorities: default preset" : "Priorities: individual override");
-                AddPriorities("WorkerPriority", workerState.UsesPreset ? Simulation.Preset.ToArray() : workerState.Priorities.ToArray(), values => SetWorkerPriorities(id, values), canOperate, id);
-                if (!workerState.UsesPreset) UiAction("UsePreset", "Use default preset", () => SetWorkerPriorities(id, Simulation.Preset.ToArray(), true), canOperate, id);
+                    if (thing.IsPlaced) SelectThing(id);
+                    else { SelectedId = id; SelectionChanged(); }
+                }, canOperate);
             }
         }
-
-        private void AddPriorities(string key, int[] values, Action<int[]> apply, bool enabled, Guid? selected = null)
+        private string CreatureActivity(Thing thing) => !thing.IsPlaced ? "외부 활동"
+            : thing.Definition.Kind == ThingKind.Facility ? LaboratoryStatusText.Short(StatusFor(thing))
+            : thing.TryGetComponent<WorkerComponent>(out var worker) ? worker.Job == null ? "작업 대기" : "작업 중" : "방출 대기";
+        private void AddInvasionControls(bool canOperate)
         {
-            var names = new[] { "Build", "Gather", "Haul", "Produce" };
-            for (var index = 0; index < values.Length && index < names.Length; index++)
-            {
-                var slot = index;
-                UiAction(key + "_" + slot, names[slot] + ": " + values[slot], () =>
-                {
-                    if (!CanInteract || IsEditing) return;
-                    var changed = Simulation.Preset.ToArray();
-                    if (selected.HasValue)
-                    {
-                        if (!Simulation.Registry.TryGet(selected.Value, out var thing) || !thing.TryGetComponent<WorkerComponent>(out var worker)) return;
-                        if (!worker.UsesPreset) changed = worker.Priorities.ToArray();
-                    }
-                    changed[slot] = (changed[slot] + 1) % 5; apply(changed);
-                }, enabled, selected);
-            }
+            controls.Text("WorldTitle", "침공·보고", 24);
+            controls.Text("InvasionCounts", "방출 대기 " + Simulation.Invasion.WaitingCount + " · 외부 활동 " + Simulation.Invasion.ExternalCount);
+            UiAction("Release", "대기 중인 침공형 전원 방출 (" + Simulation.Invasion.WaitingCount + ")", () => ReleaseInvaders(), canOperate && Simulation.Invasion.WaitingCount > 0);
+            UiAction("Reports", ReportsExpanded ? "보고 접기" : "전과 보고 보기 (" + Invasion.Reports.Count + ")", ToggleReports);
+            if (!ReportsExpanded) return;
+            UiAction("LatestReports", "최신 보고로", () => { controlsScroll.StopMovement(); controlsScroll.content.anchoredPosition = Vector2.zero; });
+            if (Invasion.Reports.Count == 0) controls.Text("NoReports", "아직 전과 보고가 없습니다.");
+            foreach (var report in Invasion.Reports.Reverse()) controls.Text("Report_" + report.Sequence,
+                "#" + report.Sequence + " · " + ThingLabel(report.InvaderId) + "\n" + report.Text + " +" + report.Score + " (" + report.Time.ToString("F1") + "초)");
         }
-        private string ThingLabel(Guid id) => Simulation.Registry.TryGet(id, out var thing) ? thing.Definition.DisplayName + " #" + thing.CreationOrder : "Unassigned";
-        private string ResourceLabel(Guid id) => Simulation.Registry.TryGet(id, out var resource) ? resource.Definition.DisplayName : "resource";
-        private void InvalidateScreenInput() => screen?.InvalidatePointers();
-        private void SetScreenVisible(bool visible) => screen?.SetVisible(visible);
-        private void DisposeScreen() { screen?.Dispose(); screen = null; MapViewport = null; }
+        private void AddGameControls()
+        {
+            controls.Text("GameTitle", "게임 메뉴", 24);
+            if (pendingSessionAction != LaboratorySessionAction.None)
+            {
+                controls.Text("SessionWarning", pendingSessionAction == LaboratorySessionAction.Reload
+                    ? "최근 저장을 불러올까요?\n현재 진행과 미확정 배치를 저장된 상태로 교체합니다."
+                    : "새 판을 시작할까요?\n현재 진행과 저장 슬롯을 초기 상태로 바꿉니다. 표시 설정은 유지됩니다.");
+                UiAction("ConfirmSessionAction", "확인 · 진행 변경", () => ConfirmSessionAction());
+                UiAction("CancelSessionAction", "취소 · 현재 판 유지", CancelSessionAction); return;
+            }
+            UiAction("Save", "지금 저장", () => { uiNotice = Save() ? "진행을 저장했습니다." : "저장하지 못했습니다. 이전 저장을 유지합니다."; }, Controller.Current != null);
+            UiAction("Reload", "최근 저장 불러오기", () => RequestSessionAction(LaboratorySessionAction.Reload));
+            UiAction("Restart", "새 판 시작", () => RequestSessionAction(LaboratorySessionAction.Restart));
+            controls.Text("UiPreferences", "화면 표시", 22);
+            controls.Text("MapControlsHelp", "지도 조작: 돋보기 −/＋는 축소/확대, 네 모서리 표시는 전체 보기, 눈/가린 눈은 시설 상태 표시입니다.", 16);
+            UiAction("StatusPreference", "시설 상태 표시: " + (ShowFacilityStatus ? "ON" : "OFF"), () => SetUiPreferences(!ShowFacilityStatus, LargeText));
+            UiAction("TextPreference", "글자 크기: " + (LargeText ? "크게" : "보통"), () => SetUiPreferences(ShowFacilityStatus, !LargeText));
+            if (!string.IsNullOrEmpty(uiSettings?.LastError))
+            {
+                controls.Text("UiSettingsError", "화면 설정 저장 오류 · 게임 진행 저장과 별개입니다.\n" + uiSettings.LastError);
+                UiAction("RetryUiSettings", "화면 설정 저장 재시도", () => { uiSettings.TrySave(); });
+            }
+            UiAction("FontLicense", "글꼴 라이선스", () => OpenPanel(LaboratoryPanel.License));
+        }
     }
 }

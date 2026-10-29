@@ -37,3 +37,4 @@
 | [TECH-008](TECH-008-run-ending-presentation.md) | 일시적 멸망 연출 시계·화면 요청 식별·결과 조회·종료 복원과 재시작 | [PLAN-011](../plans/PLAN-011-destruction-results-and-restart.md) |
 | [TECH-009](TECH-009-csv-data-catalog.md) | CSV·Registry·Data와 초기 로딩 | [PLAN-012](../plans/PLAN-012-csv-so-data-and-game-data-store.md) |
 | [TECH-010](TECH-010-responsive-ui-and-mobile-input.md) | uGUI·EnhancedTouch·안전 영역·입력 취소와 실제 Android 진입 | [PLAN-013](../plans/PLAN-013-responsive-ui-and-mobile-input.md) |
+| [TECH-011](TECH-011-mobile-ui-state-and-assets.md) | 시설 상태 공통 조회·UI 탐색 수명·독립 설정·임시 에셋 참조 | [PLAN-014](../plans/PLAN-014-mobile-ui-ux-and-facility-status.md) |

@@ -30,6 +30,7 @@ namespace MobileGame.Presentation
             label.fontSize = fontSize; label.color = new Color(0.88f, 0.92f, 0.96f); label.raycastTarget = false;
             label.alignment = TextAnchor.UpperLeft; label.horizontalOverflow = HorizontalWrapMode.Wrap;
             label.verticalOverflow = VerticalWrapMode.Truncate; label.supportRichText = false;
+            label.gameObject.AddComponent<LaboratoryUiText>().Initialize(fontSize);
             return label;
         }
         public static LaboratoryUiButton Button(string name, Transform parent, string text, Func<int> epoch)
@@ -88,8 +89,9 @@ namespace MobileGame.Presentation
         {
             var row = Get(key, true, 18); row.Text.text = label;
             row.Button.Bind(action, context); row.Button.interactable = enabled;
-            LaboratoryUiWidgets.Place(row.Rect, 4, y, width - 8, 48);
-            var height = Mathf.Max(48, row.Text.preferredHeight + 14);
+            var minimum = content.GetComponentInParent<LaboratoryView>()?.MinimumTouchSize ?? 48;
+            LaboratoryUiWidgets.Place(row.Rect, 4, y, width - 8, minimum);
+            var height = Mathf.Max(minimum, row.Text.preferredHeight + 14);
             row.Rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height); y += height + 8;
         }
         public void End()
@@ -99,6 +101,23 @@ namespace MobileGame.Presentation
                 var row = rows[key]; row.Rect.gameObject.SetActive(false); UnityEngine.Object.Destroy(row.Rect.gameObject); rows.Remove(key);
             }
             content.sizeDelta = new Vector2(width, y + 8);
+        }
+        public string CaptureAnchor(string prefix, float scrollY, out float offset)
+        {
+            offset = 0;
+            if (scrollY < 1) return null;
+            var candidate = rows.Where(pair => pair.Key.StartsWith(prefix, StringComparison.Ordinal)
+                && -pair.Value.Rect.anchoredPosition.y + pair.Value.Rect.rect.height > scrollY)
+                .OrderBy(pair => -pair.Value.Rect.anchoredPosition.y).FirstOrDefault();
+            if (candidate.Value == null) return null;
+            offset = scrollY + candidate.Value.Rect.anchoredPosition.y;
+            return candidate.Key;
+        }
+        public bool TryRestoreAnchor(string key, float offset, out float scrollY)
+        {
+            scrollY = 0;
+            if (key == null || !rows.TryGetValue(key, out var row)) return false;
+            scrollY = Mathf.Max(0, -row.Rect.anchoredPosition.y + offset); return true;
         }
         private Row Get(string key, bool button, int size)
         {

@@ -20,7 +20,7 @@ namespace MobileGame.SpatialTests
     public sealed partial class LaboratoryViewTests
     {
         [UnityTest]
-        public IEnumerator DeviceTouchCyclesOverlappingCreaturesAndEditsOnlySelectedWorker()
+        public IEnumerator DeviceTouchOpensOverlappingCandidatesAndEditsOnlySelectedWorker()
         {
             using (var input = new PointerScene())
             {
@@ -41,9 +41,16 @@ namespace MobileGame.SpatialTests
                 input.Touch(1, TouchPhase.Began, point);
                 input.Touch(1, TouchPhase.Ended, point);
                 yield return null; yield return null; yield return null;
-                Assert.That(view.SelectedId, Is.EqualTo(prototype.Id), "A same-update tap was lost.");
+                Assert.That(view.OpenedPanel, Is.EqualTo(LaboratoryPanel.Candidates), "A same-update tap must open the actual overlap candidates.");
+                Assert.That(view.SelectedId, Is.EqualTo(Guid.Empty), "An ambiguous tap must not silently choose a different creature.");
                 Assert.That(map.AcceptedTaps, Is.EqualTo(accepted + 1));
-                yield return input.Tap(2, point);
+                foreach (var id in new[] { prototype.Id, first.Id, second.Id })
+                    Assert.That(view.FindUiButton("Select_" + id.ToString("N")), Is.Not.Null);
+                yield return ClickVisibleButton(input, "Select_" + prototype.Id.ToString("N"));
+                Assert.That(view.SelectedId, Is.EqualTo(prototype.Id));
+                yield return input.Tap(2, map.CellScreenPoint(cell));
+                Assert.That(view.OpenedPanel, Is.EqualTo(LaboratoryPanel.Candidates));
+                yield return ClickVisibleButton(input, "Select_" + first.Id.ToString("N"));
                 Assert.That(view.SelectedId, Is.EqualTo(first.Id));
                 yield return ClickVisibleButton(input, "WorkerPriority_0");
                 var firstPriorities = first.GetComponent<WorkerComponent>().Priorities.ToArray();
@@ -51,7 +58,9 @@ namespace MobileGame.SpatialTests
                 Assert.That(second.GetComponent<WorkerComponent>().UsesPreset, Is.True);
                 Assert.That(prototype.GetComponent<WorkerComponent>().UsesPreset, Is.True);
 
-                yield return input.Tap(3, point);
+                yield return input.Tap(3, map.CellScreenPoint(cell));
+                Assert.That(view.OpenedPanel, Is.EqualTo(LaboratoryPanel.Candidates));
+                yield return ClickVisibleButton(input, "Select_" + second.Id.ToString("N"));
                 Assert.That(view.SelectedId, Is.EqualTo(second.Id));
                 yield return ClickVisibleButton(input, "WorkerPriority_0");
                 Assert.That(second.GetComponent<WorkerComponent>().UsesPreset, Is.False, "First click on second worker: " + view.LastCommand);
@@ -59,8 +68,10 @@ namespace MobileGame.SpatialTests
                 Assert.That(second.GetComponent<WorkerComponent>().UsesPreset, Is.False);
                 Assert.That(second.GetComponent<WorkerComponent>().Priorities, Is.Not.EqualTo(firstPriorities));
                 Assert.That(first.GetComponent<WorkerComponent>().Priorities, Is.EqualTo(firstPriorities));
-                yield return input.Tap(4, point);
-                Assert.That(view.SelectedId, Is.EqualTo(prototype.Id), "Selection must cycle through every occupant.");
+                yield return input.Tap(4, map.CellScreenPoint(cell));
+                Assert.That(view.OpenedPanel, Is.EqualTo(LaboratoryPanel.Candidates));
+                yield return ClickVisibleButton(input, "Select_" + prototype.Id.ToString("N"));
+                Assert.That(view.SelectedId, Is.EqualTo(prototype.Id), "Every overlapping occupant must remain individually selectable.");
                 Assert.That(map.AcceptedTaps, Is.EqualTo(accepted + 4), "UI priority clicks must not reach the map.");
                 LogAssert.NoUnexpectedReceived();
             }
@@ -173,6 +184,42 @@ namespace MobileGame.SpatialTests
 
         private static IEnumerator ClickVisibleButton(PointerScene input, string key)
         {
+            yield return OpenActionPath(input, key);
+            yield return RevealVisibleButton(input, key);
+            yield return input.Click(ScreenCenter((RectTransform)input.View.FindUiButton(key).transform));
+        }
+
+        // Navigation is part of the input scenario: never call OpenPanel/SelectThing to reach an action.
+        private static IEnumerator OpenActionPath(PointerScene input, string key)
+        {
+            yield return null;
+            var existing = input.View.FindUiButton(key);
+            if (existing != null && existing.gameObject.activeInHierarchy) yield break;
+            string entry = null;
+            if (key.StartsWith("Build", StringComparison.Ordinal)) entry = "NavBuild";
+            else if (key.StartsWith("Select_", StringComparison.Ordinal)
+                && Guid.TryParseExact(key.Substring(7), "N", out var id)
+                && input.View.Simulation.Registry.TryGet(id, out var thing))
+                entry = thing.Definition.Kind == ThingKind.Facility ? "NavBuild" : "NavCreatures";
+            else if (key == "Release" || key == "Reports" || key == "LatestReports") entry = "NavInvasion";
+            else if (key == "Save" || key == "Reload" || key == "Restart" || key == "TextPreference"
+                || key == "StatusPreference" || key == "FontLicense" || key == "RetryUiSettings") entry = "GameMenu";
+            else if (key.StartsWith("Preset_", StringComparison.Ordinal)) entry = "NavCreatures";
+            else if (input.View.OpenedPanel == LaboratoryPanel.Selection)
+            {
+                var details = input.View.FindUiButton("Details");
+                if (details != null && details.gameObject.activeInHierarchy && key != "Details") entry = "Details";
+            }
+            if (entry != null)
+            {
+                yield return RevealVisibleButton(input, entry);
+                yield return input.Click(ScreenCenter((RectTransform)input.View.FindUiButton(entry).transform));
+                yield return null;
+            }
+        }
+
+        private static IEnumerator RevealVisibleButton(PointerScene input, string key)
+        {
             yield return null;
             var button = input.View.FindUiButton(key);
             Assert.That(button, Is.Not.Null, "Missing UI button: " + key);
@@ -190,19 +237,22 @@ namespace MobileGame.SpatialTests
                 Assert.That(RectTransformUtility.RectangleContainsScreenPoint(scroll.viewport, ScreenCenter(rect)), Is.True,
                     "The button must be inside its clipped viewport before a physical click: " + key);
             }
-            yield return input.Click(ScreenCenter(rect));
         }
 
-        // Keep the real EventSystem and input actions. Only pointer devices are replaced temporarily,
+        // Keep the real EventSystem and input actions. Pointer and Back-key devices are isolated
         // so hardware movement cannot contaminate these frame-by-frame integration scenarios.
         private sealed class PointerScene : IDisposable
         {
             private readonly InputDevice[] disabled;
             private readonly Mouse previousMouse;
             private readonly Touchscreen previousTouchscreen;
+            private readonly Keyboard previousKeyboard;
             private readonly Mouse mouse;
             private readonly Touchscreen touchscreen;
+            private readonly Keyboard keyboard;
             private readonly bool previousBackground;
+            private readonly InputSettings.BackgroundBehavior previousInputBackground;
+            private readonly InputSettings.EditorInputBehaviorInPlayMode previousEditorInput;
             private readonly string directory;
             public LaboratoryView View { get; private set; }
             public LaboratoryMapView Map => View.MapViewport.GetComponent<LaboratoryMapView>();
@@ -210,11 +260,31 @@ namespace MobileGame.SpatialTests
             public PointerScene()
             {
                 previousBackground = Application.runInBackground; Application.runInBackground = true;
+                // Host window focus must not disable these synthetic integration-test devices.
+                // The lifecycle scenarios still exercise the production pause/focus callbacks explicitly.
+                previousInputBackground = InputSystem.settings.backgroundBehavior;
+                previousEditorInput = InputSystem.settings.editorInputBehaviorInPlayMode;
+                InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
+                InputSystem.settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
                 directory = Path.Combine(Path.GetTempPath(), "MobileGame-PLAN013-Input-" + Guid.NewGuid().ToString("N"));
-                previousMouse = Mouse.current; previousTouchscreen = Touchscreen.current;
-                disabled = InputSystem.devices.Where(d => d is UnityEngine.InputSystem.Pointer && d.enabled).ToArray();
+                previousMouse = Mouse.current; previousTouchscreen = Touchscreen.current; previousKeyboard = Keyboard.current;
+                disabled = InputSystem.devices.Where(d => (d is UnityEngine.InputSystem.Pointer || d is Keyboard) && d.enabled).ToArray();
                 foreach (var device in disabled) InputSystem.DisableDevice(device);
-                mouse = InputSystem.AddDevice<Mouse>(); touchscreen = InputSystem.AddDevice<Touchscreen>();
+                mouse = InputSystem.AddDevice<Mouse>(); touchscreen = InputSystem.AddDevice<Touchscreen>(); keyboard = InputSystem.AddDevice<Keyboard>();
+            }
+
+            public IEnumerator Reopen()
+            {
+                if (View != null) UnityEngine.Object.DestroyImmediate(View.gameObject);
+                View = null;
+                yield return null;
+                yield return Load();
+            }
+
+            public IEnumerator Escape()
+            {
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Escape)); yield return null;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState()); yield return null; yield return null;
             }
 
             public IEnumerator Load()
@@ -225,6 +295,8 @@ namespace MobileGame.SpatialTests
                 yield return WaitFor(() => View.MapViewport != null && View.MapViewport.rect.width > 0 && View.CanInteract,
                     "The actual input scene did not become interactive.");
                 yield return null; yield return null;
+                Assert.That(mouse.enabled && touchscreen.enabled && keyboard.enabled, Is.True,
+                    "The isolated input devices must remain enabled even when the host Editor window is unfocused.");
             }
 
             public void Touch(int id, TouchPhase phase, Vector2 point) => InputSystem.QueueStateEvent(touchscreen,
@@ -251,9 +323,13 @@ namespace MobileGame.SpatialTests
                 if (View != null) UnityEngine.Object.DestroyImmediate(View.gameObject);
                 if (mouse.added) InputSystem.RemoveDevice(mouse);
                 if (touchscreen.added) InputSystem.RemoveDevice(touchscreen);
+                if (keyboard.added) InputSystem.RemoveDevice(keyboard);
                 foreach (var device in disabled) if (device.added) InputSystem.EnableDevice(device);
                 if (previousMouse?.added == true) previousMouse.MakeCurrent();
                 if (previousTouchscreen?.added == true) previousTouchscreen.MakeCurrent();
+                if (previousKeyboard?.added == true) previousKeyboard.MakeCurrent();
+                InputSystem.settings.backgroundBehavior = previousInputBackground;
+                InputSystem.settings.editorInputBehaviorInPlayMode = previousEditorInput;
                 Application.runInBackground = previousBackground;
                 if (Directory.Exists(directory)) Directory.Delete(directory, true);
             }

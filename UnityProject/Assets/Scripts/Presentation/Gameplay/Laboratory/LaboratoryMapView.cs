@@ -13,7 +13,7 @@ using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 namespace MobileGame.Presentation
 {
     // Presentation geometry and device input only. All edits go through LaboratoryView commands.
-    public sealed class LaboratoryMapView : MonoBehaviour
+    public sealed partial class LaboratoryMapView : MonoBehaviour
     {
         private LaboratoryView view;
         private RectTransform viewport;
@@ -34,6 +34,8 @@ namespace MobileGame.Presentation
         private bool subscribed;
         private int touchFrame = -1;
         private int width, height;
+        private bool ensureSelectionVisible;
+        public void RequestSelectionVisibility() => ensureSelectionVisible = true;
         public float Zoom => zoom;
         public int AcceptedTaps { get; private set; }
         public RectTransform Viewport => viewport;
@@ -45,7 +47,7 @@ namespace MobileGame.Presentation
         {
             if (view != null) return;
             view = owner; viewport = (RectTransform)transform;
-            font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            font = owner.UiFont;
             gesture = new LaboratoryGesture();
             gesture.Tapped += Tap;
             gesture.Panned += delta => Pan(delta);
@@ -106,6 +108,8 @@ namespace MobileGame.Presentation
             if (previousSize != viewport.rect.size || previousScreen != screenSize || previousSafe != Screen.safeArea
                 || phase != view.Controller.Phase || wasInteractive != view.CanInteract)
             {
+                if (previousSize != viewport.rect.size && view.OpenedPanel == LaboratoryPanel.Selection)
+                    ensureSelectionVisible = true;
                 gesture.Cancel(); previousSize = viewport.rect.size; previousScreen = screenSize;
                 previousSafe = Screen.safeArea; phase = view.Controller.Phase; wasInteractive = view.CanInteract;
                 ClampCenter();
@@ -115,12 +119,35 @@ namespace MobileGame.Presentation
         {
             if (view?.Simulation == null || viewport == null) return;
             // Layout may have been updated after Update (e.g. the panel was collapsed).
-            if (previousSize != viewport.rect.size) { gesture.Cancel(); previousSize = viewport.rect.size; ClampCenter(); }
+            if (previousSize != viewport.rect.size)
+            {
+                gesture.Cancel(); previousSize = viewport.rect.size; ClampCenter();
+                if (view.OpenedPanel == LaboratoryPanel.Selection) ensureSelectionVisible = true;
+            }
+            EnsureSelectionVisible();
             Draw();
+            RefreshStatusOverlays();
         }
         private float CellSize => Mathf.Max(1, Mathf.Min((viewport.rect.width - 16) / Math.Max(1, width),
             (viewport.rect.height - 16) / Math.Max(1, height))) * zoom;
         private Vector2 Origin => viewport.rect.center - center * CellSize;
+        private void EnsureSelectionVisible()
+        {
+            if (!ensureSelectionVisible) return;
+            ensureSelectionVisible = false;
+            if (!view.Simulation.Registry.TryGet(view.SelectedId, out var selected) || !selected.IsPlaced) return;
+            var size = selected.Definition is FacilityData definition
+                ? (Vector2)FacilityGeometry.GetSize(definition, selected.Placement.Rotation) : Vector2.one;
+            var min = (Vector2)selected.Placement.Origin; var max = min + size;
+            var half = viewport.rect.size / (2 * CellSize) - Vector2.one * .2f;
+            if (size.x > half.x * 2) center.x = (min.x + max.x) * .5f;
+            else if (min.x < center.x - half.x) center.x = min.x + half.x;
+            else if (max.x > center.x + half.x) center.x = max.x - half.x;
+            if (size.y > half.y * 2) center.y = (min.y + max.y) * .5f;
+            else if (min.y < center.y - half.y) center.y = min.y + half.y;
+            else if (max.y > center.y + half.y) center.y = max.y - half.y;
+            ClampCenter();
+        }
         private void ClampCenter()
         {
             if (viewport == null || width == 0 || height == 0) return;
@@ -144,7 +171,7 @@ namespace MobileGame.Presentation
         }
         private bool OverMap(Vector2 point)
         {
-            if (!view.CanInteract || !RectTransformUtility.RectangleContainsScreenPoint(viewport, point, null)) return false;
+            if (!view.CanUseMap || !RectTransformUtility.RectangleContainsScreenPoint(viewport, point, null)) return false;
             if (EventSystem.current == null) return true;
             hits.Clear();
             EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = point }, hits);
@@ -152,23 +179,24 @@ namespace MobileGame.Presentation
         }
         private void Tap(Vector2 point)
         {
-            if (!view.CanInteract || !TryScreenCell(point, out var cell)) return;
+            if (!view.CanUseMap) return;
+            if (!view.IsEditing && TrySelectStatus(point)) { AcceptedTaps++; return; }
+            if (!TryScreenCell(point, out var cell)) return;
             AcceptedTaps++;
             if (view.IsEditing) { view.PreviewAt(cell); return; }
-            var choices = view.Simulation.Map.GetPlacements().Where(p => p.Contains(cell)).OrderBy(p =>
+            var choices = view.Simulation.Map.GetPlacements().Where(p => p.Kind != ThingKind.Resource && p.Contains(cell)).OrderBy(p =>
                 p.Kind == ThingKind.Facility ? 0 : 1).ThenBy(p => view.Simulation.Registry.Things.First(t => t.Id == p.ThingId).CreationOrder).ToArray();
             if (choices.Length == 0) return;
-            var index = Array.FindIndex(choices, p => p.ThingId == view.SelectedId);
-            view.SelectThing(choices[(index + 1) % choices.Length].ThingId);
+            view.ShowSelectionCandidates(choices.Select(p => p.ThingId));
         }
         private void Pan(Vector2 pixels)
         {
-            if (!view.CanInteract) return;
+            if (!view.CanUseMap) return;
             center -= pixels / Mathf.Max(0.001f, view.UiCanvas.scaleFactor) / CellSize; ClampCenter();
         }
         private void ZoomAt(float ratio, Vector2 point)
         {
-            if (!view.CanInteract || !float.IsFinite(ratio) || ratio <= 0) return;
+            if (!view.CanUseMap || !float.IsFinite(ratio) || ratio <= 0) return;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(viewport, point, null, out var local);
             var before = (local - Origin) / CellSize;
             zoom = Mathf.Clamp(zoom * ratio, 1, 8);

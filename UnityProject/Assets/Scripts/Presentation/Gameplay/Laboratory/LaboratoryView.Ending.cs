@@ -28,10 +28,10 @@ namespace MobileGame.Presentation
             endingCaption = LaboratoryUiWidgets.Label("EndingCaption", endingRoot, 18); endingCaption.alignment = TextAnchor.MiddleCenter;
             resultScroll = LaboratoryUiWidgets.Scroll("ResultDetails", endingRoot, out var content);
             resultRows = new LaboratoryUiList(content, () => screen.LayoutEpoch);
-            newRunButton = LaboratoryUiWidgets.Button("RestartFromResults", endingRoot, "START A NEW RUN", () => screen.LayoutEpoch);
-            retrySaveButton = LaboratoryUiWidgets.Button("RetrySave", endingRoot, "Retry save", () => screen.LayoutEpoch);
+            newRunButton = LaboratoryUiWidgets.Button("RestartFromResults", endingRoot, "새 판 시작", () => screen.LayoutEpoch);
+            retrySaveButton = LaboratoryUiWidgets.Button("RetrySave", endingRoot, "저장 재시도", () => screen.LayoutEpoch);
             restartCaption = LaboratoryUiWidgets.Label("RestartCaption", endingRoot, 16);
-            restartCaption.text = "Start with one prototype and initial resources. The saved run is replaced only after saving succeeds.";
+            restartCaption.text = "프로토타입 1개체와 초기 자원으로 시작합니다. 저장에 성공하면 이전 판을 초기 상태로 교체합니다.";
             endingRoot.gameObject.SetActive(false);
         }
 
@@ -41,12 +41,12 @@ namespace MobileGame.Presentation
             LaboratoryUiWidgets.Place(endingRoot, 0, 0, w, h);
             var results = Controller.Phase == SessionPhase.Results;
             var error = !string.IsNullOrEmpty(Controller.LastSaveError) || !string.IsNullOrEmpty(Controller.LastError);
-            endingTitle.text = results ? "WORLD ENDED / RUN COMPLETE" : "THE FINAL SIGNAL";
+            endingTitle.text = results ? "세계 멸망 · 한 판 종료" : "마지막 신호";
             LaboratoryUiWidgets.Place(endingTitle.rectTransform, 16, 14, w - 32, 74);
             var progress = results ? 1f : (float)Ending.Progress;
             endingWorld.Progress = progress;
-            endingCaption.text = results ? "No signals remain." : progress < 0.33f ? "The last defenses fall."
-                : progress < 0.72f ? "The world fractures." : "The signals fade into silence.";
+            endingCaption.text = results ? "모든 신호가 사라졌습니다." : progress < 0.33f ? "마지막 방어선이 무너집니다."
+                : progress < 0.72f ? "세계가 붕괴하고 있습니다." : "신호가 점차 사라집니다.";
             var detailsX = 16f; var detailsY = 90f; var detailsWidth = w - 32;
             if (screen.Portrait)
             {
@@ -62,7 +62,8 @@ namespace MobileGame.Presentation
                 LaboratoryUiWidgets.Place(endingCaption.rectTransform, 16, 106 + worldSize, w * 0.43f, 48);
                 detailsX = w * 0.47f; detailsWidth = w - detailsX - 16;
             }
-            var footerHeight = (results ? 112 : 0) + (error ? 58 : 0);
+            var touch = MinimumTouchSize;
+            var footerHeight = (results ? touch + 74 : 0) + (error ? touch + 10 : 0);
             var scrollHeight = Mathf.Max(80, h - detailsY - footerHeight - 22);
             LaboratoryUiWidgets.Place((RectTransform)resultScroll.transform, detailsX, detailsY, detailsWidth, scrollHeight);
             var footerY = detailsY + scrollHeight + 8;
@@ -70,31 +71,31 @@ namespace MobileGame.Presentation
             retrySaveButton.gameObject.SetActive(error);
             if (results)
             {
-                LaboratoryUiWidgets.Place((RectTransform)newRunButton.transform, detailsX, footerY, detailsWidth, 48);
-                LaboratoryUiWidgets.Place(restartCaption.rectTransform, detailsX, footerY + 54, detailsWidth, 52);
-                footerY += 112;
+                LaboratoryUiWidgets.Place((RectTransform)newRunButton.transform, detailsX, footerY, detailsWidth, touch);
+                LaboratoryUiWidgets.Place(restartCaption.rectTransform, detailsX, footerY + touch + 6, detailsWidth, 64);
+                footerY += touch + 74;
             }
-            if (error) LaboratoryUiWidgets.Place((RectTransform)retrySaveButton.transform, detailsX, footerY, detailsWidth, 48);
+            if (error) LaboratoryUiWidgets.Place((RectTransform)retrySaveButton.transform, detailsX, footerY, detailsWidth, touch);
             var request = Ending.Request; var generation = Controller.Generation;
             newRunButton.Bind(() => { if (CanClickScreen() && generation == Controller.Generation) RestartFromResults(request); }, UiContext + ":" + request?.GetHashCode());
             newRunButton.interactable = CanClickScreen() && request != null;
             retrySaveButton.Bind(() => { if (CanClickScreen() && generation == Controller.Generation) Save(); }, UiContext);
             retrySaveButton.interactable = CanClickScreen();
             resultRows.Begin(detailsWidth - 16);
-            resultRows.Text("Stopped", "Laboratory and outside activity have stopped.");
-            if (Invasion.LegacyEndVersion > 0) resultRows.Text("LegacyResult", "This world ended in an earlier save. Activity records are unavailable.");
+            resultRows.Text("Stopped", "연구소와 외부 활동이 모두 정지했습니다.");
+            if (Invasion.LegacyEndVersion > 0) resultRows.Text("LegacyResult", "이전 버전에서 종료된 판입니다. 활동 기록은 남아 있지 않습니다.");
             else
             {
-                resultRows.Text("WorldScore", "WORLD SCORE\n" + Invasion.Score + " / " + Invasion.Settings.TargetScore, 26);
-                resultRows.Text("ActivityCount", "Completed activities: " + Invasion.ActivitySequence);
-                resultRows.Text("OutsideCount", "Invaders outside: " + Simulation.Invasion.ExternalCount);
-                resultRows.Text("ActiveTime", "Active time: " + Invasion.Elapsed.ToString("0.0") + " s");
+                resultRows.Text("WorldScore", "멸망 점수\n" + Invasion.Score + " / " + Invasion.Settings.TargetScore, 26);
+                resultRows.Text("ActivityCount", "완료한 외부 활동: " + Invasion.ActivitySequence);
+                resultRows.Text("OutsideCount", "외부 침공형: " + Simulation.Invasion.ExternalCount);
+                resultRows.Text("ActiveTime", "진행 시간: " + Invasion.Elapsed.ToString("0.0") + " s");
             }
-            if (!results) resultRows.Text("InProgress", "Final sequence in progress…");
+            if (!results) resultRows.Text("InProgress", "멸망 연출 진행 중…");
             if (error)
             {
-                resultRows.Text("EndingError", !string.IsNullOrEmpty(Controller.LastSaveError) ? "The run could not be saved.\n" + Controller.LastSaveError : "The saved run could not be loaded.\n" + Controller.LastError);
-                resultRows.Text("SavePreserved", "The current run remains stopped. The last successful save is preserved.");
+                resultRows.Text("EndingError", !string.IsNullOrEmpty(Controller.LastSaveError) ? "진행을 저장하지 못했습니다.\n" + Controller.LastSaveError : "저장을 불러오지 못했습니다.\n" + Controller.LastError);
+                resultRows.Text("SavePreserved", "현재 판은 정지 상태를 유지합니다. 마지막으로 성공한 저장은 보존됩니다.");
             }
             if (LastCommand != null && LastCommand.StartsWith("Start new run", StringComparison.Ordinal) && LastCommand.EndsWith(": rejected / failed", StringComparison.Ordinal))
                 resultRows.Text("RestartError", LastCommand);
