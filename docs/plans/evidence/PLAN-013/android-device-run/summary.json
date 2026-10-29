@@ -1,0 +1,270 @@
+{
+  "date": "2026-10-29",
+  "sourceCommit": "6e46eb2e24ff3bcc6d29bdbc18ea802aca74b79c",
+  "package": "com.DefaultCompany.urp_2d",
+  "model": "SM-G977N",
+  "android": "12",
+  "apiLevel": 31,
+  "apkSha256": "e1678afd444741b7e43590707f5b5224324c950023bbca59610d5e60c2f2fe64",
+  "offline": {
+    "utc": "2026-10-29T09:16:58.108Z",
+    "type": "offline",
+    "wifi": "0",
+    "mobile": "0",
+    "airplane": "0"
+  },
+  "physicalManualReports": [
+    {
+      "scenario": "Landscape sensor rotation",
+      "response": "가로로 바뀌었고 큰 검은 여백 없음"
+    },
+    {
+      "scenario": "Landscape pinch, two fingers to one, map pan, panel scroll",
+      "response": "모두 정상, 오작동 없음"
+    },
+    {
+      "scenario": "Landscape to portrait while move preview open",
+      "response": "세로로 돌렸고 미리보기·버튼이 남아 있음"
+    },
+    {
+      "scenario": "Portrait pinch, pointer transition, pan, scroll, touch held through Home and return after about 10 seconds",
+      "response": "모두 정상, 상태 유지 및 오작동 없음"
+    },
+    {
+      "scenario": "Open reports rotation, rotation during destruction, results",
+      "response": "보고 유지, 연출 중 회전 후 결과 화면 정상"
+    }
+  ],
+  "rotationComparison": {
+    "dataHash": true,
+    "things": true,
+    "placements": true,
+    "laboratory": true,
+    "phaseBefore": 1,
+    "phaseAfter": 1,
+    "externalElapsedBefore": "809.08641779515892",
+    "externalElapsedAfter": "824.1317017422989"
+  },
+  "ending": {
+    "phase": 3,
+    "score": 128,
+    "activities": 32,
+    "elapsed": "1156.5645171374981"
+  },
+  "restart": {
+    "phase": 1,
+    "score": 0,
+    "things": [
+      {
+        "id": "59548247bc784a84a4cfd3d64bf82d51",
+        "definitionId": "creature.support.prototype",
+        "creationOrder": 1,
+        "quantity": 0,
+        "holderId": ""
+      },
+      {
+        "id": "74b5293606f34283a15c2d3bc74e752c",
+        "definitionId": "resource.organic",
+        "creationOrder": 2,
+        "quantity": 4,
+        "holderId": "59548247bc784a84a4cfd3d64bf82d51"
+      }
+    ],
+    "dataHashUnchanged": true,
+    "noOldThingIds": true
+  },
+  "restoration": {
+    "event": {
+      "utc": "2026-10-29T09:38:02.588Z",
+      "type": "restored",
+      "originalSaveSha256": "81ca5bbb9c5f4ba07f76b6587bd986349153498a55067a855c96b6fec8052ee9",
+      "settings": {
+        "rotation": "0",
+        "autoRotation": "0",
+        "wifi": "1",
+        "mobile": "1",
+        "airplane": "0",
+        "saveSha256": "81ca5bbb9c5f4ba07f76b6587bd986349153498a55067a855c96b6fec8052ee9"
+      }
+    },
+    "originalBackupHash": "81ca5bbb9c5f4ba07f76b6587bd986349153498a55067a855c96b6fec8052ee9",
+    "originalHashMatches": true,
+    "queriedSettingsAfterRestore": {
+      "accelerometer_rotation": 0,
+      "user_rotation": 0,
+      "wifi_on": 1,
+      "mobile_data": 1,
+      "airplane_mode_on": 0,
+      "fixed_to_user_rotation": "default"
+    },
+    "originalGameRelaunched": true
+  },
+  "logs": {
+    "lines": 1255,
+    "warnings": 5,
+    "errors": 32,
+    "unityErrorFatal": 0,
+    "fatalAnr": 0,
+    "exception": 0,
+    "note": "Native/OS errors retained. No functional interruption observed in this run; performance impact not measured."
+  },
+  "limitations": [
+    "Single physical device, no sustained performance measurement",
+    "ADB single-pointer actions distinguished from user physical multitouch confirmation",
+    "No direct in-memory GameDataStore/session reference identity query on Android; saved IDs/data/state and visible continuity inspected",
+    "Forced OS rotation produced letterboxing and is excluded from normal sensor-rotation pass evidence",
+    "Overlap-specific worker regression and injected error scenarios are covered by earlier PC tests, not claimed as repeated physical-device scenarios"
+  ],
+  "artifacts": [
+    {
+      "name": "actions.jsonl",
+      "bytes": 14194,
+      "sha256": "fef54f98bd7252803500541d2a5c9603d931ae14cc7cc030af7860416dd100d9"
+    },
+    {
+      "name": "fresh-save.json",
+      "bytes": 3438,
+      "sha256": "b503e28c426ed76de6f98ebe70028a04c6054db377170afd04ffb14629961eb0"
+    },
+    {
+      "name": "now-save.json",
+      "bytes": 11471,
+      "sha256": "0fb41cfacba484b43a722939d0449598b4857cc391ab9b7b07caf96023b09888"
+    },
+    {
+      "name": "waiting-human-save.json",
+      "bytes": 15854,
+      "sha256": "8f818eea20537c2bedf814aff21a901a9f724bfc31c207a1cc7bf9769bcd6c07"
+    },
+    {
+      "name": "storage-blocked-save.json",
+      "bytes": 16165,
+      "sha256": "a5f79f9b9dba9aff1c6ad4f033ffeb11fccdf47560b54473d689faa359200551"
+    },
+    {
+      "name": "move-before-rotation-save.json",
+      "bytes": 15364,
+      "sha256": "58948b60ab772893bea088a73797841a037e38d2d3439eff417dd26fb7552470"
+    },
+    {
+      "name": "move-after-rotation-save.json",
+      "bytes": 15363,
+      "sha256": "19b03306c7d2b3800b0b3d89cad07d41388fc0099821f4b8e20d4dc0485e48e9"
+    },
+    {
+      "name": "workers-two-save.json",
+      "bytes": 19641,
+      "sha256": "acc9d70e92927ffb4112b2164d92c9555eb59772c080898cb29146e1c8c67fd4"
+    },
+    {
+      "name": "invasion-ready-save.json",
+      "bytes": 20744,
+      "sha256": "dcdd7dce3964f881ef7187a98dd9fd1fdf362c4e996ded1742cf66446334a6be"
+    },
+    {
+      "name": "ending-phase-2-save.json",
+      "bytes": 26567,
+      "sha256": "c173821d52842f7154149d616a92edbe9ba727179cc1af2c52794b771fe243f6"
+    },
+    {
+      "name": "ending-phase-3-save.json",
+      "bytes": 26567,
+      "sha256": "d70675a7aa7fbe3f6daac86fccb8a1497539c3aebe19aa04011fc6dcce7602bb"
+    },
+    {
+      "name": "restarted-save.json",
+      "bytes": 3421,
+      "sha256": "7e1e3ad643d04dae406c8364adb658f2facb8311a93518f129f4cbe2d1bcaa89"
+    },
+    {
+      "name": "fresh-ready-portrait.png",
+      "bytes": 166299,
+      "sha256": "e2349e7eb313b410a353be98b67308e66ba09e24bc57e1a68dc183dd6a4b0dcf"
+    },
+    {
+      "name": "storage-rotate.png",
+      "bytes": 187648,
+      "sha256": "682e1406beb670e70d79c345cf8e1d11c0abeac9fa0f9ebe952bd90d22f1b8b1"
+    },
+    {
+      "name": "move-rotated.png",
+      "bytes": 173234,
+      "sha256": "cf697e170fa30151cda6779673122419ca698a42261ee9487c373167cae223ad"
+    },
+    {
+      "name": "physical-landscape.png",
+      "bytes": 155596,
+      "sha256": "6ec252971830e8615a429828ad5ef082e47c1912bbd423bfe70dc4a2445f4df1"
+    },
+    {
+      "name": "landscape-storage-draft.png",
+      "bytes": 213781,
+      "sha256": "abfc93ffd1b487edbae92234836584b9d83bfc74c6bb051469175e622fb2891a"
+    },
+    {
+      "name": "landscape-zoom-pan.png",
+      "bytes": 224982,
+      "sha256": "2c90549338ac0f5a640fe386979392627126c01bebc3e55ee0ac898301eda05e"
+    },
+    {
+      "name": "storage-blocked-confirmed.png",
+      "bytes": 199153,
+      "sha256": "8d1ab6f89e945d357e758ab3dbd50d03ccc10d4cec50884e02b86b2becfae758"
+    },
+    {
+      "name": "move-preview-before-physical.png",
+      "bytes": 211868,
+      "sha256": "77e0d991d057168d6e96412a7532570e9f4da584064a9e342bf2675aa25c0dc6"
+    },
+    {
+      "name": "move-preview-portrait.png",
+      "bytes": 188297,
+      "sha256": "077c598755dc8fbf0d62c4be7d588f8290a810e4fa66bdb4b7e9887931e64853"
+    },
+    {
+      "name": "support-assigned.png",
+      "bytes": 168432,
+      "sha256": "39a0877b92fe0b355668dd572ab63bca0d7247c617c432fda494f169ceb0867b"
+    },
+    {
+      "name": "support-unassigned.png",
+      "bytes": 155523,
+      "sha256": "63a806bf2e1b7fb07422f68981d43d468e1d4cb35f2461137a95841755907e4b"
+    },
+    {
+      "name": "support-individual-priority.png",
+      "bytes": 146902,
+      "sha256": "208660a4efd45065a6d6a4ba2cee859f0c6a2157274ed9ce4d8cd179eeba6f16"
+    },
+    {
+      "name": "second-support-assigned-priority.png",
+      "bytes": 144742,
+      "sha256": "32f237692f63e8b515bbfbd94f71d6a253a5cf81f7bf82b4af7b609169dd2e10"
+    },
+    {
+      "name": "report-activity.png",
+      "bytes": 212048,
+      "sha256": "a8e3f227b4c7fa93fcbee2fd95742a16596d80c2b79a0d2a85d4d08dbefafff9"
+    },
+    {
+      "name": "ending-phase-2.png",
+      "bytes": 98325,
+      "sha256": "f37efba34159fa082bb1760aa86441df44766e0a71a5be495d3b978290bf62d7"
+    },
+    {
+      "name": "results-portrait-settled.png",
+      "bytes": 123018,
+      "sha256": "8e322f387a96df388f0f2a8d399daec0cdc6313a99f66af35e0c6772de68a407"
+    },
+    {
+      "name": "restarted.png",
+      "bytes": 166293,
+      "sha256": "b2dc6abf15acb93923f4b29ecff6bd1e7aa305ad53f6c280ec5d41facf0f2731"
+    },
+    {
+      "name": "original-restored-ready.png",
+      "bytes": 169988,
+      "sha256": "6a7462467808563bb2a293199847ef630ae1d5b5697d75a9407915e77738b4e7"
+    }
+  ]
+}

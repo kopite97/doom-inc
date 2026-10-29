@@ -1,0 +1,53 @@
+{
+  "observedUtc": "2026-10-29T09:08:36.840Z",
+  "package": "com.DefaultCompany.urp_2d",
+  "processId": 17204,
+  "model": "SM-G977N",
+  "android": "12",
+  "display": "Physical size: 1440x3040\r\nOverride size: 1080x2280",
+  "apkSha256": "e1678afd444741b7e43590707f5b5224324c950023bbca59610d5e60c2f2fe64",
+  "expectedApkSha256": "e1678afd444741b7e43590707f5b5224324c950023bbca59610d5e60c2f2fe64",
+  "apkMatches": true,
+  "screenBytes": 169988,
+  "logLineCount": 344,
+  "foregroundActivity": "com.DefaultCompany.urp_2d/com.unity3d.player.UnityPlayerGameActivity",
+  "screenWidth": 1080,
+  "screenHeight": 2280,
+  "observedUi": {
+    "orientation": "portrait",
+    "screen": "DOOM INC / LABORATORY",
+    "organic": 2,
+    "culture": 0,
+    "creatures": 1,
+    "worldScore": 0,
+    "targetScore": 120,
+    "waiting": 0,
+    "outside": 0
+  },
+  "method": [
+    "adb -s <device> get-state",
+    "adb -s <device> shell pidof com.DefaultCompany.urp_2d",
+    "adb -s <device> shell dumpsys activity activities (resumed game activity only)",
+    "adb -s <device> shell dumpsys package com.DefaultCompany.urp_2d (version fields only)",
+    "adb -s <device> exec-out screencap -p",
+    "adb -s <device> logcat -d --pid=<game-pid> -v threadtime -t 500",
+    "adb -s <device> shell pm path com.DefaultCompany.urp_2d",
+    "adb -s <device> shell sha256sum <reported-base-apk-path>"
+  ],
+  "scope": "Read-only observation of the game already launched by the user. No automated input, restart, reinstall, save modification, rotation, background transition, or network-setting change.",
+  "limitations": [
+    "Not a controlled fresh-install or offline startup test",
+    "No direct GameDataStore state query; only the visible gameplay screen was observed",
+    "Touch/pinch/landscape/rotation/background/restart and sustained performance remain unverified"
+  ],
+  "logObservation": {
+    "lines": 344,
+    "unityErrorLines": 0,
+    "fatalOrAnrSignatureLines": 0,
+    "warningErrorFatalLines": 25,
+    "note": "Native/OS error and warning lines are preserved; their gameplay impact is not established. Absence of signatures applies only to the collected process log.",
+    "messageTimeRange": "10-29 18:06:52 through 18:06:56 (device log timestamps)",
+    "nativeErrorLines": 20,
+    "warningLines": 5
+  }
+}

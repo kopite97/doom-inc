@@ -14,6 +14,4 @@
 | [PLAN-010](PLAN-010-invasion-activity-and-reports.md) | 침공형 방출·외부 활동·성과 누적·전과 보고 | `development` | `completed` |
 | [PLAN-011](PLAN-011-destruction-results-and-restart.md) | 멸망 연출·결과 화면·한 판 종료와 재시작 완결 | `development` | `completed` |
 | [PLAN-012](PLAN-012-csv-so-data-and-game-data-store.md) | CSV·SO 분리와 GameDataStore 초기 로딩 | `development` | `completed` |
-| [PLAN-013](PLAN-013-responsive-ui-and-mobile-input.md) | 가로·세로 UI와 모바일 입력 대응 | `development` | `active` |
-
-PLAN-013은 구현·PC 검증·Android APK 빌드를 마쳤으며, 사용자 요청에 따라 필수 실기기 검증을 추후 진행한다. 상세 결과와 재개 조건은 PLAN 본문과 연결된 실행 증거를 따른다.
+| [PLAN-013](PLAN-013-responsive-ui-and-mobile-input.md) | 가로·세로 UI와 모바일 입력 대응 | `development` | `completed` |

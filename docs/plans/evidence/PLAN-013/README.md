@@ -114,6 +114,14 @@ git diff --cached --check -- . ':(exclude)UnityProject/Assets/Scripts/Tests/Edit
 
 BuildReport의 `bytes`는 전체 빌드 보고 크기이며 APK 실파일 크기는 산출물 검사의 값이다. APK와 복사본의 Library는 Git 추적 대상이 아니다. 복사본과 로컬 빌드 로그는 재현용으로 보존했다. 초기 임포트에서 나온 Editor 전용 SpriteAtlas 스타일 파일 경로 예외·Editor Burst JIT 정책 차단·진단 전송 제한은 [별도 로그 발췌](android-import-diagnostics.txt)에 보존한다. 최종 APK BuildReport 성공과 초기 Editor 임포트 메시지를 구분하며, 로그를 없애려고 패키지나 OS 보안 정책을 변경하지 않았다.
 
-## 남은 실기기 확인
+## 실기기 확인과 재개 이력
 
-2026-10-28 연결된 Android 기기가 없었고, 사용자가 “실기기 검증은 나중에 진행하겠습니다”라고 답했다. 실제 기기 1종의 APK 최초 실행·오프라인 Bootstrap → GameDataStore Ready → 플레이 진입, 가로·세로 터치·노치 표시·회전·백그라운드 복귀는 미검증이다. 이 항목은 빌드/PC 테스트 통과로 대체하지 않으며 PLAN은 active를 유지한다. 기기 준비 후 APK 해시와 기종·OS·화면 조건·로그/영상 및 조작 결과를 기록하여 PLAN의 필수 기기 시나리오를 수행한다.
+2026-10-29 재개 승인 후 SM-G977N / Android 12에서 원본 저장을 격리하고 네트워크를 끈 상태로 초기 진입부터 양방향 조작·운영·방출·멸망·결과·재시작을 확인했다. 사용자가 직접 양방향 핀치·회전·누른 채 Home 복귀의 정상 동작을 확인했다. 기존 저장과 연결·회전 설정은 복원했다. [최종 실기기 기록](android-device-run/README.md), [요약과 원본 증거 해시](android-device-run/summary.json)를 따른다. 기존 PC 검사와 합쳐 PLAN-013은 completed이며 병목·장시간 반복·종합 성능은 후속 범위다.
+
+아래는 같은 날 재개 전의 읽기 전용 관찰과 전날 유예 당시 기록이다.
+
+2026-10-29 사용자가 USB 디버깅을 허용하고 실행한 앱을 읽기 전용으로 관찰했다. SM-G977N / Android 12에서 세로 1080×2280 연구소 화면과 설치 APK의 기존 빌드 SHA-256 일치를 확인했다. [관찰 정보·명령·범위](android-20261029-observation.json), [화면](screens/plan013-device-portrait-1080x2280-20261029.png), [게임 프로세스 로그 발췌](android-20261029-log-excerpt.txt)에 기록했다. 위 PC 화면 14장과 별개인 실기기 캡처 1장이다.
+
+조회 로그 344줄에 Unity 오류·치명적 종료/ANR 표식은 없었다. 다만 USNET, Gralloc, libprocessgroup의 timerslack 권한, SwappyDisplayManager의 libgame.so 조회 오류·경고가 있어 원문 발췌를 보존했다. 앱이 표시된다는 사실만으로 이 메시지들의 영향이 없다고 판정하지 않았다. 이 관찰 중에는 앱 재설치·재시작·입력·저장 변경·네트워크 설정 변경을 하지 않았다. 당시 통제된 최초 실행·오프라인 진입·양방향 입력·회전·앱 복귀·지속 성능은 미검증이어서 PLAN은 active를 유지했다.
+
+2026-10-28에는 연결된 Android 기기가 없었고, 사용자가 “실기기 검증은 나중에 진행하겠습니다”라고 답했다. 당시 기기 최초 진입·오프라인·양방향 터치·회전·복귀를 빌드/PC 검사로 대체하지 않고 미검증으로 남겨 active를 유지했다. 그 뒤 2026-10-29 재개 승인과 실제 실행 결과는 위 최종 실기기 기록에 반영했다.

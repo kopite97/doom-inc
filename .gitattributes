@@ -23,6 +23,10 @@
 *.bat text eol=crlf
 *.cmd text eol=crlf
 
+# Preserve the recorded byte sizes and SHA-256 hashes of device-run evidence.
+docs/plans/evidence/PLAN-013/android-device-run/*-save.json -text whitespace=trailing-space,space-before-tab,cr-at-eol
+docs/plans/evidence/PLAN-013/android-device-run/actions.jsonl -text
+
 # LFS applies only to Unity source media, not documentation screenshots.
 # Character classes also match uppercase file extensions.
 UnityProject/Assets/**/*.[pP][nN][gG] filter=lfs diff=lfs merge=lfs -text

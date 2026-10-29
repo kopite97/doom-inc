@@ -1,9 +1,9 @@
 ---
 id: PLAN-013
 type: development
-status: active
+status: completed
 title: 가로·세로 UI와 모바일 입력 대응
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # PLAN-013 가로·세로 UI와 모바일 입력 대응
@@ -107,12 +107,13 @@ PLAN-012의 Edit 236/236·Play 각 13/13은 이관 완료 기준이다. PLAN-013
 ### 3. 직접 검증과 기록
 
 - [x] 검증 APK의 시작/포함 씬을 Laboratory 하나로 명시하고 기본 빌드 설정의 첫 씬도 Laboratory로 지정한다. 기존 진단 SampleScene 등록과 회귀 검사는 유지했다.
-- [ ] 실제 APK 최초 실행에서 Bootstrap → GameDataStore Ready → 플레이 화면 진입을 확인한다. PC 격리 씬의 준비 검사는 통과했으며, 기기 확인은 사용자 요청에 따라 추후 진행한다.
+- [x] 실제 APK 초기 실행에서 Bootstrap → 데이터 준비 → 플레이 진입을 확인했다. 2026-10-29 기존 저장을 백업·격리하고 네트워크를 끈 cold launch에서 초기 상태·DataHash·실제 건설/생산 진행을 확인했다. 기기의 Store Ready 필드를 직접 조회한 것은 아니며 PC 격리 씬의 준비 검사와 함께 판정한다.
+- [x] 2026-10-29 사용자가 실행한 Android 앱의 세로 연구소 화면·패키지 해시·게임 프로세스 로그를 조회했다. 통제된 최초 실행·오프라인·입력 검증과 구분한다.
 
 - [x] Edit/Play 회귀와 새 레이아웃/좌표/입력/수명 검사를 실행한다. 자동 주입된 터치·마우스가 실제 UI/입력 어댑터를 거친 증거를 남긴다.
 - [x] PC 가로·세로에서 Input System 이벤트 → 실제 UI/맵 → 공통 명령 경로로 기존 기능·한 판 종료/재시작을 확인했다. 기존 두 판 회귀도 통과했다. 사람이 직접 터치한 실기기 검증과 구분한다.
 - [x] Android 검증용 APK를 빌드하고 해시·포함 씬·오류/경고·산출물을 기록한다. 영문 경로 독립 복사본에서 IL2CPP/ARM64 개발 APK 빌드 성공, 패키지·서명·복사 후 해시 검사를 통과했다.
-- [ ] 실제 Android 기기 1종에서 아래 조작·회전·앱 복귀 검사를 오프라인으로 수행한다. 기기·OS·화면 조건·APK 해시·로그/영상·결과를 기록한다. 사용자 요청으로 추후 진행한다.
+- [x] 실제 Android 기기 1종에서 오프라인 양방향 조작·운영·종료/재시작을 수행했다. 사용자 직접 핀치·회전·누른 채 Home 복귀 확인과 ADB 입력을 구분해 기록하고, 원본 저장·연결/회전 설정을 복원했다. [실기기 증거](evidence/PLAN-013/android-device-run/README.md)를 따른다.
 - [x] 변경 코드·에셋 참조·GUID·검증 결과·소스 식별 정보·기술 결정을 정리한다. 병목·장시간 반복·종합 성능 및 D-070 전체 판정은 후속 4단계 범위로 유지한다.
 
 ## 완료 기준과 검증 방법
@@ -139,10 +140,11 @@ PLAN-012의 Edit 236/236·Play 각 13/13은 이관 완료 기준이다. PLAN-013
 
 ## 현재 상황과 다음 행동
 
-- 마지막으로 확인한 사실: PLAN-001~012 completed, PLAN-013이 유일한 active다. 실제 플레이·종료·로딩 UI를 uGUI로 전환했으며 맵은 EnhancedTouch/Mouse 어댑터를 사용한다. GameDataStore·카탈로그·공통 게임 규칙과 저장 형식은 유지했다.
-- 현재 작업: 구현·PC 검증·APK 빌드와 기록 정리를 마쳤다. 전체 Edit 259/259·Play 23/23, 렌더 수정 후 종료 대상 1/1, 화면 14장을 확인했다. 한글 경로의 최초 빌드 실패 후 동일한 457개 소스 파일의 영문 복사본에서 Android APK 빌드에 성공했다.
-- 다음 행동: 실기기 준비 후 기록된 APK의 해시를 대조하고 오프라인 최초 진입·양방향 터치·회전·앱 복귀를 확인한다. 그 결과로 PLAN 완료 여부를 판정한다. 병목·장시간 반복·종합 성능의 후속 PLAN은 별도 작성·승인이 필요하다.
-- 막힌 점·재개 조건: 2026-10-28 사용자가 실기기 검증은 나중에 진행한다고 확인했다. 구현·PC 검증·APK 빌드는 완료했으며, 실제 기기 최초 진입·터치·회전·앱 복귀 확인은 기기 준비 후 재개한다. 필수 기기 확인이 남으므로 active를 유지한다.
+- 완료 상태: PLAN-001~013 completed이며 다음 PLAN의 작성·실행 승인 대기다. 실제 플레이·종료·로딩 UI는 uGUI, 맵 입력은 EnhancedTouch/Mouse를 사용한다. GameDataStore·카탈로그·게임 규칙·저장 형식은 유지했다.
+- 검증: 기존 Edit 259/259·Play 23/23, 렌더 수정 후 종료 대상 1/1 및 PC 화면 14장, Android ARM64 APK 빌드에 이어 2026-10-29 SM-G977N / Android 12의 오프라인 초기 진입·양방향 조작·운영·물리 회전·앱 복귀·한 판 종료/재시작을 확인했다. 이번 재개에서는 코드·APK를 변경하지 않았다.
+- 기기 결과: 침공형 2개 방출 후 점수 128/120·활동 32회로 멸망/결과에 진입했다. 재시작은 동일 DataHash, 새 ID의 초기 생명체 1개·유기물 4개·점수 0이었다. 기존 저장은 복원 직후 원본 SHA-256과 일치했고 Wi-Fi·모바일 데이터·회전 설정을 원복한 뒤 기존 플레이를 다시 열었다.
+- 범위 구분: 중첩 개체 선택·개별 우선순위, 양방향 개별 배정과 오류/오래된 이벤트는 PC 검사 증거를 사용한다. 실기기에서 중첩 상태·오류 주입을 별도로 재현했다고 기록하지 않는다. 사용자 직접 확인과 ADB 단일 포인터 입력도 [실기기 증거](evidence/PLAN-013/android-device-run/README.md)에서 구분한다.
+- 로그·후속: 수집한 최종 프로세스 로그 1,255줄에 Unity 오류·Exception·치명적 종료/ANR 표식은 없었다. Native/OS E 32·W 5는 보존했다. 이번 흐름의 진행 방해는 관찰되지 않았으나 성능 영향은 미측정이다. 병목 개선·장시간 반복·종합 성능 및 D-070 전체 판정은 별도 후속 PLAN 작성·승인 후 진행한다.
 - Sprite 요청: 없음.
 
 ## 검증 결과
@@ -162,8 +164,16 @@ PLAN-012의 Edit 236/236·Play 각 13/13은 이관 완료 기준이다. PLAN-013
 | 2026-10-28 | 원본 작업 트리 정리·소스 대조 | 실패 빌드의 자동 설정 차이와 임시 Resources만 기록 후 원복. 기존 meta GUID 변경·누락·고아·중복 없음, 원본 457개 파일이 빌드 준비 시점과 동일 | [소스 감사](evidence/PLAN-013/source-audit.json) |
 | 2026-10-28 | 문서 검사·MAP 대조·Editor 최종 상태 | PLAN 13개·유일한 active 및 목록/링크/줄 수 검사 통과, 당시 기존 추적 파일의 diff 공백 오류 없음. 원본 Editor ready, Play 중지·컴파일 중 아님 | [문서 검사](evidence/PLAN-013/docs-validation.txt), [Editor 상태](evidence/PLAN-013/editor-final.json) |
 | 2026-10-28 | main 커밋 전 신규 파일 포함 staged 검사 | 98개 파일의 범위·메타·인증정보·빌드 캐시 제외 확인. 전체 `git diff --cached --check`는 Unity 생성 폴더 meta 3줄과 원본 증거 patch 2줄의 줄 끝 공백을 보고함. 원본을 보존하고 해당 두 파일을 제외한 검사는 통과 | [공백 예외와 검사 범위](evidence/PLAN-013/README.md); 소스·APK 식별 정보는 변경 없음 |
+| 2026-10-29 | SM-G977N / Android 12, 사용자 실행 앱의 읽기 전용 조회 | 세로 연구소 표시·설치 APK 해시 일치. 시작 로그 344줄에서 Unity 오류·치명적 종료/ANR 표식 미발견. 네이티브 E 20·W 5는 보존, 영향 미판정. 입력·통제된 최초 실행·오프라인 검증은 아님 | [관찰 정보](evidence/PLAN-013/android-20261029-observation.json), [로그 발췌](evidence/PLAN-013/android-20261029-log-excerpt.txt), [실기기 화면](evidence/PLAN-013/screens/plan013-device-portrait-1080x2280-20261029.png) |
+| 2026-10-29 | 같은 APK·기기, 원본 저장 격리·Wi-Fi/모바일 데이터 해제·cold launch, ADB 입력과 사용자 실제 제스처 | 초기 상태부터 양방향 건설/운영·사용자 핀치/회전/Home 복귀 정상. 침공형 2개 방출→128점·32활동→멸망·결과→새 판의 초기 상태 확인. 저장소 이동 초안 회전 전후 개체·배치·연구소 상태 동일 | 통과. [실기기 절차·범위](evidence/PLAN-013/android-device-run/README.md), [요약·화면/저장 해시](evidence/PLAN-013/android-device-run/summary.json) |
+| 2026-10-29 | 최종 로그·원상복원 | 프로세스 로그 1,255줄: Unity 오류/Exception/Fatal/ANR 표식 0, Native/OS E 32·W 5 보존. 원본 저장 SHA-256 일치 복원·네트워크/회전 원복·기존 플레이 재표시 | 기능 흐름 진행 방해 미관찰, 성능 영향 미측정. [로그 발췌](evidence/PLAN-013/android-device-run/final-log-excerpt.txt), [복원 화면](evidence/PLAN-013/android-device-run/original-restored-ready.png) |
+| 2026-10-29 | 완료 전환 후 문서 검사·MAP 대조·diff 공백 검사 | PLAN/목록 13개·타입/상태·링크·줄 수 일치, diff 공백 오류 없음. completed 전환 및 다음 PLAN 승인 대기로 active 0 오류만 발생 | 전체 문서 검사 통과로 기록하지 않음. [완료 후 검사](evidence/PLAN-013/android-device-run/docs-validation.txt) |
 
 ## 관련 결정과 상태 전환
+
+- 2026-10-29: `active` → `completed`. PC 자동검사와 APK 빌드에 더해 실기기 필수 흐름·사용자 직접 제스처/회전/앱 복귀·원상복원을 마쳤다. PLAN 목록·로드맵·기획 MAP을 동기화했다. 다음 PLAN 승인이 없어 active 0은 승인 대기로 남기며 임의 활성화하지 않는다.
+
+- 2026-10-29: 사용자가 보류한 PLAN을 active로 바꾸고 실행해 달라고 요청했다. 검사 결과 on hold PLAN은 없고 PLAN-013이 이미 유일한 active이므로 상태 변경 없이, USB 연결이 확인된 기기에서 유예했던 실기기 검증을 재개하는 명시적 승인으로 기록한다. 상태 이력에 on hold → active 전환을 추가하지 않으며 PLAN 목록·로드맵·기획 MAP의 진행 요약을 동기화했다.
 
 - 기술 결정: 기존 TECH-003·008·009의 상태/명령 계약을 유지한다. uGUI·EnhancedTouch·안전 영역·입력 수명·APK 진입 선택은 [TECH-010](../decisions/TECH-010-responsive-ui-and-mobile-input.md), 상세 실행 방법과 남은 검증은 [실행 증거](evidence/PLAN-013/README.md)에 기록한다.
 - 2026-10-28: 미등록 → `proposed`. 사용자의 PLAN 작성 요청으로 등록했다. PLAN 목록·로드맵·기획 MAP에 후보를 연결하며 active로 전환하지 않는다.
