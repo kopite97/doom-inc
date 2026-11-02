@@ -269,10 +269,10 @@ namespace MobileGame.SpatialTests
             public bool currentRequest;
         }
 
-        private sealed class ScreenStateSource : ICsvDataSource
+        private sealed class ScreenStateSource : IGameDataSource
         {
-            public readonly TaskCompletionSource<CsvBundle> Gate = new TaskCompletionSource<CsvBundle>();
-            public Task<CsvBundle> LoadAsync(CancellationToken token) => Gate.Task;
+            public readonly TaskCompletionSource<GameDataBundle> Gate = new TaskCompletionSource<GameDataBundle>();
+            public Task<GameDataBundle> LoadAsync(CancellationToken token) => Gate.Task;
         }
     }
 }

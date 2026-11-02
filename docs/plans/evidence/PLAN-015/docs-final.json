@@ -1,0 +1,32 @@
+{
+  "utc": "2026-11-02T00:24:46.2500542Z",
+  "command": "node scripts/validate-agent-docs.mjs",
+  "exitCode": 1,
+  "expectedNoActiveWhileAwaitingNextApproval": true,
+  "fullPass": false,
+  "output": [
+    "LINES AGENTS.md: 39/100",
+    "LINES docs/plans/AGETNS.md: 75/150",
+    "LINES docs/agents/architecture.md: 49/150",
+    "LINES docs/agents/art-assets.md: 109/150",
+    "LINES docs/agents/harness.md: 57/150",
+    "LINES docs/agents/naming.md: 41/150",
+    "LINES docs/agents/project-structure.md: 103/150",
+    "LINES docs/agents/repository.md: 43/150",
+    "LINES docs/agents/script-structure.md: 62/150",
+    "LINES docs/agents/unity-assets.md: 52/150",
+    "LINES docs/agents/unity-tools.md: 148/150",
+    "LINES docs/agents/verification.md: 71/150",
+    "LINES docs/agents/workflow.md: 79/150",
+    "PLANS total=15, active=0",
+    "PLAN_INDEX entries=15",
+    "LOCAL_LINKS checked=1982 (file targets only)",
+    "ERROR Expected exactly 1 active PLAN; found 0"
+  ],
+  "whitespaceCommand": "git diff --check",
+  "whitespaceExit": 0,
+  "whitespaceOutput": [
+    "warning: in the working copy of '.gitattributes', LF will be replaced by CRLF the next time Git touches it",
+    "warning: in the working copy of 'UnityProject/Assets/Scripts/Tests/EditMode/Foundation/MobileGame.Foundation.EditMode.Tests.asmdef', CRLF will be replaced by LF the next time Git touches it"
+  ]
+}

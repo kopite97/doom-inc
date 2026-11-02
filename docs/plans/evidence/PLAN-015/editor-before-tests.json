@@ -1,0 +1,66 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "console get",
+    "parameters": {},
+    "result": {
+      "entries": [
+        {
+          "seq": 1,
+          "timestampUtc": "2026-11-02T00:11:28.5087873Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ScriptableSingleton already exists. Did you query the singleton in a constructor?",
+          "stackTrace": "UnityEditor.Overlays.OverlayCanvasesData:.ctor ()\nUnityEditorInternal.InternalEditorUtility:LoadSerializedFileAndForget (string)\nUnityEditor.MainToolbarWindow:OnEnable ()\nUnityEditorInternal.InternalEditorUtility:LoadSerializedFileAndForget (string)\nUnityEditor.WindowLayout:LoadDefaultWindowPreferences ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 2,
+          "timestampUtc": "2026-11-02T00:11:47.7215628Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Game data ready: 9; hash=2578869b88b49ba4855785cf587d8cf2f0cfd0dd8ba1fbfc2cd3fb8d2ca7f195",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataAssets:Validate () (at Assets/Scripts/Editor/Definitions/GameDataAssets.cs:28)\nMobileGame.Foundation.Editor.GameDataAssets:Migrate () (at Assets/Scripts/Editor/Definitions/GameDataAssets.cs:53)\nUnityEditor.EditorApplication:ExecuteMenuItem (string)\nUnity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu (string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Commands/MenuItemCommand.cs:75)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 3,
+          "timestampUtc": "2026-11-02T00:11:58.7288235Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "JSON dependencies verified for three saved scenes; no Player compilation/build invoked.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:ValidateSceneReferences () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:71)\nUnityEditor.EditorApplication:ExecuteMenuItem (string)\nUnity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu (string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Commands/MenuItemCommand.cs:75)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 3,
+      "session": "9dee6f0ac7c34fa8ae71940b668f70ff",
+      "returned": 3,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 1,
+        "warn": 0,
+        "log": 2
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-02T00:11:58.6031029Z",
+        "ageMs": 213,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 1,
+        "consoleWarnings": 0,
+        "consoleLogs": 1,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

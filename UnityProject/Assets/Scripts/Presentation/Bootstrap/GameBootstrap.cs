@@ -12,7 +12,7 @@ namespace MobileGame.Presentation
         [SerializeField] private ResourceDefinitionRegistry resources;
         [SerializeField] private CreatureDefinitionRegistry creatures;
         [SerializeField] private FacilityDefinitionRegistry facilities;
-        [SerializeField] private TextAsset[] csvTables;
+        [SerializeField] private JsonDataAsset[] jsonFiles;
         private string savePath;
         private double autoSaveSeconds = 5;
         private bool starting;
@@ -26,9 +26,9 @@ namespace MobileGame.Presentation
             if (starting || Ready) throw new InvalidOperationException("Configure save slot before initialization.");
             savePath = path; autoSaveSeconds = interval;
         }
-        public Task<GameDataCatalog> PrepareAsync(ICsvDataSource source = null)
+        public Task<GameDataCatalog> PrepareAsync(IGameDataSource source = null)
         {
-            var provider = source ?? new LocalCsvDataSource(csvTables);
+            var provider = source ?? new LocalJsonDataSource(jsonFiles);
             return GameDataStore.GetOrCreate().InitializeAsync(async token =>
             {
                 var bundle = await provider.LoadAsync(token);

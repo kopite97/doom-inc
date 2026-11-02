@@ -14,8 +14,8 @@ namespace MobileGame.Foundation
         public bool CanOperate => role == CreatureRole.Support;
 
         private CreatureData() { }
-        public CreatureData(CsvRow row, CreatureDefinition asset, GameSettings settings) : base(row, asset, settings)
-        { carryCapacity = row.Int("carryCapacity"); moveSecondsPerCell = row.Float("moveSecondsPerCell"); role = row.EnumValue<CreatureRole>("role"); }
+        public CreatureData(CreatureDto row, CreatureDefinition asset, GameSettings settings) : base(row, asset, settings)
+        { carryCapacity = row.carryCapacity; moveSecondsPerCell = (float)row.moveSecondsPerCell; role = row.role; }
 
         public override ThingKind Kind => ThingKind.Creature;
         public int CarryCapacity => carryCapacity;

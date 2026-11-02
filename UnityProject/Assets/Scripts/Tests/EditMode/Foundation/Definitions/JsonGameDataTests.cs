@@ -10,13 +10,15 @@ using MobileGame.Gameplay;
 using MobileGame.Persistence;
 using MobileGame.Presentation;
 using NUnit.Framework;
+using Newtonsoft.Json.Linq;
+using System.Globalization;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace MobileGame.Foundation.Tests
 {
-    public sealed class CsvGameDataTests
+    public sealed class JsonGameDataTests
     {
         private readonly List<UnityEngine.Object> temporary = new List<UnityEngine.Object>();
         private ResourceDefinitionRegistry resources;
@@ -30,8 +32,8 @@ namespace MobileGame.Foundation.Tests
         }
         private T Clone<T>(T value) where T : UnityEngine.Object { var copy = UnityEngine.Object.Instantiate(value); temporary.Add(copy); return copy; }
         [TearDown] public void Clean() { foreach (var value in temporary) if (value != null) UnityEngine.Object.DestroyImmediate(value); temporary.Clear(); }
-        private Dictionary<string, string> Texts() => GameDataAssets.Tables().ToDictionary(t => t.name, t => t.text, StringComparer.Ordinal);
-        private GameDataCatalog Compose(Dictionary<string, string> tables = null) => GameDataComposer.Compose(new CsvBundle(tables ?? Texts(), "test"), resources, creatures, facilities);
+        private Dictionary<string, string> Texts() => GameDataAssets.Files().ToDictionary(f => f.topic, f => f.asset.text, StringComparer.Ordinal);
+        private GameDataCatalog Compose(Dictionary<string, string> tables = null) => GameDataComposer.Compose(new GameDataBundle(tables ?? Texts(), "test"), resources, creatures, facilities);
         private static void Entries(ScriptableObject registry, UnityEngine.Object[] values)
         {
             using (var serialized = new SerializedObject(registry))
@@ -59,45 +61,87 @@ namespace MobileGame.Foundation.Tests
             Assert.Throws<NotSupportedException>(() => ((IDictionary<string, ThingData>)data.Definitions).Clear());
             Assert.Throws<NotSupportedException>(() => ((IList<ThingComponentKind>)processing.ComponentKinds)[0] = ThingComponentKind.ResourceStack);
         }
-        [Test] public void QuotedUnicodeCommaNewlineBomAndEscapedQuoteParseWithoutLosingText()
-        {
-            var rows = CsvParser.Parse("test", "\uFEFFdefinitionId,displayName\r\na,\"한글,\"\"이름\"\"\n둘째 줄\"\r\n", "definitionId,displayName");
-            Assert.That(rows[0].Text("displayName"), Is.EqualTo("한글,\"이름\"\n둘째 줄"));
-        }
-        [TestCase("definitionId,definitionId\na,a\n")]
-        [TestCase("definitionId,unknown\na,a\n")]
-        [TestCase("definitionId,displayName\na,\"unclosed")]
-        [TestCase("definitionId,displayName\na,\"closed\"extra\n")]
-        [TestCase("definitionId,displayName\na,A\na,B\n")]
-        [TestCase("definitionId,displayName\na,A,extra\n")]
-        public void MalformedCsvFailsWithLocation(string text) => Assert.Throws<FormatException>(() => CsvParser.Parse("bad.csv", text, "definitionId,displayName"));
 
-        [TestCase("creatures", "0.25", "NaN")]
-        [TestCase("creatures", "0.25", "Infinity")]
-        [TestCase("creatures", "0.25", "0")]
-        [TestCase("creatures", "0.25", "1e100")]
-        [TestCase("creatures", "Prototype", "Unknown")]
-        [TestCase("facilities", "facility.storage", "facility.missing")]
-        [TestCase("facilities", "resource.organic", "resource.missing")]
-        [TestCase("invasion", ",120,", ",9223372036854775808,")]
-        [TestCase("session", ",16,10,", ",0,10,")]
-        public void InvalidNumbersRolesAndReferencesRejectTheWholeCatalog(string table, string from, string to)
+        private Dictionary<string,string> Changed(string topic, Action<JObject> mutation)
+        { var text = Texts(); var obj = JObject.Parse(text[topic]); mutation(obj); text[topic] = obj.ToString(); return text; }
+        [TestCase("{'schemaVersion':1,'entries':[]}")]
+        [TestCase("{schemaVersion:1,\"entries\":[]}")]
+        [TestCase("{\"schemaVersion\":1,\"schemaVersion\":1,\"entries\":[]}")]
+        [TestCase("{\"schemaVersion\":1,\"entries\":[],}")]
+        [TestCase("{\"schemaVersion\":01,\"entries\":[]}")]
+        [TestCase("{\"schemaVersion\":1,/*comment*/\"entries\":[]}")]
+        [TestCase("{\"schemaVersion\":NaN,\"entries\":[]}")]
+        [TestCase("{\"schemaVersion\":1,\"entries\":[]} {}")]
+        [TestCase("{\"schemaVersion\":1,\"entries\":null}")]
+        [TestCase("[]")]
+        public void MalformedJsonFailsWithLocation(string json)
         {
-            var text = Texts(); Assert.That(text[table], Does.Contain(from)); text[table] = text[table].Replace(from, to);
-            Assert.That(() => Compose(text), Throws.Exception);
+            var text = Texts(); text["resources"] = json;
+            Assert.That(Assert.Throws<FormatException>(() => Compose(text)).Message, Does.Contain("resources.json"));
         }
-        [Test] public void MissingOrUnknownTableAndSchemaAreRejected()
+        [TestCase("creatures", "moveSecondsPerCell", "0")]
+        [TestCase("creatures", "moveSecondsPerCell", "1e100")]
+        [TestCase("creatures", "carryCapacity", "1.5")]
+        [TestCase("creatures", "carryCapacity", "2147483648")]
+        [TestCase("invasion", "targetScore", "9223372036854775808")]
+        [TestCase("session", "mapWidth", "0")]
+        [TestCase("resources", "unknown", "1")]
+        [TestCase("resources", "definitionId", "null")]
+        [TestCase("creatures", "role", "\"Unknown\"")]
+        [TestCase("facilities", "resource", "\"resource.missing\"")]
+        [TestCase("facilities", "gatheringSeconds", "1e100")]
+        [TestCase("facilities", "gatheringSeconds", "1e-100")]
+        public void InvalidTypesNumbersRolesAndReferencesReject(string topic, string field, string literal)
+        { Assert.That(() => Compose(Changed(topic, j => j["entries"][0][field] = JToken.Parse(literal))), Throws.Exception); }
+        [Test] public void MissingFieldsDuplicateIdsAndComponentsReject()
+        {
+            Assert.Throws<FormatException>(() => Compose(Changed("resources", j => ((JObject)j["entries"][0]).Remove("definitionId"))));
+            Assert.Throws<FormatException>(() => Compose(Changed("resources", j => j["entries"][1]["definitionId"] = j["entries"][0]["definitionId"].DeepClone())));
+            Assert.Throws<FormatException>(() => Compose(Changed("resources", j => j["entries"][0]["components"] = new JArray("ResourceStack", "ResourceStack"))));
+        }
+        [Test] public void MissingOrUnknownTopicAndSchemaReject()
         {
             var text = Texts(); text.Remove("invasion"); Assert.Throws<FormatException>(() => Compose(text));
-            text = Texts(); text.Add("unused", "definitionId\na\n"); Assert.Throws<FormatException>(() => Compose(text));
-            Assert.Throws<FormatException>(() => GameDataComposer.Compose(new CsvBundle(Texts(), "test", 2), resources, creatures, facilities));
+            text = Texts(); text.Add("unused", "{}"); Assert.Throws<FormatException>(() => Compose(text));
+            Assert.Throws<FormatException>(() => Compose(Changed("session", j => j["schemaVersion"] = 2)));
         }
-        [Test] public void InvalidInvasionRuleReportsTheTableAndRow()
+        [Test] public void EveryFieldMatchesFrozenCsvBeforeRuntimeConversion()
         {
-            var text = Texts(); text["invasion"] = text["invasion"].Replace(",120,", ",-1,");
-            var error = Assert.Throws<FormatException>(() => Compose(text));
-            Assert.That(error.Message, Does.Contain("invasion: line 2"));
-            Assert.That(error.Message, Does.Contain("settings.invasion"));
+            var parsed = JsonDefinitionParser.Parse(new GameDataBundle(Texts(), "test"));
+            foreach (var topic in JsonDefinitionParser.Topics)
+            {
+                var lines = File.ReadAllLines(Path.Combine(Directory.GetParent(Application.dataPath).Parent.FullName, "docs/plans/evidence/PLAN-015/baseline-csv", topic + ".csv"));
+                var columns = lines[0].Split(','); Assert.That(parsed[topic].Count, Is.EqualTo(lines.Length - 1));
+                foreach (var line in lines.Skip(1))
+                {
+                    var cells = line.Split(','); var dto = parsed[topic].Single(r => r.definitionId == cells[0]);
+                    foreach (var field in dto.GetType().GetFields())
+                    {
+                        var original = cells[Array.IndexOf(columns, field.Name)]; var actual = field.GetValue(dto);
+                        if (actual is ThingComponentKind[] parts) Assert.That(string.Join("|", parts.Select(c => c.ToString())), Is.EqualTo(original));
+                        else if (field.FieldType == typeof(double)) Assert.That((double)actual, Is.EqualTo(double.Parse(original, CultureInfo.InvariantCulture)));
+                        else Assert.That(Convert.ToString(actual, CultureInfo.InvariantCulture), Is.EqualTo(original), topic + ":" + field.Name);
+                    }
+                }
+            }
+        }
+        [Test] public void OptionalDefaultsAndNumericSpellingsPreserveHashAndLongsRemainExact()
+        {
+            var expected = Compose().Settings.CompatibilityHash;
+            var text = Changed("facilities", j => {
+                foreach (JObject row in j["entries"])
+                    foreach (var prop in row.Properties().Where(p =>
+                        (new[] { "storageCapacity", "gatheringAmount", "gatheringSeconds", "inputAmount", "outputAmount", "productionSeconds" }.Contains(p.Name)
+                            && p.Value.Type == JTokenType.Integer && (int)p.Value == 0)
+                        || (p.Value.Type == JTokenType.String && (string)p.Value == "")).ToArray()) prop.Remove();
+            });
+            Assert.That(Compose(text).Settings.CompatibilityHash, Is.EqualTo(expected));
+            text = Texts(); text["session"] = text["session"].Replace("\"staffedRate\": 1,", "\"staffedRate\": 1.0,");
+            text["creatures"] = text["creatures"].Replace("0.25", "25e-2"); Assert.That(Compose(text).Settings.CompatibilityHash, Is.EqualTo(expected));
+            text = Texts(); text["invasion"] = text["invasion"].Replace("\"targetScore\": 120", "\"targetScore\": 9007199254740993.0");
+            Assert.That(Compose(text).Settings.Invasion.TargetScore, Is.EqualTo(9007199254740993L));
+            text = Texts(); text["creatures"] = text["creatures"].Replace("0.25", "0.25000000000000001");
+            Assert.That(Compose(text).Settings.CompatibilityHash, Is.Not.EqualTo(expected), "Hash must be computed before runtime float rounding.");
         }
         [Test] public void RegistryNullDuplicateMissingAndWrongKindAreRejected()
         {
@@ -109,13 +153,12 @@ namespace MobileGame.Foundation.Tests
             var text = Texts(); text["creatures"] = text["creatures"].Replace("creature.invader", "resource.organic");
             text["resources"] = text["resources"].Replace("resource.organic", "creature.invader");
             Assert.Throws<FormatException>(() => Compose(text));
-            Assert.Throws<ArgumentException>(() => GameDataComposer.Compose(new CsvBundle(Texts(), "test"), null, creatures, facilities));
+            Assert.Throws<ArgumentException>(() => GameDataComposer.Compose(new GameDataBundle(Texts(), "test"), null, creatures, facilities));
         }
         [Test] public void RowRegistryOrderAndDisplayEditsPreserveCompatibilityButValuesDoNot()
         {
             var baseline = Compose(); Entries(creatures, creatures.Entries.Reverse().Cast<UnityEngine.Object>().ToArray());
-            var text = Texts(); var rows = text["creatures"].TrimEnd().Split('\n');
-            text["creatures"] = rows[0] + "\n" + string.Join("\n", rows.Skip(1).Reverse()) + "\n";
+            var text = Changed("creatures", j => { var rows = (JArray)j["entries"]; j["entries"] = new JArray(rows.Reverse().Select(r => r.DeepClone())); });
             text["resources"] = text["resources"].Replace("유기물", "새 표시 이름");
             Assert.That(Compose(text).Settings.CompatibilityHash, Is.EqualTo(baseline.Settings.CompatibilityHash));
             text["creatures"] = text["creatures"].Replace("0.25", "0.5"); var changed = Compose(text);
@@ -137,14 +180,14 @@ namespace MobileGame.Foundation.Tests
             Assert.That(() => other.Restore(save), Throws.Exception);
             save.version = 5; Assert.That(() => codec.Restore(save), Throws.Exception);
         }
-        [Test] public void EditingLocalCsvChangesActualConstructionAfterReloadAndRestoresBaseline()
+        [Test] public void EditingLocalJsonChangesActualConstructionAfterReloadAndRestoresBaseline()
         {
-            const string path = "Assets/CSV/Balance/facilities.csv";
+            const string path = "Assets/JSON/Balance/Facilities.json";
             var original = File.ReadAllText(path); var baseline = GameDataAssets.LoadCatalog();
             try
             {
-                Assert.That(original, Does.Contain("resource.organic,2,3,"));
-                File.WriteAllText(path, original.Replace("resource.organic,2,3,", "resource.organic,2,6,"));
+                Assert.That(original, Does.Contain("\"buildSeconds\": 3"));
+                File.WriteAllText(path, original.Replace("\"buildSeconds\": 3", "\"buildSeconds\": 6"));
                 AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
                 var changed = GameDataAssets.LoadCatalog();
                 var first = Building(baseline); var second = Building(changed);
@@ -174,12 +217,12 @@ namespace MobileGame.Foundation.Tests
         }
         [UnityTest] public IEnumerator LocalAndMemoryProvidersUseTheSameComposerContract()
         {
-            ICsvDataSource local = new LocalCsvDataSource(GameDataAssets.Tables());
-            ICsvDataSource memory = new MemorySource(Texts());
+            IGameDataSource local = new LocalJsonDataSource(GameDataAssets.Files());
+            IGameDataSource memory = new MemorySource(Texts());
             var localTask = local.LoadAsync(default); var memoryTask = memory.LoadAsync(default);
             var deadline = DateTime.UtcNow.AddSeconds(10);
             while ((!localTask.IsCompleted || !memoryTask.IsCompleted) && DateTime.UtcNow < deadline) yield return null;
-            Assert.That(localTask.IsCompleted && memoryTask.IsCompleted, Is.True, "CSV provider timed out.");
+            Assert.That(localTask.IsCompleted && memoryTask.IsCompleted, Is.True, "JSON provider timed out.");
             var first = GameDataComposer.Compose(localTask.GetAwaiter().GetResult(), resources, creatures, facilities);
             var second = GameDataComposer.Compose(memoryTask.GetAwaiter().GetResult(), resources, creatures, facilities);
             Assert.That(first.Settings.CompatibilityHash, Is.EqualTo(second.Settings.CompatibilityHash));
@@ -188,11 +231,11 @@ namespace MobileGame.Foundation.Tests
             while (!canceled.IsCompleted && DateTime.UtcNow < deadline) yield return null;
             Assert.That(canceled.IsCanceled, Is.True);
         }
-        private sealed class MemorySource : ICsvDataSource
+        private sealed class MemorySource : IGameDataSource
         {
             private readonly IDictionary<string, string> tables;
             public MemorySource(IDictionary<string, string> tables) => this.tables = tables;
-            public async Task<CsvBundle> LoadAsync(CancellationToken token) { await Task.Yield(); token.ThrowIfCancellationRequested(); return new CsvBundle(tables, "memory"); }
+            public async Task<GameDataBundle> LoadAsync(CancellationToken token) { await Task.Yield(); token.ThrowIfCancellationRequested(); return new GameDataBundle(tables, "memory"); }
         }
     }
 }

@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "definitionId": "facility.cultivation",
+      "displayName": "공용 배양시설",
+      "components": [
+        "ResourceContainer"
+      ],
+      "role": "Cultivation",
+      "width": 2,
+      "height": 2,
+      "interactionX": 0,
+      "interactionY": -1,
+      "resource": "resource.organic",
+      "buildCost": 2,
+      "buildSeconds": 3,
+      "storageCapacity": 0,
+      "gatheringAmount": 0,
+      "gatheringSeconds": 0,
+      "inputResource": "resource.culture-medium",
+      "outputResource": "",
+      "supportOutput": "creature.support",
+      "invaderOutput": "creature.invader",
+      "inputAmount": 2,
+      "outputAmount": 1,
+      "productionSeconds": 20
+    },
+    {
+      "definitionId": "facility.gathering",
+      "displayName": "기초 자원 획득 시설",
+      "components": [
+        "ResourceContainer"
+      ],
+      "role": "Gathering",
+      "width": 2,
+      "height": 2,
+      "interactionX": 0,
+      "interactionY": -1,
+      "resource": "resource.organic",
+      "buildCost": 2,
+      "buildSeconds": 3,
+      "storageCapacity": 0,
+      "gatheringAmount": 5,
+      "gatheringSeconds": 5,
+      "inputResource": "",
+      "outputResource": "",
+      "supportOutput": "",
+      "invaderOutput": "",
+      "inputAmount": 0,
+      "outputAmount": 0,
+      "productionSeconds": 0
+    },
+    {
+      "definitionId": "facility.processing",
+      "displayName": "재료 가공시설",
+      "components": [
+        "ResourceContainer"
+      ],
+      "role": "Processing",
+      "width": 2,
+      "height": 2,
+      "interactionX": 0,
+      "interactionY": -1,
+      "resource": "resource.organic",
+      "buildCost": 2,
+      "buildSeconds": 3,
+      "storageCapacity": 0,
+      "gatheringAmount": 0,
+      "gatheringSeconds": 0,
+      "inputResource": "resource.organic",
+      "outputResource": "resource.culture-medium",
+      "supportOutput": "",
+      "invaderOutput": "",
+      "inputAmount": 5,
+      "outputAmount": 1,
+      "productionSeconds": 10
+    },
+    {
+      "definitionId": "facility.storage",
+      "displayName": "범용 저장소",
+      "components": [
+        "ResourceContainer"
+      ],
+      "role": "Storage",
+      "width": 3,
+      "height": 2,
+      "interactionX": 1,
+      "interactionY": -1,
+      "resource": "resource.organic",
+      "buildCost": 2,
+      "buildSeconds": 3,
+      "storageCapacity": 20,
+      "gatheringAmount": 0,
+      "gatheringSeconds": 0,
+      "inputResource": "",
+      "outputResource": "",
+      "supportOutput": "",
+      "invaderOutput": "",
+      "inputAmount": 0,
+      "outputAmount": 0,
+      "productionSeconds": 0
+    }
+  ]
+}

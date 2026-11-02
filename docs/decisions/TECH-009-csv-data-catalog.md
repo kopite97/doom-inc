@@ -1,7 +1,7 @@
 # TECH-009 CSV·Registry·Data와 초기 로딩
 
 - 날짜: 2026-10-28
-- 상태: 채택, PLAN-012에서 구현·검증 완료
+- 상태: PLAN-012에서 구현·검증한 기록. CSV 원본·파서·행 DTO·취득 계약은 [TECH-012](TECH-012-topic-json-catalog.md)로 대체한다. 아래 CSV 편집 절차는 당시 기록이며 현행 편집 계약은 [JSON 안내](../../UnityProject/Assets/JSON/Balance/README.md)를 따른다.
 - 실행 기록: [PLAN-012](../plans/PLAN-012-csv-so-data-and-game-data-store.md)
 
 ## 결정과 대체 범위

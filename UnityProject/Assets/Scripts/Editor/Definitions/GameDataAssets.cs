@@ -15,18 +15,19 @@ namespace MobileGame.Foundation.Editor
         public static readonly string[] DefinitionPaths = {
             "Resource/OrganicMatter", "Resource/CultureMedium", "Creature/PrototypeSupport", "Creature/Support", "Creature/Invader",
             "Facility/Gathering", "Facility/Storage", "Facility/Processing", "Facility/Cultivation" };
-        public static TextAsset[] Tables() => GameDataComposer.Schemas.Keys.Select(n =>
-            AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/CSV/Balance/" + n + ".csv")
-                ?? throw new InvalidOperationException("Missing CSV: " + n)).ToArray();
+        public static JsonDataAsset[] Files() => JsonDefinitionParser.Topics.Select(topic => new JsonDataAsset(topic,
+            AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/JSON/Balance/" + char.ToUpperInvariant(topic[0]) + topic.Substring(1) + ".json")
+                ?? throw new InvalidOperationException("Missing JSON topic: " + topic))).ToArray();
+        public static TextAsset[] Tables() => Files().Select(f => f.asset).ToArray();
         public static T Registry<T>(string topic) where T : ScriptableObject => AssetDatabase.LoadAssetAtPath<T>(RegistryFolder + "/" + topic + ".asset")
             ?? throw new InvalidOperationException("Missing registry: " + topic);
-        public static GameDataCatalog LoadCatalog() => GameDataComposer.Compose(new LocalCsvDataSource(Tables()).LoadAsync(default).GetAwaiter().GetResult(),
+        public static GameDataCatalog LoadCatalog() => GameDataComposer.Compose(new LocalJsonDataSource(Files()).LoadAsync(default).GetAwaiter().GetResult(),
             Registry<ResourceDefinitionRegistry>("Resources"), Registry<CreatureDefinitionRegistry>("Creatures"), Registry<FacilityDefinitionRegistry>("Facilities"));
 
-        [MenuItem("Tools/Mobile Game/Validate CSV and Registries")]
+        [MenuItem("Tools/Mobile Game/Validate JSON and Registries")]
         public static void Validate() { var data = LoadCatalog(); Debug.Log("Game data ready: " + data.Definitions.Count + "; hash=" + data.Settings.CompatibilityHash); }
 
-        [MenuItem("Tools/Mobile Game/Migrate CSV Data and Registries")]
+        [MenuItem("Tools/Mobile Game/Migrate JSON Data and Registries")]
         public static void Migrate()
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("Migrate outside Play Mode.");
@@ -84,8 +85,13 @@ namespace MobileGame.Foundation.Editor
                 serialized.FindProperty("resources").objectReferenceValue = Registry<ResourceDefinitionRegistry>("Resources");
                 serialized.FindProperty("creatures").objectReferenceValue = Registry<CreatureDefinitionRegistry>("Creatures");
                 serialized.FindProperty("facilities").objectReferenceValue = Registry<FacilityDefinitionRegistry>("Facilities");
-                var tables = Tables(); var list = serialized.FindProperty("csvTables"); list.arraySize = tables.Length;
-                for (var i = 0; i < tables.Length; i++) list.GetArrayElementAtIndex(i).objectReferenceValue = tables[i];
+                var files = Files(); var list = serialized.FindProperty("jsonFiles"); list.arraySize = files.Length;
+                for (var i = 0; i < files.Length; i++)
+                {
+                    var entry = list.GetArrayElementAtIndex(i);
+                    entry.FindPropertyRelative("topic").stringValue = files[i].topic;
+                    entry.FindPropertyRelative("asset").objectReferenceValue = files[i].asset;
+                }
                 serialized.ApplyModifiedPropertiesWithoutUndo();
             }
             EditorUtility.SetDirty(bootstrap);

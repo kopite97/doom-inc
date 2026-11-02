@@ -32,23 +32,23 @@ namespace MobileGame.Foundation
         public bool HasProduction => role == FacilityRole.Processing || role == FacilityRole.Cultivation;
 
         private FacilityData() { }
-        public FacilityData(CsvRow row, FacilityDefinition asset, GameSettings settings, System.Collections.Generic.IReadOnlyDictionary<string, ThingData> definitions) : base(row, asset, settings)
+        public FacilityData(FacilityDto row, FacilityDefinition asset, GameSettings settings, System.Collections.Generic.IReadOnlyDictionary<string, ThingData> definitions) : base(row, asset, settings)
         {
-            footprint = new Vector2Int(row.Int("width"), row.Int("height"));
-            interactionOffset = new Vector2Int(row.Int("interactionX"), row.Int("interactionY"));
-            role = row.EnumValue<FacilityRole>("role");
+            footprint = new Vector2Int(row.width, row.height);
+            interactionOffset = new Vector2Int(row.interactionX, row.interactionY);
+            role = row.role;
             resource = Resolve<ResourceData>(row, "resource", definitions);
-            buildCost = row.Int("buildCost"); buildSeconds = row.Float("buildSeconds");
-            storageCapacity = row.Int("storageCapacity"); gatheringAmount = row.Int("gatheringAmount"); gatheringSeconds = row.Float("gatheringSeconds");
+            buildCost = row.buildCost; buildSeconds = (float)row.buildSeconds;
+            storageCapacity = row.storageCapacity; gatheringAmount = row.gatheringAmount; gatheringSeconds = (float)row.gatheringSeconds;
             inputResource = Resolve<ResourceData>(row, "inputResource", definitions);
             outputResource = Resolve<ResourceData>(row, "outputResource", definitions);
             supportOutput = Resolve<CreatureData>(row, "supportOutput", definitions);
             invaderOutput = Resolve<CreatureData>(row, "invaderOutput", definitions);
-            inputAmount = row.Int("inputAmount"); outputAmount = row.Int("outputAmount"); productionSeconds = row.Float("productionSeconds");
+            inputAmount = row.inputAmount; outputAmount = row.outputAmount; productionSeconds = (float)row.productionSeconds;
         }
-        private static T Resolve<T>(CsvRow row, string column, System.Collections.Generic.IReadOnlyDictionary<string, ThingData> definitions) where T : ThingData
+        private static T Resolve<T>(FacilityDto row, string column, System.Collections.Generic.IReadOnlyDictionary<string, ThingData> definitions) where T : ThingData
         {
-            var id = row.Text(column); if (id.Length == 0) return null;
+            var id = (string)typeof(FacilityDto).GetField(column).GetValue(row); if (id.Length == 0) return null;
             if (!definitions.TryGetValue(id, out var value) || !(value is T result)) throw row.Error(column, "Missing or wrong-kind reference: " + id);
             return result;
         }

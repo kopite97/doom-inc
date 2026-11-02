@@ -2,10 +2,10 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 첫 작업 PLAN-013 completed / UI·UX 정비 PLAN-014 completed / 다음 PLAN 승인 대기
+- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 첫 작업 PLAN-013 completed / UI·UX 정비 PLAN-014 completed / JSON 전환 PLAN-015 completed
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
-- 갱신일: 2026-10-29
+- 갱신일: 2026-11-02
 - 탐색: [기획 MAP](../../README.md), [Thing과 정의 데이터](../01-architecture/thing-model.md), [GameFlow와 시스템 책임](../01-architecture/game-flow.md), [플레이 환경](../../04-delivery/01-platform/environment.md)
 
 ## 현재 작업
@@ -26,7 +26,9 @@
 
 4단계 첫 작업 [PLAN-013](../../../plans/PLAN-013-responsive-ui-and-mobile-input.md)은 completed다. 가로·세로 UI·모바일 입력·방향 전환 상태 보존을 구현하고 Edit 259/259·Play 23/23·렌더 수정 후 종료 대상 1/1 및 PC 화면 14장을 확인했다. Android ARM64 APK 빌드와 2026-10-29 SM-G977N 실기기의 오프라인 초기 진입·양방향 운영·실제 핀치/회전·앱 복귀·한 판 종료/재시작도 확인했다. [실행 증거](../../../plans/evidence/PLAN-013/README.md)를 따른다. 현재 UI·UX 작업은 아래 PLAN-014이며 병목 개선·장시간 반복·종합 성능 및 D-070 전체 완료 판정이 남아 있으므로 4단계 전체 완료로 판정하지 않는다.
 
-UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-status.md)는 completed다. 가로·세로 탐색·작은 아이콘 조작·시설 상태 표시 ON/OFF·표식 재탭과 운영 유스케이스를 임시 에셋으로 구현하고 PC 검사·새 APK·실기기 한 판 종료/재시작 및 원상 복원을 확인했다. 현재 active PLAN은 없으며 다음 작업은 사용자 승인 후 진행한다. 정식 아트는 사용자가 제작한 뒤 별도 art PLAN으로 교체하고, 병목 개선·장시간 반복·종합 성능 및 D-070 전체 판정은 후속 범위로 남긴다.
+UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-status.md)는 completed다. 가로·세로 탐색·작은 아이콘 조작·시설 상태 표시 ON/OFF·표식 재탭과 운영 유스케이스를 임시 에셋으로 구현하고 PC 검사·새 APK·실기기 한 판 종료/재시작 및 원상 복원을 확인했다. JSON 전환 결과는 아래 PLAN-015에 기록했다. 정식 아트는 사용자가 제작한 뒤 별도 art PLAN으로 교체하고, 병목 개선·장시간 반복·종합 성능 및 D-070 전체 판정은 후속 범위로 남긴다.
+
+데이터 기반 후속 정비 [PLAN-015](../../../plans/PLAN-015-topic-json-definition-data.md)는 completed다. CSV 원본을 전용 디렉터리의 주제별 JSON으로 전환하고 취득부 추상화·SO 결합·GameDataStore·기존 저장 호환성을 유지하는 작업이다. 사용자 지시에 따라 Editor 런타임 테스트를 포함하고 빌드 테스트는 제외한다. 두 검토 보완을 반영하고 구현·Edit 294/294·Domain Reload 양쪽 Play 각각 36/36을 확인했다. 빌드 테스트는 실행하지 않았다.
 
 확정한 Unity 버전·Universal 2D(URP)·Android 대상과 연동 방향은 [플레이 환경](../../04-delivery/01-platform/environment.md)을 따른다. 구현할 작업의 필수 참조를 아래에서 읽고, 승인 규칙 안에서 필요한 세부 설계를 구체화한다.
 
@@ -99,5 +101,6 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 - [PLAN-012 CSV·SO 분리와 GameDataStore 초기 로딩](../../../plans/PLAN-012-csv-so-data-and-game-data-store.md): completed. 교체 가능한 CSV 취득부·Registry 결합 Data·영속 싱글턴·저장 호환성과 기존 게임 회귀 검증 완료.
 - [PLAN-013 가로·세로 UI와 모바일 입력 대응](../../../plans/PLAN-013-responsive-ui-and-mobile-input.md): completed. 화면·입력 구현, PC 검사·Android APK 빌드와 2026-10-29 실기기 오프라인 초기 진입·양방향 조작·회전·앱 복귀·종료/재시작 검증 완료.
 - [PLAN-014 모바일 UI·UX와 시설 상태 표시 정비](../../../plans/PLAN-014-mobile-ui-ux-and-facility-status.md): completed. 가로·세로 탐색·아이콘·시설 상태 표시 ON/OFF·운영 유스케이스와 사용자 후속 배치 보완을 구현하고 PC·APK·실기기 한 판/재시작·원상 복원을 검증했다. 정식 아트 교체는 별도 art PLAN.
+- [PLAN-015 주제별 JSON 정의 데이터와 초기 로딩 전환](../../../plans/PLAN-015-topic-json-definition-data.md): completed. 주제별 JSON·DTO와 교체 가능한 취득부로 전환하며 Editor 런타임 테스트를 포함하고 빌드 테스트는 제외한다.
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

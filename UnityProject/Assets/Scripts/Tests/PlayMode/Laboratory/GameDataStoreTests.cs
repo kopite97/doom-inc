@@ -10,6 +10,9 @@ using MobileGame.Presentation;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using System.Linq;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 namespace MobileGame.SpatialTests
 {
@@ -55,8 +58,8 @@ namespace MobileGame.SpatialTests
         [UnityTest] public IEnumerator FailureCanRetryAndDestroyedLoaderCannotPublishLateResults()
         {
             var catalog = GameDataAssets.LoadCatalog(); var store = GameDataStore.GetOrCreate();
-            var failed = store.InitializeAsync(token => throw new FormatException("bad.csv: line 2")); yield return Wait(failed);
-            Assert.That(failed.IsFaulted, Is.True); Assert.That(store.Catalog, Is.Null); Assert.That(store.Error, Does.Contain("bad.csv"));
+            var failed = store.InitializeAsync(token => throw new FormatException("bad.json: line 2")); yield return Wait(failed);
+            Assert.That(failed.IsFaulted, Is.True); Assert.That(store.Catalog, Is.Null); Assert.That(store.Error, Does.Contain("bad.json"));
             var retry = store.InitializeAsync(token => Task.FromResult(catalog)); yield return Wait(retry);
             Assert.That(store.State, Is.EqualTo(GameDataLoadState.Ready));
             UnityEngine.Object.Destroy(store.gameObject); yield return null;
@@ -78,8 +81,8 @@ namespace MobileGame.SpatialTests
             var source = new DelayedSource(); var loading = bootstrap.PrepareAsync(source); var start = bootstrap.StartSessionAsync();
             yield return null; yield return null;
             Assert.That(view.Controller, Is.Null); Assert.That(File.ReadAllText(path), Is.EqualTo("original save bytes"));
-            source.Gate.SetException(new FormatException("remote.csv: line 2")); yield return Wait(loading); yield return Wait(start);
-            Assert.That(bootstrap.Error, Does.Contain("remote.csv")); Assert.That(view.Controller, Is.Null);
+            source.Gate.SetException(new FormatException("remote.json: $.entries[0]")); yield return Wait(loading); yield return Wait(start);
+            Assert.That(bootstrap.Error, Does.Contain("remote.json")); Assert.That(view.Controller, Is.Null);
             Assert.That(File.ReadAllText(path), Is.EqualTo("original save bytes"));
             var retry = bootstrap.StartSessionAsync(); yield return Wait(retry);
             Assert.That(bootstrap.Ready, Is.True); Assert.That(view.Controller.Current, Is.Null, "Invalid save must not auto-start a run.");
@@ -90,10 +93,41 @@ namespace MobileGame.SpatialTests
             Assert.That(view.Controller.Current, Is.Not.SameAs(first)); Assert.That(GameDataStore.Instance.Catalog, Is.SameAs(data));
             LogAssert.NoUnexpectedReceived();
         }
-        private sealed class DelayedSource : ICsvDataSource
+        [UnityTest] public IEnumerator SavedScenesInitializeJsonWithoutInjectedDataReferences()
         {
-            public readonly TaskCompletionSource<CsvBundle> Gate = new TaskCompletionSource<CsvBundle>();
-            public Task<CsvBundle> LoadAsync(CancellationToken token) => Gate.Task;
+            LogAssert.Expect(LogType.Log, "JSON dependencies verified for three saved scenes; no Player compilation/build invoked.");
+            GameDataPlayerValidation.ValidateSceneReferences();
+            foreach (var scenePath in new[] { LaboratorySceneAssets.ScenePath, MapFoundationSceneAssets.ScenePath, SessionFoundationSceneAssets.ScenePath })
+            {
+                if (GameDataStore.Instance != null) UnityEngine.Object.Destroy(GameDataStore.Instance.gameObject);
+                yield return null;
+                GameBootstrap bootstrap = null;
+                void Loaded(Scene scene, LoadSceneMode mode)
+                {
+                    if (scene.path != scenePath) return;
+                    bootstrap = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<GameBootstrap>()).Single();
+                    // Only isolate the save slot. No Configure/JSON/Registry injection is permitted here.
+                    bootstrap.SetSaveSlotBeforeStart(Path.Combine(directory, Guid.NewGuid().ToString("N") + ".json"));
+                }
+                SceneManager.sceneLoaded += Loaded;
+                try
+                {
+                    var loading = EditorSceneManager.LoadSceneAsyncInPlayMode(scenePath, new LoadSceneParameters(LoadSceneMode.Single));
+                    var deadline = Time.realtimeSinceStartupAsDouble + 15;
+                    while ((!loading.isDone || bootstrap == null || !bootstrap.Ready) && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
+                    Assert.That(bootstrap, Is.Not.Null, scenePath);
+                    Assert.That(bootstrap.Ready, Is.True, scenePath + ": " + bootstrap.Error);
+                    Assert.That(GameDataStore.Instance.Catalog.Settings.CompatibilityHash, Is.EqualTo(LegacyDataBaseline.Hash));
+                    Assert.That(GameDataStore.Instance.Catalog.Definitions.Count, Is.EqualTo(9));
+                }
+                finally { SceneManager.sceneLoaded -= Loaded; }
+            }
+            LogAssert.NoUnexpectedReceived();
+        }
+        private sealed class DelayedSource : IGameDataSource
+        {
+            public readonly TaskCompletionSource<GameDataBundle> Gate = new TaskCompletionSource<GameDataBundle>();
+            public Task<GameDataBundle> LoadAsync(CancellationToken token) => Gate.Task;
         }
     }
 }

@@ -126,7 +126,7 @@ namespace MobileGame.Foundation.Editor
                 evidence.dataHash = GameDataAssets.LoadCatalog().Settings.CompatibilityHash;
                 var dependencies = AssetDatabase.GetDependencies(LaboratorySceneAssets.ScenePath, true);
                 if (GameDataAssets.Tables().Select(AssetDatabase.GetAssetPath).Any(path => !dependencies.Contains(path)))
-                    throw new InvalidOperationException("The player entry scene must include every local CSV table.");
+                    throw new InvalidOperationException("The player entry scene must include every local JSON table.");
                 EditorUserBuildSettings.buildAppBundle = false;
                 EditorUserBuildSettings.exportAsGoogleAndroidProject = false;
                 var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions

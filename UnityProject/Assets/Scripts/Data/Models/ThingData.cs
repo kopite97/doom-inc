@@ -11,9 +11,9 @@ namespace MobileGame.Foundation
         private readonly ThingComponentKind[] components;
 
         protected ThingData() { }
-        protected ThingData(CsvRow row, ThingDefinition asset, GameSettings settings)
+        protected ThingData(ThingDefinitionDto row, ThingDefinition asset, GameSettings settings)
         {
-            definitionId = row.Id(); displayName = row.Text("displayName"); components = row.Components();
+            definitionId = row.Id(); displayName = row.displayName; components = (ThingComponentKind[])row.components.Clone();
             Assets = new DefinitionAssets(asset); Settings = settings;
         }
         public DefinitionAssets Assets { get; }

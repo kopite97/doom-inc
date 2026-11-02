@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "MobileGame.Foundation.Editor.GameDataPlayerValidation.ValidateSceneReferences(); if (UnityEditor.AssetDatabase.IsValidFolder(\"Assets/CSV\") && !UnityEditor.AssetDatabase.DeleteAsset(\"Assets/CSV\")) throw new System.Exception(\"Could not remove superseded CSV assets\");"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

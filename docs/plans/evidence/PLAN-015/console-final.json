@@ -1,0 +1,777 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "console get",
+    "parameters": {},
+    "result": {
+      "entries": [
+        {
+          "seq": 51,
+          "timestampUtc": "2026-11-02T00:16:52.4754488Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 52,
+          "timestampUtc": "2026-11-02T00:16:59.7325782Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Reattaching result collector after domain reload",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner:CheckForPendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:508)\nUnity.Pipeline.Editor.Testing.PipelineTestReloader:ResumePendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestReloader.cs:60)\nUnity.Pipeline.Editor.Testing.PipelineTestReloader:CheckForPendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestReloader.cs:34)\nUnityEditor.EditorApplication:Internal_CallDelayFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 53,
+          "timestampUtc": "2026-11-02T00:16:59.7687454Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 36 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 54,
+          "timestampUtc": "2026-11-02T00:17:00.7929043Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "JSON dependencies verified for three saved scenes; no Player compilation/build invoked.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:ValidateSceneReferences () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:71)\nMobileGame.SpatialTests.GameDataStoreTests/<SavedScenesInitializeJsonWithoutInjectedDataReferences>d__8:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/GameDataStoreTests.cs:99)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 55,
+          "timestampUtc": "2026-11-02T00:17:02.4529593Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-normal-on-940x766-20261102-001702-430.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 56,
+          "timestampUtc": "2026-11-02T00:17:02.4954031Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-normal-off-940x766-20261102-001702-477.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 57,
+          "timestampUtc": "2026-11-02T00:17:02.5979599Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-on-940x766-20261102-001702-579.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 58,
+          "timestampUtc": "2026-11-02T00:17:02.6434065Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-off-940x766-20261102-001702-625.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 59,
+          "timestampUtc": "2026-11-02T00:17:02.7522546Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 1280x720 large=False targets=19 fit=19 maxZoom=8 off=0 selected=8e97a670-5a10-46a8-b28b-aa2b7b0b27e4",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 60,
+          "timestampUtc": "2026-11-02T00:17:02.916878Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 1280x720 large=True targets=19 fit=19 maxZoom=8 off=0 selected=8e97a670-5a10-46a8-b28b-aa2b7b0b27e4",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 61,
+          "timestampUtc": "2026-11-02T00:17:02.9916573Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-on-940x766-20261102-001702-972.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 62,
+          "timestampUtc": "2026-11-02T00:17:03.0290678Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-off-940x766-20261102-001703-011.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 63,
+          "timestampUtc": "2026-11-02T00:17:03.138907Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 720x1280 large=False targets=19 fit=19 maxZoom=8 off=0 selected=8e97a670-5a10-46a8-b28b-aa2b7b0b27e4",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 64,
+          "timestampUtc": "2026-11-02T00:17:03.2897103Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 720x1280 large=True targets=19 fit=19 maxZoom=8 off=0 selected=8e97a670-5a10-46a8-b28b-aa2b7b0b27e4",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 65,
+          "timestampUtc": "2026-11-02T00:17:11.0196605Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_RELATED_TARGET 1280x720 materialWaitToStorage=true destinationControls=true assignedFacilityAndWorker=true exactId=true expanded=true revealed=true mapTapThrough=false",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations>d__40:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:186)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 66,
+          "timestampUtc": "2026-11-02T00:17:11.4615464Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_RELATED_TARGET 720x1280 materialWaitToStorage=true destinationControls=true assignedFacilityAndWorker=true exactId=true expanded=true revealed=true mapTapThrough=false",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations>d__40:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:186)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 67,
+          "timestampUtc": "2026-11-02T00:17:45.6314134Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_REPORT_READING anchor=11 retainedAfterInsert=true nearestAfterPrune=12 latestY=0",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<NewReportsPreserveReadingPositionAndPrunedAnchorShowsNearestRetainedReport>d__38:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 68,
+          "timestampUtc": "2026-11-02T00:17:57.2278147Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_OBJECTS cycles=10 sessions=3 markers=19 buttons=18 accumulated=0",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<RepeatedStatusPanelOrientationAndSessionChangesDoNotAccumulateUiObjects>d__54:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:153)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 69,
+          "timestampUtc": "2026-11-02T00:17:58.7052691Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_SELECTION_VISIBILITY 1280x720 revealOnce=true manualPanHeldFrames=12",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan>d__39:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:138)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 70,
+          "timestampUtc": "2026-11-02T00:17:58.9158568Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_SELECTION_VISIBILITY 720x1280 revealOnce=true manualPanHeldFrames=12",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan>d__39:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:138)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 71,
+          "timestampUtc": "2026-11-02T00:18:00.8958696Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_CPU_REFERENCE {\"scope\":\"Editor synchronous RefreshStatusOverlays only; not total frame CPU, GPU, allocations or device performance\",\"facilities\":20,\"markerTargets\":19,\"warmupFrames\":60,\"sampleFrames\":120,\"width\":1280,\"height\":720,\"liveMarkerObjects\":19,\"offMedianMs\":0.0045000000000000009,\"onMedianMs\":0.8739000000000001,\"medianIncreaseMs\":0.8694000000000002,\"referenceBudgetMs\":2.0,\"withinReferenceBudget\":true,\"managedHeapBeforeOn\":1036922880,\"managedHeapAfterOn\":1089679360}",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<TwentyFacilityStatusRefreshReportsEditorCpuReferenceWithoutTimingPassClaim>d__55:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:189)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 72,
+          "timestampUtc": "2026-11-02T00:18:02.6772928Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 73,
+          "timestampUtc": "2026-11-02T00:18:02.7000037Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 36 total, 36 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 74,
+          "timestampUtc": "2026-11-02T00:18:03.0977933Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 75,
+          "timestampUtc": "2026-11-02T00:18:37.7640462Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Running 294 tests (explicit tests excluded)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner/<>c__DisplayClass9_0:<ExecuteTestsInternal>b__0 (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:359)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 76,
+          "timestampUtc": "2026-11-02T00:18:39.6229167Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 77,
+          "timestampUtc": "2026-11-02T00:18:39.8651888Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 294 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 78,
+          "timestampUtc": "2026-11-02T00:18:53.0606024Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 79,
+          "timestampUtc": "2026-11-02T00:18:53.1194093Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 294 total, 294 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 80,
+          "timestampUtc": "2026-11-02T00:18:53.2959551Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 81,
+          "timestampUtc": "2026-11-02T00:19:42.0773119Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 82,
+          "timestampUtc": "2026-11-02T00:19:48.5734659Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Reattaching result collector after domain reload",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner:CheckForPendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:508)\nUnity.Pipeline.Editor.Testing.PipelineTestReloader:ResumePendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestReloader.cs:60)\nUnity.Pipeline.Editor.Testing.PipelineTestReloader:CheckForPendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestReloader.cs:34)\nUnityEditor.EditorApplication:Internal_CallDelayFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 83,
+          "timestampUtc": "2026-11-02T00:19:48.6080315Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 36 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 84,
+          "timestampUtc": "2026-11-02T00:19:49.6064352Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "JSON dependencies verified for three saved scenes; no Player compilation/build invoked.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:ValidateSceneReferences () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:71)\nMobileGame.SpatialTests.GameDataStoreTests/<SavedScenesInitializeJsonWithoutInjectedDataReferences>d__8:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/GameDataStoreTests.cs:99)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 85,
+          "timestampUtc": "2026-11-02T00:19:51.4336697Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-normal-on-940x766-20261102-001951-408.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 86,
+          "timestampUtc": "2026-11-02T00:19:51.4798761Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-normal-off-940x766-20261102-001951-462.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 87,
+          "timestampUtc": "2026-11-02T00:19:51.5787997Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-on-940x766-20261102-001951-560.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 88,
+          "timestampUtc": "2026-11-02T00:19:51.623448Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-off-940x766-20261102-001951-605.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 89,
+          "timestampUtc": "2026-11-02T00:19:51.7385236Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 1280x720 large=False targets=19 fit=19 maxZoom=8 off=0 selected=38a4c56c-9702-4a22-93d6-bcbdec91692e",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 90,
+          "timestampUtc": "2026-11-02T00:19:51.8991362Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 1280x720 large=True targets=19 fit=19 maxZoom=8 off=0 selected=38a4c56c-9702-4a22-93d6-bcbdec91692e",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 91,
+          "timestampUtc": "2026-11-02T00:19:51.9708489Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-on-940x766-20261102-001951-954.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 92,
+          "timestampUtc": "2026-11-02T00:19:52.005859Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-off-940x766-20261102-001951-989.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 93,
+          "timestampUtc": "2026-11-02T00:19:52.1143721Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 720x1280 large=False targets=19 fit=19 maxZoom=8 off=0 selected=38a4c56c-9702-4a22-93d6-bcbdec91692e",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 94,
+          "timestampUtc": "2026-11-02T00:19:52.7884376Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 720x1280 large=True targets=19 fit=19 maxZoom=8 off=0 selected=38a4c56c-9702-4a22-93d6-bcbdec91692e",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 95,
+          "timestampUtc": "2026-11-02T00:20:00.4469095Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_RELATED_TARGET 1280x720 materialWaitToStorage=true destinationControls=true assignedFacilityAndWorker=true exactId=true expanded=true revealed=true mapTapThrough=false",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations>d__40:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:186)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 96,
+          "timestampUtc": "2026-11-02T00:20:00.9417441Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_RELATED_TARGET 720x1280 materialWaitToStorage=true destinationControls=true assignedFacilityAndWorker=true exactId=true expanded=true revealed=true mapTapThrough=false",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations>d__40:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:186)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 97,
+          "timestampUtc": "2026-11-02T00:20:36.4137077Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_REPORT_READING anchor=11 retainedAfterInsert=true nearestAfterPrune=12 latestY=0",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<NewReportsPreserveReadingPositionAndPrunedAnchorShowsNearestRetainedReport>d__38:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 98,
+          "timestampUtc": "2026-11-02T00:20:47.3324284Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_OBJECTS cycles=10 sessions=3 markers=19 buttons=18 accumulated=0",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<RepeatedStatusPanelOrientationAndSessionChangesDoNotAccumulateUiObjects>d__54:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:153)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 99,
+          "timestampUtc": "2026-11-02T00:20:48.8001875Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_SELECTION_VISIBILITY 1280x720 revealOnce=true manualPanHeldFrames=12",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan>d__39:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:138)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 100,
+          "timestampUtc": "2026-11-02T00:20:49.0626416Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_SELECTION_VISIBILITY 720x1280 revealOnce=true manualPanHeldFrames=12",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan>d__39:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:138)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 101,
+          "timestampUtc": "2026-11-02T00:20:51.1829137Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_CPU_REFERENCE {\"scope\":\"Editor synchronous RefreshStatusOverlays only; not total frame CPU, GPU, allocations or device performance\",\"facilities\":20,\"markerTargets\":19,\"warmupFrames\":60,\"sampleFrames\":120,\"width\":1280,\"height\":720,\"liveMarkerObjects\":19,\"offMedianMs\":0.0045000000000000009,\"onMedianMs\":0.9189,\"medianIncreaseMs\":0.9144000000000001,\"referenceBudgetMs\":2.0,\"withinReferenceBudget\":true,\"managedHeapBeforeOn\":1037602816,\"managedHeapAfterOn\":1087881216}",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<TwentyFacilityStatusRefreshReportsEditorCpuReferenceWithoutTimingPassClaim>d__55:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:189)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 102,
+          "timestampUtc": "2026-11-02T00:20:53.267863Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 103,
+          "timestampUtc": "2026-11-02T00:20:53.2950193Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 36 total, 36 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 104,
+          "timestampUtc": "2026-11-02T00:20:53.8726741Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 105,
+          "timestampUtc": "2026-11-02T00:21:07.8486589Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN012 verification: domain and scene reload enabled.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:EnableDomainReload () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:31)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:DisableDomainReload () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:44)\nUnityEditor.EditorApplication:ExecuteMenuItem (string)\nUnity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu (string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Commands/MenuItemCommand.cs:75)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 106,
+          "timestampUtc": "2026-11-02T00:21:07.8508405Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN012 play options: enabled=True; flags=DisableDomainReload; savedOriginalEnabled=True",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:ReadPlayOptions () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:36)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:DisableDomainReload () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:47)\nUnityEditor.EditorApplication:ExecuteMenuItem (string)\nUnity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu (string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Commands/MenuItemCommand.cs:75)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 107,
+          "timestampUtc": "2026-11-02T00:21:07.9520169Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN012 play options: enabled=True; flags=DisableDomainReload; savedOriginalEnabled=True",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:ReadPlayOptions () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:36)\nUnityEditor.EditorApplication:ExecuteMenuItem (string)\nUnity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu (string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Commands/MenuItemCommand.cs:75)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 108,
+          "timestampUtc": "2026-11-02T00:21:11.3637046Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 109,
+          "timestampUtc": "2026-11-02T00:21:12.0792999Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 36 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 110,
+          "timestampUtc": "2026-11-02T00:21:12.7151783Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "JSON dependencies verified for three saved scenes; no Player compilation/build invoked.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:ValidateSceneReferences () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:71)\nMobileGame.SpatialTests.GameDataStoreTests/<SavedScenesInitializeJsonWithoutInjectedDataReferences>d__8:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/GameDataStoreTests.cs:99)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 111,
+          "timestampUtc": "2026-11-02T00:21:14.146437Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-normal-on-940x766-20261102-002114-129.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 112,
+          "timestampUtc": "2026-11-02T00:21:14.1811574Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-normal-off-940x766-20261102-002114-165.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 113,
+          "timestampUtc": "2026-11-02T00:21:14.2638373Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-on-940x766-20261102-002114-247.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 114,
+          "timestampUtc": "2026-11-02T00:21:14.3010614Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-off-940x766-20261102-002114-285.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 115,
+          "timestampUtc": "2026-11-02T00:21:14.4092068Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 1280x720 large=False targets=19 fit=19 maxZoom=8 off=0 selected=335437a8-291e-4e91-9536-6cdafd585077",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 116,
+          "timestampUtc": "2026-11-02T00:21:14.5712361Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 1280x720 large=True targets=19 fit=19 maxZoom=8 off=0 selected=335437a8-291e-4e91-9536-6cdafd585077",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 117,
+          "timestampUtc": "2026-11-02T00:21:14.6402924Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-on-940x766-20261102-002114-624.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 118,
+          "timestampUtc": "2026-11-02T00:21:14.6813591Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-off-940x766-20261102-002114-666.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__70:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 119,
+          "timestampUtc": "2026-11-02T00:21:14.7882231Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 720x1280 large=False targets=19 fit=19 maxZoom=8 off=0 selected=335437a8-291e-4e91-9536-6cdafd585077",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 120,
+          "timestampUtc": "2026-11-02T00:21:14.9362823Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 720x1280 large=True targets=19 fit=19 maxZoom=8 off=0 selected=335437a8-291e-4e91-9536-6cdafd585077",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__53:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 121,
+          "timestampUtc": "2026-11-02T00:21:22.5813098Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_RELATED_TARGET 1280x720 materialWaitToStorage=true destinationControls=true assignedFacilityAndWorker=true exactId=true expanded=true revealed=true mapTapThrough=false",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations>d__40:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:186)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 122,
+          "timestampUtc": "2026-11-02T00:21:23.0086973Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_RELATED_TARGET 720x1280 materialWaitToStorage=true destinationControls=true assignedFacilityAndWorker=true exactId=true expanded=true revealed=true mapTapThrough=false",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations>d__40:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:186)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 123,
+          "timestampUtc": "2026-11-02T00:21:57.8866227Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_REPORT_READING anchor=11 retainedAfterInsert=true nearestAfterPrune=12 latestY=0",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<NewReportsPreserveReadingPositionAndPrunedAnchorShowsNearestRetainedReport>d__38:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 124,
+          "timestampUtc": "2026-11-02T00:22:08.5902407Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_OBJECTS cycles=10 sessions=3 markers=19 buttons=18 accumulated=0",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<RepeatedStatusPanelOrientationAndSessionChangesDoNotAccumulateUiObjects>d__54:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:153)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 125,
+          "timestampUtc": "2026-11-02T00:22:10.1196554Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_SELECTION_VISIBILITY 1280x720 revealOnce=true manualPanHeldFrames=12",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan>d__39:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:138)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 126,
+          "timestampUtc": "2026-11-02T00:22:10.3306501Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_SELECTION_VISIBILITY 720x1280 revealOnce=true manualPanHeldFrames=12",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan>d__39:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:138)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 127,
+          "timestampUtc": "2026-11-02T00:22:12.7432057Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_CPU_REFERENCE {\"scope\":\"Editor synchronous RefreshStatusOverlays only; not total frame CPU, GPU, allocations or device performance\",\"facilities\":20,\"markerTargets\":19,\"warmupFrames\":60,\"sampleFrames\":120,\"width\":1280,\"height\":720,\"liveMarkerObjects\":19,\"offMedianMs\":0.004200000000000001,\"onMedianMs\":0.9296500000000001,\"medianIncreaseMs\":0.9254500000000001,\"referenceBudgetMs\":2.0,\"withinReferenceBudget\":true,\"managedHeapBeforeOn\":1044676608,\"managedHeapAfterOn\":1094692864}",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<TwentyFacilityStatusRefreshReportsEditorCpuReferenceWithoutTimingPassClaim>d__55:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:189)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 128,
+          "timestampUtc": "2026-11-02T00:22:14.5591556Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 129,
+          "timestampUtc": "2026-11-02T00:22:14.5672136Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 36 total, 36 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 130,
+          "timestampUtc": "2026-11-02T00:22:15.0595969Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 131,
+          "timestampUtc": "2026-11-02T00:22:42.8562232Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN012 verification: original Play options restored.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:RestorePlayOptions () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:57)\nUnityEditor.EditorApplication:ExecuteMenuItem (string)\nUnity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu (string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Commands/MenuItemCommand.cs:75)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 132,
+          "timestampUtc": "2026-11-02T00:22:43.1307168Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN012 play options: enabled=True; flags=DisableDomainReload; savedOriginalEnabled=True",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:ReadPlayOptions () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:36)\nUnityEditor.EditorApplication:ExecuteMenuItem (string)\nUnity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu (string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Commands/MenuItemCommand.cs:75)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 132,
+      "session": "9dee6f0ac7c34fa8ae71940b668f70ff",
+      "returned": 82,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "log": 82
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-02T00:23:00.4709436Z",
+        "ageMs": 182,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 31,
+        "consoleWarnings": 0,
+        "consoleLogs": 0,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
