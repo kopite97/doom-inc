@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var flow=MobileGame.Presentation.SceneFlowManager.Instance; var handle=flow.Popups.Show(new MobileGame.Presentation.SettingsPopupRequest(flow.ScenePopupScope,flow.Settings)); return new {state=handle.State.ToString(), count=flow.Popups.Count};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "state": "Opening",
+        "count": 1
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

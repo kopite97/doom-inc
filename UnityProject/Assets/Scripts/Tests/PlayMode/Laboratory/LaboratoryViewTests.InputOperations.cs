@@ -91,6 +91,7 @@ namespace MobileGame.SpatialTests
                         yield return ClickVisibleButton(input, "Unassign");
                         Assert.That(second.GetComponent<WorkerComponent>().AssignedFacilityId, Is.Null);
                         yield return ClickVisibleButton(input, "Select_" + first.Id.ToString("N"));
+                        Assert.That(view.SelectedId, Is.EqualTo(first.Id), "Unassign must target the selected first worker.");
                         yield return ClickVisibleButton(input, "Unassign");
                         Assert.That(first.GetComponent<WorkerComponent>().AssignedFacilityId, Is.Null);
                         Assert.That(prototype.GetComponent<WorkerComponent>().AssignedFacilityId, Is.Null);

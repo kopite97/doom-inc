@@ -1,0 +1,843 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "tail": "100",
+      "level": "warn"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 505,
+          "timestampUtc": "2026-11-02T05:41:39.0751968Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Editor\\Localization\\LocalizationCsvDocument.cs(42,38): error CS1061: 'CsvReader' does not contain a definition for 'HeaderRecord' and no accessible extension method 'HeaderRecord' accepting a first argument of type 'CsvReader' could be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 506,
+          "timestampUtc": "2026-11-02T05:43:28.6161019Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs(181,24): error CS0433: The type 'JsonConvert' exists in both 'Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and 'Unity.Localization.ThirdParty.Editor, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null'",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 507,
+          "timestampUtc": "2026-11-02T05:43:28.6161019Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs(181,61): error CS0433: The type 'Formatting' exists in both 'Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and 'Unity.Localization.ThirdParty.Editor, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null'",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 574,
+          "timestampUtc": "2026-11-02T06:34:03.3110966Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "The type MobileGame.Spatial.PlayMode.Tests Provider is being serialized by [SerializeReference], but is missing the [Serializable] attribute. To suppress this warning add [Serializable] or use [MakeSerializable].",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 575,
+          "timestampUtc": "2026-11-02T06:34:52.5833753Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "The type MobileGame.Spatial.PlayMode.Tests Provider is being serialized by [SerializeReference], but is missing the [Serializable] attribute. To suppress this warning add [Serializable] or use [MakeSerializable].",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 591,
+          "timestampUtc": "2026-11-02T06:38:35.9628185Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "The type MobileGame.Spatial.PlayMode.Tests Provider is being serialized by [SerializeReference], but is missing the [Serializable] attribute. To suppress this warning add [Serializable] or use [MakeSerializable].",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 592,
+          "timestampUtc": "2026-11-02T06:39:57.2963866Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "The type MobileGame.Spatial.PlayMode.Tests Provider is being serialized by [SerializeReference], but is missing the [Serializable] attribute. To suppress this warning add [Serializable] or use [MakeSerializable].",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 596,
+          "timestampUtc": "2026-11-02T06:41:01.6478577Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "The type MobileGame.Spatial.PlayMode.Tests Provider is being serialized by [SerializeReference], but is missing the [Serializable] attribute. To suppress this warning add [Serializable] or use [MakeSerializable].",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 604,
+          "timestampUtc": "2026-11-02T06:42:12.6656239Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 605,
+          "timestampUtc": "2026-11-02T06:42:13.5406147Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 606,
+          "timestampUtc": "2026-11-02T06:42:14.5547538Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 607,
+          "timestampUtc": "2026-11-02T06:42:27.3691323Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:140)\nMobileGame.Presentation.UiButton:OnSubmit (UnityEngine.EventSystems.BaseEventData) (at Assets/Scripts/Presentation/UI/Widgets/UiButton.cs:41)\nMobileGame.SpatialTests.AppSceneFlowTests/<ClickLoading>d__17:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.cs:70)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 608,
+          "timestampUtc": "2026-11-02T06:42:29.9825999Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-d27557ad803e4ba7a28594dbb685b664\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:107)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__7:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:102)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 638,
+          "timestampUtc": "2026-11-02T06:52:24.9423261Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\EditMode\\Foundation\\Localization\\LocalizationCsvTests.cs(80,34): error CS0234: The type or namespace name 'LocalizationEditorSettings' does not exist in the namespace 'UnityEditor.Localization' (are you missing an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 639,
+          "timestampUtc": "2026-11-02T06:52:24.9423261Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\EditMode\\Foundation\\Localization\\LocalizationCsvTests.cs(87,42): error CS0234: The type or namespace name 'Localization' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 640,
+          "timestampUtc": "2026-11-02T06:52:24.9423261Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\EditMode\\Foundation\\Localization\\LocalizationCsvTests.cs(98,25): error CS0234: The type or namespace name 'LocalizationEditorSettings' does not exist in the namespace 'UnityEditor.Localization' (are you missing an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 645,
+          "timestampUtc": "2026-11-02T06:53:10.5202119Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 646,
+          "timestampUtc": "2026-11-02T06:53:11.3748008Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 647,
+          "timestampUtc": "2026-11-02T06:53:12.4114094Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 648,
+          "timestampUtc": "2026-11-02T06:53:25.907833Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:140)\nMobileGame.Presentation.UiButton:OnSubmit (UnityEngine.EventSystems.BaseEventData) (at Assets/Scripts/Presentation/UI/Widgets/UiButton.cs:41)\nMobileGame.SpatialTests.AppSceneFlowTests/<ClickLoading>d__17:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.cs:70)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 649,
+          "timestampUtc": "2026-11-02T06:53:28.5933139Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-5fde3ab718a043b5a50d7e752123cb37\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:107)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__7:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:103)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 687,
+          "timestampUtc": "2026-11-02T06:59:00.2350253Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 688,
+          "timestampUtc": "2026-11-02T06:59:01.0745692Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 689,
+          "timestampUtc": "2026-11-02T06:59:02.1263787Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 690,
+          "timestampUtc": "2026-11-02T06:59:21.6235554Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:140)\nMobileGame.Presentation.UiButton:OnSubmit (UnityEngine.EventSystems.BaseEventData) (at Assets/Scripts/Presentation/UI/Widgets/UiButton.cs:41)\nMobileGame.SpatialTests.AppSceneFlowTests/<ClickLoading>d__18:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.cs:70)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 691,
+          "timestampUtc": "2026-11-02T06:59:24.2592206Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-36ea1c4b22a44671a27dd21aef26e27e\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:107)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__8:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:156)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 730,
+          "timestampUtc": "2026-11-02T07:07:33.508707Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 731,
+          "timestampUtc": "2026-11-02T07:07:34.4101133Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 732,
+          "timestampUtc": "2026-11-02T07:07:35.4382925Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 733,
+          "timestampUtc": "2026-11-02T07:07:55.1406371Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:140)\nMobileGame.Presentation.UiButton:OnSubmit (UnityEngine.EventSystems.BaseEventData) (at Assets/Scripts/Presentation/UI/Widgets/UiButton.cs:41)\nMobileGame.SpatialTests.AppSceneFlowTests/<ClickLoading>d__18:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.cs:70)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 734,
+          "timestampUtc": "2026-11-02T07:07:57.8239875Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-7c18f63847724d1c96e45e723af053a3\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:107)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__8:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:156)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 757,
+          "timestampUtc": "2026-11-02T07:12:44.0516751Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 758,
+          "timestampUtc": "2026-11-02T07:12:44.948858Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 759,
+          "timestampUtc": "2026-11-02T07:12:46.0399779Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 760,
+          "timestampUtc": "2026-11-02T07:13:06.0239728Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:140)\nMobileGame.Presentation.UiButton:OnSubmit (UnityEngine.EventSystems.BaseEventData) (at Assets/Scripts/Presentation/UI/Widgets/UiButton.cs:41)\nMobileGame.SpatialTests.AppSceneFlowTests/<ClickLoading>d__18:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.cs:70)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 761,
+          "timestampUtc": "2026-11-02T07:13:08.6947538Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-c6561c3ed57242dbaa67d97e4bef4693\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:107)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__8:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:156)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 783,
+          "timestampUtc": "2026-11-02T07:15:41.7081838Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Input.cs(246,30): error CS0246: The type or namespace name 'LaboratoryGameViewSize' could not be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 785,
+          "timestampUtc": "2026-11-02T07:15:56.7911928Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "All compiler errors have to be fixed before you can enter playmode!",
+          "stackTrace": "UnityEditor.SceneView:ShowCompileErrorNotification ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 788,
+          "timestampUtc": "2026-11-02T07:16:25.6016894Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 789,
+          "timestampUtc": "2026-11-02T07:16:26.4613305Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 790,
+          "timestampUtc": "2026-11-02T07:16:27.4859989Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__61:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:167)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 791,
+          "timestampUtc": "2026-11-02T07:16:47.5011856Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:140)\nMobileGame.Presentation.UiButton:OnSubmit (UnityEngine.EventSystems.BaseEventData) (at Assets/Scripts/Presentation/UI/Widgets/UiButton.cs:41)\nMobileGame.SpatialTests.AppSceneFlowTests/<ClickLoading>d__18:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.cs:70)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 792,
+          "timestampUtc": "2026-11-02T07:16:50.2919546Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-6e303805dab342bb913bb8c8225e6e24\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:233)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:107)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__8:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:156)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 817,
+          "timestampUtc": "2026-11-02T08:07:23.1939868Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Assets\\Scripts\\Presentation\\Popup\\PopupBase.cs(20,27): warning CS0108: 'PopupBase.animation' hides inherited member 'Component.animation'. Use the new keyword if hiding was intended.",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 822,
+          "timestampUtc": "2026-11-02T08:08:33.7217026Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ExecuteCommandByName: No command named 'console get_logs' is available. Run 'unity command' to list the commands this instance exposes.",
+          "stackTrace": "UnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer:CommandNotFound (Unity.Pipeline.BasePipelineServer/RawCommandMiss) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/BasePipelineServer.cs:3034)\nUnity.Pipeline.BasePipelineServer:ResolveRawCommand (System.Collections.Generic.IReadOnlyList`1<string>,Unity.Pipeline.Commands.CommandIndex) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/BasePipelineServer.cs:2971)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Bind (Unity.Pipeline.Commands.CommandRequest,Newtonsoft.Json.Linq.JObject&) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:61)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Execute (Unity.Pipeline.Commands.CommandRequest) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:27)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__148:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/BasePipelineServer.cs:2462)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<int>:SetResult (int)\nUnity.Pipeline.MaxLengthStream/<ReadAsync>d__6:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/MaxLengthStream.cs:46)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 835,
+          "timestampUtc": "2026-11-02T08:11:35.6946845Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 836,
+          "timestampUtc": "2026-11-02T08:11:36.7430996Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 837,
+          "timestampUtc": "2026-11-02T08:11:37.7287856Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 838,
+          "timestampUtc": "2026-11-02T08:11:51.9576541Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Missing common popup registry.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 839,
+          "timestampUtc": "2026-11-02T08:12:07.0968344Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:148)\nMobileGame.Presentation.PopupManager:Safe (System.Action) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:145)\nMobileGame.Presentation.PopupManager:Finish (MobileGame.Presentation.PopupManager/Entry,MobileGame.Presentation.PopupResult) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:140)\nMobileGame.Presentation.PopupManager:Deliver (MobileGame.Presentation.PopupManager/Entry) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:123)\nMobileGame.Presentation.PopupManager/<>c__DisplayClass28_0:<Choose>b__0 () (at Assets/Scripts/Presentation/Popup/PopupManager.cs:101)\nMobileGame.Presentation.PopupHost/<Fade>d__36:MoveNext () (at Assets/Scripts/Presentation/Popup/PopupHost.cs:92)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 840,
+          "timestampUtc": "2026-11-02T08:12:14.6368505Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-b572bc3525614b4398be12e7cdee55cc\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:108)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__13:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:156)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 849,
+          "timestampUtc": "2026-11-02T08:20:52.1213729Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 850,
+          "timestampUtc": "2026-11-02T08:20:53.2880712Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 851,
+          "timestampUtc": "2026-11-02T08:20:54.4621353Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 852,
+          "timestampUtc": "2026-11-02T08:21:09.1561329Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Missing common popup registry.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 853,
+          "timestampUtc": "2026-11-02T08:21:25.7343032Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:148)\nMobileGame.Presentation.PopupManager:Safe (System.Action) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:146)\nMobileGame.Presentation.PopupManager:Finish (MobileGame.Presentation.PopupManager/Entry,MobileGame.Presentation.PopupResult) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:141)\nMobileGame.Presentation.PopupManager:Deliver (MobileGame.Presentation.PopupManager/Entry) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:124)\nMobileGame.Presentation.PopupManager/<>c__DisplayClass28_0:<Choose>b__0 () (at Assets/Scripts/Presentation/Popup/PopupManager.cs:101)\nMobileGame.Presentation.PopupHost/<Fade>d__36:MoveNext () (at Assets/Scripts/Presentation/Popup/PopupHost.cs:92)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 854,
+          "timestampUtc": "2026-11-02T08:21:29.1948643Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-df2da4f5b40c4078ad38e38e3a6baa72\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:108)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__13:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:156)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 875,
+          "timestampUtc": "2026-11-02T08:25:57.158084Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 876,
+          "timestampUtc": "2026-11-02T08:25:58.264937Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 877,
+          "timestampUtc": "2026-11-02T08:26:00.2747578Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 878,
+          "timestampUtc": "2026-11-02T08:26:14.7680351Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Missing common popup registry.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 879,
+          "timestampUtc": "2026-11-02T08:26:16.7137419Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Popup operation failed: Unknown popup: TestExtension",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.PopupHost/<>c:<Configure>b__27_0 (System.Exception) (at Assets/Scripts/Presentation/Popup/PopupHost.cs:35)\nMobileGame.Presentation.PopupManager:Report (System.Exception) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:149)\nMobileGame.Presentation.PopupManager:Show (MobileGame.Presentation.PopupRequest,System.Action,System.Action,System.Action`1<MobileGame.Presentation.PopupResult>) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:80)\nMobileGame.SpatialTests.AppSceneFlowTests/<PopupSceneExtensionAndFailedRegistrationPreserveUsableRegistry>d__5:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.Popups.cs:37)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 880,
+          "timestampUtc": "2026-11-02T08:26:32.1989604Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:148)\nMobileGame.Presentation.PopupManager:Safe (System.Action) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:148)\nMobileGame.Presentation.PopupManager:Finish (MobileGame.Presentation.PopupManager/Entry,MobileGame.Presentation.PopupResult) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:143)\nMobileGame.Presentation.PopupManager:Deliver (MobileGame.Presentation.PopupManager/Entry) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:126)\nMobileGame.Presentation.PopupManager/<>c__DisplayClass28_0:<Choose>b__0 () (at Assets/Scripts/Presentation/Popup/PopupManager.cs:103)\nMobileGame.Presentation.PopupHost/<Fade>d__36:MoveNext () (at Assets/Scripts/Presentation/Popup/PopupHost.cs:92)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 881,
+          "timestampUtc": "2026-11-02T08:26:35.6737701Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-5bef853b166c40bfa1b5549c185434e1\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:108)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__15:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:156)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 909,
+          "timestampUtc": "2026-11-02T08:30:16.0986706Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 910,
+          "timestampUtc": "2026-11-02T08:30:17.1637019Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 911,
+          "timestampUtc": "2026-11-02T08:30:19.1547615Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 912,
+          "timestampUtc": "2026-11-02T08:30:36.0989953Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Missing common popup registry.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 913,
+          "timestampUtc": "2026-11-02T08:30:37.093273Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Popup operation failed: Unknown popup: TestExtension",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.PopupHost/<>c:<Configure>b__27_0 (System.Exception) (at Assets/Scripts/Presentation/Popup/PopupHost.cs:35)\nMobileGame.Presentation.PopupManager:Report (System.Exception) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:149)\nMobileGame.Presentation.PopupManager:Show (MobileGame.Presentation.PopupRequest,System.Action,System.Action,System.Action`1<MobileGame.Presentation.PopupResult>) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:80)\nMobileGame.SpatialTests.AppSceneFlowTests/<PopupSceneExtensionAndFailedRegistrationPreserveUsableRegistry>d__6:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.Popups.cs:81)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 914,
+          "timestampUtc": "2026-11-02T08:30:52.390611Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:148)\nMobileGame.Presentation.PopupManager:Safe (System.Action) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:148)\nMobileGame.Presentation.PopupManager:Finish (MobileGame.Presentation.PopupManager/Entry,MobileGame.Presentation.PopupResult) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:143)\nMobileGame.Presentation.PopupManager:Deliver (MobileGame.Presentation.PopupManager/Entry) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:126)\nMobileGame.Presentation.PopupManager/<>c__DisplayClass28_0:<Choose>b__0 () (at Assets/Scripts/Presentation/Popup/PopupManager.cs:103)\nMobileGame.Presentation.PopupHost/<Fade>d__36:MoveNext () (at Assets/Scripts/Presentation/Popup/PopupHost.cs:92)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 915,
+          "timestampUtc": "2026-11-02T08:30:55.8965431Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-5ed3491cda5d40108d63a58ef876a08b\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:108)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__16:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:156)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 949,
+          "timestampUtc": "2026-11-02T08:34:34.8682462Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 950,
+          "timestampUtc": "2026-11-02T08:34:35.9367645Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 951,
+          "timestampUtc": "2026-11-02T08:34:37.9185479Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 952,
+          "timestampUtc": "2026-11-02T08:34:54.8743396Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Missing common popup registry.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 953,
+          "timestampUtc": "2026-11-02T08:34:55.9502512Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Popup operation failed: Unknown popup: TestExtension",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.PopupHost/<>c:<Configure>b__27_0 (System.Exception) (at Assets/Scripts/Presentation/Popup/PopupHost.cs:35)\nMobileGame.Presentation.PopupManager:Report (System.Exception) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:149)\nMobileGame.Presentation.PopupManager:Show (MobileGame.Presentation.PopupRequest,System.Action,System.Action,System.Action`1<MobileGame.Presentation.PopupResult>) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:80)\nMobileGame.SpatialTests.AppSceneFlowTests/<PopupSceneExtensionAndFailedRegistrationPreserveUsableRegistry>d__6:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.Popups.cs:86)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 954,
+          "timestampUtc": "2026-11-02T08:35:11.3698546Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:148)\nMobileGame.Presentation.PopupManager:Safe (System.Action) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:148)\nMobileGame.Presentation.PopupManager:Finish (MobileGame.Presentation.PopupManager/Entry,MobileGame.Presentation.PopupResult) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:143)\nMobileGame.Presentation.PopupManager:Deliver (MobileGame.Presentation.PopupManager/Entry) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:126)\nMobileGame.Presentation.PopupManager/<>c__DisplayClass28_0:<Choose>b__0 () (at Assets/Scripts/Presentation/Popup/PopupManager.cs:103)\nMobileGame.Presentation.PopupHost/<Fade>d__36:MoveNext () (at Assets/Scripts/Presentation/Popup/PopupHost.cs:92)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 955,
+          "timestampUtc": "2026-11-02T08:35:14.9043838Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-e158292aae844c25861a35fc0149bc87\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:108)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__16:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:156)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 978,
+          "timestampUtc": "2026-11-02T08:38:39.7555441Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Input.cs(276,64): error CS0246: The type or namespace name 'RaycastResult' could not be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 979,
+          "timestampUtc": "2026-11-02T08:38:39.7555441Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Input.cs(277,17): error CS0103: The name 'EventSystem' does not exist in the current context",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 980,
+          "timestampUtc": "2026-11-02T08:38:39.7555441Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Input.cs(277,52): error CS0246: The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 981,
+          "timestampUtc": "2026-11-02T08:38:39.7561278Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Input.cs(277,69): error CS0103: The name 'EventSystem' does not exist in the current context",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 993,
+          "timestampUtc": "2026-11-02T08:39:52.8691169Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 994,
+          "timestampUtc": "2026-11-02T08:39:53.9751053Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 995,
+          "timestampUtc": "2026-11-02T08:39:55.982932Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 996,
+          "timestampUtc": "2026-11-02T08:40:13.1293909Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Missing common popup registry.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 997,
+          "timestampUtc": "2026-11-02T08:40:14.0867184Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Popup operation failed: Unknown popup: TestExtension",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.PopupHost/<>c:<Configure>b__27_0 (System.Exception) (at Assets/Scripts/Presentation/Popup/PopupHost.cs:35)\nMobileGame.Presentation.PopupManager:Report (System.Exception) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:149)\nMobileGame.Presentation.PopupManager:Show (MobileGame.Presentation.PopupRequest,System.Action,System.Action,System.Action`1<MobileGame.Presentation.PopupResult>) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:80)\nMobileGame.SpatialTests.AppSceneFlowTests/<PopupSceneExtensionAndFailedRegistrationPreserveUsableRegistry>d__6:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.Popups.cs:86)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 998,
+          "timestampUtc": "2026-11-02T08:40:29.459381Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:148)\nMobileGame.Presentation.PopupManager:Safe (System.Action) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:148)\nMobileGame.Presentation.PopupManager:Finish (MobileGame.Presentation.PopupManager/Entry,MobileGame.Presentation.PopupResult) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:143)\nMobileGame.Presentation.PopupManager:Deliver (MobileGame.Presentation.PopupManager/Entry) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:126)\nMobileGame.Presentation.PopupManager/<>c__DisplayClass28_0:<Choose>b__0 () (at Assets/Scripts/Presentation/Popup/PopupManager.cs:103)\nMobileGame.Presentation.PopupHost/<Fade>d__36:MoveNext () (at Assets/Scripts/Presentation/Popup/PopupHost.cs:92)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 999,
+          "timestampUtc": "2026-11-02T08:40:33.1581728Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-2ebc94448c93415d8cd91ab47bdc5e55\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:108)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__16:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:156)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 1021,
+      "session": "9dee6f0ac7c34fa8ae71940b668f70ff",
+      "returned": 89,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 13,
+        "warn": 76,
+        "log": 434
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-02T08:42:21.3224842Z",
+        "ageMs": 72,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 7,
+        "consoleLogs": 24,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

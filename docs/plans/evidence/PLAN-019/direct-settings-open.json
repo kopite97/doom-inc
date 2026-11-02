@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var flow=MobileGame.Presentation.SceneFlowManager.Instance;\nvar button=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.TitleView>().GetComponentsInChildren<MobileGame.Presentation.UiButton>().Single(b=>b.name==\"Settings\");\nUnityEngine.Time.timeScale=0;\nbutton.OnSubmit(new UnityEngine.EventSystems.BaseEventData(UnityEngine.EventSystems.EventSystem.current));\nreturn new { state=flow.Popups.Top?.State.ToString(),count=flow.Popups.Count,timeScale=UnityEngine.Time.timeScale };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "state": "Opening",
+        "count": 1,
+        "timeScale": 0
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -57,13 +57,14 @@ namespace MobileGame.SpatialTests
         {
             flow.EnterCurrent(AppScene.Bootstrap); yield return Settled();
             File.WriteAllText(path, "preserve until explicit confirm");
-            flow.StartNewGame(); yield return null; yield return null; yield return null;
-            var button = flow.Loading.GetComponentsInChildren<UiButton>().Single(b => b.name == "Retry");
+            flow.StartNewGame(); yield return WaitPopupStable();
+            var button = flow.PopupHost.GetComponentsInChildren<UiButton>().Single(b => b.name == "Confirm");
             var pointer = new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left, pointerId = 123 };
             button.OnPointerDown(pointer);
             flow.CancelPrompt(); flow.StartNewGame();
-            for (var i = 0; i < 4; i++) yield return null;
+            // The old object is already inactive; dispatch its stale release before deferred destruction.
             button.OnPointerClick(pointer);
+            yield return WaitPopupStable();
             Assert.That(flow.IsPrompting, Is.True);
             Assert.That(File.ReadAllText(path), Is.EqualTo("preserve until explicit confirm"));
             flow.CancelPrompt(); File.Delete(path);

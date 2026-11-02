@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "UnityEditor.AssetDatabase.DeleteAsset(\"Assets/Temp/PLAN019-runtime-settings.png\"); if(UnityEditor.AssetDatabase.IsValidFolder(\"Assets/Temp\") && System.IO.Directory.GetFileSystemEntries(System.IO.Path.Combine(UnityEngine.Application.dataPath,\"Temp\")).Length==0) UnityEditor.AssetDatabase.DeleteAsset(\"Assets/Temp\"); return new {hosts=UnityEngine.Object.FindObjectsByType<MobileGame.Presentation.PopupHost>(UnityEngine.FindObjectsSortMode.None).Length,views=UnityEngine.Object.FindObjectsByType<MobileGame.Presentation.PopupBase>(UnityEngine.FindObjectsSortMode.None).Length};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "hosts": 0,
+        "views": 0
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

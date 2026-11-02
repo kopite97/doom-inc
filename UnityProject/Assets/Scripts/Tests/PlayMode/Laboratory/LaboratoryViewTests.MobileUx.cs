@@ -228,7 +228,7 @@ namespace MobileGame.SpatialTests
                 yield return ClickVisibleButton(input, "Restart");
                 Assert.That(view.PendingSessionAction, Is.EqualTo(LaboratorySessionAction.Restart));
                 yield return RevealVisibleButton(input, "ConfirmSessionAction");
-                var heldPoint = ScreenCenter((RectTransform)view.FindUiButton("ConfirmSessionAction").transform);
+                var heldPoint = ScreenCenter((RectTransform)FindActionButton(view, "ConfirmSessionAction").transform);
                 input.Touch(66, TouchPhase.Began, heldPoint); yield return null;
                 yield return input.Escape();
                 input.Touch(66, TouchPhase.Ended, heldPoint); yield return null; yield return null;
@@ -311,6 +311,7 @@ namespace MobileGame.SpatialTests
                 Assert.That(view.LargeText, Is.True);
                 Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "GameTitle").fontSize,
                     Is.EqualTo(Mathf.RoundToInt(normalSize * 1.25f)));
+                yield return input.Escape();
                 const string korean = "가로세로건설생명체침공보고배양재료입고대기자동저장취소확정";
                 view.UiFont.RequestCharactersInTexture(korean, 24, FontStyle.Normal);
                 foreach (var letter in korean.Distinct())

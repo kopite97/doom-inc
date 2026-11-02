@@ -120,6 +120,7 @@ namespace MobileGame.Presentation
         }
         public void Back()
         {
+            if (Popups?.Back() == true) return;
             if (!CanClickScreen() || Ending?.IsEnding == true) return;
             if (pendingSessionAction != LaboratorySessionAction.None) { CancelSessionAction(); return; }
             if (panel == LaboratoryPanel.License) { OpenPanel(LaboratoryPanel.Game); return; }
@@ -137,18 +138,18 @@ namespace MobileGame.Presentation
         }
         public void RequestSessionAction(LaboratorySessionAction action)
         {
-            if (!CanClickScreen() || action == LaboratorySessionAction.None) return;
+            if (!CanClickScreen() || action == LaboratorySessionAction.None || Popups == null) return;
             OpenPanel(LaboratoryPanel.Game); pendingSessionAction = action; InvalidateInput();
+            sessionPrompt = Popups.ShowConfirm(PopupScope, "session-action", M("game_menu"),
+                M(action == LaboratorySessionAction.Reload ? "reload_prompt" : "restart_prompt"), () => CompleteSessionAction(action),
+                confirmText: M("confirm_session"), cancelText: M("cancel_session"),
+                finished: result => { if (result != PopupResult.Confirmed) { pendingSessionAction = LaboratorySessionAction.None; InvalidateInput(); } });
+            if (sessionPrompt.IsCompleted) pendingSessionAction = LaboratorySessionAction.None;
         }
-        public void CancelSessionAction() { pendingSessionAction = LaboratorySessionAction.None; InvalidateInput(); }
+        public void CancelSessionAction() { sessionPrompt?.Cancel(); pendingSessionAction = LaboratorySessionAction.None; InvalidateInput(); }
         public bool ConfirmSessionAction()
         {
-            if (!CanClickScreen() || pendingSessionAction == LaboratorySessionAction.None) return false;
-            var action = pendingSessionAction; pendingSessionAction = LaboratorySessionAction.None; InvalidateInput();
-            var success = action == LaboratorySessionAction.Reload ? Reload() : Restart();
-            uiNotice = M(success ? "session_changed" : "session_failed");
-            if (!success) OpenPanel(LaboratoryPanel.Game);
-            return success;
+            return Popups?.Choose(sessionPrompt, PopupResult.Confirmed) == true;
         }
         private void ResetNavigation()
         {
@@ -158,7 +159,7 @@ namespace MobileGame.Presentation
             facilityStatus = null; statusSession = null; uiNotice = null;
         }
         private void PollBack()
-        { if (Keyboard.current?.escapeKey.wasPressedThisFrame == true) Back(); }
+        { if (AppUiLifetime.AcceptInput && Keyboard.current?.escapeKey.wasPressedThisFrame == true) Back(); }
         private void SelectionUnavailable()
         {
             if (SelectedId != Guid.Empty && Simulation != null && !Simulation.Registry.TryGet(SelectedId, out _))

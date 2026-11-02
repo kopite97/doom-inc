@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var flow=MobileGame.Presentation.SceneFlowManager.Instance; var button=flow.PopupHost.GetComponentsInChildren<MobileGame.Presentation.UiButton>().Single(b=>b.name==\"Cancel\"); button.OnSubmit(new UnityEngine.EventSystems.BaseEventData(UnityEngine.EventSystems.EventSystem.current)); return new { state=flow.Popups.Top?.State.ToString(),timeScale=UnityEngine.Time.timeScale };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "state": "Closing",
+        "timeScale": 0
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -11,6 +11,10 @@ namespace MobileGame.Presentation
     {
         [SerializeField] private AppConfiguration configuration;
         [SerializeField] private AppScene sceneRole = AppScene.Laboratory;
+        [SerializeField] private PopupRegistry popupRegistry;
+        public PopupRegistry PopupRegistry => popupRegistry;
+        private PopupHost isolatedPopups;
+        private PopupScope isolatedPopupScope;
         private string savePath;
         private double autoSaveSeconds = 5;
         private bool starting;
@@ -69,7 +73,24 @@ namespace MobileGame.Presentation
                     isolatedLocalization = new AppLocalization(configuration.localization, Path.Combine(Path.GetDirectoryName(path), "language.json"));
                 await isolatedLocalization.InitializeAsync();
                 if (this == null) return;
-                if (entry is LaboratoryView laboratory) laboratory.ConfigureLocalization(isolatedLocalization);
+                if (entry is LaboratoryView laboratory)
+                {
+                    laboratory.ConfigureLocalization(isolatedLocalization);
+                    if (isolatedPopups == null)
+                    {
+                        var prepared = Instantiate(configuration.popupHost, transform);
+                        try
+                        {
+                            prepared.Configure(configuration.popups, isolatedLocalization, configuration.uiAssets?.Font,
+                                () => AppUiSettings.ForSlot(path).Current.LargeText);
+                            prepared.RegisterScene(popupRegistry); prepared.Manager.Ready = true;
+                            isolatedPopups = prepared;
+                        }
+                        catch { Destroy(prepared.gameObject); throw; }
+                        isolatedPopupScope = new PopupScope();
+                    }
+                    laboratory.ConfigurePopups(isolatedPopups.Manager, isolatedPopupScope);
+                }
                 var succeeded = entry.InitializeSession(data, path, autoSaveSeconds, SessionStart.StartOrContinue);
                 // Isolated/diagnostic entries expose their own restore-error UI after data preparation.
                 // Product transitions instead require InitializeSession == true before hiding LoadingScreen.
@@ -96,6 +117,10 @@ namespace MobileGame.Presentation
         private void OnApplicationPause(bool paused) => loadingView?.InvalidateInput();
         private void OnApplicationFocus(bool focused) => loadingView?.InvalidateInput();
         private void OnDisable() => loadingView?.SetVisible(false);
-        private void OnDestroy() { loadingView?.Dispose(); loadingView = null; isolatedLocalization?.Dispose(); isolatedLocalization = null; }
+        private void OnDestroy()
+        {
+            isolatedPopupScope?.Dispose(); isolatedPopups?.Manager?.Dispose();
+            loadingView?.Dispose(); loadingView = null; isolatedLocalization?.Dispose(); isolatedLocalization = null;
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace MobileGame.Presentation
         public string LastCommand { get; private set; }
         public int RepaintCount { get; private set; }
         public bool CanInteract => isActiveAndEnabled && !applicationPaused && applicationFocused && !transitionPaused
-            && Controller?.Phase == SessionPhase.Playing && Simulation != null;
+            && Popups?.BlocksInput != true && Controller?.Phase == SessionPhase.Playing && Simulation != null;
         public bool IsEditing => Simulation != null && (Simulation.ConstructionDefinition != null
             || Controller.Current.Map.Commands.IsEditing);
 
@@ -95,6 +95,7 @@ namespace MobileGame.Presentation
         }
         public void ReleaseSession()
         {
+            PopupScope?.Dispose();
             SetTransitionPaused(true); Ending?.Dispose(); Ending = null;
             if (Controller != null) Controller.SessionChanged -= OnSessionChanged;
             Controller = null; Commands = null;
@@ -122,6 +123,7 @@ namespace MobileGame.Presentation
 
         private void SynchronizeEnding()
         {
+            SynchronizePopupPhase();
             Ending?.Synchronize();
             if (Ending?.IsEnding != true) return;
             if (Simulation?.ConstructionDefinition != null) Commands.CancelConstruction();
@@ -136,6 +138,7 @@ namespace MobileGame.Presentation
         {
             InvalidateInput();
             applicationPaused = paused;
+            if (!externalPopupLifetime) Popups?.SetForeground(!applicationPaused && applicationFocused);
             skipNextDelta = true;
             Controller?.NotifyApplicationPause(paused || !applicationFocused);
             UpdateEndingVisibility();
@@ -146,6 +149,7 @@ namespace MobileGame.Presentation
             if (applicationFocused == focused) return;
             InvalidateInput();
             applicationFocused = focused;
+            if (!externalPopupLifetime) Popups?.SetForeground(!applicationPaused && applicationFocused);
             skipNextDelta = true;
             Controller?.NotifyApplicationPause(applicationPaused || !focused);
             UpdateEndingVisibility();
@@ -154,6 +158,7 @@ namespace MobileGame.Presentation
         private void OnApplicationQuit() => Controller?.NotifyApplicationQuit();
         private void OnDestroy()
         {
+            PopupScope?.Dispose();
             DisposeScreen();
             Ending?.Dispose();
             if (Controller != null) Controller.SessionChanged -= OnSessionChanged;
@@ -161,6 +166,7 @@ namespace MobileGame.Presentation
 
         private void OnSessionChanged()
         {
+            RenewPopupScope();
             InvalidateInput();
             ResetNavigation();
             SelectedId = Guid.Empty;

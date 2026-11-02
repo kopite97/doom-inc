@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 namespace MobileGame.Presentation
 {
-    public sealed class SceneFlowManager : MonoBehaviour
+    public sealed partial class SceneFlowManager : MonoBehaviour
     {
         public static SceneFlowManager Instance { get; private set; }
         public AppConfiguration Configuration { get; private set; }
@@ -87,6 +87,7 @@ namespace MobileGame.Presentation
         }
         private void ResetLifetime()
         {
+            ReleasePopups();
             generation++; StopAllCoroutines(); IsTransitioning = IsPrompting = false;
             Localization?.Dispose(); Localization = null;
             if (Loading != null) Destroy(Loading.gameObject);
@@ -112,22 +113,29 @@ namespace MobileGame.Presentation
         {
             IsPrompting = true;
             cancelPrompt = CancelPrompt;
-            Loading.Show(LoadingScreenKind.Confirmation, new LocalizedMessage("Loading", "new_game_prompt"),
-                () => { CancelPrompt(); StartNewGame(true); }, CancelPrompt, new LocalizedMessage("Loading", "start_new"), new LocalizedMessage("Common", "cancel"));
+            prompt = Popups.ShowConfirm(ScenePopupScope, "new-game", new LocalizedMessage("Loading", "confirmation"),
+                new LocalizedMessage("Loading", "new_game_prompt"), () => { CancelPrompt(); StartNewGame(true); },
+                confirmText: new LocalizedMessage("Loading", "start_new"), finished: PromptFinished);
+            if (prompt.IsCompleted) CancelPrompt();
         }
         public bool RequestReturnToTitle()
         {
             if (IsTransitioning || IsPrompting || Laboratory?.Controller?.Current == null || paused || !focused
                 || Laboratory.Controller.Phase == SessionPhase.Destruction) return false;
             IsPrompting = true; Laboratory.SetTransitionPaused(true); cancelPrompt = CancelPrompt;
-            Loading.Show(LoadingScreenKind.Confirmation, new LocalizedMessage("Loading", "return_prompt"), ConfirmReturn,
-                CancelPrompt, new LocalizedMessage("Loading", "save_return"), new LocalizedMessage("Common", "cancel"));
+            prompt = Popups.ShowConfirm(Laboratory.PopupScope, "return-title", new LocalizedMessage("Loading", "confirmation"),
+                new LocalizedMessage("Loading", "return_prompt"), ConfirmReturn,
+                confirmText: new LocalizedMessage("Loading", "save_return"), finished: PromptFinished);
+            if (prompt.IsCompleted) CancelPrompt();
             return true;
         }
         public void CancelPrompt()
         {
             if (IsTransitioning) return;
+            if (prompt != null && !prompt.IsCompleted) { prompt.Cancel(); return; }
+            prompt = null;
             IsPrompting = false; cancelPrompt = null; Error = null; Loading.Hide();
+            Popups?.SetSuspended(false);
             if (Laboratory != null) Laboratory.SetTransitionPaused(false);
         }
         private void ConfirmReturn()
@@ -140,6 +148,7 @@ namespace MobileGame.Presentation
                 Debug.LogWarning("Save before title failed: " + Error);
                 Loading.Show(LoadingScreenKind.Error, new LocalizedMessage("Loading", "save_failed"), ConfirmReturn, CancelPrompt,
                     new LocalizedMessage("Loading", "retry_save"), new LocalizedMessage("Loading", "cancel_return"));
+                Popups?.SetSuspended(true);
                 return;
             }
             IsPrompting = false; cancelPrompt = null;
@@ -149,6 +158,7 @@ namespace MobileGame.Presentation
         {
             if (IsTransitioning || IsPrompting || paused || !focused) return false;
             IsTransitioning = true; Error = null; generation++;
+            Popups?.SetSuspended(true);
             Laboratory?.SetTransitionPaused(true); AppUiLifetime.Invalidate();
             StartCoroutine(Guard(Transition(request, generation), request, generation));
             return true;
@@ -185,6 +195,7 @@ namespace MobileGame.Presentation
             var localization = Localization.InitializeAsync();
             while (!localization.IsCompleted) yield return null;
             localization.GetAwaiter().GetResult();
+            EnsurePopups();
             if (token != generation) yield break;
             Loading.Show(LoadingScreenKind.Loading, new LocalizedMessage("Bootstrap", "preparing_screen")); yield return null;
             if (!request.UseCurrent)
@@ -192,6 +203,8 @@ namespace MobileGame.Presentation
                 var path = request.Target == AppScene.Title ? Configuration.titleScene : Configuration.laboratoryScene;
                 if (string.IsNullOrWhiteSpace(path) || !Application.CanStreamedLevelBeLoaded(path))
                     throw new InvalidOperationException("Scene is unavailable: " + path);
+                ScenePopupScope?.Dispose(); ScenePopupScope = new PopupScope();
+                PopupHost.RegisterScene(null);
                 Laboratory?.ReleaseSession(); Laboratory = null;
                 pendingScenePath = path;
                 var operation = SceneManager.LoadSceneAsync(path, LoadSceneMode.Single);
@@ -203,12 +216,15 @@ namespace MobileGame.Presentation
             request.UseCurrent = false;
             if (token != generation) yield break;
             while (paused || !focused) yield return null;
+            var entryRegistry = FindObjectsByType<GameBootstrap>(FindObjectsSortMode.None).FirstOrDefault(e => e.gameObject.scene == SceneManager.GetActiveScene())?.PopupRegistry;
+            PopupHost.RegisterScene(entryRegistry);
             if (request.Target == AppScene.Laboratory)
             {
                 Laboratory = FindFirstObjectByType<LaboratoryView>();
                 if (Laboratory == null) throw new InvalidOperationException("Laboratory view is missing.");
                 Laboratory.ConfigureUiAssets(Configuration.uiAssets);
                 Laboratory.ConfigureLocalization(Localization);
+                Laboratory.ConfigurePopups(Popups, ScenePopupScope, true);
                 var start = request.Committed ? SessionStart.Continue : request.Start;
                 if (!Laboratory.InitializeSession(data, SavePath, 5, start))
                     throw new InvalidOperationException(Laboratory.InitializationError);
@@ -225,6 +241,7 @@ namespace MobileGame.Presentation
             while (paused || !focused) yield return null;
             if (token != generation) yield break;
             IsTransitioning = false; Loading.Hide(); Laboratory?.SetTransitionPaused(false);
+            Popups.SetSuspended(false);
             foreach (var entry in FindObjectsByType<GameBootstrap>(FindObjectsSortMode.None)) entry.MarkReady();
         }
         private void Fail(string error, Action retry, Action recover)
@@ -232,19 +249,24 @@ namespace MobileGame.Presentation
             Error = error; AppUiLifetime.Invalidate();
             Debug.LogWarning("Scene preparation failed: " + error);
             Loading.Show(LoadingScreenKind.Error, new LocalizedMessage("Bootstrap", "error_body"), retry, recover);
+            Popups?.SetSuspended(true);
         }
         private void Update()
         {
             if (!paused && focused && AppUiLifetime.AcceptInput && Keyboard.current?.escapeKey.wasPressedThisFrame == true)
-                cancelPrompt?.Invoke();
+            {
+                if (Loading.Visible || IsTransitioning) cancelPrompt?.Invoke();
+                else if (Popups?.Back() != true) cancelPrompt?.Invoke();
+            }
         }
-        private void OnApplicationPause(bool value) { if (paused == value) return; paused = value; AppUiLifetime.Invalidate(); }
-        private void OnApplicationFocus(bool value) { if (focused == value) return; focused = value; AppUiLifetime.Invalidate(); }
+        private void OnApplicationPause(bool value) { if (paused == value) return; paused = value; Popups?.SetForeground(!paused && focused); AppUiLifetime.Invalidate(); }
+        private void OnApplicationFocus(bool value) { if (focused == value) return; focused = value; Popups?.SetForeground(!paused && focused); AppUiLifetime.Invalidate(); }
         private void OnDestroy()
         {
             if (Instance != this) return;
             if (pendingSceneLoad != null) abandonedSceneEntry = true;
             generation++; StopAllCoroutines();
+            ReleasePopups();
             // Scene objects can be destroyed before their persistent owner during Play exit/application shutdown.
             if (Laboratory != null) Laboratory.ReleaseSession();
             Localization?.Dispose(); Localization = null;

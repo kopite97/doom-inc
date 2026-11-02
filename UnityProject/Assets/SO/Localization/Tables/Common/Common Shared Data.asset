@@ -25,6 +25,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 2444913683439288428
+  - m_Id: 17
+    m_Key: confirm
+    m_Metadata:
+      m_Items:
+      - rid: 1000
   - m_Id: 10
     m_Key: language
     m_Metadata:
@@ -92,6 +97,10 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1000
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Common confirm button for popup decisions
     - rid: 2444913683439288426
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:

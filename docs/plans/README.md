@@ -20,3 +20,4 @@
 | [PLAN-016](PLAN-016-bootstrap-title-and-scene-flow.md) | Bootstrap·Title·Laboratory 씬 흐름과 Editor 직접 진입 | `development` | `completed` |
 | [PLAN-017](PLAN-017-production-storage-status-and-shared-ui.md) | 생산 판정·파일 저장·상태 계약·공용 UI 추상화 정비 | `development` | `completed` |
 | [PLAN-018](PLAN-018-localization-and-csv-text-management.md) | Unity Localization·CSV 텍스트 관리와 한국어·영어 지원 | `development` | `completed` |
+| [PLAN-019](PLAN-019-shared-popup-system.md) | 공용 Popup 시스템과 기존 확인·설정 화면 통합 | `development` | `completed` |

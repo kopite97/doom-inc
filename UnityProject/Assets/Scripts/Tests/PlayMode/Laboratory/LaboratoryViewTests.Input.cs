@@ -10,6 +10,7 @@ using MobileGame.Presentation;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.TestTools;
@@ -187,15 +188,35 @@ namespace MobileGame.SpatialTests
         {
             yield return OpenActionPath(input, key);
             yield return RevealVisibleButton(input, key);
-            yield return input.Click(ScreenCenter((RectTransform)input.View.FindUiButton(key).transform));
+            yield return input.Click(ScreenCenter((RectTransform)FindActionButton(input.View, key).transform));
+            yield return PopupSettled(input.View);
+        }
+        private static UiButton FindActionButton(LaboratoryView view, string key)
+        {
+            var popupKey = key == "ConfirmSessionAction" ? "Confirm" : key == "CancelSessionAction" ? "Cancel"
+                : key == "StatusPreference" ? "Status" : key == "TextPreference" ? "Text" : null;
+            if (popupKey != null)
+                return view.GetComponentsInChildren<PopupBase>().LastOrDefault()?.GetComponentsInChildren<UiButton>().SingleOrDefault(b => b.name == popupKey);
+            return view.FindUiButton(key);
+        }
+        private static IEnumerator PopupSettled(LaboratoryView view)
+        {
+            var deadline = Time.realtimeSinceStartupAsDouble + 5;
+            while (view.Popups?.Top?.State == PopupState.Opening || view.Popups?.Top?.State == PopupState.Closing)
+            { Assert.That(Time.realtimeSinceStartupAsDouble, Is.LessThan(deadline)); yield return null; }
+            yield return null; yield return null;
         }
 
         // Navigation is part of the input scenario: never call OpenPanel/SelectThing to reach an action.
         private static IEnumerator OpenActionPath(PointerScene input, string key)
         {
             yield return null;
-            var existing = input.View.FindUiButton(key);
-            if (existing != null && existing.gameObject.activeInHierarchy) yield break;
+            yield return PopupSettled(input.View);
+            var existing = FindActionButton(input.View, key);
+            if (existing != null && existing.gameObject.activeInHierarchy
+                && (input.View.Popups?.Top == null || existing.GetComponentInParent<PopupBase>() != null)) yield break;
+            if (input.View.Popups?.Top != null)
+            { yield return input.Escape(); yield return PopupSettled(input.View); }
             string entry = null;
             if (key.StartsWith("Build", StringComparison.Ordinal)) entry = "NavBuild";
             else if (key.StartsWith("Select_", StringComparison.Ordinal)
@@ -217,12 +238,19 @@ namespace MobileGame.SpatialTests
                 yield return input.Click(ScreenCenter((RectTransform)input.View.FindUiButton(entry).transform));
                 yield return null;
             }
+            if (key == "TextPreference" || key == "StatusPreference")
+            {
+                yield return RevealVisibleButton(input, "Settings");
+                yield return input.Click(ScreenCenter((RectTransform)input.View.FindUiButton("Settings").transform));
+                yield return PopupSettled(input.View);
+            }
         }
 
         private static IEnumerator RevealVisibleButton(PointerScene input, string key)
         {
             yield return null;
-            var button = input.View.FindUiButton(key);
+            yield return PopupSettled(input.View);
+            var button = FindActionButton(input.View, key);
             Assert.That(button, Is.Not.Null, "Missing UI button: " + key);
             Assert.That(button.gameObject.activeInHierarchy && button.interactable, Is.True, "Unavailable UI button: " + key);
             var rect = (RectTransform)button.transform;
@@ -238,6 +266,23 @@ namespace MobileGame.SpatialTests
                 Assert.That(RectTransformUtility.RectangleContainsScreenPoint(scroll.viewport, ScreenCenter(rect)), Is.True,
                     "The button must be inside its clipped viewport before a physical click: " + key);
             }
+            // Selection/scroll/layout changes can invalidate input after the coroutine resumes.
+            // A new physical click starts only after the intended target is stable and raycastable.
+            var deadline = Time.realtimeSinceStartupAsDouble + 5;
+            var previous = ScreenCenter(rect); var stableFrames = 0;
+            while (stableFrames < 3 && Time.realtimeSinceStartupAsDouble < deadline)
+            {
+                yield return null;
+                var point = ScreenCenter(rect);
+                var hits = new System.Collections.Generic.List<RaycastResult>();
+                EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = point }, hits);
+                var hit = hits.FirstOrDefault().gameObject;
+                var available = AppUiLifetime.AcceptInput && button.IsInteractable()
+                    && hit != null && hit.GetComponentInParent<UiButton>() == button;
+                stableFrames = available && Vector2.Distance(previous, point) < .1f ? stableFrames + 1 : 0;
+                previous = point;
+            }
+            Assert.That(stableFrames, Is.EqualTo(3), "UI click target did not stabilize: " + key);
         }
 
         // Keep the real EventSystem and input actions. Pointer and Back-key devices are isolated
@@ -290,6 +335,7 @@ namespace MobileGame.SpatialTests
             {
                 InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Escape)); yield return null;
                 InputSystem.QueueStateEvent(keyboard, new KeyboardState()); yield return null; yield return null;
+                yield return PopupSettled(View);
             }
 
             public IEnumerator Load()

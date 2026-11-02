@@ -64,10 +64,22 @@ namespace MobileGame.SpatialTests
         }
         private IEnumerator ClickLoading(string name)
         {
-            for (var i = 0; i < 4; i++) yield return null;
-            var button = flow.Loading.GetComponentsInChildren<UiButton>().Single(b => b.name == name);
+            yield return WaitPopupStable();
+            var popup = !flow.Loading.Visible && flow.Popups?.Top != null;
+            var target = popup ? flow.PopupHost.gameObject : flow.Loading.gameObject;
+            var key = popup ? name == "Retry" ? "Confirm" : "Cancel" : name;
+            var button = target.GetComponentsInChildren<UiButton>().Single(b => b.name == key);
             Assert.That(button.interactable, Is.True);
             button.OnSubmit(new BaseEventData(EventSystem.current));
+            yield return WaitPopupStable();
+        }
+        private IEnumerator WaitPopupStable()
+        {
+            var deadline = Time.realtimeSinceStartupAsDouble + 5;
+            do { yield return null; }
+            while (Time.realtimeSinceStartupAsDouble < deadline &&
+                (flow.Popups?.Top?.State == PopupState.Opening || flow.Popups?.Top?.State == PopupState.Closing || !AppUiLifetime.AcceptInput));
+            Assert.That(Time.realtimeSinceStartupAsDouble, Is.LessThan(deadline), "Popup/input did not settle.");
             yield return null;
         }
         [UnityTest] public IEnumerator BootstrapTitleNewContinueAndReturnUseOneCatalogAndStopOldSession()
@@ -201,12 +213,12 @@ namespace MobileGame.SpatialTests
                     ((RectTransform)b.transform).rect.height >= 48), Is.True);
                 yield return Capture("title-" + size.x);
                 yield return ClickTitle("Settings");
-                for (var i = 0; i < 3; i++) yield return null;
+                yield return WaitPopupStable();
                 yield return Capture("settings-" + size.x);
-                yield return ClickTitle("Close");
+                yield return ClickLoading("Recover");
                 File.WriteAllText(path, "confirmation sample");
                 flow.StartNewGame();
-                for (var i = 0; i < 4; i++) yield return null;
+                yield return WaitPopupStable();
                 yield return Capture("confirmation-" + size.x);
                 flow.CancelPrompt(); File.Delete(path);
                 flow.Loading.Show(LoadingScreenKind.Loading, "게임 데이터를 준비하고 있습니다…");

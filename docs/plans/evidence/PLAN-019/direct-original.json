@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var cache=UnityEngine.Application.temporaryCachePath;\nvar slot=System.IO.Path.Combine(cache,\"EditorSessions\",\"SlotB\",\"session.json\");\nreturn new { optionsEnabled=UnityEditor.EditorSettings.enterPlayModeOptionsEnabled,options=(int)UnityEditor.EditorSettings.enterPlayModeOptions,slotB=UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.SlotB\",false),continuation=UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.Continue\",false),background=UnityEngine.Application.runInBackground,scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,dirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty,files=new[]{slot,MobileGame.Persistence.UiSettingsStore.PathForGameSave(slot),System.IO.Path.Combine(cache,\"Preferences\",\"language.json\")} };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "optionsEnabled": true,
+        "options": 1,
+        "slotB": false,
+        "continuation": false,
+        "background": false,
+        "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+        "dirty": false,
+        "files": [
+          "C:/Users/USER/AppData/Local/Temp/DefaultCompany/UnityProject\\EditorSessions\\SlotB\\session.json",
+          "C:\\Users\\USER\\AppData\\Local\\Temp\\DefaultCompany\\UnityProject\\EditorSessions\\SlotB\\session.json.ui-settings.json",
+          "C:/Users/USER/AppData/Local/Temp/DefaultCompany/UnityProject\\Preferences\\language.json"
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

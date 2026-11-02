@@ -29,6 +29,7 @@ namespace MobileGame.SpatialTests
                 foreach (var language in new[] { "ko", "en" })
                 {
                     view.OpenPanel(LaboratoryPanel.Game); yield return SelectLanguage(view, language);
+                    view.Popups.Top.Cancel(); yield return PopupSettled(view);
                     view.SetUiPreferences(true, true);
                     foreach (var size in new[] { new Vector2Int(1280, 720), new Vector2Int(720, 1280) })
                     using (new LaboratoryGameViewSize(size.x, size.y))
@@ -75,7 +76,8 @@ namespace MobileGame.SpatialTests
                 var hash = session.Registry.Things.First().Definition.Settings.CompatibilityHash;
                 view.SetUiPreferences(false, true);
                 view.OpenPanel(LaboratoryPanel.Game); yield return null;
-                var stale = view.FindUiButton("StatusPreference");
+                view.ShowSettings(); yield return PopupSettled(view);
+                var stale = FindActionButton(view, "StatusPreference");
                 var pointer = new PointerEventData(EventSystem.current) { pointerId = 77 };
                 stale.OnPointerDown(pointer);
                 yield return SelectLanguage(view, "en");
@@ -88,6 +90,7 @@ namespace MobileGame.SpatialTests
                 Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "Feedback").text, Is.EqualTo("Facility status: OFF"));
                 Assert.That(view.FindUiButton("Confirm").GetComponentInChildren<Text>().text, Is.EqualTo("Confirm"));
                 Assert.That(File.ReadAllText(Path.Combine(directory, "language.json")), Does.Contain("en"));
+                view.Popups.Top.Cancel(); yield return PopupSettled(view);
                 view.CancelPlacement(); view.OpenPanel(LaboratoryPanel.Game);
                 yield return SelectLanguage(view, "ko");
                 Assert.That(view.FindUiButton("Save").GetComponentInChildren<Text>().text, Is.EqualTo("지금 저장"));
@@ -110,11 +113,12 @@ namespace MobileGame.SpatialTests
         {
             // A Game View resize/capture can deliver focus callbacks after the coroutine resumes.
             // Wait for the real menu to be usable before opening and pressing its language action.
-            yield return WaitFor(() => view.CanInteract && AppUiLifetime.AcceptInput, "Language settings are not interactive.");
-            view.OpenPanel(LaboratoryPanel.Game);
-            yield return WaitFor(() => view.FindUiButton("Language_" + code)?.gameObject.activeInHierarchy == true,
+            if (view.Popups.Top == null) view.ShowSettings();
+            yield return PopupSettled(view);
+            yield return WaitFor(() => view.Popups.Top?.State == PopupState.Open && AppUiLifetime.AcceptInput, "Language settings are not interactive.");
+            yield return WaitFor(() => view.GetComponentsInChildren<SettingsPopup>().Single().GetComponentsInChildren<UiButton>().Any(b => b.name == "Language_" + code),
                 "The language menu did not render: " + code);
-            var button = view.FindUiButton("Language_" + code); Assert.That(button, Is.Not.Null);
+            var button = view.GetComponentsInChildren<SettingsPopup>().Single().GetComponentsInChildren<UiButton>().Single(b => b.name == "Language_" + code); Assert.That(button, Is.Not.Null);
             var pointer = new PointerEventData(EventSystem.current) { pointerId = 78 };
             button.OnPointerDown(pointer); button.OnPointerClick(pointer);
             yield return WaitFor(() => button.GetComponentInChildren<Text>().text.StartsWith("✓", StringComparison.Ordinal), "Language did not change: " + code);

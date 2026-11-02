@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "UnityEditor.EditorSettings.enterPlayModeOptions=(UnityEditor.EnterPlayModeOptions)1; UnityEditor.EditorSettings.enterPlayModeOptionsEnabled=true; UnityEditor.EditorPrefs.SetBool(\"MobileGame.AppPlayEntry.SlotB\",false); UnityEditor.EditorPrefs.SetBool(\"MobileGame.AppPlayEntry.Continue\",false); MobileGame.Presentation.GameBootstrap.EditorSlotName=UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.SlotB\",false)?\"SlotB\":\"Default\"; MobileGame.Presentation.GameBootstrap.EditorStartChoice=UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.Continue\",false)?MobileGame.Presentation.SessionStart.Continue:MobileGame.Presentation.SessionStart.NewGame; return new {optionsEnabled=UnityEditor.EditorSettings.enterPlayModeOptionsEnabled, options=(int)UnityEditor.EditorSettings.enterPlayModeOptions,slotB=UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.SlotB\",false),continuation=UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.Continue\",false),scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,background=UnityEngine.Application.runInBackground};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "optionsEnabled": true,
+        "options": 1,
+        "slotB": false,
+        "continuation": false,
+        "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+        "background": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

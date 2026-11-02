@@ -127,7 +127,7 @@ namespace MobileGame.Presentation
             text.rectTransform.offsetMin = new Vector2(2, 2);
             text.rectTransform.offsetMax = compact || graphic.sprite == null ? new Vector2(-2, -2) : new Vector2(-2, 22);
         }
-        private bool CanClickScreen() => isActiveAndEnabled && Controller != null && !Controller.IsApplicationPaused && !transitionPaused;
+        private bool CanClickScreen() => isActiveAndEnabled && Controller != null && !Controller.IsApplicationPaused && !transitionPaused && Popups?.BlocksInput != true;
         private string UiContext => Controller == null ? "none" : Controller.Generation + ":" + Controller.Phase;
         private void BindTool(UiButton button, Action action, bool enabled)
         {
@@ -377,27 +377,11 @@ namespace MobileGame.Presentation
             controls.Text("GameTitle", L("game_menu"), 24);
             if (SceneFlowManager.Instance != null)
                 UiAction("ReturnToTitle", L("return_title"), () => SceneFlowManager.Instance.RequestReturnToTitle());
-            if (pendingSessionAction != LaboratorySessionAction.None)
-            {
-                controls.Text("SessionWarning", pendingSessionAction == LaboratorySessionAction.Reload
-                    ? L("reload_prompt")
-                    : L("restart_prompt"));
-                UiAction("ConfirmSessionAction", L("confirm_session"), () => ConfirmSessionAction());
-                UiAction("CancelSessionAction", L("cancel_session"), CancelSessionAction); return;
-            }
             UiAction("Save", L("save"), () => { uiNotice = M(Save() ? "saved" : "save_failed"); }, Controller.Current != null);
             UiAction("Reload", L("reload"), () => RequestSessionAction(LaboratorySessionAction.Reload));
             UiAction("Restart", L("restart"), () => RequestSessionAction(LaboratorySessionAction.Restart));
-            LocalizationSettingsRows.Add(controls, localization, CanClickScreen(), UiContext);
-            controls.Text("UiPreferences", L("display"), 22);
+            UiAction("Settings", FormatMessage(C("settings")), () => ShowSettings());
             controls.Text("MapControlsHelp", L("map_help"), 16);
-            UiAction("StatusPreference", FormatMessage(C("status_setting", A("value", C(ShowFacilityStatus ? "on" : "off")))), () => SetUiPreferences(!ShowFacilityStatus, LargeText));
-            UiAction("TextPreference", FormatMessage(C("text_setting", A("value", C(LargeText ? "large" : "normal")))), () => SetUiPreferences(ShowFacilityStatus, !LargeText));
-            if (!string.IsNullOrEmpty(uiSettings?.LastError))
-            {
-                controls.Text("UiSettingsError", FormatMessage(C("settings_save_error")));
-                UiAction("RetryUiSettings", L("retry_settings"), () => { uiSettings.TrySave(); });
-            }
             UiAction("FontLicense", L("font_license"), () => OpenPanel(LaboratoryPanel.License));
         }
     }

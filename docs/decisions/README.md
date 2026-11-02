@@ -42,3 +42,4 @@
 | [TECH-013](TECH-013-app-scenes-and-loading-screen.md) | 공통 초기화·씬 전환 싱글톤·코루틴 LoadingScreen·앱 UI 수명 | [PLAN-016](../plans/PLAN-016-bootstrap-title-and-scene-flow.md) |
 | [TECH-014](TECH-014-production-storage-and-shared-ui-contracts.md) | 생산 공통 판정·파일 교체·명시적 상태·공용 UI 계약 | [PLAN-017](../plans/PLAN-017-production-storage-status-and-shared-ui.md) |
 | [TECH-015](TECH-015-localization-and-csv-text.md) | Unity Localization·CSV 원본·앱 언어 수명·번역 검토 | [PLAN-018](../plans/PLAN-018-localization-and-csv-text-management.md) |
+| [TECH-016](TECH-016-popup-lifetime-and-presentation.md) | 공용 Popup·요청 소유 범위·표시/입력·확인 인계 | [PLAN-019](../plans/PLAN-019-shared-popup-system.md) |
