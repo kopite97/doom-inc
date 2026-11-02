@@ -245,7 +245,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(worker.Placement.Origin, Is.EqualTo(waitingCell));
             Assert.That(simulation.TotalAt(worker.Id), Is.EqualTo(5));
             Assert.That(source.GetComponent<GatheringComponent>().Outstanding, Is.EqualTo(5));
-            Assert.That(worker.GetComponent<WorkerComponent>().WaitReason, Is.Not.Null.And.Not.Empty);
+            Assert.That(worker.GetComponent<WorkerComponent>().WaitReason, Is.Not.EqualTo(WorkerWaitReason.None));
             Assert.That(simulation.Reservations.Any(r => r.DestinationId == originalDestination.Id), Is.False);
             Assert.That(simulation.SetAllowed(partialDestination.Id, true), Is.True);
             AdvanceUntil(() => simulation.TotalAt(partialDestination.Id) == 2, "The recovered partial store was not used.");

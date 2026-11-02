@@ -141,7 +141,7 @@ namespace MobileGame.Presentation
             var job = workerState.Job;
             controls.Text("WorkerJob", job == null ? "현재 행동: 대기" : "현재 행동: " + WorkKindText(job.Kind) + " · " + JobStageText(job.Stage)
                 + "\n작업 대상: " + ThingLabel(job.TargetId));
-            if (!string.IsNullOrWhiteSpace(workerState.WaitReason)) controls.Text("WorkerWait", "대기 이유: " + WorkerWaitText(workerState.WaitReason));
+            if (workerState.WaitReason != WorkerWaitReason.None) controls.Text("WorkerWait", "대기 이유: " + WorkerWaitText(workerState.WaitReason));
             if (job != null) RelatedThing("WorkerTarget", "현재 작업 대상", job.TargetId, id, canOperate);
             if (((CreatureData)selected.Definition).CanOperate)
             {
@@ -226,20 +226,19 @@ namespace MobileGame.Presentation
         private static string WorkKindText(WorkKind kind) => kind == WorkKind.Construction ? "건설" : kind == WorkKind.Gathering ? "채집" : kind == WorkKind.Hauling ? "운반" : "생산";
         private static string JobStageText(JobStage stage) => stage == JobStage.ToSupply ? "자원 받으러 이동"
             : stage == JobStage.ToDestination ? "목적지로 이동" : stage == JobStage.Working ? "작업 중" : "대기";
-        private static string WorkerWaitText(string reason)
+        private static string WorkerWaitText(WorkerWaitReason reason)
         {
             switch (reason)
             {
-                case "Target is unavailable":
-                case "Work target is unavailable": return "현재 작업 대상을 이용할 수 없습니다.";
-                case "Work target is unreachable":
-                case "Path is blocked": return "작업 대상까지 이동할 경로가 없습니다.";
-                case "All work priorities are disabled": return "모든 작업 우선순위가 꺼져 있습니다.";
-                case "No reachable work or valid destination": return "도달할 수 있는 작업 또는 유효한 운반 목적지가 없습니다.";
-                case "Another worker is using this facility": return "다른 개체가 이 시설에서 작업하고 있습니다.";
-                case "Completed output awaits storage": return "완료품이 저장소에 실제 입고되기를 기다립니다.";
-                case "Holding resources; no reachable allowed storage space": return "자원을 보유 중이며 도달 가능한 허용 저장 공간이 없습니다.";
-                case "Transport changed; selecting new work": return "운반 조건이 바뀌어 다음 작업을 선택하고 있습니다.";
+                case WorkerWaitReason.TargetUnavailable: return "현재 작업 대상을 이용할 수 없습니다.";
+                case WorkerWaitReason.TargetUnreachable:
+                case WorkerWaitReason.PathBlocked: return "작업 대상까지 이동할 경로가 없습니다.";
+                case WorkerWaitReason.PrioritiesDisabled: return "모든 작업 우선순위가 꺼져 있습니다.";
+                case WorkerWaitReason.NoWork: return "도달할 수 있는 작업 또는 유효한 운반 목적지가 없습니다.";
+                case WorkerWaitReason.FacilityClaimed: return "다른 개체가 이 시설에서 작업하고 있습니다.";
+                case WorkerWaitReason.OutputAdmission: return "완료품이 저장소에 실제 입고되기를 기다립니다.";
+                case WorkerWaitReason.NoStorage: return "자원을 보유 중이며 도달 가능한 허용 저장 공간이 없습니다.";
+                case WorkerWaitReason.TransportChanged: return "운반 조건이 바뀌어 다음 작업을 선택하고 있습니다.";
                 default: return "다음 작업을 기다립니다.";
             }
         }

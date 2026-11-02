@@ -13,6 +13,14 @@ namespace MobileGame.Foundation.Tests
 {
     public sealed class LaboratoryUiLayoutTests
     {
+        [TestCase(WorkerWaitReason.None)]
+        [TestCase((WorkerWaitReason)999)]
+        public void EmptyOrUnknownWorkerWaitReasonUsesSafeDisplay(WorkerWaitReason reason)
+        {
+            var formatter = typeof(LaboratoryView).GetMethod("WorkerWaitText", BindingFlags.Static | BindingFlags.NonPublic);
+            Assert.That(formatter.Invoke(null, new object[] { reason }), Is.EqualTo("다음 작업을 기다립니다."));
+        }
+
         [TestCase(0, 80, 1080, 2240, 1080, 2400)]
         [TestCase(100, 0, 2200, 1080, 2400, 1080)]
         [TestCase(0, 0, 2300, 1080, 2400, 1080)]
@@ -20,7 +28,7 @@ namespace MobileGame.Foundation.Tests
         public void SafeAreaNotchesMapBackToTheExactPhysicalBounds(float x, float y, float w, float h, float screenW, float screenH)
         {
             var safe = new Rect(x, y, w, h);
-            var logical = LaboratoryUiCanvas.CalculateSafeRect(safe, new Vector2(screenW, screenH), out var scale);
+            var logical = UiCanvas.CalculateSafeRect(safe, new Vector2(screenW, screenH), out var scale);
             Assert.That(logical.x * scale, Is.EqualTo(safe.xMin).Within(.001f));
             Assert.That(logical.y * scale, Is.EqualTo(screenH - safe.yMax).Within(.001f));
             Assert.That(logical.width * scale, Is.EqualTo(safe.width).Within(.001f));
@@ -33,7 +41,7 @@ namespace MobileGame.Foundation.Tests
         [TestCase(500, -1)]
         public void EmptyOrInvalidSafeAreaFallsBackToTheWholeScreen(float width, float height)
         {
-            var logical = LaboratoryUiCanvas.CalculateSafeRect(new Rect(90, 20, width, height), new Vector2(1200, 800), out var scale);
+            var logical = UiCanvas.CalculateSafeRect(new Rect(90, 20, width, height), new Vector2(1200, 800), out var scale);
             Assert.That(logical.position, Is.EqualTo(Vector2.zero));
             Assert.That(logical.width * scale, Is.EqualTo(1200).Within(.001f));
             Assert.That(logical.height * scale, Is.EqualTo(800).Within(.001f));
@@ -47,7 +55,7 @@ namespace MobileGame.Foundation.Tests
             try
             {
                 var epoch = 1; var clicks = 0;
-                var button = LaboratoryUiWidgets.Button("Action", host.transform, "Action", () => epoch);
+                var button = UiWidgets.Button("Action", host.transform, "Action", () => epoch);
                 button.Bind(() => clicks++, "first");
                 var pointer = new PointerEventData(events.GetComponent<EventSystem>()) { pointerId = 1 };
                 button.OnPointerDown(pointer); epoch++; button.OnPointerClick(pointer);
@@ -74,7 +82,7 @@ namespace MobileGame.Foundation.Tests
                 var workerThing = view.Simulation.Registry.Things.Single(t => t.Definition.Kind == ThingKind.Creature);
                 var worker = workerThing.GetComponent<WorkerComponent>();
                 if (individual) Assert.That(view.SelectThing(workerThing.Id), Is.True);
-                var rows = new LaboratoryUiList(LaboratoryUiWidgets.Rect("Rows", host.transform), () => 0);
+                var rows = new UiList(UiWidgets.Rect("Rows", host.transform), () => 0);
                 typeof(LaboratoryView).GetField("controls", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(view, rows);
                 rows.Begin(500);
                 var before = view.Simulation.Preset.ToArray();
@@ -82,7 +90,7 @@ namespace MobileGame.Foundation.Tests
                 typeof(LaboratoryView).GetMethod("AddPriorities", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(view,
                     new object[] { "Priority", before, apply, true, individual ? (Guid?)workerThing.Id : null });
                 rows.End();
-                var buttons = host.GetComponentsInChildren<LaboratoryUiButton>();
+                var buttons = host.GetComponentsInChildren<UiButton>();
                 var first = buttons.Single(b => b.name == "Priority_0"); var second = buttons.Single(b => b.name == "Priority_1");
                 var firstPointer = new PointerEventData(events.GetComponent<EventSystem>()) { pointerId = 1 };
                 var secondPointer = new PointerEventData(events.GetComponent<EventSystem>()) { pointerId = 2 };

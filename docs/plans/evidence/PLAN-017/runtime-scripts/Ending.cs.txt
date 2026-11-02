@@ -1,0 +1,7 @@
+var f=MobileGame.Presentation.SceneFlowManager.Instance;var v=f.Laboratory;
+if(f.IsTransitioning||v?.Controller==null)throw new System.InvalidOperationException("Not ready");v.SimulationRate=0;
+for(var i=0;i<1000 && v.Controller.Phase==MobileGame.Foundation.SessionPhase.Playing;i++)v.Controller.Advance(.5);
+var endingReached=v.Controller.Phase.ToString();
+for(var i=0;i<100 && v.Controller.Phase==MobileGame.Foundation.SessionPhase.Destruction;i++)v.AdvanceFrame(0,.1);
+return new {endingReached,phase=v.Controller.Phase.ToString(),score=v.Invasion.Score,error=v.Controller.LastError};
+

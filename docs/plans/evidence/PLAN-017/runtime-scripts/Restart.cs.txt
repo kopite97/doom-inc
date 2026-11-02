@@ -1,0 +1,5 @@
+var v=MobileGame.Presentation.SceneFlowManager.Instance.Laboratory;v.SendMessage("OnApplicationFocus",true);
+var before=v.Controller.Generation;var b=v.GetComponentsInChildren<MobileGame.Presentation.UiButton>().Single(b=>b.name=="RestartFromResults");
+if(!b.interactable||!MobileGame.Presentation.AppUiLifetime.AcceptInput)throw new System.InvalidOperationException("Restart not ready");b.OnSubmit(new UnityEngine.EventSystems.BaseEventData(UnityEngine.EventSystems.EventSystem.current));
+return new {before,after=v.Controller.Generation,phase=v.Controller.Phase.ToString(),score=v.Invasion.Score,things=v.Controller.Current.Registry.Things.Count(),error=v.Controller.LastSaveError};
+

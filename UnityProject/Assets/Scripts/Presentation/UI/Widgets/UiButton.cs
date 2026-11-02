@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace MobileGame.Presentation
 {
     // Capture an action on press; a layout or binding change invalidates its later release.
-    public sealed class LaboratoryUiButton : Button
+    public sealed class UiButton : Button
     {
         public Func<int> Epoch { get; set; }
         private Action action;

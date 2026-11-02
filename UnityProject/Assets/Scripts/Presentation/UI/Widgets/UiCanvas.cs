@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace MobileGame.Presentation
 {
     // A small runtime-owned screen shell. It does not own a game session.
-    public sealed class LaboratoryUiCanvas : IDisposable
+    public sealed class UiCanvas : IDisposable
     {
         public Canvas Canvas { get; }
         public RectTransform SafeRoot { get; }
@@ -37,13 +37,13 @@ namespace MobileGame.Presentation
 #endif
         }
 
-        public LaboratoryUiCanvas(Transform parent, string name, int order)
+        public UiCanvas(Transform parent, string name, int order)
         {
             var host = new GameObject(name, typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             host.transform.SetParent(parent, false);
             Canvas = host.GetComponent<Canvas>(); Canvas.renderMode = RenderMode.ScreenSpaceOverlay; Canvas.sortingOrder = order;
             scaler = host.GetComponent<CanvasScaler>(); scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-            SafeRoot = LaboratoryUiWidgets.Rect("SafeArea", host.transform);
+            SafeRoot = UiWidgets.Rect("SafeArea", host.transform);
             EnsureEventSystem();
             RefreshLayout();
         }

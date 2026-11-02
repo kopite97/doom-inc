@@ -43,7 +43,7 @@ namespace MobileGame.SpatialTests
                 var loading = bootstrap.PrepareAsync(source); var starting = bootstrap.StartSessionAsync();
                 yield return null; yield return null;
                 Assert.That(view.Controller, Is.Null); Assert.That(bootstrap.Ready, Is.False);
-                Assert.That(owner.GetComponentsInChildren<LaboratoryUiButton>(true).Single(b => b.name == "RetryLoading").gameObject.activeInHierarchy, Is.False);
+                Assert.That(owner.GetComponentsInChildren<UiButton>(true).Single(b => b.name == "RetryLoading").gameObject.activeInHierarchy, Is.False);
                 var error = string.Join("\n", Enumerable.Range(1, 48).Select(i => "Row " + i + ": definitions could not be prepared; keep the saved run and retry."));
                 source.Gate.SetException(new FormatException(error));
                 yield return WaitFor(() => loading.IsCompleted && starting.IsCompleted, "The loading failure did not complete.");
@@ -56,7 +56,7 @@ namespace MobileGame.SpatialTests
                     yield return SettleScreenStateSize(size);
                     Assert.That(GameDataStore.Instance, Is.SameAs(store)); Assert.That(store.Catalog, Is.Null);
                     Assert.That(File.ReadAllText(path), Is.EqualTo(original));
-                    var retry = owner.GetComponentsInChildren<LaboratoryUiButton>().Single(b => b.name == "RetryLoading");
+                    var retry = owner.GetComponentsInChildren<UiButton>().Single(b => b.name == "RetryLoading");
                     AssertScreenStateButtonReachable(retry);
                     var scroll = owner.GetComponentsInChildren<ScrollRect>().Single(s => s.name == "LoadingDetails");
                     Assert.That(scroll.content.rect.height, Is.GreaterThan(scroll.viewport.rect.height), "Long loading errors need scrolling.");
@@ -213,7 +213,7 @@ namespace MobileGame.SpatialTests
             yield return null; yield return null; Canvas.ForceUpdateCanvases();
         }
 
-        private static void RevealScreenStateButton(ScrollRect scroll, LaboratoryUiButton button)
+        private static void RevealScreenStateButton(ScrollRect scroll, UiButton button)
         {
             Assert.That(button, Is.Not.Null); scroll.StopMovement();
             var rect = (RectTransform)button.transform;
@@ -224,7 +224,7 @@ namespace MobileGame.SpatialTests
             scroll.content.anchoredPosition = position;
         }
 
-        private static void AssertScreenStateButtonReachable(LaboratoryUiButton button)
+        private static void AssertScreenStateButtonReachable(UiButton button)
         {
             Assert.That(button, Is.Not.Null); Assert.That(button.isActiveAndEnabled && button.IsInteractable(), Is.True, button.name);
             var rect = (RectTransform)button.transform; var corners = new Vector3[4]; rect.GetWorldCorners(corners);

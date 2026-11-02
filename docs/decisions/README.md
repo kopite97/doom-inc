@@ -40,3 +40,4 @@
 | [TECH-011](TECH-011-mobile-ui-state-and-assets.md) | 시설 상태 공통 조회·UI 탐색 수명·독립 설정·임시 에셋 참조 | [PLAN-014](../plans/PLAN-014-mobile-ui-ux-and-facility-status.md) |
 | [TECH-012](TECH-012-topic-json-catalog.md) | 주제별 JSON·타입 DTO·정확한 수치 해시와 빌드 없는 씬 검사 | [PLAN-015](../plans/PLAN-015-topic-json-definition-data.md) |
 | [TECH-013](TECH-013-app-scenes-and-loading-screen.md) | 공통 초기화·씬 전환 싱글톤·코루틴 LoadingScreen·앱 UI 수명 | [PLAN-016](../plans/PLAN-016-bootstrap-title-and-scene-flow.md) |
+| [TECH-014](TECH-014-production-storage-and-shared-ui-contracts.md) | 생산 공통 판정·파일 교체·명시적 상태·공용 UI 계약 | [PLAN-017](../plans/PLAN-017-production-storage-status-and-shared-ui.md) |

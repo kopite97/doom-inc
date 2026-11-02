@@ -70,7 +70,7 @@ namespace MobileGame.Foundation.Editor
             FoundationDefinitionAssets.EnsureFolder(Path.GetDirectoryName(path).Replace('\\', '/'));
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             var camera = new GameObject("Temp_" + role + "Camera").AddComponent<Camera>();
-            camera.clearFlags = CameraClearFlags.SolidColor; camera.backgroundColor = LaboratoryUiWidgets.Background;
+            camera.clearFlags = CameraClearFlags.SolidColor; camera.backgroundColor = UiWidgets.Background;
             camera.orthographic = true; camera.tag = "MainCamera";
             camera.gameObject.AddComponent<UniversalAdditionalCameraData>().SetRenderer(0);
             var root = new GameObject("Temp_" + role);

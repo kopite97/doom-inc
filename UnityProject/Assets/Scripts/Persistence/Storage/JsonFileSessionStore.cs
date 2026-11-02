@@ -23,28 +23,7 @@ namespace MobileGame.Persistence
         {
             if (string.IsNullOrWhiteSpace(json))
                 throw new ArgumentException("A serialized snapshot is required.", nameof(json));
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
-            var temporary = path + ".tmp-" + Guid.NewGuid().ToString("N");
-            try
-            {
-                using (var stream = new FileStream(temporary, FileMode.CreateNew, FileAccess.Write, FileShare.None))
-                {
-                    var bytes = new UTF8Encoding(false).GetBytes(json);
-                    stream.Write(bytes, 0, bytes.Length);
-                    stream.Flush(true);
-                }
-                if (File.Exists(path))
-                    File.Replace(temporary, path, null);
-                else
-                    File.Move(temporary, path);
-            }
-            finally
-            {
-                // Cleanup must not hide the original read/write error.
-                try { if (File.Exists(temporary)) File.Delete(temporary); }
-                catch (IOException) { }
-                catch (UnauthorizedAccessException) { }
-            }
+            AtomicTextFile.Write(path, json);
         }
     }
 }

@@ -1,0 +1,378 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 327.56,
+      "summary": {
+        "total": 50,
+        "passed": 34,
+        "failed": 16,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.EnvironmentTests.SampleSceneExecutionTests.SampleSceneUsesUniversal2DAndAdvancesFramesAndTime",
+          "Status": "Passed",
+          "Duration": 0.5609607,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.BootstrapTitleNewContinueAndReturnUseOneCatalogAndStopOldSession",
+          "Status": "Passed",
+          "Duration": 1.6151711,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.CorruptSaveAndFailedNewRunKeepBytesAndRecoveryScreen",
+          "Status": "Passed",
+          "Duration": 1.343522,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DataFailureBeforeAnySceneCanRetryAndDoesNotCreateSave",
+          "Status": "Passed",
+          "Duration": 0.3704162,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DestinationPreparationFailureKeepsSharedRecoveryAfterSceneReplacement",
+          "Status": "Passed",
+          "Duration": 0.9764528,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DestroyedFlowCannotPublishLateSceneEntryAndDuplicateDoesNotReplaceOwner",
+          "Status": "Passed",
+          "Duration": 0.3645216,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DirtyPreferencesSurviveSceneChangesAndRetryLatestValue",
+          "Status": "Passed",
+          "Duration": 1.0376574,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.OwnerDestroyedAtSceneArrivalDoesNotAutoStartANewRun",
+          "Status": "Passed",
+          "Duration": 0.7235683,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PreparedOperatingAndNearEndingSlotsUseNormalContinueAndRestoreResults",
+          "Status": "Passed",
+          "Duration": 7.6960612,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PreviousPressCannotConfirmNewScreenAndPauseKeepsTransitionBlocked",
+          "Status": "Passed",
+          "Duration": 0.736408,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.RepeatedVisibleLoadingRequestsInvalidatePressEvenWithIdenticalText",
+          "Status": "Failed",
+          "Duration": 0.3564963,
+          "Message": "  Expected: 1\r\n  But was:  0\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.AppSceneFlowTests+<RepeatedVisibleLoadingRequestsInvalidatePressEvenWithIdenticalText>d__4.MoveNext () [0x002c5] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\AppSceneFlowTests.SharedUi.cs:37\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.ReturnSaveFailurePreservesSessionAndCanCancel",
+          "Status": "Passed",
+          "Duration": 1.0334673,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.SharedTextStyleKeepsBaseSizeForReusedNewAndHiddenRowsWithoutAView",
+          "Status": "Passed",
+          "Duration": 0.3541584,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.TitleConfirmationAndLoadingFitBothOrientationsWithLargeText",
+          "Status": "Passed",
+          "Duration": 0.6664696,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun",
+          "Status": "Passed",
+          "Duration": 0.351408,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.GameDataStoreTests.BootstrapWaitsForWholeBundlePreservesSaveOnErrorAndRetries",
+          "Status": "Passed",
+          "Duration": 0.0602866,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.GameDataStoreTests.ConcurrentRequestsShareOneLoadAndDuplicatesCannotDestroyTheCatalog",
+          "Status": "Passed",
+          "Duration": 0.0207712,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.GameDataStoreTests.FailureCanRetryAndDestroyedLoaderCannotPublishLateResults",
+          "Status": "Passed",
+          "Duration": 0.0348694,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.GameDataStoreTests.SavedScenesInitializeJsonWithoutInjectedDataReferences",
+          "Status": "Passed",
+          "Duration": 1.0518534,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations",
+          "Status": "Failed",
+          "Duration": 20.4832018,
+          "Message": "  Status layout Game View did not adopt (1280, 720)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceBackCancelsPendingRestartAndInvalidatesHeldConfirmWithoutLosingDraft",
+          "Status": "Passed",
+          "Duration": 0.7022919,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceDisplayPreferencesSurviveNewRunAndSceneReopenWithoutChangingGameData",
+          "Status": "Passed",
+          "Duration": 1.0130402,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceDragAndPinchNeverSelectOnRemainingFingerRelease",
+          "Status": "Passed",
+          "Duration": 0.4256212,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceFacilityOperationsAndIndividualAssignmentsWorkInBothOrientations",
+          "Status": "Failed",
+          "Duration": 20.3750402,
+          "Message": "  Input test Game View did not adopt (1280, 720)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceGameMenuSaveAndReloadRequireExplicitConfirmationAndCancelPreservesDraft",
+          "Status": "Passed",
+          "Duration": 0.6880194,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceHeldTouchIsCanceledAcrossImmediatePauseAndResume",
+          "Status": "Passed",
+          "Duration": 0.4138547,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceLargeTextIconsAndBundledKoreanRemainUsableInBothOrientations",
+          "Status": "Failed",
+          "Duration": 20.4394762,
+          "Message": "  Game View did not adopt (1280, 720)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceMouseBuildsOnceAndUiAndMapBoundariesDoNotShareClicks",
+          "Status": "Passed",
+          "Duration": 0.5061126,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations",
+          "Status": "Failed",
+          "Duration": 20.3625614,
+          "Message": "  Status layout Game View did not adopt (1280, 720)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceReleaseReportsAndResultsRestartUseCurrentSessionCommands",
+          "Status": "Passed",
+          "Duration": 4.5847996,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceStatusTapUsesSelectionNormallyAndPreviewInBothEditingModesWithOnAndOff",
+          "Status": "Failed",
+          "Duration": 20.4892143,
+          "Message": "  Game View did not adopt (720, 1280)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceTouchOpensOverlappingCandidatesAndEditsOnlySelectedWorker",
+          "Status": "Failed",
+          "Duration": 0.4148539,
+          "Message": "  Expected: 02256468-f4a7-4206-8dd9-280c9cb835fe\r\n  But was:  00000000-0000-0000-0000-000000000000\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<DeviceTouchOpensOverlappingCandidatesAndEditsOnlySelectedWorker>d__4.MoveNext () [0x003d5] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Input.cs:50\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceTouchScrollOwnsCrossBoundaryAndMixedContactsThenMapCanPanToLastCell",
+          "Status": "Failed",
+          "Duration": 20.0127482,
+          "Message": "  The touch-scroll scenario did not adopt its portrait screen size.\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceZeroMaterialConstructionStillAcceptsValidSiteAndExplainsWaiting",
+          "Status": "Failed",
+          "Duration": 0.4143232,
+          "Message": "  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<DeviceZeroMaterialConstructionStillAcceptsValidSiteAndExplainsWaiting>d__21.MoveNext () [0x0016b] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.MobileUx.cs:34\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible",
+          "Status": "Failed",
+          "Duration": 20.4758352,
+          "Message": "  Game View did not adopt (1280, 720)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.EndingSceneCompletesTwoPaidRunsAndPreservesFileOnFailedRestart",
+          "Status": "Passed",
+          "Duration": 13.4336061,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.EndingViewPauseDisableReloadAndRecreationPreserveStoppedRun",
+          "Status": "Passed",
+          "Duration": 4.7820654,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.InvasionSceneRunsPaidCycleReleasesReportsStopsAndRebinds",
+          "Status": "Passed",
+          "Duration": 6.2710616,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.LoadingAndRestoreFailuresKeepRecoveryControlsReachableInBothOrientations",
+          "Status": "Failed",
+          "Duration": 20.0253272,
+          "Message": "  Game View did not adopt (1280, 720)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.NewReportsPreserveReadingPositionAndPrunedAnchorShowsNearestRetainedReport",
+          "Status": "Failed",
+          "Duration": 20.3869873,
+          "Message": "  Status layout Game View did not adopt (720, 1280)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.ProductionSceneRunsPaidInitialCycleMatchesHarnessAndRestartsCleanly",
+          "Status": "Passed",
+          "Duration": 4.7373607,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.RealStartBuildsCollectsAndStoresWithAutomaticSaveAndMidConstructionContinue",
+          "Status": "Passed",
+          "Duration": 3.0776673,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.RepeatedStatusPanelOrientationAndSessionChangesDoNotAccumulateUiObjects",
+          "Status": "Failed",
+          "Duration": 20.369655,
+          "Message": "  Status layout Game View did not adopt (1280, 720)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.ResponsiveLayoutsPreserveSessionAndDraftAcrossSixScreenSizes",
+          "Status": "Failed",
+          "Duration": 20.3514841,
+          "Message": "  Game View did not adopt requested size (1280, 720)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.SceneAndHarnessShareConstructionSettingsAndPlacementRules",
+          "Status": "Passed",
+          "Duration": 0.3717462,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan",
+          "Status": "Failed",
+          "Duration": 20.3806558,
+          "Message": "  Status layout Game View did not adopt (1280, 720)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.TwentyFacilityStatusRefreshReportsEditorCpuReferenceWithoutTimingPassClaim",
+          "Status": "Failed",
+          "Duration": 20.3859116,
+          "Message": "  Status layout Game View did not adopt (1280, 720)\r\n  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.cs:261\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.MapFoundationViewTests.SceneViewAndHarnessShareMoveRotateRejectCancelAndRenderActualState",
+          "Status": "Passed",
+          "Duration": 0.361985,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.SessionFoundationViewTests.SceneButtonsAndHarnessUseSameFlowAndPlacementCommands",
+          "Status": "Passed",
+          "Duration": 0.3552302,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.SessionFoundationViewTests.SceneUpdateAutoSavesAndRestoresNewGraphThenRestartsSlot",
+          "Status": "Passed",
+          "Duration": 1.0301413,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

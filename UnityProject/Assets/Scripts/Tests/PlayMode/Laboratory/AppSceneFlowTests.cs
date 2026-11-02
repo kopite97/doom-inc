@@ -65,7 +65,7 @@ namespace MobileGame.SpatialTests
         private IEnumerator ClickLoading(string name)
         {
             for (var i = 0; i < 4; i++) yield return null;
-            var button = flow.Loading.GetComponentsInChildren<LaboratoryUiButton>().Single(b => b.name == name);
+            var button = flow.Loading.GetComponentsInChildren<UiButton>().Single(b => b.name == name);
             Assert.That(button.interactable, Is.True);
             button.OnSubmit(new BaseEventData(EventSystem.current));
             yield return null;
@@ -193,7 +193,7 @@ namespace MobileGame.SpatialTests
                 for (var i = 0; i < 5; i++) yield return null;
                 Canvas.ForceUpdateCanvases();
                 var title = Object.FindFirstObjectByType<TitleView>();
-                Assert.That(title.GetComponentsInChildren<LaboratoryUiButton>().Where(b => b.interactable).All(b =>
+                Assert.That(title.GetComponentsInChildren<UiButton>().Where(b => b.interactable).All(b =>
                     ((RectTransform)b.transform).rect.height >= 48), Is.True);
                 yield return Capture("title-" + size.x);
                 yield return ClickTitle("Settings");
@@ -205,12 +205,12 @@ namespace MobileGame.SpatialTests
                 for (var i = 0; i < 4; i++) yield return null;
                 yield return Capture("confirmation-" + size.x);
                 flow.CancelPrompt(); File.Delete(path);
-                flow.Loading.Show("게임 데이터를 준비하고 있습니다…");
+                flow.Loading.Show(LoadingScreenKind.Loading, "게임 데이터를 준비하고 있습니다…");
                 for (var i = 0; i < 3; i++) yield return null;
                 yield return Capture("loading-" + size.x);
-                flow.Loading.Show("화면을 준비하지 못했습니다. 마지막으로 성공한 저장은 유지됩니다.", () => { }, () => { });
+                flow.Loading.Show(LoadingScreenKind.Error, "화면을 준비하지 못했습니다. 마지막으로 성공한 저장은 유지됩니다.", () => { }, () => { });
                 for (var i = 0; i < 4; i++) yield return null;
-                var buttons = flow.Loading.GetComponentsInChildren<LaboratoryUiButton>();
+                var buttons = flow.Loading.GetComponentsInChildren<UiButton>();
                 Assert.That(buttons.Length, Is.EqualTo(2));
                 var viewport = flow.Loading.GetComponentInChildren<ScrollRect>().viewport;
                 foreach (var button in buttons)
@@ -224,10 +224,10 @@ namespace MobileGame.SpatialTests
         private static IEnumerator ClickTitle(string name)
         {
             var deadline = Time.realtimeSinceStartupAsDouble + 5;
-            LaboratoryUiButton button = null;
+            UiButton button = null;
             while (Time.realtimeSinceStartupAsDouble < deadline)
             {
-                button = Object.FindFirstObjectByType<TitleView>().GetComponentsInChildren<LaboratoryUiButton>()
+                button = Object.FindFirstObjectByType<TitleView>().GetComponentsInChildren<UiButton>()
                     .SingleOrDefault(b => b.name == name && b.interactable);
                 if (button != null && AppUiLifetime.AcceptInput) break;
                 yield return null;
@@ -240,7 +240,7 @@ namespace MobileGame.SpatialTests
         private static IEnumerator Capture(string name)
         {
             yield return new WaitForEndOfFrame();
-            var target = Path.GetFullPath(Path.Combine(Application.dataPath, "../../docs/plans/evidence/PLAN-016/screens"));
+            var target = Path.GetFullPath(Path.Combine(Application.dataPath, "../Temp/AppSceneFlowScreens"));
             Directory.CreateDirectory(target);
             // ScreenCapture uses the host window backbuffer in this Editor. Read GameView's
             // render target instead to preserve the chosen portrait/landscape aspect ratio.

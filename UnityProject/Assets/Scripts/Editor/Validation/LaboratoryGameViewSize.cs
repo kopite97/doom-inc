@@ -17,7 +17,12 @@ namespace MobileGame.Foundation.Editor
         {
             var assembly = typeof(EditorWindow).Assembly;
             var viewType = assembly.GetType("UnityEditor.GameView", true);
-            window = EditorWindow.GetWindow(viewType); window.Show();
+            // Multiple Game windows can be open. Resize the view driving Screen, not an arbitrary window.
+            var playModeType = assembly.GetType("UnityEditor.PlayModeView", true);
+            window = playModeType.GetMethod("GetMainPlayModeView", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                .Invoke(null, null) as EditorWindow;
+            if (window == null) window = EditorWindow.GetWindow(viewType);
+            window.Show(); window.Focus();
             selected = viewType.GetProperty("selectedSizeIndex", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             previous = (int)selected.GetValue(window);
             var sizesType = assembly.GetType("UnityEditor.GameViewSizes", true);

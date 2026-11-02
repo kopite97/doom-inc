@@ -1,0 +1,114 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "tail": "8",
+      "level": "log"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 456,
+          "timestampUtc": "2026-11-02T04:43:20.8430412Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_SELECTION_VISIBILITY 720x1280 revealOnce=true manualPanHeldFrames=12",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan>d__39:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:138)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 457,
+          "timestampUtc": "2026-11-02T04:43:22.8372036Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_CPU_REFERENCE {\"scope\":\"Editor synchronous RefreshStatusOverlays only; not total frame CPU, GPU, allocations or device performance\",\"facilities\":20,\"markerTargets\":19,\"warmupFrames\":60,\"sampleFrames\":120,\"width\":1280,\"height\":720,\"liveMarkerObjects\":19,\"offMedianMs\":0.0044,\"onMedianMs\":0.9299,\"medianIncreaseMs\":0.9255,\"referenceBudgetMs\":2.0,\"withinReferenceBudget\":true,\"managedHeapBeforeOn\":1062600704,\"managedHeapAfterOn\":1112694784}",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<TwentyFacilityStatusRefreshReportsEditorCpuReferenceWithoutTimingPassClaim>d__55:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:189)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 458,
+          "timestampUtc": "2026-11-02T04:43:24.562214Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 459,
+          "timestampUtc": "2026-11-02T04:43:24.5868486Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 51 total, 51 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 460,
+          "timestampUtc": "2026-11-02T04:43:25.0103601Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 461,
+          "timestampUtc": "2026-11-02T04:43:35.0643995Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN012 play options: enabled=False; flags=None; savedOriginalEnabled=True",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:ReadPlayOptions () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:36)\nUnityEditor.EditorApplication:ExecuteMenuItem (string)\nUnity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu (string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Commands/MenuItemCommand.cs:75)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 462,
+          "timestampUtc": "2026-11-02T04:43:47.9663641Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN012 verification: domain and scene reload enabled.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:EnableDomainReload () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:31)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:DisableDomainReload () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:44)\nUnityEditor.EditorApplication:ExecuteMenuItem (string)\nUnity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu (string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Commands/MenuItemCommand.cs:75)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 463,
+          "timestampUtc": "2026-11-02T04:43:47.970441Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN012 play options: enabled=True; flags=DisableDomainReload; savedOriginalEnabled=False",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:ReadPlayOptions () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:36)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:DisableDomainReload () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:47)\nUnityEditor.EditorApplication:ExecuteMenuItem (string)\nUnity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu (string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Commands/MenuItemCommand.cs:75)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 463,
+      "session": "9dee6f0ac7c34fa8ae71940b668f70ff",
+      "returned": 8,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "log": 27
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-02T04:43:47.970441Z",
+        "ageMs": 84,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 31,
+        "consoleWarnings": 0,
+        "consoleLogs": 26,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

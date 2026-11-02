@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="50" result="Failed(Child)" total="50" passed="34" failed="16" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 04:20:36Z" end-time="2026-11-02 04:26:04Z" duration="327.5570931">
+  <test-suite type="TestSuite" id="1066" name="UnityProject" fullname="UnityProject" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-11-02 04:20:36Z" end-time="2026-11-02 04:26:04Z" duration="327.557093" total="50" passed="34" failed="16" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1003" name="Environment.PlayMode.Tests.dll" fullname="C:/Users/USER/Documents/ChatGPT/모바일 게임/UnityProject/Library/ScriptAssemblies/Environment.PlayMode.Tests.dll" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-02 04:20:36Z" end-time="2026-11-02 04:20:37Z" duration="0.582513" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="3044" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1004" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-02 04:20:36Z" end-time="2026-11-02 04:20:37Z" duration="0.580176" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1005" name="EnvironmentTests" fullname="MobileGame.EnvironmentTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-02 04:20:36Z" end-time="2026-11-02 04:20:37Z" duration="0.577811" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="SampleSceneExecutionTests" fullname="MobileGame.EnvironmentTests.SampleSceneExecutionTests" classname="MobileGame.EnvironmentTests.SampleSceneExecutionTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-02 04:20:36Z" end-time="2026-11-02 04:20:37Z" duration="0.573146" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="SampleSceneUsesUniversal2DAndAdvancesFramesAndTime" fullname="MobileGame.EnvironmentTests.SampleSceneExecutionTests.SampleSceneUsesUniversal2DAndAdvancesFramesAndTime" methodname="SampleSceneUsesUniversal2DAndAdvancesFramesAndTime" classname="MobileGame.EnvironmentTests.SampleSceneExecutionTests" runstate="Runnable" seed="116989090" result="Passed" start-time="2026-11-02 04:20:36Z" end-time="2026-11-02 04:20:37Z" duration="0.560961" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1060" name="MobileGame.Spatial.PlayMode.Tests.dll" fullname="C:/Users/USER/Documents/ChatGPT/모바일 게임/UnityProject/Library/ScriptAssemblies/MobileGame.Spatial.PlayMode.Tests.dll" runstate="Runnable" testcasecount="49" result="Failed" site="Child" start-time="2026-11-02 04:20:37Z" end-time="2026-11-02 04:26:04Z" duration="326.961487" total="49" passed="33" failed="16" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="3044" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1061" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="49" result="Failed" site="Child" start-time="2026-11-02 04:20:37Z" end-time="2026-11-02 04:26:04Z" duration="326.957178" total="49" passed="33" failed="16" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1062" name="SpatialTests" fullname="MobileGame.SpatialTests" runstate="Runnable" testcasecount="49" result="Failed" site="Child" start-time="2026-11-02 04:20:37Z" end-time="2026-11-02 04:26:04Z" duration="326.953398" total="49" passed="33" failed="16" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1006" name="AppSceneFlowTests" fullname="MobileGame.SpatialTests.AppSceneFlowTests" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-11-02 04:20:37Z" end-time="2026-11-02 04:20:55Z" duration="17.634541" total="14" passed="13" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1014" name="BootstrapTitleNewContinueAndReturnUseOneCatalogAndStopOldSession" fullname="MobileGame.SpatialTests.AppSceneFlowTests.BootstrapTitleNewContinueAndReturnUseOneCatalogAndStopOldSession" methodname="BootstrapTitleNewContinueAndReturnUseOneCatalogAndStopOldSession" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="1281579072" result="Passed" start-time="2026-11-02 04:20:37Z" end-time="2026-11-02 04:20:39Z" duration="1.615171" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="CorruptSaveAndFailedNewRunKeepBytesAndRecoveryScreen" fullname="MobileGame.SpatialTests.AppSceneFlowTests.CorruptSaveAndFailedNewRunKeepBytesAndRecoveryScreen" methodname="CorruptSaveAndFailedNewRunKeepBytesAndRecoveryScreen" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="925364407" result="Passed" start-time="2026-11-02 04:20:39Z" end-time="2026-11-02 04:20:40Z" duration="1.343522" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="DataFailureBeforeAnySceneCanRetryAndDoesNotCreateSave" fullname="MobileGame.SpatialTests.AppSceneFlowTests.DataFailureBeforeAnySceneCanRetryAndDoesNotCreateSave" methodname="DataFailureBeforeAnySceneCanRetryAndDoesNotCreateSave" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="1078048613" result="Passed" start-time="2026-11-02 04:20:40Z" end-time="2026-11-02 04:20:40Z" duration="0.370416" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="DestinationPreparationFailureKeepsSharedRecoveryAfterSceneReplacement" fullname="MobileGame.SpatialTests.AppSceneFlowTests.DestinationPreparationFailureKeepsSharedRecoveryAfterSceneReplacement" methodname="DestinationPreparationFailureKeepsSharedRecoveryAfterSceneReplacement" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="1349865889" result="Passed" start-time="2026-11-02 04:20:40Z" end-time="2026-11-02 04:20:41Z" duration="0.976453" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="DestroyedFlowCannotPublishLateSceneEntryAndDuplicateDoesNotReplaceOwner" fullname="MobileGame.SpatialTests.AppSceneFlowTests.DestroyedFlowCannotPublishLateSceneEntryAndDuplicateDoesNotReplaceOwner" methodname="DestroyedFlowCannotPublishLateSceneEntryAndDuplicateDoesNotReplaceOwner" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="293494611" result="Passed" start-time="2026-11-02 04:20:41Z" end-time="2026-11-02 04:20:42Z" duration="0.364522" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="DirtyPreferencesSurviveSceneChangesAndRetryLatestValue" fullname="MobileGame.SpatialTests.AppSceneFlowTests.DirtyPreferencesSurviveSceneChangesAndRetryLatestValue" methodname="DirtyPreferencesSurviveSceneChangesAndRetryLatestValue" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="561752649" result="Passed" start-time="2026-11-02 04:20:42Z" end-time="2026-11-02 04:20:43Z" duration="1.037657" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="OwnerDestroyedAtSceneArrivalDoesNotAutoStartANewRun" fullname="MobileGame.SpatialTests.AppSceneFlowTests.OwnerDestroyedAtSceneArrivalDoesNotAutoStartANewRun" methodname="OwnerDestroyedAtSceneArrivalDoesNotAutoStartANewRun" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="774041570" result="Passed" start-time="2026-11-02 04:20:43Z" end-time="2026-11-02 04:20:43Z" duration="0.723568" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="PreparedOperatingAndNearEndingSlotsUseNormalContinueAndRestoreResults" fullname="MobileGame.SpatialTests.AppSceneFlowTests.PreparedOperatingAndNearEndingSlotsUseNormalContinueAndRestoreResults" methodname="PreparedOperatingAndNearEndingSlotsUseNormalContinueAndRestoreResults" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="1726733544" result="Passed" start-time="2026-11-02 04:20:43Z" end-time="2026-11-02 04:20:51Z" duration="7.696061" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="PreviousPressCannotConfirmNewScreenAndPauseKeepsTransitionBlocked" fullname="MobileGame.SpatialTests.AppSceneFlowTests.PreviousPressCannotConfirmNewScreenAndPauseKeepsTransitionBlocked" methodname="PreviousPressCannotConfirmNewScreenAndPauseKeepsTransitionBlocked" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="1741872027" result="Passed" start-time="2026-11-02 04:20:51Z" end-time="2026-11-02 04:20:52Z" duration="0.736408" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="RepeatedVisibleLoadingRequestsInvalidatePressEvenWithIdenticalText" fullname="MobileGame.SpatialTests.AppSceneFlowTests.RepeatedVisibleLoadingRequestsInvalidatePressEvenWithIdenticalText" methodname="RepeatedVisibleLoadingRequestsInvalidatePressEvenWithIdenticalText" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="907206037" result="Failed" start-time="2026-11-02 04:20:52Z" end-time="2026-11-02 04:20:52Z" duration="0.356496" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.AppSceneFlowTests+<RepeatedVisibleLoadingRequestsInvalidatePressEvenWithIdenticalText>d__4.MoveNext () [0x002c5] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\AppSceneFlowTests.SharedUi.cs:37
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1018" name="ReturnSaveFailurePreservesSessionAndCanCancel" fullname="MobileGame.SpatialTests.AppSceneFlowTests.ReturnSaveFailurePreservesSessionAndCanCancel" methodname="ReturnSaveFailurePreservesSessionAndCanCancel" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="1510767950" result="Passed" start-time="2026-11-02 04:20:52Z" end-time="2026-11-02 04:20:53Z" duration="1.033467" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="SharedTextStyleKeepsBaseSizeForReusedNewAndHiddenRowsWithoutAView" fullname="MobileGame.SpatialTests.AppSceneFlowTests.SharedTextStyleKeepsBaseSizeForReusedNewAndHiddenRowsWithoutAView" methodname="SharedTextStyleKeepsBaseSizeForReusedNewAndHiddenRowsWithoutAView" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="966885359" result="Passed" start-time="2026-11-02 04:20:53Z" end-time="2026-11-02 04:20:54Z" duration="0.354158" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="TitleConfirmationAndLoadingFitBothOrientationsWithLargeText" fullname="MobileGame.SpatialTests.AppSceneFlowTests.TitleConfirmationAndLoadingFitBothOrientationsWithLargeText" methodname="TitleConfirmationAndLoadingFitBothOrientationsWithLargeText" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="62949070" result="Passed" start-time="2026-11-02 04:20:54Z" end-time="2026-11-02 04:20:54Z" duration="0.666470" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun" fullname="MobileGame.SpatialTests.AppSceneFlowTests.UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun" methodname="UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="428750658" result="Passed" start-time="2026-11-02 04:20:54Z" end-time="2026-11-02 04:20:55Z" duration="0.351408" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1021" name="GameDataStoreTests" fullname="MobileGame.SpatialTests.GameDataStoreTests" classname="MobileGame.SpatialTests.GameDataStoreTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-02 04:20:55Z" end-time="2026-11-02 04:20:56Z" duration="1.171825" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1024" name="BootstrapWaitsForWholeBundlePreservesSaveOnErrorAndRetries" fullname="MobileGame.SpatialTests.GameDataStoreTests.BootstrapWaitsForWholeBundlePreservesSaveOnErrorAndRetries" methodname="BootstrapWaitsForWholeBundlePreservesSaveOnErrorAndRetries" classname="MobileGame.SpatialTests.GameDataStoreTests" runstate="Runnable" seed="1867079790" result="Passed" start-time="2026-11-02 04:20:55Z" end-time="2026-11-02 04:20:55Z" duration="0.060287" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="ConcurrentRequestsShareOneLoadAndDuplicatesCannotDestroyTheCatalog" fullname="MobileGame.SpatialTests.GameDataStoreTests.ConcurrentRequestsShareOneLoadAndDuplicatesCannotDestroyTheCatalog" methodname="ConcurrentRequestsShareOneLoadAndDuplicatesCannotDestroyTheCatalog" classname="MobileGame.SpatialTests.GameDataStoreTests" runstate="Runnable" seed="1627662482" result="Passed" start-time="2026-11-02 04:20:55Z" end-time="2026-11-02 04:20:55Z" duration="0.020771" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="FailureCanRetryAndDestroyedLoaderCannotPublishLateResults" fullname="MobileGame.SpatialTests.GameDataStoreTests.FailureCanRetryAndDestroyedLoaderCannotPublishLateResults" methodname="FailureCanRetryAndDestroyedLoaderCannotPublishLateResults" classname="MobileGame.SpatialTests.GameDataStoreTests" runstate="Runnable" seed="2059373958" result="Passed" start-time="2026-11-02 04:20:55Z" end-time="2026-11-02 04:20:55Z" duration="0.034869" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="SavedScenesInitializeJsonWithoutInjectedDataReferences" fullname="MobileGame.SpatialTests.GameDataStoreTests.SavedScenesInitializeJsonWithoutInjectedDataReferences" methodname="SavedScenesInitializeJsonWithoutInjectedDataReferences" classname="MobileGame.SpatialTests.GameDataStoreTests" runstate="Runnable" seed="987919595" result="Passed" start-time="2026-11-02 04:20:55Z" end-time="2026-11-02 04:20:56Z" duration="1.051853" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[JSON dependencies verified for five saved scenes; no Player compilation/build invoked.
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1026" name="LaboratoryViewTests" fullname="MobileGame.SpatialTests.LaboratoryViewTests" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-11-02 04:20:56Z" end-time="2026-11-02 04:26:02Z" duration="306.386328" total="28" passed="13" failed="15" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1050" name="DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations" methodname="DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="65011249" result="Failed" start-time="2026-11-02 04:20:56Z" end-time="2026-11-02 04:21:16Z" duration="20.483202" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Status layout Game View did not adopt (1280, 720)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1041" name="DeviceBackCancelsPendingRestartAndInvalidatesHeldConfirmWithoutLosingDraft" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceBackCancelsPendingRestartAndInvalidatesHeldConfirmWithoutLosingDraft" methodname="DeviceBackCancelsPendingRestartAndInvalidatesHeldConfirmWithoutLosingDraft" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="878807668" result="Passed" start-time="2026-11-02 04:21:16Z" end-time="2026-11-02 04:21:17Z" duration="0.702292" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="DeviceDisplayPreferencesSurviveNewRunAndSceneReopenWithoutChangingGameData" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceDisplayPreferencesSurviveNewRunAndSceneReopenWithoutChangingGameData" methodname="DeviceDisplayPreferencesSurviveNewRunAndSceneReopenWithoutChangingGameData" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="2122497276" result="Passed" start-time="2026-11-02 04:21:17Z" end-time="2026-11-02 04:21:18Z" duration="1.013040" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1030" name="DeviceDragAndPinchNeverSelectOnRemainingFingerRelease" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceDragAndPinchNeverSelectOnRemainingFingerRelease" methodname="DeviceDragAndPinchNeverSelectOnRemainingFingerRelease" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="342174620" result="Passed" start-time="2026-11-02 04:21:18Z" end-time="2026-11-02 04:21:18Z" duration="0.425621" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="DeviceFacilityOperationsAndIndividualAssignmentsWorkInBothOrientations" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceFacilityOperationsAndIndividualAssignmentsWorkInBothOrientations" methodname="DeviceFacilityOperationsAndIndividualAssignmentsWorkInBothOrientations" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1524999144" result="Failed" start-time="2026-11-02 04:21:18Z" end-time="2026-11-02 04:21:39Z" duration="20.375040" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Input test Game View did not adopt (1280, 720)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1040" name="DeviceGameMenuSaveAndReloadRequireExplicitConfirmationAndCancelPreservesDraft" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceGameMenuSaveAndReloadRequireExplicitConfirmationAndCancelPreservesDraft" methodname="DeviceGameMenuSaveAndReloadRequireExplicitConfirmationAndCancelPreservesDraft" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="723446695" result="Passed" start-time="2026-11-02 04:21:39Z" end-time="2026-11-02 04:21:40Z" duration="0.688019" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1032" name="DeviceHeldTouchIsCanceledAcrossImmediatePauseAndResume" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceHeldTouchIsCanceledAcrossImmediatePauseAndResume" methodname="DeviceHeldTouchIsCanceledAcrossImmediatePauseAndResume" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1178731209" result="Passed" start-time="2026-11-02 04:21:40Z" end-time="2026-11-02 04:21:40Z" duration="0.413855" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1043" name="DeviceLargeTextIconsAndBundledKoreanRemainUsableInBothOrientations" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceLargeTextIconsAndBundledKoreanRemainUsableInBothOrientations" methodname="DeviceLargeTextIconsAndBundledKoreanRemainUsableInBothOrientations" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="944038834" result="Failed" start-time="2026-11-02 04:21:40Z" end-time="2026-11-02 04:22:00Z" duration="20.439476" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Game View did not adopt (1280, 720)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1031" name="DeviceMouseBuildsOnceAndUiAndMapBoundariesDoNotShareClicks" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceMouseBuildsOnceAndUiAndMapBoundariesDoNotShareClicks" methodname="DeviceMouseBuildsOnceAndUiAndMapBoundariesDoNotShareClicks" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1970223351" result="Passed" start-time="2026-11-02 04:22:00Z" end-time="2026-11-02 04:22:01Z" duration="0.506113" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1047" name="DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations" methodname="DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1572540520" result="Failed" start-time="2026-11-02 04:22:01Z" end-time="2026-11-02 04:22:21Z" duration="20.362561" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Status layout Game View did not adopt (1280, 720)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1034" name="DeviceReleaseReportsAndResultsRestartUseCurrentSessionCommands" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceReleaseReportsAndResultsRestartUseCurrentSessionCommands" methodname="DeviceReleaseReportsAndResultsRestartUseCurrentSessionCommands" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="225952170" result="Passed" start-time="2026-11-02 04:22:21Z" end-time="2026-11-02 04:22:26Z" duration="4.584800" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="DeviceStatusTapUsesSelectionNormallyAndPreviewInBothEditingModesWithOnAndOff" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceStatusTapUsesSelectionNormallyAndPreviewInBothEditingModesWithOnAndOff" methodname="DeviceStatusTapUsesSelectionNormallyAndPreviewInBothEditingModesWithOnAndOff" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1894857879" result="Failed" start-time="2026-11-02 04:22:26Z" end-time="2026-11-02 04:22:46Z" duration="20.489214" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Game View did not adopt (720, 1280)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1029" name="DeviceTouchOpensOverlappingCandidatesAndEditsOnlySelectedWorker" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceTouchOpensOverlappingCandidatesAndEditsOnlySelectedWorker" methodname="DeviceTouchOpensOverlappingCandidatesAndEditsOnlySelectedWorker" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1752302028" result="Failed" start-time="2026-11-02 04:22:46Z" end-time="2026-11-02 04:22:47Z" duration="0.414854" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 02256468-f4a7-4206-8dd9-280c9cb835fe
+  But was:  00000000-0000-0000-0000-000000000000
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<DeviceTouchOpensOverlappingCandidatesAndEditsOnlySelectedWorker>d__4.MoveNext () [0x003d5] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.Input.cs:50
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1035" name="DeviceTouchScrollOwnsCrossBoundaryAndMixedContactsThenMapCanPanToLastCell" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceTouchScrollOwnsCrossBoundaryAndMixedContactsThenMapCanPanToLastCell" methodname="DeviceTouchScrollOwnsCrossBoundaryAndMixedContactsThenMapCanPanToLastCell" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="2109899051" result="Failed" start-time="2026-11-02 04:22:47Z" end-time="2026-11-02 04:23:07Z" duration="20.012748" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The touch-scroll scenario did not adopt its portrait screen size.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1038" name="DeviceZeroMaterialConstructionStillAcceptsValidSiteAndExplainsWaiting" fullname="MobileGame.SpatialTests.LaboratoryViewTests.DeviceZeroMaterialConstructionStillAcceptsValidSiteAndExplainsWaiting" methodname="DeviceZeroMaterialConstructionStillAcceptsValidSiteAndExplainsWaiting" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1824531634" result="Failed" start-time="2026-11-02 04:23:07Z" end-time="2026-11-02 04:23:07Z" duration="0.414323" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<DeviceZeroMaterialConstructionStillAcceptsValidSiteAndExplainsWaiting>d__21.MoveNext () [0x0016b] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.MobileUx.cs:34
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1049" name="EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible" fullname="MobileGame.SpatialTests.LaboratoryViewTests.EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible" methodname="EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1336348128" result="Failed" start-time="2026-11-02 04:23:07Z" end-time="2026-11-02 04:23:28Z" duration="20.475835" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Game View did not adopt (1280, 720)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1027" name="EndingSceneCompletesTwoPaidRunsAndPreservesFileOnFailedRestart" fullname="MobileGame.SpatialTests.LaboratoryViewTests.EndingSceneCompletesTwoPaidRunsAndPreservesFileOnFailedRestart" methodname="EndingSceneCompletesTwoPaidRunsAndPreservesFileOnFailedRestart" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="583272151" result="Passed" start-time="2026-11-02 04:23:28Z" end-time="2026-11-02 04:23:41Z" duration="13.433606" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1028" name="EndingViewPauseDisableReloadAndRecreationPreserveStoppedRun" fullname="MobileGame.SpatialTests.LaboratoryViewTests.EndingViewPauseDisableReloadAndRecreationPreserveStoppedRun" methodname="EndingViewPauseDisableReloadAndRecreationPreserveStoppedRun" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="734164713" result="Passed" start-time="2026-11-02 04:23:41Z" end-time="2026-11-02 04:23:46Z" duration="4.782065" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="InvasionSceneRunsPaidCycleReleasesReportsStopsAndRebinds" fullname="MobileGame.SpatialTests.LaboratoryViewTests.InvasionSceneRunsPaidCycleReleasesReportsStopsAndRebinds" methodname="InvasionSceneRunsPaidCycleReleasesReportsStopsAndRebinds" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1809017258" result="Passed" start-time="2026-11-02 04:23:46Z" end-time="2026-11-02 04:23:52Z" duration="6.271062" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1048" name="LoadingAndRestoreFailuresKeepRecoveryControlsReachableInBothOrientations" fullname="MobileGame.SpatialTests.LaboratoryViewTests.LoadingAndRestoreFailuresKeepRecoveryControlsReachableInBothOrientations" methodname="LoadingAndRestoreFailuresKeepRecoveryControlsReachableInBothOrientations" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="619576459" result="Failed" start-time="2026-11-02 04:23:52Z" end-time="2026-11-02 04:24:12Z" duration="20.025327" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Game View did not adopt (1280, 720)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1045" name="NewReportsPreserveReadingPositionAndPrunedAnchorShowsNearestRetainedReport" fullname="MobileGame.SpatialTests.LaboratoryViewTests.NewReportsPreserveReadingPositionAndPrunedAnchorShowsNearestRetainedReport" methodname="NewReportsPreserveReadingPositionAndPrunedAnchorShowsNearestRetainedReport" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1911943290" result="Failed" start-time="2026-11-02 04:24:12Z" end-time="2026-11-02 04:24:33Z" duration="20.386987" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Status layout Game View did not adopt (720, 1280)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1044" name="ProductionSceneRunsPaidInitialCycleMatchesHarnessAndRestartsCleanly" fullname="MobileGame.SpatialTests.LaboratoryViewTests.ProductionSceneRunsPaidInitialCycleMatchesHarnessAndRestartsCleanly" methodname="ProductionSceneRunsPaidInitialCycleMatchesHarnessAndRestartsCleanly" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="209828154" result="Passed" start-time="2026-11-02 04:24:33Z" end-time="2026-11-02 04:24:37Z" duration="4.737361" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1053" name="RealStartBuildsCollectsAndStoresWithAutomaticSaveAndMidConstructionContinue" fullname="MobileGame.SpatialTests.LaboratoryViewTests.RealStartBuildsCollectsAndStoresWithAutomaticSaveAndMidConstructionContinue" methodname="RealStartBuildsCollectsAndStoresWithAutomaticSaveAndMidConstructionContinue" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1499118012" result="Passed" start-time="2026-11-02 04:24:37Z" end-time="2026-11-02 04:24:40Z" duration="3.077667" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="RepeatedStatusPanelOrientationAndSessionChangesDoNotAccumulateUiObjects" fullname="MobileGame.SpatialTests.LaboratoryViewTests.RepeatedStatusPanelOrientationAndSessionChangesDoNotAccumulateUiObjects" methodname="RepeatedStatusPanelOrientationAndSessionChangesDoNotAccumulateUiObjects" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="201430796" result="Failed" start-time="2026-11-02 04:24:40Z" end-time="2026-11-02 04:25:01Z" duration="20.369655" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Status layout Game View did not adopt (1280, 720)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1037" name="ResponsiveLayoutsPreserveSessionAndDraftAcrossSixScreenSizes" fullname="MobileGame.SpatialTests.LaboratoryViewTests.ResponsiveLayoutsPreserveSessionAndDraftAcrossSixScreenSizes" methodname="ResponsiveLayoutsPreserveSessionAndDraftAcrossSixScreenSizes" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1826923287" result="Failed" start-time="2026-11-02 04:25:01Z" end-time="2026-11-02 04:25:21Z" duration="20.351484" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Game View did not adopt requested size (1280, 720)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1054" name="SceneAndHarnessShareConstructionSettingsAndPlacementRules" fullname="MobileGame.SpatialTests.LaboratoryViewTests.SceneAndHarnessShareConstructionSettingsAndPlacementRules" methodname="SceneAndHarnessShareConstructionSettingsAndPlacementRules" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1259167604" result="Passed" start-time="2026-11-02 04:25:21Z" end-time="2026-11-02 04:25:21Z" duration="0.371746" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1046" name="SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan" fullname="MobileGame.SpatialTests.LaboratoryViewTests.SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan" methodname="SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="2082051099" result="Failed" start-time="2026-11-02 04:25:21Z" end-time="2026-11-02 04:25:42Z" duration="20.380656" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Status layout Game View did not adopt (1280, 720)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1052" name="TwentyFacilityStatusRefreshReportsEditorCpuReferenceWithoutTimingPassClaim" fullname="MobileGame.SpatialTests.LaboratoryViewTests.TwentyFacilityStatusRefreshReportsEditorCpuReferenceWithoutTimingPassClaim" methodname="TwentyFacilityStatusRefreshReportsEditorCpuReferenceWithoutTimingPassClaim" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="270406998" result="Failed" start-time="2026-11-02 04:25:42Z" end-time="2026-11-02 04:26:02Z" duration="20.385912" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Status layout Game View did not adopt (1280, 720)
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<WaitFor>d__78.MoveNext () [0x0005f] in C:\Users\USER\Documents\ChatGPT\모바일 게임\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.cs:261
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1058" name="MapFoundationViewTests" fullname="MobileGame.SpatialTests.MapFoundationViewTests" classname="MobileGame.SpatialTests.MapFoundationViewTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-02 04:26:02Z" end-time="2026-11-02 04:26:03Z" duration="0.365647" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1059" name="SceneViewAndHarnessShareMoveRotateRejectCancelAndRenderActualState" fullname="MobileGame.SpatialTests.MapFoundationViewTests.SceneViewAndHarnessShareMoveRotateRejectCancelAndRenderActualState" methodname="SceneViewAndHarnessShareMoveRotateRejectCancelAndRenderActualState" classname="MobileGame.SpatialTests.MapFoundationViewTests" runstate="Runnable" seed="1951086072" result="Passed" start-time="2026-11-02 04:26:02Z" end-time="2026-11-02 04:26:03Z" duration="0.361985" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1055" name="SessionFoundationViewTests" fullname="MobileGame.SpatialTests.SessionFoundationViewTests" classname="MobileGame.SpatialTests.SessionFoundationViewTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-02 04:26:03Z" end-time="2026-11-02 04:26:04Z" duration="1.390987" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1057" name="SceneButtonsAndHarnessUseSameFlowAndPlacementCommands" fullname="MobileGame.SpatialTests.SessionFoundationViewTests.SceneButtonsAndHarnessUseSameFlowAndPlacementCommands" methodname="SceneButtonsAndHarnessUseSameFlowAndPlacementCommands" classname="MobileGame.SpatialTests.SessionFoundationViewTests" runstate="Runnable" seed="671353398" result="Passed" start-time="2026-11-02 04:26:03Z" end-time="2026-11-02 04:26:03Z" duration="0.355230" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="SceneUpdateAutoSavesAndRestoresNewGraphThenRestartsSlot" fullname="MobileGame.SpatialTests.SessionFoundationViewTests.SceneUpdateAutoSavesAndRestoresNewGraphThenRestartsSlot" methodname="SceneUpdateAutoSavesAndRestoresNewGraphThenRestartsSlot" classname="MobileGame.SpatialTests.SessionFoundationViewTests" runstate="Runnable" seed="836422898" result="Passed" start-time="2026-11-02 04:26:03Z" end-time="2026-11-02 04:26:04Z" duration="1.030141" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

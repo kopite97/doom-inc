@@ -16,6 +16,8 @@
 | 폴더·파일·에셋 생성·배치·이동·이름 변경 | [프로젝트 구조](docs/agents/project-structure.md) |
 | 코드·폴더·에셋 명명과 기존 이름 정비 | [명명 규칙](docs/agents/naming.md) |
 | C#·어셈블리 생성·배치·이동 | [스크립트 구조](docs/agents/script-structure.md) |
+| 객체 형태·Unity 의존성·소유와 수명·싱글톤·static 판단 | [객체 설계](docs/agents/object-design.md) |
+| 초기 기능 설계·구현·기존 코드 변경의 추상화·공통화·재사용 판단 | [추상화 기준](docs/agents/abstraction.md) |
 | Thing·SO·Job·Map·저장·GameFlow 설계 및 변경 | [아키텍처](docs/agents/architecture.md) |
 | 씬별 책임·초기화·씬 전환·Editor 직접 실행 | [씬 흐름](docs/agents/scene-flow.md) |
 | 씬·프리팹·SO·스크립트 에셋 변경 | [Unity 에셋](docs/agents/unity-assets.md) |

@@ -18,7 +18,7 @@
 ### UI와 화면 좌표
 
 - uGUI의 Screen Space Overlay Canvas·GraphicRaycaster·ScrollRect·RectMask2D로 실제 화면을 구성한다. 입력은 InputSystemUIInputModule을 사용한다.
-- [LaboratoryUiCanvas](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryUiCanvas.cs)가 안전 영역과 논리 좌표 변환을 소유한다. `Screen.safeArea`가 비어 있으면 전체 화면을 사용한다.
+- [UiCanvas](../../UnityProject/Assets/Scripts/Presentation/UI/Widgets/UiCanvas.cs)가 안전 영역과 논리 좌표 변환을 소유한다. `Screen.safeArea`가 비어 있으면 전체 화면을 사용한다.
 - 안전 영역의 짧은 변 600 논리 단위를 기준으로 `clamp(min(width, height) / 600, 0.5, 3)` 배율을 적용한다. 600은 기준 크기이며 배율 제한 밖의 화면까지 고정 최소 논리 크기를 보장하는 값은 아니다. 크기 검증은 실제 화면·안전 영역·배율을 함께 기록한다.
 - 조작 목표는 최소 44 논리 단위, 기본 버튼 높이는 48 논리 단위로 잡는다. 배치 도구는 글자 폭을 포함해 최소 90 논리 단위 폭·6 단위 간격으로 배치하고, 편집 6개가 한 행에 들어가지 않으면 3+3행 또는 더 적은 열로 재배치한다. 늘어난 도구 높이를 Map 영역 계산에도 반영한다. 긴 버튼·보고·오류는 줄바꿈과 행 높이 계산을 사용하며 목록은 스크롤한다. 작은 격자 칸은 줌으로 확대하고 별도 전체 개체 목록으로도 선택한다.
 - [LaboratoryView.Gui](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.Gui.cs)는 가로에서 연구소·측면 패널, 세로에서 연구소·하단 패널로 재배치한다. 패널 접기와 배치 도구를 제공하며 회전·확정·취소는 목록 스크롤과 분리한다.
@@ -35,8 +35,8 @@
 
 ### 버튼 요청과 UI 수명
 
-- [LaboratoryUiButton](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryUiButton.cs)은 press 시 포인터 ID·액션·의미 문맥·layout epoch를 보관하고 click에서 다시 검사한다. 화면 재배치·세션 교체·선택 대상 변경 이후의 이전 요청을 거부한다. epoch 조회 시 현재 화면·안전 영역을 동기화하여 LateUpdate 이전 release도 검사한다.
-- [LaboratoryUiWidgets](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryUiWidgets.cs)의 목록은 의미 키로 행을 재사용한다. 매 프레임 버튼을 교체하여 스크롤과 누른 상태를 끊지 않는다. 사라진 행은 즉시 비활성화한 뒤 제거한다.
+- [UiButton](../../UnityProject/Assets/Scripts/Presentation/UI/Widgets/UiButton.cs)은 press 시 포인터 ID·액션·의미 문맥·layout epoch를 보관하고 click에서 다시 검사한다. 화면 재배치·세션 교체·선택 대상 변경 이후의 이전 요청을 거부한다. epoch 조회 시 현재 화면·안전 영역을 동기화하여 LateUpdate 이전 release도 검사한다.
+- [UiList](../../UnityProject/Assets/Scripts/Presentation/UI/Widgets/UiList.cs)는 의미 키로 행을 재사용한다. 매 프레임 버튼을 교체하여 스크롤과 누른 상태를 끊지 않는다. 사라진 행은 즉시 비활성화한 뒤 제거한다.
 - 런타임에서 Canvas·버튼·목록을 생성한다. 현재 임의(Temp) 화면은 코드와 생성 도구가 같은 구성을 사용하며 별도 씬 YAML·프리팹에 중복 UI 원본을 두지 않는다. 정식 아트와 프리팹 제작은 후속 범위다.
 - EventSystem이 이미 있으면 재사용하고, 없을 때만 InputSystemUIInputModule과 기본 UI 액션을 가진 소유 오브젝트를 만든다. 로딩·게임 Canvas는 사용 수를 공유하며 마지막 소유 화면이 해제되면 직접 만든 EventSystem도 제거한다. 외부 EventSystem은 파괴하지 않는다.
 - [BootstrapLoadingView](../../UnityProject/Assets/Scripts/Presentation/Bootstrap/BootstrapLoadingView.cs)는 Data 준비 전의 로딩·오류·재시도를 담당한다. [GameBootstrap](../../UnityProject/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs)은 Ready 이후 로딩 화면을 해제하고 기존 View·GameDataStore 준비 경로를 연결한다.

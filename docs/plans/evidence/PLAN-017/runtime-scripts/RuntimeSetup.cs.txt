@@ -1,0 +1,5 @@
+if(UnityEditor.EditorApplication.isPlaying)throw new System.InvalidOperationException("Stop tests first.");
+if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty)throw new System.InvalidOperationException("Preserve unsaved scene.");
+UnityEditor.SceneManagement.EditorSceneManager.NewScene(UnityEditor.SceneManagement.NewSceneSetup.EmptyScene,UnityEditor.SceneManagement.NewSceneMode.Single);
+return new {scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,isolatedSlot=System.IO.Path.GetFullPath(UnityEngine.Application.dataPath+"/../Temp/PLAN017Runtime/session.json")};
+

@@ -68,7 +68,7 @@ namespace MobileGame.Presentation
         }
         private void ApplyTextStyle()
         {
-            foreach (var label in GetComponentsInChildren<LaboratoryUiText>(true)) label.Apply(this);
+            foreach (var label in GetComponentsInChildren<UiText>(true)) label.Apply(UiFont, UiTextScale);
         }
         public FacilityStatus StatusFor(Thing thing)
         {

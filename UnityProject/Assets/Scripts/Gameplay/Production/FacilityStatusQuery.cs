@@ -117,17 +117,10 @@ namespace MobileGame.Gameplay
             if (facility.TryGetComponent<ProductionComponent>(out var production))
             {
                 var working = WorkingCount(facility.Id, WorkKind.Production);
-                var needsTarget = !production.InProgress && definition.Role == FacilityRole.Cultivation
-                    && production.SelectedTarget == CultivationTarget.None;
-                var inputs = laboratory.Production.InputCount(facility);
-                var materials = Materials(facility, definition.InputResource, definition.InputAmount, inputs,
-                    production.InProgress, !needsTarget && production.Outstanding == 0, false);
-                // Same precedence as ProductionManager.WaitReason, with typed presentation values.
-                var kind = production.Outstanding > 0 ? FacilityStatusKind.OutputWaiting
-                    : needsTarget ? FacilityStatusKind.TargetRequired
-                    : !laboratory.Production.Accessible(facility) ? FacilityStatusKind.Unreachable
-                    : !production.InProgress && inputs < definition.InputAmount ? FacilityStatusKind.MaterialWaiting
-                    : working > 0 ? FacilityStatusKind.ProductionWorking : FacilityStatusKind.ProductionAutomatic;
+                var readiness = laboratory.Production.Evaluate(facility);
+                var materials = Materials(facility, definition.InputResource, definition.InputAmount, readiness.Inputs,
+                    production.InProgress, !readiness.NeedsTarget && production.Outstanding == 0, false);
+                var kind = ProductionStatus(readiness, working);
                 var rate = kind == FacilityStatusKind.ProductionWorking ? laboratory.Settings.StaffedRate
                     : kind == FacilityStatusKind.ProductionAutomatic ? laboratory.Settings.UnattendedRate : 0;
                 return new FacilityStatus(facility, kind, true, production.Progress, definition.ProductionSeconds,
@@ -135,6 +128,19 @@ namespace MobileGame.Gameplay
                     production.InProgress ? production.ActiveTarget : CultivationTarget.None, production.SelectedTarget);
             }
             return new FacilityStatus(facility, FacilityStatusKind.Storage, false, 0, 0, 0, 0, assigned, 0, default);
+        }
+
+        private static FacilityStatusKind ProductionStatus(ProductionReadiness readiness, int working)
+        {
+            switch (readiness.Reason)
+            {
+                case ProductionBlockReason.None: return working > 0 ? FacilityStatusKind.ProductionWorking : FacilityStatusKind.ProductionAutomatic;
+                case ProductionBlockReason.OutputAdmission: return FacilityStatusKind.OutputWaiting;
+                case ProductionBlockReason.TargetRequired: return FacilityStatusKind.TargetRequired;
+                case ProductionBlockReason.Unreachable: return FacilityStatusKind.Unreachable;
+                case ProductionBlockReason.Inputs: return FacilityStatusKind.MaterialWaiting;
+                default: throw new InvalidOperationException("Invalid production observation: " + readiness.Reason);
+            }
         }
 
         private bool CanRead(Thing facility) => facility != null && facility.Exists && facility.IsPlaced

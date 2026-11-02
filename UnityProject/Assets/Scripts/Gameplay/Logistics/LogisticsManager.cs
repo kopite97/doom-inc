@@ -179,7 +179,7 @@ namespace MobileGame.Gameplay
                 Amount = amount, BatchOriginId = batchOrigin
             };
             state.MoveProgress = 0;
-            state.WaitReason = string.Empty;
+            state.WaitReason = WorkerWaitReason.None;
         }
 
         private void PickUp(Thing worker, TransportReservation reservation)
@@ -212,7 +212,7 @@ namespace MobileGame.Gameplay
                 // disabling construction during travel must not force construction work.
                 state.Job = null;
                 state.MoveProgress = 0;
-                state.WaitReason = string.Empty;
+                state.WaitReason = WorkerWaitReason.None;
                 return;
             }
 
@@ -234,7 +234,7 @@ namespace MobileGame.Gameplay
                 workerState.Job.Amount = before - accepted;
                 Reroute(worker);
             }
-            else Clear(workerState, string.Empty);
+            else Clear(workerState, WorkerWaitReason.None);
         }
 
         private void ReconcileWorker(Thing worker)
@@ -272,7 +272,7 @@ namespace MobileGame.Gameplay
                 else
                 {
                     state.Job.Stage = JobStage.ToDestination;
-                    state.WaitReason = string.Empty;
+                    state.WaitReason = WorkerWaitReason.None;
                 }
                 return;
             }
@@ -298,7 +298,7 @@ namespace MobileGame.Gameplay
         private void CancelUnpicked(Thing worker, TransportReservation reservation)
         {
             reservations.Remove(reservation);
-            Clear(worker.GetComponent<WorkerComponent>(), "Transport changed; selecting new work");
+            Clear(worker.GetComponent<WorkerComponent>(), WorkerWaitReason.TransportChanged);
         }
 
         private void Reroute(Thing worker)
@@ -322,7 +322,7 @@ namespace MobileGame.Gameplay
             job.SourceId = worker.Id;
             job.Amount = Quantity(held);
             state.MoveProgress = 0;
-            state.WaitReason = "Holding resources; no reachable allowed storage space";
+            state.WaitReason = WorkerWaitReason.NoStorage;
         }
 
         private Thing NearestStore(Thing source, ResourceData resource, Guid? excluded = null) => Reachable(source,
@@ -385,7 +385,7 @@ namespace MobileGame.Gameplay
         private static int Quantity(Thing resource) => resource.GetComponent<ResourceStackComponent>().Quantity;
         private static bool HeldBy(Thing resource, Thing holder) => resource != null && resource.Exists && resource.HolderId == holder.Id;
         private Thing Require(Guid id) => simulation.Registry.TryGet(id, out var thing) ? thing : throw Invalid("Missing Thing " + id);
-        private static void Clear(WorkerComponent state, string reason)
+        private static void Clear(WorkerComponent state, WorkerWaitReason reason)
         { state.Job = null; state.MoveProgress = 0; state.WaitReason = reason; }
         private static InvalidDataException Invalid(string message) => new InvalidDataException(message);
     }

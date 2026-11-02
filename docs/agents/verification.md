@@ -20,6 +20,8 @@ PLAN 상태와 전환은 [작업 절차](workflow.md)를 따른다.
 - 새로운 변경·실패·남은 우려가 없다면 같은 검증을 반복하거나 범위를 계속 늘리지 않는다.
 - 테스트 도구·명령은 실제 프로젝트와 패키지에서 확인한다. [Unity 도구 지침](unity-tools.md)의 검증된 절차를 사용한다.
 - 씬 초기화·전환·Editor 직접 실행 변경은 [씬 흐름 지침](scene-flow.md)의 검증 항목을 함께 확인한다.
+- 객체 소유·수명·싱글톤·static 공유 상태 변경은 [객체 설계의 검증 기준](object-design.md#verification)에 따라 독립성·초기화·정리·반복 실행을 확인한다.
+- 초기 추상화 도입·기존 코드 공통화는 [추상화의 효과·검증 기준](abstraction.md#verification)에 따라 계약·실제 연결·동작 보존과 변경 작업 감소를 확인한다.
 
 <a id="build-test-authorization"></a>
 

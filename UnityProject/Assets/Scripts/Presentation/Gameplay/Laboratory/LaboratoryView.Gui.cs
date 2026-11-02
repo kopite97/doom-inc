@@ -10,15 +10,15 @@ namespace MobileGame.Presentation
     public sealed partial class LaboratoryView
     {
         private Vector2 panelScroll;
-        private LaboratoryUiCanvas screen;
+        private UiCanvas screen;
         private RectTransform playRoot, toolRoot, cameraTools, navigationRoot, summaryRoot;
         private Text titleText, hudText, editText, summaryText, feedbackText;
         private RectTransform worldGauge, worldGaugeFill;
         private ScrollRect controlsScroll;
-        private LaboratoryUiList controls;
-        private LaboratoryUiButton collapseButton, rotateButton, confirmButton, cancelButton;
-        private LaboratoryUiButton zoomInButton, zoomOutButton, fitButton, statusButton, gameMenuButton;
-        private LaboratoryUiButton buildMenuButton, creatureMenuButton, invasionMenuButton, detailsButton, closeButton;
+        private UiList controls;
+        private UiButton collapseButton, rotateButton, confirmButton, cancelButton;
+        private UiButton zoomInButton, zoomOutButton, fitButton, statusButton, gameMenuButton;
+        private UiButton buildMenuButton, creatureMenuButton, invasionMenuButton, detailsButton, closeButton;
         private LaboratoryMapView mapScreen;
         private bool controlsCollapsed;
         private int screenGeneration = -1;
@@ -28,70 +28,71 @@ namespace MobileGame.Presentation
         public Canvas UiCanvas => screen?.Canvas;
         public RectTransform UiSafeRoot => screen?.SafeRoot;
         public bool ControlsCollapsed => controlsCollapsed;
-        public LaboratoryUiButton FindUiButton(string key) => UiCanvas == null ? null
-            : UiCanvas.GetComponentsInChildren<LaboratoryUiButton>(true).FirstOrDefault(b => b.name == key);
+        public UiButton FindUiButton(string key) => UiCanvas == null ? null
+            : UiCanvas.GetComponentsInChildren<UiButton>(true).FirstOrDefault(b => b.name == key);
 
         private void EnsureScreen()
         {
             if (screen != null) return;
-            screen = new LaboratoryUiCanvas(transform, "Temp_LaboratoryCanvas", 10);
-            playRoot = LaboratoryUiWidgets.Panel("PlayScreen", screen.SafeRoot, LaboratoryUiWidgets.Background).rectTransform;
-            titleText = LaboratoryUiWidgets.Label("Title", playRoot, 24); titleText.text = "DOOM INC · 연구소";
-            hudText = LaboratoryUiWidgets.Label("Resources", playRoot, 17);
-            worldGauge = LaboratoryUiWidgets.Panel("WorldProgress", playRoot, new Color(.18f, .2f, .25f)).rectTransform;
-            worldGaugeFill = LaboratoryUiWidgets.Panel("Progress", worldGauge, new Color(.85f, .3f, .2f)).rectTransform;
+            screen = new UiCanvas(transform, "Temp_LaboratoryCanvas", 10);
+            playRoot = UiWidgets.Panel("PlayScreen", screen.SafeRoot, UiWidgets.Background).rectTransform;
+            titleText = UiWidgets.Label("Title", playRoot, 24); titleText.text = "DOOM INC · 연구소";
+            hudText = UiWidgets.Label("Resources", playRoot, 17);
+            worldGauge = UiWidgets.Panel("WorldProgress", playRoot, new Color(.18f, .2f, .25f)).rectTransform;
+            worldGaugeFill = UiWidgets.Panel("Progress", worldGauge, new Color(.85f, .3f, .2f)).rectTransform;
             gameMenuButton = IconButton("GameMenu", playRoot, LaboratoryIcon.More, "메뉴", () => OpenPanel(LaboratoryPanel.Game));
-            collapseButton = LaboratoryUiWidgets.Button("ToggleControls", playRoot, "접기", () => screen.LayoutEpoch);
-            collapseButton.GetComponentInChildren<LaboratoryUiText>().Initialize(14);
+            collapseButton = UiWidgets.Button("ToggleControls", playRoot, "접기", () => screen.LayoutEpoch);
+            collapseButton.GetComponentInChildren<UiText>().Initialize(14);
             SetCompactButtonLabel(collapseButton);
             collapseButton.Bind(() => { if (!CanClickScreen()) return; controlsCollapsed = !controlsCollapsed; InvalidateInput(); }, "screen");
-            var mapBackground = LaboratoryUiWidgets.Panel("MapViewport", playRoot, new Color(.025f, .04f, .065f));
+            var mapBackground = UiWidgets.Panel("MapViewport", playRoot, new Color(.025f, .04f, .065f));
             MapViewport = mapBackground.rectTransform; MapViewport.gameObject.AddComponent<RectMask2D>();
             mapScreen = MapViewport.gameObject.AddComponent<LaboratoryMapView>(); mapScreen.Initialize(this);
-            cameraTools = LaboratoryUiWidgets.Rect("CameraTools", playRoot);
+            cameraTools = UiWidgets.Rect("CameraTools", playRoot);
             zoomOutButton = IconButton("ZoomOut", cameraTools, LaboratoryIcon.ZoomOut, "축소", () => mapScreen.ZoomBy(1 / 1.3f), true);
             zoomInButton = IconButton("ZoomIn", cameraTools, LaboratoryIcon.ZoomIn, "확대", () => mapScreen.ZoomBy(1.3f), true);
             fitButton = IconButton("FitMap", cameraTools, LaboratoryIcon.FitMap, "전체 보기", () => mapScreen.Fit(), true);
             statusButton = IconButton("ToggleStatus", cameraTools, LaboratoryIcon.ShowStatus, "상태 ON", () => SetUiPreferences(!ShowFacilityStatus, LargeText), true);
-            toolRoot = LaboratoryUiWidgets.Rect("PlacementTools", playRoot);
-            editText = LaboratoryUiWidgets.Label("PlacementStatus", playRoot, 16);
-            rotateButton = LaboratoryUiWidgets.Button("Rotate", toolRoot, "90° 회전", () => screen.LayoutEpoch);
-            confirmButton = LaboratoryUiWidgets.Button("Confirm", toolRoot, "배치 확정", () => screen.LayoutEpoch);
-            cancelButton = LaboratoryUiWidgets.Button("Cancel", toolRoot, "취소", () => screen.LayoutEpoch);
-            navigationRoot = LaboratoryUiWidgets.Rect("Navigation", playRoot);
+            toolRoot = UiWidgets.Rect("PlacementTools", playRoot);
+            editText = UiWidgets.Label("PlacementStatus", playRoot, 16);
+            rotateButton = UiWidgets.Button("Rotate", toolRoot, "90° 회전", () => screen.LayoutEpoch);
+            confirmButton = UiWidgets.Button("Confirm", toolRoot, "배치 확정", () => screen.LayoutEpoch);
+            cancelButton = UiWidgets.Button("Cancel", toolRoot, "취소", () => screen.LayoutEpoch);
+            navigationRoot = UiWidgets.Rect("Navigation", playRoot);
             buildMenuButton = IconButton("NavBuild", navigationRoot, LaboratoryIcon.Build, "건설", () => OpenPanel(LaboratoryPanel.Build));
             creatureMenuButton = IconButton("NavCreatures", navigationRoot, LaboratoryIcon.Creatures, "생명체", () => OpenPanel(LaboratoryPanel.Creatures));
             invasionMenuButton = IconButton("NavInvasion", navigationRoot, LaboratoryIcon.Invasion, "침공·보고", () => OpenPanel(LaboratoryPanel.Invasion));
-            controlsScroll = LaboratoryUiWidgets.Scroll("Controls", playRoot, out var content);
-            controls = new LaboratoryUiList(content, () => screen.LayoutEpoch);
-            summaryRoot = LaboratoryUiWidgets.Panel("SelectionSummary", playRoot, LaboratoryUiWidgets.PanelColor).rectTransform;
-            summaryText = LaboratoryUiWidgets.Label("Summary", summaryRoot, 18);
-            detailsButton = LaboratoryUiWidgets.Button("Details", summaryRoot, "상세 보기", () => screen.LayoutEpoch);
+            controlsScroll = UiWidgets.Scroll("Controls", playRoot, out var content);
+            controls = new UiList(content, () => screen.LayoutEpoch);
+            summaryRoot = UiWidgets.Panel("SelectionSummary", playRoot, UiWidgets.PanelColor).rectTransform;
+            summaryText = UiWidgets.Label("Summary", summaryRoot, 18);
+            detailsButton = UiWidgets.Button("Details", summaryRoot, "상세 보기", () => screen.LayoutEpoch);
             detailsButton.Bind(ExpandSelection, "details");
-            closeButton = LaboratoryUiWidgets.Button("ClosePanel", playRoot, "닫기", () => screen.LayoutEpoch);
-            closeButton.GetComponentInChildren<LaboratoryUiText>().Initialize(14);
+            closeButton = UiWidgets.Button("ClosePanel", playRoot, "닫기", () => screen.LayoutEpoch);
+            closeButton.GetComponentInChildren<UiText>().Initialize(14);
             SetCompactButtonLabel(closeButton);
             closeButton.Bind(Back, "close");
-            feedbackText = LaboratoryUiWidgets.Label("Feedback", playRoot, 15);
+            feedbackText = UiWidgets.Label("Feedback", playRoot, 15);
             CreateEndingScreen();
+            ApplyTextStyle();
         }
-        private LaboratoryUiButton IconButton(string key, Transform parent, LaboratoryIcon icon, string label, Action action, bool compact = false)
+        private UiButton IconButton(string key, Transform parent, LaboratoryIcon icon, string label, Action action, bool compact = false)
         {
-            var button = LaboratoryUiWidgets.Button(key, parent, label, () => screen.LayoutEpoch);
+            var button = UiWidgets.Button(key, parent, label, () => screen.LayoutEpoch);
             button.Bind(() => { if (CanClickScreen() && pendingSessionAction == LaboratorySessionAction.None) action(); }, key);
             SetIcon(button, icon, label, compact); return button;
         }
-        private static void SetCompactButtonLabel(LaboratoryUiButton button)
+        private static void SetCompactButtonLabel(UiButton button)
         {
             var rect = button.GetComponentInChildren<Text>().rectTransform;
             rect.offsetMin = new Vector2(4, 4); rect.offsetMax = new Vector2(-4, -4);
         }
-        private void SetIcon(LaboratoryUiButton button, LaboratoryIcon icon, string label, bool compact = false)
+        private void SetIcon(UiButton button, LaboratoryIcon icon, string label, bool compact = false)
         {
             var graphic = button.transform.Find("Icon")?.GetComponent<Image>();
             if (graphic == null)
             {
-                graphic = LaboratoryUiWidgets.Panel("Icon", button.transform, Color.white);
+                graphic = UiWidgets.Panel("Icon", button.transform, Color.white);
                 graphic.raycastTarget = false; graphic.preserveAspect = true;
             }
             graphic.rectTransform.anchorMin = graphic.rectTransform.anchorMax = new Vector2(.5f, compact ? .5f : .76f);
@@ -105,7 +106,7 @@ namespace MobileGame.Presentation
                 var plate = button.transform.Find("IconPlate")?.GetComponent<Image>();
                 if (plate == null)
                 {
-                    plate = LaboratoryUiWidgets.Panel("IconPlate", button.transform, new Color(.16f, .23f, .31f));
+                    plate = UiWidgets.Panel("IconPlate", button.transform, new Color(.16f, .23f, .31f));
                     plate.raycastTarget = false; plate.transform.SetAsFirstSibling();
                     plate.rectTransform.anchorMin = plate.rectTransform.anchorMax = plate.rectTransform.pivot = new Vector2(.5f, .5f);
                     plate.rectTransform.anchoredPosition = Vector2.zero;
@@ -118,7 +119,7 @@ namespace MobileGame.Presentation
             // Preserve the functional name and use it as the visible fallback if an icon is unavailable.
             text.enabled = !compact || graphic.sprite == null;
             text.alignment = compact || graphic.sprite == null ? TextAnchor.MiddleCenter : TextAnchor.LowerCenter;
-            var style = text.GetComponent<LaboratoryUiText>();
+            var style = text.GetComponent<UiText>();
             if (style.BaseSize != 13) style.Initialize(13);
             text.rectTransform.anchorMin = Vector2.zero;
             text.rectTransform.anchorMax = compact || graphic.sprite == null ? Vector2.one : new Vector2(1, 0);
@@ -128,7 +129,7 @@ namespace MobileGame.Presentation
         }
         private bool CanClickScreen() => isActiveAndEnabled && Controller != null && !Controller.IsApplicationPaused && !transitionPaused;
         private string UiContext => Controller == null ? "none" : Controller.Generation + ":" + Controller.Phase;
-        private void BindTool(LaboratoryUiButton button, Action action, bool enabled)
+        private void BindTool(UiButton button, Action action, bool enabled)
         {
             var generation = Controller.Generation; var selection = SelectedId; var editing = IsEditing;
             button.Bind(() => { if (CanUseMap && generation == Controller.Generation && selection == SelectedId && editing == IsEditing) action(); }, UiContext + ":" + SelectedId + ":" + IsEditing);
@@ -170,29 +171,29 @@ namespace MobileGame.Presentation
             var headerWidth = screen.Portrait ? w - touch - collapseWidth - 42 : cameraX - margin - 12;
             // A smaller landscape title leaves two full HUD lines above the gauge, including large text.
             var titleSize = screen.Portrait ? 24 : 18;
-            var titleStyle = titleText.GetComponent<LaboratoryUiText>();
+            var titleStyle = titleText.GetComponent<UiText>();
             if (titleStyle.BaseSize != titleSize) titleStyle.Initialize(titleSize);
             var titleHeight = screen.Portrait ? 36 : 28 * UiTextScale;
             var hudY = 8 + titleHeight + 2;
-            LaboratoryUiWidgets.Place(playRoot, 0, 0, w, h);
-            LaboratoryUiWidgets.Place(titleText.rectTransform, margin, 8, headerWidth, titleHeight);
-            LaboratoryUiWidgets.Place(gameMenuButton.GetComponent<RectTransform>(), w - touch - margin, 8, touch, touch);
-            LaboratoryUiWidgets.Place(collapseButton.GetComponent<RectTransform>(), collapseX, 8, collapseWidth, touch);
+            UiWidgets.Place(playRoot, 0, 0, w, h);
+            UiWidgets.Place(titleText.rectTransform, margin, 8, headerWidth, titleHeight);
+            UiWidgets.Place(gameMenuButton.GetComponent<RectTransform>(), w - touch - margin, 8, touch, touch);
+            UiWidgets.Place(collapseButton.GetComponent<RectTransform>(), collapseX, 8, collapseWidth, touch);
             collapseButton.GetComponentInChildren<Text>().text = controlsCollapsed ? "펼치기" : "접기";
             collapseButton.interactable = CanClickScreen() && pendingSessionAction == LaboratorySessionAction.None;
-            LaboratoryUiWidgets.Place(hudText.rectTransform, margin, hudY, headerWidth, top - hudY - 12);
-            LaboratoryUiWidgets.Place(worldGauge, margin, top - 10, w - margin * 2, 6);
+            UiWidgets.Place(hudText.rectTransform, margin, hudY, headerWidth, top - hudY - 12);
+            UiWidgets.Place(worldGauge, margin, top - 10, w - margin * 2, 6);
             var panelWidth = !screen.Portrait && HasPanel ? Mathf.Clamp(w * .34f, 310, 430) : 0;
             var panelHeight = screen.Portrait && HasPanel ? Mathf.Clamp(h * .37f, 230, 470) : HasSummary ? Mathf.Max(92, touch + 24) : 0;
             var panelGap = panelWidth > 0 ? 12 : 0;
             var mapWidth = w - 24 - panelWidth - panelGap;
             var mapHeight = Mathf.Max(80, h - top - footer - cameraHeight - panelHeight - 30 - (IsEditing ? 48 : 0));
-            LaboratoryUiWidgets.Place(MapViewport, margin, top, mapWidth, mapHeight);
+            UiWidgets.Place(MapViewport, margin, top, mapWidth, mapHeight);
             // This toolbar remains a playRoot sibling of the clipped map, never a map overlay.
-            LaboratoryUiWidgets.Place(cameraTools, screen.Portrait ? margin + mapWidth - cameraWidth : cameraX,
+            UiWidgets.Place(cameraTools, screen.Portrait ? margin + mapWidth - cameraWidth : cameraX,
                 screen.Portrait ? top + mapHeight + 4 : 8, cameraWidth, touch);
             var cameraButtons = new[] { zoomOutButton, zoomInButton, fitButton, statusButton };
-            for (var i = 0; i < cameraButtons.Length; i++) LaboratoryUiWidgets.Place((RectTransform)cameraButtons[i].transform,
+            for (var i = 0; i < cameraButtons.Length; i++) UiWidgets.Place((RectTransform)cameraButtons[i].transform,
                 i * (touch + 6), 0, touch, touch);
             var panelY = top + mapHeight + cameraHeight + 10;
             controlsScroll.gameObject.SetActive(HasPanel); summaryRoot.gameObject.SetActive(HasSummary);
@@ -204,33 +205,33 @@ namespace MobileGame.Presentation
                 var y = screen.Portrait ? panelY : top;
                 var width = screen.Portrait ? w - 24 : panelWidth;
                 var height = screen.Portrait ? panelHeight : h - top - footer - 8;
-                LaboratoryUiWidgets.Place((RectTransform)closeButton.transform, x + width - touch, y, touch, touch);
-                LaboratoryUiWidgets.Place((RectTransform)controlsScroll.transform, x, y + touch + 4, width, Mathf.Max(60, height - touch - 4));
+                UiWidgets.Place((RectTransform)closeButton.transform, x + width - touch, y, touch, touch);
+                UiWidgets.Place((RectTransform)controlsScroll.transform, x, y + touch + 4, width, Mathf.Max(60, height - touch - 4));
             }
             if (HasSummary)
             {
                 var detailsWidth = Mathf.Max(touch + 12, 120);
-                LaboratoryUiWidgets.Place(summaryRoot, margin, panelY, w - 24, panelHeight);
-                LaboratoryUiWidgets.Place(summaryText.rectTransform, 10, 8, w - touch - detailsWidth - 60, panelHeight - 12);
-                LaboratoryUiWidgets.Place((RectTransform)detailsButton.transform, w - touch - detailsWidth - 42, 8, detailsWidth, touch);
-                LaboratoryUiWidgets.Place((RectTransform)closeButton.transform, w - touch - margin, panelY + 8, touch, touch);
+                UiWidgets.Place(summaryRoot, margin, panelY, w - 24, panelHeight);
+                UiWidgets.Place(summaryText.rectTransform, 10, 8, w - touch - detailsWidth - 60, panelHeight - 12);
+                UiWidgets.Place((RectTransform)detailsButton.transform, w - touch - detailsWidth - 42, 8, detailsWidth, touch);
+                UiWidgets.Place((RectTransform)closeButton.transform, w - touch - margin, panelY + 8, touch, touch);
                 summaryText.text = SelectionSummary();
             }
             navigationRoot.gameObject.SetActive(!IsEditing); toolRoot.gameObject.SetActive(IsEditing);
-            LaboratoryUiWidgets.Place(navigationRoot, margin, h - footer, w - 24, touch);
-            LaboratoryUiWidgets.Place(toolRoot, margin, h - footer, w - 24, touch);
+            UiWidgets.Place(navigationRoot, margin, h - footer, w - 24, touch);
+            UiWidgets.Place(toolRoot, margin, h - footer, w - 24, touch);
             var nav = new[] { buildMenuButton, creatureMenuButton, invasionMenuButton };
             var tools = new[] { cancelButton, rotateButton, confirmButton };
             var itemWidth = (w - 40) / 3;
             for (var i = 0; i < 3; i++)
             {
-                LaboratoryUiWidgets.Place((RectTransform)nav[i].transform, i * (itemWidth + 8), 0, itemWidth, touch);
-                LaboratoryUiWidgets.Place((RectTransform)tools[i].transform, i * (itemWidth + 8), 0, itemWidth, touch);
+                UiWidgets.Place((RectTransform)nav[i].transform, i * (itemWidth + 8), 0, itemWidth, touch);
+                UiWidgets.Place((RectTransform)tools[i].transform, i * (itemWidth + 8), 0, itemWidth, touch);
                 nav[i].interactable = CanUseMap && !IsEditing;
             }
             editText.gameObject.SetActive(IsEditing);
-            LaboratoryUiWidgets.Place(editText.rectTransform, margin, h - footer - 44, w - 24, 42);
-            LaboratoryUiWidgets.Place(feedbackText.rectTransform, margin, h - 28, w - 24, 26);
+            UiWidgets.Place(editText.rectTransform, margin, h - footer - 44, w - 24, 42);
+            UiWidgets.Place(feedbackText.rectTransform, margin, h - 28, w - 24, 26);
             feedbackText.text = uiNotice ?? "";
         }
         private string SelectionSummary()
@@ -248,7 +249,7 @@ namespace MobileGame.Presentation
         }
         private void UpdateHud()
         {
-            LaboratoryUiWidgets.Place(worldGaugeFill, 0, 0, worldGauge.rect.width * (Invasion == null ? 0 : (float)Math.Min(1, (double)Invasion.Score / Invasion.Settings.TargetScore)), 6);
+            UiWidgets.Place(worldGaugeFill, 0, 0, worldGauge.rect.width * (Invasion == null ? 0 : (float)Math.Min(1, (double)Invasion.Score / Invasion.Settings.TargetScore)), 6);
             if (Simulation == null) { hudText.text = "저장을 불러오지 못했습니다. 게임 메뉴에서 재시도하세요."; panel = LaboratoryPanel.Game; return; }
             var things = Simulation.Registry.Things;
             var organicCount = things.Where(t => t.Definition == organic).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
@@ -292,6 +293,7 @@ namespace MobileGame.Presentation
             float anchorOffset = 0;
             var reportAnchor = panel == LaboratoryPanel.Invasion && ReportsExpanded
                 ? controls.CaptureAnchor("Report_", controlsScroll.content.anchoredPosition.y, out anchorOffset) : null;
+            controls.Style(UiFont, UiTextScale, MinimumTouchSize);
             controls.Begin(Mathf.Max(100, ((RectTransform)controlsScroll.transform).rect.width - 16));
             var canOperate = CanUseMap && !IsEditing;
             if (panel == LaboratoryPanel.Game) AddGameControls();

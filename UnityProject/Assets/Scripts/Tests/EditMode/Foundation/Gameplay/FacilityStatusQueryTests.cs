@@ -272,6 +272,34 @@ namespace MobileGame.Foundation.Tests
             Assert.That(query.TryRead(facility.Id, out _), Is.False);
         }
 
+        [Test]
+        public void SharedProductionDecisionPreservesOverlappingBlockersWithoutMutatingCycle()
+        {
+            var facility = Facility(cultivation, 7, 6);
+            Assert.That(laboratory.Production.Evaluate(facility).Reason, Is.EqualTo(ProductionBlockReason.TargetRequired));
+            Assert.That(query.Read(facility).Kind, Is.EqualTo(FacilityStatusKind.TargetRequired));
+            laboratory.SelectCultivation(facility.Id, CultivationTarget.Support);
+            Assert.That(laboratory.Production.Evaluate(facility).Reason, Is.EqualTo(ProductionBlockReason.Unreachable));
+            Assert.That(query.Read(facility).Kind, Is.EqualTo(FacilityStatusKind.Unreachable));
+            Worker(prototype, 1, 1, 0, 0, 0, 0);
+            Assert.That(laboratory.Production.Evaluate(facility).Reason, Is.EqualTo(ProductionBlockReason.Inputs));
+            Assert.That(query.Read(facility).Kind, Is.EqualTo(FacilityStatusKind.MaterialWaiting));
+            Stock(facility, culture, cultivation.InputAmount);
+            var production = facility.GetComponent<ProductionComponent>();
+            for (var i = 0; i < 5; i++)
+            {
+                Assert.That(laboratory.Production.CanOperate(facility), Is.True);
+                Assert.That(query.Read(facility).Kind, Is.EqualTo(FacilityStatusKind.ProductionAutomatic));
+                Assert.That(production.InProgress, Is.False);
+                Assert.That(laboratory.Production.InputCount(facility), Is.EqualTo(cultivation.InputAmount));
+            }
+            laboratory.Advance(.05);
+            Assert.That(production.InProgress, Is.True);
+            Assert.That(laboratory.Production.InputCount(facility), Is.Zero);
+            Assert.That(laboratory.Production.CanOperate(facility), Is.True);
+            laboratory.ValidateState();
+        }
+
         private Thing Worker(CreatureData definition, int x, int y, params int[] priorities)
         {
             var thing = registry.Create(definition);

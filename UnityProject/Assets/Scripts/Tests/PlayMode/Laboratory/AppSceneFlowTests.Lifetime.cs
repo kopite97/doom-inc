@@ -17,6 +17,17 @@ namespace MobileGame.SpatialTests
 {
     public sealed partial class AppSceneFlowTests
     {
+        [UnityTest] public IEnumerator SceneViewDestroyedBeforePersistentOwnerCanShutDownCleanly()
+        {
+            flow.EnterCurrent(AppScene.Bootstrap); yield return Settled();
+            flow.StartNewGame(); yield return Settled();
+            Object.DestroyImmediate(flow.Laboratory.gameObject);
+            Object.DestroyImmediate(flow.gameObject);
+            yield return null;
+            Assert.That(SceneFlowManager.Instance, Is.Null);
+            LogAssert.NoUnexpectedReceived();
+        }
+
         [UnityTest] public IEnumerator OwnerDestroyedAtSceneArrivalDoesNotAutoStartANewRun()
         {
             flow.EnterCurrent(AppScene.Bootstrap); yield return Settled();
@@ -47,7 +58,7 @@ namespace MobileGame.SpatialTests
             flow.EnterCurrent(AppScene.Bootstrap); yield return Settled();
             File.WriteAllText(path, "preserve until explicit confirm");
             flow.StartNewGame(); yield return null; yield return null; yield return null;
-            var button = flow.Loading.GetComponentsInChildren<LaboratoryUiButton>().Single(b => b.name == "Retry");
+            var button = flow.Loading.GetComponentsInChildren<UiButton>().Single(b => b.name == "Retry");
             var pointer = new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left, pointerId = 123 };
             button.OnPointerDown(pointer);
             flow.CancelPrompt(); flow.StartNewGame();

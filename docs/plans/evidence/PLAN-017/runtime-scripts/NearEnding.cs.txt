@@ -1,0 +1,6 @@
+var f=MobileGame.Presentation.SceneFlowManager.Instance;
+if(f.IsTransitioning||f.Laboratory!=null)throw new System.InvalidOperationException("Return must settle before preparing test save.");
+MobileGame.Foundation.Editor.AppTestScenario.Prepare(MobileGame.Presentation.GameDataStore.Instance.Catalog,f.SavePath,true);
+UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.TitleView>().RefreshSave();f.SendMessage("OnApplicationFocus",true);
+return new {continueStarted=f.Continue(),slot=f.SavePath};
+

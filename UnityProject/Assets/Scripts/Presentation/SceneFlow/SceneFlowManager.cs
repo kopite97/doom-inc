@@ -96,16 +96,10 @@ namespace MobileGame.Presentation
             if (IsTransitioning || IsPrompting || paused || !focused) return false;
             if (!confirmed)
             {
-                try
-                {
-                    // Missing is distinct from unreadable: never silently replace an inaccessible save.
-                    File.ReadAllText(SavePath);
-                    ShowConfirmation();
-                    return true;
-                }
-                catch (FileNotFoundException) { }
-                catch (DirectoryNotFoundException) { }
-                catch (Exception e) { Fail(e.Message, () => StartNewGame(), null); return false; }
+                var probe = SaveFileProbe.Read(SavePath);
+                if (probe.State == SaveFileState.Readable) { ShowConfirmation(); return true; }
+                if (probe.State == SaveFileState.Unreadable)
+                { Fail(probe.Error, () => StartNewGame(), null); return false; }
             }
             return Begin(new Request { Target = AppScene.Laboratory, Start = SessionStart.NewGame });
         }
@@ -113,7 +107,7 @@ namespace MobileGame.Presentation
         {
             IsPrompting = true;
             cancelPrompt = CancelPrompt;
-            Loading.Show("새 게임을 시작할까요? 기존 진행과 저장을 초기 상태로 교체합니다. 표시 설정은 유지됩니다.",
+            Loading.Show(LoadingScreenKind.Confirmation, "새 게임을 시작할까요? 기존 진행과 저장을 초기 상태로 교체합니다. 표시 설정은 유지됩니다.",
                 () => { CancelPrompt(); StartNewGame(true); }, CancelPrompt, "새 게임 시작", "취소");
         }
         public bool RequestReturnToTitle()
@@ -121,7 +115,7 @@ namespace MobileGame.Presentation
             if (IsTransitioning || IsPrompting || Laboratory?.Controller?.Current == null || paused || !focused
                 || Laboratory.Controller.Phase == SessionPhase.Destruction) return false;
             IsPrompting = true; Laboratory.SetTransitionPaused(true); cancelPrompt = CancelPrompt;
-            Loading.Show("현재 진행을 저장하고 메인 메뉴로 돌아갈까요? 미확정 배치는 취소됩니다.", ConfirmReturn,
+            Loading.Show(LoadingScreenKind.Confirmation, "현재 진행을 저장하고 메인 메뉴로 돌아갈까요? 미확정 배치는 취소됩니다.", ConfirmReturn,
                 CancelPrompt, "저장하고 돌아가기", "취소");
             return true;
         }
@@ -138,7 +132,7 @@ namespace MobileGame.Presentation
             if (!Laboratory.Save())
             {
                 Error = Laboratory.Controller.LastSaveError ?? Laboratory.Controller.LastError;
-                Loading.Show("저장하지 못했습니다. 현재 판을 유지합니다.\n" + Error, ConfirmReturn, CancelPrompt, "저장 재시도", "복귀 취소");
+                Loading.Show(LoadingScreenKind.Error, "저장하지 못했습니다. 현재 판을 유지합니다.\n" + Error, ConfirmReturn, CancelPrompt, "저장 재시도", "복귀 취소");
                 return;
             }
             IsPrompting = false; cancelPrompt = null;
@@ -173,7 +167,7 @@ namespace MobileGame.Presentation
         }
         private IEnumerator Transition(Request request, int token)
         {
-            Loading.Show("게임 데이터를 준비하고 있습니다…"); yield return null;
+            Loading.Show(LoadingScreenKind.Loading, "게임 데이터를 준비하고 있습니다…"); yield return null;
             // Unity cannot cancel an already scheduled scene load. A replacement owner waits
             // for it instead of allowing the older load to overwrite a newer destination.
             while (pendingSceneLoad != null && !pendingSceneLoad.isDone) yield return null;
@@ -182,7 +176,7 @@ namespace MobileGame.Presentation
             while (!preparation.IsCompleted) yield return null;
             var data = preparation.GetAwaiter().GetResult();
             if (token != generation) yield break;
-            Loading.Show("화면을 준비하고 있습니다…"); yield return null;
+            Loading.Show(LoadingScreenKind.Loading, "화면을 준비하고 있습니다…"); yield return null;
             if (!request.UseCurrent)
             {
                 var path = request.Target == AppScene.Title ? Configuration.titleScene : Configuration.laboratoryScene;
@@ -225,7 +219,7 @@ namespace MobileGame.Presentation
         private void Fail(string error, Action retry, Action recover)
         {
             Error = error; AppUiLifetime.Invalidate();
-            Loading.Show("준비하지 못했습니다. 마지막으로 성공한 저장을 유지합니다.\n" + error, retry, recover);
+            Loading.Show(LoadingScreenKind.Error, "준비하지 못했습니다. 마지막으로 성공한 저장을 유지합니다.\n" + error, retry, recover);
         }
         private void Update()
         {
@@ -238,7 +232,10 @@ namespace MobileGame.Presentation
         {
             if (Instance != this) return;
             if (pendingSceneLoad != null) abandonedSceneEntry = true;
-            generation++; StopAllCoroutines(); Laboratory?.ReleaseSession(); Instance = null; AppUiLifetime.Invalidate();
+            generation++; StopAllCoroutines();
+            // Scene objects can be destroyed before their persistent owner during Play exit/application shutdown.
+            if (Laboratory != null) Laboratory.ReleaseSession();
+            Instance = null; AppUiLifetime.Invalidate();
         }
     }
 }

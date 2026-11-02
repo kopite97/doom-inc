@@ -386,7 +386,7 @@ namespace MobileGame.SpatialTests
         private static Text FacilityStatusCaption(LaboratoryView view, Guid id) => view.MapViewport.GetComponentsInChildren<Text>(true)
             .Single(text => text.name == "Caption" && text.transform.parent.name == "Temp_FacilityStatus_" + id.ToString("N"));
 
-        private static void AssertMobileCaptionFits(LaboratoryView view, LaboratoryUiButton button)
+        private static void AssertMobileCaptionFits(LaboratoryView view, UiButton button)
         {
             Assert.That(button != null && button.gameObject.activeInHierarchy, Is.True, "Caption checks require a visible button.");
             var label = button.GetComponentInChildren<Text>();

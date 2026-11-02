@@ -53,7 +53,7 @@ namespace MobileGame.Gameplay
             if (worker.AssignedFacilityId != facilityId)
             {
                 worker.AssignedFacilityId = facilityId;
-                if (!IsTransport(worker.Job)) Clear(worker, string.Empty);
+                if (!IsTransport(worker.Job)) Clear(worker, WorkerWaitReason.None);
             }
             LastError = null;
             return true;
@@ -96,7 +96,7 @@ namespace MobileGame.Gameplay
                 }
                 if (!simulation.Registry.TryGet(worker.Job.TargetId, out var target))
                 {
-                    Clear(worker, "Target is unavailable");
+                    Clear(worker, WorkerWaitReason.TargetUnavailable);
                     continue;
                 }
                 var cell = simulation.TargetCell(target);
@@ -110,7 +110,7 @@ namespace MobileGame.Gameplay
 
                 worker.Job.Stage = JobStage.Working;
                 worker.MoveProgress = 0;
-                worker.WaitReason = string.Empty;
+                worker.WaitReason = WorkerWaitReason.None;
                 AdvanceWork(thing, target, seconds);
             }
         }
@@ -125,12 +125,12 @@ namespace MobileGame.Gameplay
                 if (!thing.IsPlaced || !simulation.Registry.TryGet(job.TargetId, out var target)
                     || !target.IsPlaced || !ValidWorkTarget(target, job.Kind))
                 {
-                    Clear(worker, "Work target is unavailable");
+                    Clear(worker, WorkerWaitReason.TargetUnavailable);
                     continue;
                 }
                 if (!simulation.Distance(thing, target).HasValue)
                 {
-                    Clear(worker, "Work target is unreachable");
+                    Clear(worker, WorkerWaitReason.TargetUnreachable);
                     continue;
                 }
                 // Moving a facility ends actual work until the worker reaches it again.
@@ -151,13 +151,13 @@ namespace MobileGame.Gameplay
             var goal = simulation.TargetCell(target);
             if (!goal.HasValue)
             {
-                worker.WaitReason = "Target is unavailable";
+                worker.WaitReason = WorkerWaitReason.TargetUnavailable;
                 return false;
             }
             var path = GridPathfinder.FindPath(simulation.Map, thing.Placement.Origin, goal.Value);
             if (path == null)
             {
-                worker.WaitReason = "Path is blocked";
+                worker.WaitReason = WorkerWaitReason.PathBlocked;
                 return false;
             }
             if (path.Count == 0)
@@ -166,7 +166,7 @@ namespace MobileGame.Gameplay
                 return true;
             }
 
-            worker.WaitReason = string.Empty;
+            worker.WaitReason = WorkerWaitReason.None;
             var stepSeconds = ((CreatureData)thing.Definition).MoveSecondsPerCell;
             worker.MoveProgress += seconds;
             foreach (var cell in path)
@@ -175,13 +175,13 @@ namespace MobileGame.Gameplay
                 var result = simulation.Map.Commands.Place(thing.Id, cell);
                 if (!result.Succeeded)
                 {
-                    worker.WaitReason = "Path is blocked";
+                    worker.WaitReason = WorkerWaitReason.PathBlocked;
                     return false;
                 }
                 worker.MoveProgress = Math.Max(0, worker.MoveProgress - stepSeconds);
             }
             worker.MoveProgress = 0;
-            worker.WaitReason = string.Empty;
+            worker.WaitReason = WorkerWaitReason.None;
             return true;
         }
 
@@ -199,7 +199,7 @@ namespace MobileGame.Gameplay
                 if (kind == WorkKind.Hauling && simulation.Logistics.TryCreateHaulingJob(thing)) return;
             }
             worker.WaitReason = priorities.All(value => value == 0)
-                ? "All work priorities are disabled" : "No reachable work or valid destination";
+                ? WorkerWaitReason.PrioritiesDisabled : WorkerWaitReason.NoWork;
         }
 
         private static int Priority(IReadOnlyList<int> priorities, WorkKind kind) =>
@@ -254,7 +254,7 @@ namespace MobileGame.Gameplay
                 Stage = thing.Placement.Origin == simulation.TargetCell(target)
                     ? JobStage.Working : JobStage.ToDestination
             };
-            worker.WaitReason = string.Empty;
+            worker.WaitReason = WorkerWaitReason.None;
         }
 
         private void AdvanceWork(Thing thing, Thing target, double seconds)
@@ -262,7 +262,7 @@ namespace MobileGame.Gameplay
             var worker = thing.GetComponent<WorkerComponent>();
             if (ClaimedByEarlierWorker(target, thing))
             {
-                Clear(worker, "Another worker is using this facility");
+                Clear(worker, WorkerWaitReason.FacilityClaimed);
                 return;
             }
             var definition = (FacilityData)target.Definition;
@@ -275,12 +275,12 @@ namespace MobileGame.Gameplay
                 if (construction.Progress + 1e-9 < definition.BuildSeconds) return;
                 construction.Progress = definition.BuildSeconds;
                 construction.IsComplete = true;
-                Clear(worker, string.Empty);
+                Clear(worker, WorkerWaitReason.None);
             }
             else if (worker.Job.Kind == WorkKind.Gathering)
             {
                 var gathering = target.GetComponent<GatheringComponent>();
-                if (gathering.Outstanding > 0) { Clear(worker, "Completed output awaits storage"); return; }
+                if (gathering.Outstanding > 0) { Clear(worker, WorkerWaitReason.OutputAdmission); return; }
                 // The completed previous batch no longer blocks the next actual work cycle.
                 if (gathering.Progress >= definition.GatheringSeconds) gathering.Progress = 0;
                 gathering.Progress = Math.Min(definition.GatheringSeconds, gathering.Progress + seconds);
@@ -289,7 +289,7 @@ namespace MobileGame.Gameplay
                     target.GetComponent<ResourceContainerComponent>());
                 gathering.Progress = definition.GatheringSeconds;
                 gathering.Outstanding = definition.GatheringAmount;
-                Clear(worker, string.Empty);
+                Clear(worker, WorkerWaitReason.None);
             }
         }
 
@@ -326,7 +326,7 @@ namespace MobileGame.Gameplay
         private static bool IsTransport(WorkerJob job) => job != null
             && (job.Kind == WorkKind.Hauling || (job.Amount > 0 && job.ResourceId.HasValue));
 
-        private static void Clear(WorkerComponent worker, string reason)
+        private static void Clear(WorkerComponent worker, WorkerWaitReason reason)
         {
             worker.Job = null;
             worker.MoveProgress = 0;

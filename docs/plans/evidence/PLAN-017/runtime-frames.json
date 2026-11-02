@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "job wait",
+    "parameters": {
+      "condition": "{\"member\":\"UnityEngine.Time.frameCount\",\"op\":\"changed\"}",
+      "return_history": "true",
+      "timeout": "10"
+    },
+    "result": {
+      "state": "met",
+      "met": true,
+      "timedOut": false,
+      "member": "UnityEngine.Time.frameCount",
+      "op": "changed",
+      "value": 3283,
+      "initialValue": 3257,
+      "elapsedMs": 123,
+      "framesObserved": 2,
+      "history": [
+        {
+          "value": 3257,
+          "elapsedMs": 20
+        },
+        {
+          "value": 3283,
+          "elapsedMs": 123
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

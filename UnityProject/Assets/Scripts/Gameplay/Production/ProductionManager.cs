@@ -40,26 +40,39 @@ namespace MobileGame.Gameplay
         public bool Accessible(Thing facility) => facility.IsPlaced && laboratory.Registry.Things.Any(worker =>
             worker.TryGetComponent<WorkerComponent>(out _) && laboratory.Distance(worker, facility).HasValue);
 
-        public bool CanOperate(Thing facility)
+        public bool CanOperate(Thing facility) => Evaluate(facility).CanOperate;
+
+        public ProductionReadiness Evaluate(Thing facility)
         {
-            if (!laboratory.IsComplete(facility) || !facility.TryGetComponent<ProductionComponent>(out var state)
-                || state.Outstanding > 0 || !Accessible(facility)) return false;
+            if (facility == null || !facility.TryGetComponent<ProductionComponent>(out var state))
+                return new ProductionReadiness(ProductionBlockReason.Unsupported);
             var definition = (FacilityData)facility.Definition;
-            return state.InProgress || ((definition.Role == FacilityRole.Processing || state.SelectedTarget != CultivationTarget.None)
-                && InputCount(facility) == definition.InputAmount);
+            var inputs = InputCount(facility);
+            var needsTarget = !state.InProgress && definition.Role == FacilityRole.Cultivation
+                && state.SelectedTarget == CultivationTarget.None;
+            var reason = !laboratory.IsComplete(facility) ? ProductionBlockReason.Construction
+                : state.Outstanding > 0 ? ProductionBlockReason.OutputAdmission
+                : needsTarget ? ProductionBlockReason.TargetRequired
+                : !Accessible(facility) ? ProductionBlockReason.Unreachable
+                : !state.InProgress && inputs < definition.InputAmount ? ProductionBlockReason.Inputs
+                : !state.InProgress && inputs > definition.InputAmount ? ProductionBlockReason.ExcessInputs
+                : ProductionBlockReason.None;
+            return new ProductionReadiness(reason, inputs, needsTarget);
         }
 
         public string WaitReason(Thing facility)
         {
-            var state = facility.GetComponent<ProductionComponent>();
-            var definition = (FacilityData)facility.Definition;
-            if (!laboratory.IsComplete(facility)) return "Construction incomplete";
-            if (state.Outstanding > 0) return "Completed output awaits actual storage admission";
-            if (!state.InProgress && definition.Role == FacilityRole.Cultivation && state.SelectedTarget == CultivationTarget.None)
-                return "Choose a cultivation target";
-            if (!Accessible(facility)) return "Interaction cell is unreachable";
-            if (!state.InProgress && InputCount(facility) < definition.InputAmount) return "Waiting for current-cycle inputs";
-            return string.Empty;
+            switch (Evaluate(facility).Reason)
+            {
+                case ProductionBlockReason.Construction: return "Construction incomplete";
+                case ProductionBlockReason.OutputAdmission: return "Completed output awaits actual storage admission";
+                case ProductionBlockReason.TargetRequired: return "Choose a cultivation target";
+                case ProductionBlockReason.Unreachable: return "Interaction cell is unreachable";
+                case ProductionBlockReason.Inputs: return "Waiting for current-cycle inputs";
+                case ProductionBlockReason.ExcessInputs: return "Invalid current-cycle input quantity";
+                case ProductionBlockReason.Unsupported: return "Not a production facility";
+                default: return string.Empty;
+            }
         }
 
         public void Tick(double seconds, ISet<Guid> staffed)

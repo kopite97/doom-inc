@@ -132,7 +132,7 @@ namespace MobileGame.Persistence
                     worker.MoveProgress = state.worker.moveProgress;
                     worker.Priorities = state.worker.priorities.ToArray();
                     worker.UsesPreset = state.worker.usesPreset;
-                    worker.WaitReason = string.Empty; // Derived by the next work selection/path check.
+                    worker.WaitReason = WorkerWaitReason.None; // Derived by the next work selection/path check.
                     var job = state.worker.job;
                     worker.Job = !state.worker.hasJob ? null : new WorkerJob
                     {

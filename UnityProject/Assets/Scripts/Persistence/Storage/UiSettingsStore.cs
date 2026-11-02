@@ -114,29 +114,7 @@ namespace MobileGame.Persistence
             catch (DirectoryNotFoundException) { return null; }
         }
 
-        private static void WriteFile(string path, string json)
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
-            var temporary = path + ".tmp-" + Guid.NewGuid().ToString("N");
-            try
-            {
-                using (var stream = new FileStream(temporary, FileMode.CreateNew, FileAccess.Write, FileShare.None))
-                {
-                    var bytes = new UTF8Encoding(false).GetBytes(json);
-                    stream.Write(bytes, 0, bytes.Length);
-                    stream.Flush(true);
-                }
-                if (File.Exists(path)) File.Replace(temporary, path, null);
-                else File.Move(temporary, path);
-            }
-            finally
-            {
-                try { if (File.Exists(temporary)) File.Delete(temporary); }
-                catch (IOException) { }
-                catch (UnauthorizedAccessException) { }
-                catch (SecurityException) { }
-            }
-        }
+        private static void WriteFile(string path, string json) => AtomicTextFile.Write(path, json);
 
         [Serializable]
         private sealed class SettingsDocument

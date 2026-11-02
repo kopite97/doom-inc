@@ -119,8 +119,8 @@ updated: 2026-10-29
 | [LaboratoryView.Gui.cs](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.Gui.cs) | 기존 긴 조작 목록을 목적별 메뉴·선택 요약/상세로 나누되 공통 명령을 재사용한다. 현재 영어 표시를 시안의 한국어 문구로 정비한다. |
 | [LaboratoryMapView.cs](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryMapView.cs) | 현재 맵은 Screen Space Overlay uGUI 셀 렌더링이다. Fit·ZoomBy·셀 좌표/히트테스트 변환을 재사용하며 별도 월드 카메라 좌표를 원본으로 만들지 않는다. |
 | [ProductionManager.cs](../../UnityProject/Assets/Scripts/Gameplay/Production/ProductionManager.cs) | 대기 이유·필요/도착 재료·접근 가능 조회와 Production/Gathering/Construction·Worker 상태를 조합한다. 완료품 Outstanding과 실제 작업 여부를 정확히 반영한다. |
-| [LaboratoryGesture.cs](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryGesture.cs)·[LaboratoryUiButton.cs](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryUiButton.cs) | 제스처 취소·포인터/의미 문맥/layout epoch 검사를 유지한다. 맵 자손인 새 UI가 Map 탭도 동시에 받는 경계를 특히 검사한다. |
-| [LaboratoryUiWidgets.cs](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryUiWidgets.cs) | 의미 키로 목록을 재사용하고 입력·스크롤 중 행이 바뀌지 않게 한다. 현재 LegacyRuntime.ttf 사용을 한글 지원 확인으로 대체하지 않는다. |
+| [LaboratoryGesture.cs](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryGesture.cs)·[UiButton.cs](../../UnityProject/Assets/Scripts/Presentation/UI/Widgets/UiButton.cs) | 제스처 취소·포인터/의미 문맥/layout epoch 검사를 유지한다. 맵 자손인 새 UI가 Map 탭도 동시에 받는 경계를 특히 검사한다. |
+| [UiWidgets.cs](../../UnityProject/Assets/Scripts/Presentation/UI/Widgets/UiWidgets.cs) | 의미 키로 목록을 재사용하고 입력·스크롤 중 행이 바뀌지 않게 한다. 현재 LegacyRuntime.ttf 사용을 한글 지원 확인으로 대체하지 않는다. |
 | [LaboratoryView.cs](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.cs)·[GameFlowManager.cs](../../UnityProject/Assets/Scripts/GameFlow/Session/GameFlowManager.cs) | UI 상태 수명과 세션 교체를 연결한다. 현재 별도 UI 환경설정 영속 경로는 확인되지 않아 설정 보존은 새 작업이다. 게임 저장 스키마/데이터 해시는 유지한다. |
 
 UI 파생 상태 조회·프레젠테이션 상태·설정 저장의 책임을 분리한다. 같은 상태를 패널/오버레이가 따로 계산하지 않도록 공유하되, 하나의 거대한 UI Manager나 새 전역 싱글턴을 만들 이유로 삼지 않는다. 기존 런타임 UI 생성과 씬 생성 도구의 단일 구성을 유지하며 에셋 바인딩을 추가한다.

@@ -1,0 +1,2 @@
+var flow=MobileGame.Presentation.SceneFlowManager.GetOrCreate(MobileGame.Foundation.Editor.AppSceneAssets.EnsureConfiguration(),System.IO.Path.GetFullPath(UnityEngine.Application.dataPath+"/../Temp/PLAN017Runtime/session.json"));
+return new {started=flow.EnterCurrent(MobileGame.Presentation.AppScene.Bootstrap),slot=flow.SavePath,frame=UnityEngine.Time.frameCount};

@@ -1,0 +1,51 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "tail": "50",
+      "level": "error"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 402,
+          "timestampUtc": "2026-11-02T04:37:30.7501759Z",
+          "level": "error",
+          "logType": "Exception",
+          "message": "MissingReferenceException: The object of type 'MobileGame.Presentation.LaboratoryView' has been destroyed but you are still trying to access it.\nYour script should either check if it is null or you should not destroy the object.",
+          "stackTrace": "UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) (at <1da36a9af21a4683ad40e96b14222e63>:0)\nUnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) (at <1da36a9af21a4683ad40e96b14222e63>:0)\nUnityEngine.Behaviour.get_isActiveAndEnabled () (at <1da36a9af21a4683ad40e96b14222e63>:0)\nMobileGame.Presentation.LaboratoryView.UpdateEndingVisibility () (at Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.cs:131)\nMobileGame.Presentation.LaboratoryView.SetTransitionPaused (System.Boolean paused) (at Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.cs:92)\nMobileGame.Presentation.LaboratoryView.ReleaseSession () (at Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.cs:96)\nMobileGame.Presentation.SceneFlowManager.OnDestroy () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:235)\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 402,
+      "session": "9dee6f0ac7c34fa8ae71940b668f70ff",
+      "returned": 1,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 1,
+        "warn": 0,
+        "log": 31
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-02T04:37:57.4971387Z",
+        "ageMs": 9,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 1,
+        "consoleWarnings": 0,
+        "consoleLogs": 0,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

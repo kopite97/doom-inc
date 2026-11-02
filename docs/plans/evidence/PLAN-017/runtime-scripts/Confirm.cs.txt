@@ -1,0 +1,4 @@
+var f=MobileGame.Presentation.SceneFlowManager.Instance;var b=f.Loading.GetComponentsInChildren<MobileGame.Presentation.UiButton>().Single(b=>b.name=="Retry");
+if(!b.interactable||!MobileGame.Presentation.AppUiLifetime.AcceptInput)throw new System.InvalidOperationException("Confirmation input not ready");
+b.OnSubmit(new UnityEngine.EventSystems.BaseEventData(UnityEngine.EventSystems.EventSystem.current));
+return new {transition=f.IsTransitioning,kind=f.Loading.Kind.ToString()};

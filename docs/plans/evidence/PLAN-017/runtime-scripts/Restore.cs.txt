@@ -1,0 +1,4 @@
+UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",UnityEditor.SceneManagement.OpenSceneMode.Single);
+UnityEditor.EditorSettings.enterPlayModeOptionsEnabled=true;UnityEditor.EditorSettings.enterPlayModeOptions=UnityEditor.EnterPlayModeOptions.DisableDomainReload;
+UnityEngine.Application.runInBackground=false;UnityEditor.AssetDatabase.SaveAssets();
+return new {playing=UnityEditor.EditorApplication.isPlaying,enabled=UnityEditor.EditorSettings.enterPlayModeOptionsEnabled,options=UnityEditor.EditorSettings.enterPlayModeOptions.ToString(),scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,dirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty,background=UnityEngine.Application.runInBackground,startScene=UnityEditor.AssetDatabase.GetAssetPath(UnityEditor.SceneManagement.EditorSceneManager.playModeStartScene),slot=MobileGame.Presentation.GameBootstrap.EditorSlotName};

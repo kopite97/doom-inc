@@ -1,0 +1,4 @@
+var f=MobileGame.Presentation.SceneFlowManager.Instance;var title=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.TitleView>();
+if(f==null||f.IsTransitioning||f.Error!=null||title==null||!title.HasSave)throw new System.InvalidOperationException("Title was not ready for the previous save: "+f?.Error);
+f.SendMessage("OnApplicationFocus",true);
+return new {titleHasSave=title.HasSave,saveError=title.SaveError,continueStarted=f.Continue(),frame=UnityEngine.Time.frameCount};

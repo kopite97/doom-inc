@@ -1,0 +1,2 @@
+var f=MobileGame.Presentation.SceneFlowManager.Instance;f.SendMessage("OnApplicationFocus",true);f.Laboratory.SendMessage("OnApplicationFocus",true);
+return new {requested=f.RequestReturnToTitle()};

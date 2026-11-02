@@ -2,7 +2,7 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 첫 작업 PLAN-013 completed / UI·UX 정비 PLAN-014 completed / JSON 전환 PLAN-015 completed / 씬 흐름 정비 PLAN-016 completed
+- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 첫 작업 PLAN-013 completed / UI·UX 정비 PLAN-014 completed / JSON 전환 PLAN-015 completed / 씬 흐름 정비 PLAN-016 completed / 추상화 정비 PLAN-017 completed
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
 - 갱신일: 2026-11-02
@@ -30,7 +30,9 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 
 데이터 기반 후속 정비 [PLAN-015](../../../plans/PLAN-015-topic-json-definition-data.md)는 completed다. CSV 원본을 전용 디렉터리의 주제별 JSON으로 전환하고 취득부 추상화·SO 결합·GameDataStore·기존 저장 호환성을 유지하는 작업이다. 사용자 지시에 따라 Editor 런타임 테스트를 포함하고 빌드 테스트는 제외한다. 두 검토 보완을 반영하고 구현·Edit 294/294·Domain Reload 양쪽 Play 각각 36/36을 확인했다. 빌드 테스트는 실행하지 않았다.
 
-최근 작업 [PLAN-016](../../../plans/PLAN-016-bootstrap-title-and-scene-flow.md)은 completed다. Bootstrap·Title·Laboratory, 공용 LoadingScreen·단일 씬 전환 관리자·Editor 직접 진입과 저장/설정 복구를 구현하고 Editor 회귀를 검증했다. 현재 active PLAN은 없으며 새 빌드·실기기 검증과 종합 성능 최종 판정은 이번 결과에 포함하지 않는다.
+최근 작업 [PLAN-016](../../../plans/PLAN-016-bootstrap-title-and-scene-flow.md)은 completed다. Bootstrap·Title·Laboratory, 공용 LoadingScreen·단일 씬 전환 관리자·Editor 직접 진입과 저장/설정 복구를 구현하고 Editor 회귀를 검증했다. 해당 완료 결과에는 새 빌드·실기기 검증과 종합 성능 최종 판정을 포함하지 않는다.
+
+최근 구조 정비 [PLAN-017](../../../plans/PLAN-017-production-storage-status-and-shared-ui.md)은 completed다. 생산 공통 판정·파일 처리·명시적 상태 계약·공용 UI와 두 검토 보완을 구현하고 Edit 302/302, ON Play 51/51, OFF 회귀와 진단 로그가 간섭한 1개 대상의 재검증, 실제 Editor 화면·이전 저장·반복 종료를 확인했다. [상세 증거](../../../plans/evidence/PLAN-017/README.md)를 따른다. 빌드 테스트는 실행하지 않았으며 현재 active PLAN은 없다. 4단계 종합 성능 최종 판정은 여전히 후속 범위다.
 
 확정한 Unity 버전·Universal 2D(URP)·Android 대상과 연동 방향은 [플레이 환경](../../04-delivery/01-platform/environment.md)을 따른다. 구현할 작업의 필수 참조를 아래에서 읽고, 승인 규칙 안에서 필요한 세부 설계를 구체화한다.
 
@@ -106,5 +108,7 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 - [PLAN-015 주제별 JSON 정의 데이터와 초기 로딩 전환](../../../plans/PLAN-015-topic-json-definition-data.md): completed. 주제별 JSON·DTO와 교체 가능한 취득부로 전환하며 Editor 런타임 테스트를 포함하고 빌드 테스트는 제외한다.
 
 - [PLAN-016 Bootstrap·Title·Laboratory 씬 흐름과 Editor 직접 진입](../../../plans/PLAN-016-bootstrap-title-and-scene-flow.md): completed. 공통 초기화·싱글톤 씬 전환·공용 LoadingScreen·메뉴와 세션 진입/복귀·Editor 직접 실행을 구현하고 Editor 검증을 마쳤다. 사용자 지시에 따라 빌드 테스트는 실행하지 않았다.
+
+- [PLAN-017 생산 판정·파일 저장·상태 계약·공용 UI 추상화 정비](../../../plans/PLAN-017-production-storage-status-and-shared-ui.md): completed. 생산/저장/상태/공용 UI 정비와 Editor 런타임 회귀를 완료했다. 빌드 테스트는 실행하지 않았다.
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

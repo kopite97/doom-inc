@@ -11,6 +11,6 @@ namespace MobileGame.Gameplay
         public double MoveProgress { get; internal set; }
         public int[] Priorities { get; internal set; } = new[] { 1, 2, 3, 4 };
         public bool UsesPreset { get; internal set; } = true;
-        public string WaitReason { get; internal set; } = string.Empty;
+        public WorkerWaitReason WaitReason { get; internal set; }
     }
 }

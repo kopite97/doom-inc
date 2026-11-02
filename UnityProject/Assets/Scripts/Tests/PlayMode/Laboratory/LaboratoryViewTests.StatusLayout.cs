@@ -141,7 +141,7 @@ namespace MobileGame.SpatialTests
                     yield return SettleStatusLayout();
                     Assert.That(StatusMarkerRoots(view, true), Is.Empty, "A new initial session has no facilities and must discard all old markers.");
                     Assert.That(view.ShowFacilityStatus, Is.True, "Run reset must preserve the separate user preference.");
-                    Assert.That(view.GetComponentsInChildren<LaboratoryUiButton>(true).Any(b => oldIds.Any(id => b.name.Contains(id))), Is.False);
+                    Assert.That(view.GetComponentsInChildren<UiButton>(true).Any(b => oldIds.Any(id => b.name.Contains(id))), Is.False);
                     facilities = CreateStatusLayoutFacilities(view);
                     oldIds = facilities.Select(t => t.Id.ToString("N")).ToArray();
                     view.SelectThing(facilities[0].Id); view.ExpandSelection(); map.Fit();
@@ -281,12 +281,12 @@ namespace MobileGame.SpatialTests
                 .Invoke(map, new object[] { viewportCenter - map.CellScreenPoint(center) });
         }
 
-        private static int StatusLayoutButtonCount(LaboratoryView view) => view.GetComponentsInChildren<LaboratoryUiButton>(true).Length;
+        private static int StatusLayoutButtonCount(LaboratoryView view) => view.GetComponentsInChildren<UiButton>(true).Length;
         private static void AssertUniqueStatusAndButtonObjects(LaboratoryView view)
         {
             var names = StatusMarkerRoots(view, true).Select(t => t.name).ToArray();
             Assert.That(names.Distinct().Count(), Is.EqualTo(names.Length));
-            foreach (var siblings in view.GetComponentsInChildren<LaboratoryUiButton>(true).GroupBy(b => b.transform.parent))
+            foreach (var siblings in view.GetComponentsInChildren<UiButton>(true).GroupBy(b => b.transform.parent))
                 Assert.That(siblings.Select(b => b.name).Distinct().Count(), Is.EqualTo(siblings.Count()), "A semantic row was duplicated under one content parent.");
         }
 

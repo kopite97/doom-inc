@@ -1,0 +1,27 @@
+var f=MobileGame.Presentation.SceneFlowManager.Instance;var v=f.Laboratory;
+if(f.IsTransitioning||v==null||f.Error!=null)throw new System.InvalidOperationException("Laboratory unavailable");
+v.SimulationRate=0;v.SendMessage("OnApplicationFocus",true);f.Settings.TrySet(true,true);
+var chosen=v.Simulation.Registry.Things.FirstOrDefault(t=>t.TryGetComponent<MobileGame.Gameplay.ProductionComponent>(out _));
+if(chosen!=null){v.SelectThing(chosen.Id);v.ExpandSelection();}
+var prefix=v.Controller.Phase.ToString().ToLowerInvariant();
+System.Collections.IEnumerator CaptureBoth(){
+ foreach(var size in new[]{new UnityEngine.Vector2Int(1280,720),new UnityEngine.Vector2Int(720,1280)})
+ using(var dimensions=new MobileGame.Foundation.Editor.LaboratoryGameViewSize(size.x,size.y)) {
+  for(var i=0;i<8;i++){v.SendMessage("OnApplicationFocus",true);yield return null;}
+  yield return new UnityEngine.WaitForEndOfFrame();
+  if(UnityEngine.Screen.width!=size.x||UnityEngine.Screen.height!=size.y)throw new System.InvalidOperationException("Capture dimensions did not settle");
+  var type=typeof(UnityEditor.EditorWindow).Assembly.GetType("UnityEditor.PlayModeView");
+  var flags=System.Reflection.BindingFlags.Public|System.Reflection.BindingFlags.NonPublic;
+  var window=type.GetMethod("GetMainPlayModeView",flags|System.Reflection.BindingFlags.Static).Invoke(null,null);
+  var target=(UnityEngine.RenderTexture)type.GetField("m_TargetTexture",flags|System.Reflection.BindingFlags.Instance).GetValue(window);
+  var previous=UnityEngine.RenderTexture.active;
+  var upright=UnityEngine.RenderTexture.GetTemporary(target.width,target.height,0,UnityEngine.RenderTextureFormat.ARGB32);
+  if(UnityEngine.SystemInfo.graphicsUVStartsAtTop)UnityEngine.Graphics.Blit(target,upright,new UnityEngine.Vector2(1,-1),new UnityEngine.Vector2(0,1));else UnityEngine.Graphics.Blit(target,upright);
+  UnityEngine.RenderTexture.active=upright;var texture=new UnityEngine.Texture2D(target.width,target.height,UnityEngine.TextureFormat.RGB24,false);
+  texture.ReadPixels(new UnityEngine.Rect(0,0,target.width,target.height),0,0);texture.Apply();UnityEngine.RenderTexture.active=previous;UnityEngine.RenderTexture.ReleaseTemporary(upright);
+  var output=System.IO.Path.GetFullPath(UnityEngine.Application.dataPath+"/../../docs/plans/evidence/PLAN-017/screens/"+prefix+"-"+size.x+".png");
+  System.IO.File.WriteAllBytes(output,UnityEngine.ImageConversion.EncodeToPNG(texture));UnityEngine.Object.Destroy(texture);
+ }
+}
+f.StartCoroutine(CaptureBoth());
+return new {phase=v.Controller.Phase.ToString(),facilities=v.Simulation.Registry.Things.Count(t=>t.Definition.Kind==MobileGame.Foundation.ThingKind.Facility),largeText=v.LargeText,frame=UnityEngine.Time.frameCount};
