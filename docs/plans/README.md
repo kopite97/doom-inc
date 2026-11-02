@@ -19,3 +19,4 @@
 | [PLAN-015](PLAN-015-topic-json-definition-data.md) | 주제별 JSON 정의 데이터와 초기 로딩 전환 | `development` | `completed` |
 | [PLAN-016](PLAN-016-bootstrap-title-and-scene-flow.md) | Bootstrap·Title·Laboratory 씬 흐름과 Editor 직접 진입 | `development` | `completed` |
 | [PLAN-017](PLAN-017-production-storage-status-and-shared-ui.md) | 생산 판정·파일 저장·상태 계약·공용 UI 추상화 정비 | `development` | `completed` |
+| [PLAN-018](PLAN-018-localization-and-csv-text-management.md) | Unity Localization·CSV 텍스트 관리와 한국어·영어 지원 | `development` | `completed` |

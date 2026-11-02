@@ -1,0 +1,190 @@
+Key,Id,Shared Comments,Smart,Arguments,en,ko,Reviewed:en
+access_hint,349,Laboratory / access_hint,false,,Workers cannot reach the front work position. Move or rotate the facility to open a path. Progress and consumed inputs are preserved.,보조형이 정면 작업 위치에 접근할 수 없습니다. 시설 이동·회전으로 경로를 확인하세요. 기존 진행과 투입 상태는 보존됩니다.,4eec57bf1aaff03ce75c25b5a48ceeca0f6c576f7699c0ab4e926abe718b3add
+admission_hint,348,Laboratory / admission_hint,false,,The next cycle starts after all completed goods enter storage. Picking them up does not complete delivery.,완료품이 전량 저장소에 들어가면 다음 회차가 시작됩니다. 운반자가 집어 든 것만으로 완료되지 않습니다.,4a2819b0e36c4d5d29467aab85abdf21296e887123f29f89e08b3fe77abcbf4e
+assign,327,Laboratory / assign,true,facility:text,Assign: {facility},배정: {facility},8d6a8c206ab49f9c21c5038609c34892cd585a24b6b18bd9064148a75e723ff4
+assign_current,328,Laboratory / assign_current,true,facility:text,Assign: {facility} · Current,배정: {facility} · 현재 배정,e3664947e7c19a14390a607b9b81e9d700f153ea5a4f08c398016758bc9bccbe
+assigned,325,Laboratory / assigned,true,facility:text,Assigned facility: {facility},배정 시설: {facility},a18dbd92909d4931cfc0659d8f839b338419a070d987bf1c509f18225d2e1e8b
+assigned_creature,347,Laboratory / assigned_creature,false,,Assigned creature,배정 개체,0554028099af828b6c0621a92cdd8956c6e751393b1400a77673a57b752d6cbe
+assignment_hint,355,Laboratory / assignment_hint,false,,"Assignment and current action may differ. When a facility is unavailable, the worker keeps its assignment and does other work. An ongoing delivery finishes before switching assignments.",배정 시설과 실제 행동은 다를 수 있습니다. 시설에서 작업할 수 없으면 배정을 유지한 채 다른 작업을 합니다. 정상 운반은 완료한 뒤 새 배정으로 전환합니다.,c45d26ca75ef5f0d3b49bf8dd4991ffaf2c7bc0c832e32ac775d76b465f7c85d
+build,112,Laboratory / build,false,,Build,건설,15eb9fdc73492c1f8273dee8ee5b578e4fa30d9c62c75bb52e6948e434f6115f
+build_cost,154,Laboratory / build_cost,true,facility:text;resource:text;count:number,{facility} · {count:N0} {resource},{facility} · {resource} {count:N0},ab0fe764f500c2987173536082c98512d19ac3503fc473f8684277880579c9b5
+build_hint,119,Laboratory / build_hint,false,,"After you confirm a site, workers deliver materials and build it. You can place a site before all materials are available.",부지를 확정하면 자재 운반 후 시공합니다. 자재가 부족해도 부지를 지정할 수 있습니다.,d85c6d6d94814be8dc41be416948858e5809674f7ee24c1155036d09090af911
+cancel,111,Laboratory / cancel,false,,Cancel,취소,0347940ed4ce764fb60674ede2e94140fcc9b984c76c9029db4984555a52b930
+cancel_session,138,Laboratory / cancel_session,false,,Cancel · Keep current game,취소 · 현재 판 유지,70b46d2f27071333fc37c2d5ae9fdb115a288c457f9c8a51ed1362fd3dccf27b
+candidates,123,Laboratory / candidates,false,,Choose overlapping object,겹친 대상 선택,40e80e575c143ee6554e7cc02dcdec195b9a098409670f95f9ce6ab87bd0715c
+carrier,363,Laboratory / carrier,false,,Carrier,운반 개체,d86b80354c698bad7e3ebce13d7f3b53560643df260cad618a9d0092540d592f
+choose_material_target,351,Laboratory / choose_material_target,false,,Select a culture target to supply one cycle of materials.,배양 대상을 선택하면 현재 한 회차분의 재료를 공급합니다.,1f1a09a9d402927ebdc0ba2fa5e047383b81ddf925fae9aaa672bb80fdddf101
+close,116,Laboratory / close,false,,Close,닫기,12affe5305f9aab4c75d4276ae89906826dec17b7887febf5a00a714b11e85bf
+collapse,102,Laboratory / collapse,false,,Hide,접기,fe69ee5041f83f682d2419877e0cd073d7bb2dff9a815e57a9c91aa9a1cb564e
+confirm_placement,110,Laboratory / confirm_placement,false,,Confirm,배치 확정,1c84cf48995d5beace1f1dee04b79ba3785affdea7da81c9f89af78fe083f83f
+confirm_session,137,Laboratory / confirm_session,false,,Confirm change,확인 · 진행 변경,6d6b1647f9dc5a37352513ad7c93f7256423ff4d80cd9c6b76c49cde3b94d8b8
+construction_complete,341,Laboratory / construction_complete,false,,Construction complete · Ready to use,시공 완료 · 시설 사용 가능,e376b39604e4490975bbf9122809b55f1c07ccd1ed8c064798ee6a68698a6e0c
+construction_hint,343,Laboratory / construction_hint,false,,The site is confirmed. Support creatures build after materials are delivered and inserted. Waiting for materials does not mean construction is complete.,부지는 확정되었습니다. 자재를 운반·투입한 뒤 보조형이 시공합니다. 자재 부족은 건설 완료를 뜻하지 않습니다.,2b06d1a78a7303ae8a10a394d978fae62e543b4a12ee4f1f3d80d3ace599fcda
+construction_progress,303,Laboratory / construction_progress,true,progress:text,"Construction · {progress}
+The facility is unavailable until construction is complete.","건설 중 · 시공 {progress}
+시공 완료 전에는 시설을 사용할 수 없습니다.",a77295ed22bfa8b24fe3d555ebc8497f1429fde4458e6682d798797b8a827322
+creatures,113,Laboratory / creatures,false,,Creatures,생명체,ef7f76e23f0d7c8ba9eca2e2c583aeffb468f992de269b21bfc7846c968beacb
+cultivate,311,Laboratory / cultivate,true,target:text;resource:text;count:number,Cultivate {target} ({count:N0} {resource}),{target} 배양 ({resource} {count:N0}),cd48f7b4a9d3e2ba0cebe2b393c00f949fe7f428452d20c96699c6e8ba8fef1d
+cultivate_selected,312,Laboratory / cultivate_selected,true,target:text;resource:text;count:number,Cultivate {target} · Selected ({count:N0} {resource}),{target} 배양 · 선택됨 ({resource} {count:N0}),e4faf103b147d9d9939a9965cb525bf4077990c6fcca90d6984fd9892088b0d3
+cultivation_hint,344,Laboratory / cultivation_hint,false,,Changes during a cycle apply to the next cycle. Completed creatures appear at the work position.,진행 중 선택을 바꾸면 다음 회차부터 적용됩니다. 완료 개체는 작업 위치에 자동으로 나타납니다.,a59e088264376a2a1cd4fb9f38f8df3441789796b54263a723abb67cb1f628da
+cultivation_state,309,Laboratory / cultivation_state,true,current:text;next:text,"Current cycle: {current}
+Next cycle: {next}","현재 회차: {current}
+다음 회차: {next}",8077914997102a6c1c824e5a8b906ae7992f169da74aec58af04d859329750f2
+cultivation_unavailable,345,Laboratory / cultivation_unavailable,false,,Choose a culture target after construction is complete.,시공 완료 후 배양 대상을 선택할 수 있습니다.,42e2c5da56bbfc53bbaf6b8e7bdda686abf34dda6461fedc8ebc4e1129676452
+current_progress,306,Laboratory / current_progress,true,progress:text,Current cycle · {progress},현재 회차 · {progress},72e8a8b76c3dffb50e70efd014b36d5b00bfdfdf7145f1933eb63130ed826f94
+current_target,354,Laboratory / current_target,false,,Current target,현재 작업 대상,67c4e65a2c5043cbe298b65a633f44184f8145699d031c83e691fa1f18599f38
+destination,365,Laboratory / destination,false,,Destination,목적지,d2fb5f2ba397783a6c68dd15b2d1c59efd9644b2695474060b263766f56753a9
+details,115,Laboratory / details,false,,Details,상세 보기,25dd5adb3a57d1dc24cbbcf78f442b9172542b3b38ff76fa05642c44e1e17257
+display,142,Laboratory / display,false,,Display,화면 표시,20e29cf766d66861e9939dd7220bc07b8d229b802930d209e7bf10b3f6741014
+empty_creatures,125,Laboratory / empty_creatures,false,,No creatures yet.,아직 생명체가 없습니다.,fb0e4c0f6b8deb90ec37a5f863abc7f62f0c1e83cfb510a923316704d8f274e2
+empty_facilities,124,Laboratory / empty_facilities,false,,No facilities yet.,아직 시설이 없습니다.,0620052bbffc2cbbca69d5fa5de0ee28140a72382f3b78198583dbc085b09224
+expand,103,Laboratory / expand,false,,Show,펼치기,5527d330c7912b27d7fa0abe2b0b23dd36cc028a9694e969034d2cdb9caa6ff0
+facilities,120,Laboratory / facilities,false,,Placed facilities,설치한 시설,816e26ca33b019334b69ccedec3ba6f8c634922ed948d06a1203e27e0a5589b6
+fit,106,Laboratory / fit,false,,Fit map,전체 보기,a801c4023e5b3e08f07c06c2638438caa707317c478902f15580e922203adeea
+fold_reports,130,Laboratory / fold_reports,false,,Hide reports,보고 접기,21a4ea52f28cc93cd99b38a5cf6cc0ee4868fe0194d1ec75bb2936908e9be45b
+font_license,145,Laboratory / font_license,false,,Font license,글꼴 라이선스,1114354282f95cbf2d409553a5de59e8a96e2b2df718bbb43e1dfe82d910e462
+game_menu,133,Laboratory / game_menu,false,,Game menu,게임 메뉴,f16444b2425dd50c00830fbf6334a16f25ae5200a5245ee7c3fe95f147c57cb8
+gatherers,305,Laboratory / gatherers,true,count:number,Active gatherers: {count:N0}. No progress without a worker.,실제 채집 작업자 {count:N0}명 · 작업자가 없으면 진행하지 않습니다.,17d5b72f684583630aaaa3a69a1d7e5071e23a862114305c0e0f024a39134c74
+heading,100,Laboratory / heading,false,,DOOM INC · Laboratory,DOOM INC · 연구소,e04a47f067952ddb0a6a611a8a807a3a502d4dea7d18e066732bffdba73167ad
+hud,148,Laboratory / hud,true,organic:number;culture:number;creatures:number;score:number;target:number,"Organic {organic:N0} · Medium {culture:N0} · Creatures {creatures:N0}
+Doom {score:N0} / {target:N0}","유기물 {organic:N0} · 배양액 {culture:N0} · 생명체 {creatures:N0}
+멸망 {score:N0} / {target:N0}",cfbcc7cbd38888b62972b58179b5f115f33fbfe1219b5e4e13e6d8ef1fd4bb2b
+hud_paused,149,Laboratory / hud_paused,true,organic:number;culture:number;creatures:number;score:number;target:number,"Organic {organic:N0} · Medium {culture:N0} · Creatures {creatures:N0}
+Doom {score:N0} / {target:N0} · Paused","유기물 {organic:N0} · 배양액 {culture:N0} · 생명체 {creatures:N0}
+멸망 {score:N0} / {target:N0} · 일시정지",e2e0eaddc86a4661a17f647a86b238f267188b846b2c900aff802f394f9df7a3
+idle,127,Laboratory / idle,false,,Idle,작업 대기,4fa9c654c166e4ae525f82225faad4f66ae43363c39c10d55a21096dab466b56
+in_transit,330,Laboratory / in_transit,false,,In transit,운반 중,2e52506fb62c7e85b73aeee5dd5e63f0606631307a828aa7498ec3d8c01dcb79
+individual_priority,361,Laboratory / individual_priority,false,,Work priorities: individual settings,작업 우선순위: 이 개체의 개별 설정,61b67a8029cb9075cd4b0a8a4aeec6fa92b6e2d8c287a39bf3cc4bf152fffd4c
+inputs_consumed,314,Laboratory / inputs_consumed,true,resource:text;count:number,Current cycle consumed {count:N0} {resource}. These inputs will not be consumed again.,현재 회차 재료 {resource} {count:N0}개 투입 완료 · 다시 소비하지 않습니다.,27351b2e8b08c11910896d1c6871f171279f78a53bfde390eccda2bb921c55ef
+inspect_storage,369,Laboratory / inspect_storage,false,,Inspect storage,저장소 확인,7a5bb0f83fe30b76c51e8281ea122abcbb8c09fb3dc636434f9983489d7a192d
+inspect_workers,350,Laboratory / inspect_workers,false,,Check creature jobs and priorities,생명체 목록에서 작업·우선순위 확인,bff0c70533699a689ca549bf911197a3ba34601dfc9cb08b41aec3f4b840d580
+invader_active,302,Laboratory / invader_active,true,count:number,Outside · {count:N0} completed activities,외부 활동 중 · 완료한 활동 {count:N0}회,af0c5091eb112633a5034ea1372755101d83325fb07a773e1dd955c6d3c8e8d2
+invader_hint,339,Laboratory / invader_hint,false,,Use Invasion to release all waiting invaders. Individual release and recall are unavailable.,침공·보고에서 대기 중인 침공형을 전원 방출할 수 있습니다. 개별 방출·귀환 기능은 없습니다.,46f61c3f5f2624611ca7e8d6789bee96fdf3402b52d9f8b83e89eefa952ecb2b
+invasion,114,Laboratory / invasion,false,,Invasion,침공·보고,40e0f9564bcf954b6bebfa98b0acda32949d368348e75a455e890eba7727d339
+invasion_counts,155,Laboratory / invasion_counts,true,waiting:number;outside:number,Awaiting release {waiting:N0} · Outside {outside:N0},방출 대기 {waiting:N0} · 외부 활동 {outside:N0},6699f21455d7ce9687cd35b81e42a11b78a5a13f858c6b9da6cd375cd6c55315
+job_idle,378,Laboratory / job_idle,false,,Waiting,대기,fe3bcdb66d8efcca17ca16499bfa55463632de6c9f83b4c71b08d6ef681f8c88
+job_working,377,Laboratory / job_working,false,,Working,작업 중,d245f0d552e192896dfa460926c5701d02d23459055d9067c946adf36193ce76
+latest_reports,131,Laboratory / latest_reports,false,,Latest reports,최신 보고로,6521c1f08d270865164000d80f0931a52d2ee436405de59469e39bfc3f143dd8
+license_missing,118,Laboratory / license_missing,false,,The font license is unavailable.,글꼴 라이선스를 찾을 수 없습니다.,14350b0384d865c48fcfcda7bead8aa81e54e2bbeac2a34d3c945018b06e58ae
+load_error,117,Laboratory / load_error,false,,Could not load the save. Retry from the game menu.,저장을 불러오지 못했습니다. 게임 메뉴에서 재시도하세요.,cd24b7f3e28404ab34f7bccf819f23ad535db28409e791aa42b111b7d21493c7
+manage_workers,346,Laboratory / manage_workers,false,,Assign workers from the creature list,생명체 목록에서 작업자 배정,2b0eb85b4ea7a1711740b08cf5dc7b811130ea862b14e0b4c25fa95477bb17e4
+map_help,143,Laboratory / map_help,false,,"Map controls: −/＋ zoom out/in, corners fit the map, and the eye toggles facility status.","지도 조작: 돋보기 −/＋는 축소/확대, 네 모서리 표시는 전체 보기, 눈/가린 눈은 시설 상태 표시입니다.",8a44b66a1b7d5c14bc7d949533fca2b2c1f258d287c61a7030b7c4386a4375a0
+material_arrived,317,Laboratory / material_arrived,false,,delivered,도착,96da4fc708cd3c6836a94eaff70125207998e7c226bf06a8c63156eb3245f811
+material_inserted,316,Laboratory / material_inserted,false,,inserted,투입,2671f987a0cea8035c55a4bf7c2f9d85d913d14a2c174fed94b950a94d742899
+material_stock,318,Laboratory / material_stock,true,reason:text;total:number;reserved:number,"{reason}
+Total stock: {total:N0} · Reserved elsewhere: {reserved:N0}","{reason}
+전체 재고 {total:N0}개 · 다른 작업 예약 {reserved:N0}개",f286847010b79cf6ca205353b96466f97be11ca081cac5f2b52b2a3827f0d918
+materials,315,Laboratory / materials,true,resource:text;action:text;delivered:number;required:number;incoming:number;transit:number;uncovered:number,"{resource} {action}: {delivered:N0} / Required: {required:N0}
+Incoming: {incoming:N0} (including {transit:N0} in transit) · Unreserved: {uncovered:N0}","{resource} {action} {delivered:N0} / 필요 {required:N0}개
+공급 예정 {incoming:N0}개 (운반 중 {transit:N0}개 포함) · 미확보 {uncovered:N0}개",d81b93e136f9a1dc56fd96b759e56eac08f81b3dd30112727fed2887262dbdac
+menu,101,Laboratory / menu,false,,Menu,메뉴,59de96ac858c7aefcb833e7f3fe48865b9a5be2dbf0bc5cc26f86ef936fc4aff
+move,342,Laboratory / move,false,,Move / Rotate facility,시설 이동·90° 회전,6e98135b7cbd8da1876d2dca9264a506c2df43c3e96366d950c6ffde965b8c4c
+moving,151,Laboratory / moving,false,,Move facility,시설 이동,5c9e28fec7f50f0a0a2fbad851b3e6a8dfe720e05f7c91c58f9ebb1984e980b3
+no_assignable,358,Laboratory / no_assignable,false,,Complete a processing or cultivation facility before assigning workers.,시공을 마친 가공·배양시설이 있어야 배정할 수 있습니다.,e4ac859639791ceff4b6a88f300f124929e1dc060fab187266bdd6de48d72b72
+no_cycle,310,Laboratory / no_cycle,false,,No active cycle,진행 중인 회차 없음,2a5641126fb3fdffb17eaaba7d7b564bf5b232d0c59b9e4ed86078fb332a454a
+no_related_storage,366,Laboratory / no_related_storage,false,,No other completed storage is available. Add storage from the Build menu.,확인할 다른 완성 저장소가 없습니다. 건설 메뉴에서 저장소를 추가할 수 있습니다.,1c34b5725e62f729d20f0ba0719d2ac4b3360d1ffd039af7618c897f81150430
+no_reports,132,Laboratory / no_reports,false,,No activity reports yet.,아직 전과 보고가 없습니다.,3aa5344d893c13a4cd8414f558794a62ba7db79661d1fa3f7aa5cb8a80994e12
+no_target,159,Laboratory / no_target,false,,No target,대상 없음,1c4d12ddce060f144645747ab0b4e387e5ec928450d3d87196c699853d399796
+outside,126,Laboratory / outside,false,,Outside,외부 활동,213fe86ac0e70b3a2bc4195cd90ad023343ef49b6c3bae0af9e70e5e9741fafd
+outside_detail,337,Laboratory / outside_detail,false,,Active outside the laboratory,연구소 밖에서 활동 중,f73b7a7c665ab078a833e42f41f015216485f8123eccb9449c9bc0cc899ed79e
+outstanding,313,Laboratory / outstanding,true,count:number,"Awaiting storage: {count:N0}, including completed goods in transit",실제 입고 대기 {count:N0}개 · 운반 중인 완료품 포함,a79bb4024f043e225725455aa60f809336355d3530b518612e5bead7eaf81298
+placement_invalid,153,Laboratory / placement_invalid,true,action:text;position:text,{action} · {position} · Check overlaps and map boundaries,{action} · 위치 {position} · 겹침/영역 경계를 확인하세요.,038ac15ba36844d35f6c7b87cee43eca1781d027338b53644075e0a386cd8d76
+placement_valid,152,Laboratory / placement_valid,true,action:text;position:text,{action} · {position} · Ready to confirm; materials arrive later,{action} · 위치 {position} · 확정 가능 (자재는 이후 운반),c2da953fe637953f14e33e8789622798488d50fa1477dd4d1fe1a8bfa6d10279
+placing_new,150,Laboratory / placing_new,false,,New construction,새 건설,9dcb89d8e228eb0337722f94efb1b769d6506fc4b8da097cea9f2e7d671759f2
+position,300,Laboratory / position,true,position:text,Position {position},위치 {position},120c9810fbff9345562157fc8c1f84722da9ac3b88973ded78a0cb7bfbee6abd
+preset_hint,122,Laboratory / preset_hint,false,,"0: Disabled · Lower numbers first
+Ties: construction → gathering → hauling → production","0: 사용 안 함 · 낮은 숫자 우선
+동률: 건설 → 채집 → 운반 → 생산",c47739c1941024cf6e6f20daaf91bdcb0990ce251e3e1567c13fda7eb0f49403
+preset_title,121,Laboratory / preset_title,false,,Default work priorities,기본 작업 우선순위,ef04aca5d7dceea1806b452157545061ef3dfeeb82164991d9b22008a7bfbd1f
+priority,333,Laboratory / priority,true,work:text;value:number,{work}: priority {value},{work}: 우선순위 {value},999761ba5da4342e597b38a3d80105f45b9184735cc96d445d7f7b89c150e93b
+priority_hint,370,Laboratory / priority_hint,false,,"0 disables work · Lower numbers first · Ties: construction → gathering → hauling → production
+Tap to cycle from 0 to 4. Ongoing jobs keep their transition rules.","0은 끔 · 작은 숫자부터 선택 · 동률은 건설 → 채집 → 운반 → 생산
+누르면 0~4로 바뀝니다. 진행 중 작업의 전환 규칙은 유지됩니다.",2f860a56818a67563aa213b9657a900b4dc6ffc34061f0c9d32f63b059e4adc6
+priority_off,334,Laboratory / priority_off,true,work:text;value:number,{work}: off ({value}),{work}: 끔 ({value}),8a0676781d9888643fc85ef82abfc18ea1af2681916a776b72063e71795b2996
+production_rate,307,Laboratory / production_rate,true,state:text;rate:number,{state} · {rate:0.#}% of base speed,{state} · 기준 속도의 {rate:0.#}%,c165fa644f9a4db6b8d867e0b6c342fb5decc9c30320b1c38c64484f18943b7b
+production_workers,308,Laboratory / production_workers,true,assigned:number;working:number,Assigned: {assigned:N0} / Actively producing: {working:N0},배정 {assigned:N0}명 / 실제 생산 작업 {working:N0}명,b51d5729dfd3b36f2f92924527f697c069467c95aead86c4b436816bba3bf668
+progress,335,Laboratory / progress,true,percent:number;work:number;duration:number,{percent:0.#}% ({work:0.#} / {duration:0.#} s of work),{percent:0.#}% ({work:0.#} / {duration:0.#}초 작업량),8fa8ed42ebc4b261be60d218577e2e91d584046ede450e887439f35942973fe5
+prototype_assignment,359,Laboratory / prototype_assignment,false,,"Prototypes gather, haul and build. They cannot be assigned to processing or cultivation.",프로토타입은 채집·운반·건설을 수행하며 가공·배양 작업자로 배정할 수 없습니다.,4399e70b854985b878bbdd0ef368cacced1dda0f602742632bee811372a55fc9
+related_storage_hint,368,Laboratory / related_storage_hint,false,,"Check storage stock, free space and allowed resources. Paths and hauling jobs also affect supply.",저장소의 재고·빈 공간·허용 자원을 확인하세요. 경로와 운반 작업도 공급에 영향을 줍니다.,652e31054788174cde8957f442c04a8a4faffc257de5085112e4a9e996eb627b
+related_thing,332,Laboratory / related_thing,true,caption:text;thing:text,{caption}: {thing},{caption}: {thing},2faf867fa240f1a181e9765e876754a69cadc4ff19802a65f4bacb4544f7eef9
+release,156,Laboratory / release,true,count:number,Release all waiting invaders ({count:N0}),대기 중인 침공형 전원 방출 ({count:N0}),2efa551ce1b8daf16f44b5153e8c942e4a5c2025e0378204a5913ca04ea99d9b
+reload,140,Laboratory / reload,false,,Load latest save,최근 저장 불러오기,4472e20579e0acac1a3f75f4c5e7ce04a916dbe138c842a9f7fd93f1953445a2
+reload_prompt,135,Laboratory / reload_prompt,false,,"Load the latest save?
+This replaces current progress and unconfirmed placement with the saved state.","최근 저장을 불러올까요?
+현재 진행과 미확정 배치를 저장된 상태로 교체합니다.",46dba711d3dddeda0b93e1e9262fa6673e6de070df4b18b5d8694f818b9d6e2d
+relocating,322,Laboratory / relocating,true,resource:text;reserved:number;held:number,"{resource}: {reserved:N0} reserved for relocation, {held:N0} still held
+Stock stays here when no destination is available.","{resource} 이동 예약 {reserved:N0}개 · 이동 전 보관 {held:N0}개
+운반할 곳이 없으면 보관을 유지합니다.",f95d023db53fbcc0c18d441992ab017b02c2f552934c97a1d6d9d74e7a87782c
+reports_expired,6,Laboratory / reports_expired,false,,Expired reports were removed. Showing the remaining records.,보존 기간이 지난 보고가 정리되어 남은 기록으로 이동했습니다.,a603959c83c96890a93dbf4a1a4a3c14cef4f60ac1ce13b927d09cc61ed3d912
+request_applied,4,Laboratory / request_applied,false,,Request applied.,요청을 반영했습니다.,48ad875a166fe0bbf4eef335bbaf4c504ff5cbff391f76b23f01066174aac2dc
+request_failed,5,Laboratory / request_failed,false,,Could not apply the request. Check the current state and requirements.,요청을 반영하지 못했습니다. 상태와 조건을 확인하세요.,ee0b225e31e6e89cae48db21e8de4706821cb22fd84c78f08c5027563a0014d6
+resource,336,Laboratory / resource,false,,Resource,자원,e702c1458d86111eb94fe08a2b05811636e639617d3d3faa11a0ff008e4630b9
+resource_allowed,320,Laboratory / resource_allowed,true,resource:text,{resource}: Allowed → Block,{resource}: 허용 중 → 해제,03d04bd543bc163bea0c8c947c85c8829ed487d09d9f9e393a94d9b5b2fc4aab
+resource_blocked,321,Laboratory / resource_blocked,true,resource:text,{resource}: Blocked → Allow,{resource}: 차단 중 → 허용,aaf6cdd1cbb26bc28f194fd8b9592e8290fa89307f017095469948e9ad36d310
+restart,141,Laboratory / restart,false,,New game,새 판 시작,ce2237197314ce8ef129b74bc179a733fa1b779e1e539620f199044688ddff86
+restart_prompt,136,Laboratory / restart_prompt,false,,"Start a new game?
+Current progress and the save slot will be reset. Display preferences are kept.","새 판을 시작할까요?
+현재 진행과 저장 슬롯을 초기 상태로 바꿉니다. 표시 설정은 유지됩니다.",1afe6d5fb1caedef4154cf20e12d117480869833d274f107ac547ddbb9db8853
+retry_settings,144,Laboratory / retry_settings,false,,Retry saving display settings,화면 설정 저장 재시도,f03e9c5b38148dfd4d5fccc9cd454b2900d6d0e038177252ce078b4e63e830bd
+return_title,134,Laboratory / return_title,false,,Save and return to title,저장하고 메인 메뉴로,956b8889c0215f4fe5fd70b9240683dca85e828bddc6c539bcd365de69bda310
+roster_entry,147,Laboratory / roster_entry,true,thing:text;state:text,{thing} · {state},{thing} · {state},e06ca907d692cda69bd1867760e333586277932aa447b9bee3d32d52c0e58aee
+rotate,109,Laboratory / rotate,false,,Rotate 90°,90° 회전,d8d69069da988ba3990f511d934391d7c04f279f8776976ae37f52e8a59ec733
+save,139,Laboratory / save,false,,Save now,지금 저장,bc4044546531404e22c3efeaf0d0cfb452fb6e346339c442a9dbccd942f1d34d
+save_failed,8,Laboratory / save_failed,false,,Could not save. Your previous save is preserved.,저장하지 못했습니다. 이전 저장을 유지합니다.,88b1d97d665c47e2f96f43bcfad6912a0d4d3ada63b8b4f0701488f1046f6b91
+saved,7,Laboratory / saved,false,,Progress saved.,진행을 저장했습니다.,8244a94ccdfb76d8eddece608c0b16df5b1a65a1f12a32765822e77e2d1b377d
+selection_summary,146,Laboratory / selection_summary,true,thing:text;state:text,"{thing}
+{state}","{thing}
+{state}",611ad0fb924ed3bac59bacaac4fda33bf0328529855aa78469b830b59519ae78
+session_changed,2,Laboratory / session_changed,false,,Game state changed.,진행을 변경했습니다.,833437d683029487ec4dc2262b1fe122fef9a49beb32b96c8c66427a6029c569
+session_failed,3,Laboratory / session_failed,false,,Could not change the game state. The current state is preserved.,진행을 변경하지 못했습니다. 현재 상태는 유지됩니다.,55d09cfdc6d597a6be0187f72c88b4c75f5c6a5f0f3de5b90a711ce3060b8e7e
+setting_notice_failed,1,Laboratory / setting_notice_failed,true,notice:text,{notice} · Could not save setting,{notice} · 설정 저장 실패,65323791251e64516ece09901c886b7d57a552907943cc7730692a3279c24497
+show_reports,157,Laboratory / show_reports,true,count:number,Show activity reports ({count:N0}),전과 보고 보기 ({count:N0}),a1928d9129efefcc905499002373784669a9a6262d612186630caf28dc703e0d
+source,364,Laboratory / source,false,,Source,공급처,be3caa4fd08dbf2fdc9bf8f30e97743977767f61b560aa8d361e54a91a1003bc
+status_off,108,Laboratory / status_off,false,,Status OFF,상태 OFF,29a48128be73170d9f9736f000960e533b098aeb643e38a0da1d9263e785d35e
+status_on,107,Laboratory / status_on,false,,Status ON,상태 ON,ecd122ce2a845cfa2f140f249b4ef097fa221ccbf0aee34478ae1c6648ff986c
+status_progress,160,Laboratory / status_progress,true,state:text;percent:number,{state} · {percent:0}%,{state} · 진행 {percent:0}%,5a17c58e306b7c537b96c78f431c2175c92095fa47257dd8ac0cdd4ae490720b
+stock,301,Laboratory / stock,true,resource:text;count:number,Stock: {count:N0} {resource},보유 {resource} {count:N0}개,9d7015d11e1092bca5d05309a8bea780c096f8e63e9db9c2d99421a82f8992fa
+storage_hint,352,Laboratory / storage_hint,false,,Blocking a resource does not delete stock. It uses capacity until physically moved to another allowed storage.,허용을 해제해도 재고는 없어지지 않습니다. 다른 허용 저장소로 실제 반출될 때까지 용량을 차지합니다.,919703a68fefdf73501b1ce6998c4ccac319b25fd41673c4073b308e6e7f2a96
+storage_state,319,Laboratory / storage_state,true,stock:number;capacity:number;incoming:number;outgoing:number;free:number,"Stock: {stock:N0} / Capacity: {capacity:N0}
+Incoming: {incoming:N0} · Reserved outgoing: {outgoing:N0}
+Free space after reservations: {free:N0}","실제 재고 {stock:N0} / 용량 {capacity:N0}
+입고 예정 {incoming:N0} · 출고 예약 {outgoing:N0}
+예약을 제외한 입고 여유 {free:N0}",ccd6531498f72d1b46e8b299035a1085e47b99d85c9842bb28a3515ad7b43f25
+thing_label,158,Laboratory / thing_label,true,name:text;order:number,{name} #{order},{name} #{order},f553ba2cfad12e0ae0fdf8dc2c0b23e109614312100f0db5cdeb0c5eab7cf20c
+to_destination,376,Laboratory / to_destination,false,,Moving to destination,목적지로 이동,49962022113e0153eda3d10c984f924d8ad8aa6cee136cc288bf8c8c9691870a
+to_supply,375,Laboratory / to_supply,false,,Moving to supply,자원 받으러 이동,656cb4f4e4cec9beacf4fc46345e83c632b5d7ff62ab9035fa9c9ac97c8e9214
+transport,329,Laboratory / transport,true,state:text;resource:text;count:number;source:text;destination:text,"{state}: {count:N0} {resource}
+{source} → {destination}","{state} {resource} {count:N0}개
+{source} → {destination}",a4ddc78bcae3dbff4bf9998044cd3a16028d5071394d6918d4448ba048e21e2b
+transport_reserved,331,Laboratory / transport_reserved,false,,Delivery reserved,운반 예약,a1419969376578719525beb46e641d56164b70fe79766078f66dc91d48131f22
+unassign,357,Laboratory / unassign,false,,Unassign facility,시설 배정 해제,cc03d4fe8c6d0bf2c2e2784a65db582a24395fbb576fde70357dc288152bab00
+unassigned,326,Laboratory / unassigned,false,,Unassigned,미배정,027a68dd999ece2e2f5389b2e2c9d45bd1417b574992b595bf6cd48c56254261
+use_preset,362,Laboratory / use_preset,false,,Use default preset,기본 프리셋으로 되돌리기,29088ed35feb857d0781833f8ea6938129e23b034a006488c71d47dffca82d95
+using_preset,360,Laboratory / using_preset,false,,Work priorities: default preset,작업 우선순위: 기본 프리셋 사용 중,cfce7a3549820ef23d653c136e168a97e63b2eef14b6da3547e4c8bc1dc97e94
+view_assigned,356,Laboratory / view_assigned,false,,View assigned facility,배정 시설 보기,d42b8b960b869928c6435449a89e6d4c8a5a1ffdd737d4360224887febfec6e0
+view_build,367,Laboratory / view_build,false,,View build menu,건설 목록 보기,462f3ed98bf193890f757d2fbd70c044cc8a2ef50cbd029a9f961912cd8fb379
+view_invasion,340,Laboratory / view_invasion,false,,View invasion and reports,침공·보고 보기,4b27bd501b2e7ba83471ccb6eeb507febd24b2e9567e45c35f35216f569f43ff
+wait_admission,384,Laboratory / wait_admission,false,,Waiting for completed goods to enter storage.,완료품이 저장소에 실제 입고되기를 기다립니다.,d9097e1d67272a7dd631b471dfa928acb6c24ce28f87df91abd6e008fb34aed1
+wait_claimed,383,Laboratory / wait_claimed,false,,Another creature is working at this facility.,다른 개체가 이 시설에서 작업하고 있습니다.,3f213d57570c99eb9f777cf4fd3615073094b46e457bf3bdec2d03a92d28790e
+wait_disabled,381,Laboratory / wait_disabled,false,,All work priorities are disabled.,모든 작업 우선순위가 꺼져 있습니다.,a7a043498e30caa714ba023d6f66ef1c956edbfa385fffd85d190010d8c4b33a
+wait_next,387,Laboratory / wait_next,false,,Waiting for the next job.,다음 작업을 기다립니다.,c96919129ac55bbc21de373be1b685292b5af1b9dd7214ba41883f7ecf71a50d
+wait_no_work,382,Laboratory / wait_no_work,false,,No reachable work or valid delivery destination.,도달할 수 있는 작업 또는 유효한 운반 목적지가 없습니다.,f9be299faf66364331388b7d95056d877e13c99d9353c848f70772383d33b779
+wait_path,380,Laboratory / wait_path,false,,No path to the target.,작업 대상까지 이동할 경로가 없습니다.,0af994311052070db3ef1aadd7f0a2aae116a557a7a991b8d66589fec8df28e2
+wait_storage,385,Laboratory / wait_storage,false,,Carrying resources with no reachable allowed storage space.,자원을 보유 중이며 도달 가능한 허용 저장 공간이 없습니다.,eaf0dd8dc678bbe9bc16749786829ff680db24b82d20e71e72bcbbb6ddd54e7a
+wait_transport,386,Laboratory / wait_transport,false,,Delivery conditions changed. Choosing the next job.,운반 조건이 바뀌어 다음 작업을 선택하고 있습니다.,9ef59e827e437c3679341467104d6cfc6fd6b438c12325e33a037b197d9e28be
+wait_unavailable,379,Laboratory / wait_unavailable,false,,The current target is unavailable.,현재 작업 대상을 이용할 수 없습니다.,953b02d4fe32c34ac851e1084d2dd8435650aa419b79435adfb01323d39d05b2
+waiting_release,129,Laboratory / waiting_release,false,,Awaiting release,방출 대기,e3dec166fee76c0b601153ef358772d5cb4c1326ab2a3bead032013845ad7612
+waiting_release_detail,338,Laboratory / waiting_release_detail,false,,Awaiting release in the laboratory,연구소에서 방출 대기 중,83645501e5e112ff3a81e166250dde240e7b22e0ab4eb4456f6c813f44a6c27d
+work_construction,371,Laboratory / work_construction,false,,Construction,건설,95fc6ada7108496e9285bfb7817c3fd5cd1b7d9ce6febcc7058bd31a0e397e1f
+work_gathering,372,Laboratory / work_gathering,false,,Gathering,채집,c44fad20c1cfbbdca9c52b99e24414d39910c0cf9bb284b7cab08d3788355e10
+work_hauling,373,Laboratory / work_hauling,false,,Hauling,운반,1eb7aeefbd97f63ad3578922e13c1c604d968caa007b0fc1307d9fd8deb91364
+work_production,374,Laboratory / work_production,false,,Production,생산,2e4ce53280539fe71f5f450a745b08c9dd526dc86222e0a06cf88cffd7b8298c
+work_progress,304,Laboratory / work_progress,true,state:text;progress:text,{state} · {progress},{state} · {progress},d5d2614c111f82512ddcb0c57da332b49c104999a2417c8363eb7f5db119a68e
+worker_idle,353,Laboratory / worker_idle,false,,Current action: idle,현재 행동: 대기,4fbf322eee23618ee325364b93d3b7eec5c12ea5acbfcf74428fc4407791fee4
+worker_job,323,Laboratory / worker_job,true,kind:text;stage:text;target:text,"Current action: {kind} · {stage}
+Target: {target}","현재 행동: {kind} · {stage}
+작업 대상: {target}",8c8790f2aec7cef1b349f1e0ed14020262c82965331c6e567ac6ec5e31286c09
+worker_wait,324,Laboratory / worker_wait,true,reason:text,Waiting: {reason},대기 이유: {reason},afbe945a9694bfff735eddd950bbc65f133dac32278e180c54f7b39f779080b6
+working,128,Laboratory / working,false,,Working,작업 중,5daac6fc9b87409150e35c9a89f101704e54d9561c163221aa4ae1a7b6046a66
+zoom_in,105,Laboratory / zoom_in,false,,Zoom in,확대,33db7f78b5e0a821d8bc458e3a5221f33f504f5ab7c962f87f38e70907681f64
+zoom_out,104,Laboratory / zoom_out,false,,Zoom out,축소,f1d66a12ee153d68c6f6f6c43b9e822585ade650c4bd41f5a5df0bc3f9efc312

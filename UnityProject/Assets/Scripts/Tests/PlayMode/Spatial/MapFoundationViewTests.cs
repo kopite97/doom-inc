@@ -48,6 +48,7 @@ namespace MobileGame.SpatialTests
                 yield return null;
                 var view = UnityEngine.Object.FindFirstObjectByType<MapFoundationView>();
                 Assert.That(view, Is.Not.Null, "The saved scene must deserialize the real view.");
+                while (view.Session == null && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
                 Assert.That(view.Session, Is.Not.Null, "Scene SO references must create the fixture.");
                 var storage = DataTestAssets.LoadAssetAtPath<FacilityData>("Assets/SO/Facility/Storage.asset");
                 var creature = DataTestAssets.LoadAssetAtPath<CreatureData>("Assets/SO/Creature/PrototypeSupport.asset");

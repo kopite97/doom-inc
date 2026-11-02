@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "if(UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode) throw new System.InvalidOperationException(\"Stop Play before restoring.\");\nfor(int i=0;i<3;i++) { var path=UnityEditor.SessionState.GetString(\"PLAN018.Path\"+i,\"\"); var bytes=UnityEditor.SessionState.GetString(\"PLAN018.Bytes\"+i,\"\"); if(string.IsNullOrEmpty(path)||string.IsNullOrEmpty(bytes)) throw new System.InvalidOperationException(\"Missing backup\"); if(bytes==\"MISSING\") { if(System.IO.File.Exists(path)) System.IO.File.Delete(path); } else System.IO.File.WriteAllBytes(path,System.Convert.FromBase64String(bytes)); }\nforeach(var key in new[]{\"Continue\",\"SlotB\"}) { if(UnityEditor.SessionState.GetBool(\"PLAN018.Has\"+key,false)) UnityEditor.EditorPrefs.SetBool(\"MobileGame.AppPlayEntry.\"+key,UnityEditor.SessionState.GetBool(\"PLAN018.\"+key,false)); else UnityEditor.EditorPrefs.DeleteKey(\"MobileGame.AppPlayEntry.\"+key); }\nvar scene=UnityEditor.SessionState.GetString(\"PLAN018.OriginalScene\",\"\");\nif(!string.IsNullOrEmpty(scene)) UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);\nUnityEditor.SceneManagement.EditorSceneManager.playModeStartScene=UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.SceneAsset>(UnityEditor.SessionState.GetString(\"PLAN018.OriginalStart\",\"\"));\nUnityEngine.Application.runInBackground=UnityEditor.SessionState.GetBool(\"PLAN018.Background\",false);\nreturn new { filesRestored=3, scene, stopped=!UnityEditor.EditorApplication.isPlaying, reloadOptions=UnityEditor.EditorSettings.enterPlayModeOptions.ToString(), optionsEnabled=UnityEditor.EditorSettings.enterPlayModeOptionsEnabled };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "filesRestored": 3,
+        "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+        "stopped": true,
+        "reloadOptions": "None",
+        "optionsEnabled": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

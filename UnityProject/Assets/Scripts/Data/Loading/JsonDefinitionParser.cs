@@ -60,7 +60,7 @@ namespace MobileGame.Foundation
                     }
                     if (string.IsNullOrWhiteSpace(dto.definitionId) || dto.definitionId != dto.definitionId.Trim()) throw dto.Error("definitionId", "Nonempty ID without surrounding whitespace required.");
                     if (!ids.Add(dto.definitionId)) throw dto.Error("definitionId", "Duplicate ID.");
-                    if (dto is ThingDefinitionDto thing && string.IsNullOrWhiteSpace(thing.displayName)) throw dto.Error("displayName", "Nonblank display name required.");
+                    if (dto is ThingDefinitionDto thing && string.IsNullOrWhiteSpace(thing.displayNameKey)) throw dto.Error("displayNameKey", "Nonblank display name required.");
                     rows.Add(dto);
                 }
                 return rows.AsReadOnly();

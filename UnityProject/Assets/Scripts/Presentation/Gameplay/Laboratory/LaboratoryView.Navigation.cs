@@ -24,7 +24,7 @@ namespace MobileGame.Presentation
         private bool detailsExpanded;
         private LaboratorySessionAction pendingSessionAction;
         private string activePanelKey;
-        private string uiNotice;
+        private LocalizedMessage uiNotice;
         private LaboratoryPanel editReturnPanel;
         private bool editReturnExpanded;
 
@@ -61,9 +61,9 @@ namespace MobileGame.Presentation
             if (uiSettings == null) return false;
             var statusChanged = ShowFacilityStatus != showStatus;
             var saved = uiSettings.TrySet(showStatus, largeText);
-            uiNotice = statusChanged ? "시설 상태 표시: " + (showStatus ? "ON" : "OFF")
-                : "글자 크기: " + (largeText ? "크게" : "보통");
-            if (!saved) uiNotice += " · 설정 저장 실패";
+            uiNotice = statusChanged ? C("status_setting", A("value", C(showStatus ? "on" : "off")))
+                : C("text_setting", A("value", C(largeText ? "large" : "normal")));
+            if (!saved) uiNotice = M("setting_notice_failed", A("notice", uiNotice));
             ApplyTextStyle(); InvalidateInput(); return saved;
         }
         private void ApplyTextStyle()
@@ -146,7 +146,7 @@ namespace MobileGame.Presentation
             if (!CanClickScreen() || pendingSessionAction == LaboratorySessionAction.None) return false;
             var action = pendingSessionAction; pendingSessionAction = LaboratorySessionAction.None; InvalidateInput();
             var success = action == LaboratorySessionAction.Reload ? Reload() : Restart();
-            uiNotice = success ? "진행을 변경했습니다." : "진행을 변경하지 못했습니다. 현재 상태는 유지됩니다.";
+            uiNotice = M(success ? "session_changed" : "session_failed");
             if (!success) OpenPanel(LaboratoryPanel.Game);
             return success;
         }

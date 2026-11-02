@@ -14,7 +14,7 @@ namespace MobileGame.Foundation
             ThingId = thing.Id;
             CreationOrder = thing.CreationOrder;
             DefinitionId = thing.Definition.DefinitionId;
-            DisplayName = thing.Definition.DisplayName;
+            DisplayNameKey = thing.Definition.DisplayNameKey;
             Kind = thing.Definition.Kind;
             Origin = origin;
             Rotation = rotation;
@@ -25,7 +25,7 @@ namespace MobileGame.Foundation
         public Guid ThingId { get; }
         public long CreationOrder { get; }
         public string DefinitionId { get; }
-        public string DisplayName { get; }
+        public string DisplayNameKey { get; }
         public ThingKind Kind { get; }
         public Vector2Int Origin { get; }
         public QuarterTurn Rotation { get; }

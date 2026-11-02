@@ -9,9 +9,10 @@ namespace MobileGame.Foundation.Editor
     public sealed class LaboratoryGameViewSize : IDisposable
     {
         private readonly EditorWindow window;
+        private readonly EditorWindow[] windows;
         private readonly object group;
         private readonly PropertyInfo selected;
-        private readonly int previous;
+        private readonly int[] previous;
         private readonly int customIndex;
         public LaboratoryGameViewSize(int width, int height)
         {
@@ -24,7 +25,10 @@ namespace MobileGame.Foundation.Editor
             if (window == null) window = EditorWindow.GetWindow(viewType);
             window.Show(); window.Focus();
             selected = viewType.GetProperty("selectedSizeIndex", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            previous = (int)selected.GetValue(window);
+            // Every visible Game View can overwrite Screen dimensions while rendering. Keep all
+            // existing views on one verification size, then restore each user's original selection.
+            windows = Array.ConvertAll(Resources.FindObjectsOfTypeAll(viewType), value => (EditorWindow)value);
+            previous = Array.ConvertAll(windows, value => (int)selected.GetValue(value));
             var sizesType = assembly.GetType("UnityEditor.GameViewSizes", true);
             var sizes = sizesType.BaseType.GetProperty("instance", BindingFlags.Static | BindingFlags.Public).GetValue(null);
             var groupType = assembly.GetType("UnityEditor.GameViewSizeGroupType", true);
@@ -37,14 +41,13 @@ namespace MobileGame.Foundation.Editor
             group.GetType().GetMethod("AddCustomSize").Invoke(group, new[] { size });
             var index = (int)group.GetType().GetMethod("GetTotalCount").Invoke(group, null) - 1;
             customIndex = index;
-            selected.SetValue(window, index); window.Repaint();
+            foreach (var view in windows) { selected.SetValue(view, index); view.Repaint(); }
         }
         public void Dispose()
         {
-            if (window == null) return;
-            selected.SetValue(window, previous);
+            for (var i = 0; i < windows.Length; i++)
+                if (windows[i] != null) { selected.SetValue(windows[i], previous[i]); windows[i].Repaint(); }
             group.GetType().GetMethod("RemoveCustomSize").Invoke(group, new object[] { customIndex });
-            window.Repaint();
         }
     }
 }

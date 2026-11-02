@@ -20,6 +20,7 @@ namespace MobileGame.Presentation
         public string Error { get; private set; }
         public LoadingScreen Loading { get; private set; }
         public LaboratoryView Laboratory { get; private set; }
+        public AppLocalization Localization { get; private set; }
         public UiSettingsStore Settings => AppUiSettings.ForSlot(SavePath);
         private int generation;
         private Action cancelPrompt;
@@ -68,9 +69,12 @@ namespace MobileGame.Presentation
             }
             if (Instance.Configuration == null)
             {
+                var preferences = Path.Combine(Application.isEditor ? Application.temporaryCachePath : Application.persistentDataPath,
+                    "Preferences", "language.json");
+                Instance.Localization = new AppLocalization(config.localization, preferences);
                 Instance.Configuration = config; Instance.SavePath = resolvedSlot;
                 Instance.Loading = Instantiate(config.loadingScreen, Instance.transform);
-                Instance.Loading.Configure(config.uiAssets?.Font, () => Instance != null && Instance.Settings.Current.LargeText);
+                Instance.Loading.Configure(config.uiAssets?.Font, () => Instance != null && Instance.Settings.Current.LargeText, Instance.Localization);
                 Instance.Loading.Hide();
             }
             if (Instance.Configuration != config) throw new InvalidOperationException("Application configuration cannot change during a run.");
@@ -84,6 +88,7 @@ namespace MobileGame.Presentation
         private void ResetLifetime()
         {
             generation++; StopAllCoroutines(); IsTransitioning = IsPrompting = false;
+            Localization?.Dispose(); Localization = null;
             if (Loading != null) Destroy(Loading.gameObject);
             Loading = null; Configuration = null; Laboratory = null; cancelPrompt = null; Error = null;
         }
@@ -107,16 +112,16 @@ namespace MobileGame.Presentation
         {
             IsPrompting = true;
             cancelPrompt = CancelPrompt;
-            Loading.Show(LoadingScreenKind.Confirmation, "새 게임을 시작할까요? 기존 진행과 저장을 초기 상태로 교체합니다. 표시 설정은 유지됩니다.",
-                () => { CancelPrompt(); StartNewGame(true); }, CancelPrompt, "새 게임 시작", "취소");
+            Loading.Show(LoadingScreenKind.Confirmation, new LocalizedMessage("Loading", "new_game_prompt"),
+                () => { CancelPrompt(); StartNewGame(true); }, CancelPrompt, new LocalizedMessage("Loading", "start_new"), new LocalizedMessage("Common", "cancel"));
         }
         public bool RequestReturnToTitle()
         {
             if (IsTransitioning || IsPrompting || Laboratory?.Controller?.Current == null || paused || !focused
                 || Laboratory.Controller.Phase == SessionPhase.Destruction) return false;
             IsPrompting = true; Laboratory.SetTransitionPaused(true); cancelPrompt = CancelPrompt;
-            Loading.Show(LoadingScreenKind.Confirmation, "현재 진행을 저장하고 메인 메뉴로 돌아갈까요? 미확정 배치는 취소됩니다.", ConfirmReturn,
-                CancelPrompt, "저장하고 돌아가기", "취소");
+            Loading.Show(LoadingScreenKind.Confirmation, new LocalizedMessage("Loading", "return_prompt"), ConfirmReturn,
+                CancelPrompt, new LocalizedMessage("Loading", "save_return"), new LocalizedMessage("Common", "cancel"));
             return true;
         }
         public void CancelPrompt()
@@ -132,7 +137,9 @@ namespace MobileGame.Presentation
             if (!Laboratory.Save())
             {
                 Error = Laboratory.Controller.LastSaveError ?? Laboratory.Controller.LastError;
-                Loading.Show(LoadingScreenKind.Error, "저장하지 못했습니다. 현재 판을 유지합니다.\n" + Error, ConfirmReturn, CancelPrompt, "저장 재시도", "복귀 취소");
+                Debug.LogWarning("Save before title failed: " + Error);
+                Loading.Show(LoadingScreenKind.Error, new LocalizedMessage("Loading", "save_failed"), ConfirmReturn, CancelPrompt,
+                    new LocalizedMessage("Loading", "retry_save"), new LocalizedMessage("Loading", "cancel_return"));
                 return;
             }
             IsPrompting = false; cancelPrompt = null;
@@ -167,7 +174,7 @@ namespace MobileGame.Presentation
         }
         private IEnumerator Transition(Request request, int token)
         {
-            Loading.Show(LoadingScreenKind.Loading, "게임 데이터를 준비하고 있습니다…"); yield return null;
+            Loading.Show(LoadingScreenKind.Loading, new LocalizedMessage("Bootstrap", "preparing_data")); yield return null;
             // Unity cannot cancel an already scheduled scene load. A replacement owner waits
             // for it instead of allowing the older load to overwrite a newer destination.
             while (pendingSceneLoad != null && !pendingSceneLoad.isDone) yield return null;
@@ -175,8 +182,11 @@ namespace MobileGame.Presentation
             var preparation = Configuration.PrepareAsync();
             while (!preparation.IsCompleted) yield return null;
             var data = preparation.GetAwaiter().GetResult();
+            var localization = Localization.InitializeAsync();
+            while (!localization.IsCompleted) yield return null;
+            localization.GetAwaiter().GetResult();
             if (token != generation) yield break;
-            Loading.Show(LoadingScreenKind.Loading, "화면을 준비하고 있습니다…"); yield return null;
+            Loading.Show(LoadingScreenKind.Loading, new LocalizedMessage("Bootstrap", "preparing_screen")); yield return null;
             if (!request.UseCurrent)
             {
                 var path = request.Target == AppScene.Title ? Configuration.titleScene : Configuration.laboratoryScene;
@@ -198,6 +208,7 @@ namespace MobileGame.Presentation
                 Laboratory = FindFirstObjectByType<LaboratoryView>();
                 if (Laboratory == null) throw new InvalidOperationException("Laboratory view is missing.");
                 Laboratory.ConfigureUiAssets(Configuration.uiAssets);
+                Laboratory.ConfigureLocalization(Localization);
                 var start = request.Committed ? SessionStart.Continue : request.Start;
                 if (!Laboratory.InitializeSession(data, SavePath, 5, start))
                     throw new InvalidOperationException(Laboratory.InitializationError);
@@ -219,7 +230,8 @@ namespace MobileGame.Presentation
         private void Fail(string error, Action retry, Action recover)
         {
             Error = error; AppUiLifetime.Invalidate();
-            Loading.Show(LoadingScreenKind.Error, "준비하지 못했습니다. 마지막으로 성공한 저장을 유지합니다.\n" + error, retry, recover);
+            Debug.LogWarning("Scene preparation failed: " + error);
+            Loading.Show(LoadingScreenKind.Error, new LocalizedMessage("Bootstrap", "error_body"), retry, recover);
         }
         private void Update()
         {
@@ -235,6 +247,7 @@ namespace MobileGame.Presentation
             generation++; StopAllCoroutines();
             // Scene objects can be destroyed before their persistent owner during Play exit/application shutdown.
             if (Laboratory != null) Laboratory.ReleaseSession();
+            Localization?.Dispose(); Localization = null;
             Instance = null; AppUiLifetime.Invalidate();
         }
     }

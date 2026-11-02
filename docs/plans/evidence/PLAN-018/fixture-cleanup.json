@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "if(UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode) throw new System.InvalidOperationException(\"Stop Play before cleaning test data.\");\nvar settings=UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Localization.Settings.LocalizationSettings>(\"Assets/Settings/Localization/LocalizationSettings.asset\");\nsettings.GetStringDatabase().TableProvider=null;\nUnityEditor.EditorUtility.SetDirty(settings);\nUnityEditor.AssetDatabase.SaveAssets();\nreturn new { providerIsNull=settings.GetStringDatabase().TableProvider==null, languages=UnityEditor.Localization.LocalizationEditorSettings.GetLocales().Select(l=>l.Identifier.Code).ToArray() };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "providerIsNull": true,
+        "languages": [
+          "en",
+          "ko"
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

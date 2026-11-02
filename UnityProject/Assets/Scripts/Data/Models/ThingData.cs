@@ -7,20 +7,20 @@ namespace MobileGame.Foundation
     public abstract class ThingData
     {
         private readonly string definitionId;
-        private readonly string displayName;
+        private readonly string displayNameKey;
         private readonly ThingComponentKind[] components;
 
         protected ThingData() { }
         protected ThingData(ThingDefinitionDto row, ThingDefinition asset, GameSettings settings)
         {
-            definitionId = row.Id(); displayName = row.displayName; components = (ThingComponentKind[])row.components.Clone();
+            definitionId = row.Id(); displayNameKey = row.displayNameKey; components = (ThingComponentKind[])row.components.Clone();
             Assets = new DefinitionAssets(asset); Settings = settings;
         }
         public DefinitionAssets Assets { get; }
         public GameSettings Settings { get; }
 
         public string DefinitionId => definitionId;
-        public string DisplayName => displayName;
+        public string DisplayNameKey => displayNameKey;
         public abstract ThingKind Kind { get; }
         public IReadOnlyList<ThingComponentKind> ComponentKinds =>
             Array.AsReadOnly(components ?? Array.Empty<ThingComponentKind>());
@@ -29,8 +29,8 @@ namespace MobileGame.Foundation
         {
             if (string.IsNullOrWhiteSpace(definitionId))
                 throw new ArgumentException("A definition must have a nonblank ID.", nameof(definitionId));
-            if (string.IsNullOrWhiteSpace(displayName))
-                throw new ArgumentException("A definition must have a nonblank display name.", nameof(displayName));
+            if (string.IsNullOrWhiteSpace(displayNameKey))
+                throw new ArgumentException("A definition must have a nonblank display name.", nameof(displayNameKey));
             if (!Enum.IsDefined(typeof(ThingKind), Kind))
                 throw new ArgumentException($"Unknown Thing kind: {Kind}.", nameof(Kind));
             if (components == null)

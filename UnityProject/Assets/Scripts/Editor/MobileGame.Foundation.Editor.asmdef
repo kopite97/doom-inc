@@ -1,12 +1,22 @@
 {
-    "name": "MobileGame.Foundation.Editor",
-    "rootNamespace": "MobileGame.Foundation.Editor",
-    "references": [
-        "MobileGame.Foundation",
-        "MobileGame.Presentation",
-        "Unity.RenderPipelines.Universal.Runtime"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ]
+  "name": "MobileGame.Foundation.Editor",
+  "rootNamespace": "MobileGame.Foundation.Editor",
+  "references": [
+    "MobileGame.Foundation",
+    "MobileGame.Presentation",
+    "Unity.RenderPipelines.Universal.Runtime",
+    "Unity.Localization",
+    "Unity.Localization.Editor",
+    "Unity.Addressables",
+    "Unity.Addressables.Editor",
+    "Unity.ResourceManager"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "Unity.Localization.ThirdParty.Editor.dll",
+    "Newtonsoft.Json.dll"
+  ]
 }

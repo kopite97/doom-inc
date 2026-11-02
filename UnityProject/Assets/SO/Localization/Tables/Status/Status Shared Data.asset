@@ -1,0 +1,208 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Status Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Status
+  m_TableCollectionNameGuidString: fa099ed14d1fa2a458e8c114b3521201
+  m_Entries:
+  - m_Id: 106
+    m_Key: automatic
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288520
+  - m_Id: 100
+    m_Key: construction_materials
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288521
+  - m_Id: 102
+    m_Key: construction_waiting
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288522
+  - m_Id: 101
+    m_Key: construction_working
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288523
+  - m_Id: 115
+    m_Key: delivery_pending
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288524
+  - m_Id: 104
+    m_Key: gathering_waiting
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288525
+  - m_Id: 103
+    m_Key: gathering_working
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288526
+  - m_Id: 116
+    m_Key: insufficient
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288527
+  - m_Id: 113
+    m_Key: invader
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288528
+  - m_Id: 107
+    m_Key: material_waiting
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288529
+  - m_Id: 119
+    m_Key: materials_ready
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288530
+  - m_Id: 114
+    m_Key: no_target
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288531
+  - m_Id: 108
+    m_Key: output_waiting
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288532
+  - m_Id: 105
+    m_Key: production_working
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288533
+  - m_Id: 117
+    m_Key: reserved_elsewhere
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288534
+  - m_Id: 111
+    m_Key: storage
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288535
+  - m_Id: 118
+    m_Key: supply_pending
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288536
+  - m_Id: 112
+    m_Key: support
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288537
+  - m_Id: 110
+    m_Key: target_required
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288538
+  - m_Id: 109
+    m_Key: unreachable
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288539
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2444913683439288519
+  references:
+    version: 2
+    RefIds:
+    - rid: 2444913683439288519
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1793599578276
+    - rid: 2444913683439288520
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / automatic
+    - rid: 2444913683439288521
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / construction_materials
+    - rid: 2444913683439288522
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / construction_waiting
+    - rid: 2444913683439288523
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / construction_working
+    - rid: 2444913683439288524
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / delivery_pending
+    - rid: 2444913683439288525
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / gathering_waiting
+    - rid: 2444913683439288526
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / gathering_working
+    - rid: 2444913683439288527
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / insufficient
+    - rid: 2444913683439288528
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / invader
+    - rid: 2444913683439288529
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / material_waiting
+    - rid: 2444913683439288530
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / materials_ready
+    - rid: 2444913683439288531
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / no_target
+    - rid: 2444913683439288532
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / output_waiting
+    - rid: 2444913683439288533
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / production_working
+    - rid: 2444913683439288534
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / reserved_elsewhere
+    - rid: 2444913683439288535
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / storage
+    - rid: 2444913683439288536
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / supply_pending
+    - rid: 2444913683439288537
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / support
+    - rid: 2444913683439288538
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / target_required
+    - rid: 2444913683439288539
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Status / unreachable

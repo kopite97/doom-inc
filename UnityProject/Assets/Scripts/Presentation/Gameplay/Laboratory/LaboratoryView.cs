@@ -21,6 +21,8 @@ namespace MobileGame.Presentation
         private FacilityData cultivation;
         private CreatureData support;
         private CreatureData invader;
+        private AppLocalization localization;
+        public void ConfigureLocalization(AppLocalization value) { localization = value; }
 
         private bool skipNextDelta = true;
         private bool applicationPaused;
@@ -252,7 +254,7 @@ namespace MobileGame.Presentation
         {
             LastCommand = command + (succeeded ? ": OK" : ": rejected / failed");
             if (!command.StartsWith("Preview", StringComparison.Ordinal))
-                uiNotice = succeeded ? "요청을 반영했습니다." : "요청을 반영하지 못했습니다. 상태와 조건을 확인하세요.";
+                uiNotice = M(succeeded ? "request_applied" : "request_failed");
             return succeeded;
         }
     }

@@ -139,8 +139,7 @@ namespace MobileGame.Presentation
             var markerWidth = caption ? 100f : showProgress ? 72f : 26f;
             marker.Caption.font = view.UiFont;
             marker.Caption.fontSize = Mathf.RoundToInt(12 * view.UiTextScale);
-            marker.Caption.text = LaboratoryStatusText.Short(status) + (status.HasProgress
-                ? "\n진행 " + Mathf.RoundToInt((float)status.ProgressFraction * 100) + "%" : "");
+            marker.Caption.text = view.FormatMessage(view.StatusMessage(status));
             PlaceStatusRect(marker.Caption.rectTransform, new Rect(4, 0, markerWidth - 8, 20));
             var captionHeight = caption ? Mathf.Ceil(marker.Caption.preferredHeight) + 4 : 0;
             var markerHeight = 24 + captionHeight;

@@ -59,14 +59,15 @@ namespace MobileGame.SpatialTests
                     var retry = owner.GetComponentsInChildren<UiButton>().Single(b => b.name == "RetryLoading");
                     AssertScreenStateButtonReachable(retry);
                     var scroll = owner.GetComponentsInChildren<ScrollRect>().Single(s => s.name == "LoadingDetails");
-                    Assert.That(scroll.content.rect.height, Is.GreaterThan(scroll.viewport.rect.height), "Long loading errors need scrolling.");
-                    scroll.StopMovement(); scroll.verticalNormalizedPosition = 0;
+                    Assert.That(scroll.content.GetComponentsInChildren<Text>().Any(t => t.text.Contains("Row 1:")), Is.False,
+                        "Raw diagnostic errors must not leak into the product recovery screen.");
+                    scroll.StopMovement(); scroll.verticalNormalizedPosition = 1;
                     yield return null; Canvas.ForceUpdateCanvases();
-                    Assert.That(scroll.content.anchoredPosition.y, Is.GreaterThan(0));
-                    var hint = scroll.content.GetComponentsInChildren<Text>().Single(t => t.name == "Hint");
+                    var hint = scroll.content.GetComponentsInChildren<Text>().Single(t => t.name == "Status");
+                    Assert.That(hint.text, Is.Not.Empty);
                     Assert.That(RectTransformUtility.RectangleContainsScreenPoint(scroll.viewport,
                         RectTransformUtility.WorldToScreenPoint(null, hint.rectTransform.TransformPoint(hint.rectTransform.rect.center))), Is.True,
-                        "The error recovery explanation must be reachable at the bottom of the scroll.");
+                        "The localized recovery explanation must be visible.");
                     AssertScreenStateButtonReachable(retry);
                     yield return CaptureScreenState("loading-error-scroll", null, bootstrap.Error);
                 }
@@ -175,7 +176,8 @@ namespace MobileGame.SpatialTests
                         AssertScreenStateButtonReachable(view.FindUiButton("RestartFromResults"));
                         AssertScreenStateButtonReachable(view.FindUiButton("RetrySave"));
                         var errorText = view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "EndingError");
-                        Assert.That(errorText.text, Does.Contain(saveError));
+                        Assert.That(errorText.text, Is.EqualTo(view.FormatMessage(new LocalizedMessage("Results", "save_error"))));
+                        Assert.That(errorText.text, Does.Not.Contain(saveError), "Diagnostics stay in Controller.LastSaveError, not the product UI.");
                         AssertWorldGraphicRenders(view);
                         yield return CaptureScreenState("results-save-error", view, saveError);
                     }

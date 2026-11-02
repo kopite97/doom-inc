@@ -100,6 +100,7 @@ namespace MobileGame.SpatialTests
         {
             File.WriteAllText(path, "broken saved session");
             flow.EnterCurrent(AppScene.Bootstrap); yield return Settled();
+            LogAssert.Expect(LogType.Warning, "Scene preparation failed: The save is not valid JSON.");
             flow.Continue();
             var deadline = Time.realtimeSinceStartupAsDouble + 20;
             while (flow.IsTransitioning && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
@@ -141,6 +142,7 @@ namespace MobileGame.SpatialTests
             var failed = GameDataStore.GetOrCreate().InitializeAsync(token => gate.Task);
             flow.EnterCurrent(AppScene.Bootstrap);
             yield return null; yield return null; yield return null;
+            LogAssert.Expect(LogType.Warning, "Scene preparation failed: test data failure");
             gate.SetException(new IOException("test data failure"));
             var deadline = Time.realtimeSinceStartupAsDouble + 20;
             while (flow.IsTransitioning && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
@@ -156,6 +158,7 @@ namespace MobileGame.SpatialTests
             flow.StartNewGame(); yield return Settled();
             var session = flow.Laboratory.Controller.Current;
             var bytes = File.ReadAllText(path); File.Delete(path); Directory.CreateDirectory(path);
+            LogAssert.Expect(LogType.Warning, new System.Text.RegularExpressions.Regex("^Save before title failed: .+"));
             flow.RequestReturnToTitle(); yield return ClickLoading("Retry");
             Assert.That(flow.IsPrompting, Is.True); Assert.That(flow.Error, Is.Not.Null);
             Assert.That(flow.Laboratory.Controller.Current, Is.SameAs(session));
@@ -170,6 +173,7 @@ namespace MobileGame.SpatialTests
         {
             flow.EnterCurrent(AppScene.Bootstrap); yield return Settled();
             configuration.laboratoryScene = AppSceneAssets.BootstrapPath; // loadable scene, deliberately missing Laboratory entry
+            LogAssert.Expect(LogType.Warning, "Scene preparation failed: Laboratory view is missing.");
             flow.StartNewGame();
             var deadline = Time.realtimeSinceStartupAsDouble + 20;
             while (flow.IsTransitioning && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
@@ -237,18 +241,23 @@ namespace MobileGame.SpatialTests
             button.OnSubmit(new BaseEventData(EventSystem.current));
             yield return null;
         }
-        private static IEnumerator Capture(string name)
+        internal static IEnumerator Capture(string name, string destination = null)
         {
-            yield return new WaitForEndOfFrame();
-            var target = Path.GetFullPath(Path.Combine(Application.dataPath, "../Temp/AppSceneFlowScreens"));
-            Directory.CreateDirectory(target);
+            var target = destination ?? Path.GetFullPath(Path.Combine(Application.dataPath, "../Temp/AppSceneFlowScreens/" + name + ".png"));
+            Directory.CreateDirectory(Path.GetDirectoryName(target));
             // ScreenCapture uses the host window backbuffer in this Editor. Read GameView's
             // render target instead to preserve the chosen portrait/landscape aspect ratio.
             var type = typeof(UnityEditor.EditorWindow).Assembly.GetType("UnityEditor.PlayModeView");
             var flags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public;
             var window = type.GetMethod("GetMainPlayModeView", flags | System.Reflection.BindingFlags.Static).Invoke(null, null);
+            // Focus this exact view: the menu may select another Game window with a different size.
+            ((UnityEditor.EditorWindow)window).Focus();
+            yield return null;
+            yield return new WaitForEndOfFrame();
             var targetTexture = (RenderTexture)type.GetField("m_TargetTexture", flags | System.Reflection.BindingFlags.Instance).GetValue(window);
             Assert.That(targetTexture, Is.Not.Null);
+            Assert.That(targetTexture.width, Is.EqualTo(Screen.width));
+            Assert.That(targetTexture.height, Is.EqualTo(Screen.height));
             var previous = RenderTexture.active;
             var upright = RenderTexture.GetTemporary(targetTexture.width, targetTexture.height, 0, RenderTextureFormat.ARGB32);
             if (SystemInfo.graphicsUVStartsAtTop) Graphics.Blit(targetTexture, upright, new Vector2(1, -1), new Vector2(0, 1));
@@ -258,7 +267,7 @@ namespace MobileGame.SpatialTests
             texture.ReadPixels(new Rect(0, 0, targetTexture.width, targetTexture.height), 0, 0); texture.Apply();
             RenderTexture.active = previous;
             RenderTexture.ReleaseTemporary(upright);
-            try { File.WriteAllBytes(Path.Combine(target, name + ".png"), texture.EncodeToPNG()); }
+            try { File.WriteAllBytes(target, texture.EncodeToPNG()); }
             finally { Object.Destroy(texture); }
         }
     }

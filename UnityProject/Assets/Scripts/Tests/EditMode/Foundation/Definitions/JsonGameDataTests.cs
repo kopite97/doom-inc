@@ -108,6 +108,7 @@ namespace MobileGame.Foundation.Tests
         [Test] public void EveryFieldMatchesFrozenCsvBeforeRuntimeConversion()
         {
             var parsed = JsonDefinitionParser.Parse(new GameDataBundle(Texts(), "test"));
+            var names = LocalizationCsvTools.ReadAll().Single(d => d.Topic == "Definitions");
             foreach (var topic in JsonDefinitionParser.Topics)
             {
                 var lines = File.ReadAllLines(Path.Combine(Directory.GetParent(Application.dataPath).Parent.FullName, "docs/plans/evidence/PLAN-015/baseline-csv", topic + ".csv"));
@@ -117,6 +118,12 @@ namespace MobileGame.Foundation.Tests
                     var cells = line.Split(','); var dto = parsed[topic].Single(r => r.definitionId == cells[0]);
                     foreach (var field in dto.GetType().GetFields())
                     {
+                        if (field.Name == "displayNameKey")
+                        {
+                            var key = (string)field.GetValue(dto);
+                            Assert.That(names.Rows.Single(r => r.Key == key).Values["ko"], Is.EqualTo(cells[Array.IndexOf(columns, "displayName")]));
+                            continue;
+                        }
                         var original = cells[Array.IndexOf(columns, field.Name)]; var actual = field.GetValue(dto);
                         if (actual is ThingComponentKind[] parts) Assert.That(string.Join("|", parts.Select(c => c.ToString())), Is.EqualTo(original));
                         else if (field.FieldType == typeof(double)) Assert.That((double)actual, Is.EqualTo(double.Parse(original, CultureInfo.InvariantCulture)));
@@ -159,7 +166,9 @@ namespace MobileGame.Foundation.Tests
         {
             var baseline = Compose(); Entries(creatures, creatures.Entries.Reverse().Cast<UnityEngine.Object>().ToArray());
             var text = Changed("creatures", j => { var rows = (JArray)j["entries"]; j["entries"] = new JArray(rows.Reverse().Select(r => r.DeepClone())); });
-            text["resources"] = text["resources"].Replace("유기물", "새 표시 이름");
+            var resourcesJson = JObject.Parse(text["resources"]);
+            resourcesJson["entries"][0]["displayNameKey"] = "resource.renamed-translation-key";
+            text["resources"] = resourcesJson.ToString();
             Assert.That(Compose(text).Settings.CompatibilityHash, Is.EqualTo(baseline.Settings.CompatibilityHash));
             text["creatures"] = text["creatures"].Replace("0.25", "0.5"); var changed = Compose(text);
             Assert.That(changed.Settings.CompatibilityHash, Is.Not.EqualTo(baseline.Settings.CompatibilityHash));

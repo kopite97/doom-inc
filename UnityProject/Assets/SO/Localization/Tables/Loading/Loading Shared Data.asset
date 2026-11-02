@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Loading Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Loading
+  m_TableCollectionNameGuidString: 7e968db80a5ef62428afd668c07dd746
+  m_Entries:
+  - m_Id: 8
+    m_Key: cancel_return
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288454
+  - m_Id: 1
+    m_Key: confirmation
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288455
+  - m_Id: 2
+    m_Key: new_game_prompt
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288456
+  - m_Id: 7
+    m_Key: retry_save
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288457
+  - m_Id: 4
+    m_Key: return_prompt
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288458
+  - m_Id: 6
+    m_Key: save_failed
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288459
+  - m_Id: 5
+    m_Key: save_return
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288460
+  - m_Id: 3
+    m_Key: start_new
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288461
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2444913683439288453
+  references:
+    version: 2
+    RefIds:
+    - rid: 2444913683439288453
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1793598401799
+    - rid: 2444913683439288454
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Loading/cancel_return
+    - rid: 2444913683439288455
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Loading/confirmation
+    - rid: 2444913683439288456
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Loading/new_game_prompt
+    - rid: 2444913683439288457
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Loading/retry_save
+    - rid: 2444913683439288458
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Loading/return_prompt
+    - rid: 2444913683439288459
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Loading/save_failed
+    - rid: 2444913683439288460
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Loading/save_return
+    - rid: 2444913683439288461
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Loading/start_new

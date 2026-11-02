@@ -72,7 +72,7 @@ namespace MobileGame.Foundation.Tests
             foreach (var definition in definitions)
             {
                 Assert.That(string.IsNullOrWhiteSpace(definition.DefinitionId), Is.False);
-                Assert.That(string.IsNullOrWhiteSpace(definition.DisplayName), Is.False);
+                Assert.That(string.IsNullOrWhiteSpace(definition.DisplayNameKey), Is.False);
                 Assert.DoesNotThrow(() => definition.Validate());
             }
 

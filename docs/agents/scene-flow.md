@@ -2,6 +2,7 @@
 
 적용: 씬별 책임, 앱 초기화, 씬 전환, 세션 진입·정리, Editor 직접 실행과 관련 검증을 설계하거나 변경할 때.
 탐색: [아키텍처](architecture.md), [GameFlow 기준](../game-design/05-development/01-architecture/game-flow.md), [하네스](harness.md), [Unity 에셋](unity-assets.md).
+앱 텍스트 준비·언어 설정·화면 재번역 수명은 [Localization 지침](localization.md)을 함께 따른다.
 
 이 문서는 사용자가 승인한 구현 원칙이다. Bootstrap·Title·Laboratory와 공용 LoadingScreen의 실제 구현·검증 범위는 [PLAN-016](../plans/PLAN-016-bootstrap-title-and-scene-flow.md), 공통 구성과 수명 선택은 [TECH-013](../decisions/TECH-013-app-scenes-and-loading-screen.md)에서 관리한다.
 씬 경로·제품/검증 의존 관계·빌드 포함 기준은 [프로젝트 구조](project-structure.md#scene-roles)를 따른다. 저장 정책·게임 규칙은 [기획 MAP](../game-design/README.md)의 담당 문서가 기준이며, 새 정책은 기획에 반영한다.

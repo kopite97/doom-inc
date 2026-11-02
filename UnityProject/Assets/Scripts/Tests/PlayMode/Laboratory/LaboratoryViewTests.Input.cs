@@ -4,6 +4,7 @@ using System.Collections;
 using System.IO;
 using System.Linq;
 using MobileGame.Foundation;
+using MobileGame.Foundation.Editor;
 using MobileGame.Gameplay;
 using MobileGame.Presentation;
 using NUnit.Framework;
@@ -243,6 +244,7 @@ namespace MobileGame.SpatialTests
         // so hardware movement cannot contaminate these frame-by-frame integration scenarios.
         private sealed class PointerScene : IDisposable
         {
+            private readonly LaboratoryGameViewSize screenSize;
             private readonly InputDevice[] disabled;
             private readonly Mouse previousMouse;
             private readonly Touchscreen previousTouchscreen;
@@ -271,6 +273,9 @@ namespace MobileGame.SpatialTests
                 disabled = InputSystem.devices.Where(d => (d is UnityEngine.InputSystem.Pointer || d is Keyboard) && d.enabled).ToArray();
                 foreach (var device in disabled) InputSystem.DisableDevice(device);
                 mouse = InputSystem.AddDevice<Mouse>(); touchscreen = InputSystem.AddDevice<Touchscreen>(); keyboard = InputSystem.AddDevice<Keyboard>();
+                // Isolate resolution as well as devices: multiple host Game windows must not
+                // alternate Screen geometry between press and release. Individual cases can nest portrait sizes.
+                screenSize = new LaboratoryGameViewSize(1280, 720);
             }
 
             public IEnumerator Reopen()
@@ -331,6 +336,7 @@ namespace MobileGame.SpatialTests
                 InputSystem.settings.backgroundBehavior = previousInputBackground;
                 InputSystem.settings.editorInputBehaviorInPlayMode = previousEditorInput;
                 Application.runInBackground = previousBackground;
+                screenSize.Dispose();
                 if (Directory.Exists(directory)) Directory.Delete(directory, true);
             }
         }

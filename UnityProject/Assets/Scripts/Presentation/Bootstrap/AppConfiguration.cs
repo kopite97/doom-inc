@@ -15,6 +15,7 @@ namespace MobileGame.Presentation
         public JsonDataAsset[] jsonFiles;
         public LaboratoryUiAssets uiAssets;
         public LoadingScreen loadingScreen;
+        public LocalizationAssets localization;
         public string bootstrapScene;
         public string titleScene;
         public string laboratoryScene;

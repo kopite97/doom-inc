@@ -8,6 +8,7 @@ using MobileGame.TestSupport;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEditor;
 
 namespace MobileGame.Foundation.Tests
 {
@@ -18,7 +19,9 @@ namespace MobileGame.Foundation.Tests
         public void EmptyOrUnknownWorkerWaitReasonUsesSafeDisplay(WorkerWaitReason reason)
         {
             var formatter = typeof(LaboratoryView).GetMethod("WorkerWaitText", BindingFlags.Static | BindingFlags.NonPublic);
-            Assert.That(formatter.Invoke(null, new object[] { reason }), Is.EqualTo("다음 작업을 기다립니다."));
+            var message = (LocalizedMessage)formatter.Invoke(null, new object[] { reason });
+            Assert.That(message.Table, Is.EqualTo("Laboratory"));
+            Assert.That(message.Key, Is.EqualTo("wait_next"));
         }
 
         [TestCase(0, 80, 1080, 2240, 1080, 2400)]
@@ -75,9 +78,13 @@ namespace MobileGame.Foundation.Tests
             var directory = Path.Combine(Path.GetTempPath(), "MobileGame-PLAN013-Ui-" + Guid.NewGuid().ToString("N"));
             var host = new GameObject("Priority test");
             var events = new GameObject("Priority events", typeof(EventSystem));
+            AppLocalization localization = null;
             try
             {
                 var view = host.AddComponent<LaboratoryView>();
+                localization = new AppLocalization(AssetDatabase.LoadAssetAtPath<LocalizationAssets>("Assets/SO/Localization/LocalizationAssets.asset"),
+                    Path.Combine(directory, "language.json"), new TextManagementTests.Service());
+                view.ConfigureLocalization(localization);
                 view.Initialize(DataTestAssets.Catalog, Path.Combine(directory, "session.json"));
                 var workerThing = view.Simulation.Registry.Things.Single(t => t.Definition.Kind == ThingKind.Creature);
                 var worker = workerThing.GetComponent<WorkerComponent>();
@@ -104,6 +111,7 @@ namespace MobileGame.Foundation.Tests
             }
             finally
             {
+                localization?.Dispose();
                 UnityEngine.Object.DestroyImmediate(host); UnityEngine.Object.DestroyImmediate(events);
                 if (Directory.Exists(directory)) Directory.Delete(directory, true);
             }

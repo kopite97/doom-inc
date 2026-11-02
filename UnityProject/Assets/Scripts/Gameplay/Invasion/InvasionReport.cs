@@ -11,6 +11,5 @@ namespace MobileGame.Gameplay
         public bool IsMajor { get; internal set; }
         public double Time { get; internal set; }
         public long TotalScore { get; internal set; }
-        public string Text => IsMajor ? "A major stronghold has fallen." : "Local defenses disrupted.";
     }
 }

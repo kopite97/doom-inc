@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using MobileGame.Foundation;
 
 namespace MobileGame.Presentation
 {
@@ -15,16 +16,28 @@ namespace MobileGame.Presentation
         private Action retry;
         private Action recover;
         private string message;
+        private AppLocalization localization;
+        private LocalizedMessage localizedMessage, localizedRetry, localizedRecover;
         public LoadingScreenKind Kind { get; private set; }
         private string retryLabel;
         private string recoverLabel;
         private Font font;
         private Func<bool> largeText;
         public bool Visible { get; private set; }
-        public void Configure(Font value, Func<bool> large) { font = value; largeText = large; }
-        public void Show(LoadingScreenKind kind, string status, Action retryAction = null, Action recoveryAction = null,
-            string retryText = "다시 시도", string recoverText = "메인 메뉴로")
+        public void Configure(Font value, Func<bool> large, AppLocalization texts = null) { font = value; largeText = large; localization = texts; }
+        public void Show(LoadingScreenKind kind, LocalizedMessage status, Action retryAction = null, Action recoveryAction = null,
+            LocalizedMessage retryText = null, LocalizedMessage recoverText = null)
         {
+            Show(kind, status.ToString(), retryAction, recoveryAction, "", "");
+            localizedMessage = status;
+            localizedRetry = retryText ?? new LocalizedMessage("Bootstrap", "retry");
+            localizedRecover = recoverText ?? new LocalizedMessage("Bootstrap", "return_title");
+            Render();
+        }
+        public void Show(LoadingScreenKind kind, string status, Action retryAction = null, Action recoveryAction = null,
+            string retryText = null, string recoverText = null)
+        {
+            localizedMessage = localizedRetry = localizedRecover = null;
             if (!Enum.IsDefined(typeof(LoadingScreenKind), kind)) throw new ArgumentOutOfRangeException(nameof(kind));
             Ensure(); Kind = kind; message = status; retry = retryAction; recover = recoveryAction;
             retryLabel = retryText; recoverLabel = recoverText;
@@ -47,14 +60,14 @@ namespace MobileGame.Presentation
         private void Render()
         {
             screen.RefreshLayout(); var size = screen.Size;
-            title.text = Kind == LoadingScreenKind.Loading ? "게임 준비 중"
-                : Kind == LoadingScreenKind.Confirmation ? "선택 확인" : "준비 중 문제가 발생했습니다";
+            title.text = localization == null ? Kind.ToString() : Kind == LoadingScreenKind.Confirmation
+                ? localization.Format("Loading", "confirmation") : localization.Format("Bootstrap", Kind == LoadingScreenKind.Loading ? "loading" : "error_title");
             UiWidgets.Place(title.rectTransform, 20, 20, size.x - 40, 90);
             UiWidgets.Place((RectTransform)scroll.transform, 20, 120, size.x - 40, Mathf.Max(70, size.y - 140));
             rows.Style(font, largeText?.Invoke() == true ? 1.25f : 1, screen.MinimumTouchSize);
-            rows.Begin(size.x - 60); rows.Text("Status", message);
-            if (retry != null) rows.Action("Retry", retryLabel, retry, AppUiLifetime.AcceptInput, message);
-            if (recover != null) rows.Action("Recover", recoverLabel, recover, AppUiLifetime.AcceptInput, message);
+            rows.Begin(size.x - 60); rows.Text("Status", localizedMessage == null ? message : localization.Format(localizedMessage));
+            if (retry != null) rows.Action("Retry", localizedRetry == null ? retryLabel : localization.Format(localizedRetry), retry, AppUiLifetime.AcceptInput, message);
+            if (recover != null) rows.Action("Recover", localizedRecover == null ? recoverLabel : localization.Format(localizedRecover), recover, AppUiLifetime.AcceptInput, message);
             rows.End();
             title.GetComponent<UiText>().Initialize(24);
             title.GetComponent<UiText>().Apply(font, largeText?.Invoke() == true ? 1.25f : 1);

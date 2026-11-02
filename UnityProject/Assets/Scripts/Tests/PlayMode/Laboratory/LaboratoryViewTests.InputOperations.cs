@@ -119,7 +119,7 @@ namespace MobileGame.SpatialTests
                 yield return ClickVisibleButton(input, "Reports");
                 Assert.That(view.ReportsExpanded, Is.True);
                 var report = view.Invasion.Reports.Last();
-                Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Any(label => label.text.Contains(report.Text)), Is.True,
+                Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Any(label => label.text == view.FormatMessage(view.ReportMessage(report))), Is.True,
                     "The expanded report UI must display the actual activity report.");
                 yield return ClickVisibleButton(input, "Reports");
                 Assert.That(view.ReportsExpanded, Is.False);

@@ -19,7 +19,7 @@ namespace MobileGame.Foundation.Tests
             using (var serialized = new DataFixtureEditor(definition))
             {
                 serialized.FindProperty("definitionId").stringValue = id;
-                serialized.FindProperty("displayName").stringValue = id + " fixture";
+                serialized.FindProperty("displayNameKey").stringValue = id + " fixture";
                 var componentProperty = serialized.FindProperty("components");
                 componentProperty.arraySize = components.Length;
                 for (var index = 0; index < components.Length; index++)

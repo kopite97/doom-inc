@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var flow=MobileGame.Presentation.SceneFlowManager.Instance;\nvar lab=flow?.Laboratory;\nreturn new { playing=UnityEditor.EditorApplication.isPlaying, frame=UnityEngine.Time.frameCount,time=UnityEngine.Time.time, scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path, ready=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.GameBootstrap>()?.Ready,transition=flow?.IsTransitioning,error=flow?.Error, localizationReady=flow?.Localization?.Texts.IsReady, language=flow?.Localization?.Service.CurrentLanguage,languages=flow?.Localization?.Service.Languages.Select(x=>x.Code).ToArray(), phase=lab?.Controller?.Phase.ToString(), generation=lab?.Controller?.Generation, savePath=flow?.SavePath,managers=UnityEngine.Object.FindObjectsByType<MobileGame.Presentation.SceneFlowManager>(UnityEngine.FindObjectsSortMode.None).Length,stores=UnityEngine.Object.FindObjectsByType<MobileGame.Presentation.GameDataStore>(UnityEngine.FindObjectsSortMode.None).Length,eventSystems=UnityEngine.Object.FindObjectsByType<UnityEngine.EventSystems.EventSystem>(UnityEngine.FindObjectsSortMode.None).Length, reloadOptions=UnityEditor.EditorSettings.enterPlayModeOptions.ToString(),optionsEnabled=UnityEditor.EditorSettings.enterPlayModeOptionsEnabled };\r\n"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "playing": true,
+        "frame": 6753,
+        "time": 16.5696678,
+        "scene": "Assets/Scenes/Gameplay/Title/Temp_Title.unity",
+        "ready": true,
+        "transition": false,
+        "error": null,
+        "localizationReady": true,
+        "language": "ko",
+        "languages": [
+          "en",
+          "ko"
+        ],
+        "phase": null,
+        "generation": null,
+        "savePath": "C:\\Users\\USER\\AppData\\Local\\Temp\\DefaultCompany\\UnityProject\\EditorSessions\\SlotB\\session.json",
+        "managers": 1,
+        "stores": 1,
+        "eventSystems": 1,
+        "reloadOptions": "None",
+        "optionsEnabled": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

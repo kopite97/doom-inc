@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Title Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Title
+  m_TableCollectionNameGuidString: 5d26353f851fb55408b607bd3040a262
+  m_Entries:
+  - m_Id: 3
+    m_Key: continue
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288463
+  - m_Id: 1
+    m_Key: heading
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288464
+  - m_Id: 4
+    m_Key: new_game
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288465
+  - m_Id: 5
+    m_Key: no_save
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288466
+  - m_Id: 7
+    m_Key: retry_save
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288467
+  - m_Id: 6
+    m_Key: save_error
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288468
+  - m_Id: 2
+    m_Key: settings_heading
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288469
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2444913683439288462
+  references:
+    version: 2
+    RefIds:
+    - rid: 2444913683439288462
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1793598402051
+    - rid: 2444913683439288463
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Title/continue
+    - rid: 2444913683439288464
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Title/heading
+    - rid: 2444913683439288465
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Title/new_game
+    - rid: 2444913683439288466
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Title/no_save
+    - rid: 2444913683439288467
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Title/retry_save
+    - rid: 2444913683439288468
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Title/save_error
+    - rid: 2444913683439288469
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Title/settings_heading

@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode) throw new System.InvalidOperationException(\"Stop Play before verification setup.\");\nvar scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();\nif (scene.isDirty) throw new System.InvalidOperationException(\"Unsaved scene must be preserved.\");\nUnityEditor.SessionState.SetString(\"PLAN018.OriginalScene\", scene.path);\nUnityEditor.SessionState.SetString(\"PLAN018.OriginalStart\", UnityEditor.AssetDatabase.GetAssetPath(UnityEditor.SceneManagement.EditorSceneManager.playModeStartScene));\nforeach (var key in new[]{\"Continue\",\"SlotB\"}) { UnityEditor.SessionState.SetBool(\"PLAN018.Has\"+key,UnityEditor.EditorPrefs.HasKey(\"MobileGame.AppPlayEntry.\"+key)); UnityEditor.SessionState.SetBool(\"PLAN018.\"+key,UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.\"+key)); }\nvar slot = System.IO.Path.Combine(UnityEngine.Application.temporaryCachePath,\"EditorSessions\",\"SlotB\",\"session.json\");\nvar language = System.IO.Path.Combine(UnityEngine.Application.temporaryCachePath,\"Preferences\",\"language.json\");\nvar paths = new[]{slot,MobileGame.Persistence.UiSettingsStore.PathForGameSave(slot),language};\nfor(int i=0;i<paths.Length;i++) { UnityEditor.SessionState.SetString(\"PLAN018.Path\"+i,paths[i]); UnityEditor.SessionState.SetString(\"PLAN018.Bytes\"+i,System.IO.File.Exists(paths[i])?System.Convert.ToBase64String(System.IO.File.ReadAllBytes(paths[i])):\"MISSING\"); }\nUnityEditor.SessionState.SetBool(\"PLAN018.Background\",UnityEngine.Application.runInBackground);\nreturn new { originalScene=scene.path, filesBackedUp=paths.Length };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "originalScene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+        "filesBackedUp": 3
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

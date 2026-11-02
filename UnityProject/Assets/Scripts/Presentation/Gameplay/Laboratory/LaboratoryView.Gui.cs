@@ -36,12 +36,12 @@ namespace MobileGame.Presentation
             if (screen != null) return;
             screen = new UiCanvas(transform, "Temp_LaboratoryCanvas", 10);
             playRoot = UiWidgets.Panel("PlayScreen", screen.SafeRoot, UiWidgets.Background).rectTransform;
-            titleText = UiWidgets.Label("Title", playRoot, 24); titleText.text = "DOOM INC · 연구소";
+            titleText = UiWidgets.Label("Title", playRoot, 24); titleText.text = L("heading");
             hudText = UiWidgets.Label("Resources", playRoot, 17);
             worldGauge = UiWidgets.Panel("WorldProgress", playRoot, new Color(.18f, .2f, .25f)).rectTransform;
             worldGaugeFill = UiWidgets.Panel("Progress", worldGauge, new Color(.85f, .3f, .2f)).rectTransform;
-            gameMenuButton = IconButton("GameMenu", playRoot, LaboratoryIcon.More, "메뉴", () => OpenPanel(LaboratoryPanel.Game));
-            collapseButton = UiWidgets.Button("ToggleControls", playRoot, "접기", () => screen.LayoutEpoch);
+            gameMenuButton = IconButton("GameMenu", playRoot, LaboratoryIcon.More, L("menu"), () => OpenPanel(LaboratoryPanel.Game));
+            collapseButton = UiWidgets.Button("ToggleControls", playRoot, L("collapse"), () => screen.LayoutEpoch);
             collapseButton.GetComponentInChildren<UiText>().Initialize(14);
             SetCompactButtonLabel(collapseButton);
             collapseButton.Bind(() => { if (!CanClickScreen()) return; controlsCollapsed = !controlsCollapsed; InvalidateInput(); }, "screen");
@@ -49,26 +49,26 @@ namespace MobileGame.Presentation
             MapViewport = mapBackground.rectTransform; MapViewport.gameObject.AddComponent<RectMask2D>();
             mapScreen = MapViewport.gameObject.AddComponent<LaboratoryMapView>(); mapScreen.Initialize(this);
             cameraTools = UiWidgets.Rect("CameraTools", playRoot);
-            zoomOutButton = IconButton("ZoomOut", cameraTools, LaboratoryIcon.ZoomOut, "축소", () => mapScreen.ZoomBy(1 / 1.3f), true);
-            zoomInButton = IconButton("ZoomIn", cameraTools, LaboratoryIcon.ZoomIn, "확대", () => mapScreen.ZoomBy(1.3f), true);
-            fitButton = IconButton("FitMap", cameraTools, LaboratoryIcon.FitMap, "전체 보기", () => mapScreen.Fit(), true);
-            statusButton = IconButton("ToggleStatus", cameraTools, LaboratoryIcon.ShowStatus, "상태 ON", () => SetUiPreferences(!ShowFacilityStatus, LargeText), true);
+            zoomOutButton = IconButton("ZoomOut", cameraTools, LaboratoryIcon.ZoomOut, L("zoom_out"), () => mapScreen.ZoomBy(1 / 1.3f), true);
+            zoomInButton = IconButton("ZoomIn", cameraTools, LaboratoryIcon.ZoomIn, L("zoom_in"), () => mapScreen.ZoomBy(1.3f), true);
+            fitButton = IconButton("FitMap", cameraTools, LaboratoryIcon.FitMap, L("fit"), () => mapScreen.Fit(), true);
+            statusButton = IconButton("ToggleStatus", cameraTools, LaboratoryIcon.ShowStatus, L("status_on"), () => SetUiPreferences(!ShowFacilityStatus, LargeText), true);
             toolRoot = UiWidgets.Rect("PlacementTools", playRoot);
             editText = UiWidgets.Label("PlacementStatus", playRoot, 16);
-            rotateButton = UiWidgets.Button("Rotate", toolRoot, "90° 회전", () => screen.LayoutEpoch);
-            confirmButton = UiWidgets.Button("Confirm", toolRoot, "배치 확정", () => screen.LayoutEpoch);
-            cancelButton = UiWidgets.Button("Cancel", toolRoot, "취소", () => screen.LayoutEpoch);
+            rotateButton = UiWidgets.Button("Rotate", toolRoot, L("rotate"), () => screen.LayoutEpoch);
+            confirmButton = UiWidgets.Button("Confirm", toolRoot, L("confirm_placement"), () => screen.LayoutEpoch);
+            cancelButton = UiWidgets.Button("Cancel", toolRoot, L("cancel"), () => screen.LayoutEpoch);
             navigationRoot = UiWidgets.Rect("Navigation", playRoot);
-            buildMenuButton = IconButton("NavBuild", navigationRoot, LaboratoryIcon.Build, "건설", () => OpenPanel(LaboratoryPanel.Build));
-            creatureMenuButton = IconButton("NavCreatures", navigationRoot, LaboratoryIcon.Creatures, "생명체", () => OpenPanel(LaboratoryPanel.Creatures));
-            invasionMenuButton = IconButton("NavInvasion", navigationRoot, LaboratoryIcon.Invasion, "침공·보고", () => OpenPanel(LaboratoryPanel.Invasion));
+            buildMenuButton = IconButton("NavBuild", navigationRoot, LaboratoryIcon.Build, L("build"), () => OpenPanel(LaboratoryPanel.Build));
+            creatureMenuButton = IconButton("NavCreatures", navigationRoot, LaboratoryIcon.Creatures, L("creatures"), () => OpenPanel(LaboratoryPanel.Creatures));
+            invasionMenuButton = IconButton("NavInvasion", navigationRoot, LaboratoryIcon.Invasion, L("invasion"), () => OpenPanel(LaboratoryPanel.Invasion));
             controlsScroll = UiWidgets.Scroll("Controls", playRoot, out var content);
             controls = new UiList(content, () => screen.LayoutEpoch);
             summaryRoot = UiWidgets.Panel("SelectionSummary", playRoot, UiWidgets.PanelColor).rectTransform;
             summaryText = UiWidgets.Label("Summary", summaryRoot, 18);
-            detailsButton = UiWidgets.Button("Details", summaryRoot, "상세 보기", () => screen.LayoutEpoch);
+            detailsButton = UiWidgets.Button("Details", summaryRoot, L("details"), () => screen.LayoutEpoch);
             detailsButton.Bind(ExpandSelection, "details");
-            closeButton = UiWidgets.Button("ClosePanel", playRoot, "닫기", () => screen.LayoutEpoch);
+            closeButton = UiWidgets.Button("ClosePanel", playRoot, L("close"), () => screen.LayoutEpoch);
             closeButton.GetComponentInChildren<UiText>().Initialize(14);
             SetCompactButtonLabel(closeButton);
             closeButton.Bind(Back, "close");
@@ -138,7 +138,7 @@ namespace MobileGame.Presentation
         private void UpdateScreen()
         {
             if (Controller == null) return;
-            EnsureScreen(); screen.RefreshLayout(); screen.SetVisible(isActiveAndEnabled);
+            EnsureScreen(); RefreshFixedText(); screen.RefreshLayout(); screen.SetVisible(isActiveAndEnabled);
             if (screenGeneration != Controller.Generation || screenPhase != Controller.Phase)
             {
                 InvalidateInput();
@@ -163,8 +163,12 @@ namespace MobileGame.Presentation
         {
             var w = screen.Size.x; var h = screen.Size.y; var margin = 12f; var touch = MinimumTouchSize;
             var collapseWidth = Mathf.Max(touch, 64);
+            var closeWidth = Mathf.Max(touch, 64);
+            feedbackText.text = uiNotice == null ? "" : FormatMessage(uiNotice);
+            UiWidgets.Place(feedbackText.rectTransform, margin, 0, w - 24, 26);
+            var feedbackHeight = Mathf.Max(26, Mathf.Ceil(feedbackText.preferredHeight) + 4);
             var top = screen.Portrait ? Mathf.Max(116, touch + 66) : Mathf.Max(touch + 16, 100 * UiTextScale);
-            var footer = touch + 32; var cameraHeight = screen.Portrait ? touch + 6 : 0;
+            var footer = touch + feedbackHeight + 6; var cameraHeight = screen.Portrait ? touch + 6 : 0;
             var collapseX = w - touch - collapseWidth - margin - 8;
             var cameraWidth = 4 * touch + 18;
             var cameraX = collapseX - cameraWidth - 8;
@@ -179,7 +183,7 @@ namespace MobileGame.Presentation
             UiWidgets.Place(titleText.rectTransform, margin, 8, headerWidth, titleHeight);
             UiWidgets.Place(gameMenuButton.GetComponent<RectTransform>(), w - touch - margin, 8, touch, touch);
             UiWidgets.Place(collapseButton.GetComponent<RectTransform>(), collapseX, 8, collapseWidth, touch);
-            collapseButton.GetComponentInChildren<Text>().text = controlsCollapsed ? "펼치기" : "접기";
+            collapseButton.GetComponentInChildren<Text>().text = controlsCollapsed ? L("expand") : L("collapse");
             collapseButton.interactable = CanClickScreen() && pendingSessionAction == LaboratorySessionAction.None;
             UiWidgets.Place(hudText.rectTransform, margin, hudY, headerWidth, top - hudY - 12);
             UiWidgets.Place(worldGauge, margin, top - 10, w - margin * 2, 6);
@@ -205,16 +209,16 @@ namespace MobileGame.Presentation
                 var y = screen.Portrait ? panelY : top;
                 var width = screen.Portrait ? w - 24 : panelWidth;
                 var height = screen.Portrait ? panelHeight : h - top - footer - 8;
-                UiWidgets.Place((RectTransform)closeButton.transform, x + width - touch, y, touch, touch);
+                UiWidgets.Place((RectTransform)closeButton.transform, x + width - closeWidth, y, closeWidth, touch);
                 UiWidgets.Place((RectTransform)controlsScroll.transform, x, y + touch + 4, width, Mathf.Max(60, height - touch - 4));
             }
             if (HasSummary)
             {
                 var detailsWidth = Mathf.Max(touch + 12, 120);
                 UiWidgets.Place(summaryRoot, margin, panelY, w - 24, panelHeight);
-                UiWidgets.Place(summaryText.rectTransform, 10, 8, w - touch - detailsWidth - 60, panelHeight - 12);
-                UiWidgets.Place((RectTransform)detailsButton.transform, w - touch - detailsWidth - 42, 8, detailsWidth, touch);
-                UiWidgets.Place((RectTransform)closeButton.transform, w - touch - margin, panelY + 8, touch, touch);
+                UiWidgets.Place(summaryText.rectTransform, 10, 8, w - closeWidth - detailsWidth - 60, panelHeight - 12);
+                UiWidgets.Place((RectTransform)detailsButton.transform, w - closeWidth - detailsWidth - 42, 8, detailsWidth, touch);
+                UiWidgets.Place((RectTransform)closeButton.transform, w - closeWidth - margin, panelY + 8, closeWidth, touch);
                 summaryText.text = SelectionSummary();
             }
             navigationRoot.gameObject.SetActive(!IsEditing); toolRoot.gameObject.SetActive(IsEditing);
@@ -231,8 +235,7 @@ namespace MobileGame.Presentation
             }
             editText.gameObject.SetActive(IsEditing);
             UiWidgets.Place(editText.rectTransform, margin, h - footer - 44, w - 24, 42);
-            UiWidgets.Place(feedbackText.rectTransform, margin, h - 28, w - 24, 26);
-            feedbackText.text = uiNotice ?? "";
+            UiWidgets.Place(feedbackText.rectTransform, margin, h - feedbackHeight - 2, w - 24, feedbackHeight);
         }
         private string SelectionSummary()
         {
@@ -241,21 +244,19 @@ namespace MobileGame.Presentation
             if (selected.Definition.Kind == ThingKind.Facility)
             {
                 var status = StatusFor(selected);
-                return ThingLabel(selected.Id) + "\n" + LaboratoryStatusText.Short(status)
-                    + (status.HasProgress ? " · 진행 " + (status.ProgressFraction * 100).ToString("0") + "%" : "");
+                return L("selection_summary", A("thing", ThingMessage(selected.Id)), A("state", StatusMessage(status)));
             }
-            return ThingLabel(selected.Id) + "\n" + (!selected.IsPlaced ? "외부 활동 중" : selected.TryGetComponent<WorkerComponent>(out var worker)
-                ? (worker.Job == null ? "작업 대기" : "작업 중 · 상세에서 확인") : "방출 대기");
+            return L("selection_summary", A("thing", ThingMessage(selected.Id)), A("state", CreatureActivity(selected)));
         }
         private void UpdateHud()
         {
             UiWidgets.Place(worldGaugeFill, 0, 0, worldGauge.rect.width * (Invasion == null ? 0 : (float)Math.Min(1, (double)Invasion.Score / Invasion.Settings.TargetScore)), 6);
-            if (Simulation == null) { hudText.text = "저장을 불러오지 못했습니다. 게임 메뉴에서 재시도하세요."; panel = LaboratoryPanel.Game; return; }
+            if (Simulation == null) { hudText.text = L("load_error"); panel = LaboratoryPanel.Game; return; }
             var things = Simulation.Registry.Things;
             var organicCount = things.Where(t => t.Definition == organic).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
             var cultureCount = things.Where(t => t.Definition == culture).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
-            hudText.text = "유기물 " + organicCount + " · 배양액 " + cultureCount + " · 생명체 " + things.Count(t => t.Definition.Kind == ThingKind.Creature)
-                + "\n멸망 " + Invasion.Score + " / " + Invasion.Settings.TargetScore + (IsEditing ? " · 연구소 일시정지" : "");
+            hudText.text = L(IsEditing ? "hud_paused" : "hud", A("organic", organicCount), A("culture", cultureCount),
+                A("creatures", things.Count(t => t.Definition.Kind == ThingKind.Creature)), A("score", Invasion.Score), A("target", Invasion.Settings.TargetScore));
         }
         private void UpdateTools()
         {
@@ -266,7 +267,7 @@ namespace MobileGame.Presentation
                 var edit = Simulation.Map.Commands.Edit;
                 var origin = constructing ? Simulation.ConstructionOrigin : edit.Origin;
                 var valid = constructing ? Simulation.ConstructionValidation.Succeeded : edit.Validation.Succeeded;
-                editText.text = (constructing ? "새 건설" : "시설 이동") + " · 위치 " + origin + (valid ? " · 확정 가능 (자재는 이후 운반)" : " · 겹침/영역 경계를 확인하세요.");
+                editText.text = L(valid ? "placement_valid" : "placement_invalid", A("action", M(constructing ? "placing_new" : "moving")), A("position", origin.ToString()));
             }
             BindTool(rotateButton, () => RotatePreview(), editing);
             BindTool(confirmButton, () => ConfirmPlacement(), editing && (Simulation.ConstructionDefinition != null ? Simulation.ConstructionValidation.Succeeded : Simulation.Map.Commands.Edit.Validation.Succeeded));
@@ -275,7 +276,7 @@ namespace MobileGame.Presentation
             BindTool(zoomOutButton, () => mapScreen.ZoomBy(1 / 1.3f), Simulation != null);
             BindTool(fitButton, () => mapScreen.Fit(), Simulation != null);
             BindTool(statusButton, () => SetUiPreferences(!ShowFacilityStatus, LargeText), Simulation != null);
-            SetIcon(statusButton, ShowFacilityStatus ? LaboratoryIcon.ShowStatus : LaboratoryIcon.HideStatus, ShowFacilityStatus ? "상태 ON" : "상태 OFF", true);
+            SetIcon(statusButton, ShowFacilityStatus ? LaboratoryIcon.ShowStatus : LaboratoryIcon.HideStatus, ShowFacilityStatus ? L("status_on") : L("status_off"), true);
         }
         private void UiAction(string key, string label, Action action, bool enabled = true, Guid? selected = null)
         {
@@ -298,7 +299,7 @@ namespace MobileGame.Presentation
             var canOperate = CanUseMap && !IsEditing;
             if (panel == LaboratoryPanel.Game) AddGameControls();
             else if (panel == LaboratoryPanel.License)
-                controls.Text("FontLicense", uiAssets?.FontLicense != null ? uiAssets.FontLicense.text : "글꼴 라이선스를 찾을 수 없습니다.", 16);
+                controls.Text("FontLicense", uiAssets?.FontLicense != null ? uiAssets.FontLicense.text : L("license_missing"), 16);
             else if (Simulation != null)
             {
                 switch (panel)
@@ -307,35 +308,35 @@ namespace MobileGame.Presentation
                         if (Simulation.Registry.TryGet(SelectedId, out var selected)) AddSelectedControls(selected);
                         break;
                     case LaboratoryPanel.Build:
-                        controls.Text("ConstructionTitle", "건설", 24);
-                        controls.Text("BuildHint", "부지를 확정하면 자재 운반 후 시공합니다. 자재가 부족해도 부지를 지정할 수 있습니다.", 16);
-                        UiAction("BuildGathering", "채집 시설 · 유기물 " + gathering.BuildCost, () => BeginGatheringConstruction(), canOperate);
-                        UiAction("BuildStorage", "저장소 · 유기물 " + storage.BuildCost, () => BeginStorageConstruction(), canOperate);
-                        UiAction("BuildProcessing", "가공 시설 · 유기물 " + processing.BuildCost, () => BeginProcessingConstruction(), canOperate);
-                        UiAction("BuildCultivation", "배양 시설 · 유기물 " + cultivation.BuildCost, () => BeginCultivationConstruction(), canOperate);
-                        controls.Text("Facilities", "설치한 시설", 22); AddRoster(ThingKind.Facility, canOperate); break;
+                        controls.Text("ConstructionTitle", L("build"), 24);
+                        controls.Text("BuildHint", L("build_hint"), 16);
+                        UiAction("BuildGathering", L("build_cost", A("facility", DefinitionName(gathering)), A("resource", DefinitionName(organic)), A("count", gathering.BuildCost)), () => BeginGatheringConstruction(), canOperate);
+                        UiAction("BuildStorage", L("build_cost", A("facility", DefinitionName(storage)), A("resource", DefinitionName(organic)), A("count", storage.BuildCost)), () => BeginStorageConstruction(), canOperate);
+                        UiAction("BuildProcessing", L("build_cost", A("facility", DefinitionName(processing)), A("resource", DefinitionName(organic)), A("count", processing.BuildCost)), () => BeginProcessingConstruction(), canOperate);
+                        UiAction("BuildCultivation", L("build_cost", A("facility", DefinitionName(cultivation)), A("resource", DefinitionName(organic)), A("count", cultivation.BuildCost)), () => BeginCultivationConstruction(), canOperate);
+                        controls.Text("Facilities", L("facilities"), 22); AddRoster(ThingKind.Facility, canOperate); break;
                     case LaboratoryPanel.Creatures:
-                        controls.Text("Creatures", "생명체", 24); AddRoster(ThingKind.Creature, canOperate);
-                        controls.Text("PresetTitle", "기본 작업 우선순위", 22);
-                        controls.Text("PresetHint", "0: 사용 안 함 · 낮은 숫자 우선\n동률: 건설 → 채집 → 운반 → 생산", 16);
+                        controls.Text("Creatures", L("creatures"), 24); AddRoster(ThingKind.Creature, canOperate);
+                        controls.Text("PresetTitle", L("preset_title"), 22);
+                        controls.Text("PresetHint", L("preset_hint"), 16);
                         AddPriorities("Preset", Simulation.Preset.ToArray(), values => SetPreset(values), canOperate); break;
                     case LaboratoryPanel.Candidates:
-                        controls.Text("Candidates", "겹친 대상 선택", 22);
+                        controls.Text("Candidates", L("candidates"), 22);
                         foreach (var id in candidates.ToArray()) if (Simulation.Registry.TryGet(id, out var candidate) && candidate.IsPlaced)
-                            UiAction("Select_" + id.ToString("N"), ThingLabel(id) + " · " + CreatureActivity(candidate), () => SelectThing(id), canOperate);
+                            UiAction("Select_" + id.ToString("N"), L("roster_entry", A("thing", ThingMessage(id)), A("state", CreatureActivity(candidate))), () => SelectThing(id), canOperate);
                         break;
                     case LaboratoryPanel.Invasion: AddInvasionControls(canOperate); break;
                 }
             }
-            if (!string.IsNullOrEmpty(Controller.LastError)) controls.Text("LoadError", "진행을 불러오지 못했습니다.\n" + Controller.LastError);
-            if (!string.IsNullOrEmpty(Controller.LastSaveError)) controls.Text("SaveError", "저장 실패 · 이전 저장은 유지됩니다.\n" + Controller.LastSaveError);
+            if (!string.IsNullOrEmpty(Controller.LastError)) controls.Text("LoadError", L("load_error"));
+            if (!string.IsNullOrEmpty(Controller.LastSaveError)) controls.Text("SaveError", L("save_failed"));
             controls.End();
             if (reportAnchor != null)
             {
                 if (!controls.TryRestoreAnchor(reportAnchor, anchorOffset, out var y) && Invasion.Reports.Count > 0)
                 {
                     controls.TryRestoreAnchor("Report_" + Invasion.Reports.First().Sequence, 0, out y);
-                    uiNotice = "보존 기간이 지난 보고가 정리되어 남은 기록으로 이동했습니다.";
+                    uiNotice = M("reports_expired");
                 }
                 if (Mathf.Abs(controlsScroll.content.anchoredPosition.y - y) > .1f)
                 { controlsScroll.StopMovement(); controlsScroll.content.anchoredPosition = new Vector2(0, y); }
@@ -345,58 +346,59 @@ namespace MobileGame.Presentation
         private void AddRoster(ThingKind kind, bool canOperate)
         {
             var entries = Simulation.Registry.Things.Where(t => t.Definition.Kind == kind).OrderBy(t => t.CreationOrder).ToArray();
-            if (entries.Length == 0) controls.Text("EmptyRoster", kind == ThingKind.Facility ? "아직 시설이 없습니다." : "아직 생명체가 없습니다.");
+            if (entries.Length == 0) controls.Text("EmptyRoster", kind == ThingKind.Facility ? L("empty_facilities") : L("empty_creatures"));
             foreach (var thing in entries)
             {
                 var id = thing.Id;
-                UiAction("Select_" + id.ToString("N"), ThingLabel(id) + " · " + CreatureActivity(thing), () =>
+                UiAction("Select_" + id.ToString("N"), L("roster_entry", A("thing", ThingMessage(id)), A("state", CreatureActivity(thing))), () =>
                 {
                     if (thing.IsPlaced) SelectThing(id);
                     else { SelectedId = id; SelectionChanged(); }
                 }, canOperate);
             }
         }
-        private string CreatureActivity(Thing thing) => !thing.IsPlaced ? "외부 활동"
+        private LocalizedMessage CreatureActivity(Thing thing) => !thing.IsPlaced ? M("outside")
             : thing.Definition.Kind == ThingKind.Facility ? LaboratoryStatusText.Short(StatusFor(thing))
-            : thing.TryGetComponent<WorkerComponent>(out var worker) ? worker.Job == null ? "작업 대기" : "작업 중" : "방출 대기";
+            : M(thing.TryGetComponent<WorkerComponent>(out var worker) ? worker.Job == null ? "idle" : "working" : "waiting_release");
         private void AddInvasionControls(bool canOperate)
         {
-            controls.Text("WorldTitle", "침공·보고", 24);
-            controls.Text("InvasionCounts", "방출 대기 " + Simulation.Invasion.WaitingCount + " · 외부 활동 " + Simulation.Invasion.ExternalCount);
-            UiAction("Release", "대기 중인 침공형 전원 방출 (" + Simulation.Invasion.WaitingCount + ")", () => ReleaseInvaders(), canOperate && Simulation.Invasion.WaitingCount > 0);
-            UiAction("Reports", ReportsExpanded ? "보고 접기" : "전과 보고 보기 (" + Invasion.Reports.Count + ")", ToggleReports);
+            controls.Text("WorldTitle", L("invasion"), 24);
+            controls.Text("InvasionCounts", L("invasion_counts", A("waiting", Simulation.Invasion.WaitingCount), A("outside", Simulation.Invasion.ExternalCount)));
+            UiAction("Release", L("release", A("count", Simulation.Invasion.WaitingCount)), () => ReleaseInvaders(), canOperate && Simulation.Invasion.WaitingCount > 0);
+            UiAction("Reports", ReportsExpanded ? L("fold_reports") : L("show_reports", A("count", Invasion.Reports.Count)), ToggleReports);
             if (!ReportsExpanded) return;
-            UiAction("LatestReports", "최신 보고로", () => { controlsScroll.StopMovement(); controlsScroll.content.anchoredPosition = Vector2.zero; });
-            if (Invasion.Reports.Count == 0) controls.Text("NoReports", "아직 전과 보고가 없습니다.");
+            UiAction("LatestReports", L("latest_reports"), () => { controlsScroll.StopMovement(); controlsScroll.content.anchoredPosition = Vector2.zero; });
+            if (Invasion.Reports.Count == 0) controls.Text("NoReports", L("no_reports"));
             foreach (var report in Invasion.Reports.Reverse()) controls.Text("Report_" + report.Sequence,
-                "#" + report.Sequence + " · " + ThingLabel(report.InvaderId) + "\n" + report.Text + " +" + report.Score + " (" + report.Time.ToString("F1") + "초)");
+                FormatMessage(ReportMessage(report)));
         }
         private void AddGameControls()
         {
-            controls.Text("GameTitle", "게임 메뉴", 24);
+            controls.Text("GameTitle", L("game_menu"), 24);
             if (SceneFlowManager.Instance != null)
-                UiAction("ReturnToTitle", "저장하고 메인 메뉴로", () => SceneFlowManager.Instance.RequestReturnToTitle());
+                UiAction("ReturnToTitle", L("return_title"), () => SceneFlowManager.Instance.RequestReturnToTitle());
             if (pendingSessionAction != LaboratorySessionAction.None)
             {
                 controls.Text("SessionWarning", pendingSessionAction == LaboratorySessionAction.Reload
-                    ? "최근 저장을 불러올까요?\n현재 진행과 미확정 배치를 저장된 상태로 교체합니다."
-                    : "새 판을 시작할까요?\n현재 진행과 저장 슬롯을 초기 상태로 바꿉니다. 표시 설정은 유지됩니다.");
-                UiAction("ConfirmSessionAction", "확인 · 진행 변경", () => ConfirmSessionAction());
-                UiAction("CancelSessionAction", "취소 · 현재 판 유지", CancelSessionAction); return;
+                    ? L("reload_prompt")
+                    : L("restart_prompt"));
+                UiAction("ConfirmSessionAction", L("confirm_session"), () => ConfirmSessionAction());
+                UiAction("CancelSessionAction", L("cancel_session"), CancelSessionAction); return;
             }
-            UiAction("Save", "지금 저장", () => { uiNotice = Save() ? "진행을 저장했습니다." : "저장하지 못했습니다. 이전 저장을 유지합니다."; }, Controller.Current != null);
-            UiAction("Reload", "최근 저장 불러오기", () => RequestSessionAction(LaboratorySessionAction.Reload));
-            UiAction("Restart", "새 판 시작", () => RequestSessionAction(LaboratorySessionAction.Restart));
-            controls.Text("UiPreferences", "화면 표시", 22);
-            controls.Text("MapControlsHelp", "지도 조작: 돋보기 −/＋는 축소/확대, 네 모서리 표시는 전체 보기, 눈/가린 눈은 시설 상태 표시입니다.", 16);
-            UiAction("StatusPreference", "시설 상태 표시: " + (ShowFacilityStatus ? "ON" : "OFF"), () => SetUiPreferences(!ShowFacilityStatus, LargeText));
-            UiAction("TextPreference", "글자 크기: " + (LargeText ? "크게" : "보통"), () => SetUiPreferences(ShowFacilityStatus, !LargeText));
+            UiAction("Save", L("save"), () => { uiNotice = M(Save() ? "saved" : "save_failed"); }, Controller.Current != null);
+            UiAction("Reload", L("reload"), () => RequestSessionAction(LaboratorySessionAction.Reload));
+            UiAction("Restart", L("restart"), () => RequestSessionAction(LaboratorySessionAction.Restart));
+            LocalizationSettingsRows.Add(controls, localization, CanClickScreen(), UiContext);
+            controls.Text("UiPreferences", L("display"), 22);
+            controls.Text("MapControlsHelp", L("map_help"), 16);
+            UiAction("StatusPreference", FormatMessage(C("status_setting", A("value", C(ShowFacilityStatus ? "on" : "off")))), () => SetUiPreferences(!ShowFacilityStatus, LargeText));
+            UiAction("TextPreference", FormatMessage(C("text_setting", A("value", C(LargeText ? "large" : "normal")))), () => SetUiPreferences(ShowFacilityStatus, !LargeText));
             if (!string.IsNullOrEmpty(uiSettings?.LastError))
             {
-                controls.Text("UiSettingsError", "화면 설정 저장 오류 · 게임 진행 저장과 별개입니다.\n" + uiSettings.LastError);
-                UiAction("RetryUiSettings", "화면 설정 저장 재시도", () => { uiSettings.TrySave(); });
+                controls.Text("UiSettingsError", FormatMessage(C("settings_save_error")));
+                UiAction("RetryUiSettings", L("retry_settings"), () => { uiSettings.TrySave(); });
             }
-            UiAction("FontLicense", "글꼴 라이선스", () => OpenPanel(LaboratoryPanel.License));
+            UiAction("FontLicense", L("font_license"), () => OpenPanel(LaboratoryPanel.License));
         }
     }
 }

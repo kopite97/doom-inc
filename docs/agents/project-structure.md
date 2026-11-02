@@ -42,6 +42,7 @@ Unity의 `Packages/`, `ProjectSettings/`, 생성 캐시의 위치와 관리 정�
 | --- | --- | --- |
 | `Scripts/` | 프로젝트 C#·관련 어셈블리 설정. Editor·테스트 코드 포함 | 역할 → 기능. [상세 기준](script-structure.md) |
 | `JSON/` | 주제별 밸런스·정의 값의 JSON 원본 | `Balance/` |
+| `CSV/` | 주제별 번역 편집 원본. [텍스트 지침](localization.md) 적용 | `Localization/` |
 | `SO/` | 정의 ID·Unity 에셋 바인딩·주제별 Registry SO 인스턴스 | `Resource/`, `Facility/`, `Creature/`, `Session/` |
 | `Scenes/` | 실제 플레이·검증 장면 | `Gameplay/`, `Diagnostics/` → 담당 기능 |
 | `Prefabs/` | 재사용할 GameObject 구성 | `Creature/`, `Facility/`, `UI/`, `VFX/` |
@@ -53,6 +54,8 @@ Unity의 `Packages/`, `ProjectSettings/`, 생성 캐시의 위치와 관리 정�
 | `Shaders/` | 셰이더·Shader Graph·관련 소스 | 표현 기능별 하위 폴더 |
 | `Fonts/` | 폰트 파일·폰트 에셋 | 글꼴별 하위 폴더 |
 | `Settings/` | URP·렌더러·입력·템플릿 등 도구/프로젝트 설정 에셋 | `Rendering/`, `Input/`, `SceneTemplates/` |
+
+Locale·String Table·Registry는 `SO/Localization/`, 설정·생성 초기 오류 문구는 `Settings/Localization/`에 둔다. 패키지 고정 경로 `AddressableAssetsData/`는 보존한다.
 
 ### Sprite 요청·수령 대기 경로
 

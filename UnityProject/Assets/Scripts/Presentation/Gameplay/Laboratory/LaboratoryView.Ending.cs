@@ -28,25 +28,28 @@ namespace MobileGame.Presentation
             endingCaption = UiWidgets.Label("EndingCaption", endingRoot, 18); endingCaption.alignment = TextAnchor.MiddleCenter;
             resultScroll = UiWidgets.Scroll("ResultDetails", endingRoot, out var content);
             resultRows = new UiList(content, () => screen.LayoutEpoch);
-            newRunButton = UiWidgets.Button("RestartFromResults", endingRoot, "새 판 시작", () => screen.LayoutEpoch);
-            retrySaveButton = UiWidgets.Button("RetrySave", endingRoot, "저장 재시도", () => screen.LayoutEpoch);
+            newRunButton = UiWidgets.Button("RestartFromResults", endingRoot, R("new_run"), () => screen.LayoutEpoch);
+            retrySaveButton = UiWidgets.Button("RetrySave", endingRoot, R("retry_save"), () => screen.LayoutEpoch);
             restartCaption = UiWidgets.Label("RestartCaption", endingRoot, 16);
-            restartCaption.text = "프로토타입 1개체와 초기 자원으로 시작합니다. 저장에 성공하면 이전 판을 초기 상태로 교체합니다.";
+            restartCaption.text = R("restart_hint");
             endingRoot.gameObject.SetActive(false);
         }
 
         private void UpdateEndingScreen()
         {
+            newRunButton.GetComponentInChildren<Text>().text = R("new_run");
+            retrySaveButton.GetComponentInChildren<Text>().text = R("retry_save");
+            restartCaption.text = R("restart_hint");
             var size = screen.Size; var w = size.x; var h = size.y;
             UiWidgets.Place(endingRoot, 0, 0, w, h);
             var results = Controller.Phase == SessionPhase.Results;
             var error = !string.IsNullOrEmpty(Controller.LastSaveError) || !string.IsNullOrEmpty(Controller.LastError);
-            endingTitle.text = results ? "세계 멸망 · 한 판 종료" : "마지막 신호";
+            endingTitle.text = results ? R("ended") : R("last_signal");
             UiWidgets.Place(endingTitle.rectTransform, 16, 14, w - 32, 74);
             var progress = results ? 1f : (float)Ending.Progress;
             endingWorld.Progress = progress;
-            endingCaption.text = results ? "모든 신호가 사라졌습니다." : progress < 0.33f ? "마지막 방어선이 무너집니다."
-                : progress < 0.72f ? "세계가 붕괴하고 있습니다." : "신호가 점차 사라집니다.";
+            endingCaption.text = results ? R("signals_lost") : progress < 0.33f ? R("defenses_fall")
+                : progress < 0.72f ? R("world_falls") : R("signals_fade");
             var detailsX = 16f; var detailsY = 90f; var detailsWidth = w - 32;
             if (screen.Portrait)
             {
@@ -84,24 +87,24 @@ namespace MobileGame.Presentation
             resultRows.Style(UiFont, UiTextScale, MinimumTouchSize);
             resultRows.Begin(detailsWidth - 16);
             if (results && SceneFlowManager.Instance != null)
-                resultRows.Action("ReturnToTitle", "저장하고 메인 메뉴로", () => SceneFlowManager.Instance.RequestReturnToTitle(), CanClickScreen(), UiContext);
-            resultRows.Text("Stopped", "연구소와 외부 활동이 모두 정지했습니다.");
-            if (Invasion.LegacyEndVersion > 0) resultRows.Text("LegacyResult", "이전 버전에서 종료된 판입니다. 활동 기록은 남아 있지 않습니다.");
+                resultRows.Action("ReturnToTitle", R("return_title"), () => SceneFlowManager.Instance.RequestReturnToTitle(), CanClickScreen(), UiContext);
+            resultRows.Text("Stopped", R("stopped"));
+            if (Invasion.LegacyEndVersion > 0) resultRows.Text("LegacyResult", R("legacy"));
             else
             {
-                resultRows.Text("WorldScore", "멸망 점수\n" + Invasion.Score + " / " + Invasion.Settings.TargetScore, 26);
-                resultRows.Text("ActivityCount", "완료한 외부 활동: " + Invasion.ActivitySequence);
-                resultRows.Text("OutsideCount", "외부 침공형: " + Simulation.Invasion.ExternalCount);
-                resultRows.Text("ActiveTime", "진행 시간: " + Invasion.Elapsed.ToString("0.0") + " s");
+                resultRows.Text("WorldScore", R("score", A("score", Invasion.Score), A("target", Invasion.Settings.TargetScore)), 26);
+                resultRows.Text("ActivityCount", R("activities", A("count", Invasion.ActivitySequence)));
+                resultRows.Text("OutsideCount", R("outside", A("count", Simulation.Invasion.ExternalCount)));
+                resultRows.Text("ActiveTime", R("elapsed", A("seconds", Invasion.Elapsed)));
             }
-            if (!results) resultRows.Text("InProgress", "멸망 연출 진행 중…");
+            if (!results) resultRows.Text("InProgress", R("in_progress"));
             if (error)
             {
-                resultRows.Text("EndingError", !string.IsNullOrEmpty(Controller.LastSaveError) ? "진행을 저장하지 못했습니다.\n" + Controller.LastSaveError : "저장을 불러오지 못했습니다.\n" + Controller.LastError);
-                resultRows.Text("SavePreserved", "현재 판은 정지 상태를 유지합니다. 마지막으로 성공한 저장은 보존됩니다.");
+                resultRows.Text("EndingError", R(!string.IsNullOrEmpty(Controller.LastSaveError) ? "save_error" : "load_error"));
+                resultRows.Text("SavePreserved", R("save_preserved"));
             }
             if (LastCommand != null && LastCommand.StartsWith("Start new run", StringComparison.Ordinal) && LastCommand.EndsWith(": rejected / failed", StringComparison.Ordinal))
-                resultRows.Text("RestartError", LastCommand);
+                resultRows.Text("RestartError", R("restart_error"));
             resultRows.End(); endingScroll = resultScroll.content.anchoredPosition;
         }
     }

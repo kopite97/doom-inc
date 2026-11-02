@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Reports_ko
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: ko
+  m_SharedData: {fileID: 11400000, guid: b67a8b29b3bd9014ba05e8a17144f3d0, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 2444913683439288541
+  m_TableData:
+  - m_Id: 102
+    m_Localized: "#{sequence} \xB7 {invader}\n{event} +{score:N0} ({seconds:F1}\uCD08)"
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288541
+  - m_Id: 100
+    m_Localized: "\uC8FC\uC694 \uAC70\uC810\uC744 \uD568\uB77D\uD588\uC2B5\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101
+    m_Localized: "\uC9C0\uC5ED \uBC29\uC5B4\uB9DD\uC744 \uAD50\uB780\uD588\uC2B5\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 2444913683439288541
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 102

@@ -15,6 +15,7 @@ namespace MobileGame.Presentation
         private double autoSaveSeconds = 5;
         private bool starting;
         private BootstrapLoadingView loadingView;
+        private AppLocalization isolatedLocalization;
         public string Error { get; private set; }
         public bool Ready { get; private set; }
         public AppConfiguration Configuration => configuration;
@@ -64,6 +65,11 @@ namespace MobileGame.Presentation
                 var entry = GetComponents<MonoBehaviour>().OfType<IGameSceneEntry>().SingleOrDefault();
                 if (entry == null) throw new InvalidOperationException("Missing scene session entry.");
                 var path = savePath ?? Path.Combine(Application.temporaryCachePath, "Diagnostics", sceneRole.ToString(), "session.json");
+                if (isolatedLocalization == null)
+                    isolatedLocalization = new AppLocalization(configuration.localization, Path.Combine(Path.GetDirectoryName(path), "language.json"));
+                await isolatedLocalization.InitializeAsync();
+                if (this == null) return;
+                if (entry is LaboratoryView laboratory) laboratory.ConfigureLocalization(isolatedLocalization);
                 var succeeded = entry.InitializeSession(data, path, autoSaveSeconds, SessionStart.StartOrContinue);
                 // Isolated/diagnostic entries expose their own restore-error UI after data preparation.
                 // Product transitions instead require InitializeSession == true before hiding LoadingScreen.
@@ -76,9 +82,10 @@ namespace MobileGame.Presentation
         public void MarkReady() { Ready = true; Error = null; }
         private void LateUpdate()
         {
-            if (Ready || (savePath == null && sceneRole != AppScene.Diagnostic && SceneFlowManager.Instance != null))
+            if (Ready || (savePath == null && sceneRole != AppScene.Diagnostic && SceneFlowManager.Instance?.Loading != null))
             { loadingView?.Dispose(); loadingView = null; return; }
-            if (loadingView == null) loadingView = new BootstrapLoadingView(transform);
+            if (loadingView == null && configuration?.localization != null) loadingView = new BootstrapLoadingView(transform, configuration.localization);
+            if (loadingView == null) return;
             loadingView.Update(Error, starting, () =>
             {
                 if (starting) return;
@@ -89,6 +96,6 @@ namespace MobileGame.Presentation
         private void OnApplicationPause(bool paused) => loadingView?.InvalidateInput();
         private void OnApplicationFocus(bool focused) => loadingView?.InvalidateInput();
         private void OnDisable() => loadingView?.SetVisible(false);
-        private void OnDestroy() { loadingView?.Dispose(); loadingView = null; }
+        private void OnDestroy() { loadingView?.Dispose(); loadingView = null; isolatedLocalization?.Dispose(); isolatedLocalization = null; }
     }
 }

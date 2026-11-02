@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Bootstrap Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Bootstrap
+  m_TableCollectionNameGuidString: 831190e6e2f60034e8851fc88ed489f8
+  m_Entries:
+  - m_Id: 5
+    m_Key: error_body
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288418
+  - m_Id: 4
+    m_Key: error_title
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288419
+  - m_Id: 8
+    m_Key: generic_error
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288420
+  - m_Id: 1
+    m_Key: loading
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288421
+  - m_Id: 2
+    m_Key: preparing_data
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288422
+  - m_Id: 3
+    m_Key: preparing_screen
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288423
+  - m_Id: 6
+    m_Key: retry
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288424
+  - m_Id: 7
+    m_Key: return_title
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288425
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2444913683439288417
+  references:
+    version: 2
+    RefIds:
+    - rid: 2444913683439288417
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1793598400782
+    - rid: 2444913683439288418
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Bootstrap/error_body
+    - rid: 2444913683439288419
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Bootstrap/error_title
+    - rid: 2444913683439288420
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Bootstrap/generic_error
+    - rid: 2444913683439288421
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Bootstrap/loading
+    - rid: 2444913683439288422
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Bootstrap/preparing_data
+    - rid: 2444913683439288423
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Bootstrap/preparing_screen
+    - rid: 2444913683439288424
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Bootstrap/retry
+    - rid: 2444913683439288425
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Bootstrap/return_title

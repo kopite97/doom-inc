@@ -12,15 +12,17 @@ namespace MobileGame.Presentation
         private readonly ScrollRect scroll;
         private readonly UiList content;
         private readonly UiButton retry;
+        private readonly BootstrapText text;
 
-        public BootstrapLoadingView(Transform parent)
+        public BootstrapLoadingView(Transform parent, LocalizationAssets assets)
         {
+            text = new BootstrapText(assets);
             screen = new UiCanvas(parent, "Temp_LoadingCanvas", 50);
             background = UiWidgets.Panel("Loading", screen.SafeRoot, UiWidgets.Background).rectTransform;
-            title = UiWidgets.Label("Title", background, 28); title.text = "게임 준비";
+            title = UiWidgets.Label("Title", background, 28); title.text = text.Get("loading");
             scroll = UiWidgets.Scroll("LoadingDetails", background, out var contentRect);
             content = new UiList(contentRect, () => screen.LayoutEpoch);
-            retry = UiWidgets.Button("RetryLoading", background, "불러오기 재시도", () => screen.LayoutEpoch);
+            retry = UiWidgets.Button("RetryLoading", background, text.Get("retry"), () => screen.LayoutEpoch);
         }
         public void Update(string error, bool loading, Action retryAction)
         {
@@ -31,8 +33,7 @@ namespace MobileGame.Presentation
             UiWidgets.Place((RectTransform)scroll.transform, margin, 84, size.x - margin * 2, size.y - 180);
             UiWidgets.Place((RectTransform)retry.transform, margin, size.y - screen.MinimumTouchSize - 24, size.x - margin * 2, screen.MinimumTouchSize);
             content.Begin(size.x - margin * 2 - 16);
-            content.Text("Status", error ?? "게임 데이터를 준비하고 있습니다…");
-            if (error != null) content.Text("Hint", "게임 데이터를 준비하지 못했습니다. 기존 저장은 보존됩니다. 데이터 원인을 확인한 후 다시 시도하세요.");
+            content.Text("Status", text.Get(error == null ? "preparing_data" : "error_body"));
             content.End();
             retry.gameObject.SetActive(error != null);
             retry.interactable = !loading;

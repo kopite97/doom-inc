@@ -18,7 +18,7 @@ namespace MobileGame.Foundation
         {
             foreach (var field in GetType().GetFields(BindingFlags.Instance | BindingFlags.Public).OrderBy(f => f.Name, StringComparer.Ordinal))
             {
-                if (field.Name == "displayName") continue;
+                if (field.Name == "displayNameKey") continue;
                 var value = field.GetValue(this);
                 yield return new KeyValuePair<string,string>(field.Name, NumericText.TryGetValue(field.Name, out var number) ? number
                     : value is ThingComponentKind[] components ? string.Join("|", components.Select(c => c.ToString()))
@@ -28,7 +28,7 @@ namespace MobileGame.Foundation
     }
     public abstract class ThingDefinitionDto : DefinitionDto
     {
-        public string displayName;
+        public string displayNameKey;
         public ThingComponentKind[] components;
     }
     public sealed class ResourceDto : ThingDefinitionDto
