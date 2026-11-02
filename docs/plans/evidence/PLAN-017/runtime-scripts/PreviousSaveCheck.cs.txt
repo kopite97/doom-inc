@@ -4,4 +4,3 @@ v.SimulationRate=0;var saved=UnityEngine.JsonUtility.FromJson<MobileGame.Persist
 var actual=v.Controller.Current.Registry.Things.Select(t=>t.Id.ToString()).OrderBy(s=>s).ToArray();
 var before=saved.things.Select(t=>System.Guid.Parse(t.id).ToString()).OrderBy(s=>s).ToArray();
 return new {phase=v.Controller.Phase.ToString(),thingCount=actual.Length,idsMatch=actual.SequenceEqual(before),slot=f.SavePath,error=v.Controller.LastError,scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,flowCount=UnityEngine.Object.FindObjectsByType<MobileGame.Presentation.SceneFlowManager>(UnityEngine.FindObjectsSortMode.None).Length,eventCount=UnityEngine.Object.FindObjectsByType<UnityEngine.EventSystems.EventSystem>(UnityEngine.FindObjectsSortMode.None).Length};
-
