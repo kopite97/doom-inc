@@ -19,8 +19,6 @@ namespace MobileGame.Presentation
         private Vector2 lastScreen;
         private bool initialized;
         private readonly CanvasScaler scaler;
-        private static GameObject eventOwner;
-        private static int users;
         private bool disposed;
         private int layoutEpoch;
         private readonly float deviceDensity = ReadDeviceDensity();
@@ -46,19 +44,13 @@ namespace MobileGame.Presentation
             Canvas = host.GetComponent<Canvas>(); Canvas.renderMode = RenderMode.ScreenSpaceOverlay; Canvas.sortingOrder = order;
             scaler = host.GetComponent<CanvasScaler>(); scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
             SafeRoot = LaboratoryUiWidgets.Rect("SafeArea", host.transform);
-            users++;
             EnsureEventSystem();
             RefreshLayout();
         }
 
         private static void EnsureEventSystem()
         {
-            if (EventSystem.current == null)
-            {
-                eventOwner = new GameObject("LaboratoryEventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
-                var module = eventOwner.GetComponent<InputSystemUIInputModule>();
-                module.AssignDefaultActions();
-            }
+            AppUiLifetime.Ensure();
         }
 
         public bool RefreshLayout()
@@ -95,9 +87,8 @@ namespace MobileGame.Presentation
         public void Dispose()
         {
             if (disposed) return;
-            disposed = true; users = Mathf.Max(0, users - 1);
+            disposed = true;
             if (Canvas != null) { Canvas.gameObject.SetActive(false); UnityEngine.Object.Destroy(Canvas.gameObject); }
-            if (users == 0 && eventOwner != null) { eventOwner.SetActive(false); UnityEngine.Object.Destroy(eventOwner); eventOwner = null; }
         }
     }
 }

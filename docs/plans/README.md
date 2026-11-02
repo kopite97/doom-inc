@@ -17,3 +17,4 @@
 | [PLAN-013](PLAN-013-responsive-ui-and-mobile-input.md) | 가로·세로 UI와 모바일 입력 대응 | `development` | `completed` |
 | [PLAN-014](PLAN-014-mobile-ui-ux-and-facility-status.md) | 모바일 UI·UX와 시설 상태 표시 정비 | `development` | `completed` |
 | [PLAN-015](PLAN-015-topic-json-definition-data.md) | 주제별 JSON 정의 데이터와 초기 로딩 전환 | `development` | `completed` |
+| [PLAN-016](PLAN-016-bootstrap-title-and-scene-flow.md) | Bootstrap·Title·Laboratory 씬 흐름과 Editor 직접 진입 | `development` | `completed` |

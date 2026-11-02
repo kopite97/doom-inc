@@ -62,12 +62,9 @@ namespace MobileGame.Foundation.Editor
         {
             RequireIdleEditor();
             ValidateEntryScene();
-            // Keep the existing diagnostic scene configuration for its environment regression tests.
-            var remaining = EditorBuildSettings.scenes.Where(s => s.path != LaboratorySceneAssets.ScenePath);
-            EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(LaboratorySceneAssets.ScenePath, true) }
-                .Concat(remaining).ToArray();
+            EditorBuildSettings.scenes = AppSceneAssets.ProductScenes.Select(path => new EditorBuildSettingsScene(path, true)).ToArray();
             AssetDatabase.SaveAssets();
-            Debug.Log("Player entry configured: " + LaboratorySceneAssets.ScenePath + "; existing remaining scenes preserved.");
+            Debug.Log("Player entry configured: Bootstrap, Title, Laboratory; diagnostics excluded.");
         }
 
         [MenuItem("Tools/Mobile Game/Build PLAN-013 Android APK")]
@@ -98,7 +95,7 @@ namespace MobileGame.Foundation.Editor
                 orientation = PlayerSettings.defaultInterfaceOrientation.ToString(),
                 portrait = PlayerSettings.allowedAutorotateToPortrait, portraitUpsideDown = PlayerSettings.allowedAutorotateToPortraitUpsideDown,
                 landscapeLeft = PlayerSettings.allowedAutorotateToLandscapeLeft, landscapeRight = PlayerSettings.allowedAutorotateToLandscapeRight,
-                scenes = new[] { LaboratorySceneAssets.ScenePath },
+                scenes = AppSceneAssets.ProductScenes,
                 editorScenes = EditorBuildSettings.scenes.Select(s => new SceneEntry { path = s.path, enabled = s.enabled }).ToArray(),
                 buildOptions = options.ToString(), apk = "UnityProject/Builds/" + planId + "/" + Path.GetFileName(output), result = "NotStarted"
             };
@@ -173,6 +170,32 @@ namespace MobileGame.Foundation.Editor
 
         private static void ValidateEntryScene()
         {
+            var configuration = AssetDatabase.LoadAssetAtPath<AppConfiguration>(AppSceneAssets.ConfigurationPath);
+            if (configuration == null || configuration.loadingScreen == null || configuration.uiAssets == null
+                || configuration.bootstrapScene != AppSceneAssets.BootstrapPath || configuration.titleScene != AppSceneAssets.TitlePath
+                || configuration.laboratoryScene != LaboratorySceneAssets.ScenePath)
+                throw new InvalidOperationException("The shared application configuration is incomplete.");
+            foreach (var path in AppSceneAssets.ProductScenes)
+            {
+                var candidate = SceneManager.GetSceneByPath(path);
+                var added = !candidate.IsValid() || !candidate.isLoaded;
+                if (added) candidate = EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
+                try
+                {
+                    var objects = candidate.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Transform>(true)).ToArray();
+                    if (objects.Any(t => GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(t.gameObject) != 0))
+                        throw new InvalidOperationException("Missing script in " + path);
+                    var entries = objects.Select(t => t.GetComponent<GameBootstrap>()).Where(b => b != null).ToArray();
+                    var role = path == AppSceneAssets.BootstrapPath ? AppScene.Bootstrap
+                        : path == AppSceneAssets.TitlePath ? AppScene.Title : AppScene.Laboratory;
+                    if (entries.Length != 1 || entries[0].Configuration != configuration || entries[0].SceneRole != role
+                        || !entries[0].isActiveAndEnabled)
+                        throw new InvalidOperationException("Invalid shared entry in " + path);
+                    if (role == AppScene.Title && objects.Count(t => t.GetComponent<TitleView>() != null) != 1)
+                        throw new InvalidOperationException("Title needs one menu view.");
+                }
+                finally { if (added) EditorSceneManager.CloseScene(candidate, true); }
+            }
             if (AssetDatabase.LoadAssetAtPath<SceneAsset>(LaboratorySceneAssets.ScenePath) == null)
                 throw new InvalidOperationException("The Laboratory entry scene is missing.");
             var scene = SceneManager.GetSceneByPath(LaboratorySceneAssets.ScenePath);

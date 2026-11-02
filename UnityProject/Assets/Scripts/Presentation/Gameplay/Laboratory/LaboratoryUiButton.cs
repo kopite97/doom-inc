@@ -14,18 +14,23 @@ namespace MobileGame.Presentation
         private string pressedContext;
         private int pressedEpoch;
         private int pressedPointer;
+        private int appEpoch;
 
         public void Bind(Action value, string bindingContext)
         { action = value; context = bindingContext; }
         public override void OnPointerDown(PointerEventData data)
         {
             base.OnPointerDown(data);
-            if (data.button != PointerEventData.InputButton.Left || !IsActive() || !IsInteractable()) return;
+            pressedAction = null;
+            if (data.button != PointerEventData.InputButton.Left || !IsActive() || !IsInteractable()
+                || !AppUiLifetime.AcceptInput) return;
             pressedAction = action; pressedContext = context; pressedEpoch = Epoch?.Invoke() ?? 0; pressedPointer = data.pointerId;
+            appEpoch = AppUiLifetime.InputEpoch;
         }
         public override void OnPointerClick(PointerEventData data)
         {
             if (data.button != PointerEventData.InputButton.Left || !IsActive() || !IsInteractable()
+                || !AppUiLifetime.AcceptInput || appEpoch != AppUiLifetime.InputEpoch
                 || data.pointerId != pressedPointer || pressedEpoch != (Epoch?.Invoke() ?? 0) || pressedContext != context)
             { pressedAction = null; return; }
             var callback = pressedAction; pressedAction = null;
@@ -33,7 +38,7 @@ namespace MobileGame.Presentation
         }
         public override void OnSubmit(BaseEventData data)
         {
-            if (IsActive() && IsInteractable()) action?.Invoke();
+            if (IsActive() && IsInteractable() && AppUiLifetime.AcceptInput) action?.Invoke();
         }
         protected override void OnDisable() { pressedAction = null; base.OnDisable(); }
     }

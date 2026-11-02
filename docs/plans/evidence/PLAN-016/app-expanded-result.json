@@ -1,0 +1,83 @@
+{
+  "status": "completed",
+  "duration": 16.9,
+  "summary": {
+    "total": 10,
+    "passed": 8,
+    "failed": 2,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.BootstrapTitleNewContinueAndReturnUseOneCatalogAndStopOldSession",
+      "Status": "Passed",
+      "Duration": 1.7851498,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.CorruptSaveAndFailedNewRunKeepBytesAndRecoveryScreen",
+      "Status": "Passed",
+      "Duration": 1.8972236,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DataFailureBeforeAnySceneCanRetryAndDoesNotCreateSave",
+      "Status": "Passed",
+      "Duration": 0.3978883,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DestinationPreparationFailureKeepsSharedRecoveryAfterSceneReplacement",
+      "Status": "Passed",
+      "Duration": 1.0508109,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DestroyedFlowCannotPublishLateSceneEntryAndDuplicateDoesNotReplaceOwner",
+      "Status": "Passed",
+      "Duration": 0.3852137,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DirtyPreferencesSurviveSceneChangesAndRetryLatestValue",
+      "Status": "Passed",
+      "Duration": 1.0781865,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PreparedOperatingAndNearEndingSlotsUseNormalContinueAndRestoreResults",
+      "Status": "Failed",
+      "Duration": 7.0524799,
+      "Message": "  Expected: Results\r\n  But was:  Destruction\r\n",
+      "StackTrace": "at MobileGame.SpatialTests.AppSceneFlowTests+<PreparedOperatingAndNearEndingSlotsUseNormalContinueAndRestoreResults>d__2.MoveNext () [0x0028b] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\AppSceneFlowTests.Lifetime.cs:78\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PreviousPressCannotConfirmNewScreenAndPauseKeepsTransitionBlocked",
+      "Status": "Passed",
+      "Duration": 0.7991601,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.ReturnSaveFailurePreservesSessionAndCanCancel",
+      "Status": "Passed",
+      "Duration": 1.9790641,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.TitleConfirmationAndLoadingFitBothOrientationsWithLargeText",
+      "Status": "Failed",
+      "Duration": 0.4410774,
+      "Message": "  Expected: not null\r\n  But was:  null\r\n",
+      "StackTrace": "at MobileGame.SpatialTests.AppSceneFlowTests+<Capture>d__20.MoveNext () [0x0008d] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\AppSceneFlowTests.cs:226\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+    }
+  ]
+}

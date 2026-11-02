@@ -61,14 +61,14 @@ namespace MobileGame.Foundation.Editor
         {
             GameDataAssets.LoadCatalog();
             var files = GameDataAssets.Tables().Select(AssetDatabase.GetAssetPath).ToArray();
-            var scenes = new[] { LaboratorySceneAssets.ScenePath, MapFoundationSceneAssets.ScenePath, SessionFoundationSceneAssets.ScenePath };
+            var scenes = AppSceneAssets.ProductScenes.Concat(new[] { MapFoundationSceneAssets.ScenePath, SessionFoundationSceneAssets.ScenePath });
             foreach (var scene in scenes)
             {
                 var dependencies = AssetDatabase.GetDependencies(scene, true);
                 if (files.Any(p => !dependencies.Contains(p))) throw new InvalidOperationException("Missing JSON scene dependency: " + scene);
                 if (dependencies.Any(p => p.EndsWith(".csv", StringComparison.OrdinalIgnoreCase))) throw new InvalidOperationException("Stale CSV scene dependency: " + scene);
             }
-            Debug.Log("JSON dependencies verified for three saved scenes; no Player compilation/build invoked.");
+            Debug.Log("JSON dependencies verified for five saved scenes; no Player compilation/build invoked.");
         }
         [MenuItem("Tools/Mobile Game/Validate Player Data Compilation")]
         public static void Compile()

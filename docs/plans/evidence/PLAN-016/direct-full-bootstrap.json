@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var flow=MobileGame.Presentation.SceneFlowManager.Instance;\nvar lab=flow?.Laboratory;\nvar all=UnityEngine.Object.FindObjectsByType<MobileGame.Presentation.SceneFlowManager>(UnityEngine.FindObjectsSortMode.None);\nreturn new { playing=UnityEditor.EditorApplication.isPlaying,frame=UnityEngine.Time.frameCount,time=UnityEngine.Time.time,scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,ready=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.GameBootstrap>()?.Ready,transition=flow?.IsTransitioning,error=flow?.Error,phase=lab?.Controller?.Phase.ToString(),generation=lab?.Controller?.Generation,savePath=flow?.SavePath,saves=lab?.Controller?.SuccessfulSaves,managers=all.Length,stores=UnityEngine.Object.FindObjectsByType<MobileGame.Presentation.GameDataStore>(UnityEngine.FindObjectsSortMode.None).Length,eventSystems=UnityEngine.Object.FindObjectsByType<UnityEngine.EventSystems.EventSystem>(UnityEngine.FindObjectsSortMode.None).Length,start=UnityEditor.AssetDatabase.GetAssetPath(UnityEditor.SceneManagement.EditorSceneManager.playModeStartScene) };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "playing": true,
+        "frame": 1223,
+        "time": 3.47200918,
+        "scene": "Assets/Scenes/Gameplay/Title/Temp_Title.unity",
+        "ready": true,
+        "transition": false,
+        "error": null,
+        "phase": null,
+        "generation": null,
+        "savePath": "C:\\Users\\USER\\AppData\\Local\\Temp\\DefaultCompany\\UnityProject\\EditorSessions\\SlotB\\session.json",
+        "saves": null,
+        "managers": 1,
+        "stores": 1,
+        "eventSystems": 1,
+        "start": "Assets/Scenes/Gameplay/Bootstrap/Temp_Bootstrap.unity"
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

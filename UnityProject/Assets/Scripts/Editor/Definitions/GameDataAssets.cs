@@ -80,20 +80,9 @@ namespace MobileGame.Foundation.Editor
         public static void Configure(GameObject target)
         {
             var bootstrap = target.GetComponent<GameBootstrap>() ?? target.AddComponent<GameBootstrap>();
-            using (var serialized = new SerializedObject(bootstrap))
-            {
-                serialized.FindProperty("resources").objectReferenceValue = Registry<ResourceDefinitionRegistry>("Resources");
-                serialized.FindProperty("creatures").objectReferenceValue = Registry<CreatureDefinitionRegistry>("Creatures");
-                serialized.FindProperty("facilities").objectReferenceValue = Registry<FacilityDefinitionRegistry>("Facilities");
-                var files = Files(); var list = serialized.FindProperty("jsonFiles"); list.arraySize = files.Length;
-                for (var i = 0; i < files.Length; i++)
-                {
-                    var entry = list.GetArrayElementAtIndex(i);
-                    entry.FindPropertyRelative("topic").stringValue = files[i].topic;
-                    entry.FindPropertyRelative("asset").objectReferenceValue = files[i].asset;
-                }
-                serialized.ApplyModifiedPropertiesWithoutUndo();
-            }
+            var diagnostic = target.GetComponent<SessionFoundationView>() != null || target.GetComponent<MapFoundationView>() != null;
+            if (diagnostic && target.GetComponent<DiagnosticSceneEntry>() == null) target.AddComponent<DiagnosticSceneEntry>();
+            bootstrap.Configure(AppSceneAssets.EnsureConfiguration(), diagnostic ? AppScene.Diagnostic : AppScene.Laboratory);
             EditorUtility.SetDirty(bootstrap);
         }
     }

@@ -82,6 +82,8 @@ namespace MobileGame.Presentation
             retrySaveButton.Bind(() => { if (CanClickScreen() && generation == Controller.Generation) Save(); }, UiContext);
             retrySaveButton.interactable = CanClickScreen();
             resultRows.Begin(detailsWidth - 16);
+            if (results && SceneFlowManager.Instance != null)
+                resultRows.Action("ReturnToTitle", "저장하고 메인 메뉴로", () => SceneFlowManager.Instance.RequestReturnToTitle(), CanClickScreen(), UiContext);
             resultRows.Text("Stopped", "연구소와 외부 활동이 모두 정지했습니다.");
             if (Invasion.LegacyEndVersion > 0) resultRows.Text("LegacyResult", "이전 버전에서 종료된 판입니다. 활동 기록은 남아 있지 않습니다.");
             else

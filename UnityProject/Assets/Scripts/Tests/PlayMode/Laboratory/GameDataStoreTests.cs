@@ -95,7 +95,7 @@ namespace MobileGame.SpatialTests
         }
         [UnityTest] public IEnumerator SavedScenesInitializeJsonWithoutInjectedDataReferences()
         {
-            LogAssert.Expect(LogType.Log, "JSON dependencies verified for three saved scenes; no Player compilation/build invoked.");
+            LogAssert.Expect(LogType.Log, "JSON dependencies verified for five saved scenes; no Player compilation/build invoked.");
             GameDataPlayerValidation.ValidateSceneReferences();
             foreach (var scenePath in new[] { LaboratorySceneAssets.ScenePath, MapFoundationSceneAssets.ScenePath, SessionFoundationSceneAssets.ScenePath })
             {

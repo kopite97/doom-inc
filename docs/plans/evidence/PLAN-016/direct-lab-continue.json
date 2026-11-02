@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var flow=MobileGame.Presentation.SceneFlowManager.Instance;\nvar lab=flow?.Laboratory;\nvar all=UnityEngine.Object.FindObjectsByType<MobileGame.Presentation.SceneFlowManager>(UnityEngine.FindObjectsSortMode.None);\nreturn new { playing=UnityEditor.EditorApplication.isPlaying,frame=UnityEngine.Time.frameCount,time=UnityEngine.Time.time,scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,ready=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.GameBootstrap>()?.Ready,transition=flow?.IsTransitioning,error=flow?.Error,phase=lab?.Controller?.Phase.ToString(),generation=lab?.Controller?.Generation,savePath=flow?.SavePath,saves=lab?.Controller?.SuccessfulSaves,managers=all.Length,stores=UnityEngine.Object.FindObjectsByType<MobileGame.Presentation.GameDataStore>(UnityEngine.FindObjectsSortMode.None).Length,eventSystems=UnityEngine.Object.FindObjectsByType<UnityEngine.EventSystems.EventSystem>(UnityEngine.FindObjectsSortMode.None).Length,start=UnityEditor.AssetDatabase.GetAssetPath(UnityEditor.SceneManagement.EditorSceneManager.playModeStartScene) };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "playing": true,
+        "frame": 310,
+        "time": 1.39331853,
+        "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+        "ready": true,
+        "transition": false,
+        "error": null,
+        "phase": "Playing",
+        "generation": 1,
+        "savePath": "C:\\Users\\USER\\AppData\\Local\\Temp\\DefaultCompany\\UnityProject\\EditorSessions\\SlotB\\session.json",
+        "saves": 1,
+        "managers": 1,
+        "stores": 1,
+        "eventSystems": 1,
+        "start": ""
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

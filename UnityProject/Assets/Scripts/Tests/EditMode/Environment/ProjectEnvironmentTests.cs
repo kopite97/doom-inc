@@ -22,8 +22,10 @@ namespace MobileGame.EnvironmentTests
                 "The active project target must be Android.");
             Assert.That(AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath), Is.Not.Null,
                 "The template's playable scene must exist and import successfully.");
-            Assert.That(EditorBuildSettings.scenes.Any(scene => scene.enabled && scene.path == scenePath),
-                Is.True, "SampleScene must be enabled in the project's build scene list.");
+            Assert.That(EditorBuildSettings.scenes.Where(scene => scene.enabled).Select(scene => scene.path),
+                Is.EqualTo(new[] { "Assets/Scenes/Gameplay/Bootstrap/Temp_Bootstrap.unity",
+                    "Assets/Scenes/Gameplay/Title/Temp_Title.unity", "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity" }),
+                "Product starts at Bootstrap; diagnostic scenes are loaded only by Editor tests.");
 
             var pipeline = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(pipelinePath);
             var renderer = AssetDatabase.LoadAssetAtPath<Renderer2DData>(rendererPath);

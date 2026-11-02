@@ -32,6 +32,7 @@ Thing·GridMap·Registry처럼 책임이 명확한 기반 이름은 유지한다
 - 같은 조율 역할에 `System`·`Controller`·`Simulation`을 혼용하지 않고 `Manager`로 통일한다. 다른 역할의 클래스까지 Manager로 바꾸지 않는다.
 - 개별 상태의 원본은 담당 컴포넌트에 유지한다. Manager가 같은 상태를 중복 소유하거나 다른 영역의 규칙까지 관리하지 않는다.
 - Manager는 일반 C# 객체로 두고 의존성을 명시적으로 연결한다. 이름만으로 싱글턴·전역 접근·MonoBehaviour를 도입하지 않는다.
+- 사용자 승인 예외인 SceneFlowManager의 싱글톤·MonoBehaviour 책임과 경계는 [씬 흐름 지침](scene-flow.md)을 따른다.
 - 기능별 폴더에 두며 서로 다른 기능을 `Managers/`에 모으지 않는다.
 
 ## 기존 이름 변경

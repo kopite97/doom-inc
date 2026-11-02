@@ -75,6 +75,11 @@ namespace MobileGame.Presentation
         private readonly Func<int> epoch;
         private float width;
         private float y;
+        private Font font;
+        private float scale = 1;
+        private float touchSize = 48;
+        public void Style(Font value, float textScale, float minimumTouch)
+        { font = value; scale = textScale; touchSize = minimumTouch; }
         public LaboratoryUiList(RectTransform content, Func<int> epoch) { this.content = content; this.epoch = epoch; }
         public void Begin(float availableWidth)
         { width = Mathf.Max(80, availableWidth); y = 8; foreach (var row in rows.Values) row.Seen = false; }
@@ -89,7 +94,7 @@ namespace MobileGame.Presentation
         {
             var row = Get(key, true, 18); row.Text.text = label;
             row.Button.Bind(action, context); row.Button.interactable = enabled;
-            var minimum = content.GetComponentInParent<LaboratoryView>()?.MinimumTouchSize ?? 48;
+            var minimum = content.GetComponentInParent<LaboratoryView>()?.MinimumTouchSize ?? touchSize;
             LaboratoryUiWidgets.Place(row.Rect, 4, y, width - 8, minimum);
             var height = Mathf.Max(minimum, row.Text.preferredHeight + 14);
             row.Rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height); y += height + 8;
@@ -135,6 +140,7 @@ namespace MobileGame.Presentation
                 }
                 rows.Add(key, row);
             }
+            if (font != null) { row.Text.font = font; row.Text.fontSize = Mathf.RoundToInt(size * scale); }
             row.Seen = true; return row;
         }
     }

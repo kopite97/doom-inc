@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "UnityEditor.SessionState.SetBool(\"PLAN016.Background\",UnityEngine.Application.runInBackground);\nUnityEditor.SessionState.SetBool(\"PLAN016.ContinueExists\",UnityEditor.EditorPrefs.HasKey(\"MobileGame.AppPlayEntry.Continue\"));\nUnityEditor.SessionState.SetBool(\"PLAN016.Continue\",UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.Continue\"));\nUnityEditor.SessionState.SetBool(\"PLAN016.SlotExists\",UnityEditor.EditorPrefs.HasKey(\"MobileGame.AppPlayEntry.SlotB\"));\nUnityEditor.SessionState.SetBool(\"PLAN016.Slot\",UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.SlotB\"));\nMobileGame.Foundation.Editor.AppPlayEntry.SlotB();\nUnityEngine.Application.runInBackground=true;\nUnityEditor.EditorSettings.enterPlayModeOptionsEnabled=false;\nUnityEditor.SceneManagement.EditorSceneManager.playModeStartScene=UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.SceneAsset>(MobileGame.Foundation.Editor.AppSceneAssets.BootstrapPath);\nreturn new { slot=MobileGame.Presentation.SceneFlowManager.DefaultSavePath, sceneCount=UnityEngine.SceneManagement.SceneManager.sceneCount };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "slot": "C:/Users/USER/AppData/Local/Temp/DefaultCompany/UnityProject\\EditorSessions\\SlotB\\session.json",
+        "sceneCount": 1
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

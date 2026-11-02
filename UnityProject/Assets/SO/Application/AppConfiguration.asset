@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f9370878ff6ed41a3200da316d6d19, type: 3}
+  m_Name: AppConfiguration
+  m_EditorClassIdentifier: MobileGame.Presentation::MobileGame.Presentation.AppConfiguration
+  resources: {fileID: 11400000, guid: 219bf04932378ea45915df8341debf91, type: 2}
+  creatures: {fileID: 11400000, guid: a232e3e7ae7ebe441bd2e8d53eef04ee, type: 2}
+  facilities: {fileID: 11400000, guid: 272220a303bf5f242abf957f71a076a7, type: 2}
+  jsonFiles:
+  - topic: resources
+    asset: {fileID: 4900000, guid: d2c13ba61824081478ca144b47dab0da, type: 3}
+  - topic: creatures
+    asset: {fileID: 4900000, guid: f04763cf39701a541b8d79f21de7eb26, type: 3}
+  - topic: facilities
+    asset: {fileID: 4900000, guid: 22a619367bd1ef749b10009c8abdf43f, type: 3}
+  - topic: invasion
+    asset: {fileID: 4900000, guid: ef0f9089bba41cb49a6145701669a1c1, type: 3}
+  - topic: session
+    asset: {fileID: 4900000, guid: 5459c7f9a67acdc438f18a8b521b7f1b, type: 3}
+  uiAssets:
+    font: {fileID: 12800000, guid: 78a88a546ea21884d8d496dabc8ae384, type: 3}
+    fontLicense: {fileID: 4900000, guid: 460ec0c342507e74cab4ccc29843f5b1, type: 3}
+    icons:
+    - {fileID: 0}
+    - {fileID: 21300000, guid: 702bf5680cedce14285774bf661ae217, type: 3}
+    - {fileID: 21300000, guid: 7869620718d67d746b574ba432ecbdb5, type: 3}
+    - {fileID: 21300000, guid: 64882b0e96eceba4db132a4815af450c, type: 3}
+    - {fileID: 21300000, guid: bf7b95f0bc3028b44bb3706d351830fc, type: 3}
+    - {fileID: 21300000, guid: e3569e1bafb07dc48acf18e70579d69c, type: 3}
+    - {fileID: 21300000, guid: cf15dbcc5ac729a42ae73f51a69f25f3, type: 3}
+    - {fileID: 21300000, guid: ad30aae10b73162428c470220b674b58, type: 3}
+    - {fileID: 21300000, guid: df525abe1302783438171eba05aaf656, type: 3}
+    - {fileID: 21300000, guid: 2ef419b1c6edd9f4f8d0c57ffa97cd1b, type: 3}
+    - {fileID: 21300000, guid: 8dba8c95e1656204aae8e6e49f0f62f9, type: 3}
+    - {fileID: 21300000, guid: 19cc8a1ff8beb574abd3775c205b84eb, type: 3}
+    - {fileID: 21300000, guid: 4a59988f7e28ec84bbf0b3689407d475, type: 3}
+    - {fileID: 21300000, guid: 2fedc95e2a941ed45bd9aa33c3010655, type: 3}
+    - {fileID: 21300000, guid: b88d9d41d93427446ad3c3af2d30a368, type: 3}
+    - {fileID: 21300000, guid: 185b0c17b7901aa4f89246aee179cec4, type: 3}
+    - {fileID: 21300000, guid: e629a2b168f447c48af467ee949c0773, type: 3}
+  loadingScreen: {fileID: 8047581431618631331, guid: b7914804eab269b48b96de6cd93e347e, type: 3}
+  bootstrapScene: Assets/Scenes/Gameplay/Bootstrap/Temp_Bootstrap.unity
+  titleScene: Assets/Scenes/Gameplay/Title/Temp_Title.unity
+  laboratoryScene: Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity

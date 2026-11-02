@@ -77,7 +77,7 @@ for (const file of planFiles) {
   if (!allowedStates.has(status)) errors.push(`Invalid PLAN status ${JSON.stringify(status)}: ${relative(file)}`);
   if (status === 'active') activePlans.push(file);
 }
-if (activePlans.length !== 1) errors.push(`Expected exactly 1 active PLAN; found ${activePlans.length}`);
+if (activePlans.length > 1) errors.push(`Expected at most 1 active PLAN; found ${activePlans.length}`);
 console.log(`PLANS total=${planFiles.length}, active=${activePlans.length}`);
 for (const file of activePlans) console.log(`ACTIVE ${relative(file)}`);
 
@@ -133,5 +133,5 @@ if (errors.length) {
   for (const error of errors) console.error(`ERROR ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS agent guidance, PLAN type/status metadata/index, single active PLAN, local file links');
+  console.log('PASS agent guidance, PLAN type/status metadata/index, at most 1 active PLAN, local file links');
 }

@@ -3,8 +3,8 @@
 ## 시작
 
 1. [작업 절차](docs/agents/workflow.md)와 [PLAN 관리 지침](docs/plans/AGETNS.md)을 반드시 읽는다.
-2. `node scripts/validate-agent-docs.mjs`로 상태와 유일한 `active` PLAN을 확인한다.
-3. PLAN 작업은 해당 PLAN 범위만 진행한다. `active`가 정확히 1개가 아니면 먼저 상태를 정리한다. [독립 Sprite 작업](docs/agents/art-assets.md#sprite-requests)은 별도 절차를 따른다.
+2. `node scripts/validate-agent-docs.mjs`로 상태와 `active` PLAN이 최대 1개인지 확인한다. 0개는 정상 대기 상태다.
+3. PLAN 실행은 승인된 `active` PLAN 범위만 진행한다. 2개 이상이면 먼저 상태를 정리하고, 0개이면 PLAN 실행을 시작하지 않는다. [독립 Sprite 작업](docs/agents/art-assets.md#sprite-requests)은 별도 절차를 따른다.
 4. 아래에서 해당 작업의 지침을 읽고 [기획 MAP](docs/game-design/README.md)으로 기준 규칙을 찾는다.
 
 ## 작업별 지침
@@ -17,6 +17,7 @@
 | 코드·폴더·에셋 명명과 기존 이름 정비 | [명명 규칙](docs/agents/naming.md) |
 | C#·어셈블리 생성·배치·이동 | [스크립트 구조](docs/agents/script-structure.md) |
 | Thing·SO·Job·Map·저장·GameFlow 설계 및 변경 | [아키텍처](docs/agents/architecture.md) |
+| 씬별 책임·초기화·씬 전환·Editor 직접 실행 | [씬 흐름](docs/agents/scene-flow.md) |
 | 씬·프리팹·SO·스크립트 에셋 변경 | [Unity 에셋](docs/agents/unity-assets.md) |
 | 아트 요청·수령·임시 에셋·Sprite 설정·아트 검수 | [아트 지침](docs/agents/art-assets.md) |
 | 명령·상태 조회·시뮬레이션·검증 시나리오 | [하네스](docs/agents/harness.md) |

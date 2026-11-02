@@ -10,7 +10,7 @@ using UnityEngine;
 namespace MobileGame.Presentation
 {
     // Temporary presentation only: all commands, production and time gating belong to the shared runtime.
-    public sealed partial class LaboratoryView : MonoBehaviour
+    public sealed partial class LaboratoryView : MonoBehaviour, IGameSceneEntry
     {
         private ResourceData organic;
         private FacilityData gathering;
@@ -25,6 +25,7 @@ namespace MobileGame.Presentation
         private bool skipNextDelta = true;
         private bool applicationPaused;
         private bool applicationFocused = true;
+        private bool transitionPaused;
         private double simulationRate = 1;
 
         public GameFlowManager Controller { get; private set; }
@@ -37,7 +38,7 @@ namespace MobileGame.Presentation
         public string SavePath { get; private set; }
         public string LastCommand { get; private set; }
         public int RepaintCount { get; private set; }
-        public bool CanInteract => isActiveAndEnabled && !applicationPaused && applicationFocused
+        public bool CanInteract => isActiveAndEnabled && !applicationPaused && applicationFocused && !transitionPaused
             && Controller?.Phase == SessionPhase.Playing && Simulation != null;
         public bool IsEditing => Simulation != null && (Simulation.ConstructionDefinition != null
             || Controller.Current.Map.Commands.IsEditing);
@@ -54,7 +55,8 @@ namespace MobileGame.Presentation
             }
         }
 
-        public void Initialize(GameDataCatalog data, string savePath, double autoSaveSeconds = 5)
+        public void Initialize(GameDataCatalog data, string savePath, double autoSaveSeconds = 5,
+            SessionStart start = SessionStart.StartOrContinue)
         {
             if (Controller != null) throw new InvalidOperationException("This view already has a session.");
             if (data == null) throw new ArgumentNullException(nameof(data));
@@ -71,9 +73,29 @@ namespace MobileGame.Presentation
             Commands = new LaboratoryCommands(Controller);
             Ending = new RunEndingPresentation(Controller, data.Settings.EndingSeconds);
             Controller.SessionChanged += OnSessionChanged;
-            Record("Start / Continue", Controller.StartOrContinue());
+            StartSession(start);
             Controller.NotifyApplicationPause(applicationPaused || !applicationFocused);
             UpdateEndingVisibility();
+        }
+
+        public string InitializationError => Controller?.LastError ?? "Session is not initialized.";
+        public bool InitializeSession(GameDataCatalog data, string path, double interval, SessionStart start)
+        {
+            if (Controller == null) Initialize(data, path, interval, start);
+            else StartSession(start);
+            return Controller.Current != null && string.IsNullOrEmpty(Controller.LastError);
+        }
+        private bool StartSession(SessionStart start) => Record("Start / Continue", start == SessionStart.NewGame
+            ? Controller.Restart() : start == SessionStart.Continue ? Controller.Reload() : Controller.StartOrContinue());
+        public void SetTransitionPaused(bool paused)
+        {
+            transitionPaused = paused; skipNextDelta = true; InvalidateInput(); UpdateEndingVisibility();
+        }
+        public void ReleaseSession()
+        {
+            SetTransitionPaused(true); Ending?.Dispose(); Ending = null;
+            if (Controller != null) Controller.SessionChanged -= OnSessionChanged;
+            Controller = null; Commands = null;
         }
 
         private void OnEnable() { skipNextDelta = true; UpdateEndingVisibility(); SetScreenVisible(true); }
@@ -90,7 +112,7 @@ namespace MobileGame.Presentation
 
         public void AdvanceFrame(double gameSeconds, double presentationSeconds)
         {
-            if (Controller == null || !isActiveAndEnabled || applicationPaused || !applicationFocused) return;
+            if (Controller == null || !isActiveAndEnabled || applicationPaused || !applicationFocused || transitionPaused) return;
             Controller.Advance(gameSeconds);
             SynchronizeEnding();
             Ending.Advance(presentationSeconds);
@@ -106,7 +128,7 @@ namespace MobileGame.Presentation
             ReportsExpanded = false;
         }
 
-        private void UpdateEndingVisibility() => Ending?.SetVisible(isActiveAndEnabled && !applicationPaused && applicationFocused);
+        private void UpdateEndingVisibility() => Ending?.SetVisible(isActiveAndEnabled && !applicationPaused && applicationFocused && !transitionPaused);
 
         private void OnApplicationPause(bool paused)
         {

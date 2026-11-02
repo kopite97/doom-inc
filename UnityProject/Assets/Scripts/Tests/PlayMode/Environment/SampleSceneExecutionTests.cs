@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace MobileGame.EnvironmentTests
             try
             {
                 Assert.That(Application.isPlaying, Is.True, "This check must run in Play Mode.");
-                var load = SceneManager.LoadSceneAsync(scenePath, LoadSceneMode.Single);
+                var load = UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(scenePath, new LoadSceneParameters(LoadSceneMode.Single));
                 Assert.That(load, Is.Not.Null, "SampleScene must be available for runtime loading.");
                 var deadline = Time.realtimeSinceStartupAsDouble + 10;
                 while (!load.isDone && Time.realtimeSinceStartupAsDouble < deadline)
@@ -59,3 +60,4 @@ namespace MobileGame.EnvironmentTests
         }
     }
 }
+#endif

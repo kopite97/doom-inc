@@ -126,7 +126,7 @@ namespace MobileGame.Presentation
             text.rectTransform.offsetMin = new Vector2(2, 2);
             text.rectTransform.offsetMax = compact || graphic.sprite == null ? new Vector2(-2, -2) : new Vector2(-2, 22);
         }
-        private bool CanClickScreen() => isActiveAndEnabled && Controller != null && !Controller.IsApplicationPaused;
+        private bool CanClickScreen() => isActiveAndEnabled && Controller != null && !Controller.IsApplicationPaused && !transitionPaused;
         private string UiContext => Controller == null ? "none" : Controller.Generation + ":" + Controller.Phase;
         private void BindTool(LaboratoryUiButton button, Action action, bool enabled)
         {
@@ -372,6 +372,8 @@ namespace MobileGame.Presentation
         private void AddGameControls()
         {
             controls.Text("GameTitle", "게임 메뉴", 24);
+            if (SceneFlowManager.Instance != null)
+                UiAction("ReturnToTitle", "저장하고 메인 메뉴로", () => SceneFlowManager.Instance.RequestReturnToTitle());
             if (pendingSessionAction != LaboratorySessionAction.None)
             {
                 controls.Text("SessionWarning", pendingSessionAction == LaboratorySessionAction.Reload

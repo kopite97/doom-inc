@@ -54,8 +54,7 @@ namespace MobileGame.Presentation
 
         private void InitializeUiSettings()
         {
-            uiSettings = new UiSettingsStore(UiSettingsStore.PathForGameSave(SavePath));
-            uiSettings.Load();
+            uiSettings = AppUiSettings.ForSlot(SavePath);
         }
         public bool SetUiPreferences(bool showStatus, bool largeText)
         {
