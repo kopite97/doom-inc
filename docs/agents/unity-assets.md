@@ -8,6 +8,7 @@
 - 실제 Unity 프로젝트 경로와 에디터·패키지 버전을 확인한다. 경로나 도구 설치를 추정하지 않는다.
 - 승인된 환경은 [플레이 환경](../game-design/04-delivery/01-platform/environment.md)을 따른다.
 - 생성·이동할 위치와 주제별 하위 분류는 [프로젝트 구조](project-structure.md), C#은 [스크립트 구조](script-structure.md)를 따른다.
+- 씬 변경 시 [씬의 역할과 포함 기준](project-structure.md#scene-roles)에 따라 Gameplay·Diagnostics·템플릿의 분류, 제품/검증 의존 관계와 빌드 씬 목록을 확인한다.
 - 아트·Sprite 임포트는 [아트 지침](art-assets.md)의 사용자 제공 원칙·PPU 32·설정 표·검수 역할을 따른다. 임시 에셋 표식은 프로젝트 구조의 `Temp_` 규칙을 따른다.
 - 대상 에셋을 참조하는 씬·프리팹·SO와 변경 의도를 먼저 확인한다.
 - 기존 변경 사항을 확인하고 사용자나 다른 작업의 변경을 덮어쓰지 않는다.
