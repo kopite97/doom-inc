@@ -96,6 +96,25 @@ namespace MobileGame.Foundation.Tests
         }
 
         [Test]
+        public void SupplyReceiptRespectsReservedCapacityAndFilteredStores()
+        {
+            Worker(0, 0);
+            CompletedGathering(4, 4);
+            var reserved = Store(8, 4, 5);
+            simulation.Advance(0.01);
+            Assert.That(simulation.Logistics.IncomingReserved(reserved.Id), Is.EqualTo(5));
+            var second = Store(10, 7, 5);
+            simulation.SetAllowed(second.Id, organic, false);
+            Assert.That(simulation.Receiving.Receive(Guid.NewGuid(), 3, organic.DefinitionId, 1), Is.EqualTo(ReceiptResult.Queued));
+            AdvanceUntil(() => simulation.TotalAt(reserved.Id) == 5, "Reserved delivery did not arrive");
+            Assert.That(simulation.Receiving.PendingCount, Is.EqualTo(1));
+            simulation.SetAllowed(second.Id, organic, true);
+            simulation.Advance(0.05);
+            Assert.That(simulation.TotalAt(second.Id), Is.EqualTo(1));
+            Assert.That(simulation.Receiving.PendingCount, Is.Zero);
+        }
+
+        [Test]
         public void MultipleWorkersReserveOnlyRemainingStockAndCapacity()
         {
             using (var serialized = new DataFixtureEditor(prototype))

@@ -20,6 +20,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 2444913683439288444
+  - m_Id: 10
+    m_Key: creature.raider
+    m_Metadata:
+      m_Items:
+      - rid: 1000
   - m_Id: 5
     m_Key: creature.support
     m_Metadata:
@@ -67,6 +72,10 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1000
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Definitions / creature.raider
     - rid: 2444913683439288443
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:

@@ -22,6 +22,7 @@ namespace MobileGame.Foundation
                 var value = field.GetValue(this);
                 yield return new KeyValuePair<string,string>(field.Name, NumericText.TryGetValue(field.Name, out var number) ? number
                     : value is ThingComponentKind[] components ? string.Join("|", components.Select(c => c.ToString()))
+                    : value is string[] ids ? string.Concat(ids.Select(GameDataBundle.Token))
                     : Convert.ToString(value, CultureInfo.InvariantCulture) ?? "");
             }
         }
@@ -37,6 +38,9 @@ namespace MobileGame.Foundation
     public sealed class CreatureDto : ThingDefinitionDto
     {
         public CreatureRole role;
+        public string activityBehavior;
+        public int smallScore, majorScore, supplyAmount, supplyEvery;
+        public string supplyResource;
         public int carryCapacity;
         public double moveSecondsPerCell;
     }
@@ -55,6 +59,7 @@ namespace MobileGame.Foundation
         public double gatheringSeconds;
         public string inputResource = "";
         public string outputResource = "";
+        public string[] cultivationOutputs;
         public string supportOutput = "";
         public string invaderOutput = "";
         public int inputAmount;

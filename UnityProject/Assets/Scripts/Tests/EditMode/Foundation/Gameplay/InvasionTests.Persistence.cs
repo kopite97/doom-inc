@@ -70,7 +70,7 @@ namespace MobileGame.Foundation.Tests
             Assert.That(state.LegacyEndVersion, Is.EqualTo(phase == SessionPhase.Playing ? 0 : version));
             Assert.That(flow.Save(), Is.True, flow.LastSaveError);
             Assert.That(codec.Deserialize(store.Read()).version, Is.EqualTo(SessionSnapshotCodec.CurrentVersion));
-            Assert.That(codec.Deserialize(store.Read()).dataHash, Is.EqualTo(LegacyDataBaseline.Hash));
+            Assert.That(codec.Deserialize(store.Read()).dataHash, Is.EqualTo(LegacyDataBaseline.RaiderBaselineHash));
             Assert.That(flow.Reload(), Is.True, flow.LastError);
             Assert.That(flow.Phase, Is.EqualTo(phase));
             if (phase != SessionPhase.Playing)

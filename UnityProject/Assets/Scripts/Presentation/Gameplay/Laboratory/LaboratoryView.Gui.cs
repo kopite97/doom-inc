@@ -364,6 +364,7 @@ namespace MobileGame.Presentation
         {
             controls.Text("WorldTitle", L("invasion"), 24);
             controls.Text("InvasionCounts", L("invasion_counts", A("waiting", Simulation.Invasion.WaitingCount), A("outside", Simulation.Invasion.ExternalCount)));
+            controls.Text("SupplyReceipts", L("supply_receipts", A("total", Simulation.Receiving.Sources.Sum(s => s.Delivered)), A("pending", Simulation.Receiving.PendingCount)));
             UiAction("Release", L("release", A("count", Simulation.Invasion.WaitingCount)), () => ReleaseInvaders(), canOperate && Simulation.Invasion.WaitingCount > 0);
             UiAction("Reports", ReportsExpanded ? L("fold_reports") : L("show_reports", A("count", Invasion.Reports.Count)), ToggleReports);
             if (!ReportsExpanded) return;

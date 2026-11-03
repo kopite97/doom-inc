@@ -338,6 +338,17 @@ namespace MobileGame.Gameplay
 
         private Thing NearestStore(Thing source, ResourceData resource, Guid? excluded = null) => Reachable(source,
             CompletedStores().Where(t => t.Id != excluded && DestinationFree(t, resource) > 0)).FirstOrDefault();
+        internal bool TryReceive(ResourceData resource, int amount)
+        {
+            var destination = CompletedStores().OrderBy(t => t.CreationOrder)
+                .FirstOrDefault(t => DestinationFree(t, resource) >= amount);
+            if (destination == null) return false;
+            simulation.Registry.CreateResource(resource, amount, destination.GetComponent<ResourceContainerComponent>());
+            NormalizeStock(destination);
+            simulation.WorkChanged();
+            return true;
+        }
+
         private IEnumerable<Thing> CompletedStores() => simulation.Registry.Things.Where(t =>
             simulation.IsComplete(t) && t.TryGetComponent<StorageComponent>(out _));
         private IEnumerable<Thing> Reachable(Thing source, IEnumerable<Thing> targets) => targets

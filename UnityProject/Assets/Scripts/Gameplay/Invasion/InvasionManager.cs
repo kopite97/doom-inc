@@ -64,7 +64,10 @@ namespace MobileGame.Gameplay
                     if (!completes) continue;
                     invader.Progress = 0;
                     invader.CompletedActivities++;
-                    var score = State.Settings.ScoreFor(invader.CompletedActivities);
+                    var outcome = Outcome(thing, invader.CompletedActivities);
+                    var score = outcome.Score;
+                    if (outcome.Amount > 0)
+                        laboratory.Receiving.Receive(thing.Id, invader.CompletedActivities, outcome.ResourceId, outcome.Amount);
                     var major = State.Settings.IsMajor(invader.CompletedActivities);
                     var detailed = State.DetailedReports;
                     State.Score = checked(State.Score + score);
@@ -76,6 +79,20 @@ namespace MobileGame.Gameplay
                 }
                 seconds -= step;
             }
+        }
+
+        internal InvaderActivityOutcome Outcome(Thing thing, long round)
+        {
+            var model = (CreatureData)thing.Definition;
+            return model.Behavior.ResolveActivity(new InvaderActivityContext(model, State.Settings, round));
+        }
+
+        private long ScoreThrough(Thing thing, long rounds)
+        {
+            var majorEvery = State.Settings.MajorEvery;
+            var ordinary = Outcome(thing, 1).Score;
+            var major = Outcome(thing, majorEvery).Score;
+            return checked(rounds * ordinary + rounds / majorEvery * (major - ordinary));
         }
 
         public void ValidatePhase(SessionPhase phase)
@@ -107,7 +124,7 @@ namespace MobileGame.Gameplay
                     (!invader.IsExternal && (invader.Progress != 0 || invader.CompletedActivities != 0)) ||
                     invader.CompletedActivities * State.Settings.ActivitySeconds + invader.Progress > State.Elapsed + 1e-7)
                     throw new InvalidDataException("Invalid invader placement or activity progress.");
-                score = checked(score + State.Settings.ScoreThrough(invader.CompletedActivities));
+                score = checked(score + ScoreThrough(thing, invader.CompletedActivities));
                 activities = checked(activities + invader.CompletedActivities);
             }
             if (score != State.Score || activities != State.ActivitySequence)
@@ -125,7 +142,7 @@ namespace MobileGame.Gameplay
                     !thing.TryGetComponent<InvaderComponent>(out var invader) || !invader.IsExternal ||
                     report.Activity <= 0 || report.Activity > invader.CompletedActivities ||
                     (lastReportedActivity.TryGetValue(report.InvaderId, out var lastActivity) && report.Activity <= lastActivity) ||
-                    report.Score != State.Settings.ScoreFor(report.Activity) || report.IsMajor != State.Settings.IsMajor(report.Activity) ||
+                    report.Score != Outcome(thing, report.Activity).Score || report.IsMajor != State.Settings.IsMajor(report.Activity) ||
                     double.IsNaN(report.Time) || report.Time < previousTime || report.Time > State.Elapsed ||
                     report.TotalScore <= previousScore || report.TotalScore > score || report.TotalScore < report.Score ||
                     (!report.IsMajor && report.TotalScore - report.Score >= State.Settings.DetailedUntilScore))

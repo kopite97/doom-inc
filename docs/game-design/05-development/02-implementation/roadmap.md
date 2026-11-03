@@ -2,13 +2,15 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 첫 작업 PLAN-013 completed / UI·UX 정비 PLAN-014 completed / JSON 전환 PLAN-015 completed / 씬 흐름 정비 PLAN-016 completed / 추상화 정비 PLAN-017 completed / 텍스트·다국어 정비 PLAN-018 completed / 공용 Popup 정비 PLAN-019 completed / Editor 운영·반복·성능 진단 PLAN-020 completed / 작업자 탐색·CSV 가져오기 PLAN-021 completed
+- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 첫 작업 PLAN-013 completed / UI·UX 정비 PLAN-014 completed / JSON 전환 PLAN-015 completed / 씬 흐름 정비 PLAN-016 completed / 추상화 정비 PLAN-017 completed / 텍스트·다국어 정비 PLAN-018 completed / 공용 Popup 정비 PLAN-019 completed / Editor 운영·반복·성능 진단 PLAN-020 completed / 작업자 탐색·CSV 가져오기 PLAN-021 completed / 약탈형·보급품 수신 PLAN-022 completed
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
 - 갱신일: 2026-11-03
 - 탐색: [기획 MAP](../../README.md), [Thing과 정의 데이터](../01-architecture/thing-model.md), [GameFlow와 시스템 책임](../01-architecture/game-flow.md), [플레이 환경](../../04-delivery/01-platform/environment.md)
 
 ## 현재 작업
+
+[PLAN-022 약탈형 배양·침공과 연구소 자원 수신](../../../plans/PLAN-022-raider-and-resource-receiving.md)은 2단계 배양·물류와 3단계 침공을 연결하는 확장 작업을 완료했다.
 
 현재 active PLAN은 없다. [PLAN-020 Editor 런타임 운영 병목·반복 플레이·성능 검증](../../../plans/PLAN-020-editor-bottlenecks-repeated-play-and-performance.md)은 completed다. 운영 병목·3판 반복·장시간 실행과 고부하 지연을 Editor에서 검증했다. 작업자 탐색 최적화 및 CSV 회귀 수정은 PLAN-021에서 완료했다. 최신 Android 검증과 4단계·D-070 최종 판정은 후속 범위다.
 
@@ -122,5 +124,7 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 - [PLAN-020 Editor 런타임 운영 병목·반복 플레이·성능 검증](../../../plans/PLAN-020-editor-bottlenecks-repeated-play-and-performance.md): completed. Editor 운영·반복·성능 검증·진단 완료. 제품 수정·최적화 구현·빌드·실기기 검증은 제외했다.
 
 - [PLAN-021 작업자 경로 탐색 최적화와 번역 CSV 반복 가져오기 안정화](../../../plans/PLAN-021-worker-pathfinding-and-localization-import.md)는 completed다. Editor에서 작업자 탐색·배회·입력 반응과 번역 가져오기 회귀를 검증했다.
+
+- [PLAN-022 약탈형 배양·침공과 연구소 자원 수신](../../../plans/PLAN-022-raider-and-resource-receiving.md)은 completed다.
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

@@ -22,7 +22,7 @@ namespace MobileGame.GameFlow
             (controller.Current?.Runtime as LaboratoryManager)?.CancelConstruction() == true;
         public bool SetAllowed(Guid id, bool allowed) => Current?.SetAllowed(id, allowed) == true;
         public bool SetAllowed(Guid id, ResourceData resource, bool allowed) => Current?.SetAllowed(id, resource, allowed) == true;
-        public bool SelectCultivation(Guid id, CultivationTarget target) => Current?.SelectCultivation(id, target) == true;
+        public bool SelectCultivation(Guid id, string target) => Current?.SelectCultivation(id, target) == true;
         public bool AssignWorker(Guid id, Guid? facility) => Current?.AssignWorker(id, facility) == true;
         public bool SetPreset(int[] priorities) => Current?.SetPreset(priorities) == true;
         public bool SetWorkerPriorities(Guid id, int[] priorities, bool usePreset = false) =>

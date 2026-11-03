@@ -24,7 +24,12 @@
       "invaderOutput": "creature.invader",
       "inputAmount": 2,
       "outputAmount": 1,
-      "productionSeconds": 20
+      "productionSeconds": 20,
+      "cultivationOutputs": [
+        "creature.support",
+        "creature.invader",
+        "creature.raider"
+      ]
     },
     {
       "definitionId": "facility.gathering",
@@ -49,7 +54,8 @@
       "invaderOutput": "",
       "inputAmount": 0,
       "outputAmount": 0,
-      "productionSeconds": 0
+      "productionSeconds": 0,
+      "cultivationOutputs": []
     },
     {
       "definitionId": "facility.processing",
@@ -74,7 +80,8 @@
       "invaderOutput": "",
       "inputAmount": 5,
       "outputAmount": 1,
-      "productionSeconds": 10
+      "productionSeconds": 10,
+      "cultivationOutputs": []
     },
     {
       "definitionId": "facility.storage",
@@ -99,7 +106,8 @@
       "invaderOutput": "",
       "inputAmount": 0,
       "outputAmount": 0,
-      "productionSeconds": 0
+      "productionSeconds": 0,
+      "cultivationOutputs": []
     }
   ]
 }

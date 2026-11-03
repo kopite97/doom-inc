@@ -238,7 +238,7 @@ namespace MobileGame.Presentation
         public bool SetAllowed(Guid storageId, bool allowed) => Record("Storage allowance", Commands.SetAllowed(storageId, allowed));
         public bool SetAllowed(Guid storageId, ResourceData resource, bool allowed) =>
             Record("Storage allowance", Commands.SetAllowed(storageId, resource, allowed));
-        public bool SelectCultivation(Guid id, CultivationTarget target) => Record("Cultivation target", Commands.SelectCultivation(id, target));
+        public bool SelectCultivation(Guid id, string target) => Record("Cultivation target", Commands.SelectCultivation(id, target));
         public bool AssignWorker(Guid id, Guid? facilityId) => Record("Worker assignment", Commands.AssignWorker(id, facilityId));
         public bool SetPreset(int[] priorities) => Record("Default priorities", Commands.SetPreset(priorities));
         public bool SetWorkerPriorities(Guid id, int[] priorities, bool usePreset = false) =>

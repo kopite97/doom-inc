@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var v=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>(); v.SendMessage(\"OnApplicationFocus\",true); v.Controller.NotifyApplicationPause(false); v.AdvanceFrame(0,5); if(v.Controller.Phase != MobileGame.Foundation.SessionPhase.Results || !v.Reload())throw new System.Exception(\"Results or continue failed\"); var r=v.Simulation.Receiving;var phase=v.Controller.Phase.ToString(); var pending=r.PendingCount; var received=System.Linq.Enumerable.Sum(r.Sources,s=>s.Delivered);var score=v.Invasion.Score;return new {frame=UnityEngine.Time.frameCount,phase,pending,received,score,restart=v.Restart(),empty=!System.Linq.Enumerable.Any(v.Simulation.Receiving.Sources)};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "frame": 7674,
+        "phase": "Results",
+        "pending": 0,
+        "received": 1,
+        "score": 9,
+        "restart": true,
+        "empty": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

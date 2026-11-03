@@ -100,6 +100,9 @@ namespace MobileGame.Foundation
             var catalog = new GameDataCatalog(data, settings, bundle.ContentHash);
             var organic = catalog.Selected<ResourceData>("organicId");
             var culture = catalog.Selected<ResourceData>("cultureId");
+            foreach (var model in data.Values.OfType<CreatureData>().Where(model => model.ActivityBehavior == "Raider"))
+                if (model.SupplyResource != organic.DefinitionId && model.SupplyResource != culture.DefinitionId)
+                    throw new FormatException("Unsupported supply resource: " + model.SupplyResource);
             var gather = catalog.Selected<FacilityData>("gatheringId"); var storage = catalog.Selected<FacilityData>("storageId");
             var prototype = catalog.Selected<CreatureData>("prototypeId");
             if (organic == culture || gather.Role != FacilityRole.Gathering || storage.Role != FacilityRole.Storage

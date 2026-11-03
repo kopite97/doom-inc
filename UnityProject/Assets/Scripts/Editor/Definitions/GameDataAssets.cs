@@ -13,7 +13,7 @@ namespace MobileGame.Foundation.Editor
     {
         public const string RegistryFolder = "Assets/SO/Registry";
         public static readonly string[] DefinitionPaths = {
-            "Resource/OrganicMatter", "Resource/CultureMedium", "Creature/PrototypeSupport", "Creature/Support", "Creature/Invader",
+            "Resource/OrganicMatter", "Resource/CultureMedium", "Creature/PrototypeSupport", "Creature/Support", "Creature/Invader", "Creature/Raider",
             "Facility/Gathering", "Facility/Storage", "Facility/Processing", "Facility/Cultivation" };
         public static JsonDataAsset[] Files() => JsonDefinitionParser.Topics.Select(topic => new JsonDataAsset(topic,
             AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/JSON/Balance/" + char.ToUpperInvariant(topic[0]) + topic.Substring(1) + ".json")

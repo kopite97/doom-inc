@@ -42,6 +42,7 @@ namespace MobileGame.Gameplay
             Logistics = new LogisticsManager(this);
             workers = new WorkerManager(this);
             Construction = new ConstructionManager(this);
+            Receiving = new ResourceReceiver(this);
             Invasion = new InvasionManager(this, invasionSettings ?? organic.Settings.Invasion);
         }
 
@@ -51,6 +52,7 @@ namespace MobileGame.Gameplay
         public ResourceData Organic { get; }
         public ResourceData Culture { get; }
         public ProductionManager Production { get; }
+        public ResourceReceiver Receiving { get; }
         public InvasionManager Invasion { get; }
         public double SecondsUntilExternalEvent => Invasion.SecondsUntilEvent;
         public bool HasReachedGoal => Invasion.State.GoalReached;
@@ -72,7 +74,7 @@ namespace MobileGame.Gameplay
         public bool CancelConstruction() => Result(Construction.CancelConstruction(), Construction.LastError);
         public bool SetAllowed(Guid id, bool allowed) => Result(Logistics.SetAllowed(id, allowed), Logistics.LastError);
         public bool SetAllowed(Guid id, ResourceData resource, bool allowed) => Result(Logistics.SetAllowed(id, resource, allowed), Logistics.LastError);
-        public bool SelectCultivation(Guid id, CultivationTarget target) => Result(Production.Select(id, target), Production.LastError);
+        public bool SelectCultivation(Guid id, string target) => Result(Production.Select(id, target), Production.LastError);
         public bool AssignWorker(Guid id, Guid? facility) => Result(workers.Assign(id, facility), workers.LastError);
         public bool SetPreset(int[] priorities) => Result(workers.SetPreset(priorities), workers.LastError);
         public bool SetWorkerPriorities(Guid id, int[] priorities, bool usePreset = false) => Result(workers.SetWorkerPriorities(id, priorities, usePreset), workers.LastError);
@@ -95,6 +97,7 @@ namespace MobileGame.Gameplay
                 workers.Tick(step);
                 Production.Tick(step, workers.ProducingFacilities);
                 workers.Reconcile();
+                Receiving.Retry();
                 seconds -= step;
             }
         }

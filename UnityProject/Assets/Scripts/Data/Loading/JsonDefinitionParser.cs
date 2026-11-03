@@ -106,6 +106,11 @@ namespace MobileGame.Foundation
                     || double.IsInfinity(number) || double.IsNaN(number) || number == 0 && raw.Canonical != "0") throw Invalid(value, "finite non-underflowing number");
                 return number;
             }
+            if (type == typeof(string[]))
+            {
+                var ids = value as JArray ?? throw Invalid(value, "array of definition IDs");
+                return ids.Select(id => (string)ReadField(id, typeof(string))).ToArray();
+            }
             if (type == typeof(ThingComponentKind[]))
             {
                 var array = value as JArray ?? throw Invalid(value, "component array");

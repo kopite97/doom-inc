@@ -60,10 +60,17 @@ namespace MobileGame.Presentation
                 }
                 if (definition.Role == FacilityRole.Cultivation)
                 {
-                    controls.Text("CultivationState", L("cultivation_state", A("current", status.InputsConsumed ? LaboratoryStatusText.Target(status.CurrentTarget) : M("no_cycle")), A("next", LaboratoryStatusText.Target(status.NextTarget))));
+                    controls.Text("CultivationState", L("cultivation_state", A("current", status.InputsConsumed ? LaboratoryStatusText.Target(definition.FindOutput(status.CurrentTarget)) : M("no_cycle")), A("next", LaboratoryStatusText.Target(definition.FindOutput(status.NextTarget)))));
                     controls.Text("CultivationHint", L("cultivation_hint"), 16);
-                    UiAction("CultivateSupport", L(status.NextTarget == CultivationTarget.Support ? "cultivate_selected" : "cultivate", A("target", LaboratoryStatusText.Target(CultivationTarget.Support)), A("resource", DefinitionName(culture)), A("count", definition.InputAmount)), () => SelectCultivation(id, CultivationTarget.Support), canOperate && construction.IsComplete, id);
-                    UiAction("CultivateInvader", L(status.NextTarget == CultivationTarget.Invader ? "cultivate_selected" : "cultivate", A("target", LaboratoryStatusText.Target(CultivationTarget.Invader)), A("resource", DefinitionName(culture)), A("count", definition.InputAmount)), () => SelectCultivation(id, CultivationTarget.Invader), canOperate && construction.IsComplete, id);
+                    foreach (var model in definition.CultivationOutputs)
+                    {
+                        var modelId = model.DefinitionId;
+                        var action = model == definition.SupportOutput ? "CultivateSupport" : model == definition.InvaderOutput ? "CultivateInvader" : "Cultivate_" + modelId;
+                        UiAction(action, L(status.NextTarget == modelId ? "cultivate_selected" : "cultivate",
+                            A("target", DefinitionName(model)), A("resource", DefinitionName(culture)), A("count", definition.InputAmount)),
+                            () => SelectCultivation(id, modelId), canOperate && construction.IsComplete, id);
+                    }
+                    controls.Text("RaiderHint", L("raider_hint"), 16);
                     if (!construction.IsComplete) controls.Text("CultivationUnavailable", L("cultivation_unavailable"), 16);
                 }
                 UiAction("ManageFacilityWorkers", L("manage_workers"), () => OpenPanel(LaboratoryPanel.Creatures), canOperate, id);

@@ -23,3 +23,4 @@
 | [PLAN-019](PLAN-019-shared-popup-system.md) | 공용 Popup 시스템과 기존 확인·설정 화면 통합 | `development` | `completed` |
 | [PLAN-020](PLAN-020-editor-bottlenecks-repeated-play-and-performance.md) | Editor 런타임 운영 병목·반복 플레이·성능 검증 | `development` | `completed` |
 | [PLAN-021](PLAN-021-worker-pathfinding-and-localization-import.md) | 작업자 경로 탐색 최적화와 번역 CSV 반복 가져오기 안정화 | `development` | `completed` |
+| [PLAN-022](PLAN-022-raider-and-resource-receiving.md) | 약탈형 배양·침공과 연구소 자원 수신 | `development` | `completed` |

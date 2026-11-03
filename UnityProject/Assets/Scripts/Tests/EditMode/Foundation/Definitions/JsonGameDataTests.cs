@@ -46,8 +46,8 @@ namespace MobileGame.Foundation.Tests
         [Test] public void BaselineHasFrozenFingerprintAndIndependentDataWithCanonicalLinks()
         {
             var before = facilities.Entries.Select(EditorJsonUtility.ToJson).ToArray();
-            var data = Compose(); Assert.That(data.Settings.CompatibilityHash, Is.EqualTo(LegacyDataBaseline.Hash));
-            Assert.That(data.Definitions.Count, Is.EqualTo(9));
+            var data = Compose(); Assert.That(data.Settings.CompatibilityHash, Is.EqualTo(LegacyDataBaseline.RaiderBaselineHash));
+            Assert.That(data.Definitions.Count, Is.EqualTo(10));
             var processing = data.Selected<FacilityData>("processingId"); var cultivation = data.Selected<FacilityData>("cultivationId");
             Assert.That(processing.InputResource, Is.SameAs(data.Selected<ResourceData>("organicId")));
             Assert.That(processing.OutputResource, Is.SameAs(data.Selected<ResourceData>("cultureId")));
@@ -87,6 +87,7 @@ namespace MobileGame.Foundation.Tests
         [TestCase("session", "mapWidth", "0")]
         [TestCase("resources", "unknown", "1")]
         [TestCase("resources", "definitionId", "null")]
+        [TestCase("creatures", "activityBehavior", "\"Unknown\"")]
         [TestCase("creatures", "role", "\"Unknown\"")]
         [TestCase("facilities", "resource", "\"resource.missing\"")]
         [TestCase("facilities", "gatheringSeconds", "1e100")]
@@ -99,6 +100,31 @@ namespace MobileGame.Foundation.Tests
             Assert.Throws<FormatException>(() => Compose(Changed("resources", j => j["entries"][1]["definitionId"] = j["entries"][0]["definitionId"].DeepClone())));
             Assert.Throws<FormatException>(() => Compose(Changed("resources", j => j["entries"][0]["components"] = new JArray("ResourceStack", "ResourceStack"))));
         }
+        [Test]
+        public void AdditionalRaiderModelReusesBehaviorWithItsOwnSettings()
+        {
+            var asset = Clone(creatures.Entries.First());
+            using (var so = new SerializedObject(asset))
+            {
+                so.FindProperty("definitionId").stringValue = "creature.raider.test";
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
+            Entries(creatures, creatures.Entries.Cast<UnityEngine.Object>().Concat(new[]{asset}).ToArray());
+            var tables = Changed("creatures", j => {
+                var rows = (JArray)j["entries"];
+                var additional = (JObject)rows.Single(r => (string)r["activityBehavior"] == "Raider").DeepClone();
+                additional["definitionId"] = "creature.raider.test";
+                additional["supplyAmount"] = 2;
+                rows.Add(additional);
+            });
+            var data = Compose(tables);
+            var model = data.Get<CreatureData>("creature.raider.test");
+            Assert.That(model.Behavior, Is.SameAs(data.Get<CreatureData>("creature.raider").Behavior));
+            var context = new InvaderActivityContext(model, data.Settings.Invasion, 12);
+            Assert.That(model.Behavior.ResolveActivity(context).Amount, Is.EqualTo(2));
+            Assert.That(model.Behavior.ResolveActivity(context).Amount, Is.EqualTo(2));
+        }
+
         [Test] public void MissingOrUnknownTopicAndSchemaReject()
         {
             var text = Texts(); text.Remove("invasion"); Assert.Throws<FormatException>(() => Compose(text));
@@ -112,7 +138,7 @@ namespace MobileGame.Foundation.Tests
             foreach (var topic in JsonDefinitionParser.Topics)
             {
                 var lines = File.ReadAllLines(Path.Combine(Directory.GetParent(Application.dataPath).Parent.FullName, "docs/plans/evidence/PLAN-015/baseline-csv", topic + ".csv"));
-                var columns = lines[0].Split(','); Assert.That(parsed[topic].Count, Is.EqualTo(lines.Length - 1));
+                var columns = lines[0].Split(','); Assert.That(parsed[topic].Count, Is.EqualTo(lines.Length - 1 + (topic == "creatures" ? 1 : 0)));
                 foreach (var line in lines.Skip(1))
                 {
                     var cells = line.Split(','); var dto = parsed[topic].Single(r => r.definitionId == cells[0]);
@@ -124,6 +150,7 @@ namespace MobileGame.Foundation.Tests
                             Assert.That(names.Rows.Single(r => r.Key == key).Values["ko"], Is.EqualTo(cells[Array.IndexOf(columns, "displayName")]));
                             continue;
                         }
+                        if (!columns.Contains(field.Name)) continue; // New fields are verified against the new frozen fingerprint.
                         var original = cells[Array.IndexOf(columns, field.Name)]; var actual = field.GetValue(dto);
                         if (actual is ThingComponentKind[] parts) Assert.That(string.Join("|", parts.Select(c => c.ToString())), Is.EqualTo(original));
                         else if (field.FieldType == typeof(double)) Assert.That((double)actual, Is.EqualTo(double.Parse(original, CultureInfo.InvariantCulture)));
@@ -180,8 +207,8 @@ namespace MobileGame.Foundation.Tests
             var baseline = Compose(); var codec = new SessionSnapshotCodec(baseline.Definitions.Values, true);
             var session = LaboratorySessionFactory.Create(baseline.Selected<ResourceData>("organicId"), baseline.Selected<FacilityData>("gatheringId"),
                 baseline.Selected<FacilityData>("storageId"), baseline.Selected<CreatureData>("prototypeId"), baseline.Selected<ResourceData>("cultureId"));
-            var save = codec.Capture(session, SessionPhase.Playing); Assert.That(save.version, Is.EqualTo(5));
-            Assert.That(save.dataHash, Is.EqualTo(LegacyDataBaseline.Hash)); Assert.DoesNotThrow(() => codec.Restore(save));
+            var save = codec.Capture(session, SessionPhase.Playing); Assert.That(save.version, Is.EqualTo(SessionSnapshotCodec.CurrentVersion));
+            Assert.That(save.dataHash, Is.EqualTo(LegacyDataBaseline.RaiderBaselineHash)); Assert.DoesNotThrow(() => codec.Restore(save));
             var text = Texts(); text["creatures"] = text["creatures"].Replace("0.25", "0.5");
             var other = new SessionSnapshotCodec(Compose(text).Definitions.Values, true);
             Assert.That(() => other.Restore(save), Throws.Exception);
@@ -212,7 +239,7 @@ namespace MobileGame.Foundation.Tests
                 File.WriteAllText(path, original);
                 AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
             }
-            Assert.That(GameDataAssets.LoadCatalog().Settings.CompatibilityHash, Is.EqualTo(LegacyDataBaseline.Hash));
+            Assert.That(GameDataAssets.LoadCatalog().Settings.CompatibilityHash, Is.EqualTo(LegacyDataBaseline.RaiderBaselineHash));
         }
         private static LaboratoryManager Building(GameDataCatalog data)
         {

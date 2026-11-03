@@ -38,8 +38,9 @@ namespace MobileGame.Presentation
                 default: return LaboratoryIcon.Worker;
             }
         }
-        public static LocalizedMessage Target(CultivationTarget target) => target == CultivationTarget.Support ? new LocalizedMessage("Status", "support")
-            : target == CultivationTarget.Invader ? new LocalizedMessage("Status", "invader") : new LocalizedMessage("Status", "no_target");
+        public static LocalizedMessage Target(CreatureData model) => model == null
+            ? new LocalizedMessage("Status", "no_target")
+            : new LocalizedMessage("Definitions", model.DisplayNameKey);
         public static LocalizedMessage MaterialReason(FacilityMaterialWaitKind kind)
         {
             switch (kind)

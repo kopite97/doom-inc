@@ -47,7 +47,7 @@ namespace MobileGame.Gameplay
         internal FacilityStatus(Thing facility, FacilityStatusKind kind, bool hasProgress,
             double progress, double duration, int outstanding, int working, int assigned,
             double rate, FacilityMaterials materials, bool consumed = false,
-            CultivationTarget current = CultivationTarget.None, CultivationTarget next = CultivationTarget.None)
+            string current = CultivationTarget.None, string next = CultivationTarget.None)
         {
             FacilityId = facility.Id; Role = ((FacilityData)facility.Definition).Role; Kind = kind;
             HasProgress = hasProgress; Progress = progress; Duration = duration; Outstanding = outstanding;
@@ -71,8 +71,8 @@ namespace MobileGame.Gameplay
         public bool IsAutomatic => Kind == FacilityStatusKind.ProductionAutomatic;
         public FacilityMaterials Materials { get; }
         public bool InputsConsumed { get; }
-        public CultivationTarget CurrentTarget { get; }
-        public CultivationTarget NextTarget { get; }
+        public string CurrentTarget { get; }
+        public string NextTarget { get; }
     }
 
     public sealed class FacilityStatusQuery

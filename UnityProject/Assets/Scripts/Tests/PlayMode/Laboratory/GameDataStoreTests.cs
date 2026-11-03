@@ -117,8 +117,8 @@ namespace MobileGame.SpatialTests
                     while ((!loading.isDone || bootstrap == null || !bootstrap.Ready) && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
                     Assert.That(bootstrap, Is.Not.Null, scenePath);
                     Assert.That(bootstrap.Ready, Is.True, scenePath + ": " + bootstrap.Error);
-                    Assert.That(GameDataStore.Instance.Catalog.Settings.CompatibilityHash, Is.EqualTo(LegacyDataBaseline.Hash));
-                    Assert.That(GameDataStore.Instance.Catalog.Definitions.Count, Is.EqualTo(9));
+                    Assert.That(GameDataStore.Instance.Catalog.Settings.CompatibilityHash, Is.EqualTo(LegacyDataBaseline.RaiderBaselineHash));
+                    Assert.That(GameDataStore.Instance.Catalog.Definitions.Count, Is.EqualTo(10));
                 }
                 finally { SceneManager.sceneLoaded -= Loaded; }
             }

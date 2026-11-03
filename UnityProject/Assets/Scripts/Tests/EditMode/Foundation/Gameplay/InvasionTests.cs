@@ -25,7 +25,7 @@ namespace MobileGame.Foundation.Tests
         public void Prepare()
         {
             catalog = new[] { "Resource/OrganicMatter", "Resource/CultureMedium", "Facility/Gathering", "Facility/Storage",
-                "Facility/Processing", "Facility/Cultivation", "Creature/PrototypeSupport", "Creature/Support", "Creature/Invader" }
+                "Facility/Processing", "Facility/Cultivation", "Creature/PrototypeSupport", "Creature/Support", "Creature/Invader", "Creature/Raider" }
                 .Select(path => DataTestAssets.LoadAssetAtPath<ThingData>("Assets/SO/" + path + ".asset")).ToArray();
             Assert.That(catalog.All(d => d != null), Is.True);
             organic = (ResourceData)catalog[0]; culture = (ResourceData)catalog[1];

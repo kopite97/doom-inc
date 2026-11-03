@@ -308,7 +308,7 @@ namespace MobileGame.Foundation.Tests
             var state = snapshot.laboratory.things.Single(t => t.thingId == facility.Id.ToString("N"));
             if (defect == "assignment") snapshot.laboratory.things.Single(t => t.hasWorker).worker.assignedFacilityId = facility.Id.ToString("N");
             if (defect == "progress") state.production.progress = 20;
-            if (defect == "target") state.production.activeTarget = CultivationTarget.None;
+            if (defect == "target") state.production.activeModelId = CultivationTarget.None;
             if (defect == "stock") state.production.outstanding = 1;
             if (defect == "version") snapshot.version = 99;
             Assert.Throws<InvalidDataException>(() => codec.Restore(snapshot));

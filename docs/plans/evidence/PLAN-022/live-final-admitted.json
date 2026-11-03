@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var v=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>(); if(v==null || v.Simulation==null || !v.SavePath.Contains(\"SlotB\"))throw new System.Exception(\"Waiting for isolated Laboratory\");\nv.SendMessage(\"OnApplicationFocus\",true); v.Controller.NotifyApplicationPause(false); UnityEngine.Application.runInBackground=true; v.SimulationRate=0;\nif(v.Simulation.Invasion.WaitingCount!=2 || !v.ReleaseInvaders())throw new System.Exception(\"Fixture not loaded\");\nv.Controller.Advance(15); var receiver=v.Simulation.Receiving;return new {frame=UnityEngine.Time.frameCount,phase=v.Controller.Phase.ToString(),score=v.Invasion.Score,waiting=receiver.PendingCount,received=System.Linq.Enumerable.Sum(receiver.Sources,s=>s.Delivered),error=v.Controller.LastSaveError};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "frame": 1651,
+        "phase": "Destruction",
+        "score": 9,
+        "waiting": 0,
+        "received": 1,
+        "error": null
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

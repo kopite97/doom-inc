@@ -34,8 +34,10 @@ namespace MobileGame.Persistence
     [Serializable]
     public sealed class ProductionSnapshot
     {
-        public CultivationTarget selectedTarget;
-        public CultivationTarget activeTarget;
+        public int selectedTarget; // v2-v5
+        public string selectedModelId;
+        public int activeTarget; // v2-v5
+        public string activeModelId;
         public bool inProgress;
         public double progress;
         public int outstanding;

@@ -9,7 +9,13 @@
       ],
       "role": "Invader",
       "carryCapacity": 5,
-      "moveSecondsPerCell": 0.25
+      "moveSecondsPerCell": 0.25,
+      "activityBehavior": "Standard",
+      "smallScore": 0,
+      "majorScore": 0,
+      "supplyResource": "",
+      "supplyAmount": 0,
+      "supplyEvery": 0
     },
     {
       "definitionId": "creature.support.prototype",
@@ -19,7 +25,13 @@
       ],
       "role": "Prototype",
       "carryCapacity": 5,
-      "moveSecondsPerCell": 0.25
+      "moveSecondsPerCell": 0.25,
+      "activityBehavior": "None",
+      "smallScore": 0,
+      "majorScore": 0,
+      "supplyResource": "",
+      "supplyAmount": 0,
+      "supplyEvery": 0
     },
     {
       "definitionId": "creature.support",
@@ -29,7 +41,29 @@
       ],
       "role": "Support",
       "carryCapacity": 5,
-      "moveSecondsPerCell": 0.25
+      "moveSecondsPerCell": 0.25,
+      "activityBehavior": "None",
+      "smallScore": 0,
+      "majorScore": 0,
+      "supplyResource": "",
+      "supplyAmount": 0,
+      "supplyEvery": 0
+    },
+    {
+      "definitionId": "creature.raider",
+      "displayNameKey": "creature.raider",
+      "components": [
+        "ResourceContainer"
+      ],
+      "role": "Invader",
+      "carryCapacity": 5,
+      "moveSecondsPerCell": 0.25,
+      "activityBehavior": "Raider",
+      "smallScore": 1,
+      "majorScore": 5,
+      "supplyResource": "resource.organic",
+      "supplyAmount": 1,
+      "supplyEvery": 3
     }
   ]
 }

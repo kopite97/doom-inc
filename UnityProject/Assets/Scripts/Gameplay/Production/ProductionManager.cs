@@ -11,11 +11,10 @@ namespace MobileGame.Gameplay
         public ProductionManager(LaboratoryManager laboratory) { this.laboratory = laboratory; }
         public string LastError { get; private set; }
 
-        public bool Select(Guid facilityId, CultivationTarget target)
+        public bool Select(Guid facilityId, string target)
         {
-            if ((target != CultivationTarget.Support && target != CultivationTarget.Invader) ||
-                !laboratory.Registry.TryGet(facilityId, out var facility) || !laboratory.IsComplete(facility) ||
-                !(facility.Definition is FacilityData definition) || definition.Role != FacilityRole.Cultivation)
+            if (!laboratory.Registry.TryGet(facilityId, out var facility) || !laboratory.IsComplete(facility) ||
+                !(facility.Definition is FacilityData definition) || definition.FindOutput(target) == null)
             { LastError = "Select a completed cultivator and a support or invader target."; return false; }
             if (facility.GetComponent<ProductionComponent>().SelectedTarget != target) laboratory.WorkChanged();
             facility.GetComponent<ProductionComponent>().SelectedTarget = target;
@@ -106,8 +105,7 @@ namespace MobileGame.Gameplay
                 }
                 else
                 {
-                    var creature = laboratory.Registry.Create(state.ActiveTarget == CultivationTarget.Support
-                        ? definition.SupportOutput : definition.InvaderOutput);
+                    var creature = laboratory.Registry.Create(definition.FindOutput(state.ActiveTarget));
                     var placed = laboratory.Map.Commands.Place(creature.Id, facility.Placement.InteractionCell.Value);
                     if (!placed.Succeeded) throw new InvalidOperationException(placed.ToString());
                     if (creature.TryGetComponent<WorkerComponent>(out var worker))

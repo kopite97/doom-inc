@@ -11,7 +11,7 @@ namespace MobileGame.Persistence
     public sealed class SessionSnapshotCodec
     {
         public const int LegacyVersion = 1;
-        public const int CurrentVersion = 5;
+        public const int CurrentVersion = 6;
         private readonly bool requireLaboratory;
         private string DataHash => definitions.Values.FirstOrDefault()?.Settings?.CompatibilityHash;
         private readonly Dictionary<string, ThingData> definitions =
@@ -91,10 +91,10 @@ namespace MobileGame.Persistence
             ValidateStructure(snapshot);
             if (string.IsNullOrEmpty(snapshot.dataHash))
             {
-                if (snapshot.version >= CurrentVersion || DataHash != LegacyDataBaseline.Hash)
+                if (snapshot.version >= 5 || DataHash != LegacyDataBaseline.RaiderBaselineHash)
                     throw Invalid("Legacy save requires the baseline data. Preserve the save and restart with matching data, or explicitly start a new run.");
             }
-            else if (snapshot.dataHash != DataHash)
+            else if (snapshot.dataHash != DataHash && !(snapshot.version <= 5 && snapshot.dataHash == LegacyDataBaseline.Hash && DataHash == LegacyDataBaseline.RaiderBaselineHash))
                 throw Invalid("Saved balance differs from loaded data. Restart the app with matching data, or explicitly start a new run. The save is preserved.");
             if (requireLaboratory && snapshot.version < 2)
                 throw Invalid("This play slot requires a laboratory session, not a diagnostic save.");
@@ -191,7 +191,7 @@ namespace MobileGame.Persistence
         {
             if (snapshot == null)
                 throw Invalid("The save has no session object.");
-            if (snapshot.version != LegacyVersion && snapshot.version != 2 && snapshot.version != 3 && snapshot.version != 4 && snapshot.version != CurrentVersion)
+            if (snapshot.version != LegacyVersion && snapshot.version != 2 && snapshot.version != 3 && snapshot.version != 4 && snapshot.version != 5 && snapshot.version != CurrentVersion)
                 throw Invalid("Unsupported save version: " + snapshot.version);
             if (snapshot.version >= 4) InvasionSnapshotCodec.ValidateStructure(snapshot.invasion);
             // JsonUtility materializes null nested classes as empty objects. The

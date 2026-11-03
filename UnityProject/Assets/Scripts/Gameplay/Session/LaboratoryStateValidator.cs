@@ -117,8 +117,8 @@ namespace MobileGame.Gameplay
             var state = thing.GetComponent<ProductionComponent>();
             if (!simulation.Supports(definition.InputResource) ||
                 (definition.Role == FacilityRole.Processing && !simulation.Supports(definition.OutputResource)) ||
-                !Enum.IsDefined(typeof(CultivationTarget), state.SelectedTarget) ||
-                !Enum.IsDefined(typeof(CultivationTarget), state.ActiveTarget) ||
+                (state.SelectedTarget != CultivationTarget.None && definition.FindOutput(state.SelectedTarget) == null) ||
+                (state.ActiveTarget != CultivationTarget.None && definition.FindOutput(state.ActiveTarget) == null) ||
                 !InRange(state.Progress, definition.ProductionSeconds) || state.Outstanding < 0 || state.Outstanding > definition.OutputAmount)
                 throw Invalid("Invalid production definition or progress.");
             if (definition.Role == FacilityRole.Processing && (state.SelectedTarget != CultivationTarget.None || state.ActiveTarget != CultivationTarget.None))

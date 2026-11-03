@@ -13,8 +13,16 @@ namespace MobileGame.Persistence
         public string elapsed;
         public bool goalReached;
         public int legacyEndVersion;
+        public ReceiptSnapshot[] receipts;
         public InvaderSnapshot[] invaders;
         public InvasionReportSnapshot[] reports;
+    }
+    [Serializable]
+    public sealed class ReceiptSnapshot
+    {
+        public string source, resource;
+        public long lastRound, pendingRound, delivered;
+        public int amount;
     }
     [Serializable]
     public sealed class InvaderSnapshot

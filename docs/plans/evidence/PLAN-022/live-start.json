@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var dir=System.IO.Path.Combine(UnityEngine.Application.temporaryCachePath,\"EditorSessions\",\"SlotB\");\nif(UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode || UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty)throw new System.Exception(\"Editor not ready\");\nvar d=MobileGame.Foundation.Editor.GameDataAssets.LoadCatalog();var o=d.Selected<MobileGame.Foundation.ResourceData>(\"organicId\");var storage=d.Selected<MobileGame.Foundation.FacilityData>(\"storageId\");\nvar config=new MobileGame.Foundation.InvasionSettings(5,2,10,4,9,9,20);var state=MobileGame.Gameplay.LaboratorySessionFactory.Create(o,d.Selected<MobileGame.Foundation.FacilityData>(\"gatheringId\"),storage,d.Selected<MobileGame.Foundation.CreatureData>(\"prototypeId\"),d.Selected<MobileGame.Foundation.ResourceData>(\"cultureId\"),config);\nvar fac=state.Registry.Create(storage); if(!state.Map.Commands.Place(fac.Id,new UnityEngine.Vector2Int(8,5)).Succeeded)throw new System.Exception(\"invalid placement\");\nvar con=fac.GetComponent<MobileGame.Gameplay.ConstructionComponent>();foreach(var item in new[]{(\"IsComplete\",(object)true),(\"Progress\",(object)storage.BuildSeconds),(\"Delivered\",(object)storage.BuildCost)})con.GetType().GetProperty(item.Item1).SetValue(con,item.Item2);\nforeach(var id in new[]{\"creature.raider\",\"creature.invader\"}){var t=state.Registry.Create(d.Get<MobileGame.Foundation.CreatureData>(id));if(!state.Map.Commands.Place(t.Id,UnityEngine.Vector2Int.one).Succeeded)throw new System.Exception(\"invalid creature placement\");}\nvar codec=new MobileGame.Persistence.SessionSnapshotCodec(d.Definitions.Values,true);var snap=codec.Capture(state,MobileGame.Foundation.SessionPhase.Playing);System.IO.Directory.CreateDirectory(dir);System.IO.File.WriteAllText(System.IO.Path.Combine(dir,\"session.json\"),codec.Serialize(snap));\nMobileGame.Foundation.Editor.AppPlayEntry.SlotB();MobileGame.Foundation.Editor.AppPlayEntry.CurrentContinue();return true;"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": true
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

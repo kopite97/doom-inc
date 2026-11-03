@@ -18,6 +18,11 @@ namespace MobileGame.Persistence
             {
                 schemaVersion = 1, settings = state.Settings.Copy(), score = state.Score, activitySequence = state.ActivitySequence,
                 elapsed = Time(state.Elapsed), goalReached = state.GoalReached, legacyEndVersion = state.LegacyEndVersion,
+                receipts = laboratory.Receiving.Sources.OrderBy(s => s.Source).Select(s => new ReceiptSnapshot
+                {
+                    source = s.Source.ToString("N"), lastRound = s.LastRound, pendingRound = s.PendingRound,
+                    resource = s.ResourceId, amount = s.Amount, delivered = s.Delivered
+                }).ToArray(),
                 invaders = laboratory.Registry.Things.Where(t => t.TryGetComponent<InvaderComponent>(out _))
                     .OrderBy(t => t.CreationOrder).Select(t => new InvaderSnapshot
                     {
@@ -58,6 +63,7 @@ namespace MobileGame.Persistence
             }
             if (laboratory.Registry.Things.Count(t => t.TryGetComponent<InvaderComponent>(out _)) != restoredIds.Count)
                 throw Invalid("Missing invader activity state.");
+            if (version >= 6) RestoreReceipts(saved.receipts, laboratory);
             state.Score = saved.score; state.ActivitySequence = saved.activitySequence;
             state.Elapsed = ParseTime(saved.elapsed); state.LegacyEndVersion = saved.legacyEndVersion;
             foreach (var report in saved.reports)
@@ -66,6 +72,42 @@ namespace MobileGame.Persistence
                     Time = ParseTime(report.time), TotalScore = report.totalScore });
             if (state.GoalReached != saved.goalReached) throw Invalid("Goal flag and score disagree.");
             laboratory.Invasion.ValidatePhase(phase);
+        }
+
+        private static void RestoreReceipts(ReceiptSnapshot[] saved, LaboratoryManager lab)
+        {
+            if (saved == null) throw Invalid("Missing receipt state.");
+            var seen = new HashSet<Guid>();
+            foreach (var row in saved)
+            {
+                if (row == null) throw Invalid("Null receipt.");
+                var source = ParseId(row.source);
+                if (!seen.Add(source) || !lab.Registry.TryGet(source, out var thing) ||
+                    !thing.TryGetComponent<InvaderComponent>(out var outside) || !outside.IsExternal ||
+                    row.lastRound <= 0 || row.lastRound > outside.CompletedActivities || row.pendingRound < 0 ||
+                    row.pendingRound > row.lastRound || row.delivered < 0)
+                    throw Invalid("Invalid receipt source or round.");
+                var model = (CreatureData)thing.Definition;
+                var last = lab.Invasion.Outcome(thing, row.lastRound);
+                if (last.Amount <= 0 || model.SupplyEvery <= 0 ||
+                    row.lastRound != outside.CompletedActivities / model.SupplyEvery * model.SupplyEvery ||
+                    row.delivered % last.Amount != 0 || row.delivered / last.Amount >
+                        row.lastRound / model.SupplyEvery - (row.pendingRound == 0 ? 0 : 1))
+                    throw Invalid("Receipt history disagrees with model activity.");
+                if (row.pendingRound > 0)
+                {
+                    var outcome = lab.Invasion.Outcome(thing, row.pendingRound);
+                    if (outcome.Amount <= 0 || outcome.ResourceId != row.resource || outcome.Amount != row.amount)
+                        throw Invalid("Pending reward disagrees with source activity.");
+                }
+                else if (row.amount != 0 || !string.IsNullOrEmpty(row.resource)) throw Invalid("Unexpected pending cargo.");
+                lab.Receiving.Restore(new ReceiptState { Source = source, LastRound = row.lastRound,
+                    PendingRound = row.pendingRound, ResourceId = row.resource, Amount = row.amount, Delivered = row.delivered });
+            }
+            foreach (var thing in lab.Registry.Things)
+                if (thing.Definition is CreatureData model && model.SupplyEvery > 0 &&
+                    thing.TryGetComponent<InvaderComponent>(out var outside) && outside.CompletedActivities >= model.SupplyEvery &&
+                    !seen.Contains(thing.Id)) throw Invalid("Missing source watermark.");
         }
 
         public static void ValidateStructure(InvasionSnapshot saved)

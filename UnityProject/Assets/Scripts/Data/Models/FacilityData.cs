@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace MobileGame.Foundation
@@ -24,6 +26,8 @@ namespace MobileGame.Foundation
         private readonly float productionSeconds;
         public ResourceData InputResource => inputResource;
         public ResourceData OutputResource => outputResource;
+        public IReadOnlyList<CreatureData> CultivationOutputs { get; }
+        public CreatureData FindOutput(string id) => CultivationOutputs?.FirstOrDefault(model => model.DefinitionId == id);
         public CreatureData SupportOutput => supportOutput;
         public CreatureData InvaderOutput => invaderOutput;
         public int InputAmount => inputAmount;
@@ -44,6 +48,12 @@ namespace MobileGame.Foundation
             outputResource = Resolve<ResourceData>(row, "outputResource", definitions);
             supportOutput = Resolve<CreatureData>(row, "supportOutput", definitions);
             invaderOutput = Resolve<CreatureData>(row, "invaderOutput", definitions);
+            var outputs = row.cultivationOutputs.Select(id => definitions.TryGetValue(id, out var entry) && entry is CreatureData model && model.Role != CreatureRole.Prototype
+                ? model : throw row.Error("cultivationOutputs", "Invalid model: " + id)).ToArray();
+            if (outputs.Distinct().Count() != outputs.Length || (role == FacilityRole.Cultivation
+                ? !outputs.Contains(supportOutput) || !outputs.Contains(invaderOutput) : outputs.Length != 0))
+                throw row.Error("cultivationOutputs", "Invalid cultivation model list.");
+            CultivationOutputs = Array.AsReadOnly(outputs);
             inputAmount = row.inputAmount; outputAmount = row.outputAmount; productionSeconds = (float)row.productionSeconds;
         }
         private static T Resolve<T>(FacilityDto row, string column, System.Collections.Generic.IReadOnlyDictionary<string, ThingData> definitions) where T : ThingData

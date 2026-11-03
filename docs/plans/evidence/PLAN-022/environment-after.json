@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "if(UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)throw new System.Exception(\"Expected Edit Mode\");UnityEditor.EditorPrefs.SetBool(\"MobileGame.AppPlayEntry.Continue\",false);MobileGame.Foundation.Editor.AppPlayEntry.SlotA();return new {scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,dirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty,slotB=UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.SlotB\",false),continuation=UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.Continue\",false),background=UnityEngine.Application.runInBackground,temp=UnityEngine.Application.temporaryCachePath,frame=UnityEngine.Time.frameCount};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+        "dirty": false,
+        "slotB": false,
+        "continuation": false,
+        "background": false,
+        "temp": "C:/Users/USER/AppData/Local/Temp/DefaultCompany/UnityProject",
+        "frame": 3
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

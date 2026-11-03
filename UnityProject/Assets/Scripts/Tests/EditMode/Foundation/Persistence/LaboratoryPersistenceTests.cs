@@ -215,12 +215,7 @@ namespace MobileGame.Foundation.Tests
         [Test]
         public void TransientConstructionPreviewIsNotSavedAndGameFlowGatesActualWork()
         {
-            var invaderDefinition = CreateDefinition<CreatureData>("persistence.invader", ThingComponentKind.ResourceContainer);
-            using (var serialized = new DataFixtureEditor(invaderDefinition))
-            {
-                serialized.FindProperty("role").intValue = (int)CreatureRole.Invader;
-                serialized.ApplyModifiedPropertiesWithoutUndo();
-            }
+            var invaderDefinition = DataTestAssets.Catalog.Selected<CreatureData>("invaderId");
             codec = new SessionSnapshotCodec(new ThingData[] { organic, prototype, gathering, storage, invaderDefinition });
             var controller = Controller(() => LaboratorySessionFactory.Create(organic, gathering, storage, prototype));
             Assert.That(controller.StartOrContinue(), Is.True, controller.LastError);

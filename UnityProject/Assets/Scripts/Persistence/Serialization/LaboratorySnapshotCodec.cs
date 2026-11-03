@@ -34,8 +34,8 @@ namespace MobileGame.Persistence
                 if (thing.TryGetComponent<ProductionComponent>(out var production))
                 {
                     saved.hasProduction = true;
-                    saved.production = new ProductionSnapshot { selectedTarget = production.SelectedTarget,
-                        activeTarget = production.ActiveTarget, inProgress = production.InProgress,
+                    saved.production = new ProductionSnapshot { selectedModelId = production.SelectedTarget,
+                        activeModelId = production.ActiveTarget, inProgress = production.InProgress,
                         progress = production.Progress, outstanding = production.Outstanding };
                 }
                 if (thing.TryGetComponent<StorageComponent>(out var storage))
@@ -77,6 +77,14 @@ namespace MobileGame.Persistence
             };
         }
 
+        private static string LegacyModel(int value, FacilityData facility)
+        {
+            if (value == 0) return CultivationTarget.None;
+            if (value == 1 && facility.SupportOutput != null) return facility.SupportOutput.DefinitionId;
+            if (value == 2 && facility.InvaderOutput != null) return facility.InvaderOutput.DefinitionId;
+            throw Invalid("Invalid legacy cultivation target.");
+        }
+
         public static LaboratoryManager Restore(LaboratorySnapshot saved, ThingRegistry registry,
             GridMap map, Func<string, ThingData> getDefinition, int version, ResourceData defaultCulture,
             InvasionSettings invasionSettings = null)
@@ -115,8 +123,8 @@ namespace MobileGame.Persistence
                 }
                 if (hasProduction)
                 {
-                    production.SelectedTarget = state.production.selectedTarget;
-                    production.ActiveTarget = state.production.activeTarget;
+                    production.SelectedTarget = version >= 6 ? state.production.selectedModelId : LegacyModel(state.production.selectedTarget, (FacilityData)thing.Definition);
+                    production.ActiveTarget = version >= 6 ? state.production.activeModelId : LegacyModel(state.production.activeTarget, (FacilityData)thing.Definition);
                     production.InProgress = state.production.inProgress;
                     production.Progress = state.production.progress;
                     production.Outstanding = state.production.outstanding;
