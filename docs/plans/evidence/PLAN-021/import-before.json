@@ -1,0 +1,42 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test run",
+    "parameters": {
+      "mode": "editor",
+      "filter": "ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent"
+    },
+    "result": {
+      "Summary": {
+        "Total": 1,
+        "Passed": 0,
+        "Failed": 1,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent",
+          "Status": "Failed",
+          "Duration": 4.8180823,
+          "Message": "  Idempotent import: Assets/AddressableAssetsData/AddressableAssetSettings.asset\r\n  String lengths are both 4646. Strings differ at index 606.\r\n  Expected: \"...erializedVersion: 2\\n    Hash: da908e2f501b63794a093410712a...\"\r\n  But was:  \"...erializedVersion: 2\\n    Hash: b64c8187ce1a23044380767c8fd1...\"\r\n  ---------------------------------------------^\r\n",
+          "StackTrace": "at MobileGame.Foundation.Tests.LocalizationCsvTests.ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent () [0x00229] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\EditMode\\Foundation\\Localization\\LocalizationCsvTests.cs:122\r\n"
+        }
+      ],
+      "Duration": 8.63,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

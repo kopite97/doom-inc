@@ -1,0 +1,113 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "tail": "80"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 57,
+          "timestampUtc": "2026-11-03T04:05:51.8294527Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Editor test slot: C:/Users/USER/AppData/Local/Temp/DefaultCompany/UnityProject\\EditorSessions\\Default\\session.json",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.AppPlayEntry:SelectSlot (bool) (at Assets/Scripts/Editor/Scenes/AppPlayEntry.cs:75)\nMobileGame.Foundation.Editor.AppPlayEntry:SlotA () (at Assets/Scripts/Editor/Scenes/AppPlayEntry.cs:68)\nPipelineEvaluation.PipelineEval_eaf3253e:Execute ()\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Compilation.EvalCodeCompiler:ExecuteCompiledAssembly (System.Reflection.Assembly) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:190)\nUnity.Pipeline.Compilation.EvalCodeCompiler:CompileAndExecuteOnMainThread (string,System.TimeSpan,System.Diagnostics.Stopwatch) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:54)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:EvaluateSource (string,System.TimeSpan,string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:97)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:Eval (string,double) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:26)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 58,
+          "timestampUtc": "2026-11-03T04:06:08.732366Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Running 1 tests (explicit tests excluded)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner/<>c__DisplayClass9_0:<ExecuteTestsInternal>b__0 (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:359)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 59,
+          "timestampUtc": "2026-11-03T04:06:08.8745241Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 60,
+          "timestampUtc": "2026-11-03T04:06:08.8917688Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 343 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 61,
+          "timestampUtc": "2026-11-03T04:06:10.5252593Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:121)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 62,
+          "timestampUtc": "2026-11-03T04:06:10.5796685Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 63,
+          "timestampUtc": "2026-11-03T04:06:10.6051545Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 1 total, 0 passed, 1 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 64,
+          "timestampUtc": "2026-11-03T04:06:10.618237Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 64,
+      "session": "6cf9a0376b3e41ea94d9c52a00f0b574",
+      "returned": 8,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "log": 8
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-03T04:06:50.0695184Z",
+        "ageMs": 67,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 7,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

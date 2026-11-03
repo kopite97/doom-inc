@@ -21,3 +21,5 @@
 | [PLAN-017](PLAN-017-production-storage-status-and-shared-ui.md) | 생산 판정·파일 저장·상태 계약·공용 UI 추상화 정비 | `development` | `completed` |
 | [PLAN-018](PLAN-018-localization-and-csv-text-management.md) | Unity Localization·CSV 텍스트 관리와 한국어·영어 지원 | `development` | `completed` |
 | [PLAN-019](PLAN-019-shared-popup-system.md) | 공용 Popup 시스템과 기존 확인·설정 화면 통합 | `development` | `completed` |
+| [PLAN-020](PLAN-020-editor-bottlenecks-repeated-play-and-performance.md) | Editor 런타임 운영 병목·반복 플레이·성능 검증 | `development` | `completed` |
+| [PLAN-021](PLAN-021-worker-pathfinding-and-localization-import.md) | 작업자 경로 탐색 최적화와 번역 CSV 반복 가져오기 안정화 | `development` | `completed` |

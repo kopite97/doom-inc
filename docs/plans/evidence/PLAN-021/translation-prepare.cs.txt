@@ -1,0 +1,6 @@
+var doc=System.Linq.Enumerable.Single(MobileGame.Foundation.Editor.LocalizationCsvTools.ReadAll(),d=>d.Topic=="Laboratory");
+var row=System.Linq.Enumerable.Single(doc.Rows,r=>r.Key=="heading");
+row.Values["ko"]+=" [검증021]";row.Values["en"]+=" [Verify021]";doc.ConfirmReview("heading","en");
+System.IO.File.WriteAllText(MobileGame.Foundation.Editor.LocalizationCsvTools.CsvRoot+"/Laboratory.csv",doc.Write());
+MobileGame.Foundation.Editor.LocalizationCsvTools.ImportAll();MobileGame.Foundation.Editor.LocalizationCsvTools.ValidateImported();
+return new{ko=row.Values["ko"],en=row.Values["en"]};

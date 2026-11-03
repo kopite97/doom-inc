@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "System.Collections.IEnumerator Run() {\n    var flags=System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic;\n    var load=(System.Action<string>)System.Delegate.CreateDelegate(typeof(System.Action<string>),typeof(MobileGame.Foundation.Editor.Plan020Probe).GetMethod(\"Load\",flags));\n    var root=MobileGame.Foundation.Editor.Plan020Probe.Root;\n    var data=MobileGame.Presentation.GameDataStore.Instance.Catalog;\n    var codec=new MobileGame.Persistence.SessionSnapshotCodec(data.Definitions.Values,true);\n    foreach(var mode in new[]{\"laboratory-only\",\"invasion-only\"}) {\n        var source=System.IO.File.ReadAllText(System.IO.Path.Combine(root,mode==\"laboratory-only\"?\"fixture-2.json\":\"fixture-0.json\"));\n        var state=codec.Restore(codec.Deserialize(source));var lab=(MobileGame.Gameplay.LaboratoryManager)state.Runtime;\n        if(mode==\"laboratory-only\") {\n            var external=System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Where(lab.Registry.Things,t=>t.Definition is MobileGame.Foundation.CreatureData c && c.Role==MobileGame.Foundation.CreatureRole.Invader));\n            foreach(var t in external)lab.Registry.Remove(t);\n        } else {\n            for(int i=0;i<16;i++) {var t=lab.Registry.Create(data.Selected<MobileGame.Foundation.CreatureData>(\"invaderId\"));if(!lab.Map.Commands.Place(t.Id,new UnityEngine.Vector2Int(1,1)).Succeeded)throw new System.InvalidOperationException(\"invader preparation\");}\n            if(!lab.Invasion.ReleaseAll())throw new System.InvalidOperationException(\"release preparation\");\n        }\n        lab.ValidateState();lab.Invasion.ValidateState();\n        var snapshot=codec.Serialize(codec.Capture(state,MobileGame.Foundation.SessionPhase.Playing));\n        System.IO.File.WriteAllText(System.IO.Path.Combine(root,\"fixture-\"+mode+\".json\"),snapshot);\n        load(snapshot);var view=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>();view.SetUiPreferences(true,false);\n        MobileGame.Foundation.Editor.Plan020Probe.Resize(1280,720);\n        var task=MobileGame.Presentation.SceneFlowManager.Instance.Localization.SelectLanguageAsync(\"ko\");while(!task.IsCompleted)yield return null;if(task.IsFaulted)throw task.Exception;\n        yield return new UnityEngine.WaitForSecondsRealtime(1);\n        MobileGame.Foundation.Editor.Plan020Probe.Measure(\"isolated-\"+mode);\n        while(MobileGame.Foundation.Editor.Plan020Probe.Status.StartsWith(\"measuring\"))yield return null;\n    }\n    MobileGame.Foundation.Editor.Plan020Probe.Write(\"isolation-complete\",MobileGame.Foundation.Editor.Plan020Probe.Snapshot());\n}\nUnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>().StartCoroutine(Run());\nreturn true;\n"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": true
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

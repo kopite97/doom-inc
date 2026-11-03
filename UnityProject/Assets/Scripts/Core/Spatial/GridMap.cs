@@ -10,6 +10,12 @@ namespace MobileGame.Foundation
     {
         private readonly Dictionary<Guid, MapPlacement> placements = new Dictionary<Guid, MapPlacement>();
 
+        // Large custom maps keep the sparse placement representation.
+        internal bool IndexCells => (long)Width * Height <= 4096;
+        private readonly Dictionary<Vector2Int, Guid> blockingFacilities = new Dictionary<Vector2Int, Guid>();
+        internal readonly Dictionary<Vector2Int, GridPathfinder.DistanceTree> Routes = new Dictionary<Vector2Int, GridPathfinder.DistanceTree>();
+        public long LayoutVersion { get; private set; }
+
         public GridMap(ThingRegistry registry, int width, int height)
         {
             Registry = registry ?? throw new ArgumentNullException(nameof(registry));
@@ -20,6 +26,11 @@ namespace MobileGame.Foundation
             Commands = new PlacementCommands(this);
         }
 
+#if UNITY_EDITOR
+        public long PathQueries { get; internal set; }
+        public long VisitedCells { get; internal set; }
+        public long WalkabilityChecks { get; private set; }
+#endif
         public ThingRegistry Registry { get; }
         public int Width { get; }
         public int Height { get; }
@@ -36,13 +47,20 @@ namespace MobileGame.Foundation
 
         public Guid? GetBlockingFacility(Vector2Int cell)
         {
+            if (IndexCells) return blockingFacilities.TryGetValue(cell, out var owner) ? owner : (Guid?)null;
             foreach (var placement in placements.Values)
                 if (placement.Kind == ThingKind.Facility && placement.Contains(cell))
                     return placement.ThingId;
             return null;
         }
 
-        public bool IsWalkable(Vector2Int cell) => Contains(cell) && !GetBlockingFacility(cell).HasValue;
+        public bool IsWalkable(Vector2Int cell)
+        {
+#if UNITY_EDITOR
+            WalkabilityChecks++;
+#endif
+            return Contains(cell) && !GetBlockingFacility(cell).HasValue;
+        }
 
         public PlacementResult CheckPlacement(Guid id, Vector2Int origin, QuarterTurn rotation)
             => BuildPlacement(id, origin, rotation, out _);
@@ -58,6 +76,11 @@ namespace MobileGame.Foundation
             if (!result.Succeeded)
                 return result;
             Registry.TryGet(id, out var thing);
+            if (placement.Kind == ThingKind.Facility)
+            {
+                if (placements.TryGetValue(id, out var old)) IndexFacility(old, false);
+                IndexFacility(placement, true);
+            }
             placements[id] = placement;
             thing.Map = this;
             return result;
@@ -65,9 +88,24 @@ namespace MobileGame.Foundation
 
         internal void Detach(Thing thing)
         {
+            if (placements.TryGetValue(thing.Id, out var old) && old.Kind == ThingKind.Facility) IndexFacility(old, false);
             placements.Remove(thing.Id);
             if (ReferenceEquals(thing.Map, this))
                 thing.Map = null;
+        }
+
+        private void IndexFacility(MapPlacement placement, bool occupied)
+        {
+            LayoutVersion++;
+            Routes.Clear();
+            if (!IndexCells) return;
+            for (int y = 0; y < placement.Footprint.y; y++)
+                for (int x = 0; x < placement.Footprint.x; x++)
+                {
+                    var cell = placement.Origin + new Vector2Int(x, y);
+                    if (occupied) blockingFacilities[cell] = placement.ThingId;
+                    else blockingFacilities.Remove(cell);
+                }
         }
 
         private PlacementResult BuildPlacement(Guid id, Vector2Int origin, QuarterTurn rotation,

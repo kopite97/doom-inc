@@ -19,6 +19,7 @@ namespace MobileGame.Foundation.Editor
         private readonly string bootstrap;
         private readonly UnityEngine.Localization.Settings.LocalizationSettings settings;
         private readonly UnityEditor.AddressableAssets.Settings.AddressableAssetSettings addressables;
+        private readonly int previousPlayModeBuilder;
         private bool committed;
         public LocalizationImportSnapshot()
         {
@@ -28,6 +29,7 @@ namespace MobileGame.Foundation.Editor
             bootstrap = File.Exists(bootstrapPath) ? File.ReadAllText(bootstrapPath) : null;
             settings = LocalizationEditorSettings.ActiveLocalizationSettings;
             addressables = AddressableAssetSettingsDefaultObject.Settings;
+            if (addressables != null) previousPlayModeBuilder = addressables.ActivePlayModeDataBuilderIndex;
         }
         private static IEnumerable<string> Paths()
         {
@@ -40,6 +42,9 @@ namespace MobileGame.Foundation.Editor
         {
             if (committed) return;
             foreach (var path in Paths().Where(p => !paths.Contains(p)).ToArray()) AssetDatabase.DeleteAsset(path);
+            // The package keeps this selector outside the serialized settings asset.
+            if (addressables != null && addressables.ActivePlayModeDataBuilderIndex != previousPlayModeBuilder)
+                addressables.ActivePlayModeDataBuilderIndex = previousPlayModeBuilder;
             foreach (var snapshot in objects)
                 if (snapshot.Key != null && EditorJsonUtility.ToJson(snapshot.Key) != snapshot.Value)
                 { EditorJsonUtility.FromJsonOverwrite(snapshot.Value, snapshot.Key); EditorUtility.SetDirty(snapshot.Key); }

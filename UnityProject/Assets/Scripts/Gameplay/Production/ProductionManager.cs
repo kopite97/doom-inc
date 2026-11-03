@@ -17,6 +17,7 @@ namespace MobileGame.Gameplay
                 !laboratory.Registry.TryGet(facilityId, out var facility) || !laboratory.IsComplete(facility) ||
                 !(facility.Definition is FacilityData definition) || definition.Role != FacilityRole.Cultivation)
             { LastError = "Select a completed cultivator and a support or invader target."; return false; }
+            if (facility.GetComponent<ProductionComponent>().SelectedTarget != target) laboratory.WorkChanged();
             facility.GetComponent<ProductionComponent>().SelectedTarget = target;
             LastError = null;
             return true;
@@ -95,6 +96,7 @@ namespace MobileGame.Gameplay
                     state.Progress + seconds * (staffed.Contains(facility.Id) ? laboratory.Settings.StaffedRate : laboratory.Settings.UnattendedRate));
                 if (state.Progress + 1e-9 < definition.ProductionSeconds) continue;
                 state.InProgress = false;
+                laboratory.WorkChanged();
                 if (definition.Role == FacilityRole.Processing)
                 {
                     laboratory.Registry.CreateResource(definition.OutputResource, definition.OutputAmount,

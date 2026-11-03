@@ -1,0 +1,323 @@
+{
+    "version": 5,
+    "dataHash": "2578869b88b49ba4855785cf587d8cf2f0cfd0dd8ba1fbfc2cd3fb8d2ca7f195",
+    "runtimeKind": "laboratory",
+    "phase": 1,
+    "lastCreationOrder": 18,
+    "mapWidth": 16,
+    "mapHeight": 10,
+    "things": [
+        {
+            "id": "4acabc9a82214a879bed23511c31bdc1",
+            "definitionId": "creature.support.prototype",
+            "creationOrder": 1,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "9461986d9c6b447bb0cc8c99f2071d3a",
+            "definitionId": "resource.organic",
+            "creationOrder": 2,
+            "quantity": 4,
+            "holderId": "4acabc9a82214a879bed23511c31bdc1"
+        },
+        {
+            "id": "639960ddb43841eb84a8b474af887b0a",
+            "definitionId": "creature.invader",
+            "creationOrder": 3,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "2ff3f44c48bc464994b55420e36243e4",
+            "definitionId": "creature.invader",
+            "creationOrder": 4,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "c4ed1593f64d47efa085a21bc76c3d9c",
+            "definitionId": "creature.invader",
+            "creationOrder": 5,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "2e4e0194dfad49b8b96a6218e4d350cc",
+            "definitionId": "creature.invader",
+            "creationOrder": 6,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "215b3a4c930f47629e5abd194810b2f1",
+            "definitionId": "creature.invader",
+            "creationOrder": 7,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "9eec053aa2ac452a97a84a5cdf35bf08",
+            "definitionId": "creature.invader",
+            "creationOrder": 8,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "5bd1183cfafa40d88866290d661dd202",
+            "definitionId": "creature.invader",
+            "creationOrder": 9,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "cef214b764fe4a9a91d06423eef90816",
+            "definitionId": "creature.invader",
+            "creationOrder": 10,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "4aad8fb308544541b641307004549fdb",
+            "definitionId": "creature.invader",
+            "creationOrder": 11,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "a33bd707e72c43858e193c73d4876558",
+            "definitionId": "creature.invader",
+            "creationOrder": 12,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "d74d6fca98c147b4bd61e2052cd75875",
+            "definitionId": "creature.invader",
+            "creationOrder": 13,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "bcccc2dbda4743f383533eee7677c773",
+            "definitionId": "creature.invader",
+            "creationOrder": 14,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "ea9148a0fe9b4ce29117cd088a7980c7",
+            "definitionId": "creature.invader",
+            "creationOrder": 15,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "61e338e581b84c5a914eee17d239b44b",
+            "definitionId": "creature.invader",
+            "creationOrder": 16,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "3ecd1331cbd144589223b647ec45791b",
+            "definitionId": "creature.invader",
+            "creationOrder": 17,
+            "quantity": 0,
+            "holderId": ""
+        },
+        {
+            "id": "8f7ff50f264c456fbf6e16e12e4cd0a3",
+            "definitionId": "creature.invader",
+            "creationOrder": 18,
+            "quantity": 0,
+            "holderId": ""
+        }
+    ],
+    "placements": [
+        {
+            "thingId": "4acabc9a82214a879bed23511c31bdc1",
+            "x": 1,
+            "y": 1,
+            "rotation": 0
+        }
+    ],
+    "laboratory": {
+        "organicDefinitionId": "resource.organic",
+        "cultureDefinitionId": "resource.culture-medium",
+        "preset": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "things": [
+            {
+                "thingId": "4acabc9a82214a879bed23511c31bdc1",
+                "hasProduction": false,
+                "production": {
+                    "selectedTarget": 0,
+                    "activeTarget": 0,
+                    "inProgress": false,
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "hasConstruction": false,
+                "hasGathering": false,
+                "hasStorage": false,
+                "hasWorker": true,
+                "construction": {
+                    "delivered": 0,
+                    "progress": 0.0,
+                    "isComplete": false
+                },
+                "gathering": {
+                    "progress": 0.0,
+                    "outstanding": 0
+                },
+                "storage": {
+                    "allowsOrganic": false,
+                    "allowsCulture": false
+                },
+                "worker": {
+                    "assignedFacilityId": "",
+                    "job": {
+                        "kind": 0,
+                        "stage": 0,
+                        "targetId": "",
+                        "sourceId": "",
+                        "resourceId": "",
+                        "amount": 0,
+                        "batchOriginId": ""
+                    },
+                    "hasJob": false,
+                    "moveProgress": 0.0,
+                    "priorities": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "usesPreset": true
+                }
+            }
+        ],
+        "reservations": []
+    },
+    "invasion": {
+        "schemaVersion": 1,
+        "settings": {
+            "activitySeconds": 5.0,
+            "smallScore": 2,
+            "majorScore": 10,
+            "majorEvery": 4,
+            "targetScore": 100000000,
+            "detailedUntilScore": 60,
+            "reportLimit": 20
+        },
+        "score": 0,
+        "activitySequence": 0,
+        "elapsed": "0",
+        "goalReached": false,
+        "legacyEndVersion": 0,
+        "invaders": [
+            {
+                "thingId": "639960ddb43841eb84a8b474af887b0a",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "2ff3f44c48bc464994b55420e36243e4",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "c4ed1593f64d47efa085a21bc76c3d9c",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "2e4e0194dfad49b8b96a6218e4d350cc",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "215b3a4c930f47629e5abd194810b2f1",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "9eec053aa2ac452a97a84a5cdf35bf08",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "5bd1183cfafa40d88866290d661dd202",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "cef214b764fe4a9a91d06423eef90816",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "4aad8fb308544541b641307004549fdb",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "a33bd707e72c43858e193c73d4876558",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "d74d6fca98c147b4bd61e2052cd75875",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "bcccc2dbda4743f383533eee7677c773",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "ea9148a0fe9b4ce29117cd088a7980c7",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "61e338e581b84c5a914eee17d239b44b",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "3ecd1331cbd144589223b647ec45791b",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            },
+            {
+                "thingId": "8f7ff50f264c456fbf6e16e12e4cd0a3",
+                "isExternal": true,
+                "progress": "0",
+                "completedActivities": 0
+            }
+        ],
+        "reports": []
+    }
+}

@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "return new { persistent=UnityEngine.Application.persistentDataPath, scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path, dirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty, optionsEnabled=UnityEditor.EditorSettings.enterPlayModeOptionsEnabled, options=(int)UnityEditor.EditorSettings.enterPlayModeOptions, slotB=UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.SlotB\",false), continuation=UnityEditor.EditorPrefs.GetBool(\"MobileGame.AppPlayEntry.Continue\",false), background=UnityEngine.Application.runInBackground, width=UnityEngine.Screen.width, height=UnityEngine.Screen.height, cpu=UnityEngine.SystemInfo.processorType, gpu=UnityEngine.SystemInfo.graphicsDeviceName, ram=UnityEngine.SystemInfo.systemMemorySize, vsync=UnityEngine.QualitySettings.vSyncCount, targetFps=UnityEngine.Application.targetFrameRate };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "persistent": "C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject",
+        "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+        "dirty": false,
+        "optionsEnabled": true,
+        "options": 1,
+        "slotB": false,
+        "continuation": false,
+        "background": false,
+        "width": 1176,
+        "height": 957,
+        "cpu": "Intel(R) Core(TM) 7 240H",
+        "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+        "ram": 32469,
+        "vsync": 1,
+        "targetFps": -1
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

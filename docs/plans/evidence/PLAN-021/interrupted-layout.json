@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var lab=MobileGame.Presentation.SceneFlowManager.Instance.Laboratory.Simulation;var c=System.Linq.Enumerable.Single(lab.Registry.Things,t=>t.Definition is MobileGame.Foundation.FacilityData d && d.Role==MobileGame.Foundation.FacilityRole.Cultivation); return new{accessible=lab.Production.Accessible(c),blocking=lab.Map.GetBlockingFacility(c.Placement.InteractionCell.Value),workerCount=System.Linq.Enumerable.Count(lab.Registry.Things,t=>t.TryGetComponent<MobileGame.Gameplay.WorkerComponent>(out _))};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "accessible": false,
+        "blocking": "47005703-15fd-4d6f-b0d6-5b35eca75cbd",
+        "workerCount": 24
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

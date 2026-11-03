@@ -1,0 +1,8 @@
+{
+  "baseline": "PLAN-020 unchanged runtime: 30s warm-up + 60s x3, plus paired operation counters before code changes",
+  "responseP95Ms": 100,
+  "responseMaxMs": 250,
+  "maxBreadthFirstSearchesPerFrame": 256,
+  "highLoadRelativeImprovement": "p95 drop >20% and >2ms; median GC falls beyond repeat variance; no multi-second stalls or worker disabling in 20min; initial/mid p95 regression must not exceed both 20% and 2ms",
+  "decision": "Measure comparison of normal+failed vs failed-only at identical fixed game steps; Editor only"
+}

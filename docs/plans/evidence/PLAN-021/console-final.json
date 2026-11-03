@@ -1,0 +1,941 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "tail": "100"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 57,
+          "timestampUtc": "2026-11-03T04:05:51.8294527Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Editor test slot: C:/Users/USER/AppData/Local/Temp/DefaultCompany/UnityProject\\EditorSessions\\Default\\session.json",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.AppPlayEntry:SelectSlot (bool) (at Assets/Scripts/Editor/Scenes/AppPlayEntry.cs:75)\nMobileGame.Foundation.Editor.AppPlayEntry:SlotA () (at Assets/Scripts/Editor/Scenes/AppPlayEntry.cs:68)\nPipelineEvaluation.PipelineEval_eaf3253e:Execute ()\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Compilation.EvalCodeCompiler:ExecuteCompiledAssembly (System.Reflection.Assembly) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:190)\nUnity.Pipeline.Compilation.EvalCodeCompiler:CompileAndExecuteOnMainThread (string,System.TimeSpan,System.Diagnostics.Stopwatch) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:54)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:EvaluateSource (string,System.TimeSpan,string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:97)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:Eval (string,double) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:26)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 58,
+          "timestampUtc": "2026-11-03T04:06:08.732366Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Running 1 tests (explicit tests excluded)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner/<>c__DisplayClass9_0:<ExecuteTestsInternal>b__0 (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:359)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 59,
+          "timestampUtc": "2026-11-03T04:06:08.8745241Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 60,
+          "timestampUtc": "2026-11-03T04:06:08.8917688Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 343 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 61,
+          "timestampUtc": "2026-11-03T04:06:10.5252593Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:121)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 62,
+          "timestampUtc": "2026-11-03T04:06:10.5796685Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 63,
+          "timestampUtc": "2026-11-03T04:06:10.6051545Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 1 total, 0 passed, 1 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 64,
+          "timestampUtc": "2026-11-03T04:06:10.618237Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 65,
+          "timestampUtc": "2026-11-03T04:27:21.2807241Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Running 1 tests (explicit tests excluded)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner/<>c__DisplayClass9_0:<ExecuteTestsInternal>b__0 (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:359)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 66,
+          "timestampUtc": "2026-11-03T04:27:24.0899798Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 67,
+          "timestampUtc": "2026-11-03T04:27:24.3461451Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 343 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 68,
+          "timestampUtc": "2026-11-03T04:27:24.3529588Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 343 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 69,
+          "timestampUtc": "2026-11-03T04:27:29.5677527Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:121)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 70,
+          "timestampUtc": "2026-11-03T04:27:29.6188322Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 71,
+          "timestampUtc": "2026-11-03T04:27:29.6208901Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Ignoring duplicate RunFinished (already completed)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:89)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 72,
+          "timestampUtc": "2026-11-03T04:27:29.6208901Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 1 total, 0 passed, 1 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 73,
+          "timestampUtc": "2026-11-03T04:27:29.8668103Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 74,
+          "timestampUtc": "2026-11-03T04:30:31.8637532Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Running 343 tests (explicit tests excluded)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner/<>c__DisplayClass9_0:<ExecuteTestsInternal>b__0 (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:359)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 75,
+          "timestampUtc": "2026-11-03T04:30:34.4067583Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 76,
+          "timestampUtc": "2026-11-03T04:30:34.85631Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 343 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 77,
+          "timestampUtc": "2026-11-03T04:30:52.3368515Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:121)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 78,
+          "timestampUtc": "2026-11-03T04:30:55.9987069Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 249 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:79)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 79,
+          "timestampUtc": "2026-11-03T04:30:59.1170919Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 249 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:85)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 80,
+          "timestampUtc": "2026-11-03T04:31:02.3709398Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 249 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:90)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 81,
+          "timestampUtc": "2026-11-03T04:31:05.6065574Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:95)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 82,
+          "timestampUtc": "2026-11-03T04:31:18.1336915Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 83,
+          "timestampUtc": "2026-11-03T04:31:18.8594534Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 343 total, 341 passed, 2 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 84,
+          "timestampUtc": "2026-11-03T04:31:19.0978505Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 85,
+          "timestampUtc": "2026-11-03T04:32:52.0979575Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Running 346 tests (explicit tests excluded)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner/<>c__DisplayClass9_0:<ExecuteTestsInternal>b__0 (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:359)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 86,
+          "timestampUtc": "2026-11-03T04:32:54.9757257Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 87,
+          "timestampUtc": "2026-11-03T04:32:55.8163377Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 346 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 88,
+          "timestampUtc": "2026-11-03T04:33:17.5849854Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:121)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 89,
+          "timestampUtc": "2026-11-03T04:33:21.0660346Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 249 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:79)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 90,
+          "timestampUtc": "2026-11-03T04:33:24.1370339Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 249 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:85)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 91,
+          "timestampUtc": "2026-11-03T04:33:27.758997Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 249 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:90)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 92,
+          "timestampUtc": "2026-11-03T04:33:28.9550301Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:95)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 93,
+          "timestampUtc": "2026-11-03T04:33:39.0158374Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 94,
+          "timestampUtc": "2026-11-03T04:33:39.2443637Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 346 total, 346 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 95,
+          "timestampUtc": "2026-11-03T04:33:39.4726566Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 96,
+          "timestampUtc": "2026-11-03T04:34:09.1343329Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 97,
+          "timestampUtc": "2026-11-03T04:34:12.6208192Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Reattaching result collector after domain reload",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner:CheckForPendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:508)\nUnity.Pipeline.Editor.Testing.PipelineTestReloader:ResumePendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestReloader.cs:60)\nUnity.Pipeline.Editor.Testing.PipelineTestReloader:CheckForPendingTests () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestReloader.cs:34)\nUnityEditor.EditorApplication:Internal_CallDelayFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 98,
+          "timestampUtc": "2026-11-03T04:34:12.7435391Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 65 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 99,
+          "timestampUtc": "2026-11-03T04:34:12.7435391Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 65 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 100,
+          "timestampUtc": "2026-11-03T04:34:18.8379778Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: The save is not valid JSON.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 101,
+          "timestampUtc": "2026-11-03T04:34:19.8100218Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: test data failure",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 102,
+          "timestampUtc": "2026-11-03T04:34:21.6489168Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Laboratory view is missing.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 103,
+          "timestampUtc": "2026-11-03T04:34:35.1882477Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Missing common popup registry.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager/<Guard>d__77:MoveNext () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:177)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 104,
+          "timestampUtc": "2026-11-03T04:34:36.0989449Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Popup operation failed: Unknown popup: TestExtension",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.PopupHost/<>c:<Configure>b__27_0 (System.Exception) (at Assets/Scripts/Presentation/Popup/PopupHost.cs:35)\nMobileGame.Presentation.PopupManager:Report (System.Exception) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:149)\nMobileGame.Presentation.PopupManager:Show (MobileGame.Presentation.PopupRequest,System.Action,System.Action,System.Action`1<MobileGame.Presentation.PopupResult>) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:80)\nMobileGame.SpatialTests.AppSceneFlowTests/<PopupSceneExtensionAndFailedRegistrationPreserveUsableRegistry>d__6:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.Popups.cs:86)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 105,
+          "timestampUtc": "2026-11-03T04:34:43.4121727Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Save before title failed: 파일이 이미 있으므로 만들 수 없습니다",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:ConfirmReturn () (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:148)\nMobileGame.Presentation.PopupManager:Safe (System.Action) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:148)\nMobileGame.Presentation.PopupManager:Finish (MobileGame.Presentation.PopupManager/Entry,MobileGame.Presentation.PopupResult) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:143)\nMobileGame.Presentation.PopupManager:Deliver (MobileGame.Presentation.PopupManager/Entry) (at Assets/Scripts/Presentation/Popup/PopupManager.cs:126)\nMobileGame.Presentation.PopupManager/<>c__DisplayClass28_0:<Choose>b__0 () (at Assets/Scripts/Presentation/Popup/PopupManager.cs:103)\nMobileGame.Presentation.PopupHost/<Fade>d__36:MoveNext () (at Assets/Scripts/Presentation/Popup/PopupHost.cs:92)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 106,
+          "timestampUtc": "2026-11-03T04:34:46.6552628Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Scene preparation failed: Access to the path 'C:\\Users\\USER\\AppData\\Local\\Temp\\PLAN016-9d74dff92f52474dbcd4fcf945fd3245\\session.json' is denied.",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nMobileGame.Presentation.SceneFlowManager:Fail (string,System.Action,System.Action) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:250)\nMobileGame.Presentation.SceneFlowManager:StartNewGame (bool) (at Assets/Scripts/Presentation/SceneFlow/SceneFlowManager.cs:108)\nMobileGame.SpatialTests.AppSceneFlowTests/<UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun>d__16:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/AppSceneFlowTests.SharedUi.cs:156)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 107,
+          "timestampUtc": "2026-11-03T04:34:46.7803396Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "JSON dependencies verified for five saved scenes; no Player compilation/build invoked.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.GameDataPlayerValidation:ValidateSceneReferences () (at Assets/Scripts/Editor/Validation/GameDataPlayerValidation.cs:71)\nMobileGame.SpatialTests.GameDataStoreTests/<SavedScenesInitializeJsonWithoutInjectedDataReferences>d__8:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/GameDataStoreTests.cs:99)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 108,
+          "timestampUtc": "2026-11-03T04:34:48.2891084Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-normal-on-1280x720-20261103-043448-266.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__75:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 109,
+          "timestampUtc": "2026-11-03T04:34:48.3236124Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-normal-off-1280x720-20261103-043448-305.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__75:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 110,
+          "timestampUtc": "2026-11-03T04:34:48.4097958Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-on-1280x720-20261103-043448-389.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__75:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 111,
+          "timestampUtc": "2026-11-03T04:34:48.4514986Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-off-1280x720-20261103-043448-431.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__75:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 112,
+          "timestampUtc": "2026-11-03T04:34:48.5418345Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 1280x720 large=False targets=19 fit=19 maxZoom=8 off=0 selected=e661bb98-53a5-4026-bb2c-71ba4928b00f",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__58:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 113,
+          "timestampUtc": "2026-11-03T04:34:48.6703485Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 1280x720 large=True targets=19 fit=19 maxZoom=8 off=0 selected=e661bb98-53a5-4026-bb2c-71ba4928b00f",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__58:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 114,
+          "timestampUtc": "2026-11-03T04:34:48.7364569Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-on-720x1280-20261103-043448-716.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__75:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 115,
+          "timestampUtc": "2026-11-03T04:34:48.7740258Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_SCREENSHOT C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Logs\\plan014-status-dense-off-720x1280-20261103-043448-753.png",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<CaptureStatusLayoutImage>d__75:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:321)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 116,
+          "timestampUtc": "2026-11-03T04:34:48.8620748Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 720x1280 large=False targets=19 fit=19 maxZoom=8 off=0 selected=e661bb98-53a5-4026-bb2c-71ba4928b00f",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__58:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 117,
+          "timestampUtc": "2026-11-03T04:34:48.9854668Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_LAYOUT 720x1280 large=True targets=19 fit=19 maxZoom=8 off=0 selected=e661bb98-53a5-4026-bb2c-71ba4928b00f",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations>d__58:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 118,
+          "timestampUtc": "2026-11-03T04:34:59.7112589Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_RELATED_TARGET 1280x720 materialWaitToStorage=true destinationControls=true assignedFacilityAndWorker=true exactId=true expanded=true revealed=true mapTapThrough=false",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations>d__45:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:186)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 119,
+          "timestampUtc": "2026-11-03T04:35:00.2836637Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_RELATED_TARGET 720x1280 materialWaitToStorage=true destinationControls=true assignedFacilityAndWorker=true exactId=true expanded=true revealed=true mapTapThrough=false",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations>d__45:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:186)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 120,
+          "timestampUtc": "2026-11-03T04:35:33.7947205Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_REPORT_READING anchor=11 retainedAfterInsert=true nearestAfterPrune=12 latestY=0",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<NewReportsPreserveReadingPositionAndPrunedAnchorShowsNearestRetainedReport>d__43:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:90)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 121,
+          "timestampUtc": "2026-11-03T04:35:41.0002422Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_OBJECTS cycles=10 sessions=3 markers=19 buttons=18 accumulated=0",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<RepeatedStatusPanelOrientationAndSessionChangesDoNotAccumulateUiObjects>d__59:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:153)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 122,
+          "timestampUtc": "2026-11-03T04:35:42.4677184Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_SELECTION_VISIBILITY 1280x720 revealOnce=true manualPanHeldFrames=12",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan>d__44:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:138)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 123,
+          "timestampUtc": "2026-11-03T04:35:42.7025061Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_SELECTION_VISIBILITY 720x1280 revealOnce=true manualPanHeldFrames=12",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan>d__44:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.ReadingContext.cs:138)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 124,
+          "timestampUtc": "2026-11-03T04:35:44.2761846Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "PLAN014_STATUS_CPU_REFERENCE {\"scope\":\"Editor synchronous RefreshStatusOverlays only; not total frame CPU, GPU, allocations or device performance\",\"facilities\":20,\"markerTargets\":19,\"warmupFrames\":60,\"sampleFrames\":120,\"width\":1280,\"height\":720,\"liveMarkerObjects\":19,\"offMedianMs\":0.004,\"onMedianMs\":0.7998500000000001,\"medianIncreaseMs\":0.7958500000000001,\"referenceBudgetMs\":2.0,\"withinReferenceBudget\":true,\"managedHeapBeforeOn\":1123201024,\"managedHeapAfterOn\":1154252800}",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.SpatialTests.LaboratoryViewTests:LogStatusEvidence (string) (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:311)\nMobileGame.SpatialTests.LaboratoryViewTests/<TwentyFacilityStatusRefreshReportsEditorCpuReferenceWithoutTimingPassClaim>d__60:MoveNext () (at Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.StatusLayout.cs:189)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 125,
+          "timestampUtc": "2026-11-03T04:35:50.6325597Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 126,
+          "timestampUtc": "2026-11-03T04:35:50.6602834Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 65 total, 65 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 127,
+          "timestampUtc": "2026-11-03T04:35:50.667855Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 65 total, 65 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 128,
+          "timestampUtc": "2026-11-03T04:35:51.0507652Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 129,
+          "timestampUtc": "2026-11-03T04:35:55.1651146Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Editor test slot: C:/Users/USER/AppData/Local/Temp/DefaultCompany/UnityProject\\EditorSessions\\SlotB\\session.json",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.AppPlayEntry:SelectSlot (bool) (at Assets/Scripts/Editor/Scenes/AppPlayEntry.cs:75)\nMobileGame.Foundation.Editor.AppPlayEntry:SlotB () (at Assets/Scripts/Editor/Scenes/AppPlayEntry.cs:70)\nUnityEditor.EditorApplication:ExecuteMenuItem (string)\nUnity.Pipeline.Editor.Commands.MenuItemCommand:InvokeMenu (string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Commands/MenuItemCommand.cs:75)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 130,
+          "timestampUtc": "2026-11-03T05:15:57.8945351Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Running 1 tests (explicit tests excluded)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner/<>c__DisplayClass9_0:<ExecuteTestsInternal>b__0 (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:359)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 131,
+          "timestampUtc": "2026-11-03T05:15:59.7277433Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 132,
+          "timestampUtc": "2026-11-03T05:16:00.0339605Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 346 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 133,
+          "timestampUtc": "2026-11-03T05:16:00.0339605Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 346 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 134,
+          "timestampUtc": "2026-11-03T05:16:01.9588247Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:121)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 135,
+          "timestampUtc": "2026-11-03T05:16:02.0030113Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 136,
+          "timestampUtc": "2026-11-03T05:16:02.0050279Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Ignoring duplicate RunFinished (already completed)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:89)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 137,
+          "timestampUtc": "2026-11-03T05:16:02.0050279Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 1 total, 1 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 138,
+          "timestampUtc": "2026-11-03T05:16:02.2086892Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 139,
+          "timestampUtc": "2026-11-03T05:16:03.6956407Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nPipelineEvaluation.PipelineEval_ecf63378:Execute ()\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Compilation.EvalCodeCompiler:ExecuteCompiledAssembly (System.Reflection.Assembly) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:190)\nUnity.Pipeline.Compilation.EvalCodeCompiler:CompileAndExecuteOnMainThread (string,System.TimeSpan,System.Diagnostics.Stopwatch) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:54)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:EvaluateSource (string,System.TimeSpan,string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:97)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:Eval (string,double) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:26)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 140,
+          "timestampUtc": "2026-11-03T05:16:03.8573822Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Editor test slot: C:/Users/USER/AppData/Local/Temp/DefaultCompany/UnityProject\\EditorSessions\\SlotB\\session.json",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.AppPlayEntry:SelectSlot (bool) (at Assets/Scripts/Editor/Scenes/AppPlayEntry.cs:75)\nMobileGame.Foundation.Editor.AppPlayEntry:SlotB () (at Assets/Scripts/Editor/Scenes/AppPlayEntry.cs:70)\nPipelineEvaluation.PipelineEval_54d21566:Execute ()\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Compilation.EvalCodeCompiler:ExecuteCompiledAssembly (System.Reflection.Assembly) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:190)\nUnity.Pipeline.Compilation.EvalCodeCompiler:CompileAndExecuteOnMainThread (string,System.TimeSpan,System.Diagnostics.Stopwatch) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:54)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:EvaluateSource (string,System.TimeSpan,string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:97)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:Eval (string,double) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:26)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 141,
+          "timestampUtc": "2026-11-03T05:16:14.1098299Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nPipelineEvaluation.PipelineEval_c4307ce0:Execute ()\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Compilation.EvalCodeCompiler:ExecuteCompiledAssembly (System.Reflection.Assembly) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:190)\nUnity.Pipeline.Compilation.EvalCodeCompiler:CompileAndExecuteOnMainThread (string,System.TimeSpan,System.Diagnostics.Stopwatch) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:54)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:EvaluateSource (string,System.TimeSpan,string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:97)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:Eval (string,double) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:26)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 142,
+          "timestampUtc": "2026-11-03T05:16:14.1335823Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Editor test slot: C:/Users/USER/AppData/Local/Temp/DefaultCompany/UnityProject\\EditorSessions\\Default\\session.json",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.AppPlayEntry:SelectSlot (bool) (at Assets/Scripts/Editor/Scenes/AppPlayEntry.cs:75)\nMobileGame.Foundation.Editor.AppPlayEntry:SlotA () (at Assets/Scripts/Editor/Scenes/AppPlayEntry.cs:68)\nPipelineEvaluation.PipelineEval_c4307ce0:Execute ()\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Compilation.EvalCodeCompiler:ExecuteCompiledAssembly (System.Reflection.Assembly) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:190)\nUnity.Pipeline.Compilation.EvalCodeCompiler:CompileAndExecuteOnMainThread (string,System.TimeSpan,System.Diagnostics.Stopwatch) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:54)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:EvaluateSource (string,System.TimeSpan,string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:97)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:Eval (string,double) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:26)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 143,
+          "timestampUtc": "2026-11-03T05:16:42.7960777Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\EditMode\\Foundation\\Localization\\LocalizationCsvTests.cs(103,28): error CS0234: The type or namespace name 'AddressableAssets' does not exist in the namespace 'UnityEditor' (are you missing an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 144,
+          "timestampUtc": "2026-11-03T05:19:24.6236659Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Running 351 tests (explicit tests excluded)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner/<>c__DisplayClass9_0:<ExecuteTestsInternal>b__0 (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/PipelineTestRunner.cs:359)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 145,
+          "timestampUtc": "2026-11-03T05:19:28.1369898Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 146,
+          "timestampUtc": "2026-11-03T05:19:29.1881331Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 351 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 147,
+          "timestampUtc": "2026-11-03T05:19:45.9883187Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:144)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 148,
+          "timestampUtc": "2026-11-03T05:19:48.9108013Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 249 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:79)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 149,
+          "timestampUtc": "2026-11-03T05:19:51.7532413Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 249 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:85)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 150,
+          "timestampUtc": "2026-11-03T05:19:54.455471Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 249 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:90)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 151,
+          "timestampUtc": "2026-11-03T05:19:57.2152094Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nMobileGame.Foundation.Tests.LocalizationCsvTests:KeyMaintenancePreservesIdAndDetectsManualTableDrift () (at Assets/Scripts/Tests/EditMode/Foundation/Localization/LocalizationCsvTests.cs:95)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nNUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])\nNUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)\nNUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 152,
+          "timestampUtc": "2026-11-03T05:20:04.5925562Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:/Users/USER/AppData/LocalLow/DefaultCompany/UnityProject\\TestResults.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 153,
+          "timestampUtc": "2026-11-03T05:20:04.919563Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 351 total, 351 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 154,
+          "timestampUtc": "2026-11-03T05:20:05.1023403Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.",
+          "stackTrace": "UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 155,
+          "timestampUtc": "2026-11-03T05:20:09.3977688Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nPipelineEvaluation.PipelineEval_899bc2a7:Execute ()\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Compilation.EvalCodeCompiler:ExecuteCompiledAssembly (System.Reflection.Assembly) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:190)\nUnity.Pipeline.Compilation.EvalCodeCompiler:CompileAndExecuteOnMainThread (string,System.TimeSpan,System.Diagnostics.Stopwatch) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:54)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:EvaluateSource (string,System.TimeSpan,string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:97)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:Eval (string,double) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:26)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 156,
+          "timestampUtc": "2026-11-03T05:20:12.268315Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Localization import complete. 248 entries; no content build executed.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nMobileGame.Foundation.Editor.LocalizationCsvTools:ImportAll (bool,System.Action`1<int>) (at Assets/Scripts/Editor/Localization/LocalizationCsvTools.cs:196)\nPipelineEvaluation.PipelineEval_089daa58:Execute ()\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Compilation.EvalCodeCompiler:ExecuteCompiledAssembly (System.Reflection.Assembly) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:190)\nUnity.Pipeline.Compilation.EvalCodeCompiler:CompileAndExecuteOnMainThread (string,System.TimeSpan,System.Diagnostics.Stopwatch) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Compilation/EvalCodeCompiler.cs:54)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:EvaluateSource (string,System.TimeSpan,string) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:97)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:Eval (string,double) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Commands/CodeEvalCommand.cs:26)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@363b8bb9e91d/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 156,
+      "session": "6cf9a0376b3e41ea94d9c52a00f0b574",
+      "returned": 100,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 1,
+        "warn": 7,
+        "log": 92
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-03T05:20:21.6047654Z",
+        "ageMs": 81,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 13,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

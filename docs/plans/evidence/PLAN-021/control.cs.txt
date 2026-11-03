@@ -1,0 +1,17 @@
+System.Collections.IEnumerator Control() {
+    var type=typeof(MobileGame.Foundation.Editor.Plan020Probe);
+    var load=(System.Action<string>)System.Delegate.CreateDelegate(typeof(System.Action<string>),type.GetMethod("Load",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic));
+    var raw=System.IO.File.ReadAllText(System.IO.Path.Combine(MobileGame.Foundation.Editor.Plan020Probe.Root,"fixture-2.json"));
+    load(raw);
+    var v=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>();
+    v.SetUiPreferences(true,false);
+    typeof(MobileGame.Gameplay.LaboratoryManager).GetField("SkipNormalIntervalForComparison",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).SetValue(v.Simulation,true);
+    yield return new UnityEngine.WaitForSecondsRealtime(1);
+    long start=v.Simulation.Map.PathQueries,previous=start,peak=0;
+    MobileGame.Foundation.Editor.Plan020Probe.Measure("../PLAN-021/failed-only");
+    while(MobileGame.Foundation.Editor.Plan020Probe.Status.StartsWith("measuring")){
+        yield return null;var now=v.Simulation.Map.PathQueries;peak=System.Math.Max(peak,now-previous);previous=now;
+    }
+    MobileGame.Foundation.Editor.Plan020Probe.Write("../PLAN-021/failed-only-counts",new{decisions=v.Simulation.Decisions,searches=previous-start,peak,game=v.Invasion.Elapsed});
+}
+UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>().StartCoroutine(Control());return true;

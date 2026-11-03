@@ -1,0 +1,58 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "return new {status=MobileGame.Foundation.Editor.Plan020Probe.Status,state=MobileGame.Foundation.Editor.Plan020Probe.Snapshot()};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "status": "soak running",
+        "state": {
+          "utc": "2026-11-03T03:56:48.9073572Z",
+          "frame": 285038,
+          "time": 2417.643215005839,
+          "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+          "phase": "Playing",
+          "paused": false,
+          "gameTime": 681.0439293691888,
+          "score": 8704,
+          "reports": 20,
+          "things": 62,
+          "facilities": 8,
+          "creatures": 46,
+          "external": 16,
+          "saves": 2,
+          "flow": 1,
+          "data": 1,
+          "eventSystems": 1,
+          "hosts": 1,
+          "popupViews": 0,
+          "popupCount": 0,
+          "canInteract": true,
+          "objects": 519,
+          "managed": 1245196288,
+          "unityUsed": 378335740,
+          "unityReserved": 882708480,
+          "width": 1280,
+          "height": 720,
+          "vSync": 1,
+          "fps": -1,
+          "error": null,
+          "saveError": null
+        }
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

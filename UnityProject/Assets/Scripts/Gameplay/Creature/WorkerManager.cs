@@ -25,7 +25,10 @@ namespace MobileGame.Gameplay
             preset = priorities.ToArray();
             foreach (var thing in simulation.Registry.Things)
                 if (thing.TryGetComponent<WorkerComponent>(out var worker) && worker.UsesPreset)
+                {
                     worker.Priorities = preset.ToArray();
+                    worker.ObservedWorkVersion = -1;
+                }
             LastError = null;
             return true;
         }
@@ -35,6 +38,7 @@ namespace MobileGame.Gameplay
             if (!LaboratoryManager.ValidPriorities(priorities) || !simulation.Registry.TryGet(workerId, out var thing) ||
                 !thing.TryGetComponent<WorkerComponent>(out var worker))
                 return Reject("Select a worker and provide nonnegative work priorities.");
+            worker.ObservedWorkVersion = -1;
             worker.UsesPreset = usePreset;
             worker.Priorities = (usePreset ? preset : priorities).ToArray();
             LastError = null;
@@ -52,6 +56,8 @@ namespace MobileGame.Gameplay
                 return Reject("Choose a completed processing or cultivation facility.");
             if (worker.AssignedFacilityId != facilityId)
             {
+                worker.ObservedWorkVersion = -1;
+                simulation.WorkChanged();
                 worker.AssignedFacilityId = facilityId;
                 if (!IsTransport(worker.Job)) Clear(worker, WorkerWaitReason.None);
             }
@@ -79,16 +85,29 @@ namespace MobileGame.Gameplay
                 // reconsider new candidates/priorities without losing progress on the same route.
                 if (worker.Job == null || worker.Job.Stage != JobStage.Working)
                 {
-                    var previous = worker.Job;
-                    var progress = worker.MoveProgress;
-                    worker.Job = null;
-                    SelectWork(thing);
-                    if (previous != null && worker.Job != null && previous.Kind == worker.Job.Kind
-                        && previous.TargetId == worker.Job.TargetId && !IsTransport(worker.Job))
-                        worker.MoveProgress = progress;
+                    var arrived = worker.Job != null && simulation.Registry.TryGet(worker.Job.TargetId, out var currentTarget)
+                        && thing.Placement.Origin == simulation.TargetCell(currentTarget);
+                    if (BeginDecision(simulation, worker, arrived))
+                    {
+                        var previous = worker.Job;
+                        var progress = worker.MoveProgress;
+                        worker.Job = null;
+                        SelectWork(thing);
+                        if (previous != null && worker.Job != null && previous.Kind == worker.Job.Kind
+                            && previous.TargetId == worker.Job.TargetId && !IsTransport(worker.Job))
+                            worker.MoveProgress = progress;
+                        else if (previous != null)
+                            simulation.WorkChanged();
+                        FinishDecision(simulation, worker, thing, worker.Job != null);
+                    }
                 }
 
-                if (worker.Job == null) continue;
+                if (worker.Job == null)
+                {
+                    WanderIfIdle(thing, worker);
+                    continue;
+                }
+                worker.IdleOrigin = null;
                 if (IsTransport(worker.Job))
                 {
                     simulation.Logistics.AdvanceTransport(thing, seconds);
@@ -154,7 +173,16 @@ namespace MobileGame.Gameplay
                 worker.WaitReason = WorkerWaitReason.TargetUnavailable;
                 return false;
             }
-            var path = GridPathfinder.FindPath(simulation.Map, thing.Placement.Origin, goal.Value);
+            if (worker.Route == null || worker.RouteVersion != simulation.Map.LayoutVersion
+                || worker.RouteGoal != goal.Value || worker.RouteOrigin != thing.Placement.Origin)
+            {
+                worker.Route = GridPathfinder.FindPath(simulation.Map, thing.Placement.Origin, goal.Value);
+                worker.RouteIndex = 0;
+                worker.RouteVersion = simulation.Map.LayoutVersion;
+                worker.RouteGoal = goal.Value;
+                worker.RouteOrigin = thing.Placement.Origin;
+            }
+            var path = worker.Route;
             if (path == null)
             {
                 worker.WaitReason = WorkerWaitReason.PathBlocked;
@@ -169,20 +197,80 @@ namespace MobileGame.Gameplay
             worker.WaitReason = WorkerWaitReason.None;
             var stepSeconds = ((CreatureData)thing.Definition).MoveSecondsPerCell;
             worker.MoveProgress += seconds;
-            foreach (var cell in path)
+            while (worker.RouteIndex < path.Count)
             {
                 if (worker.MoveProgress + 1e-9 < stepSeconds) return false;
+                var cell = path[worker.RouteIndex];
                 var result = simulation.Map.Commands.Place(thing.Id, cell);
                 if (!result.Succeeded)
                 {
                     worker.WaitReason = WorkerWaitReason.PathBlocked;
                     return false;
                 }
+                worker.RouteOrigin = cell;
+                worker.RouteIndex++;
                 worker.MoveProgress = Math.Max(0, worker.MoveProgress - stepSeconds);
             }
             worker.MoveProgress = 0;
             worker.WaitReason = WorkerWaitReason.None;
             return true;
+        }
+
+        internal static bool BeginDecision(LaboratoryManager lab, WorkerComponent worker, bool urgent)
+        {
+            if (worker.EvaluatedStep == lab.Step) return false;
+            if (!urgent && worker.ObservedWorkVersion == lab.WorkVersion
+                && ReferenceEquals(worker.EvaluatedJob, worker.Job) && lab.Clock < worker.NextSearch)
+                return false;
+            worker.EvaluatedStep = lab.Step;
+#if UNITY_EDITOR
+            lab.Decisions++;
+#endif
+            return true;
+        }
+
+        internal static void FinishDecision(LaboratoryManager lab, WorkerComponent worker, Thing owner, bool found)
+        {
+            // Spread deadlines deterministically; an Advance spanning several slices never replays missed periods.
+            double interval = found ? .2 : .5;
+            double spread = 1 + owner.CreationOrder % 7 * .025;
+#if UNITY_EDITOR
+            if (found && lab.SkipNormalIntervalForComparison) interval = 0;
+#endif
+            worker.NextSearch = lab.AdvanceEnd + interval * spread;
+            worker.EvaluatedJob = worker.Job;
+            worker.ObservedWorkVersion = lab.WorkVersion;
+        }
+
+        private static readonly Vector2Int[] Neighbours = { Vector2Int.right, Vector2Int.up, Vector2Int.left, Vector2Int.down };
+        private void WanderIfIdle(Thing thing, WorkerComponent worker)
+        {
+            if (worker.WaitReason != WorkerWaitReason.NoWork)
+            {
+                worker.IdleOrigin = null;
+                return;
+            }
+            var current = thing.Placement.Origin;
+            double rest = 2 + thing.CreationOrder % 7 * .15 + ((CreatureData)thing.Definition).MoveSecondsPerCell;
+            if (!worker.IdleOrigin.HasValue)
+            {
+                worker.IdleOrigin = current;
+                worker.NextWander = simulation.Clock + rest;
+            }
+            if (simulation.Clock < worker.NextWander) return;
+            worker.NextWander = simulation.AdvanceEnd + rest;
+            if (simulation.TotalAt(thing.Id) != 0) return;
+            var origin = worker.IdleOrigin.Value;
+            int first = (int)((thing.CreationOrder + worker.WanderSequence++) % Neighbours.Length);
+            for (int i = 0; i < Neighbours.Length; i++)
+            {
+                var cell = current + Neighbours[(first + i) % Neighbours.Length];
+                if (Math.Abs(cell.x - origin.x) + Math.Abs(cell.y - origin.y) <= 1 && simulation.Map.IsWalkable(cell))
+                {
+                    simulation.Map.Commands.Place(thing.Id, cell);
+                    break;
+                }
+            }
         }
 
         private void SelectWork(Thing thing)
@@ -216,7 +304,7 @@ namespace MobileGame.Gameplay
 
         private bool SelectConstruction(Thing worker)
         {
-            foreach (var target in ReachableTargets(worker).Where(thing =>
+            foreach (var target in ReachableTargets(worker, thing =>
                 thing.TryGetComponent<ConstructionComponent>(out var construction) && !construction.IsComplete))
             {
                 var definition = (FacilityData)target.Definition;
@@ -236,7 +324,7 @@ namespace MobileGame.Gameplay
 
         private bool SelectGathering(Thing worker)
         {
-            foreach (var target in ReachableTargets(worker).Where(thing =>
+            foreach (var target in ReachableTargets(worker, thing =>
                 ValidWorkTarget(thing, WorkKind.Gathering) && !Claimed(thing, worker)))
             {
                 AssignWork(worker, target, WorkKind.Gathering);
@@ -275,6 +363,7 @@ namespace MobileGame.Gameplay
                 if (construction.Progress + 1e-9 < definition.BuildSeconds) return;
                 construction.Progress = definition.BuildSeconds;
                 construction.IsComplete = true;
+                simulation.WorkChanged();
                 Clear(worker, WorkerWaitReason.None);
             }
             else if (worker.Job.Kind == WorkKind.Gathering)
@@ -293,8 +382,8 @@ namespace MobileGame.Gameplay
             }
         }
 
-        private IEnumerable<Thing> ReachableTargets(Thing worker) => simulation.Registry.Things
-            .Where(thing => thing.IsPlaced && thing.Definition is FacilityData)
+        private IEnumerable<Thing> ReachableTargets(Thing worker, Func<Thing, bool> eligible) => simulation.Registry.Things
+            .Where(thing => thing.IsPlaced && thing.Definition is FacilityData && eligible(thing))
             .Select(thing => new { Thing = thing, Distance = simulation.Distance(worker, thing) })
             .Where(item => item.Distance.HasValue).OrderBy(item => item.Distance.Value)
             .ThenBy(item => item.Thing.CreationOrder).Select(item => item.Thing);

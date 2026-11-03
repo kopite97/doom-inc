@@ -1,0 +1,21 @@
+{
+  "frozenUtc": "2026-11-03T03:18:30.488Z",
+  "pilot": "pilot.json",
+  "pilotMainP95Ms": 3.5499,
+  "pilotGcMedianBytes": 123753,
+  "scope": "Editor only; main-thread recorder includes Editor and waits; GC and memory include Editor/diagnostic overhead",
+  "rules": {
+    "validSample": "30 seconds warm-up + 60 seconds observation; Playing with positive game time and no pause/menu/ending",
+    "repeatVariation": "p95 range exceeding both 20% of minimum and 2 ms is unstable; retain all runs and investigate",
+    "loadOrUiCost": "increase exceeding both 20% and 2 ms of paired condition is a CPU investigation candidate",
+    "allocation": "median >= 65536 bytes per rendered frame is a persistent allocation investigation candidate, not proof of game-only allocation",
+    "lifetime": "persistent extra SceneFlowManager/GameDataStore/EventSystem/PopupHost or closed popup is failure; memory increase alone is not a leak",
+    "memory": "post-warmup comparable-state Unity used growth >10% and >32 MiB calls for investigation; report managed GC sawtooth separately"
+  },
+  "limits": [
+    "No Android FPS or memory pass/fail",
+    "No GPU measurement",
+    "No product optimization or implementation changes",
+    "No forced GC for main/soak verdict"
+  ]
+}

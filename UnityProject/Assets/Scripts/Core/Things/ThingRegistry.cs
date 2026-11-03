@@ -18,6 +18,9 @@ namespace MobileGame.Foundation
             this.initializeComponents = initializeComponents;
         }
 
+        // Session-local invalidation for work which depends on stock ownership or quantity.
+        public long AvailabilityVersion { get; private set; }
+
         public long LastCreationOrder => lastCreationOrder;
 
         public IEnumerable<Thing> Things
@@ -54,7 +57,9 @@ namespace MobileGame.Foundation
             RequireResource(resource);
             RequireHolder(destination);
             // All validation precedes this single source-of-truth change. Same-holder transfer is harmless.
+            if (resource.HolderId == destination.Owner.Id) return;
             resource.SetHolder(destination.Owner.Id);
+            AvailabilityVersion++;
         }
 
         public Thing TransferResource(Thing resource, ResourceContainerComponent destination, int amount)
@@ -65,7 +70,7 @@ namespace MobileGame.Foundation
                 throw new ArgumentOutOfRangeException(nameof(amount));
             if (amount == stack.Quantity)
             {
-                resource.SetHolder(destination.Owner.Id);
+                TransferResource(resource, destination);
                 return resource;
             }
 
@@ -97,6 +102,7 @@ namespace MobileGame.Foundation
             if (amount <= 0 || amount > stack.Quantity)
                 throw new ArgumentOutOfRangeException(nameof(amount));
 
+            AvailabilityVersion++;
             stack.SetQuantity(stack.Quantity - amount);
             if (stack.Quantity == 0)
                 RemoveEntry(resource);
@@ -183,6 +189,7 @@ namespace MobileGame.Foundation
             initializeComponents?.Invoke(thing);
             things.Add(id, thing);
             definitions[definition.DefinitionId] = definition;
+            if (definition.Kind == ThingKind.Resource) AvailabilityVersion++;
             lastCreationOrder = order;
             return thing;
         }
@@ -215,6 +222,8 @@ namespace MobileGame.Foundation
 
         private void RemoveEntry(Thing thing)
         {
+            // Removing a worker can release a facility claim just as removing stock can release capacity.
+            AvailabilityVersion++;
             thing.Map?.Detach(thing);
             things.Remove(thing.Id);
             thing.MarkRemoved();

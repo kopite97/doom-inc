@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var v=MobileGame.Presentation.SceneFlowManager.Instance.Laboratory;\nif(v==null||!v.CanInteract)throw new System.InvalidOperationException(\"laboratory input not ready\");\nvar before=MobileGame.Foundation.Editor.Plan020Probe.Snapshot();\nvar list=System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Skip(System.Linq.Enumerable.OrderBy(System.Linq.Enumerable.Where(v.Simulation.Registry.Things,t=>t.Definition is MobileGame.Foundation.CreatureData c && c.Role==MobileGame.Foundation.CreatureRole.Support),t=>t.CreationOrder),3));\nforeach(var t in list)if(!v.SetWorkerPriorities(t.Id,new[]{0,0,0,0}))throw new System.InvalidOperationException(\"priority rejected\");\nv.Simulation.ValidateState();\nMobileGame.Foundation.Editor.Plan020Probe.Write(\"soak-worker-policy\",new{reason=\"Operator uses normal priority commands after the second Title/Continue; 4 current workers retain normal priority. Long frames in the original high load are a finding, not removed from the record.\",changed=list.Length,before,after=MobileGame.Foundation.Editor.Plan020Probe.Snapshot()});\nreturn list.Length;"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": 26
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

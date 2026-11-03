@@ -1,0 +1,13 @@
+System.Collections.IEnumerator ReadLabels(){
+ var f=MobileGame.Presentation.SceneFlowManager.Instance;
+ var observations=new System.Collections.Generic.List<object>();
+ foreach(var code in new[]{"ko","en"}){
+     var task=f.Localization.SelectLanguageAsync(code);while(!task.IsCompleted)yield return null;if(task.IsFaulted)throw task.Exception;
+     yield return null;yield return new UnityEngine.WaitForEndOfFrame();
+     string title=f.Localization.Texts.Format(new MobileGame.Foundation.LocalizedMessage("Laboratory","heading"));
+     var present=System.Linq.Enumerable.Any(f.Laboratory.GetComponentsInChildren<UnityEngine.UI.Text>(),l=>l.text==title);
+     observations.Add(new{code,title,present,frame=UnityEngine.Time.frameCount,passed=present&&title.EndsWith(code=="ko"?"[검증021]":"[Verify021]")});
+ }
+ MobileGame.Foundation.Editor.Plan020Probe.Write("../PLAN-021/translated-labels",observations);
+}
+MobileGame.Presentation.SceneFlowManager.Instance.StartCoroutine(ReadLabels());return true;

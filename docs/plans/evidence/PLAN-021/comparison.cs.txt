@@ -1,0 +1,30 @@
+var root=MobileGame.Foundation.Editor.Plan020Probe.Root;
+var data=MobileGame.Foundation.Editor.GameDataAssets.LoadCatalog();
+var codec=new MobileGame.Persistence.SessionSnapshotCodec(data.Definitions.Values,true);
+var raw=System.IO.File.ReadAllText(System.IO.Path.Combine(root,"fixture-2.json"));
+var results=new System.Collections.Generic.List<object>();
+foreach(bool bypass in new[]{false,true}){
+ var lab=(MobileGame.Gameplay.LaboratoryManager)codec.Restore(codec.Deserialize(raw)).Runtime;
+ var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+ typeof(MobileGame.Gameplay.LaboratoryManager).GetField("SkipNormalIntervalForComparison",flags).SetValue(lab,bypass);
+ var times=new double[1200];
+ var watch=new System.Diagnostics.Stopwatch();
+ for(int i=0;i<times.Length;i++){watch.Restart();lab.Advance(.016);watch.Stop();times[i]=watch.Elapsed.TotalMilliseconds;}
+ System.Array.Sort(times);lab.ValidateState();
+ results.Add(new{normalCooldown=!bypass,gameticks=1200,step=.016,decisions=lab.Decisions,bfs=lab.Map.PathQueries,visited=lab.Map.VisitedCells,checks=lab.Map.WalkabilityChecks,p95=times[1140],stock=System.Linq.Enumerable.Sum(System.Linq.Enumerable.Where(lab.Registry.Things,t=>t.Definition.Kind==MobileGame.Foundation.ThingKind.Resource),t=>t.GetComponent<MobileGame.Foundation.ResourceStackComponent>().Quantity)});
+}
+foreach(var count in new[]{4,24}){
+ var lab=(MobileGame.Gameplay.LaboratoryManager)codec.Restore(codec.Deserialize(raw)).Runtime;
+ var workers=System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Where(lab.Registry.Things,t=>t.TryGetComponent<MobileGame.Gameplay.WorkerComponent>(out _)));
+ foreach(var w in System.Linq.Enumerable.Skip(workers,count))lab.Registry.Remove(w);
+ var placements=lab.Map.GetPlacements();var grid=lab.Map;
+ var cells=new[]{new UnityEngine.Vector2Int(15,9),new UnityEngine.Vector2Int(0,3)};
+ var watch=System.Diagnostics.Stopwatch.StartNew();int expected=0,actual=0;
+ for(int i=0;i<50000;i++){var cell=cells[i%2];bool blocked=false;foreach(var placement in placements)if(placement.Kind==MobileGame.Foundation.ThingKind.Facility && placement.Contains(cell)){blocked=true;break;}if(!blocked)expected++;}
+ watch.Stop();double linearMs=watch.Elapsed.TotalMilliseconds;watch.Restart();
+ for(int i=0;i<50000;i++)if(grid.IsWalkable(cells[i%2]))actual++;
+ watch.Stop();
+ if(actual!=expected)throw new System.Exception("occupancy mismatch");
+ results.Add(new{workers=count,facilities=8,comparisons=50000,linearMs,indexedMs=watch.Elapsed.TotalMilliseconds,actual,expected});
+}
+return results;

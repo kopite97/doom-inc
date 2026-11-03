@@ -1,0 +1,39 @@
+System.Collections.IEnumerator Run() {
+    yield return null;
+    var flags=System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic;
+    var root=MobileGame.Foundation.Editor.Plan020Probe.Root;
+    var load=(System.Action<string>)System.Delegate.CreateDelegate(typeof(System.Action<string>),typeof(MobileGame.Foundation.Editor.Plan020Probe).GetMethod("Load",flags));
+    var v=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>();
+    var map=v.MapViewport.GetComponent<MobileGame.Presentation.LaboratoryMapView>();
+    var tap=(System.Func<UnityEngine.Vector2,bool>)System.Delegate.CreateDelegate(typeof(System.Func<UnityEngine.Vector2,bool>),map,typeof(MobileGame.Presentation.LaboratoryMapView).GetMethod("TrySelectStatus",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic));
+    var lang=MobileGame.Presentation.SceneFlowManager.Instance.Localization.SelectLanguageAsync("ko");while(!lang.IsCompleted)yield return null;if(lang.IsFaulted)throw lang.Exception;
+    MobileGame.Foundation.Editor.Plan020Probe.Resize(1280,720);
+    load(System.IO.File.ReadAllText(System.IO.Path.Combine(root,"storage-blocked-fixture.json")));v.SimulationRate=0;v.SetUiPreferences(true,false);map.Fit();
+    var gather=System.Linq.Enumerable.Single(v.Simulation.Registry.Things,t=>t.Definition is MobileGame.Foundation.FacilityData f && f.Role==MobileGame.Foundation.FacilityRole.Gathering);
+    var store=System.Linq.Enumerable.Single(v.Simulation.Registry.Things,t=>t.Definition is MobileGame.Foundation.FacilityData f && f.Role==MobileGame.Foundation.FacilityRole.Storage);
+    v.SelectThing(gather.Id); yield return null;yield return new UnityEngine.WaitForEndOfFrame();
+    UnityEngine.UI.Text Caption(System.Guid id)=>System.Linq.Enumerable.Single(v.MapViewport.GetComponentsInChildren<UnityEngine.UI.Text>(true),t=>t.name=="Caption" && t.transform.parent.name=="Temp_FacilityStatus_"+id.ToString("N"));
+    var before=Caption(gather.Id).text;v.SetUiPreferences(false,false);yield return null;yield return new UnityEngine.WaitForEndOfFrame();
+    var hidden=map.VisibleStatusCount==0;v.SetAllowed(store.Id,v.Simulation.Organic,true);v.Controller.Advance(4);
+    var expected=v.FormatMessage(v.StatusMessage(v.StatusFor(gather)));v.SetUiPreferences(true,false);
+    yield return null;yield return new UnityEngine.WaitForEndOfFrame();
+    var after=Caption(gather.Id).text;
+    MobileGame.Foundation.Editor.Plan020Probe.Write("status-reshow",new{before,after,expected,hidden,storeStock=v.Simulation.TotalAt(store.Id),selected=v.SelectedId==gather.Id,passed=hidden&&before!=after&&after==expected&&v.SelectedId==gather.Id});
+    var fixture=System.IO.File.ReadAllText(System.IO.Path.Combine(root,"fixture-2.json"));
+    foreach(var expanded in new[]{true,false}) {
+        load(fixture);v.SimulationRate=0;v.SetUiPreferences(true,false);map.Fit();yield return null;yield return new UnityEngine.WaitForEndOfFrame();
+        var target=System.Linq.Enumerable.First(v.Simulation.Registry.Things,t=>t.Definition is MobileGame.Foundation.FacilityData f && f.Role==MobileGame.Foundation.FacilityRole.Gathering);
+        if(!map.TryStatusScreenPoint(target.Id,out var point)||!tap(point))throw new System.InvalidOperationException("select marker");
+        yield return null;yield return new UnityEngine.WaitForEndOfFrame();
+        if(!expanded && (!map.TryStatusScreenPoint(target.Id,out point)||!tap(point)))throw new System.InvalidOperationException("collapse marker");
+        yield return null;yield return new UnityEngine.WaitForEndOfFrame();
+        var name="caption-"+(expanded?"expanded":"collapsed");
+        var visible=Caption(target.Id).gameObject.activeInHierarchy;
+        if(visible!=expanded||v.SelectedId!=target.Id)throw new System.InvalidOperationException("caption precondition");
+        MobileGame.Foundation.Editor.Plan020Probe.Write(name+"-condition",new{visible,selected=target.Id,markers=map.VisibleStatusCount,captionObjects=v.MapViewport.GetComponentsInChildren<UnityEngine.UI.Text>(true).Length,panel=v.OpenedPanel.ToString(),state=MobileGame.Foundation.Editor.Plan020Probe.Snapshot()});
+        v.SimulationRate=1;MobileGame.Foundation.Editor.Plan020Probe.Measure(name,10,20);
+        while(MobileGame.Foundation.Editor.Plan020Probe.Status.StartsWith("measuring"))yield return null;
+    }
+    MobileGame.Foundation.Editor.Plan020Probe.Write("captions-complete",MobileGame.Foundation.Editor.Plan020Probe.Snapshot());
+}
+UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>().StartCoroutine(Run());return true;

@@ -1,0 +1,42 @@
+var view=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>();
+var probe=typeof(MobileGame.Foundation.Editor.Plan020Probe);
+var load=(System.Action<string>)System.Delegate.CreateDelegate(typeof(System.Action<string>),probe.GetMethod("Load",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic));
+var results=new System.Collections.Generic.List<object>();
+void Bench(string name,System.Action action,int count=120) {
+    for(int i=0;i<20;i++)action();
+    var times=new double[count];var bytes=new long[count];
+    for(int i=0;i<count;i++){
+        var b=System.GC.GetAllocatedBytesForCurrentThread();var t=System.Diagnostics.Stopwatch.GetTimestamp();action();
+        times[i]=(System.Diagnostics.Stopwatch.GetTimestamp()-t)*1000d/System.Diagnostics.Stopwatch.Frequency;
+        bytes[i]=System.GC.GetAllocatedBytesForCurrentThread()-b;
+    }
+    System.Array.Sort(times);System.Array.Sort(bytes);
+    results.Add(new{name,iterations=count,medianMs=times[count/2],p95Ms=times[(int)(count*.95)],medianBytes=bytes[count/2],p95Bytes=bytes[(int)(count*.95)]});
+}
+for(int level=0;level<3;level++){
+    load(System.IO.File.ReadAllText(System.IO.Path.Combine(MobileGame.Foundation.Editor.Plan020Probe.Root,"fixture-"+level+".json")));
+    view.SimulationRate=0;
+    var lab=view.Simulation;view.Controller.Advance(30);
+    var facilities=System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Where(lab.Registry.Things,t=>t.Definition.Kind==MobileGame.Foundation.ThingKind.Facility));
+    var status=new MobileGame.Gameplay.FacilityStatusQuery(lab);
+    Bench("level"+level+"-laboratory-Advance-16ms",()=>lab.Advance(.016));
+    Bench("level"+level+"-status-query-all-facilities",()=>{foreach(var facility in facilities)status.Read(facility);});
+    Bench("level"+level+"-pathfinder-one-map-path",()=>MobileGame.Foundation.GridPathfinder.FindPath(lab.Map,new UnityEngine.Vector2Int(1,1),new UnityEngine.Vector2Int(15,9)));
+    var map=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryMapView>();
+    var refresh=(System.Action)System.Delegate.CreateDelegate(typeof(System.Action),map,typeof(MobileGame.Presentation.LaboratoryMapView).GetMethod("RefreshStatusOverlays",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic));
+    var screen=(System.Action)System.Delegate.CreateDelegate(typeof(System.Action),view,typeof(MobileGame.Presentation.LaboratoryView).GetMethod("UpdateScreen",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic));
+    foreach(var enabled in new[]{false,true}){view.SetUiPreferences(enabled,false);Bench("level"+level+"-status-overlay-"+enabled,refresh);}
+    Bench("level"+level+"-screen-panel-closed",screen);
+    if(level>0){
+        var tap=typeof(MobileGame.Presentation.LaboratoryMapView).GetMethod("TrySelectStatus",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
+        foreach(var facility in facilities){refresh();if(map.TryStatusScreenPoint(facility.Id,out var point))tap.Invoke(map,new object[]{point});}
+        screen();Bench("level"+level+"-status-captions-open",refresh);
+        foreach(var facility in facilities){view.SelectThing(facility.Id);refresh();if(map.TryStatusScreenPoint(facility.Id,out var point))tap.Invoke(map,new object[]{point});}
+        screen();Bench("level"+level+"-status-captions-closed",refresh);
+    }
+    view.OpenPanel(MobileGame.Presentation.LaboratoryPanel.Invasion);if(!view.ReportsExpanded)view.ToggleReports();
+    for(int i=0;i<120;i++)view.Controller.Advance(.5);
+    Bench("level"+level+"-screen-report-list",screen);
+}
+MobileGame.Foundation.Editor.Plan020Probe.Write("synchronous-costs",new{scope="Separate synchronous diagnostics after main/soak. Warm 20, sample 120 calls; current-thread allocation; includes callees; not whole-frame timing, not percentage attribution. Advance steps mutate isolated fixture normally. No product code instrumented.",results});
+return results;

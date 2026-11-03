@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var aa=UnityEditor.AddressableAssets.AddressableAssetSettingsDefaultObject.Settings;int original=aa.ActivePlayModeDataBuilderIndex;int alternate=aa.DataBuilders.FindIndex(b=>b!=null&&b.GetType().Name==\"BuildScriptPackedPlayMode\");int restored=-1;try{aa.ActivePlayModeDataBuilderIndex=alternate;try{MobileGame.Foundation.Editor.LocalizationCsvTools.ImportAll(afterTable:i=>{throw new System.IO.IOException(\"plan021 rollback probe\");});}catch(System.IO.IOException){restored=aa.ActivePlayModeDataBuilderIndex;}}finally{if(aa.ActivePlayModeDataBuilderIndex!=original)aa.ActivePlayModeDataBuilderIndex=original;}return new{original,alternate,restored,passed=alternate==restored};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "original": 0,
+        "alternate": 1,
+        "restored": 0,
+        "passed": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

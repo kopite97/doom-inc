@@ -225,8 +225,8 @@ namespace MobileGame.Foundation.Editor
             if (aa != null)
             {
                 var fast = aa.DataBuilders.FindIndex(b => b != null && b.GetType().Name == "BuildScriptFastMode");
-                if (fast >= 0) aa.ActivePlayModeDataBuilderIndex = fast;
-                EditorUtility.SetDirty(aa);
+                if (fast >= 0 && aa.ActivePlayModeDataBuilderIndex != fast)
+                    aa.ActivePlayModeDataBuilderIndex = fast;
             }
         }
 

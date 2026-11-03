@@ -2,13 +2,15 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 첫 작업 PLAN-013 completed / UI·UX 정비 PLAN-014 completed / JSON 전환 PLAN-015 completed / 씬 흐름 정비 PLAN-016 completed / 추상화 정비 PLAN-017 completed / 텍스트·다국어 정비 PLAN-018 completed / 공용 Popup 정비 PLAN-019 completed
+- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 첫 작업 PLAN-013 completed / UI·UX 정비 PLAN-014 completed / JSON 전환 PLAN-015 completed / 씬 흐름 정비 PLAN-016 completed / 추상화 정비 PLAN-017 completed / 텍스트·다국어 정비 PLAN-018 completed / 공용 Popup 정비 PLAN-019 completed / Editor 운영·반복·성능 진단 PLAN-020 completed / 작업자 탐색·CSV 가져오기 PLAN-021 completed
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
-- 갱신일: 2026-11-02
+- 갱신일: 2026-11-03
 - 탐색: [기획 MAP](../../README.md), [Thing과 정의 데이터](../01-architecture/thing-model.md), [GameFlow와 시스템 책임](../01-architecture/game-flow.md), [플레이 환경](../../04-delivery/01-platform/environment.md)
 
 ## 현재 작업
+
+현재 active PLAN은 없다. [PLAN-020 Editor 런타임 운영 병목·반복 플레이·성능 검증](../../../plans/PLAN-020-editor-bottlenecks-repeated-play-and-performance.md)은 completed다. 운영 병목·3판 반복·장시간 실행과 고부하 지연을 Editor에서 검증했다. 작업자 탐색 최적화 및 CSV 회귀 수정은 PLAN-021에서 완료했다. 최신 Android 검증과 4단계·D-070 최종 판정은 후속 범위다.
 
 환경 준비 결과와 도구 호환 주의점은 [PLAN-002](../../../plans/PLAN-002-unity-environment.md)에 있다. 정의·Thing 최소 기반은 [PLAN-003](../../../plans/PLAN-003-thing-foundation.md), 공간·공통 조작·최소 화면은 [PLAN-004](../../../plans/PLAN-004-map-and-commands.md), 한 판·저장·복원 기반은 [PLAN-007](../../../plans/PLAN-007-gameflow-and-persistence.md)에서 구현·검증했다. 세 기반 묶음과 1~3단계를 완료했다. 4단계의 세로 UI·모바일 입력·APK 및 직접 기기 검증은 PLAN-013에서 완료했으며, 병목/반복·종합 성능 판정은 남아 있다.
 
@@ -34,7 +36,7 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 
 최근 구조 정비 [PLAN-017](../../../plans/PLAN-017-production-storage-status-and-shared-ui.md)은 completed다. 생산 공통 판정·파일 처리·명시적 상태 계약·공용 UI와 두 검토 보완을 구현하고 Edit 302/302, ON Play 51/51, OFF 회귀와 진단 로그가 간섭한 1개 대상의 재검증, 실제 Editor 화면·이전 저장·반복 종료를 확인했다. [상세 증거](../../../plans/evidence/PLAN-017/README.md)를 따른다. 빌드 테스트는 실행하지 않았다. 4단계 종합 성능 최종 판정은 여전히 후속 범위다.
 
-텍스트 정비 [PLAN-018](../../../plans/PLAN-018-localization-and-csv-text-management.md)은 completed다. Unity Localization·주제별 CSV 9개/247개 키·TextManager·앱 언어 설정과 한국어·영어 전환, 추가 언어 등록·번역 재검토 추적을 구현했다. Edit 330/330·Play 57/57·직접 씬/반복 실행·두 언어 가로/세로 화면 검증을 완료했다. [실행 증거](../../../plans/evidence/PLAN-018/README.md)를 따른다. 후속 공용 Popup 정비 PLAN-019도 completed이며 아래 연결을 따른다. 현재 active PLAN은 없다. Player·Addressables 콘텐츠 빌드·실기기는 실행하지 않았고 4단계 종합 성능 최종 판정은 후속 범위다.
+텍스트 정비 [PLAN-018](../../../plans/PLAN-018-localization-and-csv-text-management.md)은 completed다. Unity Localization·주제별 CSV 9개/247개 키·TextManager·앱 언어 설정과 한국어·영어 전환, 추가 언어 등록·번역 재검토 추적을 구현했다. Edit 330/330·Play 57/57·직접 씬/반복 실행·두 언어 가로/세로 화면 검증을 완료했다. [실행 증거](../../../plans/evidence/PLAN-018/README.md)를 따른다. 후속 공용 Popup 정비 PLAN-019도 completed이며 아래 연결을 따른다. 후속 Editor 검증은 PLAN-020에서 완료했다. Player·Addressables 콘텐츠 빌드·실기기는 실행하지 않았고 4단계 종합 성능 최종 판정은 후속 범위다.
 
 확정한 Unity 버전·Universal 2D(URP)·Android 대상과 연동 방향은 [플레이 환경](../../04-delivery/01-platform/environment.md)을 따른다. 구현할 작업의 필수 참조를 아래에서 읽고, 승인 규칙 안에서 필요한 세부 설계를 구체화한다.
 
@@ -116,5 +118,9 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 - [PLAN-018 Unity Localization·CSV 텍스트 관리와 한국어·영어 지원](../../../plans/PLAN-018-localization-and-csv-text-management.md): completed. 텍스트 연결·언어 확장·번역 유지보수와 Editor 런타임 검증 완료. 빌드 테스트는 실행하지 않았다.
 
 - [PLAN-019 공용 Popup 시스템과 기존 확인·설정 화면 통합](../../../plans/PLAN-019-shared-popup-system.md): completed. PopupBase·SO Registry·공유 Manager/Host와 Confirm·Notice·Settings, 기존 확인/설정 이관·입력/수명·Localization을 구현했다. 앱 복귀 확인 의도 보존과 멸망 경계의 플레이 팝업 정리를 포함한다. Edit 343/343·Play 65/65·실제 직접 진입/반복 Play·두 언어/방향 화면을 확인했고 빌드·실기기는 제외했다. [실행 증거](../../../plans/evidence/PLAN-019/README.md)를 따른다.
+
+- [PLAN-020 Editor 런타임 운영 병목·반복 플레이·성능 검증](../../../plans/PLAN-020-editor-bottlenecks-repeated-play-and-performance.md): completed. Editor 운영·반복·성능 검증·진단 완료. 제품 수정·최적화 구현·빌드·실기기 검증은 제외했다.
+
+- [PLAN-021 작업자 경로 탐색 최적화와 번역 CSV 반복 가져오기 안정화](../../../plans/PLAN-021-worker-pathfinding-and-localization-import.md)는 completed다. Editor에서 작업자 탐색·배회·입력 반응과 번역 가져오기 회귀를 검증했다.
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

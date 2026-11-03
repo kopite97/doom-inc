@@ -28,6 +28,7 @@ namespace MobileGame.Gameplay
         {
             if (!simulation.Supports(resource) || !simulation.Registry.TryGet(storageId, out var thing) || !thing.TryGetComponent<StorageComponent>(out var storage))
             { LastError = "Select a storage facility."; return false; }
+            if ((resource == simulation.Organic ? storage.AllowsOrganic : storage.AllowsCulture) != allowed) simulation.WorkChanged();
             if (resource == simulation.Organic) storage.AllowsOrganic = allowed;
             else storage.AllowsCulture = allowed;
             Reconcile();
@@ -298,6 +299,7 @@ namespace MobileGame.Gameplay
         private void CancelUnpicked(Thing worker, TransportReservation reservation)
         {
             reservations.Remove(reservation);
+            simulation.WorkChanged();
             Clear(worker.GetComponent<WorkerComponent>(), WorkerWaitReason.TransportChanged);
         }
 
@@ -306,16 +308,14 @@ namespace MobileGame.Gameplay
             var state = worker.GetComponent<WorkerComponent>();
             var job = state.Job;
             var old = ReservationFor(worker.Id);
-            if (old != null) reservations.Remove(old);
+            if (old != null)
+            {
+                reservations.Remove(old);
+                simulation.WorkChanged();
+            }
             if (job?.ResourceId == null || !simulation.Registry.TryGet(job.ResourceId.Value, out var held) || !HeldBy(held, worker))
                 throw Invalid("A carried transport Job has lost its resource.");
-            var destination = NearestStore(worker, (ResourceData)held.Definition);
-            if (destination != null)
-            {
-                var amount = Math.Min(Quantity(held), DestinationFree(destination, (ResourceData)held.Definition));
-                Assign(worker, worker, destination, held, amount, true, job.BatchOriginId, WorkKind.Hauling);
-                return;
-            }
+            var mustReplace = old != null || job.Stage != JobStage.Waiting;
             job.Kind = WorkKind.Hauling;
             job.Stage = JobStage.Waiting;
             job.TargetId = Guid.Empty;
@@ -323,6 +323,17 @@ namespace MobileGame.Gameplay
             job.Amount = Quantity(held);
             state.MoveProgress = 0;
             state.WaitReason = WorkerWaitReason.NoStorage;
+            if (mustReplace) state.ObservedWorkVersion = -1;
+            if (!WorkerManager.BeginDecision(simulation, state, mustReplace)) return;
+            var destination = NearestStore(worker, (ResourceData)held.Definition);
+            WorkerManager.FinishDecision(simulation, state, worker, destination != null);
+            if (destination != null)
+            {
+                var amount = Math.Min(Quantity(held), DestinationFree(destination, (ResourceData)held.Definition));
+                Assign(worker, worker, destination, held, amount, true, job.BatchOriginId, WorkKind.Hauling);
+                state.EvaluatedJob = state.Job;
+                return;
+            }
         }
 
         private Thing NearestStore(Thing source, ResourceData resource, Guid? excluded = null) => Reachable(source,

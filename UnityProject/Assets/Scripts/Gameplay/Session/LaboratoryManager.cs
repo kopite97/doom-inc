@@ -11,6 +11,16 @@ namespace MobileGame.Gameplay
     public sealed class LaboratoryManager : ISessionRuntime, IExternalSessionRuntime
     {
         private readonly WorkerManager workers;
+        internal double Clock { get; private set; }
+        internal double AdvanceEnd { get; private set; }
+        internal long Step { get; private set; }
+        private long workChanges;
+        internal long WorkVersion => workChanges + Registry.AvailabilityVersion + Map.LayoutVersion;
+        internal void WorkChanged() => workChanges++;
+#if UNITY_EDITOR
+        public long Decisions { get; internal set; }
+        internal bool SkipNormalIntervalForComparison;
+#endif
         public ConstructionManager Construction { get; }
 
         public LaboratoryManager(ThingRegistry registry, GridMap map, ResourceData organic, ResourceData culture = null,
@@ -75,9 +85,12 @@ namespace MobileGame.Gameplay
             if (IsEditing || Map.Commands.IsEditing) return;
             // The same bounded steps are used by Update and explicit harness time.
             // This is not a separate test simulation or an offline catch-up clock.
+            AdvanceEnd = Clock + seconds;
             while (seconds > 1e-10)
             {
                 var step = Math.Min(0.05, seconds);
+                Clock += step;
+                Step++;
                 Logistics.Reconcile();
                 workers.Tick(step);
                 Production.Tick(step, workers.ProducingFacilities);
@@ -107,15 +120,15 @@ namespace MobileGame.Gameplay
             var start = TargetCell(from);
             var goal = TargetCell(to);
             if (!start.HasValue || !goal.HasValue) return null;
-            return GridPathfinder.FindPath(Map, start.Value, goal.Value)?.Count;
+            return GridPathfinder.Distance(Map, start.Value, goal.Value);
         }
 
         public Thing Nearest(IEnumerable<Thing> candidates, Vector2Int from)
         {
             return candidates.Select(thing => new { Thing = thing, Cell = TargetCell(thing) })
                 .Where(item => item.Cell.HasValue)
-                .Select(item => new { item.Thing, Path = GridPathfinder.FindPath(Map, from, item.Cell.Value) })
-                .Where(item => item.Path != null).OrderBy(item => item.Path.Count)
+                .Select(item => new { item.Thing, Distance = GridPathfinder.Distance(Map, from, item.Cell.Value) })
+                .Where(item => item.Distance.HasValue).OrderBy(item => item.Distance.Value)
                 .ThenBy(item => item.Thing.CreationOrder).Select(item => item.Thing).FirstOrDefault();
         }
 

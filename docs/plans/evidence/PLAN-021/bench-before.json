@@ -1,0 +1,150 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var d=MobileGame.Foundation.Editor.GameDataAssets.LoadCatalog();\nvar codec=new MobileGame.Persistence.SessionSnapshotCodec(d.Definitions.Values,true);\nvar root=MobileGame.Foundation.Editor.Plan020Probe.Root;\nvar result=new System.Collections.Generic.List<object>();\nforeach(int level in new[]{0,1,2}) {\n var raw=System.IO.File.ReadAllText(System.IO.Path.Combine(root,\"fixture-\"+level+\".json\"));\n var state=codec.Restore(codec.Deserialize(raw));var lab=(MobileGame.Gameplay.LaboratoryManager)state.Runtime;\n void Bench(string name,System.Action op,int n){\n var watch=new System.Diagnostics.Stopwatch();var map=lab.Map;\n var searches=map.PathQueries;var visits=map.VisitedCells;var checks=map.WalkabilityChecks;\n watch.Start();for(int i=0;i<n;i++)op();watch.Stop();\n result.Add(new{level,name,n,ms=watch.Elapsed.TotalMilliseconds,searches=map.PathQueries-searches,visits=map.VisitedCells-visits,checks=map.WalkabilityChecks-checks});\n }\n var w=System.Linq.Enumerable.First(lab.Registry.Things,t=>t.TryGetComponent<MobileGame.Gameplay.WorkerComponent>(out _));\n var f=System.Linq.Enumerable.FirstOrDefault(lab.Registry.Things,t=>t.Definition.Kind==MobileGame.Foundation.ThingKind.Facility);\n Bench(\"cell-lookup\",()=>lab.Map.IsWalkable(new UnityEngine.Vector2Int(15,9)),100000);\n Bench(\"path\",()=>MobileGame.Foundation.GridPathfinder.FindPath(lab.Map,new UnityEngine.Vector2Int(1,1),new UnityEngine.Vector2Int(15,9)),100);\n Bench(\"advance-16ms\",()=>lab.Advance(.016),120);\n Bench(\"logistics-validity\",()=>lab.Logistics.Reconcile(),40);\n if(f!=null)Bench(\"move\",()=>MobileGame.Gameplay.WorkerManager.Move(lab,w,f,.001),20);\n}\nreturn result;\n"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": [
+        {
+          "level": 0,
+          "name": "cell-lookup",
+          "n": 100000,
+          "ms": 30.2608,
+          "searches": 0,
+          "visits": 0,
+          "checks": 100000
+        },
+        {
+          "level": 0,
+          "name": "path",
+          "n": 100,
+          "ms": 69.24040000000001,
+          "searches": 100,
+          "visits": 15800,
+          "checks": 63100
+        },
+        {
+          "level": 0,
+          "name": "advance-16ms",
+          "n": 120,
+          "ms": 29.2114,
+          "searches": 0,
+          "visits": 0,
+          "checks": 0
+        },
+        {
+          "level": 0,
+          "name": "logistics-validity",
+          "n": 40,
+          "ms": 0.272,
+          "searches": 0,
+          "visits": 0,
+          "checks": 0
+        },
+        {
+          "level": 1,
+          "name": "cell-lookup",
+          "n": 100000,
+          "ms": 56.3294,
+          "searches": 0,
+          "visits": 0,
+          "checks": 100000
+        },
+        {
+          "level": 1,
+          "name": "path",
+          "n": 100,
+          "ms": 25.866300000000003,
+          "searches": 100,
+          "visits": 13000,
+          "checks": 51900
+        },
+        {
+          "level": 1,
+          "name": "advance-16ms",
+          "n": 120,
+          "ms": 647.0181,
+          "searches": 4009,
+          "visits": 182448,
+          "checks": 725645
+        },
+        {
+          "level": 1,
+          "name": "logistics-validity",
+          "n": 40,
+          "ms": 26.2983,
+          "searches": 160,
+          "visits": 4080,
+          "checks": 16160
+        },
+        {
+          "level": 1,
+          "name": "move",
+          "n": 20,
+          "ms": 0.6907,
+          "searches": 20,
+          "visits": 0,
+          "checks": 20
+        },
+        {
+          "level": 2,
+          "name": "cell-lookup",
+          "n": 100000,
+          "ms": 459.7411,
+          "searches": 0,
+          "visits": 0,
+          "checks": 100000
+        },
+        {
+          "level": 2,
+          "name": "path",
+          "n": 100,
+          "ms": 269.2912,
+          "searches": 100,
+          "visits": 12200,
+          "checks": 48700
+        },
+        {
+          "level": 2,
+          "name": "advance-16ms",
+          "n": 120,
+          "ms": 18853.1257,
+          "searches": 42909,
+          "visits": 1922365,
+          "checks": 7656542
+        },
+        {
+          "level": 2,
+          "name": "logistics-validity",
+          "n": 40,
+          "ms": 57.7178,
+          "searches": 240,
+          "visits": 8800,
+          "checks": 35000
+        },
+        {
+          "level": 2,
+          "name": "move",
+          "n": 20,
+          "ms": 0.2414,
+          "searches": 20,
+          "visits": 80,
+          "checks": 280
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

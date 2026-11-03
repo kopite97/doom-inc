@@ -408,6 +408,121 @@ namespace MobileGame.Foundation.Tests
             AssertSingleOwnership();
         }
 
+        [Test]
+        public void FailedSearchSleepsButNewStockAndAllowanceWakeOneDecision()
+        {
+            var worker = Worker(1, 1);
+            simulation.Advance(.01);
+            var searches = simulation.Decisions;
+            simulation.Advance(.2);
+            Assert.That(simulation.Decisions, Is.EqualTo(searches));
+            var source = CompletedGathering(4, 3);
+            var destination = Store(8, 3);
+            simulation.Advance(.01);
+            Assert.That(simulation.Decisions, Is.EqualTo(searches + 1));
+            Assert.That(simulation.Reservations.Single().WorkerId, Is.EqualTo(worker.Id));
+
+            AdvanceUntil(() => simulation.TotalAt(worker.Id) == 5, "pickup");
+            simulation.SetAllowed(destination.Id, false);
+            simulation.Advance(.01);
+            searches = simulation.Decisions;
+            simulation.Advance(.2);
+            Assert.That(simulation.Decisions, Is.EqualTo(searches));
+            Assert.That(simulation.TotalAt(worker.Id), Is.EqualTo(5));
+            simulation.SetAllowed(destination.Id, true);
+            simulation.Advance(.01);
+            Assert.That(simulation.Decisions, Is.EqualTo(searches + 1));
+            AdvanceUntil(() => simulation.TotalAt(destination.Id) == 5, "delivery");
+            Assert.That(source.GetComponent<GatheringComponent>().Outstanding, Is.Zero);
+        }
+
+        [Test]
+        public void IdleStepsStayNearOriginAndDoNotStartPathSearches()
+        {
+            var worker = Worker(1, 1);
+            var origin = worker.Placement.Origin;
+            bool moved = false;
+            for (int i = 0; i < 180; i++)
+            {
+                simulation.Advance(.05);
+                var offset = worker.Placement.Origin - origin;
+                Assert.That(Math.Abs(offset.x) + Math.Abs(offset.y), Is.LessThanOrEqualTo(1));
+                moved |= offset != Vector2Int.zero;
+            }
+            Assert.That(moved, Is.True);
+            Assert.That(map.PathQueries, Is.Zero);
+            Assert.That(simulation.Decisions, Is.LessThan(20));
+            simulation.SetWorkerPriorities(worker.Id, new[] { 0, 0, 0, 0 });
+            var stopped = worker.Placement.Origin;
+            simulation.Advance(5);
+            Assert.That(worker.Placement.Origin, Is.EqualTo(stopped));
+        }
+
+        [Test]
+        public void WalkingKeepsCandidateCooldownAndFacilityChangesInvalidateDistances()
+        {
+            var worker = Worker(1, 1);
+            simulation.SetWorkerPriorities(worker.Id, new[] { 0, 1, 0, 0 });
+            var site = CompleteFacility(gathering, 12, 4);
+            simulation.Advance(.01);
+            var decisions = simulation.Decisions;
+            var searches = map.PathQueries;
+            simulation.Advance(.1);
+            Assert.That(simulation.Decisions, Is.EqualTo(decisions));
+            Assert.That(map.PathQueries, Is.EqualTo(searches));
+            simulation.SetWorkerPriorities(worker.Id, new[] { 0, 0, 0, 0 });
+            simulation.Advance(.01);
+            Assert.That(worker.GetComponent<WorkerComponent>().Job, Is.Null);
+            Assert.That(simulation.Decisions, Is.EqualTo(decisions + 1));
+
+            long version = map.LayoutVersion;
+            map.Commands.Place(worker.Id, new Vector2Int(2, 1));
+            Assert.That(map.LayoutVersion, Is.EqualTo(version));
+            Store(12, 3);
+            Assert.That(map.LayoutVersion, Is.GreaterThan(version));
+            Assert.That(simulation.Distance(worker, site), Is.Null);
+        }
+
+        [TestCase(-.01)]
+        [TestCase(0)]
+        [TestCase(.01)]
+        public void FinishingWorkConsumesDueSearchOnceAndDoesNotSpendElapsedTimeTwice(double offset)
+        {
+            var worker = Worker(4, 3);
+            var state = worker.GetComponent<WorkerComponent>();
+            var target = CompleteFacility(gathering, 4, 4);
+            simulation.SetWorkerPriorities(worker.Id, new[] { 0, 1, 0, 0 });
+            simulation.Advance(.01);
+            Assert.That(state.Job.Stage, Is.EqualTo(JobStage.Working));
+            var deadline = (double)typeof(WorkerComponent).GetField("NextSearch",
+                BindingFlags.NonPublic | BindingFlags.Instance).GetValue(state);
+            // Finish immediately before, at, or after the ordinary reconsideration deadline.
+            simulation.Advance(deadline + offset - .02);
+            SetPreparedState(target.GetComponent<GatheringComponent>(), nameof(GatheringComponent.Progress), gathering.GatheringSeconds - .01);
+            var decisions = simulation.Decisions;
+            simulation.Advance(.01);
+            Assert.That(simulation.TotalAt(target.Id), Is.EqualTo(gathering.GatheringAmount));
+            Assert.That(state.Job, Is.Null);
+            simulation.Advance(.001);
+            simulation.Advance(.001);
+            Assert.That(simulation.Decisions, Is.EqualTo(decisions + 1));
+            Assert.That(state.MoveProgress, Is.Zero);
+            simulation.ValidateState();
+        }
+
+        [Test]
+        public void BlockedIdleWorkerRestsWithoutRequestingPaths()
+        {
+            var worker = Worker(4, 4);
+            foreach (var cell in new[] { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left })
+                Store(4 + cell.x, 4 + cell.y);
+            for (int step = 0; step < 160; step++) simulation.Advance(.05);
+            Assert.That(worker.Placement.Origin, Is.EqualTo(new Vector2Int(4, 4)));
+            Assert.That(map.PathQueries, Is.Zero);
+            simulation.ValidateState();
+        }
+
+
         private Thing Worker(int x, int y)
         {
             var worker = registry.Create(prototype);

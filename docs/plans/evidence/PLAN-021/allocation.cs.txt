@@ -1,0 +1,41 @@
+System.Collections.IEnumerator Record() {
+    var data=MobileGame.Presentation.GameDataStore.Instance.Catalog;
+    var codec=new MobileGame.Persistence.SessionSnapshotCodec(data.Definitions.Values,true);
+    var raw=System.IO.File.ReadAllText(System.IO.Path.Combine(MobileGame.Foundation.Editor.Plan020Probe.Root,"fixture-2.json"));
+    var lab=(MobileGame.Gameplay.LaboratoryManager)codec.Restore(codec.Deserialize(raw)).Runtime;
+    var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+    var gcRows=new System.Collections.Generic.List<object>();
+    bool enabled=UnityEditorInternal.ProfilerDriver.enabled,editor=UnityEditorInternal.ProfilerDriver.profileEditor;
+    try{
+        UnityEditorInternal.ProfilerDriver.profileEditor=false;UnityEditorInternal.ProfilerDriver.enabled=true;
+        for(int i=0;i<6;i++)yield return null;
+        int begin=UnityEditorInternal.ProfilerDriver.lastFrameIndex;
+        UnityEngine.Profiling.Profiler.BeginSample("PLAN021.Calibration");
+        try{var block=new byte[1048576];System.GC.KeepAlive(block);}finally{UnityEngine.Profiling.Profiler.EndSample();}
+        yield return null;
+        for(int f=0;f<6;f++){
+            UnityEngine.Profiling.Profiler.BeginSample("PLAN021.LaboratoryAdvance");try{lab.Advance(.016);}finally{UnityEngine.Profiling.Profiler.EndSample();}
+            UnityEngine.Profiling.Profiler.BeginSample("PLAN021.LogisticsValidation");try{lab.Logistics.Reconcile();}finally{UnityEngine.Profiling.Profiler.EndSample();}
+            UnityEngine.Profiling.Profiler.BeginSample("PLAN021.ReachableDistance");try{MobileGame.Foundation.GridPathfinder.Distance(lab.Map,new UnityEngine.Vector2Int(1,1),new UnityEngine.Vector2Int(15,9));}finally{UnityEngine.Profiling.Profiler.EndSample();}
+            yield return null;
+        }
+        var isolated=(MobileGame.Gameplay.LaboratoryManager)codec.Restore(codec.Deserialize(raw)).Runtime;
+        var separate=typeof(MobileGame.Gameplay.LaboratoryManager).GetField("workers",flags).GetValue(isolated);
+        var perform=(System.Action<MobileGame.Foundation.Thing>)System.Delegate.CreateDelegate(typeof(System.Action<MobileGame.Foundation.Thing>),separate,separate.GetType().GetMethod("SelectWork",flags));
+        var worker=System.Linq.Enumerable.First(isolated.Registry.Things,t=>t.TryGetComponent<MobileGame.Gameplay.WorkerComponent>(out _));
+        UnityEngine.Profiling.Profiler.BeginSample("PLAN021.FirstWorkerSelection");try{perform(worker);}finally{UnityEngine.Profiling.Profiler.EndSample();}
+        for(int i=0;i<5;i++)yield return null;
+        for(int index=System.Math.Max(begin,UnityEditorInternal.ProfilerDriver.firstFrameIndex);index<=UnityEditorInternal.ProfilerDriver.lastFrameIndex;index++)
+        using(var frame=UnityEditorInternal.ProfilerDriver.GetHierarchyFrameDataView(index,0,UnityEditor.Profiling.HierarchyFrameDataView.ViewModes.Default,0,false)){
+            if(!frame.valid)continue;
+            var ids=new System.Collections.Generic.Stack<int>();var children=new System.Collections.Generic.List<int>();ids.Push(frame.GetRootItemID());
+            while(ids.Count>0){
+                int id=ids.Pop();string name=frame.GetItemName(id);
+                if(name.StartsWith("PLAN021."))gcRows.Add(new{index,name,bytes=frame.GetItemColumnDataAsDouble(id,UnityEditor.Profiling.HierarchyFrameDataView.columnGcMemory)});
+                children.Clear();frame.GetItemChildren(id,children);foreach(var child in children)ids.Push(child);
+            }
+        }
+    }finally{UnityEditorInternal.ProfilerDriver.enabled=enabled;UnityEditorInternal.ProfilerDriver.profileEditor=editor;}
+    MobileGame.Foundation.Editor.Plan020Probe.Write("../PLAN-021/allocation-samples",gcRows);
+}
+UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>().StartCoroutine(Record());return true;

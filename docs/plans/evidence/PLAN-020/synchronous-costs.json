@@ -1,0 +1,208 @@
+{
+  "scope": "Separate synchronous diagnostics after main measurements and before soak. Warm 20/sample 120 calls; includes callees; not whole-frame timing or percentage attribution. Advance mutates isolated fixture normally. No product code instrumented.",
+  "results": [
+    {
+      "name": "level0-laboratory-Advance-16ms",
+      "iterations": 120,
+      "medianMs": 0.0122,
+      "p95Ms": 0.0133,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level0-status-query-all-facilities",
+      "iterations": 120,
+      "medianMs": 0,
+      "p95Ms": 0.0002,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level0-pathfinder-one-map-path",
+      "iterations": 120,
+      "medianMs": 0.0455,
+      "p95Ms": 0.0514,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level0-status-overlay-False",
+      "iterations": 120,
+      "medianMs": 0.0001,
+      "p95Ms": 0.0003,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level0-status-overlay-True",
+      "iterations": 120,
+      "medianMs": 0.0008,
+      "p95Ms": 0.001,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level0-screen-panel-closed",
+      "iterations": 120,
+      "medianMs": 0.0428,
+      "p95Ms": 0.053,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level0-screen-report-list",
+      "iterations": 120,
+      "medianMs": 0.0919,
+      "p95Ms": 0.1145,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level1-laboratory-Advance-16ms",
+      "iterations": 120,
+      "medianMs": 1.532,
+      "p95Ms": 1.723,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level1-status-query-all-facilities",
+      "iterations": 120,
+      "medianMs": 0.1308,
+      "p95Ms": 0.1424,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level1-pathfinder-one-map-path",
+      "iterations": 120,
+      "medianMs": 0.0852,
+      "p95Ms": 0.0874,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level1-status-overlay-False",
+      "iterations": 120,
+      "medianMs": 0.0001,
+      "p95Ms": 0.0003,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level1-status-overlay-True",
+      "iterations": 120,
+      "medianMs": 0.2044,
+      "p95Ms": 0.2307,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level1-screen-panel-closed",
+      "iterations": 120,
+      "medianMs": 0.0451,
+      "p95Ms": 0.0517,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level1-status-captions-open",
+      "iterations": 120,
+      "medianMs": 0.2207,
+      "p95Ms": 0.2584,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level1-status-captions-closed",
+      "iterations": 120,
+      "medianMs": 0.205,
+      "p95Ms": 0.3068,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level1-screen-report-list",
+      "iterations": 120,
+      "medianMs": 0.1093,
+      "p95Ms": 0.1209,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level2-laboratory-Advance-16ms",
+      "iterations": 120,
+      "medianMs": 38.68,
+      "p95Ms": 64.1614,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level2-status-query-all-facilities",
+      "iterations": 120,
+      "medianMs": 0.4621,
+      "p95Ms": 0.504,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level2-pathfinder-one-map-path",
+      "iterations": 120,
+      "medianMs": 0.1773,
+      "p95Ms": 0.1936,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level2-status-overlay-False",
+      "iterations": 120,
+      "medianMs": 0.0001,
+      "p95Ms": 0.0003,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level2-status-overlay-True",
+      "iterations": 120,
+      "medianMs": 0.5842,
+      "p95Ms": 0.6602,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level2-screen-panel-closed",
+      "iterations": 120,
+      "medianMs": 0.048,
+      "p95Ms": 0.0564,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level2-status-captions-open",
+      "iterations": 120,
+      "medianMs": 0.605,
+      "p95Ms": 0.6664,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level2-status-captions-closed",
+      "iterations": 120,
+      "medianMs": 0.5799,
+      "p95Ms": 0.6145,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    },
+    {
+      "name": "level2-screen-report-list",
+      "iterations": 120,
+      "medianMs": 0.6586,
+      "p95Ms": 0.722,
+      "medianBytes": 0,
+      "p95Bytes": 0
+    }
+  ],
+  "allocationValid": false,
+  "allocationNote": "GC.GetAllocatedBytesForCurrentThread returned zero even for an explicit 1 MiB array (allocation-counter-calibration.json); medianBytes/p95Bytes are INVALID, not zero allocations. Use frame ProfilerRecorder evidence for GC.",
+  "invocationNote": "CLI request timed out at 30 seconds; main-thread evaluation continued and wrote this result before starting soak. It was not rerun concurrently."
+}

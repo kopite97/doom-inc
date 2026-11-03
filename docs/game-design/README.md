@@ -1,18 +1,22 @@
 # 모바일 게임 기획 MAP
 
-- 갱신일: 2026-11-02
+- 갱신일: 2026-11-03
 - 기획 상태: **프로토타입 개발 전 1차 기획 완료**. 필수 1·2·3·4·6·7은 완료이며, 필수 5의 기본 규칙은 확정하고 초기값·조정 수치는 개발에 위임했다.
 - 개발 상태: **환경·선행 기반 세 묶음·1~3단계 완료**. 초기 건설·수집·저장은 [PLAN-008](../plans/PLAN-008-initial-construction-and-logistics.md), 가공·배양·보급형 운용은 [PLAN-009](../plans/PLAN-009-processing-cultivation-and-workers.md)에서 구현·검증했다. [구현 로드맵](05-development/02-implementation/roadmap.md)의 4단계 세로 대응·병목/반복 종합 검증·Android 빌드/실기기에 앞서 PLAN-012 데이터 기반 정비를 완료했다.
 - 3단계 완료: [PLAN-010 침공형 방출·외부 활동·성과 누적·전과 보고](../plans/PLAN-010-invasion-activity-and-reports.md)와 [PLAN-011 멸망 연출·결과 화면·한 판 종료와 재시작 완결](../plans/PLAN-011-destruction-results-and-restart.md)은 completed다. PC 가로에서 유료 생산부터 목표·연출·결과·재시작·두 번째 판 종료까지 검증했다.
 - 데이터 기반 완료: PLAN-012는 Edit 236/236·Domain Reload 양쪽 Play 각 13/13·오류/경고 0으로 데이터 이관·저장 호환성과 기존 두 판 흐름을 확인했다. Android 스크립트 컴파일·CSV 참조 검사까지 완료했다.
-- 현재 개발 상태: [PLAN-013 가로·세로 UI와 모바일 입력 대응](../plans/PLAN-013-responsive-ui-and-mobile-input.md)과 [PLAN-014 모바일 UI·UX와 시설 상태 표시 정비](../plans/PLAN-014-mobile-ui-ux-and-facility-status.md)는 completed다. 양방향 UI·입력·상태 보존에 이어 임시 에셋의 목적별 탐색·작은 아이콘·시설 상태 표시 ON/OFF·표식 재탭을 구현하고 PC 검사·APK·실기기 운영·한 판 종료/재시작·원상 복원을 확인했다. PLAN-016~019도 completed이며 현재 active PLAN은 없다. 정식 아트 교체는 별도 art PLAN으로 진행하고 병목/반복·종합 성능 최종 판정과 실제 Google Sheets 연결은 후속 범위다.
+- 현재 개발 상태: [PLAN-013 가로·세로 UI와 모바일 입력 대응](../plans/PLAN-013-responsive-ui-and-mobile-input.md)과 [PLAN-014 모바일 UI·UX와 시설 상태 표시 정비](../plans/PLAN-014-mobile-ui-ux-and-facility-status.md)는 completed다. 양방향 UI·입력·상태 보존에 이어 임시 에셋의 목적별 탐색·작은 아이콘·시설 상태 표시 ON/OFF·표식 재탭을 구현하고 PC 검사·APK·실기기 운영·한 판 종료/재시작·원상 복원을 확인했다. PLAN-016~021도 completed이며 현재 active PLAN은 없다. 정식 아트 교체는 별도 art PLAN으로 진행하고 병목/반복·종합 성능 최종 판정과 실제 Google Sheets 연결은 후속 범위다.
 - 데이터 전환 완료: [PLAN-015 주제별 JSON 정의 데이터와 초기 로딩 전환](../plans/PLAN-015-topic-json-definition-data.md)은 completed다. 전용 디렉터리의 주제별 JSON·DTO로 전환하고 SO 결합·영속 GameDataStore·저장 호환성을 유지한다. Editor 런타임 테스트는 포함하며 빌드 테스트는 사용자 지시로 제외한다. 두 검토 보완을 반영하고 구현·Edit 294/294·Domain Reload 양쪽 Play 각각 36/36을 확인했다. 빌드 테스트는 실행하지 않았다.
 - 최근 작업: [PLAN-016 Bootstrap·Title·Laboratory 씬 흐름과 Editor 직접 진입](../plans/PLAN-016-bootstrap-title-and-scene-flow.md)은 completed다. 공용 LoadingScreen·싱글톤 씬 전환·직접 실행·저장/설정 실패 복구를 구현하고 Editor 검증을 마쳤다. 빌드 테스트는 사용자 지시에 따라 실행하지 않았다.
 - 최근 구조 정비: [PLAN-017 생산 판정·파일 저장·상태 계약·공용 UI 추상화 정비](../plans/PLAN-017-production-storage-status-and-shared-ui.md)는 completed다. 두 검토 보완과 네 영역의 구현·Editor 회귀·실제 화면/저장/반복 종료 검증을 마쳤다. 빌드 테스트는 실행하지 않았다.
 - 목표: 에셋 종류를 제한하면서 기본 게임 사이클을 충분히 반복할 수 있는 프로토타입을 완성한다.
 - 텍스트 정비: [PLAN-018 Unity Localization·CSV 텍스트 관리와 한국어·영어 지원](../plans/PLAN-018-localization-and-csv-text-management.md)은 completed다. TextManager·공통 Localization·앱 언어 설정·CSV 9개 주제/247개 키·추가 언어 확장과 번역 재검토 추적을 구현했다. Edit 330/330·Play 57/57·직접 씬/반복 실행·두 언어 화면을 확인했다. Player·Addressables 콘텐츠 빌드와 실기기는 제외했으며 후속 공용 Popup 정비 결과는 아래 PLAN-019를 따른다.
 
-- 최근 완료: [PLAN-019 공용 Popup 시스템과 기존 확인·설정 화면 통합](../plans/PLAN-019-shared-popup-system.md)은 completed다. Confirm·Notice·Settings와 공용/씬 Registry·소유 범위·입력 차단·앱 복귀 인계·멸망 경계 정리를 구현했다. Edit 343/343·Play 65/65·실제 씬 직접 진입/반복 실행·ko/en·가로/세로 화면을 검증했고 빌드/실기기는 제외했다. 현재 active 0이며 후속 작업은 별도 승인 후 진행한다.
+- 최근 완료: [PLAN-019 공용 Popup 시스템과 기존 확인·설정 화면 통합](../plans/PLAN-019-shared-popup-system.md)은 completed다. Confirm·Notice·Settings와 공용/씬 Registry·소유 범위·입력 차단·앱 복귀 인계·멸망 경계 정리를 구현했다. Edit 343/343·Play 65/65·실제 씬 직접 진입/반복 실행·ko/en·가로/세로 화면을 검증했고 빌드/실기기는 제외했다. 후속 Editor 검증은 PLAN-020에서 완료했다.
+
+- 최근 검증: [PLAN-020 Editor 런타임 운영 병목·반복 플레이·성능 검증](../plans/PLAN-020-editor-bottlenecks-repeated-play-and-performance.md)은 completed다. 운영 병목·반복 플레이와 성능의 Editor 검증을 마쳤고 고부하 작업 탐색 비용과 Edit 회귀 1개 실패를 후속으로 남겼다. 현재 active PLAN은 없다. 최신 Android 검증 및 4단계·D-070 최종 판정은 후속 범위다.
+
+- [PLAN-021 작업자 경로 탐색 최적화와 번역 CSV 반복 가져오기 안정화](../plans/PLAN-021-worker-pathfinding-and-localization-import.md)는 completed다. 유휴 배회·일반/실패 탐색 간격·거리 재사용과 CSV 반복 가져오기 및 실패 복원을 Editor에서 검증했다.
 
 ## 에이전트의 읽기 순서
 

@@ -98,6 +98,29 @@ namespace MobileGame.Foundation.Tests
             Assert.That(UnityEditor.Localization.LocalizationEditorSettings.GetStringTableCollection("Common").SharedData.GetEntry(row.Id), Is.Null);
         }
         [Test]
+        public void FailedImportRestoresPreviousEditorPlayModeSelection()
+        {
+            var settings = UnityEditor.AddressableAssets.AddressableAssetSettingsDefaultObject.Settings;
+            var original = settings.ActivePlayModeDataBuilderIndex;
+            var alternate = settings.DataBuilders.FindIndex(builder =>
+                builder != null && builder.GetType().Name == "BuildScriptPackedPlayMode");
+            Assert.That(alternate, Is.GreaterThanOrEqualTo(0));
+            try
+            {
+                settings.ActivePlayModeDataBuilderIndex = alternate;
+                Assert.Throws<IOException>(() => LocalizationCsvTools.ImportAll(afterTable: _ => throw new IOException("Injected failure")));
+                Assert.That(settings.ActivePlayModeDataBuilderIndex, Is.EqualTo(alternate));
+            }
+            finally
+            {
+                if (settings.ActivePlayModeDataBuilderIndex != original)
+                    settings.ActivePlayModeDataBuilderIndex = original;
+            }
+        }
+
+
+
+        [Test]
         public void ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent()
         {
             LocalizationCsvTools.ValidateImported();

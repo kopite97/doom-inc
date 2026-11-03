@@ -1,0 +1,20 @@
+System.Collections.IEnumerator Run() {
+ var type=typeof(MobileGame.Foundation.Editor.Plan020Probe);
+ var load=(System.Action<string>)System.Delegate.CreateDelegate(typeof(System.Action<string>),type.GetMethod("Load",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic));
+ load(System.IO.File.ReadAllText(System.IO.Path.Combine(MobileGame.Foundation.Editor.Plan020Probe.Root,"fixture-0.json")));
+ var v=UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>();
+ var lab=v.Simulation;var worker=System.Linq.Enumerable.Single(lab.Registry.Things,t=>t.TryGetComponent<MobileGame.Gameplay.WorkerComponent>(out _));
+ foreach(var stock in System.Linq.Enumerable.ToArray(worker.GetComponent<MobileGame.Foundation.ResourceContainerComponent>().Contents))lab.Registry.ConsumeResource(stock,stock.GetComponent<MobileGame.Foundation.ResourceStackComponent>().Quantity);
+ v.SetWorkerPriorities(worker.Id,new[]{0,0,1,0});
+ var from=worker.Placement.Origin;var previous=from;int steps=0,maximumRadius=0;
+ double start=UnityEngine.Time.realtimeSinceStartupAsDouble;
+ while(UnityEngine.Time.realtimeSinceStartupAsDouble-start<8.5){
+   var cell=worker.Placement.Origin;maximumRadius=System.Math.Max(maximumRadius,System.Math.Abs(from.x-cell.x)+System.Math.Abs(from.y-cell.y));if(previous!=cell){steps++;previous=cell;}
+   yield return null;
+ }
+ var searches=lab.Map.PathQueries;v.SetWorkerPriorities(worker.Id,new[]{0,0,0,0});var stopped=worker.Placement.Origin;
+ yield return new UnityEngine.WaitForSecondsRealtime(4);
+ lab.ValidateState();
+ MobileGame.Foundation.Editor.Plan020Probe.Write("../PLAN-021/live-wander",new{steps,maximumRadius,searches,stationary=worker.Placement.Origin==stopped,decisions=lab.Decisions,game=v.Invasion.Elapsed,passed=steps>0&&maximumRadius<=1&&searches==0&&worker.Placement.Origin==stopped});
+}
+UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>().StartCoroutine(Run());return true;

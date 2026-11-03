@@ -1,0 +1,42 @@
+[
+  {
+    "normalCooldown": true,
+    "gameticks": 1200,
+    "step": 0.016,
+    "decisions": 1003,
+    "bfs": 118,
+    "visited": 12812,
+    "checks": 67736,
+    "p95": 0.6533,
+    "stock": 42
+  },
+  {
+    "normalCooldown": false,
+    "gameticks": 1200,
+    "step": 0.016,
+    "decisions": 1523,
+    "bfs": 118,
+    "visited": 12812,
+    "checks": 68256,
+    "p95": 0.686,
+    "stock": 42
+  },
+  {
+    "workers": 4,
+    "facilities": 8,
+    "comparisons": 50000,
+    "linearMs": 10.5288,
+    "indexedMs": 1.2972,
+    "actual": 25000,
+    "expected": 25000
+  },
+  {
+    "workers": 24,
+    "facilities": 8,
+    "comparisons": 50000,
+    "linearMs": 22.3399,
+    "indexedMs": 1.2947,
+    "actual": 25000,
+    "expected": 25000
+  }
+]
