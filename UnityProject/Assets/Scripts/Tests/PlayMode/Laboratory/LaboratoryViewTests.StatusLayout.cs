@@ -10,6 +10,7 @@ using MobileGame.Foundation.Editor;
 using MobileGame.Gameplay;
 using MobileGame.Presentation;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
@@ -263,7 +264,7 @@ namespace MobileGame.SpatialTests
         private static void AssertSelectedStatusCaption(LaboratoryView view, Guid id, bool large)
         {
             var marker = StatusMarkerRoots(view, false).Single(t => t.name == "Temp_FacilityStatus_" + id.ToString("N"));
-            var caption = marker.GetComponentsInChildren<Text>().Single(t => t.name == "Caption");
+            var caption = marker.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "Caption");
             Assert.That(caption.text, Does.Contain("진행"));
             Assert.That(caption.font, Is.SameAs(view.UiFont));
             Assert.That(caption.fontSize, Is.GreaterThanOrEqualTo(large ? 15 : 12));

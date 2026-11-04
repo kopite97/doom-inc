@@ -7,6 +7,7 @@ using MobileGame.Foundation;
 using MobileGame.Foundation.Editor;
 using MobileGame.Presentation;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.TestTools;
@@ -44,7 +45,7 @@ namespace MobileGame.SpatialTests
                     button.OnPointerClick(pointer);
                     Assert.That(calls, Is.Zero); Assert.That(handle.State, Is.EqualTo(PopupState.Open));
                     Assert.That(popup.Scroll.content.anchoredPosition.y, Is.GreaterThan(1), "Language change must not reset the reading position.");
-                    Assert.That(popup.GetComponentsInChildren<UnityEngine.UI.Text>().Single(t => t.name == "Message").text, Does.EndWith(snapshot));
+                    Assert.That(popup.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "Message").text, Does.EndWith(snapshot));
                     var corners = new Vector3[4]; ((RectTransform)button.transform).GetWorldCorners(corners);
                     Assert.That(corners.All(p => p.x >= 0 && p.x <= Screen.width && p.y >= 0 && p.y <= Screen.height));
                 }
@@ -72,8 +73,10 @@ namespace MobileGame.SpatialTests
             var resource = ScriptableObject.CreateInstance<PopupResource>(); resource.Configure("TestExtension", root);
             var scene = ScriptableObject.CreateInstance<PopupRegistry>(); scene.Configure(new[] { resource });
             var invalid = ScriptableObject.CreateInstance<PopupRegistry>(); invalid.Configure(new[] { configuration.popups.Entries[0] });
+            var previousTimeScale = Time.timeScale;
             try
             {
+                Time.timeScale = 0f; // Opening and closing the popup must work while gameplay time is frozen.
                 flow.PopupHost.RegisterScene(scene);
                 Assert.Throws<InvalidOperationException>(() => flow.PopupHost.RegisterScene(invalid));
                 var calls = 0; var handle = flow.Popups.Show(new PopupExtensionRequest(flow.ScenePopupScope), () => calls++);
@@ -93,6 +96,7 @@ namespace MobileGame.SpatialTests
             }
             finally
             {
+                Time.timeScale = previousTimeScale;
                 flow.PopupHost.RegisterScene(null);
                 UnityEngine.Object.Destroy(root); UnityEngine.Object.Destroy(resource);
                 UnityEngine.Object.Destroy(scene); UnityEngine.Object.Destroy(invalid);
@@ -213,13 +217,12 @@ namespace MobileGame.SpatialTests
                         for (var i = 0; i < 6; i++) yield return null;
                         Assert.That(child.IsCompleted || settings.IsCompleted, Is.False); Assert.That(flow.Popups.Top, Is.SameAs(child));
                         var popup = flow.PopupHost.GetComponentsInChildren<PopupBase>().Last();
-                        Assert.That(popup.GetComponentsInChildren<UnityEngine.UI.Text>().Single(t => t.name == "Message").text,
+                        Assert.That(popup.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "Message").text,
                             Is.EqualTo(flow.Localization.Format("Laboratory", "map_help")));
                         var button = popup.GetComponentsInChildren<UiButton>().Single(b => b.name == "Confirm");
                         var bounds = new Vector3[4]; ((RectTransform)button.transform).GetWorldCorners(bounds);
                         Assert.That(bounds.All(p => p.x >= 0 && p.x <= Screen.width && p.y >= 0 && p.y <= Screen.height));
-                        var folder = Path.GetFullPath(Path.Combine(Application.dataPath, "../../docs/plans/evidence/PLAN-019"));
-                        yield return Capture("popup-" + language, Path.Combine(folder, "popup-" + language + "-" + size.x + "x" + size.y + ".png"));
+                        yield return Capture("popup-" + language + "-" + size.x + "x" + size.y);
                     }
                 }
                 child.Cancel(); yield return WaitPopupStable(); Assert.That(flow.Popups.Top, Is.SameAs(settings));

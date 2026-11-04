@@ -21,6 +21,7 @@
 | Thing·SO·Job·Map·저장·GameFlow 설계 및 변경 | [아키텍처](docs/agents/architecture.md) |
 | 씬별 책임·초기화·씬 전환·Editor 직접 실행 | [씬 흐름](docs/agents/scene-flow.md) |
 | 제품 텍스트·번역 키·CSV·언어 설정·Localization | [텍스트와 Localization](docs/agents/localization.md) |
+| UI·오브젝트 전환, 게임 사건 피드백, 글자 연출 | [외부 연출 에셋 사용 기준](docs/agents/presentation-effects.md) |
 | 씬·프리팹·SO·스크립트 에셋 변경 | [Unity 에셋](docs/agents/unity-assets.md) |
 | 아트 요청·수령·임시 에셋·Sprite 설정·아트 검수 | [아트 지침](docs/agents/art-assets.md) |
 | 명령·상태 조회·시뮬레이션·검증 시나리오 | [하네스](docs/agents/harness.md) |

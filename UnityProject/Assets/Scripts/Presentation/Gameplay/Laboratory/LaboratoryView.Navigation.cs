@@ -4,6 +4,7 @@ using System.Linq;
 using MobileGame.Foundation;
 using MobileGame.Gameplay;
 using MobileGame.Persistence;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -40,7 +41,7 @@ namespace MobileGame.Presentation
         }
 
         public LaboratoryUiAssets UiAssets => uiAssets;
-        public Font UiFont => uiAssets?.Font != null ? uiAssets.Font : Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        public TMP_FontAsset UiFont => uiAssets?.Font != null ? uiAssets.Font : TMP_Settings.defaultFontAsset;
         public bool ShowFacilityStatus => uiSettings?.Current.ShowFacilityStatus ?? true;
         public bool LargeText => uiSettings?.Current.LargeText ?? false;
         public float UiTextScale => LargeText ? 1.25f : 1;

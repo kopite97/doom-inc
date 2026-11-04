@@ -7,6 +7,7 @@ using MobileGame.GameFlow;
 using MobileGame.Gameplay;
 using MobileGame.Presentation;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
@@ -120,7 +121,7 @@ namespace MobileGame.SpatialTests
                 yield return ClickVisibleButton(input, "Reports");
                 Assert.That(view.ReportsExpanded, Is.True);
                 var report = view.Invasion.Reports.Last();
-                Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Any(label => label.text == view.FormatMessage(view.ReportMessage(report))), Is.True,
+                Assert.That(view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Any(label => label.text == view.FormatMessage(view.ReportMessage(report))), Is.True,
                     "The expanded report UI must display the actual activity report.");
                 yield return ClickVisibleButton(input, "Reports");
                 Assert.That(view.ReportsExpanded, Is.False);

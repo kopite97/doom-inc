@@ -68,7 +68,7 @@ latest_reports,131,Laboratory / latest_reports,false,,Latest reports,최신 보�
 license_missing,118,Laboratory / license_missing,false,,The font license is unavailable.,글꼴 라이선스를 찾을 수 없습니다.,14350b0384d865c48fcfcda7bead8aa81e54e2bbeac2a34d3c945018b06e58ae
 load_error,117,Laboratory / load_error,false,,Could not load the save. Retry from the game menu.,저장을 불러오지 못했습니다. 게임 메뉴에서 재시도하세요.,cd24b7f3e28404ab34f7bccf819f23ad535db28409e791aa42b111b7d21493c7
 manage_workers,346,Laboratory / manage_workers,false,,Assign workers from the creature list,생명체 목록에서 작업자 배정,2b0eb85b4ea7a1711740b08cf5dc7b811130ea862b14e0b4c25fa95477bb17e4
-map_help,143,Laboratory / map_help,false,,"Map controls: −/＋ zoom out/in, corners fit the map, and the eye toggles facility status.","지도 조작: 돋보기 −/＋는 축소/확대, 네 모서리 표시는 전체 보기, 눈/가린 눈은 시설 상태 표시입니다.",8a44b66a1b7d5c14bc7d949533fca2b2c1f258d287c61a7030b7c4386a4375a0
+map_help,143,Laboratory / map_help,false,,"Map controls: -/+ zoom out/in, corners fit the map, and the eye toggles facility status.","지도 조작: 돋보기 -/+는 축소/확대, 네 모서리 표시는 전체 보기, 눈/가린 눈은 시설 상태 표시입니다.",ce4c09e9678f53454b1e7388adae6bd038b7cb44562e43b40dfbd972e8d98cfd
 material_arrived,317,Laboratory / material_arrived,false,,delivered,도착,96da4fc708cd3c6836a94eaff70125207998e7c226bf06a8c63156eb3245f811
 material_inserted,316,Laboratory / material_inserted,false,,inserted,투입,2671f987a0cea8035c55a4bf7c2f9d85d913d14a2c174fed94b950a94d742899
 material_stock,318,Laboratory / material_stock,true,reason:text;total:number;reserved:number,"{reason}
@@ -105,6 +105,7 @@ production_rate,307,Laboratory / production_rate,true,state:text;rate:number,{st
 production_workers,308,Laboratory / production_workers,true,assigned:number;working:number,Assigned: {assigned:N0} / Actively producing: {working:N0},배정 {assigned:N0}명 / 실제 생산 작업 {working:N0}명,b51d5729dfd3b36f2f92924527f697c069467c95aead86c4b436816bba3bf668
 progress,335,Laboratory / progress,true,percent:number;work:number;duration:number,{percent:0.#}% ({work:0.#} / {duration:0.#} s of work),{percent:0.#}% ({work:0.#} / {duration:0.#}초 작업량),8fa8ed42ebc4b261be60d218577e2e91d584046ede450e887439f35942973fe5
 prototype_assignment,359,Laboratory / prototype_assignment,false,,"Prototypes gather, haul and build. They cannot be assigned to processing or cultivation.",프로토타입은 채집·운반·건설을 수행하며 가공·배양 작업자로 배정할 수 없습니다.,4399e70b854985b878bbdd0ef368cacced1dda0f602742632bee811372a55fc9
+raider_hint,388,Laboratory / raider_hint,false,,Raiders deal less invasion damage and send supplies to storage.,약탈형은 침공 위력이 낮지만 저장소로 보급품을 보냅니다.,ee2e7ddbb3547909b8889fdd3a234ea9c5feca264211b7f5c8d44c531ed8c75b
 related_storage_hint,368,Laboratory / related_storage_hint,false,,"Check storage stock, free space and allowed resources. Paths and hauling jobs also affect supply.",저장소의 재고·빈 공간·허용 자원을 확인하세요. 경로와 운반 작업도 공급에 영향을 줍니다.,652e31054788174cde8957f442c04a8a4faffc257de5085112e4a9e996eb627b
 related_thing,332,Laboratory / related_thing,true,caption:text;thing:text,{caption}: {thing},{caption}: {thing},2faf867fa240f1a181e9765e876754a69cadc4ff19802a65f4bacb4544f7eef9
 release,156,Laboratory / release,true,count:number,Release all waiting invaders ({count:N0}),대기 중인 침공형 전원 방출 ({count:N0}),2efa551ce1b8daf16f44b5153e8c942e4a5c2025e0378204a5913ca04ea99d9b
@@ -150,6 +151,7 @@ Incoming: {incoming:N0} · Reserved outgoing: {outgoing:N0}
 Free space after reservations: {free:N0}","실제 재고 {stock:N0} / 용량 {capacity:N0}
 입고 예정 {incoming:N0} · 출고 예약 {outgoing:N0}
 예약을 제외한 입고 여유 {free:N0}",ccd6531498f72d1b46e8b299035a1085e47b99d85c9842bb28a3515ad7b43f25
+supply_receipts,389,Laboratory / supply_receipts,true,total:number;pending:number,Supplies received {total:N0} · Pending shipments {pending:N0},보급품 누적 입고 {total:N0}개 · 대기 {pending:N0}건,cb77a568643bcafd3f432b6ddaed51a6805392deb884ed3c245f904e9db959c1
 thing_label,158,Laboratory / thing_label,true,name:text;order:number,{name} #{order},{name} #{order},f553ba2cfad12e0ae0fdf8dc2c0b23e109614312100f0db5cdeb0c5eab7cf20c
 to_destination,376,Laboratory / to_destination,false,,Moving to destination,목적지로 이동,49962022113e0153eda3d10c984f924d8ad8aa6cee136cc288bf8c8c9691870a
 to_supply,375,Laboratory / to_supply,false,,Moving to supply,자원 받으러 이동,656cb4f4e4cec9beacf4fc46345e83c632b5d7ff62ab9035fa9c9ac97c8e9214
@@ -188,5 +190,3 @@ worker_wait,324,Laboratory / worker_wait,true,reason:text,Waiting: {reason},대�
 working,128,Laboratory / working,false,,Working,작업 중,5daac6fc9b87409150e35c9a89f101704e54d9561c163221aa4ae1a7b6046a66
 zoom_in,105,Laboratory / zoom_in,false,,Zoom in,확대,33db7f78b5e0a821d8bc458e3a5221f33f504f5ab7c962f87f38e70907681f64
 zoom_out,104,Laboratory / zoom_out,false,,Zoom out,축소,f1d66a12ee153d68c6f6f6c43b9e822585ade650c4bd41f5a5df0bc3f9efc312
-raider_hint,388,Laboratory / raider_hint,false,,Raiders deal less invasion damage and send supplies to storage.,약탈형은 침공 위력이 낮지만 저장소로 보급품을 보냅니다.,ee2e7ddbb3547909b8889fdd3a234ea9c5feca264211b7f5c8d44c531ed8c75b
-supply_receipts,389,Laboratory / supply_receipts,true,total:number;pending:number,Supplies received {total:N0} · Pending shipments {pending:N0},보급품 누적 입고 {total:N0}개 · 대기 {pending:N0}건,cb77a568643bcafd3f432b6ddaed51a6805392deb884ed3c245f904e9db959c1

@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using MobileGame.Foundation;
 using MobileGame.Gameplay;
+using MoreMountains.Feedbacks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +14,14 @@ namespace MobileGame.Presentation
         private Vector2 panelScroll;
         private UiCanvas screen;
         private RectTransform playRoot, toolRoot, cameraTools, navigationRoot, summaryRoot;
-        private Text titleText, hudText, editText, summaryText, feedbackText;
+        private TextMeshProUGUI titleText, hudText, editText, summaryText, feedbackText;
         private RectTransform worldGauge, worldGaugeFill;
         private ScrollRect controlsScroll;
         private UiList controls;
         private UiButton collapseButton, rotateButton, confirmButton, cancelButton;
         private UiButton zoomInButton, zoomOutButton, fitButton, statusButton, gameMenuButton;
         private UiButton buildMenuButton, creatureMenuButton, invasionMenuButton, detailsButton, closeButton;
+        private MMF_Player releaseFeedback;
         private LaboratoryMapView mapScreen;
         private bool controlsCollapsed;
         private int screenGeneration = -1;
@@ -76,6 +79,42 @@ namespace MobileGame.Presentation
             CreateEndingScreen();
             ApplyTextStyle();
         }
+        private void PlayReleaseFeedback()
+        {
+            EnsureScreen();
+            if (uiAssets?.ReleaseSound == null || !invasionMenuButton.isActiveAndEnabled) return;
+            if (releaseFeedback == null)
+            {
+                var icon = invasionMenuButton.transform.Find("Icon");
+                releaseFeedback = icon.gameObject.AddComponent<MMF_Player>();
+                releaseFeedback.StopFeedbacksOnDisable = true;
+                releaseFeedback.RestoreInitialValuesOnDisable = true;
+                releaseFeedback.InitializationMode = MMFeedbacks.InitializationModes.Script;
+                releaseFeedback.PlayerTimescaleMode = TimescaleModes.Unscaled;
+                releaseFeedback.AddFeedback(new MMF_Sound
+                {
+                    Sfx = uiAssets.ReleaseSound, PlayMethod = MMF_Sound.PlayMethods.Cached,
+                    MinVolume = .65f, MaxVolume = .65f, Timing = new MMFeedbackTiming()
+                });
+                releaseFeedback.AddFeedback(new MMF_Scale
+                {
+                    AnimateScaleTarget = icon, AnimateScaleDuration = .2f,
+                    RemapCurveOne = 1.14f, AnimateZ = false,
+                    Timing = new MMFeedbackTiming { TimescaleMode = TimescaleModes.Unscaled }
+                });
+                releaseFeedback.Initialization();
+            }
+            else StopReleaseFeedback();
+            releaseFeedback.PlayFeedbacks();
+        }
+
+        private void StopReleaseFeedback()
+        {
+            if (releaseFeedback == null) return;
+            if (releaseFeedback.IsPlaying) releaseFeedback.StopFeedbacks();
+            releaseFeedback.transform.localScale = Vector3.one;
+        }
+
         private UiButton IconButton(string key, Transform parent, LaboratoryIcon icon, string label, Action action, bool compact = false)
         {
             var button = UiWidgets.Button(key, parent, label, () => screen.LayoutEpoch);
@@ -84,7 +123,7 @@ namespace MobileGame.Presentation
         }
         private static void SetCompactButtonLabel(UiButton button)
         {
-            var rect = button.GetComponentInChildren<Text>().rectTransform;
+            var rect = button.GetComponentInChildren<TextMeshProUGUI>(true).rectTransform;
             rect.offsetMin = new Vector2(4, 4); rect.offsetMax = new Vector2(-4, -4);
         }
         private void SetIcon(UiButton button, LaboratoryIcon icon, string label, bool compact = false)
@@ -115,10 +154,10 @@ namespace MobileGame.Presentation
                 if (button.targetGraphic != plate) button.targetGraphic = plate;
             }
             graphic.sprite = uiAssets?.GetIcon(icon); graphic.gameObject.SetActive(graphic.sprite != null);
-            var text = button.GetComponentInChildren<Text>(); text.text = label;
+            var text = button.GetComponentInChildren<TextMeshProUGUI>(true); text.text = label;
             // Preserve the functional name and use it as the visible fallback if an icon is unavailable.
             text.enabled = !compact || graphic.sprite == null;
-            text.alignment = compact || graphic.sprite == null ? TextAnchor.MiddleCenter : TextAnchor.LowerCenter;
+            text.alignment = compact || graphic.sprite == null ? TextAlignmentOptions.Center : TextAlignmentOptions.Bottom;
             var style = text.GetComponent<UiText>();
             if (style.BaseSize != 13) style.Initialize(13);
             text.rectTransform.anchorMin = Vector2.zero;
@@ -183,7 +222,7 @@ namespace MobileGame.Presentation
             UiWidgets.Place(titleText.rectTransform, margin, 8, headerWidth, titleHeight);
             UiWidgets.Place(gameMenuButton.GetComponent<RectTransform>(), w - touch - margin, 8, touch, touch);
             UiWidgets.Place(collapseButton.GetComponent<RectTransform>(), collapseX, 8, collapseWidth, touch);
-            collapseButton.GetComponentInChildren<Text>().text = controlsCollapsed ? L("expand") : L("collapse");
+            collapseButton.GetComponentInChildren<TextMeshProUGUI>(true).text = controlsCollapsed ? L("expand") : L("collapse");
             collapseButton.interactable = CanClickScreen() && pendingSessionAction == LaboratorySessionAction.None;
             UiWidgets.Place(hudText.rectTransform, margin, hudY, headerWidth, top - hudY - 12);
             UiWidgets.Place(worldGauge, margin, top - 10, w - margin * 2, 6);

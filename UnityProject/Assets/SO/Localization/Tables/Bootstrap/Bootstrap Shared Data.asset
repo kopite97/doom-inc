@@ -35,6 +35,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 2444913683439288421
+  - m_Id: 9
+    m_Key: loading_wave
+    m_Metadata:
+      m_Items:
+      - rid: 1000
   - m_Id: 2
     m_Key: preparing_data
     m_Metadata:
@@ -62,6 +67,10 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1000
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Bootstrap/loading_wave
     - rid: 2444913683439288417
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:

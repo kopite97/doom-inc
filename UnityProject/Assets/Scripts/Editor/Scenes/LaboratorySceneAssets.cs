@@ -55,6 +55,7 @@ namespace MobileGame.Foundation.Editor
                 cameraObject.tag = "MainCamera";
                 cameraObject.transform.position = new Vector3(0, 0, -10);
                 var camera = cameraObject.AddComponent<Camera>();
+                cameraObject.AddComponent<AudioListener>();
                 camera.orthographic = true;
                 camera.clearFlags = CameraClearFlags.SolidColor;
                 camera.backgroundColor = new Color(0.04f, 0.055f, 0.075f);

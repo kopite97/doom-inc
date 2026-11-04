@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 namespace MobileGame.Presentation
@@ -7,27 +8,30 @@ namespace MobileGame.Presentation
     public sealed class LaboratoryUiAssets
     {
         private static readonly LaboratoryIcon[] KnownIcons = (LaboratoryIcon[])Enum.GetValues(typeof(LaboratoryIcon));
-        [SerializeField] private Font font;
+        [SerializeField] private TMP_FontAsset font;
         [SerializeField] private TextAsset fontLicense;
+        [SerializeField] private AudioClip releaseSound;
         [SerializeField] private Sprite[] icons;
 
-        public Font Font => font;
+        public AudioClip ReleaseSound => releaseSound;
+        public TMP_FontAsset Font => font;
         public TextAsset FontLicense => fontLicense;
         public bool IsComplete
         {
             get
             {
-                if (font == null || fontLicense == null) return false;
+                if (font == null || fontLicense == null || releaseSound == null) return false;
                 foreach (var icon in KnownIcons)
                     if (icon != LaboratoryIcon.None && GetIcon(icon) == null) return false;
                 return true;
             }
         }
 
-        public LaboratoryUiAssets(Font font, Sprite[] icons, TextAsset fontLicense = null)
+        public LaboratoryUiAssets(TMP_FontAsset font, Sprite[] icons, TextAsset fontLicense, AudioClip releaseSound)
         {
             this.font = font;
             this.fontLicense = fontLicense;
+            this.releaseSound = releaseSound;
             this.icons = icons == null ? Array.Empty<Sprite>() : (Sprite[])icons.Clone();
         }
 

@@ -5,8 +5,11 @@ using System.IO;
 using System.Linq;
 using MobileGame.Presentation;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization.Settings;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
 
@@ -14,6 +17,108 @@ namespace MobileGame.SpatialTests
 {
     public sealed partial class AppSceneFlowTests
     {
+        internal static void AssertSharedProductFont(Component root, TMP_FontAsset font)
+        {
+            Assert.That(root.GetComponentsInChildren<UnityEngine.UI.Text>(true), Is.Empty, root.name);
+            var labels = root.GetComponentsInChildren<TextMeshProUGUI>(true);
+            Assert.That(labels, Is.Not.Empty, root.name);
+            foreach (var label in labels)
+            {
+                Assert.That(label.font, Is.SameAs(font), root.name + "/" + label.name);
+                Assert.That(label.richText, Is.False, label.name);
+            }
+        }
+
+        [UnityTest] public IEnumerator ColdLoadingCopySurvivesLocalizationInitializationFailure()
+        {
+            var original = LocalizationSettings.Instance;
+            var isolated = UnityEngine.Object.Instantiate(original);
+            isolated.hideFlags = HideFlags.HideAndDontSave;
+            LocalizationSettings.Instance = isolated;
+            try
+            {
+                var package = LocalizationSettings.InitializationOperation;
+                yield return package;
+                Assert.That(package.Status, Is.EqualTo(AsyncOperationStatus.Succeeded));
+                var locales = LocalizationSettings.AvailableLocales;
+                var missing = LocalizationSettings.SelectedLocale.Identifier.Code == "ko" ? "en" : "ko";
+                Assert.That(locales.RemoveLocale(locales.Locales.Single(l => l.Identifier.Code == missing)), Is.True);
+
+                Assert.That(flow.Localization.Texts.IsReady, Is.False);
+                const string failure = "Korean and English locales are required.";
+                LogAssert.Expect(LogType.Warning, "Scene preparation failed: " + failure);
+                Assert.That(flow.EnterCurrent(AppScene.Bootstrap), Is.True);
+                var overlay = flow.Loading;
+                var wave = overlay.GetComponentInChildren<LoadingTextWave>();
+                var title = wave.GetComponent<TextMeshProUGUI>();
+                var track = overlay.GetComponentsInChildren<RectTransform>(true).Single(r => r.name == "SceneProgress");
+                var percent = overlay.GetComponentsInChildren<TextMeshProUGUI>(true).Single(t => t.name == "ScenePercent");
+                Assert.That(overlay.Visible && wave.isActiveAndEnabled, Is.True);
+                Assert.That(title.text, Is.EqualTo("Loading..."), "The startup label must resolve from the embedded Bootstrap copy.");
+                Assert.That(track.gameObject.activeInHierarchy || percent.isActiveAndEnabled, Is.False);
+
+                var deadline = Time.realtimeSinceStartupAsDouble + 15;
+                while (flow.IsTransitioning && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
+                Assert.That(flow.Error, Is.EqualTo(failure));
+                Assert.That(flow.Localization.Texts.IsReady, Is.False);
+                Assert.That(overlay.Kind, Is.EqualTo(LoadingScreenKind.Error));
+                Assert.That(overlay.Visible, Is.True);
+                var retry = overlay.GetComponentsInChildren<UiButton>().Single(b => b.name == "Retry");
+                var fallback = new BootstrapText(configuration.localization);
+                var language = flow.Localization.Preferences.Language;
+                Assert.That(title.text, Is.EqualTo(fallback.Get("error_title", language)));
+                Assert.That(retry.GetComponentInChildren<TextMeshProUGUI>().text, Is.EqualTo(fallback.Get("retry", language)));
+                Assert.That(wave.isActiveAndEnabled || track.gameObject.activeInHierarchy || percent.isActiveAndEnabled, Is.False);
+                LogAssert.NoUnexpectedReceived();
+            }
+            finally
+            {
+                isolated.ResetState();
+                LocalizationSettings.Instance = original;
+                UnityEngine.Object.Destroy(isolated);
+            }
+        }
+
+        [UnityTest] public IEnumerator ColdMulmaruAtlasRendersKoreanLatinAndSymbolsWithoutFallback()
+        {
+            var shared = configuration.uiAssets.Font;
+            Assert.That(shared.atlasPopulationMode, Is.EqualTo(AtlasPopulationMode.Dynamic));
+            Assert.That(shared.sourceFontFile.name, Is.EqualTo("Mulmaru"));
+            // Use the same source and settings without clearing the shared project's live atlas.
+            var cold = TMP_FontAsset.CreateFontAsset(shared.sourceFontFile, Mathf.RoundToInt(shared.faceInfo.pointSize),
+                shared.atlasPadding, shared.atlasRenderMode, shared.atlasWidth, shared.atlasHeight,
+                AtlasPopulationMode.Dynamic, shared.isMultiAtlasTexturesEnabled);
+            try
+            {
+                Assert.That(cold.HasCharacter('준'), Is.False);
+                using (var canvas = new UiCanvas(flow.transform, "Temp_ColdFont", 10))
+                {
+                    var label = UiWidgets.Label("Glyphs", canvas.SafeRoot, 24);
+                    label.font = cold;
+                    UiWidgets.Place(label.rectTransform, 0, 0, 500, 100);
+                    const string sample = "Loading...●준비중…-+0123456789%";
+                    label.text = sample;
+                    yield return null;
+                    label.ForceMeshUpdate();
+                    Assert.That(label.textInfo.characterCount, Is.EqualTo(sample.Length));
+                    for (var i = 0; i < sample.Length; i++)
+                    {
+                        var letter = label.textInfo.characterInfo[i];
+                        Assert.That(letter.fontAsset, Is.SameAs(cold), sample[i].ToString());
+                        Assert.That(letter.textElement.unicode, Is.EqualTo((uint)sample[i]), sample[i].ToString());
+                        Assert.That(letter.isVisible, Is.True, sample[i].ToString());
+                    }
+                }
+                var copy = MobileGame.Foundation.Editor.LocalizationCsvTools.ReadAll()
+                    .SelectMany(doc => doc.Rows).SelectMany(row => row.Values.Values)
+                    .Append(configuration.uiAssets.FontLicense.text);
+                var required = string.Concat(copy.SelectMany(value => value).Where(c => !char.IsWhiteSpace(c)).Distinct());
+                var allAdded = cold.TryAddCharacters(required, out var missing);
+                Assert.That(allAdded, Is.True, "Missing Mulmaru glyphs in localized copy or license: " + missing);
+            }
+            finally { UnityEngine.Object.Destroy(cold); }
+        }
+
         [UnityTest] public IEnumerator LanguageChangeKeepsProductionReportsEndingAndRestartState()
         {
             var preferences = Path.Combine(Application.temporaryCachePath, "Preferences", "language.json");
@@ -55,7 +160,7 @@ namespace MobileGame.SpatialTests
                 while (!change.IsCompleted) yield return null;
                 change.GetAwaiter().GetResult(); yield return null;
                 Assert.That(view.Ending.Request, Is.SameAs(request)); Assert.That(view.Controller.Generation, Is.EqualTo(generation));
-                Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "EndingTitle").text, Is.EqualTo(flow.Localization.Format("Results", "ended")));
+                Assert.That(view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "EndingTitle").text, Is.EqualTo(flow.Localization.Format("Results", "ended")));
                 Assert.That(view.Restart(), Is.True);
                 Assert.That(flow.Localization.Service.CurrentLanguage, Is.EqualTo("en"));
                 Assert.That(view.Controller.Generation, Is.EqualTo(generation + 1));
@@ -80,7 +185,7 @@ namespace MobileGame.SpatialTests
             flow.Loading.Show(LoadingScreenKind.Error, "same message", () => newCalls++, null, "새 게임 시작");
             for (var i = 0; i < 4; i++) yield return null;
             Assert.That(button.interactable && AppUiLifetime.AcceptInput, Is.True);
-            Assert.That(flow.Loading.GetComponentsInChildren<Text>().Single(t => t.name == "LoadingTitle").text,
+            Assert.That(flow.Loading.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "LoadingTitle").text,
                 Is.EqualTo("준비 중 문제가 발생했습니다"), "A button caption cannot choose the screen kind.");
             button.OnPointerClick(press);
             Assert.That(oldCalls + newCalls, Is.Zero);
@@ -125,13 +230,13 @@ namespace MobileGame.SpatialTests
                     yield return null;
                     Assert.That(staticLabel.fontSize, Is.EqualTo(Mathf.RoundToInt(24 * scale)));
                     Assert.That(staticLabel.font, Is.Not.Null);
-                    Assert.That(content.Find("Existing").GetComponent<Text>().fontSize, Is.EqualTo(Mathf.RoundToInt(20 * scale)));
+                    Assert.That(content.Find("Existing").GetComponent<TextMeshProUGUI>().fontSize, Is.EqualTo(Mathf.RoundToInt(20 * scale)));
                     Assert.That(((RectTransform)content.Find("Action")).rect.height, Is.GreaterThanOrEqualTo(64));
                 }
                 rows.Style(configuration.uiAssets.Font, 1.25f, 70);
                 rows.Begin(400); rows.Text("Existing", "Existing", 20); rows.Text("New", "New", 20); rows.End();
                 yield return null;
-                foreach (var text in content.GetComponentsInChildren<Text>())
+                foreach (var text in content.GetComponentsInChildren<TextMeshProUGUI>())
                 {
                     Assert.That(text.fontSize, Is.EqualTo(25));
                     Assert.That(text.font, Is.EqualTo(configuration.uiAssets.Font));
@@ -140,8 +245,8 @@ namespace MobileGame.SpatialTests
             flow.Loading.Configure(null, () => true);
             flow.Loading.Show(LoadingScreenKind.Error, "Fallback text", () => { });
             yield return null;
-            Assert.That(flow.Loading.GetComponentsInChildren<Text>().Single(t => t.name == "LoadingTitle").fontSize, Is.EqualTo(30));
-            Assert.That(flow.Loading.GetComponentsInChildren<Text>().Single(t => t.name == "Status").fontSize, Is.EqualTo(Mathf.RoundToInt(18 * 1.25f)));
+            Assert.That(flow.Loading.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "LoadingTitle").fontSize, Is.EqualTo(30));
+            Assert.That(flow.Loading.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "Status").fontSize, Is.EqualTo(Mathf.RoundToInt(18 * 1.25f)));
             flow.Loading.Hide(); LogAssert.NoUnexpectedReceived();
         }
 

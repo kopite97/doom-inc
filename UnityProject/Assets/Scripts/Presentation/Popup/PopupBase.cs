@@ -1,5 +1,7 @@
 using System;
+using DG.Tweening;
 using MobileGame.Foundation;
+using TMPro;
 using UnityEngine;
 
 namespace MobileGame.Presentation
@@ -7,7 +9,7 @@ namespace MobileGame.Presentation
     [RequireComponent(typeof(RectTransform), typeof(CanvasGroup))]
     public abstract class PopupBase : MonoBehaviour, IPopupView
     {
-        [SerializeField] private UnityEngine.UI.Text heading;
+        [SerializeField] private TextMeshProUGUI heading;
         [SerializeField] private UnityEngine.UI.ScrollRect scroll;
         [SerializeField] private UiButton confirm;
         [SerializeField] private UiButton cancel;
@@ -17,13 +19,13 @@ namespace MobileGame.Presentation
         protected bool Interactive { get; private set; }
         private Action<PopupResult> choose;
         private CanvasGroup group;
-        private Coroutine animationRoutine;
+        private Tween fade;
         private bool initialized, released;
         public UnityEngine.UI.ScrollRect Scroll => scroll;
         public bool HasBindings => heading != null && scroll != null && scroll.content != null && scroll.viewport != null && confirm != null && cancel != null;
 
         // Called by the asset authoring tool. References remain editable in the prefab.
-        public void CreateTemplate()
+        public void CreateTemplate(TMP_FontAsset font = null)
         {
             if (heading != null) return;
             var background = gameObject.AddComponent<UnityEngine.UI.Image>(); background.color = UiWidgets.PanelColor;
@@ -31,6 +33,7 @@ namespace MobileGame.Presentation
             scroll = UiWidgets.Scroll("PopupContent", transform, out var content);
             confirm = UiWidgets.Button("Confirm", transform, "", null);
             cancel = UiWidgets.Button("Cancel", transform, "", null);
+            foreach (var label in GetComponentsInChildren<UiText>(true)) label.Apply(font, 1);
         }
         internal void Initialize(PopupHost host, PopupRequest request, Action<PopupResult> choice)
         {
@@ -59,13 +62,25 @@ namespace MobileGame.Presentation
         {
             if (!initialized || released) throw new InvalidOperationException("Popup is not prepared.");
             gameObject.SetActive(true); OnOpen();
-            animationRoutine = Host.Animate(group, 0, 1, ready);
+            group.alpha = 0f;
+            FadeTo(1f, ready);
         }
         public void Close(Action finished)
         {
             SetInteractable(false);
-            if (animationRoutine != null) Host.StopCoroutine(animationRoutine);
-            animationRoutine = Host.Animate(group, group.alpha, 0, finished);
+            FadeTo(0f, finished);
+        }
+        private void FadeTo(float opacity, Action finished)
+        {
+            fade.Kill();
+            fade = DOTween.To(() => group.alpha, value => group.alpha = value, opacity, 0.12f)
+                .SetEase(Ease.Linear)
+                .SetUpdate(true)
+                .OnComplete(() =>
+                {
+                    fade = null;
+                    finished();
+                });
         }
         public void SetInteractable(bool enabled)
         {
@@ -81,8 +96,8 @@ namespace MobileGame.Presentation
             try { if (initialized) OnClose(); }
             finally
             {
-                if (animationRoutine != null && Host != null) Host.StopCoroutine(animationRoutine);
-                animationRoutine = null; Request = null; Rows = null;
+                fade.Kill();
+                fade = null; Request = null; Rows = null;
                 gameObject.SetActive(false);
             }
         }
@@ -97,7 +112,7 @@ namespace MobileGame.Presentation
             var scale = Host.TextScale;
             heading.GetComponent<UiText>().Apply(Host.Font, scale);
             heading.text = Host.Texts.Format(Request.Title);
-            UiWidgets.Place(heading.rectTransform, 16, 12, width - 32, 52);
+            UiWidgets.Place(heading.rectTransform, 16, 12, width - 32, heading.rectTransform.rect.height);
             var headerHeight = Mathf.Max(52, heading.preferredHeight + 16);
             headerHeight = Mathf.Min(headerHeight, height * .25f);
             UiWidgets.Place(heading.rectTransform, 16, 12, width - 32, headerHeight);
@@ -114,9 +129,9 @@ namespace MobileGame.Presentation
         }
         private float PlaceButton(UiButton button, LocalizedMessage message, float width, float bottom, float touch)
         {
-            var label = button.GetComponentInChildren<UnityEngine.UI.Text>();
+            var label = button.GetComponentInChildren<TextMeshProUGUI>(true);
             label.GetComponent<UiText>().Apply(Host.Font, Host.TextScale); label.text = Host.Texts.Format(message);
-            UiWidgets.Place((RectTransform)button.transform, 16, 0, width - 32, touch);
+            UiWidgets.Place((RectTransform)button.transform, 16, 0, width - 32, ((RectTransform)button.transform).rect.height);
             var height = Mathf.Max(touch, label.preferredHeight + 16);
             UiWidgets.Place((RectTransform)button.transform, 16, bottom - height, width - 32, height);
             button.interactable = Interactive && AppUiLifetime.AcceptInput;

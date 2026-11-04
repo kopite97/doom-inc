@@ -2,13 +2,15 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 첫 작업 PLAN-013 completed / UI·UX 정비 PLAN-014 completed / JSON 전환 PLAN-015 completed / 씬 흐름 정비 PLAN-016 completed / 추상화 정비 PLAN-017 completed / 텍스트·다국어 정비 PLAN-018 completed / 공용 Popup 정비 PLAN-019 completed / Editor 운영·반복·성능 진단 PLAN-020 completed / 작업자 탐색·CSV 가져오기 PLAN-021 completed / 약탈형·보급품 수신 PLAN-022 completed
+- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 첫 작업 PLAN-013 completed / UI·UX 정비 PLAN-014 completed / JSON 전환 PLAN-015 completed / 씬 흐름 정비 PLAN-016 completed / 추상화 정비 PLAN-017 completed / 텍스트·다국어 정비 PLAN-018 completed / 공용 Popup 정비 PLAN-019 completed / Editor 운영·반복·성능 진단 PLAN-020 completed / 작업자 탐색·CSV 가져오기 PLAN-021 completed / 약탈형·보급품 수신 PLAN-022 completed / 공용 로딩·물마루 TMP PLAN-023 completed
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
-- 갱신일: 2026-11-03
+- 갱신일: 2026-11-04
 - 탐색: [기획 MAP](../../README.md), [Thing과 정의 데이터](../01-architecture/thing-model.md), [GameFlow와 시스템 책임](../01-architecture/game-flow.md), [플레이 환경](../../04-delivery/01-platform/environment.md)
 
 ## 현재 작업
+
+[PLAN-023 로딩 진행률·Feel 연출과 전체 게임 UI 물마루 TMP 전환](../../../plans/PLAN-023-loading-progress-feel-and-mulmaru-tmp.md)은 completed다. 실제 씬 진행률과 기본 1초 로딩, Feel 웨이브, 물마루 Dynamic TMP를 Editor에서 검증했다.
 
 [PLAN-022 약탈형 배양·침공과 연구소 자원 수신](../../../plans/PLAN-022-raider-and-resource-receiving.md)은 2단계 배양·물류와 3단계 침공을 연결하는 확장 작업을 완료했다.
 
@@ -126,5 +128,8 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 - [PLAN-021 작업자 경로 탐색 최적화와 번역 CSV 반복 가져오기 안정화](../../../plans/PLAN-021-worker-pathfinding-and-localization-import.md)는 completed다. Editor에서 작업자 탐색·배회·입력 반응과 번역 가져오기 회귀를 검증했다.
 
 - [PLAN-022 약탈형 배양·침공과 연구소 자원 수신](../../../plans/PLAN-022-raider-and-resource-receiving.md)은 completed다.
+
+- [PLAN-023 로딩 진행률·Feel 연출과 전체 게임 UI 물마루 TMP 전환](../../../plans/PLAN-023-loading-progress-feel-and-mulmaru-tmp.md)은 completed다.
+- [PLAN-024 침공형 방출 성공 피드백과 화면 밖 시설 선택 시 지도 이동](../../../plans/PLAN-024-release-feedback-and-map-reveal.md)은 completed다.
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

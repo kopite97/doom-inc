@@ -46,7 +46,11 @@ namespace MobileGame.Foundation.Editor
             {
                 var root = new GameObject("Temp_" + id + "Popup", typeof(RectTransform), typeof(CanvasGroup));
                 root.SetActive(false);
-                try { root.AddComponent<T>().CreateTemplate(); prefab = PrefabUtility.SaveAsPrefabAsset(root, path); }
+                try
+                {
+                    root.AddComponent<T>().CreateTemplate(LaboratoryUiAssetBuilder.EnsureFont());
+                    prefab = PrefabUtility.SaveAsPrefabAsset(root, path);
+                }
                 finally { UnityEngine.Object.DestroyImmediate(root); }
             }
             var resourcePath = "Assets/SO/UI/Popup/" + id + "PopupResource.asset";

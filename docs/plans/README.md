@@ -24,3 +24,5 @@
 | [PLAN-020](PLAN-020-editor-bottlenecks-repeated-play-and-performance.md) | Editor 런타임 운영 병목·반복 플레이·성능 검증 | `development` | `completed` |
 | [PLAN-021](PLAN-021-worker-pathfinding-and-localization-import.md) | 작업자 경로 탐색 최적화와 번역 CSV 반복 가져오기 안정화 | `development` | `completed` |
 | [PLAN-022](PLAN-022-raider-and-resource-receiving.md) | 약탈형 배양·침공과 연구소 자원 수신 | `development` | `completed` |
+| [PLAN-023](PLAN-023-loading-progress-feel-and-mulmaru-tmp.md) | 씬 로딩 진행률·Feel 웨이브와 전체 게임 UI 물마루 TMP 전환 | `development` | `completed` |
+| [PLAN-024](PLAN-024-release-feedback-and-map-reveal.md) | 침공형 방출 성공 피드백과 화면 밖 시설 선택 시 지도 이동 | `development` | `completed` |

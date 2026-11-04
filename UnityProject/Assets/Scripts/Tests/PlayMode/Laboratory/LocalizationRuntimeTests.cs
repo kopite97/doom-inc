@@ -8,6 +8,7 @@ using MobileGame.Foundation;
 using MobileGame.Presentation;
 using NUnit.Framework;
 using UnityEditor;
+using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace MobileGame.SpatialTests
                     yield return Wait(app.SelectLanguageAsync("en")); yield return null; yield return null;
                     retry.OnPointerClick(pointer);
                     Assert.That(calls, Is.Zero); Assert.That(loading.Visible, Is.True); Assert.That(loading.Kind, Is.EqualTo(LoadingScreenKind.Confirmation));
-                    Assert.That(owner.GetComponentsInChildren<Text>().Single(t => t.name == "Status").text, Is.EqualTo("Stock: 12 Culture medium"));
+                    Assert.That(owner.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "Status").text, Is.EqualTo("Stock: 12 Culture medium"));
                     Assert.That(message.Arguments["count"], Is.EqualTo(12));
                     Assert.That(owner.GetComponentsInChildren<UiButton>().Single(b => b.name == "Retry"), Is.SameAs(retry));
                     yield return null;

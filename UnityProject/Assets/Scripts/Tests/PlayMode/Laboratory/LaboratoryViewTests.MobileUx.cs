@@ -9,6 +9,7 @@ using MobileGame.Gameplay;
 using MobileGame.Persistence;
 using MobileGame.Presentation;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
@@ -290,7 +291,7 @@ namespace MobileGame.SpatialTests
                 Assert.That(input.Map.VisibleStatusCount, Is.Zero);
                 Assert.That(GameDataStore.Instance.Catalog.Settings.CompatibilityHash, Is.EqualTo(dataHash));
                 yield return ClickVisibleButton(input, "GameMenu");
-                Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "GameTitle").fontSize,
+                Assert.That(view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "GameTitle").fontSize,
                     Is.EqualTo(30), "The persisted 125% text setting must affect newly created labels.");
                 LogAssert.NoUnexpectedReceived();
             }
@@ -304,18 +305,21 @@ namespace MobileGame.SpatialTests
                 yield return input.Load();
                 var view = input.View;
                 Assert.That(view.UiAssets, Is.Not.Null); Assert.That(view.UiAssets.IsComplete, Is.True);
+                AppSceneFlowTests.AssertSharedProductFont(view, view.UiFont);
                 Assert.That(view.UiAssets.FontLicense.text, Does.Contain("SIL OPEN FONT LICENSE"));
                 yield return ClickVisibleButton(input, "GameMenu");
-                var normalSize = view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "GameTitle").fontSize;
+                var normalSize = view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "GameTitle").fontSize;
                 yield return ClickVisibleButton(input, "TextPreference");
                 Assert.That(view.LargeText, Is.True);
-                Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "GameTitle").fontSize,
+                Assert.That(view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "GameTitle").fontSize,
                     Is.EqualTo(Mathf.RoundToInt(normalSize * 1.25f)));
                 yield return input.Escape();
                 const string korean = "가로세로건설생명체침공보고배양재료입고대기자동저장취소확정";
-                view.UiFont.RequestCharactersInTexture(korean, 24, FontStyle.Normal);
+                Assert.That(view.UiFont.atlasPopulationMode, Is.EqualTo(TMPro.AtlasPopulationMode.Dynamic));
+                Assert.That(view.UiFont.sourceFontFile.name, Is.EqualTo("Mulmaru"));
                 foreach (var letter in korean.Distinct())
-                    Assert.That(view.UiFont.GetCharacterInfo(letter, out var glyph, 24, FontStyle.Normal) && glyph.glyphWidth > 0,
+                    Assert.That(view.UiFont.HasCharacter(letter, searchFallbacks: false, tryAddCharacter: true)
+                        && view.UiFont.characterLookupTable[letter].glyph.metrics.width > 0,
                         Is.True, "Bundled Korean glyph is unavailable at runtime: " + letter);
 
                 // The third size checks a wide phone-shaped viewport; Editor input does not model Android density.
@@ -335,7 +339,7 @@ namespace MobileGame.SpatialTests
                         Assert.That(icon != null && icon.sprite != null, Is.True, "Icon reference missing: " + key);
                         if (key == "ZoomOut" || key == "ZoomIn" || key == "FitMap" || key == "ToggleStatus")
                         {
-                            var label = button.GetComponentInChildren<Text>(true);
+                            var label = button.GetComponentInChildren<TextMeshProUGUI>(true);
                             Assert.That(label, Is.Not.Null);
                             Assert.That(label.enabled, Is.False, "A bound camera icon replaces its visible caption: " + key);
                             Assert.That(label.text, Is.Not.Empty, "The fallback must retain the control's function name: " + key);
@@ -384,13 +388,13 @@ namespace MobileGame.SpatialTests
             if (details != null && details.gameObject.activeInHierarchy) yield return ClickVisibleButton(input, "Details");
         }
 
-        private static Text FacilityStatusCaption(LaboratoryView view, Guid id) => view.MapViewport.GetComponentsInChildren<Text>(true)
+        private static TextMeshProUGUI FacilityStatusCaption(LaboratoryView view, Guid id) => view.MapViewport.GetComponentsInChildren<TextMeshProUGUI>(true)
             .Single(text => text.name == "Caption" && text.transform.parent.name == "Temp_FacilityStatus_" + id.ToString("N"));
 
         private static void AssertMobileCaptionFits(LaboratoryView view, UiButton button)
         {
             Assert.That(button != null && button.gameObject.activeInHierarchy, Is.True, "Caption checks require a visible button.");
-            var label = button.GetComponentInChildren<Text>();
+            var label = button.GetComponentInChildren<TextMeshProUGUI>();
             Assert.That(label, Is.Not.Null); Assert.That(label.font, Is.SameAs(view.UiFont));
             Assert.That(label.preferredHeight, Is.LessThanOrEqualTo(label.rectTransform.rect.height + 1), "Large caption height clips: " + button.name);
             Assert.That(label.preferredWidth, Is.LessThanOrEqualTo(label.rectTransform.rect.width + 1), "Large caption width clips: " + button.name);
@@ -421,7 +425,7 @@ namespace MobileGame.SpatialTests
             var minimumMapFraction = view.IsEditing ? .48f : .55f;
             Assert.That(mapBounds.height / safeBounds.height, Is.GreaterThanOrEqualTo(minimumMapFraction),
                 "Landscape gameplay must retain a useful share of the safe-area height, including large text and open panels.");
-            var hud = view.UiCanvas.GetComponentsInChildren<Text>().Single(label => label.name == "Resources");
+            var hud = view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Single(label => label.name == "Resources");
             Assert.That(hud.preferredWidth, Is.LessThanOrEqualTo(hud.rectTransform.rect.width + 1), "Landscape HUD text clips horizontally.");
             Assert.That(hud.preferredHeight, Is.LessThanOrEqualTo(hud.rectTransform.rect.height + 1), "Landscape HUD text clips vertically.");
             Assert.That(cameraBounds.Overlaps(MobileScreenBounds(hud.rectTransform)), Is.False, "Camera controls must leave the resource HUD readable.");
@@ -439,7 +443,7 @@ namespace MobileGame.SpatialTests
         }
 
         private static string VisibleUiText(LaboratoryView view) => string.Join("\n",
-            view.UiCanvas.GetComponentsInChildren<Text>().Select(label => label.text));
+            view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Select(label => label.text));
     }
 }
 #endif

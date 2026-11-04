@@ -1,8 +1,10 @@
 using System;
 using System.IO;
 using MobileGame.Presentation;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TextCore.LowLevel;
 
 namespace MobileGame.Foundation.Editor
 {
@@ -10,8 +12,9 @@ namespace MobileGame.Foundation.Editor
     public static class LaboratoryUiAssetBuilder
     {
         public const string IconDirectory = "Assets/Sprites/UI/Laboratory";
-        public const string FontPath = "Assets/Fonts/NanumGothic/Temp_NanumGothic-Regular.ttf";
-        public const string FontLicensePath = "Assets/Fonts/NanumGothic/OFL.txt";
+        public const string FontPath = "Assets/Fonts/Mulmaru/Mulmaru.ttf";
+        public const string FontLicensePath = "Assets/Fonts/Mulmaru/OFL.txt";
+        public const string DynamicFontPath = "Assets/Fonts/Mulmaru/MulmaruDynamic.asset";
         private const int IconSize = 64;
 
         public static LaboratoryUiAssets CreateMissing()
@@ -34,6 +37,31 @@ namespace MobileGame.Foundation.Editor
                 if (icons[(int)icon] == null) throw new InvalidOperationException("Could not load UI icon: " + path);
             }
 
+            var font = EnsureFont();
+            AssetDatabase.ImportAsset(FontLicensePath, ImportAssetOptions.ForceSynchronousImport);
+            var binding = new LaboratoryUiAssets(font, icons, AssetDatabase.LoadAssetAtPath<TextAsset>(FontLicensePath),
+                AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Feel/FeelDemos/Duck/Sounds/FeelDuckWoosh.wav"));
+            if (!binding.IsComplete) throw new InvalidOperationException("UI asset binding is incomplete.");
+            return binding;
+        }
+
+        public static TMP_FontAsset EnsureFont()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode)
+                throw new InvalidOperationException("Prepare the shared UI font outside Play Mode.");
+            var font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(DynamicFontPath);
+            if (font == null) font = CreateDynamicFont();
+            if (TMP_Settings.defaultFontAsset != font)
+            {
+                TMP_Settings.defaultFontAsset = font;
+                EditorUtility.SetDirty(TMP_Settings.instance);
+                AssetDatabase.SaveAssetIfDirty(TMP_Settings.instance);
+            }
+            return font;
+        }
+
+        private static TMP_FontAsset CreateDynamicFont()
+        {
             AssetDatabase.ImportAsset(FontPath, ImportAssetOptions.ForceSynchronousImport);
             var fontImporter = AssetImporter.GetAtPath(FontPath) as TrueTypeFontImporter;
             if (fontImporter == null) throw new InvalidOperationException("Korean font importer is missing.");
@@ -43,11 +71,16 @@ namespace MobileGame.Foundation.Editor
                 fontImporter.includeFontData = true;
                 fontImporter.SaveAndReimport();
             }
-            AssetDatabase.ImportAsset(FontLicensePath, ImportAssetOptions.ForceSynchronousImport);
-            var binding = new LaboratoryUiAssets(AssetDatabase.LoadAssetAtPath<Font>(FontPath), icons,
-                AssetDatabase.LoadAssetAtPath<TextAsset>(FontLicensePath));
-            if (!binding.IsComplete) throw new InvalidOperationException("UI asset binding is incomplete.");
-            return binding;
+            var source = AssetDatabase.LoadAssetAtPath<Font>(FontPath);
+            var font = TMP_FontAsset.CreateFontAsset(source, 48, 5, GlyphRenderMode.SDFAA, 1024, 1024, AtlasPopulationMode.Dynamic, true);
+            if (font == null) throw new InvalidOperationException("Could not create the dynamic Mulmaru font.");
+            font.name = "MulmaruDynamic";
+            AssetDatabase.CreateAsset(font, DynamicFontPath);
+            AssetDatabase.AddObjectToAsset(font.atlasTexture, font);
+            AssetDatabase.AddObjectToAsset(font.material, font);
+            EditorUtility.SetDirty(font);
+            AssetDatabase.SaveAssetIfDirty(font);
+            return font;
         }
 
         public static string GetIconPath(LaboratoryIcon icon) => IconDirectory + "/Temp_" + icon + ".png";

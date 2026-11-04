@@ -105,7 +105,7 @@ namespace MobileGame.Presentation
         {
             if (Ready || (savePath == null && sceneRole != AppScene.Diagnostic && SceneFlowManager.Instance?.Loading != null))
             { loadingView?.Dispose(); loadingView = null; return; }
-            if (loadingView == null && configuration?.localization != null) loadingView = new BootstrapLoadingView(transform, configuration.localization);
+            if (loadingView == null && configuration?.localization != null) loadingView = new BootstrapLoadingView(transform, configuration.localization, configuration.uiAssets?.Font);
             if (loadingView == null) return;
             loadingView.Update(Error, starting, () =>
             {

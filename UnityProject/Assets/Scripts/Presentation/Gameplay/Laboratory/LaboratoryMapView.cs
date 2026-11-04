@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using MobileGame.Foundation;
 using MobileGame.Gameplay;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -18,11 +20,11 @@ namespace MobileGame.Presentation
         private LaboratoryView view;
         private RectTransform viewport;
         private readonly List<Image> cells = new List<Image>();
-        private readonly List<Text> labels = new List<Text>();
+        private readonly List<TextMeshProUGUI> labels = new List<TextMeshProUGUI>();
         private readonly Dictionary<int, Vector2> pointers = new Dictionary<int, Vector2>();
         private readonly List<RaycastResult> hits = new List<RaycastResult>();
         private LaboratoryGesture gesture;
-        private Font font;
+        private TMP_FontAsset font;
         private Vector2 center;
         private float zoom = 1;
         private Vector2 previousSize;
@@ -35,12 +37,30 @@ namespace MobileGame.Presentation
         private int touchFrame = -1;
         private int width, height;
         private bool ensureSelectionVisible;
-        public void RequestSelectionVisibility() => ensureSelectionVisible = true;
+        private Tween selectionPan;
+
+        public void RequestSelectionVisibility()
+        {
+            StopSelectionPan();
+            ensureSelectionVisible = true;
+        }
+
+        private void StopSelectionPan()
+        {
+            ensureSelectionVisible = false;
+            selectionPan?.Kill();
+            selectionPan = null;
+        }
         public float Zoom => zoom;
         public int AcceptedTaps { get; private set; }
         public RectTransform Viewport => viewport;
-        public void CancelInput() => gesture?.Cancel();
-        public void Fit() { gesture?.Cancel(); zoom = 1; center = new Vector2(width, height) * .5f; ClampCenter(); }
+        public void CancelInput()
+        {
+            gesture?.Cancel();
+            if (view == null || !view.CanUseMap || view.OpenedPanel != LaboratoryPanel.Selection)
+                StopSelectionPan();
+        }
+        public void Fit() { StopSelectionPan(); gesture?.Cancel(); zoom = 1; center = new Vector2(width, height) * .5f; ClampCenter(); }
         public void ZoomBy(float factor) => ZoomAt(factor, RectTransformUtility.WorldToScreenPoint(null, viewport.TransformPoint(viewport.rect.center)));
 
         public void Initialize(LaboratoryView owner)
@@ -63,6 +83,7 @@ namespace MobileGame.Presentation
         }
         private void OnDisable()
         {
+            StopSelectionPan();
             gesture?.Cancel();
             foreach (var p in pointers) gesture?.End(p.Key, p.Value, true);
             pointers.Clear();
@@ -101,15 +122,16 @@ namespace MobileGame.Presentation
             var map = view.Simulation.Map;
             if (generation != view.Controller.Generation || width != map.Width || height != map.Height)
             {
-                gesture.Cancel(); generation = view.Controller.Generation;
+                StopSelectionPan(); gesture.Cancel(); generation = view.Controller.Generation;
                 width = map.Width; height = map.Height; center = new Vector2(width, height) * 0.5f; zoom = 1;
             }
             var screenSize = new Vector2(Screen.width, Screen.height);
             if (previousSize != viewport.rect.size || previousScreen != screenSize || previousSafe != Screen.safeArea
                 || phase != view.Controller.Phase || wasInteractive != view.CanInteract)
             {
-                if (previousSize != viewport.rect.size && view.OpenedPanel == LaboratoryPanel.Selection)
-                    ensureSelectionVisible = true;
+                if (!view.CanUseMap) StopSelectionPan();
+                else if (previousSize != viewport.rect.size && view.OpenedPanel == LaboratoryPanel.Selection)
+                    RequestSelectionVisibility();
                 gesture.Cancel(); previousSize = viewport.rect.size; previousScreen = screenSize;
                 previousSafe = Screen.safeArea; phase = view.Controller.Phase; wasInteractive = view.CanInteract;
                 ClampCenter();
@@ -122,7 +144,7 @@ namespace MobileGame.Presentation
             if (previousSize != viewport.rect.size)
             {
                 gesture.Cancel(); previousSize = viewport.rect.size; ClampCenter();
-                if (view.OpenedPanel == LaboratoryPanel.Selection) ensureSelectionVisible = true;
+                if (view.CanUseMap && view.OpenedPanel == LaboratoryPanel.Selection) RequestSelectionVisibility();
             }
             EnsureSelectionVisible();
             Draw();
@@ -140,20 +162,26 @@ namespace MobileGame.Presentation
                 ? (Vector2)FacilityGeometry.GetSize(definition, selected.Placement.Rotation) : Vector2.one;
             var min = (Vector2)selected.Placement.Origin; var max = min + size;
             var half = viewport.rect.size / (2 * CellSize) - Vector2.one * .2f;
-            if (size.x > half.x * 2) center.x = (min.x + max.x) * .5f;
-            else if (min.x < center.x - half.x) center.x = min.x + half.x;
-            else if (max.x > center.x + half.x) center.x = max.x - half.x;
-            if (size.y > half.y * 2) center.y = (min.y + max.y) * .5f;
-            else if (min.y < center.y - half.y) center.y = min.y + half.y;
-            else if (max.y > center.y + half.y) center.y = max.y - half.y;
-            ClampCenter();
+            var target = center;
+            if (size.x > half.x * 2) target.x = (min.x + max.x) * .5f;
+            else if (min.x < target.x - half.x) target.x = min.x + half.x;
+            else if (max.x > target.x + half.x) target.x = max.x - half.x;
+            if (size.y > half.y * 2) target.y = (min.y + max.y) * .5f;
+            else if (min.y < target.y - half.y) target.y = min.y + half.y;
+            else if (max.y > target.y + half.y) target.y = max.y - half.y;
+            target = ClampedCenter(target);
+            if (target == center) return;
+            selectionPan = DOTween.To(() => center, value => center = value, target, .2f)
+                .SetEase(Ease.OutQuad).SetUpdate(true).OnKill(() => selectionPan = null);
         }
-        private void ClampCenter()
+        private void ClampCenter() => center = ClampedCenter(center);
+        private Vector2 ClampedCenter(Vector2 point)
         {
-            if (viewport == null || width == 0 || height == 0) return;
+            if (viewport == null || width == 0 || height == 0) return point;
             var half = viewport.rect.size / (2 * CellSize);
-            center.x = half.x * 2 >= width ? width * 0.5f : Mathf.Clamp(center.x, half.x, width - half.x);
-            center.y = half.y * 2 >= height ? height * 0.5f : Mathf.Clamp(center.y, half.y, height - half.y);
+            return new Vector2(
+                half.x * 2 >= width ? width * .5f : Mathf.Clamp(point.x, half.x, width - half.x),
+                half.y * 2 >= height ? height * .5f : Mathf.Clamp(point.y, half.y, height - half.y));
         }
         public Vector2 CellScreenPoint(Vector2 cell)
         {
@@ -192,11 +220,13 @@ namespace MobileGame.Presentation
         private void Pan(Vector2 pixels)
         {
             if (!view.CanUseMap) return;
+            StopSelectionPan();
             center -= pixels / Mathf.Max(0.001f, view.UiCanvas.scaleFactor) / CellSize; ClampCenter();
         }
         private void ZoomAt(float ratio, Vector2 point)
         {
             if (!view.CanUseMap || !float.IsFinite(ratio) || ratio <= 0) return;
+            StopSelectionPan();
             RectTransformUtility.ScreenPointToLocalPointInRectangle(viewport, point, null, out var local);
             var before = (local - Origin) / CellSize;
             zoom = Mathf.Clamp(zoom * ratio, 1, 8);
@@ -239,9 +269,10 @@ namespace MobileGame.Presentation
             {
                 var go = new GameObject("Temp_MapCell", typeof(RectTransform), typeof(Image)); go.transform.SetParent(transform, false);
                 var graphic = go.GetComponent<Image>(); graphic.raycastTarget = false; cells.Add(graphic);
-                var labelObject = new GameObject("Temp_CellLabel", typeof(RectTransform), typeof(Text)); labelObject.transform.SetParent(go.transform, false);
-                var text = labelObject.GetComponent<Text>(); text.font = font; text.alignment = TextAnchor.MiddleCenter;
-                text.raycastTarget = false; text.color = Color.white; text.horizontalOverflow = HorizontalWrapMode.Overflow;
+                var labelObject = new GameObject("Temp_CellLabel", typeof(RectTransform), typeof(TextMeshProUGUI)); labelObject.transform.SetParent(go.transform, false);
+                var text = labelObject.GetComponent<TextMeshProUGUI>(); text.font = font; text.alignment = TextAlignmentOptions.Center;
+                text.raycastTarget = false; text.color = Color.white; text.textWrappingMode = TextWrappingModes.NoWrap;
+                text.richText = false; text.overflowMode = TextOverflowModes.Overflow;
                 var rect = text.rectTransform; rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one; rect.offsetMin = rect.offsetMax = Vector2.zero;
                 labels.Add(text);
             }

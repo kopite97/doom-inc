@@ -26,6 +26,7 @@ namespace MobileGame.Presentation
         private Action cancelPrompt;
         private bool paused;
         private bool focused = true;
+        private readonly System.Diagnostics.Stopwatch visibleLoadingTime = new System.Diagnostics.Stopwatch();
         private static AsyncOperation pendingSceneLoad;
         private static string pendingScenePath;
         private static bool abandonedSceneEntry;
@@ -84,6 +85,18 @@ namespace MobileGame.Presentation
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this; DontDestroyOnLoad(gameObject); AppUiLifetime.Ensure();
+        }
+        private void OnEnable() => Canvas.willRenderCanvases += CountVisibleLoadingTime;
+        private void OnDisable()
+        {
+            Canvas.willRenderCanvases -= CountVisibleLoadingTime;
+            visibleLoadingTime.Stop();
+        }
+        private void CountVisibleLoadingTime()
+        {
+            // Resume only when a foreground canvas will actually draw the overlay.
+            if (IsTransitioning && !paused && focused && Loading != null && Loading.Visible)
+                visibleLoadingTime.Start();
         }
         private void ResetLifetime()
         {
@@ -158,6 +171,7 @@ namespace MobileGame.Presentation
         {
             if (IsTransitioning || IsPrompting || paused || !focused) return false;
             IsTransitioning = true; Error = null; generation++;
+            visibleLoadingTime.Reset();
             Popups?.SetSuspended(true);
             Laboratory?.SetTransitionPaused(true); AppUiLifetime.Invalidate();
             StartCoroutine(Guard(Transition(request, generation), request, generation));
@@ -174,6 +188,7 @@ namespace MobileGame.Presentation
                 {
                     (work as IDisposable)?.Dispose();
                     IsTransitioning = false;
+                    visibleLoadingTime.Stop();
                     Fail(failure.Message, () => Begin(request), () => Begin(new Request { Target = AppScene.Title }));
                     yield break;
                 }
@@ -197,7 +212,7 @@ namespace MobileGame.Presentation
             localization.GetAwaiter().GetResult();
             EnsurePopups();
             if (token != generation) yield break;
-            Loading.Show(LoadingScreenKind.Loading, new LocalizedMessage("Bootstrap", "preparing_screen")); yield return null;
+            Loading.SetStatus(new LocalizedMessage("Bootstrap", "preparing_screen")); yield return null;
             if (!request.UseCurrent)
             {
                 var path = request.Target == AppScene.Title ? Configuration.titleScene : Configuration.laboratoryScene;
@@ -210,7 +225,12 @@ namespace MobileGame.Presentation
                 var operation = SceneManager.LoadSceneAsync(path, LoadSceneMode.Single);
                 pendingSceneLoad = operation;
                 if (operation == null) throw new InvalidOperationException("Scene loading did not start.");
-                while (!operation.isDone) yield return null;
+                while (!operation.isDone)
+                {
+                    Loading.SetSceneProgress(operation.progress, false);
+                    yield return null;
+                }
+                Loading.SetSceneProgress(1f, true);
                 if (pendingSceneLoad == operation) pendingSceneLoad = null;
             }
             request.UseCurrent = false;
@@ -238,9 +258,10 @@ namespace MobileGame.Presentation
                 title.Initialize(this);
             }
             yield return null; // render the prepared destination under the shield
-            while (paused || !focused) yield return null;
+            while (paused || !focused || visibleLoadingTime.Elapsed.TotalSeconds < Configuration.minimumLoadingSeconds)
+                yield return null;
             if (token != generation) yield break;
-            IsTransitioning = false; Loading.Hide(); Laboratory?.SetTransitionPaused(false);
+            IsTransitioning = false; visibleLoadingTime.Stop(); Loading.Hide(); Laboratory?.SetTransitionPaused(false);
             Popups.SetSuspended(false);
             foreach (var entry in FindObjectsByType<GameBootstrap>(FindObjectsSortMode.None)) entry.MarkReady();
         }
@@ -259,8 +280,25 @@ namespace MobileGame.Presentation
                 else if (Popups?.Back() != true) cancelPrompt?.Invoke();
             }
         }
-        private void OnApplicationPause(bool value) { if (paused == value) return; paused = value; Popups?.SetForeground(!paused && focused); AppUiLifetime.Invalidate(); }
-        private void OnApplicationFocus(bool value) { if (focused == value) return; focused = value; Popups?.SetForeground(!paused && focused); AppUiLifetime.Invalidate(); }
+        private void OnApplicationPause(bool value)
+        {
+            if (paused == value) return;
+            paused = value;
+            RefreshForeground();
+        }
+        private void OnApplicationFocus(bool value)
+        {
+            if (focused == value) return;
+            focused = value;
+            RefreshForeground();
+        }
+        private void RefreshForeground()
+        {
+            var foreground = !paused && focused;
+            if (!foreground) visibleLoadingTime.Stop();
+            Popups?.SetForeground(foreground);
+            AppUiLifetime.Invalidate();
+        }
         private void OnDestroy()
         {
             if (Instance != this) return;

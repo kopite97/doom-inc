@@ -1,0 +1,237 @@
+{
+  "status": "completed",
+  "duration": 78.76,
+  "summary": {
+    "total": 32,
+    "passed": 31,
+    "failed": 1,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations",
+      "Status": "Passed",
+      "Duration": 2.7339249,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceBackCancelsPendingRestartAndInvalidatesHeldConfirmWithoutLosingDraft",
+      "Status": "Passed",
+      "Duration": 2.0818194,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceDisplayPreferencesSurviveNewRunAndSceneReopenWithoutChangingGameData",
+      "Status": "Passed",
+      "Duration": 2.0575812,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceDragAndPinchNeverSelectOnRemainingFingerRelease",
+      "Status": "Passed",
+      "Duration": 0.5114752,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceFacilityOperationsAndIndividualAssignmentsWorkInBothOrientations",
+      "Status": "Passed",
+      "Duration": 4.073464,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceGameMenuSaveAndReloadRequireExplicitConfirmationAndCancelPreservesDraft",
+      "Status": "Passed",
+      "Duration": 1.3984588,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceHeldTouchIsCanceledAcrossImmediatePauseAndResume",
+      "Status": "Passed",
+      "Duration": 0.4800452,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceLargeTextIconsAndBundledKoreanRemainUsableInBothOrientations",
+      "Status": "Passed",
+      "Duration": 2.4115902,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceMouseBuildsOnceAndUiAndMapBoundariesDoNotShareClicks",
+      "Status": "Passed",
+      "Duration": 0.6322015,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations",
+      "Status": "Passed",
+      "Duration": 3.5229276,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceReleaseReportsAndResultsRestartUseCurrentSessionCommands",
+      "Status": "Passed",
+      "Duration": 4.8434553,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceStatusTapUsesSelectionNormallyAndPreviewInBothEditingModesWithOnAndOff",
+      "Status": "Passed",
+      "Duration": 1.9520962,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceTouchOpensOverlappingCandidatesAndEditsOnlySelectedWorker",
+      "Status": "Passed",
+      "Duration": 0.986632,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceTouchScrollOwnsCrossBoundaryAndMixedContactsThenMapCanPanToLastCell",
+      "Status": "Passed",
+      "Duration": 0.6379105,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceZeroMaterialConstructionStillAcceptsValidSiteAndExplainsWaiting",
+      "Status": "Passed",
+      "Duration": 0.7013166,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible",
+      "Status": "Failed",
+      "Duration": 0.5840714,
+      "Message": "  Expected: same as <MobileGame.GameFlow.GameFlowManager+EndingRequest>\r\n  But was:  <MobileGame.GameFlow.GameFlowManager+EndingRequest>\r\n",
+      "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible>d__52.MoveNext () [0x00416] in C:\\Users\\USER\\Documents\\ChatGPT\\모바일 게임\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.ScreenStates.cs:149\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.EndingSceneCompletesTwoPaidRunsAndPreservesFileOnFailedRestart",
+      "Status": "Passed",
+      "Duration": 9.6341128,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.EndingViewPauseDisableReloadAndRecreationPreserveStoppedRun",
+      "Status": "Passed",
+      "Duration": 4.8757963,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.InvasionSceneRunsPaidCycleReleasesReportsStopsAndRebinds",
+      "Status": "Passed",
+      "Duration": 2.8288895,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.KoreanEnglishLargeTextFitsBothOrientationsAndKeepsSelectedDetails",
+      "Status": "Passed",
+      "Duration": 1.9180946,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.LanguageChangePreservesPreviewSessionNoticeAndSavedLanguage",
+      "Status": "Passed",
+      "Duration": 4.743348,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.LoadingAndRestoreFailuresKeepRecoveryControlsReachableInBothOrientations",
+      "Status": "Passed",
+      "Duration": 0.1851475,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.NewReportsPreserveReadingPositionAndPrunedAnchorShowsNearestRetainedReport",
+      "Status": "Passed",
+      "Duration": 1.6517604,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.ProductionSceneRunsPaidInitialCycleMatchesHarnessAndRestartsCleanly",
+      "Status": "Passed",
+      "Duration": 2.1877631,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.RaiderCultivationAndMixedReleaseDeliverOnceAcrossContinue",
+      "Status": "Passed",
+      "Duration": 6.8788859,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.RealStartBuildsCollectsAndStoresWithAutomaticSaveAndMidConstructionContinue",
+      "Status": "Passed",
+      "Duration": 4.8469447,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.ReleaseFeedbackPlaysOncePerSuccessfulCommand",
+      "Status": "Passed",
+      "Duration": 0.7147621,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.RepeatedStatusPanelOrientationAndSessionChangesDoNotAccumulateUiObjects",
+      "Status": "Passed",
+      "Duration": 3.0626111,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.ResponsiveLayoutsPreserveSessionAndDraftAcrossSixScreenSizes",
+      "Status": "Passed",
+      "Duration": 0.6378821,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.SceneAndHarnessShareConstructionSettingsAndPlacementRules",
+      "Status": "Passed",
+      "Duration": 0.8495753,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.SelectingOffscreenFacilityRevealsItOnceAndDoesNotUndoSubsequentDevicePan",
+      "Status": "Passed",
+      "Duration": 2.031112,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.TwentyFacilityStatusRefreshReportsEditorCpuReferenceWithoutTimingPassClaim",
+      "Status": "Passed",
+      "Duration": 2.0629065,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

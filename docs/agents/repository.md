@@ -13,6 +13,16 @@ Git 루트는 AGENTS.md가 있는 최상위 폴더이고 Unity에서 여는 프�
 - ignore 변경 후 소스·메타데이터·증거가 실수로 제외되지 않는지 확인한다.
 - ignore는 비밀 값의 내용을 검사하지 않는다. 커밋 전 설정·로그에 인증 정보가 없는지 변경 내용을 검토한다.
 
+## 새 체크아웃의 외부 연출 에셋 복원
+
+공개 저장소에는 게임의 연동 코드와 프로젝트 설정을 추적한다. 새 체크아웃에서는 Unity Package Manager의 My Assets에서 라이선스를 보유한 계정으로 다음 에셋을 기본 경로에 임포트한다.
+
+- Feel은 Duck 데모의 `FeelDuckWoosh.wav`까지 포함한다. 연구소 씬이 이 클립의 원래 GUID를 참조한다.
+- DOTween Pro는 함께 제공되는 DOTween을 임포트하고 DOTween Utility Panel에서 Setup DOTween을 실행한다.
+- Text Animator for Unity는 프로젝트에서 사용한 3.20.1 패키지와 기본 콘텐츠를 임포트한다. 로딩 문구는 기본 Wave 효과를 사용한다.
+
+세 에셋의 원본 폴더는 [Unity ignore](../../UnityProject/.gitignore)로 관리한다.
+
 ## LFS와 텍스트
 
 - LFS 대상은 [attributes](../../.gitattributes)에 정한 `UnityProject/Assets/`의 이미지·음원·영상·모델·폰트 등 바이너리다.

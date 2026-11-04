@@ -8,6 +8,7 @@ using MobileGame.Foundation.Editor;
 using MobileGame.Gameplay;
 using MobileGame.Presentation;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
@@ -77,9 +78,9 @@ namespace MobileGame.SpatialTests
                 Assert.That(nearest, Is.EqualTo(anchorSequence + 1));
                 var nearestRow = ReportReadingRow(view, nearest);
                 Assert.That(StatusScreenRect(nearestRow.rectTransform).Overlaps(StatusScreenRect(scroll.viewport)), Is.True, "The nearest remaining report must be visible after pruning.");
-                var feedback = view.GetComponentsInChildren<Text>().Single(t => t.name == "Feedback");
+                var feedback = view.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "Feedback");
                 Assert.That(feedback.text, Does.Contain("남은 기록"));
-                Assert.That(view.GetComponentsInChildren<Text>().Any(t => t.name == "Report_" + anchorSequence), Is.False);
+                Assert.That(view.GetComponentsInChildren<TextMeshProUGUI>().Any(t => t.name == "Report_" + anchorSequence), Is.False);
                 var scoreAfterActivities = view.Invasion.Score;
                 yield return ClickVisibleButton(input, "LatestReports");
                 yield return SettleStatusLayout();
@@ -113,8 +114,16 @@ namespace MobileGame.SpatialTests
                     yield return ClickVisibleButton(input, "Select_" + facility.Id.ToString("N"));
                     yield return ExpandSelectedIfNeeded(input);
                     yield return SettleStatusLayout();
+                    yield return new WaitForSecondsRealtime(.25f);
                     Assert.That(view.SelectedId, Is.EqualTo(facility.Id));
                     Assert.That(RectTransformUtility.RectangleContainsScreenPoint(view.MapViewport, map.CellScreenPoint(middleCell)), Is.True, "Choosing an offscreen roster entry should reveal it.");
+                    var visible = map.CellScreenPoint(middleCell);
+                    map.RequestSelectionVisibility();
+                    yield return new WaitForSecondsRealtime(.25f);
+                    Assert.That(Vector2.Distance(visible, map.CellScreenPoint(middleCell)), Is.LessThan(.1f));
+                    map.Fit(); map.ZoomBy(100);
+                    map.RequestSelectionVisibility();
+                    yield return null;
                     var accepted = map.AcceptedTaps;
                     for (var drag = 0; drag < 3; drag++)
                     {
@@ -142,6 +151,49 @@ namespace MobileGame.SpatialTests
         }
 
         [UnityTest]
+        public IEnumerator NewSelectionRotationZoomAndFitOverridePendingReveal()
+        {
+            using (var input = new PointerScene())
+            {
+                yield return input.Load();
+                var view = input.View;
+                var map = input.Map;
+                var east = AddInputFacility(view, "processingId", new Vector2Int(13, 7));
+                var west = AddInputFacility(view, "storageId", new Vector2Int(2, 3));
+                var westCell = (Vector2)west.Placement.Origin + Vector2.one * .5f;
+                map.Fit();
+                map.ZoomBy(8);
+                Assert.That(view.SelectThing(east.Id), Is.True);
+                yield return null;
+                Assert.That(view.SelectThing(west.Id), Is.True);
+                using (new LaboratoryGameViewSize(720, 1280))
+                {
+                    yield return SettleStatusLayoutSize(new Vector2Int(720, 1280));
+                    yield return new WaitForSecondsRealtime(.25f);
+                    Assert.That(view.SelectedId, Is.EqualTo(west.Id));
+                    Assert.That(map.Zoom, Is.EqualTo(8));
+                    Assert.That(RectTransformUtility.RectangleContainsScreenPoint(view.MapViewport, map.CellScreenPoint(westCell)), Is.True);
+
+                    Assert.That(view.SelectThing(east.Id), Is.True);
+                    yield return null;
+                    map.ZoomBy(.75f);
+                    var afterZoom = map.CellScreenPoint(westCell);
+                    yield return new WaitForSecondsRealtime(.25f);
+                    Assert.That(map.Zoom, Is.EqualTo(6));
+                    Assert.That(Vector2.Distance(afterZoom, map.CellScreenPoint(westCell)), Is.LessThan(.1f));
+
+                    map.RequestSelectionVisibility();
+                    yield return null;
+                    map.Fit();
+                    var afterFit = map.CellScreenPoint(westCell);
+                    yield return new WaitForSecondsRealtime(.25f);
+                    Assert.That(map.Zoom, Is.EqualTo(1));
+                    Assert.That(Vector2.Distance(afterFit, map.CellScreenPoint(westCell)), Is.LessThan(.1f));
+                }
+            }
+        }
+
+        [UnityTest]
         public IEnumerator DeviceRelatedTargetLinksSelectRevealAndExpandCurrentTargetsInBothOrientations()
         {
             using (var input = new PointerScene())
@@ -165,6 +217,7 @@ namespace MobileGame.SpatialTests
                     var mapTaps = map.AcceptedTaps;
                     yield return ClickVisibleButton(input, "InspectStorage_" + storage.Id.ToString("N"));
                     yield return SettleStatusLayout();
+                    yield return new WaitForSecondsRealtime(.25f);
                     AssertRelatedTargetSelection(input, storage, (Vector2)storage.Placement.Origin + new Vector2(1, .5f), mapTaps);
                     var allowsCulture = storage.GetComponent<StorageComponent>().AllowsCulture;
                     yield return ClickVisibleButton(input, "AllowCulture");
@@ -178,9 +231,11 @@ namespace MobileGame.SpatialTests
                     mapTaps = map.AcceptedTaps;
                     yield return ClickVisibleButton(input, "AssignedFacility_" + processor.Id.ToString("N"));
                     yield return SettleStatusLayout();
+                    yield return new WaitForSecondsRealtime(.25f);
                     AssertRelatedTargetSelection(input, processor, (Vector2)processor.Placement.Origin + Vector2.one * .5f, mapTaps);
                     yield return ClickVisibleButton(input, "AssignedWorker_" + worker.Id.ToString("N") + "_" + worker.Id.ToString("N"));
                     yield return SettleStatusLayout();
+                    yield return new WaitForSecondsRealtime(.25f);
                     AssertRelatedTargetSelection(input, worker, worker.Placement.Origin, mapTaps);
                     Assert.That(worker.GetComponent<WorkerComponent>().AssignedFacilityId, Is.EqualTo(processor.Id), "Navigating the relationship must not change the assignment.");
                     LogStatusEvidence("PLAN014_RELATED_TARGET " + size.x + "x" + size.y + " materialWaitToStorage=true destinationControls=true assignedFacilityAndWorker=true exactId=true expanded=true revealed=true mapTapThrough=false");
@@ -199,8 +254,8 @@ namespace MobileGame.SpatialTests
             Assert.That(input.Map.AcceptedTaps, Is.EqualTo(mapTaps), "The related-target button must not also tap the map.");
         }
 
-        private static Text ReportReadingRow(LaboratoryView view, long sequence)
-            => view.GetComponentsInChildren<Text>().Single(t => t.name == "Report_" + sequence);
+        private static TextMeshProUGUI ReportReadingRow(LaboratoryView view, long sequence)
+            => view.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "Report_" + sequence);
     }
 }
 #endif

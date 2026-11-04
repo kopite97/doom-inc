@@ -7,6 +7,7 @@ using MobileGame.Foundation;
 using MobileGame.Foundation.Editor;
 using MobileGame.Presentation;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.TestTools;
@@ -39,9 +40,9 @@ namespace MobileGame.SpatialTests
                         Assert.That(view.ReleaseInvaders(), Is.False); // Long localized notice without changing game state.
                         yield return null; yield return null; Canvas.ForceUpdateCanvases();
                         Assert.That(view.SelectedId, Is.EqualTo(facility.Id)); Assert.That(view.DetailsExpanded, Is.True);
-                        var closeLabel = view.FindUiButton("ClosePanel").GetComponentInChildren<Text>();
+                        var closeLabel = view.FindUiButton("ClosePanel").GetComponentInChildren<TextMeshProUGUI>();
                         Assert.That(closeLabel.preferredWidth, Is.LessThanOrEqualTo(closeLabel.rectTransform.rect.width + 1), "Close must not wrap in the middle of a word.");
-                        foreach (var label in view.UiCanvas.GetComponentsInChildren<Text>().Where(t => t.enabled && !string.IsNullOrEmpty(t.text)))
+                        foreach (var label in view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Where(t => t.enabled && !string.IsNullOrEmpty(t.text)))
                         {
                             if (label.transform.IsChildOf(view.MapViewport)) continue; // World-space markers are separately measured in status tests.
                             Assert.That(label.preferredHeight, Is.LessThanOrEqualTo(label.rectTransform.rect.height + 2), label.name + ": " + label.text);
@@ -87,19 +88,19 @@ namespace MobileGame.SpatialTests
                 Assert.That(view.IsEditing, Is.True); Assert.That(session.ConstructionOrigin, Is.EqualTo(origin));
                 Assert.That(session.Registry.Things.Select(t => t.Id), Is.EquivalentTo(ids));
                 Assert.That(session.Registry.Things.First().Definition.Settings.CompatibilityHash, Is.EqualTo(hash));
-                Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "Feedback").text, Is.EqualTo("Facility status: OFF"));
-                Assert.That(view.FindUiButton("Confirm").GetComponentInChildren<Text>().text, Is.EqualTo("Confirm"));
+                Assert.That(view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "Feedback").text, Is.EqualTo("Facility status: OFF"));
+                Assert.That(view.FindUiButton("Confirm").GetComponentInChildren<TextMeshProUGUI>().text, Is.EqualTo("Confirm"));
                 Assert.That(File.ReadAllText(Path.Combine(directory, "language.json")), Does.Contain("en"));
                 view.Popups.Top.Cancel(); yield return PopupSettled(view);
                 view.CancelPlacement(); view.OpenPanel(LaboratoryPanel.Game);
                 yield return SelectLanguage(view, "ko");
-                Assert.That(view.FindUiButton("Save").GetComponentInChildren<Text>().text, Is.EqualTo("지금 저장"));
+                Assert.That(view.FindUiButton("Save").GetComponentInChildren<TextMeshProUGUI>().text, Is.EqualTo("지금 저장"));
                 yield return SelectLanguage(view, "en");
                 Assert.That(view.Save(), Is.True);
                 UnityEngine.Object.Destroy(view.gameObject); view = null; yield return null;
                 yield return LoadIsolatedScene(path, 999, loaded => { view = loaded; view.SimulationRate = 0; });
                 view.OpenPanel(LaboratoryPanel.Game); yield return null;
-                Assert.That(view.FindUiButton("Save").GetComponentInChildren<Text>().text, Is.EqualTo("Save now"));
+                Assert.That(view.FindUiButton("Save").GetComponentInChildren<TextMeshProUGUI>().text, Is.EqualTo("Save now"));
                 Assert.That(view.Simulation.Registry.Things.Select(t => t.Id), Is.EquivalentTo(ids));
             }
             finally
@@ -121,7 +122,7 @@ namespace MobileGame.SpatialTests
             var button = view.GetComponentsInChildren<SettingsPopup>().Single().GetComponentsInChildren<UiButton>().Single(b => b.name == "Language_" + code); Assert.That(button, Is.Not.Null);
             var pointer = new PointerEventData(EventSystem.current) { pointerId = 78 };
             button.OnPointerDown(pointer); button.OnPointerClick(pointer);
-            yield return WaitFor(() => button.GetComponentInChildren<Text>().text.StartsWith("✓", StringComparison.Ordinal), "Language did not change: " + code);
+            yield return WaitFor(() => button.GetComponentInChildren<TextMeshProUGUI>().text.StartsWith("●", StringComparison.Ordinal), "Language did not change: " + code);
             yield return null;
         }
     }

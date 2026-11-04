@@ -9,7 +9,7 @@ namespace MobileGame.Presentation
             foreach (var language in localization.Service.Languages)
             {
                 var code = language.Code;
-                var label = (localization.Service.CurrentLanguage == code ? "✓ " : "") + language.NativeName;
+                var label = (localization.Service.CurrentLanguage == code ? "● " : "") + language.NativeName;
                 rows.Action("Language_" + code, label, () => { _ = localization.SelectLanguageAsync(code); }, enabled, context);
             }
             if (localization.ChangeError != null) rows.Text("LanguageChangeError", localization.Format("Common", "language_error"));

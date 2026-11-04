@@ -1,5 +1,6 @@
 using System;
 using MobileGame.Foundation;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,23 +10,23 @@ namespace MobileGame.Presentation
     {
         private Vector2 endingScroll;
         private RectTransform endingRoot;
-        private Text endingTitle;
-        private Text endingCaption;
+        private TextMeshProUGUI endingTitle;
+        private TextMeshProUGUI endingCaption;
         private LaboratoryUiWorld endingWorld;
         private ScrollRect resultScroll;
         private UiList resultRows;
         private UiButton newRunButton;
         private UiButton retrySaveButton;
-        private Text restartCaption;
+        private TextMeshProUGUI restartCaption;
 
         private void CreateEndingScreen()
         {
             endingRoot = UiWidgets.Panel("EndingScreen", screen.SafeRoot, UiWidgets.Background).rectTransform;
-            endingTitle = UiWidgets.Label("EndingTitle", endingRoot, 30); endingTitle.alignment = TextAnchor.MiddleCenter;
+            endingTitle = UiWidgets.Label("EndingTitle", endingRoot, 30); endingTitle.alignment = TextAlignmentOptions.Center;
             endingTitle.color = new Color(1f, 0.65f, 0.4f);
             var worldRect = UiWidgets.Rect("Temp_EndingWorld", endingRoot);
             endingWorld = worldRect.gameObject.AddComponent<LaboratoryUiWorld>(); endingWorld.raycastTarget = false;
-            endingCaption = UiWidgets.Label("EndingCaption", endingRoot, 18); endingCaption.alignment = TextAnchor.MiddleCenter;
+            endingCaption = UiWidgets.Label("EndingCaption", endingRoot, 18); endingCaption.alignment = TextAlignmentOptions.Center;
             resultScroll = UiWidgets.Scroll("ResultDetails", endingRoot, out var content);
             resultRows = new UiList(content, () => screen.LayoutEpoch);
             newRunButton = UiWidgets.Button("RestartFromResults", endingRoot, R("new_run"), () => screen.LayoutEpoch);
@@ -37,8 +38,8 @@ namespace MobileGame.Presentation
 
         private void UpdateEndingScreen()
         {
-            newRunButton.GetComponentInChildren<Text>().text = R("new_run");
-            retrySaveButton.GetComponentInChildren<Text>().text = R("retry_save");
+            newRunButton.GetComponentInChildren<TextMeshProUGUI>(true).text = R("new_run");
+            retrySaveButton.GetComponentInChildren<TextMeshProUGUI>(true).text = R("retry_save");
             restartCaption.text = R("restart_hint");
             var size = screen.Size; var w = size.x; var h = size.y;
             UiWidgets.Place(endingRoot, 0, 0, w, h);

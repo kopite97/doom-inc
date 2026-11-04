@@ -91,6 +91,7 @@ namespace MobileGame.Presentation
             ? Controller.Restart() : start == SessionStart.Continue ? Controller.Reload() : Controller.StartOrContinue());
         public void SetTransitionPaused(bool paused)
         {
+            if (paused) StopReleaseFeedback();
             transitionPaused = paused; skipNextDelta = true; InvalidateInput(); UpdateEndingVisibility();
         }
         public void ReleaseSession()
@@ -102,7 +103,7 @@ namespace MobileGame.Presentation
         }
 
         private void OnEnable() { skipNextDelta = true; UpdateEndingVisibility(); SetScreenVisible(true); }
-        private void OnDisable() { skipNextDelta = true; InvalidateInput(); Ending?.SetVisible(false); SetScreenVisible(false); }
+        private void OnDisable() { StopReleaseFeedback(); skipNextDelta = true; InvalidateInput(); Ending?.SetVisible(false); SetScreenVisible(false); }
         private void LateUpdate() => UpdateScreen();
 
         private void Update()
@@ -166,6 +167,7 @@ namespace MobileGame.Presentation
 
         private void OnSessionChanged()
         {
+            StopReleaseFeedback();
             RenewPopupScope();
             InvalidateInput();
             ResetNavigation();
@@ -251,6 +253,7 @@ namespace MobileGame.Presentation
         public bool ReleaseInvaders()
         {
             var succeeded = Commands.ReleaseInvaders();
+            if (succeeded) PlayReleaseFeedback();
             // External invaders remain real Things; the details/roster show their outside activity.
             return Record("Release all waiting invaders", succeeded);
         }

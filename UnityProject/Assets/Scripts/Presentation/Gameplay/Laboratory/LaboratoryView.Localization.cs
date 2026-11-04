@@ -1,6 +1,6 @@
 using MobileGame.Foundation;
 using MobileGame.Gameplay;
-using UnityEngine.UI;
+using TMPro;
 using System;
 
 namespace MobileGame.Presentation
@@ -34,6 +34,6 @@ namespace MobileGame.Presentation
             SetLabel(buildMenuButton, "build"); SetLabel(creatureMenuButton, "creatures"); SetLabel(invasionMenuButton, "invasion");
             SetLabel(detailsButton, "details"); SetLabel(closeButton, "close");
         }
-        private void SetLabel(UiButton button, string key) => button.GetComponentInChildren<Text>().text = L(key);
+        private void SetLabel(UiButton button, string key) => button.GetComponentInChildren<TextMeshProUGUI>(true).text = L(key);
     }
 }

@@ -13,6 +13,7 @@ using MobileGame.Gameplay;
 using MobileGame.Persistence;
 using MobileGame.Presentation;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.TestTools;
@@ -59,11 +60,11 @@ namespace MobileGame.SpatialTests
                     var retry = owner.GetComponentsInChildren<UiButton>().Single(b => b.name == "RetryLoading");
                     AssertScreenStateButtonReachable(retry);
                     var scroll = owner.GetComponentsInChildren<ScrollRect>().Single(s => s.name == "LoadingDetails");
-                    Assert.That(scroll.content.GetComponentsInChildren<Text>().Any(t => t.text.Contains("Row 1:")), Is.False,
+                    Assert.That(scroll.content.GetComponentsInChildren<TextMeshProUGUI>().Any(t => t.text.Contains("Row 1:")), Is.False,
                         "Raw diagnostic errors must not leak into the product recovery screen.");
                     scroll.StopMovement(); scroll.verticalNormalizedPosition = 1;
                     yield return null; Canvas.ForceUpdateCanvases();
-                    var hint = scroll.content.GetComponentsInChildren<Text>().Single(t => t.name == "Status");
+                    var hint = scroll.content.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "Status");
                     Assert.That(hint.text, Is.Not.Empty);
                     Assert.That(RectTransformUtility.RectangleContainsScreenPoint(scroll.viewport,
                         RectTransformUtility.WorldToScreenPoint(null, hint.rectTransform.TransformPoint(hint.rectTransform.rect.center))), Is.True,
@@ -149,7 +150,7 @@ namespace MobileGame.SpatialTests
                     Assert.That(view.Controller.Current, Is.SameAs(session)); Assert.That(GameDataStore.Instance, Is.SameAs(store));
                     Assert.That(store.Catalog, Is.SameAs(catalog));
                     Assert.That(view.FindUiButton("RestartFromResults").gameObject.activeInHierarchy, Is.False);
-                    Assert.That(view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "EndingTitle").text, Does.Contain("마지막 신호"));
+                    Assert.That(view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "EndingTitle").text, Does.Contain("마지막 신호"));
                     AssertWorldGraphicRenders(view);
                     yield return CaptureScreenState("destruction-rotation", view, null);
                 }
@@ -175,7 +176,7 @@ namespace MobileGame.SpatialTests
                         Assert.That(view.Controller.LastSaveError, Is.EqualTo(saveError)); Assert.That(File.ReadAllText(path), Is.EqualTo(resultFile));
                         AssertScreenStateButtonReachable(view.FindUiButton("RestartFromResults"));
                         AssertScreenStateButtonReachable(view.FindUiButton("RetrySave"));
-                        var errorText = view.UiCanvas.GetComponentsInChildren<Text>().Single(t => t.name == "EndingError");
+                        var errorText = view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "EndingError");
                         Assert.That(errorText.text, Is.EqualTo(view.FormatMessage(new LocalizedMessage("Results", "save_error"))));
                         Assert.That(errorText.text, Does.Not.Contain(saveError), "Diagnostics stay in Controller.LastSaveError, not the product UI.");
                         AssertWorldGraphicRenders(view);

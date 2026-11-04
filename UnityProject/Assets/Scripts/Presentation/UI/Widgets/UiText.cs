@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace MobileGame.Presentation
@@ -6,14 +7,14 @@ namespace MobileGame.Presentation
     public sealed class UiText : MonoBehaviour
     {
         public int BaseSize { get; private set; }
-        private Font font;
+        private TMP_FontAsset font;
         private float scale = 1;
         public void Initialize(int size) { BaseSize = size; Apply(font, scale); }
-        public void Apply(Font value, float textScale)
+        public void Apply(TMP_FontAsset value, float textScale)
         {
             font = value; scale = textScale;
-            var text = GetComponent<UnityEngine.UI.Text>();
-            text.font = font != null ? font : Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            var text = GetComponent<TextMeshProUGUI>();
+            text.font = font != null ? font : TMP_Settings.defaultFontAsset;
             text.fontSize = Mathf.RoundToInt(BaseSize * scale);
         }
     }

@@ -1,8 +1,8 @@
 # TECH-014 생산·저장·상태·공용 UI의 최소 공통 계약
 
-- 날짜: 2026-11-02
+- 날짜: 2026-11-02, 2026-11-04 보완
 - 상태: 채택
-- 작업: [PLAN-017](../plans/PLAN-017-production-storage-status-and-shared-ui.md)
+- 작업: [PLAN-017](../plans/PLAN-017-production-storage-status-and-shared-ui.md), [PLAN-023](../plans/PLAN-023-loading-progress-feel-and-mulmaru-tmp.md)
 - 기준: [추상화](../agents/abstraction.md), [객체 설계](../agents/object-design.md)
 
 ## 배경과 선택
@@ -26,7 +26,9 @@
 - 파일 조회가 성공해도 JSON·저장 호환성이 유효하다는 뜻은 아니다. 없음만 새 게임 확인을 생략하며 읽기 실패는 오류로 남긴다. 이후 실제 읽기/쓰기도 실패할 수 있다.
 - WorkerWaitReason은 저장 필드가 아니다. 복원 시 None으로 초기화하고 기존 작업/경로 판단에서 갱신한다. 표시 문구를 로직 입력으로 역변환하지 않는다.
 - LoadingScreen은 Show마다 앱 입력 세대를 무효화한다. 화면·문구·종류가 같아도 새 요청의 버튼을 이전 누름으로 실행하지 못한다. Hide와 프레임별 Render는 새 요청과 구분한다.
-- UiText가 기본 크기 × 현재 배율을 적용한다. 화면과 목록은 폰트·배율을 전달하며 폰트가 없으면 기본 폰트를 사용한다. Initialize는 현재 스타일을 유지한 채 기본 크기만 바꾼다.
+- 제품 UI 문구는 `TextMeshProUGUI`로 표시한다. 초기 Bootstrap, 타이틀, 연구소, 로딩 및 팝업 프리팹이 `LaboratoryUiAssets.Font`의 물마루 Dynamic 폰트를 공유한다. TMP 기본 폰트도 같은 에셋을 가리켜 개별 화면 구성이 준비되기 전부터 물마루를 사용한다.
+- 물마루 글꼴 에셋은 배포 원본 `Mulmaru.ttf`를 참조해 새 글리프를 실행 중 아틀라스에 추가한다. 원본과 함께 배포하는 저작권 고지·OFL 전문은 `LaboratoryUiAssets.FontLicense`를 통해 연구소의 글꼴 라이선스 화면에 표시한다.
+- UiText가 기본 크기 × 현재 배율을 적용한다. 화면과 목록은 폰트·배율을 전달한다. Initialize는 현재 스타일을 유지한 채 기본 크기만 바꾼다.
 - UiList는 최소 터치 크기·스타일·입력 세대를 전달받으며 LaboratoryView를 탐색하지 않는다. 동적으로 추가한 행도 현재 스타일을 받는다.
 - 공용 UI 이동 시 기존 스크립트 GUID를 유지하고 namespace·어셈블리는 유지한다. 연구소 맵·시설 표식·아이콘·게임 규칙을 공용 계층으로 옮기지 않는다.
 - 실제 Play 종료에서 씬 화면이 영속 관리자보다 먼저 파괴되는 순서를 확인했다. SceneFlowManager 종료 정리는 Unity 객체의 `!= null` 검사로 이미 파괴된 LaboratoryView 호출을 건너뛰며, C# null 조건부 호출로 대체하지 않는다.
@@ -43,3 +45,4 @@
 
 실제 실행·증거·한계는 [PLAN-017](../plans/PLAN-017-production-storage-status-and-shared-ui.md)에 기록한다.
 생산/저장 Edit Mode와 공용 UI·상태·씬 Play Mode를 검증하며 빌드는 사용자 지시로 제외한다.
+물마루 TMP 이관의 폰트 참조·실제 글리프·화면 배치 검증은 [PLAN-023](../plans/PLAN-023-loading-progress-feel-and-mulmaru-tmp.md)에 기록한다.

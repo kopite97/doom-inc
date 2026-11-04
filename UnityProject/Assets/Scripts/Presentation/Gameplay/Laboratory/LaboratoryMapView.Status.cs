@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using MobileGame.Foundation;
 using MobileGame.Gameplay;
+using TMPro;
 using UnityEngine;
 
 namespace MobileGame.Presentation
@@ -12,7 +13,7 @@ namespace MobileGame.Presentation
         {
             public RectTransform Root;
             public UnityEngine.UI.Image Background, Icon, Track, Fill, Connection;
-            public UnityEngine.UI.Text Caption;
+            public TextMeshProUGUI Caption;
             public Rect Bounds;
             public bool Visible;
             // Transient map observation preference; null retains automatic selected/nearby captions.
@@ -274,11 +275,11 @@ namespace MobileGame.Presentation
         private StatusMarker CreateStatusMarker(Guid id)
         {
             var background = CreateStatusImage("Temp_FacilityStatus_" + id.ToString("N"), statusLayer, Color.black);
-            var caption = new GameObject("Caption", typeof(RectTransform), typeof(UnityEngine.UI.Text)).GetComponent<UnityEngine.UI.Text>();
+            var caption = new GameObject("Caption", typeof(RectTransform), typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
             caption.transform.SetParent(background.transform, false);
-            caption.raycastTarget = false; caption.color = Color.white; caption.alignment = TextAnchor.MiddleCenter;
-            caption.horizontalOverflow = HorizontalWrapMode.Wrap; caption.verticalOverflow = VerticalWrapMode.Truncate;
-            caption.supportRichText = false;
+            caption.raycastTarget = false; caption.color = Color.white; caption.alignment = TextAlignmentOptions.Center;
+            caption.textWrappingMode = TextWrappingModes.Normal; caption.overflowMode = TextOverflowModes.Truncate;
+            caption.richText = false;
             var track = CreateStatusImage("Track", background.transform, new Color(.2f, .27f, .33f));
             var connection = CreateStatusImage("Temp_StatusConnection_" + id.ToString("N"), statusLayer, Color.white);
             connection.transform.SetAsFirstSibling();

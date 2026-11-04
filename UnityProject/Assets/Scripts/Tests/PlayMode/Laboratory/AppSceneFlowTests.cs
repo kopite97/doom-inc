@@ -23,6 +23,7 @@ namespace MobileGame.SpatialTests
         private SceneFlowManager flow;
         private AppConfiguration configuration;
         private bool background;
+        private Coroutine keepFocused;
         [UnitySetUp] public IEnumerator Setup()
         {
             background = Application.runInBackground; Application.runInBackground = true;
@@ -34,7 +35,7 @@ namespace MobileGame.SpatialTests
             Directory.CreateDirectory(directory); path = Path.Combine(directory, "session.json");
             configuration = Object.Instantiate(AppSceneAssets.EnsureConfiguration());
             flow = SceneFlowManager.GetOrCreate(configuration, path);
-            flow.StartCoroutine(KeepFocused());
+            keepFocused = flow.StartCoroutine(KeepFocused());
         }
         private IEnumerator KeepFocused()
         {
@@ -150,17 +151,26 @@ namespace MobileGame.SpatialTests
         }
         [UnityTest] public IEnumerator DataFailureBeforeAnySceneCanRetryAndDoesNotCreateSave()
         {
+            configuration.minimumLoadingSeconds = 60f;
             var gate = new TaskCompletionSource<GameDataCatalog>();
             var failed = GameDataStore.GetOrCreate().InitializeAsync(token => gate.Task);
             flow.EnterCurrent(AppScene.Bootstrap);
-            yield return null; yield return null; yield return null;
+            yield return new WaitForSecondsRealtime(.4f);
             LogAssert.Expect(LogType.Warning, "Scene preparation failed: test data failure");
             gate.SetException(new IOException("test data failure"));
             var deadline = Time.realtimeSinceStartupAsDouble + 20;
             while (flow.IsTransitioning && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
             Assert.That(flow.Error, Does.Contain("test data failure")); Assert.That(flow.Loading.Visible, Is.True);
+            Assert.That(flow.Loading.Kind, Is.EqualTo(LoadingScreenKind.Error), "Errors bypass the loading minimum.");
             Assert.That(File.Exists(path), Is.False); Assert.That(failed.IsFaulted, Is.True);
-            yield return ClickLoading("Retry"); yield return Settled();
+            configuration.minimumLoadingSeconds = 1f;
+            yield return WaitPopupStable();
+            var retryButton = flow.Loading.GetComponentsInChildren<UiButton>().Single(b => b.name == "Retry");
+            var retryTime = Time.realtimeSinceStartupAsDouble;
+            retryButton.OnSubmit(new BaseEventData(EventSystem.current));
+            Assert.That(flow.IsTransitioning, Is.True);
+            yield return Settled();
+            Assert.That(Time.realtimeSinceStartupAsDouble - retryTime, Is.GreaterThanOrEqualTo(1d));
             Assert.That(Object.FindFirstObjectByType<TitleView>(), Is.Not.Null);
             LogAssert.NoUnexpectedReceived();
         }
@@ -209,11 +219,13 @@ namespace MobileGame.SpatialTests
                 for (var i = 0; i < 5; i++) yield return null;
                 Canvas.ForceUpdateCanvases();
                 var title = Object.FindFirstObjectByType<TitleView>();
+                AssertSharedProductFont(title, configuration.uiAssets.Font);
                 Assert.That(title.GetComponentsInChildren<UiButton>().Where(b => b.interactable).All(b =>
                     ((RectTransform)b.transform).rect.height >= 48), Is.True);
                 yield return Capture("title-" + size.x);
                 yield return ClickTitle("Settings");
                 yield return WaitPopupStable();
+                AssertSharedProductFont(flow.PopupHost, configuration.uiAssets.Font);
                 yield return Capture("settings-" + size.x);
                 yield return ClickLoading("Recover");
                 File.WriteAllText(path, "confirmation sample");
@@ -223,6 +235,7 @@ namespace MobileGame.SpatialTests
                 flow.CancelPrompt(); File.Delete(path);
                 flow.Loading.Show(LoadingScreenKind.Loading, "게임 데이터를 준비하고 있습니다…");
                 for (var i = 0; i < 3; i++) yield return null;
+                AssertSharedProductFont(flow.Loading, configuration.uiAssets.Font);
                 yield return Capture("loading-" + size.x);
                 flow.Loading.Show(LoadingScreenKind.Error, "화면을 준비하지 못했습니다. 마지막으로 성공한 저장은 유지됩니다.", () => { }, () => { });
                 for (var i = 0; i < 4; i++) yield return null;

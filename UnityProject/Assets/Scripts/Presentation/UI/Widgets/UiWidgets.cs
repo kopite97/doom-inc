@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,12 +24,12 @@ namespace MobileGame.Presentation
         }
         public static Image Panel(string name, Transform parent, Color color)
         { var image = Rect(name, parent).gameObject.AddComponent<Image>(); image.color = color; return image; }
-        public static Text Label(string name, Transform parent, int fontSize = 18)
+        public static TextMeshProUGUI Label(string name, Transform parent, int fontSize = 18)
         {
-            var label = Rect(name, parent).gameObject.AddComponent<Text>();
+            var label = Rect(name, parent).gameObject.AddComponent<TextMeshProUGUI>();
             label.color = new Color(0.88f, 0.92f, 0.96f); label.raycastTarget = false;
-            label.alignment = TextAnchor.UpperLeft; label.horizontalOverflow = HorizontalWrapMode.Wrap;
-            label.verticalOverflow = VerticalWrapMode.Truncate; label.supportRichText = false;
+            label.alignment = TextAlignmentOptions.TopLeft; label.textWrappingMode = TextWrappingModes.Normal;
+            label.overflowMode = TextOverflowModes.Truncate; label.richText = false;
             label.gameObject.AddComponent<UiText>().Initialize(fontSize);
             return label;
         }
@@ -38,7 +39,7 @@ namespace MobileGame.Presentation
             var button = image.gameObject.AddComponent<UiButton>(); button.targetGraphic = image; button.Epoch = epoch;
             var colors = button.colors; colors.highlightedColor = new Color(0.85f, 0.93f, 1f);
             colors.pressedColor = new Color(0.55f, 0.8f, 1f); colors.disabledColor = new Color(0.42f, 0.45f, 0.5f); button.colors = colors;
-            var label = Label("Label", button.transform); label.text = text; label.alignment = TextAnchor.MiddleCenter;
+            var label = Label("Label", button.transform); label.text = text; label.alignment = TextAlignmentOptions.Center;
             label.rectTransform.anchorMin = Vector2.zero; label.rectTransform.anchorMax = Vector2.one;
             label.rectTransform.offsetMin = new Vector2(8, 4); label.rectTransform.offsetMax = new Vector2(-8, -4);
             return button;

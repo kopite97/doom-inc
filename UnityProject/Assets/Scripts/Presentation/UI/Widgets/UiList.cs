@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,36 +13,42 @@ namespace MobileGame.Presentation
         private sealed class Row
         {
             public RectTransform Rect;
-            public Text Text;
+            public TextMeshProUGUI Text;
             public UiButton Button;
             public bool Seen;
         }
         private readonly Dictionary<string, Row> rows = new Dictionary<string, Row>();
         private readonly RectTransform content;
         private readonly Func<int> epoch;
+        private readonly Action<UiButton> configureButton;
         private float width;
         private float y;
-        private Font font;
+        private TMP_FontAsset font;
         private float scale = 1;
         private float touchSize = 48;
-        public void Style(Font value, float textScale, float minimumTouch)
+        public void Style(TMP_FontAsset value, float textScale, float minimumTouch)
         { font = value; scale = textScale; touchSize = minimumTouch; }
-        public UiList(RectTransform content, Func<int> epoch) { this.content = content; this.epoch = epoch; }
+        public UiList(RectTransform content, Func<int> epoch, Action<UiButton> configureButton = null)
+        {
+            this.content = content;
+            this.epoch = epoch;
+            this.configureButton = configureButton;
+        }
         public void Begin(float availableWidth)
         { width = Mathf.Max(80, availableWidth); y = 8; foreach (var row in rows.Values) row.Seen = false; }
         public void Text(string key, string value, int size = 18)
         {
             var row = Get(key, false, size); row.Text.text = value ?? "";
-            UiWidgets.Place(row.Rect, 4, y, width - 8, 30);
+            UiWidgets.Place(row.Rect, 4, y, width - 8, row.Rect.rect.height);
             var height = Mathf.Max(size + 8, row.Text.preferredHeight + 10);
             row.Rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height); y += height + 4;
         }
-        public void Action(string key, string label, Action action, bool enabled, string context)
+        public void Action(string key, string label, Action action, bool enabled, string context, int fontSize = 18)
         {
-            var row = Get(key, true, 18); row.Text.text = label;
+            var row = Get(key, true, fontSize); row.Text.text = label;
             row.Button.Bind(action, context); row.Button.interactable = enabled;
             var minimum = touchSize;
-            UiWidgets.Place(row.Rect, 4, y, width - 8, minimum);
+            UiWidgets.Place(row.Rect, 4, y, width - 8, row.Rect.rect.height);
             var height = Mathf.Max(minimum, row.Text.preferredHeight + 14);
             row.Rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height); y += height + 8;
         }
@@ -77,7 +84,8 @@ namespace MobileGame.Presentation
                 if (button)
                 {
                     var action = UiWidgets.Button(key, content, "", epoch);
-                    row = new Row { Rect = (RectTransform)action.transform, Button = action, Text = action.GetComponentInChildren<Text>() };
+                    configureButton?.Invoke(action);
+                    row = new Row { Rect = (RectTransform)action.transform, Button = action, Text = action.GetComponentInChildren<TextMeshProUGUI>(true) };
                 }
                 else
                 {

@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using MobileGame.Foundation;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,12 +19,12 @@ namespace MobileGame.Presentation
         private GameObject currentSelectionRoot;
         public PopupManager Manager { get; private set; }
         public AppLocalization Texts { get; private set; }
-        public Font Font { get; private set; }
+        public TMP_FontAsset Font { get; private set; }
         public float TextScale => large?.Invoke() == true ? 1.25f : 1;
         public Vector2 Size { get { screen.RefreshLayout(); return screen.Size; } }
         public int LayoutEpoch => screen.LayoutEpoch;
         public float MinimumTouch => screen.MinimumTouchSize;
-        public void Configure(PopupRegistry registry, AppLocalization texts, Font font, Func<bool> largeText)
+        public void Configure(PopupRegistry registry, AppLocalization texts, TMP_FontAsset font, Func<bool> largeText)
         {
             if (Manager != null) throw new InvalidOperationException("Popup host already configured.");
             common = registry; prefabs = Validate(registry, null); Texts = texts; Font = font; large = largeText;
@@ -79,18 +79,6 @@ namespace MobileGame.Presentation
             if (!value) { previousSelection = null; currentSelectionRoot = null; }
         }
         public void Invalidate() { screen?.InvalidatePointers(); AppUiLifetime.Invalidate(); }
-        internal Coroutine Animate(CanvasGroup group, float from, float to, Action finished) => StartCoroutine(Fade(group, from, to, finished));
-        private IEnumerator Fade(CanvasGroup group, float from, float to, Action finished)
-        {
-            var elapsed = 0f; group.alpha = from;
-            while (elapsed < .12f)
-            {
-                yield return null;
-                if (group == null) yield break;
-                elapsed += Time.unscaledDeltaTime; group.alpha = Mathf.Lerp(from, to, elapsed / .12f);
-            }
-            finished();
-        }
         private void LateUpdate()
         {
             if (!blocked || screen == null) return;

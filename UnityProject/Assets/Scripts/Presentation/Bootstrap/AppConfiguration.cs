@@ -15,6 +15,8 @@ namespace MobileGame.Presentation
         public JsonDataAsset[] jsonFiles;
         public LaboratoryUiAssets uiAssets;
         public LoadingScreen loadingScreen;
+        [Min(0f), Tooltip("Minimum foreground time in seconds to show a successful loading screen.")]
+        public float minimumLoadingSeconds = 1f;
         public PopupHost popupHost;
         public PopupRegistry popups;
         public LocalizationAssets localization;

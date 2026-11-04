@@ -75,8 +75,23 @@ namespace MobileGame.Foundation.Editor
             camera.gameObject.AddComponent<UniversalAdditionalCameraData>().SetRenderer(0);
             var root = new GameObject("Temp_" + role);
             root.AddComponent<GameBootstrap>().Configure(config, role);
-            if (role == AppScene.Title) root.AddComponent<TitleView>();
+            if (role == AppScene.Title) BindTitleArtwork(root.AddComponent<TitleView>());
             if (!EditorSceneManager.SaveScene(scene, path)) throw new IOException("Scene save failed: " + path);
+        }
+        internal static void BindTitleArtwork(TitleView view)
+        {
+            const string sheets = "Assets/Sprites/UI/Title/Temp_NightShift";
+            var sprites = new[] { "Landscape", "Portrait" }
+                .SelectMany(sheet => AssetDatabase.LoadAllAssetsAtPath(sheets + sheet + ".png"))
+                .OfType<Sprite>().ToDictionary(sprite => sprite.name);
+            var serialized = new SerializedObject(view);
+            serialized.FindProperty("landscapeRoom").objectReferenceValue = sprites["Temp_NightShiftRoomWide"];
+            serialized.FindProperty("portraitRoom").objectReferenceValue = sprites["Temp_NightShiftRoomTall"];
+            serialized.FindProperty("buttonFrame").objectReferenceValue = sprites["Temp_NightShiftButtonFrame"];
+            serialized.FindProperty("wordmark").objectReferenceValue = sprites["Temp_NightShiftWordmark"];
+            // Artwork metadata. A translated first line with different lettering is drawn as text.
+            serialized.FindProperty("wordmarkLine").stringValue = "DOOM INC.";
+            serialized.ApplyModifiedPropertiesWithoutUndo();
         }
         [MenuItem("Tools/Mobile Game/Open Bootstrap Scene")]
         public static void OpenBootstrap() => Open(BootstrapPath);

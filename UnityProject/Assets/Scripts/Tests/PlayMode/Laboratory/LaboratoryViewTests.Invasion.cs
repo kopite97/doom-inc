@@ -9,6 +9,7 @@ using MobileGame.GameFlow;
 using MobileGame.Gameplay;
 using MobileGame.Persistence;
 using MobileGame.Presentation;
+using MoreMountains.Feedbacks;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
@@ -18,6 +19,53 @@ namespace MobileGame.SpatialTests
 {
     public sealed partial class LaboratoryViewTests
     {
+        [UnityTest]
+        public IEnumerator ReleaseFeedbackPlaysOncePerSuccessfulCommand()
+        {
+            using (var input = new PointerScene())
+            {
+                yield return input.Load();
+                var view = input.View;
+                var icon = view.FindUiButton("NavInvasion").transform.Find("Icon");
+                var definition = GameDataStore.Instance.Catalog.Selected<CreatureData>("invaderId");
+                void PlaceInvader(int x)
+                {
+                    var invader = view.Simulation.Registry.Create(definition);
+                    Assert.That(view.Simulation.Map.Commands.Place(invader.Id, new Vector2Int(x, 1)).Succeeded, Is.True);
+                }
+
+                Assert.That(view.ReleaseInvaders(), Is.False);
+                Assert.That(icon.GetComponent<MMF_Player>(), Is.Null);
+                PlaceInvader(1);
+                PlaceInvader(2);
+                Assert.That(view.ReleaseInvaders(), Is.True);
+                var player = icon.GetComponent<MMF_Player>();
+                Assert.That(player.PlayCount, Is.EqualTo(1));
+                Assert.That(view.Simulation.Invasion.ExternalCount, Is.EqualTo(2));
+                Assert.That(view.ReleaseInvaders(), Is.False);
+                var source = icon.GetComponentInChildren<AudioSource>();
+                Assert.That(source.clip.length, Is.InRange(.15f, .25f));
+                Assert.That(source.loop, Is.False);
+                Assert.That(source.isPlaying, Is.True);
+                Assert.That(Camera.main.GetComponent<AudioListener>().enabled, Is.True);
+                yield return WaitFor(() => icon.localScale.x > 1.01f, "Invasion icon did not pulse.");
+                yield return new WaitForSecondsRealtime(.25f);
+                Assert.That(icon.localScale, Is.EqualTo(Vector3.one));
+                Assert.That(source.isPlaying, Is.False);
+                Assert.That(player.PlayCount, Is.EqualTo(1));
+                PlaceInvader(1);
+                view.Controller.NotifyApplicationPause(true);
+                Assert.That(view.ReleaseInvaders(), Is.False);
+                Assert.That(player.PlayCount, Is.EqualTo(1));
+                view.Controller.NotifyApplicationPause(false);
+                Assert.That(view.ReleaseInvaders(), Is.True);
+                Assert.That(player.PlayCount, Is.EqualTo(2));
+                view.ReleaseSession();
+                Assert.That(icon.localScale, Is.EqualTo(Vector3.one));
+                Assert.That(source.isPlaying, Is.False);
+            }
+        }
+
         [UnityTest]
         public IEnumerator InvasionSceneRunsPaidCycleReleasesReportsStopsAndRebinds()
         {
