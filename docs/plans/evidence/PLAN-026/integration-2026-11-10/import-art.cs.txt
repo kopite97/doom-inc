@@ -1,0 +1,79 @@
+if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode) throw new System.InvalidOperationException("Import outside Play Mode.");
+var sources = new[] {
+    "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-002/r003/Gathering.png",
+    "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-003/r002/PrototypeSupport.png",
+    "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-004/r001/OrganicMatter.png",
+    "Assets/Sprites/Require/PLAN-014/PLAN-014-SPR-006/r001/Build.png" };
+var destinations = new[] {
+    "Assets/Sprites/Facility/Gathering/Gathering.png",
+    "Assets/Sprites/Creature/PrototypeSupport/PrototypeSupport.png",
+    "Assets/Sprites/Resource/OrganicMatter/OrganicMatter.png",
+    "Assets/Sprites/UI/Laboratory/Build.png" };
+var report = new System.Collections.Generic.List<object>();
+for (var a = 0; a < sources.Length; a++) {
+    var path = destinations[a];
+    if (!System.IO.File.Exists(path)) {
+        var folder = "Assets";
+        var parts = System.IO.Path.GetDirectoryName(path).Replace('\\','/').Split('/');
+        for (var p = 1; p < parts.Length; p++) {
+            if (!UnityEditor.AssetDatabase.IsValidFolder(folder + "/" + parts[p])) UnityEditor.AssetDatabase.CreateFolder(folder, parts[p]);
+            folder += "/" + parts[p];
+        }
+        var error = UnityEditor.AssetDatabase.MoveAsset(sources[a], path);
+        if (!string.IsNullOrEmpty(error)) throw new System.Exception(error);
+    }
+    var importer = (UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(path);
+    importer.textureType = UnityEditor.TextureImporterType.Sprite;
+    importer.spriteImportMode = a < 2 ? UnityEditor.SpriteImportMode.Multiple : UnityEditor.SpriteImportMode.Single;
+    importer.spritePixelsPerUnit = 32;
+    importer.filterMode = UnityEngine.FilterMode.Point;
+    importer.wrapMode = UnityEngine.TextureWrapMode.Clamp;
+    importer.textureCompression = UnityEditor.TextureImporterCompression.Uncompressed;
+    importer.mipmapEnabled = false;
+    importer.isReadable = false;
+    importer.sRGBTexture = true;
+    importer.alphaSource = UnityEditor.TextureImporterAlphaSource.FromInput;
+    importer.alphaIsTransparency = true;
+    importer.npotScale = UnityEditor.TextureImporterNPOTScale.None;
+    importer.maxTextureSize = a == 0 ? 1024 : a == 1 ? 512 : 64;
+    foreach (var platform in new[] { "Android", "Standalone", "iPhone", "WebGL", "Windows Store Apps", "tvOS" }) importer.ClearPlatformTextureSettings(platform);
+    var settings = new UnityEditor.TextureImporterSettings(); importer.ReadTextureSettings(settings);
+    settings.spriteAlignment = (int)UnityEngine.SpriteAlignment.Center;
+    settings.spritePivot = new UnityEngine.Vector2(.5f, .5f);
+    settings.spriteMeshType = UnityEngine.SpriteMeshType.FullRect;
+    importer.SetTextureSettings(settings);
+    importer.SaveAndReimport();
+    if (a < 2) {
+        var factory = new UnityEditor.U2D.Sprites.SpriteDataProviderFactories(); factory.Init();
+        var provider = factory.GetSpriteEditorDataProviderFromObject(importer); provider.InitSpriteEditorDataProvider();
+        var edit = provider.GetDataProvider<UnityEditor.U2D.Sprites.ISpriteFrameEditCapability>();
+        if (edit == null) throw new System.Exception("Missing sprite edit capability: " + path);
+        foreach (var required in new[] { UnityEditor.U2D.Sprites.EEditCapability.CreateAndDeleteSprite, UnityEditor.U2D.Sprites.EEditCapability.EditSpriteName, UnityEditor.U2D.Sprites.EEditCapability.EditSpriteRect, UnityEditor.U2D.Sprites.EEditCapability.EditPivot })
+            if (!edit.GetEditCapability().HasCapability(required)) throw new System.Exception("Unsupported sprite edit: " + required);
+        var old = provider.GetSpriteRects();
+        var count = a == 0 ? 36 : 64; var columns = a == 0 ? 6 : 8; var cell = a == 0 ? 128 : 64;
+        var rects = new UnityEditor.SpriteRect[count];
+        var pairs = new System.Collections.Generic.List<UnityEditor.SpriteNameFileIdPair>();
+        for (var i = 0; i < count; i++) {
+            string name;
+            if (a == 0) name = "Gathering_" + new[] { "Idle", "Working", "Complete" }[i / 12] + "_" + (i % 12 + 1).ToString("00");
+            else {
+                var local = i % 16; var state = local < 4 ? "Idle" : local < 10 ? "Move" : "Work";
+                var frame = local < 4 ? local + 1 : local < 10 ? local - 3 : local - 9;
+                name = "PrototypeSupport_" + state + "_" + new[] { "Down", "Left", "Right", "Up" }[i / 16] + "_" + frame.ToString("00");
+            }
+            var id = UnityEditor.GUID.Generate();
+            foreach (var previous in old) if (previous.name == name) id = previous.spriteID;
+            rects[i] = new UnityEditor.SpriteRect { name = name, spriteID = id,
+                rect = new UnityEngine.Rect(cell * (i % columns), cell * (columns - 1 - i / columns), cell, cell),
+                alignment = UnityEngine.SpriteAlignment.Center, pivot = new UnityEngine.Vector2(.5f,.5f) };
+            pairs.Add(new UnityEditor.SpriteNameFileIdPair(name, id));
+        }
+        var names = provider.GetDataProvider<UnityEditor.U2D.Sprites.ISpriteNameFileIdDataProvider>();
+        if (names == null) throw new System.Exception("Missing sprite name/file ID provider.");
+        provider.SetSpriteRects(rects); names.SetNameFileIdPairs(pairs); provider.Apply(); importer.SaveAndReimport();
+    }
+    report.Add(new { path, guid = UnityEditor.AssetDatabase.AssetPathToGUID(path), sprites = System.Linq.Enumerable.Count(System.Linq.Enumerable.OfType<UnityEngine.Sprite>(UnityEditor.AssetDatabase.LoadAllAssetsAtPath(path))) });
+}
+UnityEditor.AssetDatabase.SaveAssets();
+return report;

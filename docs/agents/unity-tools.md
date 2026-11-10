@@ -64,7 +64,7 @@ unity command console status --project-path $projectPath --json
 ```
 
 - 그룹과 하위 명령은 별도 인수로 전달한다. `editor status` 전체를 하나의 따옴표 문자열로 전달하면 이 CLI에서 실패한다.
-- 현재 연결은 CLI 1.0.0-beta.15·Pipeline 0.9.1-exp.1로 확인했다. 새 기능은 연결된 서버의 명령 목록과 인수를 먼저 조회한다.
+- 기존 명령 예시는 CLI 1.0.0-beta.15·Pipeline 0.9.1-exp.1에서 확인했다. [PLAN-025 환경](../plans/evidence/PLAN-025/tool-versions.json)은 CLI 1.0.0-beta.13·같은 Pipeline이므로 버전을 동일하다고 가정하지 않고 실제 서버의 명령 목록과 인수를 먼저 조회한다.
 - Localization CSV·Editor 직접 에셋 검증은 [텍스트 지침](localization.md)을 따른다. 콘텐츠 빌드에도 사용자 빌드 승인 조건을 적용한다.
 - 비활성 창에서도 프레임을 관찰해야 하면 `editor.playmode set_run_in_background --enable true`를 사용하고, 종료 시 `--enable false`로 원래 값을 복원한다. 두 명령에도 같은 `--project-path`를 지정한다.
 - Play 상태만 보지 말고 두 시점의 프레임·게임 시간 증가와 콘솔 오류를 확인한다. 검증을 마치면 Play를 종료한다.

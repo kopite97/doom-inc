@@ -1,0 +1,108 @@
+{
+  "supplyRestore": {
+    "before": {
+      "file": "supplies-paused-session.json",
+      "sha256": "32effc36ef1fd45554d488db70ded355e36511a117bbc4006e714645465cc9fa",
+      "phase": 1,
+      "gameSeconds": 668.8370157759637,
+      "score": 75,
+      "activitySequence": 26,
+      "receipts": [
+        {
+          "source": "72d04fb1085e40e4af360a583eb086de",
+          "resource": "resource.organic",
+          "lastRound": 12,
+          "pendingRound": 6,
+          "delivered": 1,
+          "amount": 1
+        }
+      ],
+      "things": 11,
+      "reservations": 0
+    },
+    "after": {
+      "file": "supplies-restored-session.json",
+      "sha256": "d92afbd196aedb1307141a18f27d8a3011536f8a0f15eaf166de3b97b840d6ae",
+      "phase": 1,
+      "gameSeconds": 670.4103476870805,
+      "score": 78,
+      "activitySequence": 28,
+      "receipts": [
+        {
+          "source": "72d04fb1085e40e4af360a583eb086de",
+          "resource": "resource.organic",
+          "lastRound": 12,
+          "pendingRound": 6,
+          "delivered": 1,
+          "amount": 1
+        }
+      ],
+      "things": 11,
+      "reservations": 0
+    },
+    "receiptExactlyPreserved": true,
+    "thingsExactlyPreserved": true,
+    "foregroundGameSeconds": 1.5733319111168385,
+    "admittedLater": {
+      "file": "supplies-admitted-session.json",
+      "sha256": "50184e6adb6abd72eac7daedb394b8dbd0e82d63161b655c12b407266b290cf2",
+      "phase": 1,
+      "gameSeconds": 695.4793947208673,
+      "score": 105,
+      "activitySequence": 38,
+      "receipts": [
+        {
+          "source": "72d04fb1085e40e4af360a583eb086de",
+          "resource": "resource.organic",
+          "lastRound": 18,
+          "pendingRound": 18,
+          "delivered": 2,
+          "amount": 1
+        }
+      ],
+      "things": 12,
+      "reservations": 0
+    },
+    "deliveredIncrease": 1,
+    "note": "After admission, later round 18 created a new pending supply. The persisted pendingRound=18 is not the original pendingRound=6."
+  },
+  "bottleneck": {
+    "blockedObservedSeconds": 65.28605327010155,
+    "blockedCultivationWorkPer60GameSeconds": 0,
+    "runningObservedSeconds": 65.3068837299943,
+    "runningCultivationWork": 13.061376745998885,
+    "runningCultivationWorkPer60GameSeconds": 12.000000000000025,
+    "note": "Rates normalized to the same 60 game seconds. Observation windows were not exactly equal; no interpolation of completion counts."
+  },
+  "cycle1": {
+    "file": "cycle1-results-session.json",
+    "sha256": "1f509df16baf40b0468a94db70596b1b3df67b325638ba194bb498096136c856",
+    "phase": 3,
+    "gameSeconds": 1221.2544367518276,
+    "score": 120,
+    "activitySequence": 36,
+    "receipts": [],
+    "things": 19,
+    "reservations": 1
+  },
+  "cycle2": {
+    "resultScreenshot": "cycle2-results.png",
+    "score": 120,
+    "activitySequence": 40,
+    "displayedGameSeconds": 700.2,
+    "external": 2,
+    "resultSaveCaptured": false,
+    "note": "Result screenshot was captured at 13:56:01 UTC. Before the 13:56:26 save pull, the app had changed to a new-game save and Title. The intervening input was not observed. No result save or automated restart is claimed."
+  },
+  "newStateAfterCycle2": {
+    "file": "post-cycle2-new-session.json",
+    "sha256": "94abdec09fe52f793870061bd0049435d96851772eb49c7b6183abc75553b999",
+    "phase": 1,
+    "gameSeconds": 6.593520279973745,
+    "score": 0,
+    "activitySequence": 0,
+    "receipts": [],
+    "things": 2,
+    "reservations": 0
+  }
+}

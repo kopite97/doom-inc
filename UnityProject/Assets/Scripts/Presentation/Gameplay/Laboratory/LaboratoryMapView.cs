@@ -67,6 +67,7 @@ namespace MobileGame.Presentation
         {
             if (view != null) return;
             view = owner; viewport = (RectTransform)transform;
+            BindArtSimulation();
             font = owner.UiFont;
             gesture = new LaboratoryGesture();
             gesture.Tapped += Tap;
@@ -120,6 +121,7 @@ namespace MobileGame.Presentation
         {
             if (view?.Simulation == null || viewport == null) { gesture?.Cancel(); return; }
             var map = view.Simulation.Map;
+            BindArtSimulation();
             if (generation != view.Controller.Generation || width != map.Width || height != map.Height)
             {
                 StopSelectionPan(); gesture.Cancel(); generation = view.Controller.Generation;
@@ -161,6 +163,7 @@ namespace MobileGame.Presentation
             var size = selected.Definition is FacilityData definition
                 ? (Vector2)FacilityGeometry.GetSize(definition, selected.Placement.Rotation) : Vector2.one;
             var min = (Vector2)selected.Placement.Origin; var max = min + size;
+            if (view.UiAssets?.Art != null && view.UiAssets.Art.HasPrototype(selected.Definition)) max.y += .5f;
             var half = viewport.rect.size / (2 * CellSize) - Vector2.one * .2f;
             var target = center;
             if (size.x > half.x * 2) target.x = (min.x + max.x) * .5f;
@@ -286,6 +289,7 @@ namespace MobileGame.Presentation
             var area = previewDefinition != null && previewOrigin.HasValue ? new RectInt(previewOrigin.Value, FacilityGeometry.GetSize(previewDefinition, rotation)) : new RectInt();
             var interaction = previewDefinition != null && previewOrigin.HasValue ? (Vector2Int?)FacilityGeometry.GetInteractionCell(previewDefinition, previewOrigin.Value, rotation) : null;
             var size = CellSize; var origin = Origin;
+            var hasFloor = DrawFloor(size, origin);
             for (var i = 0; i < cells.Count; i++)
             {
                 var active = i < width * height; cells[i].gameObject.SetActive(active); if (!active) continue;
@@ -295,23 +299,27 @@ namespace MobileGame.Presentation
                 var facility = placements.FirstOrDefault(p => p.Kind == ThingKind.Facility && p.Contains(point));
                 var creatures = placements.Where(p => p.Kind == ThingKind.Creature && p.Contains(point)).ToArray();
                 var label = placements.Any(p => p.InteractionCell == point) ? "I" : "";
-                var color = new Color(.12f, .16f, .21f);
+                var color = hasFloor ? Color.clear : new Color(.12f, .16f, .21f);
                 if (facility != null && view.Simulation.Registry.TryGet(facility.ThingId, out var thing))
                 {
                     label = ((FacilityData)thing.Definition).Role.ToString().Substring(0, 1) + thing.CreationOrder;
                     color = thing.GetComponent<ConstructionComponent>().IsComplete ? new Color(.18f, .42f, .62f) : new Color(.56f, .43f, .12f);
                     if (view.SelectedId == thing.Id) color *= 1.5f;
+                    if (HasSuppliedArt(thing)) { label = ""; color = Color.clear; }
                 }
                 else if (creatures.Length > 0)
                 {
                     var creatureThing = view.Simulation.Registry.Things.First(t => t.Id == creatures[0].ThingId);
                     label = ((CreatureData)creatureThing.Definition).Role.ToString().Substring(0, 1) + creatureThing.CreationOrder + (creatures.Length > 1 ? "+" : "");
                     color = new Color(.7f, .4f, .15f); if (creatures.Any(p => p.ThingId == view.SelectedId)) color *= 1.4f;
+                    if (creatures.All(p => view.Simulation.Registry.TryGet(p.ThingId, out var c) && HasSuppliedArt(c)))
+                    { label = ""; color = Color.clear; }
                 }
                 if (previewOrigin.HasValue && area.Contains(point)) { label = "+"; color = valid ? new Color(.12f, .55f, .32f) : new Color(.65f, .15f, .18f); }
                 if (interaction == point) { label = "I"; color = new Color(.5f, .4f, .65f); }
                 cells[i].color = color; labels[i].text = label; labels[i].fontSize = Mathf.Clamp((int)(size * .32f), 9, 24);
             }
+            DrawArt(previewDefinition, previewOrigin, rotation, valid);
         }
     }
 }

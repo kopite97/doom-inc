@@ -54,6 +54,6 @@
 - 주제/정의 ID/필드 이름을 Ordinal 정렬하고, 표시 이름을 제외한 전체 필드에 기존 길이 접두 토큰 계약을 적용한다. 역할별 생략 필드도 위 기본값으로 채워 포함한다.
 - ID·enum은 문자열, components는 배열 순서대로 `|`로 연결한다. 숫자는 원문 토큰을 정규화해 `1.0`/`1e0`→`1`, `25e-2`→`0.25`, `-0`→`0`으로 만든다. 해시 계산은 double/float 반올림 전에 수행한다.
 - 정수는 소수부가 없는지와 int/long 범위를 원문 정규화 값으로 검사한다. 실수는 유한 double이며, float 저장 필드는 최종 실행 값도 검증한다. 비유한 수·지원 범위 밖 크기/지수·0으로 언더플로하는 양은 거부한다.
-- 현행 배포 값의 CompatibilityHash는 `2578869b88b49ba4855785cf587d8cf2f0cfd0dd8ba1fbfc2cd3fb8d2ca7f195`다. 밸런스 수정 때문에 이 기준 상수를 갱신하지 않는다. 임의로 수정했던 과거 CSV의 숫자 표기까지 모두 호환한다고 보장하지 않는다.
+- 약탈형을 포함한 현행 값의 CompatibilityHash는 `ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2`다. 이전 배포 기준 `2578869b88b49ba4855785cf587d8cf2f0cfd0dd8ba1fbfc2cd3fb8d2ca7f195`도 호환성 판별용으로 보존한다. 밸런스 수정 때문에 기존 기준 상수를 갱신하지 않는다. 임의로 수정했던 과거 CSV의 숫자 표기까지 모두 호환한다고 보장하지 않는다.
 
-구현 선택·검증 범위는 [PLAN-015](../../../../docs/plans/PLAN-015-topic-json-definition-data.md)를 따른다. 이번 전환에서는 Editor 테스트만 수행하며 빌드·실기기 검증은 제외한다.
+JSON 전환 당시 구현 선택·Editor 검증은 [PLAN-015](../../../../docs/plans/PLAN-015-topic-json-definition-data.md), 약탈형 추가와 이전 저장 호환성은 [PLAN-022](../../../../docs/plans/PLAN-022-raider-and-resource-receiving.md)를 따른다. 최신 Android 통합 검증과 판정 근거는 완료된 [PLAN-025](../../../../docs/plans/PLAN-025-android-integration-and-prototype-completion.md)를 따른다.

@@ -33,6 +33,7 @@ updated: YYYY-MM-DD
 
 [타입별 완료 판정](AGETNS.md#타입과-완료-판정)에 따라 작성한다. 아트 변경이 주목적이면 type을 `art`로 지정한다.
 development의 남은 Sprite 요청은 별도 README에 연결하고, art는 자기 범위의 필수 적용·기술 검증·사용자 시각 확인을 기준에 포함한다.
+art는 [테스트 시작 조건](../agents/verification.md#art-plan-test-readiness)에 따라 모든 필수 리소스의 제작·수령·적용 상태를 먼저 기록하고, 전체 작업 완료 뒤에 테스트 단계를 둔다.
 
 | 기준 | 실행할 검증 | 필요한 증거 |
 | --- | --- | --- |

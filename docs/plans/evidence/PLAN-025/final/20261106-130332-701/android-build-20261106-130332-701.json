@@ -1,0 +1,67 @@
+{
+    "plan": "PLAN-025",
+    "buildKind": "final",
+    "attempt": "20261106-130332-701",
+    "startedUtc": "2026-11-06T13:03:32.7011648Z",
+    "finishedUtc": "2026-11-06T13:10:16.1149558Z",
+    "unityVersion": "6000.3.27f1",
+    "host": "Windows 11  (10.0.26300)",
+    "target": "Android",
+    "applicationId": "com.DefaultCompany.urp_2d",
+    "backend": "IL2CPP",
+    "architectures": "ARM64",
+    "minimumSdk": "AndroidApiLevel25",
+    "targetSdk": "AndroidApiLevelAuto",
+    "orientation": "AutoRotation",
+    "portrait": true,
+    "portraitUpsideDown": true,
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "activeInputHandler": 1,
+    "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+    "scenes": [
+        "Assets/Scenes/Gameplay/Bootstrap/Temp_Bootstrap.unity",
+        "Assets/Scenes/Gameplay/Title/Temp_Title.unity",
+        "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity"
+    ],
+    "editorScenes": [
+        {
+            "path": "Assets/Scenes/Gameplay/Bootstrap/Temp_Bootstrap.unity",
+            "enabled": true
+        },
+        {
+            "path": "Assets/Scenes/Gameplay/Title/Temp_Title.unity",
+            "enabled": true
+        },
+        {
+            "path": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "enabled": true
+        }
+    ],
+    "buildOptions": "ForceOptimizeScriptCompilation, Il2CPP, CompressTextures, StripDebugSymbols, ShaderLivelinkSupport, DetailedBuildReport",
+    "managedStrippingLevel": "Minimal",
+    "development": false,
+    "scriptDebugging": false,
+    "connectProfiler": false,
+    "deepProfiling": false,
+    "addressablesProfile": "Default",
+    "addressablesOutput": "Library/com.unity.addressables/aa/Android/settings.json",
+    "addressablesError": "",
+    "addressablesSeconds": 17.959837099999999,
+    "apk": "UnityProject/Builds/PLAN-025/final/20261106-130332-701/Temp_Laboratory-20261106-130332-701.apk",
+    "sha256": "3e9b33badc4fba23a432b77c1d932851e6d36f30a29125e2764b60283958bb0d",
+    "buildGuid": "efa4e7f759ae481fbf1f8c35b2ee8e3e",
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 5,
+    "seconds": 335.6393101,
+    "bytes": 1105624604,
+    "messages": [
+        "Warning: Game scripts or other custom code contains OnMouse_ event handlers. Presence of such handlers might impact performance on handheld devices.",
+        "Warning: Script attached to 'MMDefaultPostProcessingVolume' in asset 'Assets/Feel/MMFeedbacks/MMFeedbacksForThirdParty/PostProcessing/Resources/MMDefaultPostProcessingVolume.prefab' is missing or no valid script is attached.",
+        "Warning: Script attached to 'MM_6D_Shake' in asset 'Assets/Feel/MMFeedbacks/MMFeedbacksForThirdParty/Cinemachine/Resources/MM_6D_Shake.asset' is missing or no valid script is attached.",
+        "Warning: Script attached to 'MMDefaultPostProcessingProfile' in asset 'Assets/Feel/MMFeedbacks/MMFeedbacksForThirdParty/PostProcessing/Resources/MMDefaultPostProcessingProfile.asset' is missing or no valid script is attached.",
+        "Warning: Android App Info has not been configured. Please add and configure `Android App Info` metadata to the Localization Settings in order to correctly support Localization on Android."
+    ],
+    "failure": ""
+}

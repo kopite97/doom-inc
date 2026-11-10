@@ -82,6 +82,7 @@ namespace MobileGame.Presentation
             statusLayer.gameObject.SetActive(true);
             statusLayer.SetAsLastSibling();
             occupiedStatusBounds.Clear();
+            ReserveCreatureArtBounds();
             statusFacilities.Clear();
             foreach (var thing in simulation.Registry.Things)
                 if (thing.IsPlaced && thing.Definition.Kind == ThingKind.Facility && thing.TryGetComponent<ConstructionComponent>(out _))
@@ -94,6 +95,7 @@ namespace MobileGame.Presentation
             {
                 // If the remaining icons cannot fit around existing bars, repack non-selected markers as icons.
                 occupiedStatusBounds.Clear(); VisibleStatusCount = 0;
+                ReserveCreatureArtBounds();
                 foreach (var marker in statusMarkers.Values) marker.Visible = false;
                 foreach (var thing in statusFacilities) RefreshStatusMarker(thing, true);
             }

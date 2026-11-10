@@ -1,0 +1,30 @@
+{
+  "measure": "Android ViewRootImpl ACTION_UP log to first changed screenrecord composed frame; ADB injected zoom taps",
+  "notMeasured": "Physical digitizer contact or display photon latency",
+  "clock": "Phone epoch logcat and screenrecord bugreport overlay; host timestamps excluded",
+  "anchors": [
+    {
+      "ptsMs": 2514.1,
+      "epoch": 1793971765.856
+    },
+    {
+      "ptsMs": 3519.2444444444445,
+      "epoch": 1793971766.861
+    },
+    {
+      "ptsMs": 13666.333333333334,
+      "epoch": 1793971777.008
+    }
+  ],
+  "anchorSpreadMs": 0.2334117889404297,
+  "overlayRoundingMs": 1,
+  "frameResolutionMs": 34.55555555555475,
+  "samples": 10,
+  "medianUpperBoundMs": 111.652,
+  "p95UpperBoundMs": 123.907,
+  "maximumUpperBoundMs": 123.907,
+  "p95Method": "nearest rank, ceil(0.95*N)",
+  "passForMeasuredBoundary": true,
+  "videoSha256": "1905dd3da181a3493cb666c73f1b3c87fe2f0a5e24cfb135e0564b70cc5d99a3",
+  "apkSha256": "3e9b33badc4fba23a432b77c1d932851e6d36f30a29125e2764b60283958bb0d"
+}

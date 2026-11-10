@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using MobileGame.Presentation;
 using TMPro;
 using UnityEditor;
@@ -15,6 +16,8 @@ namespace MobileGame.Foundation.Editor
         public const string FontPath = "Assets/Fonts/Mulmaru/Mulmaru.ttf";
         public const string FontLicensePath = "Assets/Fonts/Mulmaru/OFL.txt";
         public const string DynamicFontPath = "Assets/Fonts/Mulmaru/MulmaruDynamic.asset";
+        public const string FloorPath = "Assets/Sprites/World/Laboratory/LaboratoryFloorSet.png";
+        public const string ArtPath = "Assets/SO/Laboratory/LaboratoryArt.asset";
         private const int IconSize = 64;
 
         public static LaboratoryUiAssets CreateMissing()
@@ -40,9 +43,18 @@ namespace MobileGame.Foundation.Editor
             var font = EnsureFont();
             AssetDatabase.ImportAsset(FontLicensePath, ImportAssetOptions.ForceSynchronousImport);
             var binding = new LaboratoryUiAssets(font, icons, AssetDatabase.LoadAssetAtPath<TextAsset>(FontLicensePath),
-                AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Feel/FeelDemos/Duck/Sounds/FeelDuckWoosh.wav"));
+                AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Feel/FeelDemos/Duck/Sounds/FeelDuckWoosh.wav"), LoadFloorTiles(),
+                AssetDatabase.LoadAssetAtPath<LaboratoryArtAssets>(ArtPath));
             if (!binding.IsComplete) throw new InvalidOperationException("UI asset binding is incomplete.");
             return binding;
+        }
+
+        public static Sprite[] LoadFloorTiles()
+        {
+            // Optional until supplied. Rebuilding a scene must retain the official artwork.
+            var sprites = AssetDatabase.LoadAllAssetsAtPath(FloorPath).OfType<Sprite>().ToArray();
+            var names = new[] { "LaboratoryFloor", "LaboratoryFloorVariant", "LaboratoryFloorScuffed", "LaboratoryFloorStained" };
+            return names.Select(name => sprites.SingleOrDefault(sprite => sprite.name == name)).ToArray();
         }
 
         public static TMP_FontAsset EnsureFont()
@@ -83,13 +95,29 @@ namespace MobileGame.Foundation.Editor
             return font;
         }
 
-        public static string GetIconPath(LaboratoryIcon icon) => IconDirectory + "/Temp_" + icon + ".png";
+        public static string GetIconPath(LaboratoryIcon icon)
+        {
+            var supplied = IconDirectory + "/" + icon + ".png";
+            return File.Exists(supplied) ? supplied : IconDirectory + "/Temp_" + icon + ".png";
+        }
 
         private static void ImportIcon(string path)
         {
-            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
             var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+            if (importer == null)
+            {
+                AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
+                importer = AssetImporter.GetAtPath(path) as TextureImporter;
+            }
             if (importer == null) throw new InvalidOperationException("Icon texture importer is missing: " + path);
+            var current = new TextureImporterSettings(); importer.ReadTextureSettings(current);
+            if (importer.textureType == TextureImporterType.Sprite && importer.spriteImportMode == SpriteImportMode.Single
+                && importer.spritePixelsPerUnit == 32 && importer.filterMode == FilterMode.Point && importer.wrapMode == TextureWrapMode.Clamp
+                && !importer.mipmapEnabled && !importer.isReadable && importer.sRGBTexture && importer.alphaIsTransparency
+                && importer.alphaSource == TextureImporterAlphaSource.FromInput && importer.npotScale == TextureImporterNPOTScale.None
+                && importer.textureCompression == TextureImporterCompression.Uncompressed && importer.maxTextureSize == IconSize
+                && !importer.GetPlatformTextureSettings("Android").overridden && current.spriteMeshType == SpriteMeshType.FullRect
+                && current.spriteAlignment == (int)SpriteAlignment.Center) return;
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;
             importer.spritePixelsPerUnit = 32;

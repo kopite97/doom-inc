@@ -1,0 +1,148 @@
+[
+  {
+    "utc": "2026-11-06T14:41:51.173841+00:00",
+    "args": [
+      "shell",
+      "am",
+      "force-stop",
+      "com.DefaultCompany.urp_2d"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:41:51.320628+00:00",
+    "args": [
+      "shell",
+      "am",
+      "start",
+      "-n",
+      "com.DefaultCompany.urp_2d/com.unity3d.player.UnityPlayerGameActivity"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:41:57.436336+00:00",
+    "args": [
+      "shell",
+      "input",
+      "tap",
+      "540",
+      "1750"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:41:57.571814+00:00",
+    "screenshot": "back-before-key"
+  },
+  {
+    "utc": "2026-11-06T14:41:58.069495+00:00",
+    "args": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:42:00.178164+00:00",
+    "screenshot": "back-resumed"
+  },
+  {
+    "utc": "2026-11-06T14:42:00.664753+00:00",
+    "args": [
+      "shell",
+      "input",
+      "tap",
+      "675",
+      "1950"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:42:01.257668+00:00",
+    "screenshot": "back-input-restored"
+  },
+  {
+    "utc": "2026-11-06T14:42:01.783729+00:00",
+    "args": [
+      "shell",
+      "am",
+      "force-stop",
+      "com.DefaultCompany.urp_2d"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:42:01.913518+00:00",
+    "args": [
+      "shell",
+      "am",
+      "start",
+      "-n",
+      "com.DefaultCompany.urp_2d/com.unity3d.player.UnityPlayerGameActivity"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:42:08.017675+00:00",
+    "args": [
+      "shell",
+      "input",
+      "tap",
+      "540",
+      "1750"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:42:08.177984+00:00",
+    "screenshot": "home-before-key"
+  },
+  {
+    "utc": "2026-11-06T14:42:08.699808+00:00",
+    "args": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_HOME"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:42:09.800639+00:00",
+    "args": [
+      "pull",
+      "/sdcard/Android/data/com.DefaultCompany.urp_2d/files/Gameplay/session.json",
+      "C:\\Dev\\Unity\\Doom_Inc\\docs\\plans\\evidence\\PLAN-025\\device\\loading-boundary\\home-paused-a-session.json"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:42:15.836831+00:00",
+    "args": [
+      "pull",
+      "/sdcard/Android/data/com.DefaultCompany.urp_2d/files/Gameplay/session.json",
+      "C:\\Dev\\Unity\\Doom_Inc\\docs\\plans\\evidence\\PLAN-025\\device\\loading-boundary\\home-paused-b-session.json"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:42:15.865703+00:00",
+    "args": [
+      "shell",
+      "am",
+      "start",
+      "-n",
+      "com.DefaultCompany.urp_2d/com.unity3d.player.UnityPlayerGameActivity"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:42:17.960397+00:00",
+    "screenshot": "home-resumed"
+  },
+  {
+    "utc": "2026-11-06T14:42:18.482188+00:00",
+    "args": [
+      "shell",
+      "input",
+      "tap",
+      "675",
+      "1950"
+    ]
+  },
+  {
+    "utc": "2026-11-06T14:42:19.070968+00:00",
+    "screenshot": "home-input-restored"
+  }
+]

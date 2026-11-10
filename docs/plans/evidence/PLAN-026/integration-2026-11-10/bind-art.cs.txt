@@ -1,0 +1,35 @@
+if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode) throw new System.Exception("Bind outside Play Mode.");
+var artPath = MobileGame.Foundation.Editor.LaboratoryUiAssetBuilder.ArtPath;
+if (!UnityEditor.AssetDatabase.IsValidFolder("Assets/SO/Laboratory")) UnityEditor.AssetDatabase.CreateFolder("Assets/SO", "Laboratory");
+var art = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Presentation.LaboratoryArtAssets>(artPath);
+if (art == null) {
+    art = UnityEngine.ScriptableObject.CreateInstance<MobileGame.Presentation.LaboratoryArtAssets>();
+    UnityEditor.AssetDatabase.CreateAsset(art, artPath);
+}
+var serialized = new UnityEditor.SerializedObject(art);
+serialized.FindProperty("gatheringDefinition").objectReferenceValue = UnityEditor.AssetDatabase.LoadMainAssetAtPath("Assets/SO/Facility/Gathering.asset");
+serialized.FindProperty("prototypeDefinition").objectReferenceValue = UnityEditor.AssetDatabase.LoadMainAssetAtPath("Assets/SO/Creature/PrototypeSupport.asset");
+var paths = new[] { "Assets/Sprites/Facility/Gathering/Gathering.png", "Assets/Sprites/Creature/PrototypeSupport/PrototypeSupport.png" };
+for (var a = 0; a < paths.Length; a++) {
+    var frames = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.ThenBy(System.Linq.Enumerable.OrderByDescending(System.Linq.Enumerable.OfType<UnityEngine.Sprite>(UnityEditor.AssetDatabase.LoadAllAssetsAtPath(paths[a])), s => s.rect.y), s => s.rect.x));
+    if (frames.Length != (a == 0 ? 36 : 64)) throw new System.Exception("Frame count mismatch.");
+    var property = serialized.FindProperty(a == 0 ? "gatheringFrames" : "prototypeFrames"); property.arraySize = frames.Length;
+    for (var i = 0; i < frames.Length; i++) property.GetArrayElementAtIndex(i).objectReferenceValue = frames[i];
+}
+var heads = new UnityEngine.Vector2[] { new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,25), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,23), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,26), new UnityEngine.Vector2(32,22), new UnityEngine.Vector2(32,23), new UnityEngine.Vector2(32,25), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,26), new UnityEngine.Vector2(32,27), new UnityEngine.Vector2(32,25), new UnityEngine.Vector2(32,21), new UnityEngine.Vector2(32,23), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,25), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,23), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,26), new UnityEngine.Vector2(31,22), new UnityEngine.Vector2(31,23), new UnityEngine.Vector2(32,25), new UnityEngine.Vector2(33,24), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,26), new UnityEngine.Vector2(32,27), new UnityEngine.Vector2(31,25), new UnityEngine.Vector2(31,21), new UnityEngine.Vector2(32,23), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,25), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,23), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,26), new UnityEngine.Vector2(33,22), new UnityEngine.Vector2(33,23), new UnityEngine.Vector2(32,25), new UnityEngine.Vector2(31,24), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,26), new UnityEngine.Vector2(32,27), new UnityEngine.Vector2(33,25), new UnityEngine.Vector2(33,21), new UnityEngine.Vector2(32,23), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,25), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,23), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,26), new UnityEngine.Vector2(32,22), new UnityEngine.Vector2(32,23), new UnityEngine.Vector2(32,25), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,24), new UnityEngine.Vector2(32,26), new UnityEngine.Vector2(32,27), new UnityEngine.Vector2(32,25), new UnityEngine.Vector2(32,21), new UnityEngine.Vector2(32,23) };
+var headProperty = serialized.FindProperty("prototypeHeads"); headProperty.arraySize = heads.Length;
+for (var i = 0; i < heads.Length; i++) headProperty.GetArrayElementAtIndex(i).vector2Value = heads[i];
+serialized.ApplyModifiedPropertiesWithoutUndo(); UnityEditor.EditorUtility.SetDirty(art); UnityEditor.AssetDatabase.SaveAssetIfDirty(art);
+var organic = UnityEditor.AssetDatabase.LoadMainAssetAtPath("Assets/SO/Resource/OrganicMatter.asset");
+var organicProperties = new UnityEditor.SerializedObject(organic);
+organicProperties.FindProperty("icon").objectReferenceValue = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Sprite>("Assets/Sprites/Resource/OrganicMatter/OrganicMatter.png");
+organicProperties.ApplyModifiedPropertiesWithoutUndo(); UnityEditor.EditorUtility.SetDirty(organic); UnityEditor.AssetDatabase.SaveAssetIfDirty(organic);
+var binding = MobileGame.Foundation.Editor.LaboratoryUiAssetBuilder.CreateMissing();
+var configuration = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Presentation.AppConfiguration>("Assets/SO/Application/AppConfiguration.asset");
+configuration.uiAssets = binding; UnityEditor.EditorUtility.SetDirty(configuration); UnityEditor.AssetDatabase.SaveAssetIfDirty(configuration);
+var view = UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>();
+if (view == null || view.gameObject.scene.path != MobileGame.Foundation.Editor.LaboratorySceneAssets.ScenePath) throw new System.Exception("Expected the laboratory scene.");
+view.ConfigureUiAssets(binding); UnityEditor.EditorUtility.SetDirty(view);
+UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(view.gameObject.scene);
+if (!UnityEditor.SceneManagement.EditorSceneManager.SaveScene(view.gameObject.scene)) throw new System.Exception("Cannot save laboratory scene bindings.");
+return new { art = UnityEditor.AssetDatabase.GetAssetPath(binding.Art), organic = UnityEditor.AssetDatabase.GetAssetPath(((MobileGame.Foundation.ThingDefinition)organic).Icon), build = UnityEditor.AssetDatabase.GetAssetPath(binding.GetIcon(MobileGame.Presentation.LaboratoryIcon.Build)), floor = binding.GetFloorTile(0).name, scene = view.gameObject.scene.path };

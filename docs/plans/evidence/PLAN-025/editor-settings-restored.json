@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "command": "command script",
+  "data": {
+    "command": "script",
+    "parameters": {
+      "code": "UnityEditor.PlayerSettings.runInBackground = false; UnityEngine.Application.runInBackground = false; UnityEditor.EditorPrefs.DeleteKey(\"MobileGame.AppPlayEntry.SlotB\"); UnityEditor.EditorPrefs.DeleteKey(\"MobileGame.AppPlayEntry.Continue\"); MobileGame.Presentation.GameBootstrap.EditorSlotName = \"Default\"; MobileGame.Presentation.GameBootstrap.EditorStartChoice = default; var font = UnityEditor.AssetDatabase.LoadAssetAtPath<TMPro.TMP_FontAsset>(\"Assets/Fonts/Mulmaru/MulmaruDynamic.asset\"); font.ClearFontAssetData(true); UnityEditor.EditorUtility.SetDirty(font); var settings = UnityEditor.AssetDatabase.LoadMainAssetAtPath(\"Assets/Resources/DOTweenSettings.asset\"); using (var serialized = new UnityEditor.SerializedObject(settings)) { serialized.FindProperty(\"modules.showPanel\").boolValue = true; serialized.ApplyModifiedPropertiesWithoutUndo(); } UnityEditor.AssetDatabase.SaveAssets(); return new { runInBackground = UnityEngine.Application.runInBackground, optionsEnabled = UnityEditor.EditorSettings.enterPlayModeOptionsEnabled, options = UnityEditor.EditorSettings.enterPlayModeOptions.ToString(), startScene = UnityEditor.AssetDatabase.GetAssetPath(UnityEditor.SceneManagement.EditorSceneManager.playModeStartScene), slotKeyExists = UnityEditor.EditorPrefs.HasKey(\"MobileGame.AppPlayEntry.SlotB\"), continueKeyExists = UnityEditor.EditorPrefs.HasKey(\"MobileGame.AppPlayEntry.Continue\") };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "runInBackground": false,
+        "optionsEnabled": true,
+        "options": "DisableDomainReload",
+        "startScene": "",
+        "slotKeyExists": false,
+        "continueKeyExists": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

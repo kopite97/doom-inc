@@ -1,0 +1,56 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "if (UnityEditor.EditorApplication.isPlaying || UnityEditor.EditorApplication.isCompiling) throw new System.InvalidOperationException(\"Editor is busy\");\r\nvar targets = new string[] {\r\n\"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloor.png\",\r\n\"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloorScuffed.png\",\r\n\"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloorStained.png\",\r\n\"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloorVariant.png\",\r\n\"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloor.png\",\r\n\"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloorScuffed.png\",\r\n\"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloorStained.png\",\r\n\"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloorVariant.png\",\r\n\"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-002/r001/Gathering.png\",\r\n\"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-002/r002/Gathering.png\",\r\n\"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-003/r001/PrototypeSupport.png\",\r\n\"Assets/Sprites/UI/Laboratory/Temp_Build.png\"\r\n};\r\nvar dependencies = new System.Collections.Generic.List<string>();\r\nforeach (var path in UnityEditor.AssetDatabase.GetAllAssetPaths()) {\r\n if (!path.StartsWith(\"Assets/\") || System.Array.IndexOf(targets,path)>=0 || UnityEditor.AssetDatabase.IsValidFolder(path)) continue;\r\n foreach(var dependency in UnityEditor.AssetDatabase.GetDependencies(path, false)) if (System.Array.IndexOf(targets,dependency)>=0) dependencies.Add(path + \" -> \" + dependency);\r\n}\r\nif (dependencies.Count>0) throw new System.InvalidOperationException(string.Join(\"\\n\",dependencies));\r\nvar deleted = new System.Collections.Generic.List<string>();\r\nforeach (var path in targets) {\r\n if (!path.StartsWith(\"Assets/Sprites/\") || !UnityEditor.AssetDatabase.DeleteAsset(path)) throw new System.InvalidOperationException(\"Delete failed: \" + path);\r\n deleted.Add(path);\r\n}\r\nvar folders = new System.Collections.Generic.List<string>(System.IO.Directory.GetDirectories(\"Assets/Sprites/Require\", \"*\", System.IO.SearchOption.AllDirectories));\r\nfolders.Sort((a,b) => b.Length.CompareTo(a.Length));\r\nvar emptyFolders = new System.Collections.Generic.List<string>();\r\nforeach (var path in folders) {\r\n var normalized=path.Replace('\\\\','/');\r\n if (!(normalized.StartsWith(\"Assets/Sprites/Require/PLAN-026/\") || normalized.StartsWith(\"Assets/Sprites/Require/PLAN-014/PLAN-014-SPR-006\"))) continue;\r\n if (System.IO.Directory.GetFileSystemEntries(path).Length==0 && UnityEditor.AssetDatabase.DeleteAsset(normalized)) emptyFolders.Add(normalized);\r\n}\r\nUnityEditor.AssetDatabase.Refresh();\r\nreturn new {deleted=deleted, emptyFolders=emptyFolders, dependencies=dependencies};\r\n"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "deleted": [
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloor.png",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloorScuffed.png",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloorStained.png",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloorVariant.png",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloor.png",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloorScuffed.png",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloorStained.png",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloorVariant.png",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-002/r001/Gathering.png",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-002/r002/Gathering.png",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-003/r001/PrototypeSupport.png",
+          "Assets/Sprites/UI/Laboratory/Temp_Build.png"
+        ],
+        "emptyFolders": [
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-003/r001",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-002/r003",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-002/r002",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-002/r001",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r003",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-003/r002",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-004/r001",
+          "Assets/Sprites/Require/PLAN-014/PLAN-014-SPR-006/r001",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-004",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-003",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-002",
+          "Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001",
+          "Assets/Sprites/Require/PLAN-014/PLAN-014-SPR-006"
+        ],
+        "dependencies": []
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

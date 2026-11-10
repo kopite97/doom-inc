@@ -1,0 +1,23 @@
+{
+  "apkBytes": 91774407,
+  "listedCompressedPayloadBytes": 63709717,
+  "largeGapsBetweenListedEntries": [
+    {
+      "start": 8316434,
+      "end": 31802930,
+      "bytes": 23486496,
+      "next": "lib/arm64-v8a/liblofelt_sdk.so",
+      "signatureHex": "504b030400000000"
+    },
+    {
+      "start": 48432489,
+      "end": 52912507,
+      "bytes": 4480018,
+      "next": "assets/bin/Data/Managed/Resources/Febucci.TextAnimatorCore.dll-resources.dat",
+      "signatureHex": "504b030400000000"
+    }
+  ],
+  "centralDirectoryStart": 91723580,
+  "lastPayloadEnd": 91719484,
+  "inference": "Large unlisted ZIP region accounts for APK size growth; listed content size changes are small. Incremental packaging residue is a hypothesis, not a measured runtime memory increase."
+}

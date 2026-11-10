@@ -26,3 +26,6 @@
 | [PLAN-022](PLAN-022-raider-and-resource-receiving.md) | 약탈형 배양·침공과 연구소 자원 수신 | `development` | `completed` |
 | [PLAN-023](PLAN-023-loading-progress-feel-and-mulmaru-tmp.md) | 씬 로딩 진행률·Feel 웨이브와 전체 게임 UI 물마루 TMP 전환 | `development` | `completed` |
 | [PLAN-024](PLAN-024-release-feedback-and-map-reveal.md) | 침공형 방출 성공 피드백과 화면 밖 시설 선택 시 지도 이동 | `development` | `completed` |
+| [PLAN-025](PLAN-025-android-integration-and-prototype-completion.md) | 최신 버전 Android 통합 검증과 프로토타입 완료 판정 | `development` | `completed` |
+| [PLAN-026](PLAN-026-art-style-scale-and-sample-integration.md) | 아트 5-1 스타일·크기 샘플과 연구소 적용 | `art` | `completed` |
+| [PLAN-027](PLAN-027-laboratory-tilemap-and-sprite-rendering.md) | 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환 | `development` | `proposed` |

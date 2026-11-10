@@ -1,0 +1,36 @@
+if (UnityEditor.EditorApplication.isPlaying || UnityEditor.EditorApplication.isCompiling) throw new System.InvalidOperationException("Editor is busy");
+var targets = new string[] {
+"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloor.png",
+"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloorScuffed.png",
+"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloorStained.png",
+"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r001/LaboratoryFloorVariant.png",
+"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloor.png",
+"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloorScuffed.png",
+"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloorStained.png",
+"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-001/r002/LaboratoryFloorVariant.png",
+"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-002/r001/Gathering.png",
+"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-002/r002/Gathering.png",
+"Assets/Sprites/Require/PLAN-026/PLAN-026-SPR-003/r001/PrototypeSupport.png",
+"Assets/Sprites/UI/Laboratory/Temp_Build.png"
+};
+var dependencies = new System.Collections.Generic.List<string>();
+foreach (var path in UnityEditor.AssetDatabase.GetAllAssetPaths()) {
+ if (!path.StartsWith("Assets/") || System.Array.IndexOf(targets,path)>=0 || UnityEditor.AssetDatabase.IsValidFolder(path)) continue;
+ foreach(var dependency in UnityEditor.AssetDatabase.GetDependencies(path, false)) if (System.Array.IndexOf(targets,dependency)>=0) dependencies.Add(path + " -> " + dependency);
+}
+if (dependencies.Count>0) throw new System.InvalidOperationException(string.Join("\n",dependencies));
+var deleted = new System.Collections.Generic.List<string>();
+foreach (var path in targets) {
+ if (!path.StartsWith("Assets/Sprites/") || !UnityEditor.AssetDatabase.DeleteAsset(path)) throw new System.InvalidOperationException("Delete failed: " + path);
+ deleted.Add(path);
+}
+var folders = new System.Collections.Generic.List<string>(System.IO.Directory.GetDirectories("Assets/Sprites/Require", "*", System.IO.SearchOption.AllDirectories));
+folders.Sort((a,b) => b.Length.CompareTo(a.Length));
+var emptyFolders = new System.Collections.Generic.List<string>();
+foreach (var path in folders) {
+ var normalized=path.Replace('\\','/');
+ if (!(normalized.StartsWith("Assets/Sprites/Require/PLAN-026/") || normalized.StartsWith("Assets/Sprites/Require/PLAN-014/PLAN-014-SPR-006"))) continue;
+ if (System.IO.Directory.GetFileSystemEntries(path).Length==0 && UnityEditor.AssetDatabase.DeleteAsset(normalized)) emptyFolders.Add(normalized);
+}
+UnityEditor.AssetDatabase.Refresh();
+return new {deleted=deleted, emptyFolders=emptyFolders, dependencies=dependencies};

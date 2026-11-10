@@ -1,0 +1,63 @@
+{
+    "plan": "PLAN-025",
+    "buildKind": "diagnostic",
+    "attempt": "20261106-134953-961",
+    "startedUtc": "2026-11-06T13:49:53.9643541Z",
+    "finishedUtc": "2026-11-06T13:50:41.0862421Z",
+    "unityVersion": "6000.3.27f1",
+    "host": "Windows 11  (10.0.26300)",
+    "target": "Android",
+    "applicationId": "com.DefaultCompany.urp_2d",
+    "backend": "IL2CPP",
+    "architectures": "ARM64",
+    "minimumSdk": "AndroidApiLevel25",
+    "targetSdk": "AndroidApiLevelAuto",
+    "orientation": "AutoRotation",
+    "portrait": true,
+    "portraitUpsideDown": true,
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "activeInputHandler": 1,
+    "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+    "scenes": [
+        "Assets/Scenes/Gameplay/Bootstrap/Temp_Bootstrap.unity",
+        "Assets/Scenes/Gameplay/Title/Temp_Title.unity",
+        "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity"
+    ],
+    "editorScenes": [
+        {
+            "path": "Assets/Scenes/Gameplay/Bootstrap/Temp_Bootstrap.unity",
+            "enabled": true
+        },
+        {
+            "path": "Assets/Scenes/Gameplay/Title/Temp_Title.unity",
+            "enabled": true
+        },
+        {
+            "path": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "enabled": true
+        }
+    ],
+    "buildOptions": "ForceOptimizeScriptCompilation, Il2CPP, CompressTextures, StripDebugSymbols, ShaderLivelinkSupport, Development, DetailedBuildReport",
+    "managedStrippingLevel": "Minimal",
+    "development": true,
+    "scriptDebugging": false,
+    "connectProfiler": false,
+    "deepProfiling": false,
+    "addressablesProfile": "Default",
+    "addressablesOutput": "Library/com.unity.addressables/aa/Android/settings.json",
+    "addressablesError": "",
+    "addressablesSeconds": 8.8217615,
+    "apk": "UnityProject/Builds/PLAN-025/diagnostic/20261106-134953-961/Temp_Laboratory-20261106-134953-961.apk",
+    "sha256": "4f78dd667f06f628733156b1f02eccd5006ea01bef9d1963b4cf3d9c14289614",
+    "buildGuid": "feba551f77194275a6f5329d78c4c308",
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 1,
+    "seconds": 37.3757373,
+    "bytes": 1232229163,
+    "messages": [
+        "Warning: Android App Info has not been configured. Please add and configure `Android App Info` metadata to the Localization Settings in order to correctly support Localization on Android."
+    ],
+    "failure": ""
+}

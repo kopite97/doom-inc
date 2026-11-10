@@ -2,10 +2,10 @@
 
 - 문서 ID: GD-PLATFORM
 - 분류: 제공 범위 > 플랫폼 > 플레이 환경
-- 상태: Unity·Android 프로토타입·연동 방향·실행·저장 규칙 확정 / 환경·연동·최소 테스트 확인, 전체 게임 사이클 구현 전
+- 상태: Unity·Android·실행·저장 규칙 확정 / 기본 게임 사이클·Editor·최신 Android 통합 검증 완료
 - 검색어: 모바일, Android, 안드로이드, Apple, iOS, App Store, ONE store, 원스토어, Universal 2D, URP, 렌더링, 가로, 세로, PC, 실제 기기, 터치, 성능, 오프라인, 1인, 자동 저장, 저장 슬롯, 이어하기, 다시 시작, 종료 중 진행, Unity, ScriptableObject, CLI, MCP, Pipeline, 에이전트, 하네스
-- 근거: S1-B / D-006, S2 / D-059·D-068·D-069·D-070·D-078·D-079·D-081·D-087·D-088·D-089·D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
-- 갱신일: 2026-10-26
+- 근거: S1-B / D-006, S2 / D-059·D-068·D-069·D-070·D-078·D-079·D-081·D-087·D-088·D-089·D-090·D-091 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
+- 갱신일: 2026-11-07
 - 탐색: [기획 MAP](../../README.md), [구현 계획](../../05-development/02-implementation/roadmap.md)
 
 ## 개발 환경 (D-081·D-087·D-088·D-089)
@@ -33,7 +33,7 @@ Apple(iOS/App Store)과 ONE store 배포도 후속 계획에 포함한다. ONE s
 
 환경 구성 시 [공식 MCP 안내](https://docs.unity.com/en-us/unity-cli/replace-mcp-server-unity-cli)와 [Pipeline 요구사항](https://docs.unity.com/en-us/unity-cli/unity-pipeline/unity-pipeline-package)을 참고한다. 조사 당시 공식 연결 경로는 Unity CLI와 Pipeline이다.
 
-설치·프로젝트 생성·CLI/Pipeline·MCP 연결과 Editor 실행·최소 자동 테스트 결과는 [PLAN-002](../../../plans/PLAN-002-unity-environment.md)에 기록했다. 알려진 도구 호환 주의점과 Android 빌드·실기기 등 미검증 범위도 해당 PLAN에서 확인한다. 별도 에이전트 플러그인이나 유료 Assistant 도입은 포함하지 않는다.
+설치·프로젝트 생성·CLI/Pipeline·MCP 연결과 최소 테스트, 당시의 도구 호환 주의점은 [PLAN-002](../../../plans/PLAN-002-unity-environment.md)에 기록했다. 이전 Android 빌드·실기기 검증은 PLAN-013·014에서 수행했다. 최신 통합 검증·D-070 판정과 환경 복원은 [PLAN-025](../../../plans/PLAN-025-android-integration-and-prototype-completion.md)에서 SM-G977N/Android 12·기존 임시 표현으로 완료했으며 미측정 지표와 기종 범위는 해당 증거를 따른다. 현재 단계와 증거 PLAN은 [구현 로드맵](../../05-development/02-implementation/roadmap.md)을 따른다. 별도 에이전트 플러그인이나 유료 Assistant 도입은 포함하지 않는다.
 
 ## 실행과 기기 검증 (D-068·D-070·D-089·D-090)
 

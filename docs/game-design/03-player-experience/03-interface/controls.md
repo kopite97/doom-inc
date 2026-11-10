@@ -5,7 +5,7 @@
 - 상태: 최소 화면·조작·가로와 세로 지원·가로 기본 사이클 우선 구현 확정 / 세부 표현 개발 위임
 - 검색어: UI, UX, 화면, 가로, 세로, 화면 방향, 재배치, 터치, 줌인, 줌아웃, 확대, 축소, 배치, 일시정지, 멸망, 결과 화면, 다시 시작, 연구소 기본 화면, 선택 패널, 전과 보고, 작업 상태, 대기 이유
 - 근거: S1-B-04 / D-006, S2 / D-033·D-059·D-064·D-065·D-067·D-079·D-089·D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
-- 갱신일: 2026-10-26
+- 갱신일: 2026-11-07
 - 탐색: [기획 MAP](../../README.md)
 
 ## 기본 화면과 선택 패널 (D-006·D-067)
@@ -32,7 +32,9 @@
 - 화면 방향에 따라 기존 요소를 재배치하는 수준으로 대응한다. 방향별 게임 규칙이나 전용 기능을 추가하지 않는다.
 - 가로에서 초기 건설부터 생산·침공·한 판 종료와 다시 시작까지 연결한 뒤 세로 대응을 추가한다. 최종 검증에서는 두 방향을 모두 확인한다.
 
-단계별 순서는 [구현 계획](../../05-development/02-implementation/roadmap.md), 실제 Android 기기 검증은 [플레이 환경](../../04-delivery/01-platform/environment.md)을 따른다. 실제 구현·검증은 아직 수행하지 않았다.
+단계별 순서는 [구현 계획](../../05-development/02-implementation/roadmap.md), 실제 Android 기기 검증은 [플레이 환경](../../04-delivery/01-platform/environment.md)을 따른다.
+
+가로·세로 UI와 모바일 입력은 [PLAN-013](../../../plans/PLAN-013-responsive-ui-and-mobile-input.md)·[PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-status.md)에서 구현하고 당시 APK의 직접 기기 검증을 완료했다. 이후 추가된 씬 흐름·Localization·Popup·연출을 포함한 최신 Android 통합 검증은 [PLAN-025](../../../plans/PLAN-025-android-integration-and-prototype-completion.md)에서 사용자 승인에 따라 완료했다. 해당 기종·APK의 증거와 남은 표시/측정 한계는 해당 PLAN을 따른다. 과거 검증을 최신 버전의 통과로 간주하지 않는다.
 
 ## 시간 흐름과 결과 화면 (D-033·D-064)
 

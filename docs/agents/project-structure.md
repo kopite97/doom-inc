@@ -59,7 +59,8 @@ Locale·String Table·Registry는 `SO/Localization/`, 설정·생성 초기 오�
 
 ### Sprite 요청·수령 대기 경로
 
-- `Sprites/Require/PLAN-NNN/README.md`는 [아트 요청 절차](art-assets.md#sprite-requests)의 전용 경로다. 사용자가 제작한 파일도 해당 PLAN 폴더에 넣는다.
+- `Sprites/Require/PLAN-NNN/README.md`는 [아트 요청 절차](art-assets.md#sprite-requests)의 전용 경로다. 한 PLAN의 여러 요청을 고유 요청 ID별로 기록한다.
+- 결과물은 같은 PLAN 아래 `<요청 ID>/rNNN/`에 수령한다. 파일별 대응·부분 수령·기존 파일 처리는 [요청별 수령 경로](art-assets.md#request-delivery-paths)를 따른다.
 - Require는 일반 기능별 분류의 예외다. 형제 폴더는 요청 출처 PLAN 번호로 통일하고, 각 폴더에는 그 PLAN의 Sprite 요청 README와 수령 파일·관련 원본만 둔다.
 - PLAN 번호는 출처 식별용이다. 요청 폴더와 처리 기록은 출처 PLAN이 완료된 뒤에도 유지하며, 독립 작업 여부와 별도 art PLAN의 경계는 아트 요청 절차를 따른다.
 - 요청이 있을 때만 만든다. 다른 종류의 임시 에셋이나 무관한 자료를 모으는 폴더로 쓰지 않는다.

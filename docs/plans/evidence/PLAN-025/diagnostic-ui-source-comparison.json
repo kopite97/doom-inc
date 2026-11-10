@@ -1,0 +1,41 @@
+{
+  "utc": "2026-11-06T13:49:53.897296+00:00",
+  "changes": [
+    {
+      "path": "UnityProject/Assets/JSON/Balance/README.md",
+      "original": "bf33a2f19e05880e642f7d7bf1aa91bdcb527a75d2ddb678f1cbf8007b591c8b",
+      "current": "67c5edc94d5ad12deed6ee7ec358c64a5af5b8da7f6fff6665ce184ef8a90b2d"
+    },
+    {
+      "path": "UnityProject/Assets/Scripts/Presentation/Diagnostics/Plan025PlayerProbe.cs",
+      "original": "00b9cf3970bbbd352a05eb330bf826395ede01b96e5f4039f49927e9f419777b",
+      "current": "4c002c87eecf9bcfbc8f5237152a4784e9c70c2bc0f10d7a18eda911ecb25b12"
+    },
+    {
+      "path": "UnityProject/Assets/Settings/Rendering/DefaultVolumeProfile.asset",
+      "original": "cb88ac788e6f2ac42dda3d6bc1593cefaba460e96aeae1b1c8fa7bef3e90e1e7",
+      "current": "4789b43834dd5efb32eec4c3b436baf0895c9f8cf2a0624121da8dd812ee984a"
+    },
+    {
+      "path": "UnityProject/Assets/Settings/Rendering/UniversalRP.asset",
+      "original": "7cdcc79dedadbde17803800f44ecb6ffd08b71e83ae56ebbf6db4adb555613e7",
+      "current": "167d20e3285f9071dc9bcb0a4fee7cdf8bb335dd849ec96e4b3fa39bd401f266"
+    },
+    {
+      "path": "UnityProject/Assets/Settings/Rendering/UniversalRenderPipelineGlobalSettings.asset",
+      "original": "44e7e4d2f438a42208180ae434807b9b5eebad4ef679719e585b3d962d56746a",
+      "current": "7c156c6dee5afd1a95a1c228888dd731172e3c4adb8d66c8e2440fd8cfc52848"
+    },
+    {
+      "path": "UnityProject/ProjectSettings/ProjectSettings.asset",
+      "original": "8d3c07b9c23920a514030a6c0372574ab6bc3ff0e34b06206a930de39bb28b3d",
+      "current": "5422c320f2f15bd402aa33007338315abaeb70341432f45692388bf1d5db196d"
+    }
+  ],
+  "addedDiagnosticSource": {
+    "path": "UnityProject\\Assets\\Scripts\\Presentation\\Diagnostics\\Plan025PlayerProbe.Ui.cs",
+    "sha256": "3a8fac76e3e168120a1547800b678faa4b1a4eaffbcba62e7631652ef9447877"
+  },
+  "finalPlayerConditional": "Plan025PlayerProbe and its Ui partial both compile only under UNITY_EDITOR || (UNITY_ANDROID && DEVELOPMENT_BUILD)",
+  "reason": "Real Android nested-popup, nondismiss and accepted-intent lifetime scenarios have no regular product UI entry."
+}

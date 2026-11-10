@@ -1,0 +1,43 @@
+[
+  {
+    "utc": "2026-11-06T14:39:20.197718+00:00",
+    "source": "docs/plans/evidence/PLAN-025/fixtures/compatibility/corrupt-session.json",
+    "inputSha256": "25bb422e46aa92ece2b2d51609c10d5ed699a94f258313fe15bef481a1600735",
+    "afterSha256": "25bb422e46aa92ece2b2d51609c10d5ed699a94f258313fe15bef481a1600735",
+    "saveBytesUnchanged": true,
+    "finishedUtc": "2026-11-06T14:39:32.789449+00:00",
+    "case": "corrupt",
+    "screenObserved": "Unable to prepare the game; existing save preserved"
+  },
+  {
+    "utc": "2026-11-06T14:40:21.616635+00:00",
+    "source": "docs/plans/evidence/PLAN-025/fixtures/compatibility/hash-mismatch-session.json",
+    "inputSha256": "51e24a7fcc3ec6ee0b2005fb8b0a9fdedf185afa3eaab7fde3bc33229dc2a614",
+    "afterSha256": "51e24a7fcc3ec6ee0b2005fb8b0a9fdedf185afa3eaab7fde3bc33229dc2a614",
+    "saveBytesUnchanged": true,
+    "finishedUtc": "2026-11-06T14:40:34.244944+00:00",
+    "case": "hash-mismatch",
+    "screenObserved": "Unable to prepare the game; existing save preserved"
+  },
+  {
+    "utc": "2026-11-06T14:38:48.070831+00:00",
+    "source": "docs/plans/evidence/PLAN-022/legacy-v5.json",
+    "inputSha256": "ca9165cca4e022b2d21fbd280c5a2b5e95365899d1e6b3ae8d31afd4558594a9",
+    "afterSha256": "ca9165cca4e022b2d21fbd280c5a2b5e95365899d1e6b3ae8d31afd4558594a9",
+    "saveBytesUnchanged": true,
+    "finishedUtc": "2026-11-06T14:39:00.711432+00:00",
+    "case": "supported-v5",
+    "screenObserved": "Laboratory",
+    "migratedVersion": 6
+  },
+  {
+    "utc": "2026-11-06T14:40:07.524892+00:00",
+    "source": "docs/plans/evidence/PLAN-025/fixtures/compatibility/unsupported-session.json",
+    "inputSha256": "3e4af329627fc69584ce3c5b19efce2a1f0345cf0c787203aa4eb67effe6d356",
+    "afterSha256": "3e4af329627fc69584ce3c5b19efce2a1f0345cf0c787203aa4eb67effe6d356",
+    "saveBytesUnchanged": true,
+    "finishedUtc": "2026-11-06T14:40:20.175923+00:00",
+    "case": "unsupported",
+    "screenObserved": "Unable to prepare the game; existing save preserved"
+  }
+]

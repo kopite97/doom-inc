@@ -1,0 +1,71 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var paths = new[] { \"Assets/Sprites/World/Laboratory/LaboratoryFloorSet.png\", \"Assets/Sprites/Facility/Gathering/Gathering.png\", \"Assets/Sprites/Creature/PrototypeSupport/PrototypeSupport.png\", \"Assets/Sprites/Resource/OrganicMatter/OrganicMatter.png\", \"Assets/Sprites/UI/Laboratory/Build.png\" };\nvar expected = new[] { 4, 36, 64, 1, 1 }; var total = 0;\nvar report = new System.Collections.Generic.List<object>();\nfor (var a = 0; a < paths.Length; a++) {\n    var path = paths[a]; var importer = (UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(path);\n    var sprites = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.OfType<UnityEngine.Sprite>(UnityEditor.AssetDatabase.LoadAllAssetsAtPath(path)));\n    if (sprites.Length != expected[a]) throw new System.Exception(\"Wrong sprite count: \" + path);\n    if (importer.textureType != UnityEditor.TextureImporterType.Sprite || importer.spritePixelsPerUnit != 32 || importer.filterMode != UnityEngine.FilterMode.Point || importer.wrapMode != UnityEngine.TextureWrapMode.Clamp || importer.textureCompression != UnityEditor.TextureImporterCompression.Uncompressed || importer.mipmapEnabled || importer.isReadable || !importer.sRGBTexture || !importer.alphaIsTransparency || importer.alphaSource != UnityEditor.TextureImporterAlphaSource.FromInput || importer.npotScale != UnityEditor.TextureImporterNPOTScale.None) throw new System.Exception(\"Wrong import settings: \" + path);\n    foreach (var platform in new[] { \"Android\", \"Standalone\", \"iPhone\", \"WebGL\" }) if (importer.GetPlatformTextureSettings(platform).overridden) throw new System.Exception(\"Platform override: \" + path);\n    var texture = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Texture2D>(path);\n    if (a == 1 && texture.width != 768 || a == 2 && texture.width != 512) throw new System.Exception(\"Sheet was resized.\");\n    foreach (var sprite in sprites) if (sprite.pivot != sprite.rect.size * .5f) throw new System.Exception(\"Wrong pivot.\");\n    total += sprites.Length; report.Add(new { path, guid = UnityEditor.AssetDatabase.AssetPathToGUID(path), spriteCount = sprites.Length, width = texture.width, height = texture.height, maxSize = importer.maxTextureSize });\n}\nvar config = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Presentation.AppConfiguration>(\"Assets/SO/Application/AppConfiguration.asset\");\nvar view = UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>();\nif (view.UiAssets.Art == null || view.UiAssets.Art != config.uiAssets.Art) throw new System.Exception(\"Art configuration missing from scene/application.\");\nfor (var i = 0; i < 36; i++) if (config.uiAssets.Art.GatheringFrame(i) == null) throw new System.Exception(\"Gathering frame missing.\");\nfor (var i = 0; i < 64; i++) if (config.uiAssets.Art.PrototypeFrame(i) == null) throw new System.Exception(\"Prototype frame missing.\");\nfor (var i = 0; i < 4; i++) if (config.uiAssets.GetFloorTile(i) == null || view.UiAssets.GetFloorTile(i) != config.uiAssets.GetFloorTile(i)) throw new System.Exception(\"Floor reference mismatch.\");\nvar build = config.uiAssets.GetIcon(MobileGame.Presentation.LaboratoryIcon.Build);\nif (UnityEditor.AssetDatabase.GetAssetPath(build) != paths[4] || view.UiAssets.GetIcon(MobileGame.Presentation.LaboratoryIcon.Build) != build) throw new System.Exception(\"Build reference mismatch.\");\nvar organic = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Foundation.ThingDefinition>(\"Assets/SO/Resource/OrganicMatter.asset\");\nif (UnityEditor.AssetDatabase.GetAssetPath(organic.Icon) != paths[3]) throw new System.Exception(\"Resource reference missing.\");\nreturn new { utc = System.DateTime.UtcNow.ToString(\"O\"), resources = 5, sprites = total, allReferencesConnected = true, gameTestsRun = false, assets = report };\n"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "utc": "2026-11-10T12:08:10.0158979Z",
+        "resources": 5,
+        "sprites": 106,
+        "allReferencesConnected": true,
+        "gameTestsRun": false,
+        "assets": [
+          {
+            "path": "Assets/Sprites/World/Laboratory/LaboratoryFloorSet.png",
+            "guid": "01104bcccd5217245a27f0ce9bb47fb4",
+            "spriteCount": 4,
+            "width": 256,
+            "height": 64,
+            "maxSize": 256
+          },
+          {
+            "path": "Assets/Sprites/Facility/Gathering/Gathering.png",
+            "guid": "d5dd9890000dc414db50559195a6956b",
+            "spriteCount": 36,
+            "width": 768,
+            "height": 768,
+            "maxSize": 1024
+          },
+          {
+            "path": "Assets/Sprites/Creature/PrototypeSupport/PrototypeSupport.png",
+            "guid": "4b80f018f27ddd042a09d9cad58323ed",
+            "spriteCount": 64,
+            "width": 512,
+            "height": 512,
+            "maxSize": 512
+          },
+          {
+            "path": "Assets/Sprites/Resource/OrganicMatter/OrganicMatter.png",
+            "guid": "8fb8ad9c9d16ea3499e48a2ed2f28292",
+            "spriteCount": 1,
+            "width": 32,
+            "height": 32,
+            "maxSize": 64
+          },
+          {
+            "path": "Assets/Sprites/UI/Laboratory/Build.png",
+            "guid": "aea238ac1852f7644baa7314ee056cdb",
+            "spriteCount": 1,
+            "width": 64,
+            "height": 64,
+            "maxSize": 64
+          }
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

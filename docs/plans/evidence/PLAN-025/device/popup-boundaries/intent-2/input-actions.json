@@ -1,0 +1,66 @@
+{
+  "tapToHomeLaunchDelaySeconds": 0.0,
+  "actions": [
+    {
+      "utc": "2026-11-06T15:05:14.176179+00:00",
+      "action": "launch asynchronous tap"
+    },
+    {
+      "utc": "2026-11-06T15:05:14.179841+00:00",
+      "action": "launch Home"
+    },
+    {
+      "utc": "2026-11-06T15:05:16.291402+00:00",
+      "action": [
+        "pull",
+        "/sdcard/Android/data/com.DefaultCompany.urp_2d/files/PLAN-025-Probe/intent-2/ui-events.json",
+        "C:\\Dev\\Unity\\Doom_Inc\\docs\\plans\\evidence\\PLAN-025\\device\\popup-boundaries\\intent-2\\background-events.json"
+      ]
+    },
+    {
+      "utc": "2026-11-06T15:05:16.331474+00:00",
+      "action": [
+        "shell",
+        "am",
+        "start",
+        "-n",
+        "com.DefaultCompany.urp_2d/com.unity3d.player.UnityPlayerGameActivity"
+      ]
+    },
+    {
+      "utc": "2026-11-06T15:05:17.844635+00:00",
+      "action": [
+        "pull",
+        "/sdcard/Android/data/com.DefaultCompany.urp_2d/files/PLAN-025-Probe/intent-2/ui-events.json",
+        "C:\\Dev\\Unity\\Doom_Inc\\docs\\plans\\evidence\\PLAN-025\\device\\popup-boundaries\\intent-2\\first-resume-events.json"
+      ]
+    },
+    {
+      "utc": "2026-11-06T15:05:17.869986+00:00",
+      "action": [
+        "shell",
+        "input",
+        "keyevent",
+        "KEYCODE_HOME"
+      ]
+    },
+    {
+      "utc": "2026-11-06T15:05:18.947541+00:00",
+      "action": [
+        "shell",
+        "am",
+        "start",
+        "-n",
+        "com.DefaultCompany.urp_2d/com.unity3d.player.UnityPlayerGameActivity"
+      ]
+    },
+    {
+      "utc": "2026-11-06T15:05:25.050081+00:00",
+      "action": [
+        "pull",
+        "/sdcard/Android/data/com.DefaultCompany.urp_2d/files/PLAN-025-Probe/intent-2/ui-events.json",
+        "C:\\Dev\\Unity\\Doom_Inc\\docs\\plans\\evidence\\PLAN-025\\device\\popup-boundaries\\intent-2\\ui-events.json"
+      ]
+    }
+  ]
+}

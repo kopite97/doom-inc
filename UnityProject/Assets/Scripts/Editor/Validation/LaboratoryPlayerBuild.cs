@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using MobileGame.Presentation;
 using UnityEditor;
+using UnityEditor.AddressableAssets;
+using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEditor.SceneManagement;
@@ -24,6 +26,7 @@ namespace MobileGame.Foundation.Editor
         [Serializable] private sealed class BuildEvidence
         {
             public string plan;
+            public string buildKind;
             public string attempt;
             public string startedUtc;
             public string finishedUtc;
@@ -45,6 +48,15 @@ namespace MobileGame.Foundation.Editor
             public string[] scenes;
             public SceneEntry[] editorScenes;
             public string buildOptions;
+            public string managedStrippingLevel;
+            public bool development;
+            public bool scriptDebugging;
+            public bool connectProfiler;
+            public bool deepProfiling;
+            public string addressablesProfile;
+            public string addressablesOutput;
+            public string addressablesError;
+            public double addressablesSeconds;
             public string apk;
             public string sha256;
             public string buildGuid;
@@ -73,20 +85,33 @@ namespace MobileGame.Foundation.Editor
         [MenuItem("Tools/Mobile Game/Build PLAN-014 Android APK")]
         public static void BuildAndroidPlan014() => BuildAndroidForPlan("PLAN-014");
 
-        private static void BuildAndroidForPlan(string planId)
+        [MenuItem("Tools/Mobile Game/Build PLAN-025 Final Android APK")]
+        public static void BuildAndroidPlan025Final() => BuildAndroidForPlan("PLAN-025", false);
+
+        [MenuItem("Tools/Mobile Game/Build PLAN-025 Diagnostic Android APK")]
+        public static void BuildAndroidPlan025Diagnostic() => BuildAndroidForPlan("PLAN-025", true);
+
+        private static void BuildAndroidForPlan(string planId, bool development = true)
         {
             RequireIdleEditor();
             var attempt = DateTime.UtcNow.ToString("yyyyMMdd-HHmmss-fff");
+            var buildKind = development ? "diagnostic" : "final";
             var project = Directory.GetParent(Application.dataPath).FullName;
             var evidenceDirectory = Path.Combine(Directory.GetParent(project).FullName, "docs/plans/evidence", planId);
             var outputDirectory = Path.Combine(project, "Builds", planId);
+            if (planId == "PLAN-025")
+            {
+                evidenceDirectory = Path.Combine(evidenceDirectory, buildKind, attempt);
+                outputDirectory = Path.Combine(outputDirectory, buildKind, attempt);
+            }
             Directory.CreateDirectory(evidenceDirectory);
             Directory.CreateDirectory(outputDirectory);
             var output = Path.Combine(outputDirectory, "Temp_Laboratory-" + attempt + ".apk");
-            var options = BuildOptions.Development | BuildOptions.DetailedBuildReport;
+            var options = BuildOptions.DetailedBuildReport;
+            if (development) options |= BuildOptions.Development;
             var evidence = new BuildEvidence
             {
-                plan = planId, attempt = attempt, startedUtc = DateTime.UtcNow.ToString("O"), unityVersion = Application.unityVersion,
+                plan = planId, buildKind = buildKind, attempt = attempt, startedUtc = DateTime.UtcNow.ToString("O"), unityVersion = Application.unityVersion,
                 host = SystemInfo.operatingSystem, target = EditorUserBuildSettings.activeBuildTarget.ToString(),
                 applicationId = PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Android),
                 backend = PlayerSettings.GetScriptingBackend(NamedBuildTarget.Android).ToString(),
@@ -97,14 +122,26 @@ namespace MobileGame.Foundation.Editor
                 landscapeLeft = PlayerSettings.allowedAutorotateToLandscapeLeft, landscapeRight = PlayerSettings.allowedAutorotateToLandscapeRight,
                 scenes = AppSceneAssets.ProductScenes,
                 editorScenes = EditorBuildSettings.scenes.Select(s => new SceneEntry { path = s.path, enabled = s.enabled }).ToArray(),
-                buildOptions = options.ToString(), apk = "UnityProject/Builds/" + planId + "/" + Path.GetFileName(output), result = "NotStarted"
+                buildOptions = options.ToString(),
+                managedStrippingLevel = PlayerSettings.GetManagedStrippingLevel(NamedBuildTarget.Android).ToString(),
+                development = development, scriptDebugging = false, connectProfiler = false, deepProfiling = false,
+                apk = "UnityProject/" + output.Substring(project.Length + 1).Replace('\\', '/'), result = "NotStarted"
             };
             var originalBundle = EditorUserBuildSettings.buildAppBundle;
             var originalExport = EditorUserBuildSettings.exportAsGoogleAndroidProject;
+            var originalDevelopment = EditorUserBuildSettings.development;
+            var originalDebugging = EditorUserBuildSettings.allowDebugging;
+            var originalConnectProfiler = EditorUserBuildSettings.connectProfiler;
+            var originalDeepProfiling = EditorUserBuildSettings.buildWithDeepProfilingSupport;
+            var addressables = planId == "PLAN-025" ? AddressableAssetSettingsDefaultObject.Settings : null;
+            var originalAddressablesBuild = addressables != null ? addressables.BuildAddressablesWithPlayerBuild : default;
             try
             {
                 if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
                     throw new InvalidOperationException("Switch to the approved Android target before building.");
+                if (planId == "PLAN-025" && (PlayerSettings.GetScriptingBackend(NamedBuildTarget.Android) != ScriptingImplementation.IL2CPP
+                    || PlayerSettings.Android.targetArchitectures != AndroidArchitecture.ARM64))
+                    throw new InvalidOperationException("PLAN-025 requires IL2CPP and ARM64 only.");
                 if (PlayerSettings.Android.useCustomKeystore)
                     throw new InvalidOperationException("Verification builds use the default debug signing configuration; custom signing is not changed by this tool.");
                 if (PlayerSettings.defaultInterfaceOrientation != UIOrientation.AutoRotation
@@ -126,6 +163,23 @@ namespace MobileGame.Foundation.Editor
                     throw new InvalidOperationException("The player entry scene must include every local JSON table.");
                 EditorUserBuildSettings.buildAppBundle = false;
                 EditorUserBuildSettings.exportAsGoogleAndroidProject = false;
+                EditorUserBuildSettings.development = development;
+                EditorUserBuildSettings.allowDebugging = false;
+                EditorUserBuildSettings.connectProfiler = false;
+                EditorUserBuildSettings.buildWithDeepProfilingSupport = false;
+                if (planId == "PLAN-025")
+                {
+                    if (addressables == null) throw new InvalidOperationException("Missing local Addressables settings.");
+                    evidence.addressablesProfile = addressables.profileSettings.GetProfileName(addressables.activeProfileId);
+                    // Explicitly build approved content once, independent of this machine's Editor preference.
+                    AddressableAssetSettings.BuildPlayerContent(out var content);
+                    evidence.addressablesOutput = content?.OutputPath;
+                    evidence.addressablesError = content?.Error;
+                    evidence.addressablesSeconds = content?.Duration ?? 0;
+                    if (content == null || !string.IsNullOrEmpty(content.Error))
+                        throw new InvalidOperationException("Local Addressables build failed: " + (content?.Error ?? "no result"));
+                    addressables.BuildAddressablesWithPlayerBuild = AddressableAssetSettings.PlayerBuildOption.DoNotBuildWithPlayer;
+                }
                 var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
                 {
                     scenes = evidence.scenes, locationPathName = output, target = BuildTarget.Android,
@@ -155,6 +209,11 @@ namespace MobileGame.Foundation.Editor
             {
                 EditorUserBuildSettings.buildAppBundle = originalBundle;
                 EditorUserBuildSettings.exportAsGoogleAndroidProject = originalExport;
+                EditorUserBuildSettings.development = originalDevelopment;
+                EditorUserBuildSettings.allowDebugging = originalDebugging;
+                EditorUserBuildSettings.connectProfiler = originalConnectProfiler;
+                EditorUserBuildSettings.buildWithDeepProfilingSupport = originalDeepProfiling;
+                if (addressables != null) addressables.BuildAddressablesWithPlayerBuild = originalAddressablesBuild;
                 evidence.finishedUtc = DateTime.UtcNow.ToString("O");
                 File.WriteAllText(Path.Combine(evidenceDirectory, "android-build-" + attempt + ".json"), JsonUtility.ToJson(evidence, true));
             }

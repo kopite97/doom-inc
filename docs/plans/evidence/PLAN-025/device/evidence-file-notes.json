@@ -1,0 +1,30 @@
+{
+  "renamedFiles": [
+    {
+      "from": "cycle2-results-session.json",
+      "to": "post-cycle2-new-session.json",
+      "reason": "Pulled data was already a fresh game; do not mislabel it as the second result save."
+    },
+    {
+      "from": "cycle2-restarted.png",
+      "to": "post-cycle2-title-settings.png",
+      "reason": "The screenshot showed Title Settings, not a restarted Laboratory. The preceding input transition was unobserved."
+    },
+    {
+      "from": "final-initial-loaded.png",
+      "to": "local ignored Temp/PLAN-025/final-initial-screen-off.png",
+      "reason": "Screen was off before sampling; no app Surface existed. No valid measurement or load observation is claimed."
+    }
+  ],
+  "historicalFilenameNotes": [
+    {
+      "file": "cycle1-mixed-release.png",
+      "actual": "Only six normal invaders were ready and released; raiders completed later. Cycle 2 provides the mixed-release evidence."
+    },
+    {
+      "file": "cycle1-loading-back.png",
+      "actual": "Shows the restored result screen; by itself does not prove Back occurred during loading."
+    }
+  ],
+  "method": "Original action-log records remain unchanged. Use this map for later file renames and misleading original capture labels."
+}

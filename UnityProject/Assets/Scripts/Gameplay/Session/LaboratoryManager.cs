@@ -12,6 +12,10 @@ namespace MobileGame.Gameplay
     {
         private readonly WorkerManager workers;
         internal double Clock { get; private set; }
+        public double ElapsedSeconds => Clock;
+        // Notification only: production is already committed before presentation observes it.
+        public event Action<Guid> GatheringCompleted;
+        internal void NotifyGatheringCompleted(Guid facilityId) => GatheringCompleted?.Invoke(facilityId);
         internal double AdvanceEnd { get; private set; }
         internal long Step { get; private set; }
         private long workChanges;

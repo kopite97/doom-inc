@@ -15,6 +15,7 @@ namespace MobileGame.Presentation
         private UiCanvas screen;
         private RectTransform playRoot, toolRoot, cameraTools, navigationRoot, summaryRoot;
         private TextMeshProUGUI titleText, hudText, editText, summaryText, feedbackText;
+        private Image organicIcon;
         private RectTransform worldGauge, worldGaugeFill;
         private ScrollRect controlsScroll;
         private UiList controls;
@@ -41,6 +42,8 @@ namespace MobileGame.Presentation
             playRoot = UiWidgets.Panel("PlayScreen", screen.SafeRoot, UiWidgets.Background).rectTransform;
             titleText = UiWidgets.Label("Title", playRoot, 24); titleText.text = L("heading");
             hudText = UiWidgets.Label("Resources", playRoot, 17);
+            organicIcon = UiWidgets.Panel("OrganicMatterQuantityIcon", playRoot, Color.white);
+            organicIcon.raycastTarget = false; organicIcon.preserveAspect = true;
             worldGauge = UiWidgets.Panel("WorldProgress", playRoot, new Color(.18f, .2f, .25f)).rectTransform;
             worldGaugeFill = UiWidgets.Panel("Progress", worldGauge, new Color(.85f, .3f, .2f)).rectTransform;
             gameMenuButton = IconButton("GameMenu", playRoot, LaboratoryIcon.More, L("menu"), () => OpenPanel(LaboratoryPanel.Game));
@@ -224,7 +227,10 @@ namespace MobileGame.Presentation
             UiWidgets.Place(collapseButton.GetComponent<RectTransform>(), collapseX, 8, collapseWidth, touch);
             collapseButton.GetComponentInChildren<TextMeshProUGUI>(true).text = controlsCollapsed ? L("expand") : L("collapse");
             collapseButton.interactable = CanClickScreen() && pendingSessionAction == LaboratorySessionAction.None;
-            UiWidgets.Place(hudText.rectTransform, margin, hudY, headerWidth, top - hudY - 12);
+            var resourceIconSize = organicIcon.gameObject.activeSelf ? 22 * UiTextScale : 0;
+            var resourceIconGap = resourceIconSize > 0 ? resourceIconSize + 4 : 0;
+            UiWidgets.Place(organicIcon.rectTransform, margin, hudY, resourceIconSize, resourceIconSize);
+            UiWidgets.Place(hudText.rectTransform, margin + resourceIconGap, hudY, headerWidth - resourceIconGap, top - hudY - 12);
             UiWidgets.Place(worldGauge, margin, top - 10, w - margin * 2, 6);
             var panelWidth = !screen.Portrait && HasPanel ? Mathf.Clamp(w * .34f, 310, 430) : 0;
             var panelHeight = screen.Portrait && HasPanel ? Mathf.Clamp(h * .37f, 230, 470) : HasSummary ? Mathf.Max(92, touch + 24) : 0;
@@ -289,6 +295,8 @@ namespace MobileGame.Presentation
         }
         private void UpdateHud()
         {
+            organicIcon.sprite = organic?.Assets.Icon;
+            organicIcon.gameObject.SetActive(organicIcon.sprite != null && Simulation != null);
             UiWidgets.Place(worldGaugeFill, 0, 0, worldGauge.rect.width * (Invasion == null ? 0 : (float)Math.Min(1, (double)Invasion.Score / Invasion.Settings.TargetScore)), 6);
             if (Simulation == null) { hudText.text = L("load_error"); panel = LaboratoryPanel.Game; return; }
             var things = Simulation.Registry.Things;

@@ -1,0 +1,1587 @@
+{
+  "fixedCriteriaUtc": "2026-11-06T13:25:40.980553+00:00",
+  "completedRuns": 18,
+  "allCompletedRunsPass": true,
+  "expectedMainRuns": 18,
+  "complete": true,
+  "groupCounts": {
+    "final/initial": 3,
+    "final/middle": 3,
+    "final/heavy": 3,
+    "diagnostic/initial": 3,
+    "diagnostic/middle": 3,
+    "diagnostic/heavy": 3
+  },
+  "runs": [
+    {
+      "path": "device/performance-diagnostic/heavy/1/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:59:00.810709+00:00",
+        "count": 1770,
+        "spanSeconds": 59.340411304,
+        "medianMs": 33.469346,
+        "p95Ms": 33.688808,
+        "maximumMs": 50.434962,
+        "maxPollSeconds": 0.09263520000968128,
+        "sameProcess": true,
+        "framesSha256": "2e858ae3e92b71de56ea413aafaa75bec9b1709742a33e157d92da4380407cc3",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:57:59.530546+00:00",
+        "pid": "1334",
+        "pssKiB": 466031,
+        "rssKiB": 560714,
+        "thermalStatus": 0,
+        "batteryDeciC": 326
+      },
+      "after": {
+        "utc": "2026-11-06T14:59:00.255565+00:00",
+        "pid": "1334",
+        "pssKiB": 470414,
+        "rssKiB": 569130,
+        "thermalStatus": 0,
+        "batteryDeciC": 327
+      },
+      "stateAfterRun": {
+        "gameSeconds": 100.0,
+        "facilities": 8,
+        "workers": 24,
+        "creatures": 44,
+        "external": 20,
+        "score": 1440,
+        "activitySequence": 400
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true,
+      "diagnostic": {
+        "result": {
+          "unityVersion": "6000.3.27f1",
+          "status": "completed",
+          "gcCounter": "Memory/GC Allocated In Frame (bytes)",
+          "development": true,
+          "gcCounterValid": true,
+          "interrupted": false,
+          "sampleCount": 1788,
+          "request": {
+            "id": "diagnostic-heavy-1",
+            "warmupSeconds": 30.0,
+            "sampleSeconds": 60.0
+          },
+          "beforeWarmup": {
+            "utc": "2026-11-06T14:57:29.2988380Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "429df219ad308108c55112b5222b6fe9543dd2c1b6686286f83680cdec91c3b5",
+            "error": "",
+            "realtime": 16.57028195252626,
+            "gameTime": 10.576394833624363,
+            "simulationRate": 1.0,
+            "frame": 414,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 8,
+            "creatures": 44,
+            "external": 20,
+            "managedBytes": 12636160,
+            "unityAllocatedBytes": 104301885,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          },
+          "afterSampling": {
+            "utc": "2026-11-06T14:58:59.3068530Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "460227ea90aeb79dd69397c1ef31b89158d3f5674c648d75a4cb10120c1b2371",
+            "error": "",
+            "realtime": 106.57829188825546,
+            "gameTime": 100.59269753098488,
+            "simulationRate": 1.0,
+            "frame": 3098,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 8,
+            "creatures": 44,
+            "external": 20,
+            "managedBytes": 11653120,
+            "unityAllocatedBytes": 104364997,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          }
+        },
+        "gcAllocatedBytes": {
+          "count": 1788,
+          "median": 210308.0,
+          "p95": 742988,
+          "maximum": 2037790,
+          "total": 570905351
+        },
+        "allGcSamplesValid": true,
+        "updateIntervalMs": {
+          "count": 1788,
+          "median": 33.46178121864796,
+          "p95": 33.582866191864014,
+          "maximum": 83.90532433986664,
+          "total": 59993.10218915343
+        },
+        "note": "Unity update intervals are not presentation intervals. GC allocation is not GC collection pause time."
+      },
+      "diagnosticValid": true
+    },
+    {
+      "path": "device/performance-diagnostic/heavy/2/summary.json",
+      "surface": {
+        "utc": "2026-11-06T15:00:35.382955+00:00",
+        "count": 1768,
+        "spanSeconds": 59.291022804,
+        "medianMs": 33.469885,
+        "p95Ms": 33.686846,
+        "maximumMs": 83.559154,
+        "maxPollSeconds": 0.0900207000086084,
+        "sameProcess": true,
+        "framesSha256": "250e93be092e8ae386c7cb2cfd0567182e792ff2dc55010b3f1e7627c10e825f",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:59:34.077509+00:00",
+        "pid": "1334",
+        "pssKiB": 469938,
+        "rssKiB": 568654,
+        "thermalStatus": 0,
+        "batteryDeciC": 327
+      },
+      "after": {
+        "utc": "2026-11-06T15:00:34.785535+00:00",
+        "pid": "1334",
+        "pssKiB": 470675,
+        "rssKiB": 569622,
+        "thermalStatus": 0,
+        "batteryDeciC": 328
+      },
+      "stateAfterRun": {
+        "gameSeconds": 195.0,
+        "facilities": 8,
+        "workers": 25,
+        "creatures": 45,
+        "external": 20,
+        "score": 2700,
+        "activitySequence": 780
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true,
+      "diagnostic": {
+        "result": {
+          "unityVersion": "6000.3.27f1",
+          "status": "completed",
+          "gcCounter": "Memory/GC Allocated In Frame (bytes)",
+          "development": true,
+          "gcCounterValid": true,
+          "interrupted": false,
+          "sampleCount": 1788,
+          "request": {
+            "id": "diagnostic-heavy-2",
+            "warmupSeconds": 30.0,
+            "sampleSeconds": 60.0
+          },
+          "beforeWarmup": {
+            "utc": "2026-11-06T14:59:04.4356210Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "62bea1029b990e17b3961f0f2c697433fc6251a7ab7f4aadf82e03fe113bc662",
+            "error": "",
+            "realtime": 111.70706542292594,
+            "gameTime": 105.71313907206059,
+            "simulationRate": 1.0,
+            "frame": 3249,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 8,
+            "creatures": 45,
+            "external": 20,
+            "managedBytes": 12201984,
+            "unityAllocatedBytes": 104365361,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          },
+          "afterSampling": {
+            "utc": "2026-11-06T15:00:34.4527670Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "294bd40a600d027ba34e9238bd9b70470bde95bf675ee1fd2380359f6493ba40",
+            "error": "",
+            "realtime": 201.72687789695323,
+            "gameTime": 195.73091527074575,
+            "simulationRate": 1.0,
+            "frame": 5929,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 8,
+            "creatures": 45,
+            "external": 20,
+            "managedBytes": 13234176,
+            "unityAllocatedBytes": 104367573,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          }
+        },
+        "gcAllocatedBytes": {
+          "count": 1788,
+          "median": 211972.0,
+          "p95": 746574,
+          "maximum": 1439957,
+          "total": 592719025
+        },
+        "allGcSamplesValid": true,
+        "updateIntervalMs": {
+          "count": 1788,
+          "median": 33.463407307863235,
+          "p95": 33.58304128050804,
+          "maximum": 50.27256906032562,
+          "total": 59994.01317164302
+        },
+        "note": "Unity update intervals are not presentation intervals. GC allocation is not GC collection pause time."
+      },
+      "diagnosticValid": true
+    },
+    {
+      "path": "device/performance-diagnostic/heavy/3/summary.json",
+      "surface": {
+        "utc": "2026-11-06T15:02:09.989422+00:00",
+        "count": 1772,
+        "spanSeconds": 59.342435458,
+        "medianMs": 33.470769,
+        "p95Ms": 33.680307,
+        "maximumMs": 50.385846,
+        "maxPollSeconds": 0.08490909999818541,
+        "sameProcess": true,
+        "framesSha256": "20a9fc1884fd909969f81d1cf1ea410d9326a8b24a1f76c200aa647dff85d04b",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T15:01:08.649131+00:00",
+        "pid": "1334",
+        "pssKiB": 471079,
+        "rssKiB": 570030,
+        "thermalStatus": 0,
+        "batteryDeciC": 328
+      },
+      "after": {
+        "utc": "2026-11-06T15:02:09.373872+00:00",
+        "pid": "1334",
+        "pssKiB": 471921,
+        "rssKiB": 570954,
+        "thermalStatus": 0,
+        "batteryDeciC": 328
+      },
+      "stateAfterRun": {
+        "gameSeconds": 290.0,
+        "facilities": 8,
+        "workers": 26,
+        "creatures": 46,
+        "external": 20,
+        "score": 4104,
+        "activitySequence": 1160
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true,
+      "diagnostic": {
+        "result": {
+          "unityVersion": "6000.3.27f1",
+          "status": "completed",
+          "gcCounter": "Memory/GC Allocated In Frame (bytes)",
+          "development": true,
+          "gcCounterValid": true,
+          "interrupted": false,
+          "sampleCount": 1790,
+          "request": {
+            "id": "diagnostic-heavy-3",
+            "warmupSeconds": 30.0,
+            "sampleSeconds": 60.0
+          },
+          "beforeWarmup": {
+            "utc": "2026-11-06T15:00:38.5564790Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "294bd40a600d027ba34e9238bd9b70470bde95bf675ee1fd2380359f6493ba40",
+            "error": "",
+            "realtime": 205.83059323942274,
+            "gameTime": 199.8311570547521,
+            "simulationRate": 1.0,
+            "frame": 6050,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 8,
+            "creatures": 45,
+            "external": 20,
+            "managedBytes": 11513856,
+            "unityAllocatedBytes": 104367661,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          },
+          "afterSampling": {
+            "utc": "2026-11-06T15:02:08.5838340Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "1ce949d645f3b0af7a2dedd607dffdd9ee37c3fe230aa50c0a9b386744443bc4",
+            "error": "",
+            "realtime": 295.8579437526873,
+            "gameTime": 289.8653906136751,
+            "simulationRate": 1.0,
+            "frame": 8733,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 8,
+            "creatures": 46,
+            "external": 20,
+            "managedBytes": 12816384,
+            "unityAllocatedBytes": 104368765,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          }
+        },
+        "gcAllocatedBytes": {
+          "count": 1790,
+          "median": 214114.0,
+          "p95": 751360,
+          "maximum": 2211984,
+          "total": 589374208
+        },
+        "allGcSamplesValid": true,
+        "updateIntervalMs": {
+          "count": 1790,
+          "median": 33.46553072333336,
+          "p95": 33.576786518096924,
+          "maximum": 50.21967738866806,
+          "total": 59994.9645511806
+        },
+        "note": "Unity update intervals are not presentation intervals. GC allocation is not GC collection pause time."
+      },
+      "diagnosticValid": true
+    },
+    {
+      "path": "device/performance-diagnostic/initial/1/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:46:03.642068+00:00",
+        "count": 1774,
+        "spanSeconds": 59.365129111,
+        "medianMs": 33.475385,
+        "p95Ms": 33.670346,
+        "maximumMs": 50.332077,
+        "maxPollSeconds": 0.0871369000087725,
+        "sameProcess": true,
+        "framesSha256": "79e6bbab9acc98a870d7a017ff5aa36157336730a457df94f8e4ab58b9f6c00b",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:45:02.259714+00:00",
+        "pid": "30301",
+        "pssKiB": 466254,
+        "rssKiB": 560434,
+        "thermalStatus": 0,
+        "batteryDeciC": 331
+      },
+      "after": {
+        "utc": "2026-11-06T14:46:03.004784+00:00",
+        "pid": "30301",
+        "pssKiB": 468792,
+        "rssKiB": 566946,
+        "thermalStatus": 0,
+        "batteryDeciC": 330
+      },
+      "stateAfterRun": {
+        "gameSeconds": 100.41888541728258,
+        "facilities": 0,
+        "workers": 1,
+        "creatures": 1,
+        "external": 0,
+        "score": 0,
+        "activitySequence": 0
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true,
+      "diagnostic": {
+        "result": {
+          "unityVersion": "6000.3.27f1",
+          "status": "completed",
+          "gcCounter": "Memory/GC Allocated In Frame (bytes)",
+          "development": true,
+          "gcCounterValid": true,
+          "interrupted": false,
+          "sampleCount": 1791,
+          "request": {
+            "id": "diagnostic-initial-1",
+            "warmupSeconds": 30.0,
+            "sampleSeconds": 60.0
+          },
+          "beforeWarmup": {
+            "utc": "2026-11-06T14:44:32.2781030Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "940a99fc7496e8b606067c9f04f9c49fe013ec9d8f5c1ffc6dea19f36782da1b",
+            "error": "",
+            "realtime": 17.40226364255213,
+            "gameTime": 11.413404989987612,
+            "simulationRate": 1.0,
+            "frame": 443,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 0,
+            "creatures": 1,
+            "external": 0,
+            "managedBytes": 11808768,
+            "unityAllocatedBytes": 103813333,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          },
+          "afterSampling": {
+            "utc": "2026-11-06T14:46:02.2809310Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "a27b5536f4d9615c31e8c84a5c1cdf29e258795277dd61281ec9a1371b915177",
+            "error": "",
+            "realtime": 107.40509169388824,
+            "gameTime": 101.42312882840633,
+            "simulationRate": 1.0,
+            "frame": 3131,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 0,
+            "creatures": 1,
+            "external": 0,
+            "managedBytes": 10850304,
+            "unityAllocatedBytes": 103864717,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          }
+        },
+        "gcAllocatedBytes": {
+          "count": 1791,
+          "median": 115614,
+          "p95": 119790,
+          "maximum": 155333,
+          "total": 208017888
+        },
+        "allGcSamplesValid": true,
+        "updateIntervalMs": {
+          "count": 1791,
+          "median": 33.469025045633316,
+          "p95": 33.60144421458244,
+          "maximum": 66.88080728054047,
+          "total": 59984.50781777501
+        },
+        "note": "Unity update intervals are not presentation intervals. GC allocation is not GC collection pause time."
+      },
+      "diagnosticValid": true
+    },
+    {
+      "path": "device/performance-diagnostic/initial/2/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:47:38.244201+00:00",
+        "count": 1773,
+        "spanSeconds": 59.308573573,
+        "medianMs": 33.4734035,
+        "p95Ms": 33.677,
+        "maximumMs": 33.947616,
+        "maxPollSeconds": 0.08420589999877848,
+        "sameProcess": true,
+        "framesSha256": "0cfb49174aae378900cc9e83b90600c4a25844d52bb5fe36def355bb230e047a",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:46:36.922091+00:00",
+        "pid": "30301",
+        "pssKiB": 469932,
+        "rssKiB": 568090,
+        "thermalStatus": 0,
+        "batteryDeciC": 329
+      },
+      "after": {
+        "utc": "2026-11-06T14:47:37.636918+00:00",
+        "pid": "30301",
+        "pssKiB": 470832,
+        "rssKiB": 568994,
+        "thermalStatus": 0,
+        "batteryDeciC": 328
+      },
+      "stateAfterRun": {
+        "gameSeconds": 195.80957517027855,
+        "facilities": 0,
+        "workers": 1,
+        "creatures": 1,
+        "external": 0,
+        "score": 0,
+        "activitySequence": 0
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true,
+      "diagnostic": {
+        "result": {
+          "unityVersion": "6000.3.27f1",
+          "status": "completed",
+          "gcCounter": "Memory/GC Allocated In Frame (bytes)",
+          "development": true,
+          "gcCounterValid": true,
+          "interrupted": false,
+          "sampleCount": 1793,
+          "request": {
+            "id": "diagnostic-initial-2",
+            "warmupSeconds": 30.0,
+            "sampleSeconds": 60.0
+          },
+          "beforeWarmup": {
+            "utc": "2026-11-06T14:46:07.3765650Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "10ee5d405fcb9f3086bd9caff80f8b1bce120049a6b4b39ad6fc46446d61ea9a",
+            "error": "",
+            "realtime": 112.5007309208464,
+            "gameTime": 106.5111928395927,
+            "simulationRate": 1.0,
+            "frame": 3282,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 0,
+            "creatures": 1,
+            "external": 0,
+            "managedBytes": 12984320,
+            "unityAllocatedBytes": 103864437,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          },
+          "afterSampling": {
+            "utc": "2026-11-06T14:47:37.4040180Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "e3259b4eb2727649ead8e8f1fc4ae99cb648a85cadd45d73f05149e6d82d2b34",
+            "error": "",
+            "realtime": 202.52818739440553,
+            "gameTime": 196.54597751423717,
+            "simulationRate": 1.0,
+            "frame": 5971,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 0,
+            "creatures": 1,
+            "external": 0,
+            "managedBytes": 10727424,
+            "unityAllocatedBytes": 103864917,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          }
+        },
+        "gcAllocatedBytes": {
+          "count": 1793,
+          "median": 115614,
+          "p95": 119790,
+          "maximum": 159509,
+          "total": 208246242
+        },
+        "allGcSamplesValid": true,
+        "updateIntervalMs": {
+          "count": 1793,
+          "median": 33.46719220280647,
+          "p95": 33.522263169288635,
+          "maximum": 33.58791768550873,
+          "total": 60011.56944036484
+        },
+        "note": "Unity update intervals are not presentation intervals. GC allocation is not GC collection pause time."
+      },
+      "diagnosticValid": true
+    },
+    {
+      "path": "device/performance-diagnostic/initial/3/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:49:12.851784+00:00",
+        "count": 1774,
+        "spanSeconds": 59.341465496,
+        "medianMs": 33.468923,
+        "p95Ms": 33.688,
+        "maximumMs": 34.010847,
+        "maxPollSeconds": 0.08458300000347663,
+        "sameProcess": true,
+        "framesSha256": "a1c97d2ff72a795c6ea5cf12f8e435345fd735c508f973034a1425debf67b5f4",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:48:11.498827+00:00",
+        "pid": "30301",
+        "pssKiB": 469960,
+        "rssKiB": 568130,
+        "thermalStatus": 0,
+        "batteryDeciC": 328
+      },
+      "after": {
+        "utc": "2026-11-06T14:49:12.239822+00:00",
+        "pid": "30301",
+        "pssKiB": 470960,
+        "rssKiB": 569134,
+        "thermalStatus": 0,
+        "batteryDeciC": 327
+      },
+      "stateAfterRun": {
+        "gameSeconds": 291.1660402752459,
+        "facilities": 0,
+        "workers": 1,
+        "creatures": 1,
+        "external": 0,
+        "score": 0,
+        "activitySequence": 0
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true,
+      "diagnostic": {
+        "result": {
+          "unityVersion": "6000.3.27f1",
+          "status": "completed",
+          "gcCounter": "Memory/GC Allocated In Frame (bytes)",
+          "development": true,
+          "gcCounterValid": true,
+          "interrupted": false,
+          "sampleCount": 1792,
+          "request": {
+            "id": "diagnostic-initial-3",
+            "warmupSeconds": 30.0,
+            "sampleSeconds": 60.0
+          },
+          "beforeWarmup": {
+            "utc": "2026-11-06T14:47:41.4945090Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "e3259b4eb2727649ead8e8f1fc4ae99cb648a85cadd45d73f05149e6d82d2b34",
+            "error": "",
+            "realtime": 206.61867777657025,
+            "gameTime": 200.62921496108174,
+            "simulationRate": 1.0,
+            "frame": 6092,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 0,
+            "creatures": 1,
+            "external": 0,
+            "managedBytes": 13918208,
+            "unityAllocatedBytes": 103864917,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          },
+          "afterSampling": {
+            "utc": "2026-11-06T14:49:11.5046310Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "b48459c7d4d088d7acb4d31fb9c5d083e625b8b2bbcfcb014b5083f7861b71bb",
+            "error": "",
+            "realtime": 296.63438197903594,
+            "gameTime": 290.6471815742552,
+            "simulationRate": 1.0,
+            "frame": 8781,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 0,
+            "creatures": 1,
+            "external": 0,
+            "managedBytes": 10977280,
+            "unityAllocatedBytes": 103865877,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          }
+        },
+        "gcAllocatedBytes": {
+          "count": 1792,
+          "median": 115614.0,
+          "p95": 119790,
+          "maximum": 159509,
+          "total": 208133512
+        },
+        "allGcSamplesValid": true,
+        "updateIntervalMs": {
+          "count": 1792,
+          "median": 33.46654213964939,
+          "p95": 33.524155616760254,
+          "maximum": 50.1822903752327,
+          "total": 59994.28404867649
+        },
+        "note": "Unity update intervals are not presentation intervals. GC allocation is not GC collection pause time."
+      },
+      "diagnosticValid": true
+    },
+    {
+      "path": "device/performance-diagnostic/middle/2/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:52:54.436097+00:00",
+        "count": 1773,
+        "spanSeconds": 59.334504188,
+        "medianMs": 33.467731,
+        "p95Ms": 33.658923,
+        "maximumMs": 66.956384,
+        "maxPollSeconds": 0.09577669999271166,
+        "sameProcess": true,
+        "framesSha256": "fbf8d33b25d38d752a60eff03d37841f5aac785e0d6201d65b0956477acec814",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:51:53.129299+00:00",
+        "pid": "31597",
+        "pssKiB": 455402,
+        "rssKiB": 553970,
+        "thermalStatus": 0,
+        "batteryDeciC": 327
+      },
+      "after": {
+        "utc": "2026-11-06T14:52:53.843062+00:00",
+        "pid": "31597",
+        "pssKiB": 456434,
+        "rssKiB": 555030,
+        "thermalStatus": 0,
+        "batteryDeciC": 327
+      },
+      "stateAfterRun": {
+        "gameSeconds": 196.7071667611599,
+        "facilities": 6,
+        "workers": 5,
+        "creatures": 7,
+        "external": 2,
+        "score": 150,
+        "activitySequence": 78
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true,
+      "diagnostic": {
+        "result": {
+          "unityVersion": "6000.3.27f1",
+          "status": "completed",
+          "gcCounter": "Memory/GC Allocated In Frame (bytes)",
+          "development": true,
+          "gcCounterValid": true,
+          "interrupted": false,
+          "sampleCount": 1792,
+          "request": {
+            "id": "diagnostic-middle-2",
+            "warmupSeconds": 30.0,
+            "sampleSeconds": 60.0
+          },
+          "beforeWarmup": {
+            "utc": "2026-11-06T14:51:23.0289840Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "3677f151d1c911570bb0aff44070e5e1f1832d12b82eb0f6dba3f0eebbb6a93b",
+            "error": "",
+            "realtime": 118.24552264848211,
+            "gameTime": 109.42520856484771,
+            "simulationRate": 1.0,
+            "frame": 3368,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 6,
+            "creatures": 7,
+            "external": 2,
+            "managedBytes": 11612160,
+            "unityAllocatedBytes": 104277957,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          },
+          "afterSampling": {
+            "utc": "2026-11-06T14:52:53.0449580Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "d33cf8d9fab3b5d1c92e707094a3c27717461237c7616582cd918d247f1d1f09",
+            "error": "",
+            "realtime": 208.2614925842867,
+            "gameTime": 199.45105419680476,
+            "simulationRate": 1.0,
+            "frame": 6057,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 6,
+            "creatures": 7,
+            "external": 2,
+            "managedBytes": 11501568,
+            "unityAllocatedBytes": 104278645,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          }
+        },
+        "gcAllocatedBytes": {
+          "count": 1792,
+          "median": 149530.0,
+          "p95": 239358,
+          "maximum": 402451,
+          "total": 293711746
+        },
+        "allGcSamplesValid": true,
+        "updateIntervalMs": {
+          "count": 1792,
+          "median": 33.45891088247299,
+          "p95": 33.54879468679428,
+          "maximum": 66.90339744091034,
+          "total": 60003.260385245085
+        },
+        "note": "Unity update intervals are not presentation intervals. GC allocation is not GC collection pause time."
+      },
+      "diagnosticValid": true
+    },
+    {
+      "path": "device/performance-diagnostic/middle/3/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:54:28.994187+00:00",
+        "count": 1773,
+        "spanSeconds": 59.321113303,
+        "medianMs": 33.469231,
+        "p95Ms": 33.710346,
+        "maximumMs": 50.362808,
+        "maxPollSeconds": 0.09081680000235792,
+        "sameProcess": true,
+        "framesSha256": "a81aa7f688a817a6942fe748e7e356d998104acfc979205fc1618c604ab72f00",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:53:27.706094+00:00",
+        "pid": "31597",
+        "pssKiB": 456570,
+        "rssKiB": 555166,
+        "thermalStatus": 0,
+        "batteryDeciC": 327
+      },
+      "after": {
+        "utc": "2026-11-06T14:54:28.406060+00:00",
+        "pid": "31597",
+        "pssKiB": 457801,
+        "rssKiB": 556374,
+        "thermalStatus": 0,
+        "batteryDeciC": 326
+      },
+      "stateAfterRun": {
+        "gameSeconds": 292.07192001864314,
+        "facilities": 6,
+        "workers": 6,
+        "creatures": 8,
+        "external": 2,
+        "score": 228,
+        "activitySequence": 116
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true,
+      "diagnostic": {
+        "result": {
+          "unityVersion": "6000.3.27f1",
+          "status": "completed",
+          "gcCounter": "Memory/GC Allocated In Frame (bytes)",
+          "development": true,
+          "gcCounterValid": true,
+          "interrupted": false,
+          "sampleCount": 1792,
+          "request": {
+            "id": "diagnostic-middle-3",
+            "warmupSeconds": 30.0,
+            "sampleSeconds": 60.0
+          },
+          "beforeWarmup": {
+            "utc": "2026-11-06T14:52:58.1405890Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "69317244be776707ba6d250b8efa43da88ba11ace76a088defbda6477182c709",
+            "error": "",
+            "realtime": 213.35712854230263,
+            "gameTime": 204.53769087046385,
+            "simulationRate": 1.0,
+            "frame": 6208,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 6,
+            "creatures": 7,
+            "external": 2,
+            "managedBytes": 11796480,
+            "unityAllocatedBytes": 104278689,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          },
+          "afterSampling": {
+            "utc": "2026-11-06T14:54:28.1429900Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "bebcb1d495c7c5a495f353e57f33c70fdcde69194c93f7d357d64554510ec2a5",
+            "error": "",
+            "realtime": 303.3595164021612,
+            "gameTime": 294.5484662055969,
+            "simulationRate": 1.0,
+            "frame": 8897,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 6,
+            "creatures": 8,
+            "external": 2,
+            "managedBytes": 11804672,
+            "unityAllocatedBytes": 104279017,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          }
+        },
+        "gcAllocatedBytes": {
+          "count": 1792,
+          "median": 150980.0,
+          "p95": 241424,
+          "maximum": 448407,
+          "total": 300364098
+        },
+        "allGcSamplesValid": true,
+        "updateIntervalMs": {
+          "count": 1792,
+          "median": 33.46116468310356,
+          "p95": 33.6272306740284,
+          "maximum": 34.484487026929855,
+          "total": 59974.31317344308
+        },
+        "note": "Unity update intervals are not presentation intervals. GC allocation is not GC collection pause time."
+      },
+      "diagnosticValid": true
+    },
+    {
+      "path": "device/performance-diagnostic/middle/4/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:56:19.128910+00:00",
+        "count": 1773,
+        "spanSeconds": 59.337066842,
+        "medianMs": 33.4677695,
+        "p95Ms": 33.682231,
+        "maximumMs": 50.367269,
+        "maxPollSeconds": 0.08987910000723787,
+        "sameProcess": true,
+        "framesSha256": "ad87c55e73e695cffc5f05a74c46ab24fb7b3fdde3c154ea0ac22a0690c0afad",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:55:17.806595+00:00",
+        "pid": "31597",
+        "pssKiB": 449789,
+        "rssKiB": 548382,
+        "thermalStatus": 0,
+        "batteryDeciC": 326
+      },
+      "after": {
+        "utc": "2026-11-06T14:56:18.514834+00:00",
+        "pid": "31597",
+        "pssKiB": 449849,
+        "rssKiB": 548442,
+        "thermalStatus": 0,
+        "batteryDeciC": 326
+      },
+      "stateAfterRun": {
+        "gameSeconds": 402.49487491697073,
+        "facilities": 6,
+        "workers": 7,
+        "creatures": 9,
+        "external": 2,
+        "score": 320,
+        "activitySequence": 160
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true,
+      "diagnostic": {
+        "result": {
+          "unityVersion": "6000.3.27f1",
+          "status": "completed",
+          "gcCounter": "Memory/GC Allocated In Frame (bytes)",
+          "development": true,
+          "gcCounterValid": true,
+          "interrupted": false,
+          "sampleCount": 1793,
+          "request": {
+            "id": "diagnostic-middle-4",
+            "warmupSeconds": 30.0,
+            "sampleSeconds": 60.0
+          },
+          "beforeWarmup": {
+            "utc": "2026-11-06T14:54:48.3309440Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "7f5f943b7b9a46e3ca7cf10c71247fde599704dd8db594b2f9867715748dd296",
+            "error": "",
+            "realtime": 323.5474837714941,
+            "gameTime": 314.72874400764704,
+            "simulationRate": 1.0,
+            "frame": 9498,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 6,
+            "creatures": 8,
+            "external": 2,
+            "managedBytes": 11468800,
+            "unityAllocatedBytes": 104280057,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          },
+          "afterSampling": {
+            "utc": "2026-11-06T14:56:18.3653290Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "c21c0334b1cff59151192e305b4f495fefac4dda45f21002b96efa6918dfccd9",
+            "error": "",
+            "realtime": 413.58336720561095,
+            "gameTime": 404.77075274288654,
+            "simulationRate": 1.0,
+            "frame": 12187,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 6,
+            "creatures": 9,
+            "external": 2,
+            "managedBytes": 11411456,
+            "unityAllocatedBytes": 104286253,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          }
+        },
+        "gcAllocatedBytes": {
+          "count": 1793,
+          "median": 152486,
+          "p95": 243530,
+          "maximum": 518243,
+          "total": 308442070
+        },
+        "allGcSamplesValid": true,
+        "updateIntervalMs": {
+          "count": 1793,
+          "median": 33.45955163240433,
+          "p95": 33.588483929634094,
+          "maximum": 34.44156050682068,
+          "total": 60006.57269358635
+        },
+        "note": "Unity update intervals are not presentation intervals. GC allocation is not GC collection pause time."
+      },
+      "diagnosticValid": true
+    },
+    {
+      "path": "device/performance-final/heavy/1/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:10:59.960514+00:00",
+        "count": 1772,
+        "spanSeconds": 59.328108918,
+        "medianMs": 33.471615,
+        "p95Ms": 33.770192,
+        "maximumMs": 50.472961,
+        "maxPollSeconds": 0.10919670001021586,
+        "sameProcess": true,
+        "framesSha256": "e95aa7689257760e049908ae8a2f4189a629a0e4c425df69b1efa34b9e3f3f12",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:09:58.736072+00:00",
+        "pid": "5998",
+        "pssKiB": 402025,
+        "rssKiB": 514322,
+        "thermalStatus": 0,
+        "batteryDeciC": 318
+      },
+      "after": {
+        "utc": "2026-11-06T14:10:59.416373+00:00",
+        "pid": "5998",
+        "pssKiB": 359718,
+        "rssKiB": 401818,
+        "thermalStatus": 0,
+        "batteryDeciC": 322
+      },
+      "stateAfterRun": {
+        "gameSeconds": 125.0,
+        "facilities": 8,
+        "workers": 25,
+        "creatures": 45,
+        "external": 20,
+        "score": 1764,
+        "activitySequence": 500
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true
+    },
+    {
+      "path": "device/performance-final/heavy/2/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:12:31.390281+00:00",
+        "count": 1769,
+        "spanSeconds": 59.332870996,
+        "medianMs": 33.4752685,
+        "p95Ms": 33.668846,
+        "maximumMs": 66.8325,
+        "maxPollSeconds": 0.08754279999993742,
+        "sameProcess": true,
+        "framesSha256": "3714a534c8b1fced6fdc199e301c13157573ddc2b9793eb6e142e51646163e03",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:11:30.140790+00:00",
+        "pid": "5998",
+        "pssKiB": 326939,
+        "rssKiB": 294058,
+        "thermalStatus": 0,
+        "batteryDeciC": 327
+      },
+      "after": {
+        "utc": "2026-11-06T14:12:30.806360+00:00",
+        "pid": "5998",
+        "pssKiB": 326711,
+        "rssKiB": 295266,
+        "thermalStatus": 0,
+        "batteryDeciC": 325
+      },
+      "stateAfterRun": {
+        "gameSeconds": 220.0,
+        "facilities": 8,
+        "workers": 26,
+        "creatures": 46,
+        "external": 20,
+        "score": 3168,
+        "activitySequence": 880
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true
+    },
+    {
+      "path": "device/performance-final/heavy/3/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:14:02.906703+00:00",
+        "count": 1770,
+        "spanSeconds": 59.332774611,
+        "medianMs": 33.474462,
+        "p95Ms": 33.681692,
+        "maximumMs": 50.345999,
+        "maxPollSeconds": 0.08327889999782201,
+        "sameProcess": true,
+        "framesSha256": "047716d2cf838e03258fea5bdd70aab0a30e2842be568af03f975e3a6006a1f9",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:13:01.590903+00:00",
+        "pid": "5998",
+        "pssKiB": 326719,
+        "rssKiB": 295610,
+        "thermalStatus": 0,
+        "batteryDeciC": 325
+      },
+      "after": {
+        "utc": "2026-11-06T14:14:02.334172+00:00",
+        "pid": "5998",
+        "pssKiB": 327690,
+        "rssKiB": 296966,
+        "thermalStatus": 0,
+        "batteryDeciC": 324
+      },
+      "stateAfterRun": {
+        "gameSeconds": 310.0,
+        "facilities": 8,
+        "workers": 26,
+        "creatures": 46,
+        "external": 20,
+        "score": 4392,
+        "activitySequence": 1240
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true
+    },
+    {
+      "path": "device/performance-final/initial/1/summary.json",
+      "surface": {
+        "utc": "2026-11-06T13:59:55.276878+00:00",
+        "count": 1773,
+        "spanSeconds": 59.325235035,
+        "medianMs": 33.47,
+        "p95Ms": 33.667269,
+        "maximumMs": 50.413116,
+        "maxPollSeconds": 0.08631610000156797,
+        "sameProcess": true,
+        "framesSha256": "614c15d68ace82eb0bcae82e6e55edda1ace1af63eb15665de301baf77656eba",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T13:58:53.986144+00:00",
+        "pid": "2975",
+        "pssKiB": 404799,
+        "rssKiB": 517202,
+        "thermalStatus": 0,
+        "batteryDeciC": 315
+      },
+      "after": {
+        "utc": "2026-11-06T13:59:54.655846+00:00",
+        "pid": "2975",
+        "pssKiB": 407170,
+        "rssKiB": 520970,
+        "thermalStatus": 0,
+        "batteryDeciC": 315
+      },
+      "stateAfterRun": {
+        "gameSeconds": 95.40303046256304,
+        "facilities": 0,
+        "workers": 1,
+        "creatures": 1,
+        "external": 0,
+        "score": 0,
+        "activitySequence": 0
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true
+    },
+    {
+      "path": "device/performance-final/initial/2/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:01:26.751046+00:00",
+        "count": 1773,
+        "spanSeconds": 59.31182815,
+        "medianMs": 33.4708265,
+        "p95Ms": 33.669731,
+        "maximumMs": 35.847538,
+        "maxPollSeconds": 0.09683499998936895,
+        "sameProcess": true,
+        "framesSha256": "39f0f2bba8a9ea844186c719d0e1efe768a8f52a011d72b91494443baa94b405",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:00:25.460872+00:00",
+        "pid": "2975",
+        "pssKiB": 407013,
+        "rssKiB": 520814,
+        "thermalStatus": 0,
+        "batteryDeciC": 315
+      },
+      "after": {
+        "utc": "2026-11-06T14:01:26.168461+00:00",
+        "pid": "2975",
+        "pssKiB": 408441,
+        "rssKiB": 522242,
+        "thermalStatus": 0,
+        "batteryDeciC": 315
+      },
+      "stateAfterRun": {
+        "gameSeconds": 190.79883063957095,
+        "facilities": 0,
+        "workers": 1,
+        "creatures": 1,
+        "external": 0,
+        "score": 0,
+        "activitySequence": 0
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true
+    },
+    {
+      "path": "device/performance-final/initial/3/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:02:58.229337+00:00",
+        "count": 1774,
+        "spanSeconds": 59.360779804,
+        "medianMs": 33.470577,
+        "p95Ms": 33.674154,
+        "maximumMs": 50.341615,
+        "maxPollSeconds": 0.08455440000398085,
+        "sameProcess": true,
+        "framesSha256": "fdb1f0563d698f19643bd8c4001e982797968a848a6658977af0089a05dff166",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:01:56.924319+00:00",
+        "pid": "2975",
+        "pssKiB": 408177,
+        "rssKiB": 521978,
+        "thermalStatus": 0,
+        "batteryDeciC": 315
+      },
+      "after": {
+        "utc": "2026-11-06T14:02:57.639422+00:00",
+        "pid": "2975",
+        "pssKiB": 408489,
+        "rssKiB": 522290,
+        "thermalStatus": 0,
+        "batteryDeciC": 315
+      },
+      "stateAfterRun": {
+        "gameSeconds": 281.16817639023066,
+        "facilities": 0,
+        "workers": 1,
+        "creatures": 1,
+        "external": 0,
+        "score": 0,
+        "activitySequence": 0
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true
+    },
+    {
+      "path": "device/performance-final/middle/1/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:04:57.333092+00:00",
+        "count": 1773,
+        "spanSeconds": 59.311143996,
+        "medianMs": 33.4717305,
+        "p95Ms": 33.662692,
+        "maximumMs": 34.056923,
+        "maxPollSeconds": 0.10157119999348652,
+        "sameProcess": true,
+        "framesSha256": "343b84326d8b3468304a9a14c91165e94ad8ec2d98526f6c1992f8283c4bdda8",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:03:56.013870+00:00",
+        "pid": "4350",
+        "pssKiB": 401335,
+        "rssKiB": 513514,
+        "thermalStatus": 0,
+        "batteryDeciC": 316
+      },
+      "after": {
+        "utc": "2026-11-06T14:04:56.730338+00:00",
+        "pid": "4350",
+        "pssKiB": 407360,
+        "rssKiB": 521542,
+        "thermalStatus": 0,
+        "batteryDeciC": 316
+      },
+      "stateAfterRun": {
+        "gameSeconds": 105.0,
+        "facilities": 6,
+        "workers": 4,
+        "creatures": 6,
+        "external": 2,
+        "score": 82,
+        "activitySequence": 42
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true
+    },
+    {
+      "path": "device/performance-final/middle/2/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:06:28.800787+00:00",
+        "count": 1773,
+        "spanSeconds": 59.311325688,
+        "medianMs": 33.472288500000005,
+        "p95Ms": 33.66277,
+        "maximumMs": 35.088616,
+        "maxPollSeconds": 0.08528929999738466,
+        "sameProcess": true,
+        "framesSha256": "6deb9e1a34b86d82da57dd2db46fc30dd5d3cc400df56f4485054a0ed75296c3",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:05:27.518812+00:00",
+        "pid": "4350",
+        "pssKiB": 407392,
+        "rssKiB": 521574,
+        "thermalStatus": 0,
+        "batteryDeciC": 316
+      },
+      "after": {
+        "utc": "2026-11-06T14:06:28.222602+00:00",
+        "pid": "4350",
+        "pssKiB": 408092,
+        "rssKiB": 522274,
+        "thermalStatus": 0,
+        "batteryDeciC": 317
+      },
+      "stateAfterRun": {
+        "gameSeconds": 195.0,
+        "facilities": 6,
+        "workers": 5,
+        "creatures": 7,
+        "external": 2,
+        "score": 150,
+        "activitySequence": 78
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true
+    },
+    {
+      "path": "device/performance-final/middle/3/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:08:00.229142+00:00",
+        "count": 1773,
+        "spanSeconds": 59.328477803,
+        "medianMs": 33.4737305,
+        "p95Ms": 33.680154,
+        "maximumMs": 50.195307,
+        "maxPollSeconds": 0.0843647999863606,
+        "sameProcess": true,
+        "framesSha256": "438700356ebbdab3ed666a7292aaa51c65ddd685d22ef30c3f0c34bb58d69666",
+        "valid": true
+      },
+      "before": {
+        "utc": "2026-11-06T14:06:58.974974+00:00",
+        "pid": "4350",
+        "pssKiB": 408016,
+        "rssKiB": 522198,
+        "thermalStatus": 0,
+        "batteryDeciC": 317
+      },
+      "after": {
+        "utc": "2026-11-06T14:07:59.655009+00:00",
+        "pid": "4350",
+        "pssKiB": 409024,
+        "rssKiB": 523206,
+        "thermalStatus": 0,
+        "batteryDeciC": 317
+      },
+      "stateAfterRun": {
+        "gameSeconds": 285.0,
+        "facilities": 6,
+        "workers": 6,
+        "creatures": 8,
+        "external": 2,
+        "score": 226,
+        "activitySequence": 114
+      },
+      "framePass": true,
+      "memoryAbsolutePass": true,
+      "thermalPass": true
+    }
+  ],
+  "excludedRuns": [
+    {
+      "path": "device/performance-diagnostic/middle/1/summary.json",
+      "surface": {
+        "utc": "2026-11-06T14:51:19.862494+00:00",
+        "count": 1710,
+        "spanSeconds": 59.992999842,
+        "medianMs": 33.469846,
+        "p95Ms": 33.665231,
+        "maximumMs": 2744.65069,
+        "maxPollSeconds": 5.140545300004305,
+        "sameProcess": true,
+        "framesSha256": "1d9e5faaf838b2194a4fab2596487f378165c2207dfb4d51a89b5633eb1b6b25",
+        "valid": false
+      },
+      "before": {
+        "utc": "2026-11-06T14:50:17.930581+00:00",
+        "pid": "31597",
+        "pssKiB": 465644,
+        "rssKiB": 560222,
+        "thermalStatus": 0,
+        "batteryDeciC": 327
+      },
+      "after": {
+        "utc": "2026-11-06T14:51:19.285352+00:00",
+        "pid": "31597",
+        "pssKiB": 453287,
+        "rssKiB": 551798,
+        "thermalStatus": 0,
+        "batteryDeciC": 327
+      },
+      "stateAfterRun": {
+        "gameSeconds": 101.34202326834202,
+        "facilities": 6,
+        "workers": 4,
+        "creatures": 6,
+        "external": 2,
+        "score": 80,
+        "activitySequence": 40
+      },
+      "framePass": false,
+      "memoryAbsolutePass": true,
+      "thermalPass": true,
+      "diagnostic": {
+        "result": {
+          "unityVersion": "6000.3.27f1",
+          "status": "interrupted by application pause",
+          "gcCounter": "Memory/GC Allocated In Frame (bytes)",
+          "development": true,
+          "gcCounterValid": true,
+          "interrupted": true,
+          "sampleCount": 1459,
+          "request": {
+            "id": "diagnostic-middle-1",
+            "warmupSeconds": 30.0,
+            "sampleSeconds": 60.0
+          },
+          "beforeWarmup": {
+            "utc": "2026-11-06T14:49:48.2790480Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "5edf483265856b20a2943e2a06aab805749efa9553d0bc7cc3c43a3c55f44793",
+            "error": "",
+            "realtime": 23.495583256161293,
+            "gameTime": 17.486944526433945,
+            "simulationRate": 1.0,
+            "frame": 622,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 6,
+            "creatures": 6,
+            "external": 2,
+            "managedBytes": 11546624,
+            "unityAllocatedBytes": 104223265,
+            "unityReservedBytes": 237645824,
+            "paused": false
+          },
+          "afterSampling": {
+            "utc": "2026-11-06T14:51:07.1457450Z",
+            "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "phase": "Playing",
+            "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+            "saveSha256": "d5f9a8e141b7e2bbf0b4bb55a93d7fbf784f4ff8f124b13e20ad67cd7729536b",
+            "error": "",
+            "realtime": 102.36225735248485,
+            "gameTime": 96.32173101231456,
+            "simulationRate": 1.0,
+            "frame": 2976,
+            "width": 1080,
+            "height": 2280,
+            "facilities": 6,
+            "creatures": 6,
+            "external": 2,
+            "managedBytes": 11710464,
+            "unityAllocatedBytes": 104278481,
+            "unityReservedBytes": 237645824,
+            "paused": true
+          }
+        },
+        "gcAllocatedBytes": {
+          "count": 1459,
+          "median": 147092,
+          "p95": 236360,
+          "maximum": 447099,
+          "total": 231992973
+        },
+        "allGcSamplesValid": true,
+        "updateIntervalMs": {
+          "count": 1459,
+          "median": 33.46549719572067,
+          "p95": 33.52920338511467,
+          "maximum": 33.85600075125694,
+          "total": 48831.24455437064
+        },
+        "note": "Unity update intervals are not presentation intervals. GC allocation is not GC collection pause time."
+      },
+      "diagnosticValid": false,
+      "exclusionReason": "Invalid steady-state run: actual application pause interrupted the diagnostic sample at 78.87 seconds including warmup; SurfaceFlinger query gap 5.14 seconds coincided with ADB daemon restart. Same app PID later resumed. The pause cause is not established. Preserve all raw evidence; replace with repeat 4 using unchanged criteria."
+    }
+  ]
+}

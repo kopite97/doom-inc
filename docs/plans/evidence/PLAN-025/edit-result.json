@@ -1,0 +1,2534 @@
+{
+  "success": true,
+  "command": "command test",
+  "data": {
+    "command": "test",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 4.91,
+      "summary": {
+        "total": 358,
+        "passed": 353,
+        "failed": 5,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.EnvironmentTests.ProjectEnvironmentTests.ApprovedEditorAndroidAndUniversal2DConfigurationAreReady",
+          "Status": "Passed",
+          "Duration": 0.0105999,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.DefinitionFoundationTests.DifferentAssetsCannotUseOneDefinitionIdButTheSameAssetCanBeShared",
+          "Status": "Passed",
+          "Duration": 0.0310343,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.DefinitionFoundationTests.InvalidComponentDefinitionsAreRejectedBeforeRegisteringThings",
+          "Status": "Passed",
+          "Duration": 0.0013671,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.DefinitionFoundationTests.RepresentativeAssetsImportAndCreateLogicalThingsWithoutChangingDefinitions",
+          "Status": "Passed",
+          "Duration": 0.003403,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.AnotherSitesReservationIsDistinctFromTotalMaterialShortage",
+          "Status": "Passed",
+          "Duration": 0.0256518,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.AssignedWorkerInTransitDoesNotDisplayStaffedProduction",
+          "Status": "Passed",
+          "Duration": 0.0059456,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.BlockedWorkTilePreservesConsumedCycleAndTargetChangeRemainsNextCycle",
+          "Status": "Passed",
+          "Duration": 0.0017048,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.CompletedProcessingOutputKeepsFullBarEvenWhenItsWorkTileBecomesBlocked",
+          "Status": "Passed",
+          "Duration": 0.0084195,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.CompletedStorageHasNoProductionBarButItsUnfinishedConstructionDoes",
+          "Status": "Passed",
+          "Duration": 0.0003892,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.GatheringNeverBecomesAutomaticAndInterruptedProgressIsPreserved",
+          "Status": "Passed",
+          "Duration": 0.0009624,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.MissingRemovedAndCreatureIdsDoNotProduceFacilityStatus",
+          "Status": "Passed",
+          "Duration": 0.0011528,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.PartialProductionInputsAndReservedDeliveryAreNotCountedTwice",
+          "Status": "Passed",
+          "Duration": 0.0050215,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.PickupAndPartialAdmissionKeepCompletedBarUntilLastActualAdmission",
+          "Status": "Passed",
+          "Duration": 0.0043993,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.SameDefinitionFacilitiesAreIndependentAndReadingDoesNotAdvanceOrReserve",
+          "Status": "Passed",
+          "Duration": 0.0010618,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.SharedProductionDecisionPreservesOverlappingBlockersWithoutMutatingCycle",
+          "Status": "Passed",
+          "Duration": 0.0006462,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.ValidSiteWithNoMaterialsCanWaitForDeliveryAndThenConstruction",
+          "Status": "Passed",
+          "Duration": 0.0012139,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.AutomaticAndLifecycleSavingUseActualFilesAndPauseDoesNotAccumulateTime",
+          "Status": "Passed",
+          "Duration": 0.0345731,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress(Playing)",
+          "Status": "Passed",
+          "Duration": 0.0112937,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress(Destruction)",
+          "Status": "Passed",
+          "Duration": 0.010204,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.ContinueRebuildsIndependentObjectsInSavedPhaseWithoutOfflineProgress(Results)",
+          "Status": "Passed",
+          "Duration": 0.0154749,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.CorruptAndInvalidSavesDoNotBecomeFreshGamesOrReplaceCurrentState",
+          "Status": "Passed",
+          "Duration": 0.0162478,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.EditingPausesOnlyLaboratoryAndSaveRestoresCommittedPlacementWithoutEdit",
+          "Status": "Passed",
+          "Duration": 0.0095281,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.FailedAutoSaveKeepsSessionAndLastGoodFileAndRetriesOnNextInterval",
+          "Status": "Passed",
+          "Duration": 0.0135361,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.FailedRestartPreservesSessionAndFileWhileLaterSuccessClearsOldIdsAndEdits",
+          "Status": "Passed",
+          "Duration": 0.0139844,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.GoalStopsBothSystemsAndCancellingEditCannotResumeResults",
+          "Status": "Passed",
+          "Duration": 0.0167801,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.InvalidTimeInputDoesNotAdvanceOrSave(-1.0d)",
+          "Status": "Passed",
+          "Duration": 0.0071076,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.InvalidTimeInputDoesNotAdvanceOrSave(double.NaN)",
+          "Status": "Passed",
+          "Duration": 0.0056505,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.InvalidTimeInputDoesNotAdvanceOrSave(double.PositiveInfinity)",
+          "Status": "Passed",
+          "Duration": 0.0062191,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.PostCommitObserverFailureIsNotReportedAsFailedPersistence",
+          "Status": "Passed",
+          "Duration": 0.0090197,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameFlowManagerTests.PreparationDoesNotAdvanceAndFreshStartPublishesOnlyAfterSaving",
+          "Status": "Passed",
+          "Duration": 0.0022959,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameplayComponentTests.GameplayDefinitionsRejectMissingResourcesAndInvalidSettings",
+          "Status": "Passed",
+          "Duration": 0.000922,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameplayComponentTests.InjectedFactoryAddsOnlyRoleFeaturesWithIndependentOwnersAndState",
+          "Status": "Passed",
+          "Duration": 0.0007109,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GameplayComponentTests.InvalidFactoryAndDuplicateComponentsCannotPartiallyRegister",
+          "Status": "Passed",
+          "Duration": 0.0007465,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.CorridorAndInteractionBlockingDoNotBecomePlacementRestrictions",
+          "Status": "Passed",
+          "Duration": 0.0004867,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.CreaturesOverlapWithoutBlockingButCannotBePlacedInsideFacility",
+          "Status": "Passed",
+          "Duration": 0.0004676,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.FailedConfirmationKeepsEditingAndCanBeCorrected",
+          "Status": "Passed",
+          "Duration": 0.0003113,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.InvalidMoveAndRotationAreAtomicIncludingIntegerExtremes",
+          "Status": "Passed",
+          "Duration": 0.000351,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.MovingOneSharedDefinitionPreservesIdentityInventoryAndOtherInstance",
+          "Status": "Passed",
+          "Duration": 0.0005822,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.NewPlacementCanBeCancelledWithoutDestroyingThing",
+          "Status": "Passed",
+          "Duration": 0.0002217,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.PreviewAndCancelKeepOriginalOccupancyAndSuccessfulConfirmSwitchesOnce",
+          "Status": "Passed",
+          "Duration": 0.0007391,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.QueriesAreReadOnlySnapshotsAndInvalidDefinitionIsRejected",
+          "Status": "Passed",
+          "Duration": 0.0010551,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(None,2,3,5,3)",
+          "Status": "Passed",
+          "Duration": 0.0006131,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise90,3,2,3,4)",
+          "Status": "Passed",
+          "Duration": 0.0000899,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise180,2,3,4,7)",
+          "Status": "Passed",
+          "Duration": 0.0000724,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise270,3,2,7,5)",
+          "Status": "Passed",
+          "Duration": 0.0000707,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RejectsForeignRegistryOtherMapAndResourcesWithoutSideEffects",
+          "Status": "Passed",
+          "Duration": 0.000442,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RemovedEditedTargetCannotBeResurrectedByConfirm",
+          "Status": "Passed",
+          "Duration": 0.0002159,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.UnplacementPreservesExistenceAndInventoryAndRemovalCleansMap",
+          "Status": "Passed",
+          "Duration": 0.000433,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridPathfinderTests.BlockedStartCanLeaveOnlyThroughAdjacentWalkableCell",
+          "Status": "Passed",
+          "Duration": 0.0007792,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridPathfinderTests.ConstructionCandidateUsesSameChecksWithoutCreatingThingsOrChangingMap",
+          "Status": "Passed",
+          "Duration": 0.0006107,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridPathfinderTests.LatestMapStateControlsBlockedRecoveredAndOutOfBoundsRoutes",
+          "Status": "Passed",
+          "Duration": 0.0004771,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridPathfinderTests.ShortestPathUsesFacilityOccupancyAndIgnoresCreatures",
+          "Status": "Passed",
+          "Duration": 0.0012268,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InitialLaboratoryCycleTests.FullStorageResumesThroughPaidConstructionAndActualPartialAdmissions",
+          "Status": "Passed",
+          "Duration": 0.1190023,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.ApplicationPauseQuitAndContinueDoNotAdvanceOfflineOrPermitRelease",
+          "Status": "Passed",
+          "Duration": 0.0261833,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.EditingPausesOnlyLabAndGoalCannotResumeAfterCancel(False)",
+          "Status": "Passed",
+          "Duration": 0.0100799,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.EditingPausesOnlyLabAndGoalCannotResumeAfterCancel(True)",
+          "Status": "Passed",
+          "Duration": 0.0088156,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.EndingClockHasVisibleEntryBoundaryAndTwoAutomaticFiles",
+          "Status": "Passed",
+          "Duration": 0.0196479,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.EndingPauseVisibilityAndStallsDoNotCatchUp",
+          "Status": "Passed",
+          "Duration": 0.0170902,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.EndingReloadFailurePreservesScreenClockAndRestartLease",
+          "Status": "Passed",
+          "Duration": 0.0149811,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.EndingSaveFailuresKeepMemoryPhaseAndGoodFileThenRetry(False)",
+          "Status": "Passed",
+          "Duration": 0.0281375,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.EndingSaveFailuresKeepMemoryPhaseAndGoodFileThenRetry(True)",
+          "Status": "Passed",
+          "Duration": 0.0206173,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.FailedGoalSaveStopsAndRetryCommitsWholeActivityWhileFailedRestartPreservesIt",
+          "Status": "Passed",
+          "Duration": 0.0229868,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.FileCheckpointsPreserveWholeGraphAndContinueOnce(-1)",
+          "Status": "Passed",
+          "Duration": 0.0125397,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.FileCheckpointsPreserveWholeGraphAndContinueOnce(0)",
+          "Status": "Passed",
+          "Duration": 0.0107922,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.FileCheckpointsPreserveWholeGraphAndContinueOnce(2.35d)",
+          "Status": "Passed",
+          "Duration": 0.0118175,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.FileCheckpointsPreserveWholeGraphAndContinueOnce(4.99d)",
+          "Status": "Passed",
+          "Duration": 0.0110061,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.FileCheckpointsPreserveWholeGraphAndContinueOnce(5)",
+          "Status": "Passed",
+          "Duration": 0.0121983,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.FileCheckpointsPreserveWholeGraphAndContinueOnce(80)",
+          "Status": "Passed",
+          "Duration": 0.0215058,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.FinalReceiptCommitsBeforeDestructionSave(True)",
+          "Status": "Passed",
+          "Duration": 0.011955,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.FinalReceiptCommitsBeforeDestructionSave(False)",
+          "Status": "Passed",
+          "Duration": 0.0122943,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.GoalCommitsActivityBeforeAutomaticFileAndConsumesOnlyTimeToBoundary",
+          "Status": "Passed",
+          "Duration": 0.0112007,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"missing\")",
+          "Status": "Passed",
+          "Duration": 0.0113771,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"duplicate\")",
+          "Status": "Passed",
+          "Duration": 0.0093816,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"unknown\")",
+          "Status": "Passed",
+          "Duration": 0.0100193,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"wrong-model\")",
+          "Status": "Passed",
+          "Duration": 0.0113166,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"outside-placement\")",
+          "Status": "Passed",
+          "Duration": 0.0125928,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"waiting-outside\")",
+          "Status": "Passed",
+          "Duration": 0.0103925,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"progress\")",
+          "Status": "Passed",
+          "Duration": 0.0100856,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"score\")",
+          "Status": "Passed",
+          "Duration": 0.0100162,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"report\")",
+          "Status": "Passed",
+          "Duration": 0.0099505,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"report-round\")",
+          "Status": "Passed",
+          "Duration": 0.0109256,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"phase\")",
+          "Status": "Passed",
+          "Duration": 0.0095938,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"goal-flag\")",
+          "Status": "Passed",
+          "Duration": 0.0097662,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"legacy-forgery\")",
+          "Status": "Passed",
+          "Duration": 0.0098355,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidCandidateDoesNotPublishOrOverwriteGoodSessionAndFile(\"version\")",
+          "Status": "Passed",
+          "Duration": 0.0106674,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.InvalidTargetAndEditingRejectWithoutPartialRelease",
+          "Status": "Passed",
+          "Duration": 0.0035346,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.JustBeforeActivityBoundaryDoesNotAwardOrStopEarly",
+          "Status": "Passed",
+          "Duration": 0.0103794,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.LargeAndSplitDeltaReachSameBoundaryAndSimultaneousBatchIsComplete",
+          "Status": "Passed",
+          "Duration": 0.0164674,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.LegacyEndingReplaysOrOpensResultsWithoutInventedActivity(2,Destruction)",
+          "Status": "Passed",
+          "Duration": 0.0248852,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.LegacyEndingReplaysOrOpensResultsWithoutInventedActivity(2,Results)",
+          "Status": "Passed",
+          "Duration": 0.0224758,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.LegacyEndingReplaysOrOpensResultsWithoutInventedActivity(3,Destruction)",
+          "Status": "Passed",
+          "Duration": 0.0216707,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.LegacyEndingReplaysOrOpensResultsWithoutInventedActivity(3,Results)",
+          "Status": "Passed",
+          "Duration": 0.0208707,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.LegacyPhaseMigratesAndResavesWithoutInventingAchievements(2,Playing)",
+          "Status": "Passed",
+          "Duration": 0.0156985,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.LegacyPhaseMigratesAndResavesWithoutInventingAchievements(2,Destruction)",
+          "Status": "Passed",
+          "Duration": 0.0154709,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.LegacyPhaseMigratesAndResavesWithoutInventingAchievements(2,Results)",
+          "Status": "Passed",
+          "Duration": 0.0152468,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.LegacyPhaseMigratesAndResavesWithoutInventingAchievements(3,Playing)",
+          "Status": "Passed",
+          "Duration": 0.0135678,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.LegacyPhaseMigratesAndResavesWithoutInventingAchievements(3,Destruction)",
+          "Status": "Passed",
+          "Duration": 0.0165138,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.LegacyPhaseMigratesAndResavesWithoutInventingAchievements(3,Results)",
+          "Status": "Passed",
+          "Duration": 0.0157683,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.OldScreensReloadedSessionsAndDuplicateRequestsCannotFinishOrRestartAnotherRun",
+          "Status": "Passed",
+          "Duration": 0.0395207,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.PaidInitialProductionReleasesTwoBatchesAndReachesGoal",
+          "Status": "Passed",
+          "Duration": 0.4537955,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.PendingAndSkippedRoundsSurviveAdmissionAndReload",
+          "Status": "Passed",
+          "Duration": 0.0364772,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.PlayingGoalReachedAndIncorrectFlagAreRejectedAfterRealGoal",
+          "Status": "Passed",
+          "Duration": 0.0161658,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.ReleaseAllRetainsIdentityAndExcludesOtherModelsAndFutureBirths",
+          "Status": "Passed",
+          "Duration": 0.0109768,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.ReportsFilterAndRetentionDoNotAlterScoreAndReloadDoesNotReplay",
+          "Status": "Passed",
+          "Duration": 0.0507787,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.ResultsRetainOvershootAndFilteredReportTotals",
+          "Status": "Passed",
+          "Duration": 0.0215432,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.InvasionTests.UnmodifiedVersionFiveFixtureLoadsWithNewCatalog",
+          "Status": "Passed",
+          "Duration": 0.0183957,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.AdditionalRaiderModelReusesBehaviorWithItsOwnSettings",
+          "Status": "Passed",
+          "Duration": 0.0122654,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.BaselineHasFrozenFingerprintAndIndependentDataWithCanonicalLinks",
+          "Status": "Passed",
+          "Duration": 0.0060425,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.EditingLocalJsonChangesActualConstructionAfterReloadAndRestoresBaseline",
+          "Status": "Passed",
+          "Duration": 0.1448905,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.EveryFieldMatchesFrozenCsvBeforeRuntimeConversion",
+          "Status": "Failed",
+          "Duration": 0.0439397,
+          "Message": "System.FormatException : Laboratory.csv row 23, key 'construction_progress': en: translation review required (source, context, arguments or translation changed).\r\n  ----> System.FormatException : en: translation review required (source, context, arguments or translation changed).",
+          "StackTrace": "  at MobileGame.Foundation.Editor.LocalizationCsvDocument.Read (System.String topic, System.String contents, System.Collections.Generic.IEnumerable`1[T] languages, System.Boolean requireReviewed) [0x0050e] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvDocument.cs:95 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools+<>c__DisplayClass7_0.<ReadAll>b__3 (System.String p) [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:53 \r\n  at System.Linq.Enumerable+SelectIPartitionIterator`2[TSource,TResult].ToList () [0x00040] in <3afc7090220843a58d515b3d75f6725a>:0 \r\n  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <3afc7090220843a58d515b3d75f6725a>:0 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools.ReadAll (System.Boolean requireReviewed) [0x000a1] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:52 \r\n  at MobileGame.Foundation.Tests.JsonGameDataTests.EveryFieldMatchesFrozenCsvBeforeRuntimeConversion () [0x00017] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\EditMode\\Foundation\\Definitions\\JsonGameDataTests.cs:137 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <16ec009baa7541e7b79bc4548f1d744c>:0 \r\n--FormatException\r\n  at MobileGame.Foundation.Editor.LocalizationCsvDocument.Read (System.String topic, System.String contents, System.Collections.Generic.IEnumerable`1[T] languages, System.Boolean requireReviewed) [0x0049a] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvDocument.cs:91 "
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"moveSecondsPerCell\",\"0\")",
+          "Status": "Passed",
+          "Duration": 0.0057396,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"moveSecondsPerCell\",\"1e100\")",
+          "Status": "Passed",
+          "Duration": 0.0027471,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"carryCapacity\",\"1.5\")",
+          "Status": "Passed",
+          "Duration": 0.0034314,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"carryCapacity\",\"2147483648\")",
+          "Status": "Passed",
+          "Duration": 0.0029796,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"invasion\",\"targetScore\",\"9223372036854775808\")",
+          "Status": "Passed",
+          "Duration": 0.0099497,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"session\",\"mapWidth\",\"0\")",
+          "Status": "Passed",
+          "Duration": 0.0044865,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"resources\",\"unknown\",\"1\")",
+          "Status": "Passed",
+          "Duration": 0.0012873,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"resources\",\"definitionId\",\"null\")",
+          "Status": "Passed",
+          "Duration": 0.0011522,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"activityBehavior\",\"\\\"Unknown\\\"\")",
+          "Status": "Passed",
+          "Duration": 0.0035298,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"role\",\"\\\"Unknown\\\"\")",
+          "Status": "Passed",
+          "Duration": 0.0016907,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"facilities\",\"resource\",\"\\\"resource.missing\\\"\")",
+          "Status": "Passed",
+          "Duration": 0.0042374,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"facilities\",\"gatheringSeconds\",\"1e100\")",
+          "Status": "Passed",
+          "Duration": 0.0028363,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"facilities\",\"gatheringSeconds\",\"1e-100\")",
+          "Status": "Passed",
+          "Duration": 0.0030832,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.LocalAndMemoryProvidersUseTheSameComposerContract",
+          "Status": "Passed",
+          "Duration": 0.1082927,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{'schemaVersion':1,'entries':[]}\")",
+          "Status": "Passed",
+          "Duration": 0.0020395,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{schemaVersion:1,\\\"entries\\\":[]}\")",
+          "Status": "Passed",
+          "Duration": 0.0014237,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":1,\\\"schemaVersion\\\":1,\\\"entries\\\":[]}\")",
+          "Status": "Passed",
+          "Duration": 0.002097,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":1,\\\"entries\\\":[],}\")",
+          "Status": "Passed",
+          "Duration": 0.0012676,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":01,\\\"entries\\\":[]}\")",
+          "Status": "Passed",
+          "Duration": 0.0014288,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":1,/*comment*/\\\"entries\\\":[]}\")",
+          "Status": "Passed",
+          "Duration": 0.0011739,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":NaN,\\\"entries\\\":[]}\")",
+          "Status": "Passed",
+          "Duration": 0.0011818,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":1,\\\"entries\\\":[]} {}\")",
+          "Status": "Passed",
+          "Duration": 0.0012735,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":1,\\\"entries\\\":null}\")",
+          "Status": "Passed",
+          "Duration": 0.0011514,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"[]\")",
+          "Status": "Passed",
+          "Duration": 0.0017384,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MissingFieldsDuplicateIdsAndComponentsReject",
+          "Status": "Passed",
+          "Duration": 0.0055081,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MissingOrUnknownTopicAndSchemaReject",
+          "Status": "Passed",
+          "Duration": 0.0059083,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.NewSaveFingerprintRejectsChangedDataAndLegacyRequiresBaseline",
+          "Status": "Passed",
+          "Duration": 0.0098833,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.OptionalDefaultsAndNumericSpellingsPreserveHashAndLongsRemainExact",
+          "Status": "Passed",
+          "Duration": 0.0247882,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.RegistryNullDuplicateMissingAndWrongKindAreRejected",
+          "Status": "Passed",
+          "Duration": 0.0103536,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.RowRegistryOrderAndDisplayEditsPreserveCompatibilityButValuesDoNot",
+          "Status": "Passed",
+          "Duration": 0.0154508,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryCompatibilityTests.UpgradedSharedDefinitionStillLoadsLegacyDiagnosticButNotActualPlaySlot",
+          "Status": "Passed",
+          "Duration": 0.0012459,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.CancelDuringPanCannotPublishAScaleForTheOldScreen",
+          "Status": "Passed",
+          "Duration": 0.0026975,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.CoincidentPinchContactsDoNotPublishInvalidScales",
+          "Status": "Passed",
+          "Duration": 0.0008182,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.DeviceCancellationSuppressesTapAndUnknownReleaseIsIgnored",
+          "Status": "Passed",
+          "Duration": 0.000164,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.DistantReleaseWithoutAnIntermediateMoveCannotTap",
+          "Status": "Passed",
+          "Duration": 0.0002798,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.DragIncludesThresholdDistanceAndNeverTapsOnRelease",
+          "Status": "Passed",
+          "Duration": 0.0005746,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.DuplicateBeginCannotResetDragOrChangeUiOwnership",
+          "Status": "Passed",
+          "Duration": 0.0001689,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.LayoutCancellationRetainsContactsButRejectsStaleRelease",
+          "Status": "Passed",
+          "Duration": 0.0002955,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.MixedUiAndMapContactsBlockUntilEveryFingerIsReleased(True)",
+          "Status": "Passed",
+          "Duration": 0.0003629,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.MixedUiAndMapContactsBlockUntilEveryFingerIsReleased(False)",
+          "Status": "Passed",
+          "Duration": 0.0000779,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.PinchPublishesCenterMotionAndRatioAndSuppressesTheRemainingFinger",
+          "Status": "Passed",
+          "Duration": 0.0004356,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.TapWaitsForReleaseAndSmallMovementRemainsATap",
+          "Status": "Passed",
+          "Duration": 0.0002939,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.ThirdFingerCancelsTheWholeSequence",
+          "Status": "Passed",
+          "Duration": 0.0001871,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.UiOwnedPointerCannotBecomeAMapGestureAfterCrossingTheBoundary",
+          "Status": "Passed",
+          "Duration": 0.0001594,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(\"construction\")",
+          "Status": "Passed",
+          "Duration": 0.0512035,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(\"gathering\")",
+          "Status": "Passed",
+          "Duration": 0.0360587,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(\"reserved\")",
+          "Status": "Passed",
+          "Duration": 0.0545389,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.ActualWorkSnapshotsRestoreNewObjectsAndFinishWithoutDuplicateResources(\"carried\")",
+          "Status": "Passed",
+          "Duration": 0.0264495,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.BlockedBootstrapDeliveryPreservesOnlyItsReservedSubsetAsTheHeldJob",
+          "Status": "Passed",
+          "Duration": 0.0122883,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.DuplicatedOutboundReservationCannotDoubleBookTheSameResourceAfterReload",
+          "Status": "Passed",
+          "Duration": 0.0114622,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.HeldBatchWithoutDestinationAndCustomSettingsSurviveUntilActualAdmission",
+          "Status": "Passed",
+          "Duration": 0.0388206,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.LegacyDiagnosticSaveRemainsVersionOneAndDoesNotGainGameplayComponents",
+          "Status": "Passed",
+          "Duration": 0.0008663,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(\"no-laboratory\")",
+          "Status": "Passed",
+          "Duration": 0.0124259,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(\"no-worker-state\")",
+          "Status": "Passed",
+          "Duration": 0.0107614,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(\"duplicate-component-state\")",
+          "Status": "Passed",
+          "Duration": 0.0093096,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(\"missing-component-flag\")",
+          "Status": "Passed",
+          "Duration": 0.0104858,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(\"unknown-component-owner\")",
+          "Status": "Passed",
+          "Duration": 0.0094825,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(\"unknown-job-target\")",
+          "Status": "Passed",
+          "Duration": 0.0104593,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(\"invalid-priorities\")",
+          "Status": "Passed",
+          "Duration": 0.0095025,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(\"nan-progress\")",
+          "Status": "Passed",
+          "Duration": 0.0099992,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(\"unsupported-version\")",
+          "Status": "Passed",
+          "Duration": 0.0105588,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.MalformedGameplayStateIsRejectedWithoutReplacingTheActiveSession(\"downgrade\")",
+          "Status": "Passed",
+          "Duration": 0.0095062,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.PartialAdmissionRestoresHeldRemainderAndCompletesTheSameBatchExactlyOnce",
+          "Status": "Passed",
+          "Duration": 0.0154705,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryPersistenceTests.TransientConstructionPreviewIsNotSavedAndGameFlowGatesActualWork",
+          "Status": "Passed",
+          "Duration": 0.0232802,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.EmptyOrInvalidSafeAreaFallsBackToTheWholeScreen(0,0)",
+          "Status": "Passed",
+          "Duration": 0.0010648,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.EmptyOrInvalidSafeAreaFallsBackToTheWholeScreen(-1,500)",
+          "Status": "Passed",
+          "Duration": 0.0000525,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.EmptyOrInvalidSafeAreaFallsBackToTheWholeScreen(500,-1)",
+          "Status": "Passed",
+          "Duration": 0.000032,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.EmptyOrUnknownWorkerWaitReasonUsesSafeDisplay(None)",
+          "Status": "Passed",
+          "Duration": 0.0008198,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.EmptyOrUnknownWorkerWaitReasonUsesSafeDisplay(999)",
+          "Status": "Passed",
+          "Duration": 0.0000613,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.ReleaseFromAnOldLayoutOrBindingCannotInvokeAnAction",
+          "Status": "Passed",
+          "Duration": 0.0492324,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.SafeAreaNotchesMapBackToTheExactPhysicalBounds(0,80,1080,2240,1080,2400)",
+          "Status": "Passed",
+          "Duration": 0.0004865,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.SafeAreaNotchesMapBackToTheExactPhysicalBounds(100,0,2200,1080,2400,1080)",
+          "Status": "Passed",
+          "Duration": 0.0000658,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.SafeAreaNotchesMapBackToTheExactPhysicalBounds(0,0,2300,1080,2400,1080)",
+          "Status": "Passed",
+          "Duration": 0.0000413,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.SafeAreaNotchesMapBackToTheExactPhysicalBounds(30,20,740,560,800,600)",
+          "Status": "Passed",
+          "Duration": 0.0000339,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.TwoHeldPriorityButtonsApplyEachChangeToTheLatestValues(False)",
+          "Status": "Passed",
+          "Duration": 0.0412786,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryUiLayoutTests.TwoHeldPriorityButtonsApplyEachChangeToTheLatestValues(True)",
+          "Status": "Passed",
+          "Duration": 0.0044041,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryValidationTests.FacilityCoveringAWorkerRemainsLegalForIdleOrReachableMovingState(False)",
+          "Status": "Passed",
+          "Duration": 0.0156019,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryValidationTests.FacilityCoveringAWorkerRemainsLegalForIdleOrReachableMovingState(True)",
+          "Status": "Passed",
+          "Duration": 0.0112645,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryValidationTests.RejectsTwoWorkersClaimingOneFacilityEvenWhenBothStandAtItsInteractionCell",
+          "Status": "Passed",
+          "Duration": 0.0136371,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryValidationTests.RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork(\"working-away\")",
+          "Status": "Passed",
+          "Duration": 0.0128505,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryValidationTests.RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork(\"worker-unplaced\")",
+          "Status": "Passed",
+          "Duration": 0.0123351,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryValidationTests.RejectsWorkerPlacementOrMovementThatDisagreesWithItsWork(\"idle-movement\")",
+          "Status": "Passed",
+          "Duration": 0.011667,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryValidationTests.RejectsWorkWhoseTargetExistsButHasNoMapPlacement",
+          "Status": "Passed",
+          "Duration": 0.0115724,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LanguageSettingsTests.CorruptPreferencesDoNotOverwriteTheSource(\"broken\")",
+          "Status": "Passed",
+          "Duration": 0.0006182,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LanguageSettingsTests.CorruptPreferencesDoNotOverwriteTheSource(\"{}\")",
+          "Status": "Passed",
+          "Duration": 0.0001535,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LanguageSettingsTests.CorruptPreferencesDoNotOverwriteTheSource(\"{\\\"version\\\":2,\\\"language\\\":\\\"en\\\"}\")",
+          "Status": "Passed",
+          "Duration": 0.0000555,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LanguageSettingsTests.FailedWriteRetainsSelectionAndRetryPersistsIt",
+          "Status": "Passed",
+          "Duration": 0.0005756,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LanguageSettingsTests.ReadAccessFailureIsDifferentFromMissingPreferences",
+          "Status": "Passed",
+          "Duration": 0.0003361,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.CsvRoundTripPreservesBomQuotesNewlinesContextIdsAndSmartContract",
+          "Status": "Passed",
+          "Duration": 0.0071193,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.FailedImportRestoresPreviousEditorPlayModeSelection",
+          "Status": "Failed",
+          "Duration": 0.0866318,
+          "Message": "  Expected: <System.IO.IOException>\r\n  But was:  <System.FormatException: Laboratory.csv row 23, key 'construction_progress': en: translation review required (source, context, arguments or translation changed). ---> System.FormatException: en: translation review required (source, context, arguments or translation changed).\r\n  at MobileGame.Foundation.Editor.LocalizationCsvDocument.Read (System.String topic, System.String contents, System.Collections.Generic.IEnumerable`1[T] languages, System.Boolean requireReviewed) [0x0049a] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvDocument.cs:91 \r\n   --- End of inner exception stack trace ---\r\n  at MobileGame.Foundation.Editor.LocalizationCsvDocument.Read (System.String topic, System.String contents, System.Collections.Generic.IEnumerable`1[T] languages, System.Boolean requireReviewed) [0x0050e] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvDocument.cs:95 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools+<>c__DisplayClass7_0.<ReadAll>b__3 (System.String p) [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:53 \r\n  at System.Linq.Enumerable+SelectIPartitionIterator`2[TSource,TResult].ToList () [0x00040] in <3afc7090220843a58d515b3d75f6725a>:0 \r\n  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <3afc7090220843a58d515b3d75f6725a>:0 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools.ReadAll (System.Boolean requireReviewed) [0x000a1] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:52 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools.ImportAll (System.Boolean allowKeyChanges, System.Action`1[T] afterTable) [0x00012] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:139 \r\n  at MobileGame.Foundation.Tests.LocalizationCsvTests+<>c.<FailedImportRestoresPreviousEditorPlayModeSelection>b__6_1 () [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\EditMode\\Foundation\\Localization\\LocalizationCsvTests.cs:111 \r\n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\r\n",
+          "StackTrace": "at MobileGame.Foundation.Tests.LocalizationCsvTests.FailedImportRestoresPreviousEditorPlayModeSelection () [0x00050] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\EditMode\\Foundation\\Localization\\LocalizationCsvTests.cs:111\r\n"
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent",
+          "Status": "Failed",
+          "Duration": 0.0038587,
+          "Message": "System.FormatException : Laboratory.csv row 23, key 'construction_progress': en: translation review required (source, context, arguments or translation changed).\r\n  ----> System.FormatException : en: translation review required (source, context, arguments or translation changed).",
+          "StackTrace": "  at MobileGame.Foundation.Editor.LocalizationCsvDocument.Read (System.String topic, System.String contents, System.Collections.Generic.IEnumerable`1[T] languages, System.Boolean requireReviewed) [0x0050e] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvDocument.cs:95 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools+<>c__DisplayClass7_0.<ReadAll>b__3 (System.String p) [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:53 \r\n  at System.Linq.Enumerable+SelectIPartitionIterator`2[TSource,TResult].ToList () [0x00040] in <3afc7090220843a58d515b3d75f6725a>:0 \r\n  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <3afc7090220843a58d515b3d75f6725a>:0 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools.ReadAll (System.Boolean requireReviewed) [0x000a1] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:52 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools.ValidateImported () [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:76 \r\n  at MobileGame.Foundation.Tests.LocalizationCsvTests.ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent () [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\EditMode\\Foundation\\Localization\\LocalizationCsvTests.cs:126 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <16ec009baa7541e7b79bc4548f1d744c>:0 \r\n--FormatException\r\n  at MobileGame.Foundation.Editor.LocalizationCsvDocument.Read (System.String topic, System.String contents, System.Collections.Generic.IEnumerable`1[T] languages, System.Boolean requireReviewed) [0x0049a] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvDocument.cs:91 "
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(\"key\")",
+          "Status": "Passed",
+          "Duration": 0.0009469,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(\"id\")",
+          "Status": "Passed",
+          "Duration": 0.0001745,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(\"empty\")",
+          "Status": "Passed",
+          "Duration": 0.0001374,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(\"unused\")",
+          "Status": "Passed",
+          "Duration": 0.0001242,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(\"unknown\")",
+          "Status": "Passed",
+          "Duration": 0.0001198,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(\"format\")",
+          "Status": "Passed",
+          "Duration": 0.0013056,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(\"review\")",
+          "Status": "Passed",
+          "Duration": 0.0002417,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.KeyMaintenancePreservesIdAndDetectsManualTableDrift",
+          "Status": "Failed",
+          "Duration": 0.0030283,
+          "Message": "System.FormatException : Laboratory.csv row 23, key 'construction_progress': en: translation review required (source, context, arguments or translation changed).\r\n  ----> System.FormatException : en: translation review required (source, context, arguments or translation changed).",
+          "StackTrace": "  at MobileGame.Foundation.Editor.LocalizationCsvDocument.Read (System.String topic, System.String contents, System.Collections.Generic.IEnumerable`1[T] languages, System.Boolean requireReviewed) [0x0050e] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvDocument.cs:95 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools+<>c__DisplayClass7_0.<ReadAll>b__3 (System.String p) [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:53 \r\n  at System.Linq.Enumerable+SelectIPartitionIterator`2[TSource,TResult].ToList () [0x00040] in <3afc7090220843a58d515b3d75f6725a>:0 \r\n  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <3afc7090220843a58d515b3d75f6725a>:0 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools.ReadAll (System.Boolean requireReviewed) [0x000a1] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:52 \r\n  at MobileGame.Foundation.Tests.LocalizationCsvTests.KeyMaintenancePreservesIdAndDetectsManualTableDrift () [0x0000d] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\EditMode\\Foundation\\Localization\\LocalizationCsvTests.cs:73 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <16ec009baa7541e7b79bc4548f1d744c>:0 \r\n--FormatException\r\n  at MobileGame.Foundation.Editor.LocalizationCsvDocument.Read (System.String topic, System.String contents, System.Collections.Generic.IEnumerable`1[T] languages, System.Boolean requireReviewed) [0x0049a] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvDocument.cs:91 "
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.ReferencedKeyDeletionIsBlockedBeforeImport",
+          "Status": "Failed",
+          "Duration": 0.002772,
+          "Message": "System.FormatException : Laboratory.csv row 23, key 'construction_progress': en: translation review required (source, context, arguments or translation changed).\r\n  ----> System.FormatException : en: translation review required (source, context, arguments or translation changed).",
+          "StackTrace": "  at MobileGame.Foundation.Editor.LocalizationCsvDocument.Read (System.String topic, System.String contents, System.Collections.Generic.IEnumerable`1[T] languages, System.Boolean requireReviewed) [0x0050e] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvDocument.cs:95 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools+<>c__DisplayClass7_0.<ReadAll>b__3 (System.String p) [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:53 \r\n  at System.Linq.Enumerable+SelectIPartitionIterator`2[TSource,TResult].ToList () [0x00040] in <3afc7090220843a58d515b3d75f6725a>:0 \r\n  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <3afc7090220843a58d515b3d75f6725a>:0 \r\n  at MobileGame.Foundation.Editor.LocalizationCsvTools.ReadAll (System.Boolean requireReviewed) [0x000a1] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvTools.cs:52 \r\n  at MobileGame.Foundation.Tests.LocalizationCsvTests.ReferencedKeyDeletionIsBlockedBeforeImport () [0x00005] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\EditMode\\Foundation\\Localization\\LocalizationCsvTests.cs:64 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <16ec009baa7541e7b79bc4548f1d744c>:0 \r\n--FormatException\r\n  at MobileGame.Foundation.Editor.LocalizationCsvDocument.Read (System.String topic, System.String contents, System.Collections.Generic.IEnumerable`1[T] languages, System.Boolean requireReviewed) [0x0049a] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Editor\\Localization\\LocalizationCsvDocument.cs:91 "
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LocalizationCsvTests.ThirdLocaleAndExplicitReviewNeedNoColumnCountChange",
+          "Status": "Passed",
+          "Duration": 0.0014258,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.AllowanceChangeKeepsOutgoingConstructionReservation",
+          "Status": "Passed",
+          "Duration": 0.0015761,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.BlockedIdleWorkerRestsWithoutRequestingPaths",
+          "Status": "Passed",
+          "Duration": 0.0020478,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.BlockingUnpickedInteractionReleasesBothReservationsAndMovingBlockerRecovers(True)",
+          "Status": "Passed",
+          "Duration": 0.0045222,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.BlockingUnpickedInteractionReleasesBothReservationsAndMovingBlockerRecovers(False)",
+          "Status": "Passed",
+          "Duration": 0.0023798,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.DisablingWorkFinishesConstructionDeliveryWithoutForcingConstructionWork",
+          "Status": "Passed",
+          "Duration": 0.002304,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.EditingFreezesMovementJobsReservationsAndBatchUntilCancelled",
+          "Status": "Passed",
+          "Duration": 0.0025395,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.ExcludedStoredStacksRelocateAsOneFullLoadAndKeepOutgoingWorkWhenAllowedAgain",
+          "Status": "Passed",
+          "Duration": 0.0023732,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.ExcludingDestinationCancelsBothUnpickedReservationsAndSelectsAnotherStore",
+          "Status": "Passed",
+          "Duration": 0.0006976,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.FailedSearchSleepsButNewStockAndAllowanceWakeOneDecision",
+          "Status": "Passed",
+          "Duration": 0.0020449,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.FinishingWorkConsumesDueSearchOnceAndDoesNotSpendElapsedTimeTwice(-0.01d)",
+          "Status": "Passed",
+          "Duration": 0.0005189,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.FinishingWorkConsumesDueSearchOnceAndDoesNotSpendElapsedTimeTwice(0)",
+          "Status": "Passed",
+          "Duration": 0.0002136,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.FinishingWorkConsumesDueSearchOnceAndDoesNotSpendElapsedTimeTwice(0.01d)",
+          "Status": "Passed",
+          "Duration": 0.0002123,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.IdleStepsStayNearOriginAndDoNotStartPathSearches",
+          "Status": "Passed",
+          "Duration": 0.0019191,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.MovingAndRotatingReachableDestinationKeepsPickedJobAndReservationUntilNewInteraction",
+          "Status": "Passed",
+          "Duration": 0.0046704,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.MultipleWorkersReserveOnlyRemainingStockAndCapacity",
+          "Status": "Passed",
+          "Duration": 0.0091655,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.NormalHaulingKeepsItsTargetWhenCloserSupplyAndHigherPriorityWorkAppear",
+          "Status": "Passed",
+          "Duration": 0.0035535,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.PickedConstructionMaterialsReturnToStorageWhenSiteBecomesUnreachable",
+          "Status": "Passed",
+          "Duration": 0.0018337,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.PickedOutputWaitsWithoutLossThenSplitsAcrossRecoveredStores",
+          "Status": "Passed",
+          "Duration": 0.0047391,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.PickupAndPartialIntakeDoNotFinishBatchBeforeEveryUnitIsStored",
+          "Status": "Passed",
+          "Duration": 0.0032133,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.SelectsNearestSupplyFirstEvenWhenAnotherTotalTripIsShorter",
+          "Status": "Passed",
+          "Duration": 0.0010469,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.SupplyAndDestinationTiesKeepOriginalCreationOrderAfterMovement",
+          "Status": "Passed",
+          "Duration": 0.0008269,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.SupplyReceiptRespectsReservedCapacityAndFilteredStores",
+          "Status": "Passed",
+          "Duration": 0.0030552,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.UsesObstacleAvoidingPathInsteadOfStraightLineDistance",
+          "Status": "Passed",
+          "Duration": 0.0010059,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LogisticsTests.WalkingKeepsCandidateCooldownAndFacilityChangesInvalidateDistances",
+          "Status": "Passed",
+          "Duration": 0.000639,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PartialResourceTransferTests.InvalidOrFailedSplitLeavesOriginalAndCreationOrderUntouched",
+          "Status": "Passed",
+          "Duration": 0.0011985,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PartialResourceTransferTests.MergePreservesDestinationIdentityAndRejectsInvalidInputsAtomically",
+          "Status": "Passed",
+          "Duration": 0.0008751,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PartialResourceTransferTests.PartialTransferConservesQuantityAndWholeTransferKeepsIdentity",
+          "Status": "Passed",
+          "Duration": 0.0008293,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupManagerTests.BackConsumesNondismissibleAndRestoresParentAfterChildClose",
+          "Status": "Passed",
+          "Duration": 0.0038007,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupManagerTests.ChildIsOnlyInteractiveAndParentCancellationEndsBoth",
+          "Status": "Passed",
+          "Duration": 0.0009262,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupManagerTests.ConfirmWaitsForForegroundAndRevalidatesScope",
+          "Status": "Passed",
+          "Duration": 0.0004108,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupManagerTests.CreationAndCallbackFailureReleaseOwnedLocks",
+          "Status": "Passed",
+          "Duration": 0.0005761,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupManagerTests.NotReadySuspendedAndExpiredOwnerAreExplicitRejections",
+          "Status": "Passed",
+          "Duration": 0.0003526,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupManagerTests.OpenCloseDuplicateAndCallbackReentryHaveOneOwner",
+          "Status": "Passed",
+          "Duration": 0.0002977,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupManagerTests.OpeningCancellationCannotBeResurrectedByLateAnimation",
+          "Status": "Passed",
+          "Duration": 0.0001606,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupManagerTests.OwnerEndDuringBackgroundDropsAcceptedIntentWithoutUserCancel",
+          "Status": "Passed",
+          "Duration": 0.000198,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupManagerTests.ParentCompletionObserverCannotLeakChildScope",
+          "Status": "Passed",
+          "Duration": 0.0001892,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupManagerTests.SuspensionDefersAcceptedIntentAndDisposeDropsIt",
+          "Status": "Passed",
+          "Duration": 0.0002384,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupManagerTests.ViewFailuresRestoreParentAndDoNotLeakLocks",
+          "Status": "Passed",
+          "Duration": 0.0002176,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupRegistryTests.CombinedRegistryRejectsDuplicatesNullMissingAndWrongTypes",
+          "Status": "Passed",
+          "Duration": 0.0088398,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.PopupRegistryTests.MissingPrefabBindingsAreRejectedBeforePresentation",
+          "Status": "Passed",
+          "Duration": 0.0006524,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.AssignmentOnlySpeedsActualWorkAndUnassignPreservesConsumedCycle",
+          "Status": "Passed",
+          "Duration": 0.0036052,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.AssignmentRejectsWrongModelsAndFacilitiesAndPreservesNormalTransport",
+          "Status": "Passed",
+          "Duration": 0.0044803,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.AutomaticReturnReconsidersMovementButRespectsPlayerPriorities",
+          "Status": "Passed",
+          "Duration": 0.0010589,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.BlockedInteractionStopsAutomaticProgressAndRecoveryDoesNotConsumeAgain",
+          "Status": "Passed",
+          "Duration": 0.0033055,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.CurrentCycleReservationsSubtractPartialInputsAcrossMultipleWorkers",
+          "Status": "Passed",
+          "Duration": 0.0033612,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.ExplicitAssignmentInterruptsGatheringButAutomaticReturnFinishesItsCycle(False)",
+          "Status": "Passed",
+          "Duration": 0.0021595,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.ExplicitAssignmentInterruptsGatheringButAutomaticReturnFinishesItsCycle(True)",
+          "Status": "Passed",
+          "Duration": 0.0007667,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.FileCheckpointsRestoreWholeGraphAndContinueWithoutDuplicatingWork(\"partial-input\")",
+          "Status": "Passed",
+          "Duration": 0.0606521,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.FileCheckpointsRestoreWholeGraphAndContinueWithoutDuplicatingWork(\"input-reserved\")",
+          "Status": "Passed",
+          "Duration": 0.0644926,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.FileCheckpointsRestoreWholeGraphAndContinueWithoutDuplicatingWork(\"twenty-percent\")",
+          "Status": "Passed",
+          "Duration": 0.0548447,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.FileCheckpointsRestoreWholeGraphAndContinueWithoutDuplicatingWork(\"hundred-percent\")",
+          "Status": "Passed",
+          "Duration": 0.056908,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.FileCheckpointsRestoreWholeGraphAndContinueWithoutDuplicatingWork(\"next-target\")",
+          "Status": "Passed",
+          "Duration": 0.0530191,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.FileCheckpointsRestoreWholeGraphAndContinueWithoutDuplicatingWork(\"output-carried\")",
+          "Status": "Passed",
+          "Duration": 0.0632736,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.FileCheckpointsRestoreWholeGraphAndContinueWithoutDuplicatingWork(\"assignment-in-transit\")",
+          "Status": "Passed",
+          "Duration": 0.0688701,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.FileCheckpointsRestoreWholeGraphAndContinueWithoutDuplicatingWork(\"spawned\")",
+          "Status": "Passed",
+          "Duration": 0.1658542,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.InvalidProductionGraphIsRejectedWithoutReplacingGoodFile(\"assignment\")",
+          "Status": "Passed",
+          "Duration": 0.0103954,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.InvalidProductionGraphIsRejectedWithoutReplacingGoodFile(\"progress\")",
+          "Status": "Passed",
+          "Duration": 0.0082718,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.InvalidProductionGraphIsRejectedWithoutReplacingGoodFile(\"target\")",
+          "Status": "Passed",
+          "Duration": 0.0085389,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.InvalidProductionGraphIsRejectedWithoutReplacingGoodFile(\"stock\")",
+          "Status": "Passed",
+          "Duration": 0.0079935,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.InvalidProductionGraphIsRejectedWithoutReplacingGoodFile(\"version\")",
+          "Status": "Passed",
+          "Duration": 0.0081446,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.MixedStorageCapacityExclusionAndExistingOutgoingReservationAreIndependent",
+          "Status": "Passed",
+          "Duration": 0.0021912,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.NoSelectionDoesNotRequestInputsAndMidCycleTargetChangeAppliesNextCycle",
+          "Status": "Passed",
+          "Duration": 0.047882,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.OutputMustVisitStorageBeforeSupplyingCultivation",
+          "Status": "Passed",
+          "Duration": 0.0136629,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.OutputPickupDoesNotReleaseCycleAndHoldingWaitSurvivesFileReload",
+          "Status": "Passed",
+          "Duration": 0.0936884,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.PlacementPauseMovementAndApplicationPausePreserveCycle",
+          "Status": "Passed",
+          "Duration": 0.0147172,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.RealInitialCycleBuildsFourFacilityTypesCultivatesFirstSupportAndWaitingInvader",
+          "Status": "Passed",
+          "Duration": 0.7829596,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.TwoAssignedWorkersClaimOneSlotWithoutAddingAutomaticSpeed",
+          "Status": "Passed",
+          "Duration": 0.0017728,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.UnstaffedCyclesConsumeOnceAndFinishAtTwentyPercent(False,50)",
+          "Status": "Passed",
+          "Duration": 0.0089972,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.UnstaffedCyclesConsumeOnceAndFinishAtTwentyPercent(True,100)",
+          "Status": "Passed",
+          "Duration": 0.0156356,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ProductionTests.VersionTwoSaveMigratesWithoutChangingIdentityOrOrganicAllowance",
+          "Status": "Passed",
+          "Duration": 0.0012481,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.ConsumingOneStackDoesNotChangeAnotherStackOrSharedDefinition",
+          "Status": "Passed",
+          "Duration": 0.0004432,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.ForeignRegistryHoldersAndResourcesCannotCrossOwnershipBoundaries",
+          "Status": "Passed",
+          "Duration": 0.0005293,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.InvalidQuantitiesLeaveRegistryDefinitionsOwnershipAndQuantityUnchanged",
+          "Status": "Passed",
+          "Duration": 0.0005939,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.NonemptyHolderCannotBeRemovedAndFullConsumptionEndsResourceExistence",
+          "Status": "Passed",
+          "Duration": 0.0004413,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.NullInputsAreRejectedWithoutLosingExistingResources",
+          "Status": "Passed",
+          "Duration": 0.0004571,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.RemovedHolderCannotReceiveNewOrExistingResources",
+          "Status": "Passed",
+          "Duration": 0.0003537,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ResourceOwnershipTests.ResourceHasOneHolderAtCreationAndAfterRepeatedTransfers",
+          "Status": "Passed",
+          "Duration": 0.0003656,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SaveFileProbeTests.FailedReplacementPreservesExistingBytesAndCleansTemporaryFile",
+          "Status": "Passed",
+          "Duration": 0.0141746,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SaveFileProbeTests.ProbeDistinguishesMissingFromDeniedAndDoesNotCacheEarlierResult",
+          "Status": "Passed",
+          "Duration": 0.0050677,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SaveFileProbeTests.ReadableDoesNotPromiseValidSnapshotAndNeverChangesBytes(\"\")",
+          "Status": "Passed",
+          "Duration": 0.0023754,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SaveFileProbeTests.ReadableDoesNotPromiseValidSnapshotAndNeverChangesBytes(\"broken saved session\")",
+          "Status": "Passed",
+          "Duration": 0.0051341,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SaveFileProbeTests.ReadableDoesNotPromiseValidSnapshotAndNeverChangesBytes(\"null\")",
+          "Status": "Passed",
+          "Duration": 0.0013924,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.ActualFileRoundTripRestoresIndependentObjectsAndSingleOwnership",
+          "Status": "Passed",
+          "Duration": 0.0085625,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.CaptureRejectsAnUntrackedMapRatherThanSilentlyLosingPlacement",
+          "Status": "Passed",
+          "Duration": 0.0010747,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.DuplicateDefinitionIdsAcrossDistinctAssetsAreRejected",
+          "Status": "Passed",
+          "Duration": 0.0008058,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.EditingSavesOnlyCommittedPlacementAndDoesNotRestoreTransientPause",
+          "Status": "Passed",
+          "Duration": 0.000927,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.FileOverwriteAndLockedFileFailurePreserveTheLastGoodSave",
+          "Status": "Passed",
+          "Duration": 0.0094925,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"duplicate-id\")",
+          "Status": "Passed",
+          "Duration": 0.0014828,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"duplicate-order\")",
+          "Status": "Passed",
+          "Duration": 0.0010438,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"low-high-water\")",
+          "Status": "Passed",
+          "Duration": 0.0006812,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"missing-definition\")",
+          "Status": "Passed",
+          "Duration": 0.0006729,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"missing-holder\")",
+          "Status": "Passed",
+          "Duration": 0.0007094,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"resource-holder\")",
+          "Status": "Passed",
+          "Duration": 0.0006757,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"zero-quantity\")",
+          "Status": "Passed",
+          "Duration": 0.0006896,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"non-resource-quantity\")",
+          "Status": "Passed",
+          "Duration": 0.0006756,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"missing-placed-thing\")",
+          "Status": "Passed",
+          "Duration": 0.0006726,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"resource-placement\")",
+          "Status": "Passed",
+          "Duration": 0.0006803,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"outside-map\")",
+          "Status": "Passed",
+          "Duration": 0.0007516,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"duplicate-placement\")",
+          "Status": "Passed",
+          "Duration": 0.000661,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.InvalidSnapshotCannotMutateTheOriginalGraph(\"unknown-rotation\")",
+          "Status": "Passed",
+          "Duration": 0.0006486,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.LegalCreatureOverlapAndFacilityOverCreatureSurviveRestoreOrdering",
+          "Status": "Passed",
+          "Duration": 0.0010473,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(null)",
+          "Status": "Passed",
+          "Duration": 0.0008817,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(\"\")",
+          "Status": "Passed",
+          "Duration": 0.000559,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(\" \")",
+          "Status": "Passed",
+          "Duration": 0.0005734,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(\"null\")",
+          "Status": "Passed",
+          "Duration": 0.0005709,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(\"{ not json\")",
+          "Status": "Passed",
+          "Duration": 0.0005483,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(\"{}\")",
+          "Status": "Passed",
+          "Duration": 0.0005508,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.MissingMalformedOrUnsupportedSaveIsNotAnEmptyNewGame(\"{\\\"version\\\":999}\")",
+          "Status": "Passed",
+          "Duration": 0.0006027,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.RemovedHighestOrderAndConsumedResourcesStayRemovedAfterRestore",
+          "Status": "Passed",
+          "Duration": 0.0009632,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.UnpreparedAndUnknownPhasesCannotBeSaved(Preparing)",
+          "Status": "Passed",
+          "Duration": 0.0008027,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.SessionPersistenceTests.UnpreparedAndUnknownPhasesCannotBeSaved(99)",
+          "Status": "Passed",
+          "Duration": 0.0006295,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.TextManagementTests.DisposingManagerRemovesLanguageSubscriptions",
+          "Status": "Passed",
+          "Duration": 0.0024904,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.TextManagementTests.MessagesRejectMutableArgumentsAndDuplicateNames",
+          "Status": "Passed",
+          "Duration": 0.0003189,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.TextManagementTests.MissingNestedTranslationFallsBackAsOneWholeMessage",
+          "Status": "Passed",
+          "Duration": 0.0008935,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.TextManagementTests.OpenMessageTranslatesNestedNameAndRetainsCapturedCount",
+          "Status": "Passed",
+          "Duration": 0.0008873,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.TextManagementTests.SourceContextContractOrSmartChangesRequireExplicitReview(\"생산 일시정지\",\"button\",\"\",False)",
+          "Status": "Passed",
+          "Duration": 0.0002733,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.TextManagementTests.SourceContextContractOrSmartChangesRequireExplicitReview(\"생산 중지\",\"confirmation\",\"\",False)",
+          "Status": "Passed",
+          "Duration": 0.0000665,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.TextManagementTests.SourceContextContractOrSmartChangesRequireExplicitReview(\"생산 중지\",\"button\",\"count:number\",False)",
+          "Status": "Passed",
+          "Duration": 0.000054,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.TextManagementTests.SourceContextContractOrSmartChangesRequireExplicitReview(\"생산 중지\",\"button\",\"\",True)",
+          "Status": "Passed",
+          "Duration": 0.0000528,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.TextManagementTests.TranslationEditsAndMissingValuesCannotReuseReviewStamp",
+          "Status": "Passed",
+          "Duration": 0.0001198,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.TextManagementTests.UnreadyServiceDoesNotPresentPartialData",
+          "Status": "Passed",
+          "Duration": 0.0001659,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ThingFoundationTests.ComponentsBelongToExactlyTheirThingAndMissingLookupDoesNotAddAFeature",
+          "Status": "Passed",
+          "Duration": 0.0004638,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ThingFoundationTests.FacilitiesShareDefinitionButKeepIndependentComponentsAndInventory",
+          "Status": "Passed",
+          "Duration": 0.0004359,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.ThingFoundationTests.UniqueIdsAndCreationOrderStayStableAcrossResourceChanges",
+          "Status": "Passed",
+          "Duration": 0.0013099,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.EachMissingPreferenceRetainsItsOwnDefaultWithoutLosingTheOtherChoice",
+          "Status": "Passed",
+          "Duration": 0.0103356,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.FailedFileCommitRemovesTemporaryFileAndReturnsError",
+          "Status": "Passed",
+          "Duration": 0.0043342,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.FailedWriteKeepsVisibleChoiceAndPreviousPersistedValueUntilExplicitRetrySucceeds",
+          "Status": "Passed",
+          "Duration": 0.0010592,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"\")",
+          "Status": "Passed",
+          "Duration": 0.0014585,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"null\")",
+          "Status": "Passed",
+          "Duration": 0.0011422,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"{broken}\")",
+          "Status": "Passed",
+          "Duration": 0.0043831,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"{\\\"version\\\":2,\\\"facilityStatus\\\":\\\"off\\\",\\\"textSize\\\":\\\"large\\\"}\")",
+          "Status": "Passed",
+          "Duration": 0.0046809,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"{\\\"version\\\":1,\\\"facilityStatus\\\":false,\\\"textSize\\\":\\\"large\\\"}\")",
+          "Status": "Passed",
+          "Duration": 0.0050951,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"{\\\"version\\\":1,\\\"facilityStatus\\\":\\\"invalid\\\",\\\"textSize\\\":\\\"large\\\"}\")",
+          "Status": "Passed",
+          "Duration": 0.0049023,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"{\\\"version\\\":1,\\\"facilityStatus\\\":\\\"off\\\",\\\"textSize\\\":\\\"invalid\\\"}\")",
+          "Status": "Passed",
+          "Duration": 0.0048059,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.MissingOrNullPreferencesFallBackToDefaults(\"{\\\"version\\\":1}\")",
+          "Status": "Passed",
+          "Duration": 0.0048276,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.MissingOrNullPreferencesFallBackToDefaults(\"{\\\"version\\\":1,\\\"facilityStatus\\\":null,\\\"textSize\\\":null}\")",
+          "Status": "Passed",
+          "Duration": 0.0050001,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.MissingSettingsUseVisibleStatusAndNormalTextWithoutCreatingAFile",
+          "Status": "Passed",
+          "Duration": 0.0010466,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.PreferencesSurviveNewStoreAndReplacePreviousFileWithoutLeavingTemporaryFiles",
+          "Status": "Passed",
+          "Duration": 0.0077725,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.SettingsChangesDoNotTouchGameSaveSnapshotOrDefinitionHash",
+          "Status": "Passed",
+          "Duration": 0.0080977,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.UnreadableSettingsUseDefaultsAndDoNotTryToOverwriteTheFile",
+          "Status": "Passed",
+          "Duration": 0.0008193,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.WorkTests.ArrivalStillReconsidersChangedPriorityBeforeActualWorkStarts",
+          "Status": "Passed",
+          "Duration": 0.0013266,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.WorkTests.ConstructionChoosesNearestReachableSiteAcrossMaterialAndPaidWork",
+          "Status": "Passed",
+          "Duration": 0.0004793,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.WorkTests.EditingAndMovingToChangedInteractionCellDoNotCountAsGatheringTime",
+          "Status": "Passed",
+          "Duration": 0.0014901,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.WorkTests.GatheringRequiresFiveActualSecondsAndWaitsForEveryOutputToBeStored",
+          "Status": "Passed",
+          "Duration": 0.0043105,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.WorkTests.OneWorkerUsesFacilityAndReplacementContinuesItsSavedProgress",
+          "Status": "Passed",
+          "Duration": 0.0012416,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.WorkTests.PresetDisabledWorkOverrideAndEqualPriorityOrderUseCommonSettings",
+          "Status": "Passed",
+          "Duration": 0.0006214,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "AddressableAssets.DocExampleCode.TestStub.RequiredTest",
+          "Status": "Passed",
+          "Duration": 0.000058,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

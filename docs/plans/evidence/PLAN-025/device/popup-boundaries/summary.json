@@ -1,0 +1,304 @@
+{
+  "apkSha256": "4f78dd667f06f628733156b1f02eccd5006ea01bef9d1963b4cf3d9c14289614",
+  "allRequiredCasesPassed": true,
+  "cases": [
+    {
+      "id": "stack-1",
+      "mode": "stack",
+      "final": {
+        "utc": "2026-11-06T15:03:17.4914830Z",
+        "reason": "completed",
+        "parentState": "Closed",
+        "childState": "Closed",
+        "parentResult": "Canceled",
+        "childResult": "Canceled",
+        "realtime": 364.76558804875225,
+        "frame": 10783,
+        "count": 0,
+        "confirms": 0,
+        "cancels": 1,
+        "foreground": true,
+        "blocked": false,
+        "ownerAlive": true
+      },
+      "androidBackEvents": [
+        {
+          "utc": "2026-11-06T15:02:42.8375120Z",
+          "reason": "android-back-key",
+          "parentState": "Open",
+          "childState": "Closing",
+          "parentResult": "",
+          "childResult": "",
+          "realtime": 330.1116063817403,
+          "frame": 9750,
+          "count": 2,
+          "confirms": 0,
+          "cancels": 0,
+          "foreground": true,
+          "blocked": true,
+          "ownerAlive": true
+        },
+        {
+          "utc": "2026-11-06T15:03:12.3558110Z",
+          "reason": "android-back-key",
+          "parentState": "Closing",
+          "childState": "Closed",
+          "parentResult": "",
+          "childResult": "Canceled",
+          "realtime": 359.6298989373258,
+          "frame": 10630,
+          "count": 1,
+          "confirms": 0,
+          "cancels": 1,
+          "foreground": true,
+          "blocked": true,
+          "ownerAlive": true
+        }
+      ],
+      "pauseEvents": [],
+      "assessment": null
+    },
+    {
+      "id": "nondismiss-1",
+      "mode": "nondismiss",
+      "final": {
+        "utc": "2026-11-06T15:04:04.0517610Z",
+        "reason": "completed",
+        "parentState": "Closed",
+        "childState": "Closed",
+        "parentResult": "Canceled",
+        "childResult": "Confirmed",
+        "realtime": 411.325862323772,
+        "frame": 12172,
+        "count": 0,
+        "confirms": 1,
+        "cancels": 0,
+        "foreground": true,
+        "blocked": false,
+        "ownerAlive": true
+      },
+      "androidBackEvents": [
+        {
+          "utc": "2026-11-06T15:03:46.3439350Z",
+          "reason": "android-back-key",
+          "parentState": "Open",
+          "childState": "Open",
+          "parentResult": "",
+          "childResult": "",
+          "realtime": 393.6180349894798,
+          "frame": 11644,
+          "count": 2,
+          "confirms": 0,
+          "cancels": 0,
+          "foreground": true,
+          "blocked": true,
+          "ownerAlive": true
+        },
+        {
+          "utc": "2026-11-06T15:03:58.9434910Z",
+          "reason": "android-back-key",
+          "parentState": "Closing",
+          "childState": "Closed",
+          "parentResult": "",
+          "childResult": "Confirmed",
+          "realtime": 406.21758248088867,
+          "frame": 12020,
+          "count": 1,
+          "confirms": 1,
+          "cancels": 0,
+          "foreground": true,
+          "blocked": true,
+          "ownerAlive": true
+        }
+      ],
+      "pauseEvents": [],
+      "assessment": null
+    },
+    {
+      "id": "intent-1",
+      "mode": "intent",
+      "final": {
+        "utc": "2026-11-06T15:04:43.8721030Z",
+        "reason": "completed",
+        "parentState": "Closed",
+        "childState": "",
+        "parentResult": "Confirmed",
+        "childResult": "",
+        "realtime": 451.1461963335982,
+        "frame": 13259,
+        "count": 0,
+        "confirms": 1,
+        "cancels": 0,
+        "foreground": true,
+        "blocked": false,
+        "ownerAlive": true
+      },
+      "androidBackEvents": [],
+      "pauseEvents": [
+        {
+          "utc": "2026-11-06T15:04:38.9266070Z",
+          "reason": "application-pause",
+          "parentState": "Closed",
+          "childState": "",
+          "parentResult": "Confirmed",
+          "childResult": "",
+          "realtime": 446.2007062592542,
+          "frame": 13212,
+          "count": 0,
+          "confirms": 1,
+          "cancels": 0,
+          "foreground": true,
+          "blocked": false,
+          "ownerAlive": true
+        },
+        {
+          "utc": "2026-11-06T15:04:42.5880740Z",
+          "reason": "application-pause",
+          "parentState": "Closed",
+          "childState": "",
+          "parentResult": "Confirmed",
+          "childResult": "",
+          "realtime": 449.86223894907147,
+          "frame": 13256,
+          "count": 0,
+          "confirms": 1,
+          "cancels": 0,
+          "foreground": true,
+          "blocked": false,
+          "ownerAlive": true
+        }
+      ],
+      "assessment": {
+        "boundaryReached": false,
+        "reason": "Confirmation completed before application pause; this attempt verifies no duplicate after repeated resume, but does not prove pause during closing.",
+        "finalConfirms": 1,
+        "nextAttempt": "intent-2 with zero launch delay"
+      }
+    },
+    {
+      "id": "intent-2",
+      "mode": "intent",
+      "final": {
+        "utc": "2026-11-06T15:05:21.4423400Z",
+        "reason": "completed",
+        "parentState": "Closed",
+        "childState": "",
+        "parentResult": "Confirmed",
+        "childResult": "",
+        "realtime": 488.71644088337183,
+        "frame": 14277,
+        "count": 0,
+        "confirms": 1,
+        "cancels": 0,
+        "foreground": true,
+        "blocked": false,
+        "ownerAlive": true
+      },
+      "androidBackEvents": [],
+      "pauseEvents": [
+        {
+          "utc": "2026-11-06T15:05:14.1426800Z",
+          "reason": "application-pause",
+          "parentState": "Closing",
+          "childState": "",
+          "parentResult": "",
+          "childResult": "",
+          "realtime": 481.4167758113703,
+          "frame": 14161,
+          "count": 1,
+          "confirms": 0,
+          "cancels": 0,
+          "foreground": true,
+          "blocked": true,
+          "ownerAlive": true
+        },
+        {
+          "utc": "2026-11-06T15:05:17.8137860Z",
+          "reason": "application-pause",
+          "parentState": "Closed",
+          "childState": "",
+          "parentResult": "Confirmed",
+          "childResult": "",
+          "realtime": 485.08787957848966,
+          "frame": 14203,
+          "count": 0,
+          "confirms": 1,
+          "cancels": 0,
+          "foreground": true,
+          "blocked": false,
+          "ownerAlive": true
+        }
+      ],
+      "assessment": {
+        "boundaryReached": true,
+        "finalConfirms": 1,
+        "duplicateAfterRepeatedResume": false,
+        "inputUnlocked": true,
+        "popupCountAtEnd": 0
+      }
+    },
+    {
+      "id": "owner-end-1",
+      "mode": "owner-end",
+      "final": {
+        "utc": "2026-11-06T15:05:52.0834690Z",
+        "reason": "completed",
+        "parentState": "Closed",
+        "childState": "",
+        "parentResult": "OwnerEnded",
+        "childResult": "",
+        "realtime": 519.3575750532558,
+        "frame": 15087,
+        "count": 0,
+        "confirms": 0,
+        "cancels": 0,
+        "foreground": true,
+        "blocked": false,
+        "ownerAlive": false
+      },
+      "androidBackEvents": [],
+      "pauseEvents": [
+        {
+          "utc": "2026-11-06T15:05:44.7853820Z",
+          "reason": "application-pause",
+          "parentState": "Closing",
+          "childState": "",
+          "parentResult": "",
+          "childResult": "",
+          "realtime": 512.0594810209235,
+          "frame": 14971,
+          "count": 1,
+          "confirms": 0,
+          "cancels": 0,
+          "foreground": true,
+          "blocked": true,
+          "ownerAlive": true
+        },
+        {
+          "utc": "2026-11-06T15:05:48.4048200Z",
+          "reason": "application-pause",
+          "parentState": "Closed",
+          "childState": "",
+          "parentResult": "OwnerEnded",
+          "childResult": "",
+          "realtime": 515.6789142879655,
+          "frame": 15012,
+          "count": 0,
+          "confirms": 0,
+          "cancels": 0,
+          "foreground": true,
+          "blocked": false,
+          "ownerAlive": false
+        }
+      ],
+      "assessment": {
+        "boundaryReached": true,
+        "finalResult": "OwnerEnded",
+        "finalConfirms": 0,
+        "inputUnlocked": true,
+        "popupCountAtEnd": 0
+      }
+    }
+  ],
+  "limits": "Explicit diagnostic setup uses real product popup manager and prefabs. Callback counts are diagnostic, not a game-state action. One initial stack Back injection did not produce an observed key/state event; subsequent observed keys closed exactly one popup at a time. Cause not established. Intent-1 did not reach the closing/pause boundary and is excluded from that claim."
+}

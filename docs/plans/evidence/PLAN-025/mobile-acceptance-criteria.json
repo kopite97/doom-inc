@@ -1,0 +1,36 @@
+{
+  "fixedAtUtc": "2026-11-06T13:25:40.980553+00:00",
+  "stage": "after 10-second support probe, before main load measurements",
+  "apkFinalSha256": "3e9b33badc4fba23a432b77c1d932851e6d36f30a29125e2764b60283958bb0d",
+  "apkDiagnosticSha256": "d3b9633724b3511f8cb0609cfb995265d104cd16d1aac860193c9e03936a5472",
+  "surfaceFrames": {
+    "method": "SurfaceFlinger --latency app BLAST surface, second column actual present nanoseconds; deduplicate; invalid 0 and INT64_MAX excluded",
+    "warmupSeconds": 30,
+    "sampleSeconds": 60,
+    "repeatsPerState": 3,
+    "medianMsAtMost": 35,
+    "p95MsAtMost": 50,
+    "maximumMsAtMost": 250,
+    "reason": "Android observed normal presentation is 30 Hz on a 60 Hz display; allow ordinary pacing around 33.33 ms, at most one extra refresh at p95, and reject sustained visible stalls. Loading/transitions are reported separately."
+  },
+  "input": {
+    "p95MsAtMost": 150,
+    "maximumMsAtMost": 250,
+    "requiredSamples": 10,
+    "methodStatus": "screen-record input marker correlation pending support check; unsupported values remain unverified"
+  },
+  "memory": {
+    "steadyStatePssBytesAtMost": 1073741824,
+    "sameStateGrowthAtMost": "max(32 MiB, 10% of warmed baseline) after returning to the same scene/state",
+    "noCrashOrOom": true,
+    "reason": "Prototype should retain headroom on this device and avoid accumulating state over repeated UI/scene use; loading peaks reported separately."
+  },
+  "thermal": {
+    "maximumStatus": 2,
+    "reason": "No severe or higher thermal throttling during continuous operation; battery temperature is descriptive only."
+  },
+  "gc": {
+    "diagnosticOnly": true,
+    "criterion": "valid allocation counter; report median/p95/max and total; investigate coincident presentation stalls; final GC remains unmeasured if no supported equivalent is available."
+  }
+}

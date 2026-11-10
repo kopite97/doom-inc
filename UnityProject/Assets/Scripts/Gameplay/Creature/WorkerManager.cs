@@ -379,6 +379,7 @@ namespace MobileGame.Gameplay
                 gathering.Progress = definition.GatheringSeconds;
                 gathering.Outstanding = definition.GatheringAmount;
                 Clear(worker, WorkerWaitReason.None);
+                simulation.NotifyGatheringCompleted(target.Id);
             }
         }
 

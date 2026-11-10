@@ -1,0 +1,36 @@
+{
+  "utc": "2026-11-06T14:22:03.286530+00:00",
+  "device": "SM-G977N / Android 12",
+  "package": "com.DefaultCompany.urp_2d",
+  "finalApkSha256": "3e9b33badc4fba23a432b77c1d932851e6d36f30a29125e2764b60283958bb0d",
+  "diagnosticApkSha256": "4f78dd667f06f628733156b1f02eccd5006ea01bef9d1963b4cf3d9c14289614",
+  "fixedCriteriaFile": "mobile-acceptance-criteria.json",
+  "diagnosticRevisionOnly": "Popup scenario instrumentation was added; thresholds, product code and product JSON were not changed. See diagnostic-ui-source-comparison.json.",
+  "mainMeasurementUi": {
+    "orientation": "portrait",
+    "resolution": "1080x2280",
+    "locale": "ko",
+    "largeText": true,
+    "facilityStatus": true,
+    "view": "full map, no selection or popup"
+  },
+  "fixedStartingStates": "fixtures/manifest.json",
+  "stateEvolution": "Each group starts from its fixture and advances normally across all three repeats. Cultivation can add workers; per-repeat post-save quantities are reported, not claimed constant.",
+  "failedPreflight": "Final initial first attempt had screen off and no app Surface. It produced no frame summary and is excluded. Screen was awakened, keyguard dismissed, and USB stay-awake enabled temporarily before main sampling.",
+  "stayonOriginal": "0",
+  "longOperation": {
+    "orientation": "landscape",
+    "resolution": "2280x1080",
+    "locale": "en with ko/en round trips",
+    "source": "same final APK and process as the heavy main measurements",
+    "input": "ADB actual UI taps/swipes/Android Back, with user-confirmed physical rotation"
+  },
+  "samplingMethods": {
+    "frame": "SurfaceFlinger actual-present interval, not CPU/GPU duration",
+    "gc": "Diagnostic ProfilerRecorder Memory/GC Allocated In Frame; final GC not collected by the available OS path",
+    "memory": "dumpsys meminfo process PSS/RSS; KiB",
+    "thermal": "dumpsys thermalservice status and battery temperature"
+  },
+  "diagnosticUiPreparation": "App stopped; saved prior English preference; selected ko in app-owned language.json for controlled comparison; large text and facility status remain on.",
+  "diagnosticMiddleReplacement": "Repeat 1 interrupted by actual application pause with ADB daemon restart; excluded with raw evidence retained. Valid repeats 2,3,4; quantities continue to evolve normally."
+}

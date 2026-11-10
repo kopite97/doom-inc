@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "command": "command script",
+  "data": {
+    "command": "script",
+    "parameters": {
+      "code": "typeof(MobileGame.Foundation.Editor.LaboratoryPlayerBuild).GetMethod(\"ValidateEntryScene\", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).Invoke(null, null); MobileGame.Foundation.Editor.LocalizationCsvTools.ValidateImported(); MobileGame.Foundation.Editor.GameDataPlayerValidation.ValidateSceneReferences(); return new { ready = true, dataHash = MobileGame.Foundation.Editor.GameDataAssets.LoadCatalog().Settings.CompatibilityHash, target = UnityEditor.EditorUserBuildSettings.activeBuildTarget.ToString(), backend = UnityEditor.PlayerSettings.GetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Android).ToString(), architectures = UnityEditor.PlayerSettings.Android.targetArchitectures.ToString(), applicationId = UnityEditor.PlayerSettings.GetApplicationIdentifier(UnityEditor.Build.NamedBuildTarget.Android), customKeystore = UnityEditor.PlayerSettings.Android.useCustomKeystore, runInBackground = UnityEditor.PlayerSettings.runInBackground, scenes = MobileGame.Foundation.Editor.AppSceneAssets.ProductScenes };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "ready": true,
+        "dataHash": "ed5664e2257bb21fc10c32d3744e5813571fd0d7da0461f190d2b3ff62255ab2",
+        "target": "Android",
+        "backend": "IL2CPP",
+        "architectures": "ARM64",
+        "applicationId": "com.DefaultCompany.urp_2d",
+        "customKeystore": false,
+        "runInBackground": false,
+        "scenes": [
+          "Assets/Scenes/Gameplay/Bootstrap/Temp_Bootstrap.unity",
+          "Assets/Scenes/Gameplay/Title/Temp_Title.unity",
+          "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity"
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

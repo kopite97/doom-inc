@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "return new { scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().path, sceneDirty = UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty, play = UnityEditor.EditorApplication.isPlaying, optionsEnabled = UnityEditor.EditorSettings.enterPlayModeOptionsEnabled, options = UnityEditor.EditorSettings.enterPlayModeOptions.ToString(), background = UnityEngine.Application.runInBackground, target = UnityEditor.EditorUserBuildSettings.activeBuildTarget.ToString(), compiling = UnityEditor.EditorApplication.isCompiling };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+        "sceneDirty": false,
+        "play": false,
+        "optionsEnabled": true,
+        "options": "DisableDomainReload",
+        "background": false,
+        "target": "Android",
+        "compiling": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

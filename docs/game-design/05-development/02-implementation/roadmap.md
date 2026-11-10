@@ -2,21 +2,31 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1~3단계 완료 / PLAN-012 데이터 기반 정비 완료 / 4단계 첫 작업 PLAN-013 completed / UI·UX 정비 PLAN-014 completed / JSON 전환 PLAN-015 completed / 씬 흐름 정비 PLAN-016 completed / 추상화 정비 PLAN-017 completed / 텍스트·다국어 정비 PLAN-018 completed / 공용 Popup 정비 PLAN-019 completed / Editor 운영·반복·성능 진단 PLAN-020 completed / 작업자 탐색·CSV 가져오기 PLAN-021 completed / 약탈형·보급품 수신 PLAN-022 completed / 공용 로딩·물마루 TMP PLAN-023 completed
+- 상태: 선행 기반 세 묶음·1~4단계 및 D-070 완료 / 아트 5-1 완료 / PLAN-001~026 completed / PLAN-027 development·proposed / active 0개
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
-- 갱신일: 2026-11-04
+- 갱신일: 2026-11-10
 - 탐색: [기획 MAP](../../README.md), [Thing과 정의 데이터](../01-architecture/thing-model.md), [GameFlow와 시스템 책임](../01-architecture/game-flow.md), [플레이 환경](../../04-delivery/01-platform/environment.md)
 
 ## 현재 작업
+
+[PLAN-025 최신 버전 Android 통합 검증과 프로토타입 완료 판정](../../../plans/PLAN-025-android-integration-and-prototype-completion.md)은 completed다. Editor 회귀와 승인된 Android 통합 검증·환경 복원을 마쳐 4단계·D-070의 네 기준을 충족했다. SM-G977N 한 기종·현재 임시 표현의 판정이며 세부 측정 한계와 경미한 표시 결함은 [완료 근거](../../../plans/evidence/PLAN-025/README.md#d-070-완료-판정)를 따른다. PLAN-026도 완료되어 현재 active는 0개다.
+
+2026-11-07 사용자 요청으로 [정식 아트 제작·적용 로드맵](art-roadmap.md)을 후속 **5단계**로 추가했다. 샘플·연구소·생명체/자원·UI·동작·타이틀/종료·통합 검수 순서를 제안하며 2026-11-10 첫 5-1 샘플 묶음의 전체 적용·Editor 검증·사용자 시각 확인을 완료했다. PLAN-025의 표시/GC 개선 후보는 잠시 미뤄 두고, 완료된 프로토타입 판정과 아트 적용 완료를 구분한다.
+
+5-1의 [PLAN-026 스타일·크기 샘플과 연구소 적용](../../../plans/PLAN-026-art-style-scale-and-sample-integration.md)은 `art` / `completed`다. 바닥 4개 포함 5개 분류·8개 샘플, PNG 5개·106 Sprite의 적용을 마쳤다. 획득시설 36프레임·보조형 4방향 64프레임·머리 위 운반·Build 교체를 전체 준비 후 검증하고 사용자가 실제 게임 화면을 승인했다. [완료 증거](../../../plans/evidence/PLAN-026/integration-2026-11-10/README.md)를 기준으로 5-1 완료를 판정하며 모바일 빌드/실기기는 이번에 실행하지 않았다.
+
+후속 표현 기반 후보 [PLAN-027 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환](../../../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 `development` / `proposed`다. UI는 uGUI로 유지하며 게임 규칙·저장·기존 아트를 보존한다. 기본 순서는 PLAN-026 완료 후 별도 활성화 승인을 받아 5-2 이후의 아트 확장 전에 전환하는 것이며, 선행 5-1은 완료했으나 별도 활성화 승인이 없어 구현·검증은 시작하지 않는다. active는 0개다.
+
+[PLAN-024 침공형 방출 성공 피드백과 화면 밖 시설 선택 시 지도 이동](../../../plans/PLAN-024-release-feedback-and-map-reveal.md)은 completed다. 두 연출의 연결·입력 우선권과 연구소 Editor 회귀를 검증했다.
 
 [PLAN-023 로딩 진행률·Feel 연출과 전체 게임 UI 물마루 TMP 전환](../../../plans/PLAN-023-loading-progress-feel-and-mulmaru-tmp.md)은 completed다. 실제 씬 진행률과 기본 1초 로딩, Feel 웨이브, 물마루 Dynamic TMP를 Editor에서 검증했다.
 
 [PLAN-022 약탈형 배양·침공과 연구소 자원 수신](../../../plans/PLAN-022-raider-and-resource-receiving.md)은 2단계 배양·물류와 3단계 침공을 연결하는 확장 작업을 완료했다.
 
-현재 active PLAN은 없다. [PLAN-020 Editor 런타임 운영 병목·반복 플레이·성능 검증](../../../plans/PLAN-020-editor-bottlenecks-repeated-play-and-performance.md)은 completed다. 운영 병목·3판 반복·장시간 실행과 고부하 지연을 Editor에서 검증했다. 작업자 탐색 최적화 및 CSV 회귀 수정은 PLAN-021에서 완료했다. 최신 Android 검증과 4단계·D-070 최종 판정은 후속 범위다.
+[PLAN-020 Editor 런타임 운영 병목·반복 플레이·성능 검증](../../../plans/PLAN-020-editor-bottlenecks-repeated-play-and-performance.md)은 completed다. 운영 병목·3판 반복·장시간 실행과 고부하 지연을 Editor에서 검증했다. 작업자 탐색 최적화 및 CSV 회귀 수정은 PLAN-021에서 완료했다. 최신 Android 검증과 4단계·D-070 최종 판정은 PLAN-025에서 완료했다.
 
-환경 준비 결과와 도구 호환 주의점은 [PLAN-002](../../../plans/PLAN-002-unity-environment.md)에 있다. 정의·Thing 최소 기반은 [PLAN-003](../../../plans/PLAN-003-thing-foundation.md), 공간·공통 조작·최소 화면은 [PLAN-004](../../../plans/PLAN-004-map-and-commands.md), 한 판·저장·복원 기반은 [PLAN-007](../../../plans/PLAN-007-gameflow-and-persistence.md)에서 구현·검증했다. 세 기반 묶음과 1~3단계를 완료했다. 4단계의 세로 UI·모바일 입력·APK 및 직접 기기 검증은 PLAN-013에서 완료했으며, 병목/반복·종합 성능 판정은 남아 있다.
+환경 준비 결과와 도구 호환 주의점은 [PLAN-002](../../../plans/PLAN-002-unity-environment.md)에 있다. 정의·Thing 최소 기반은 [PLAN-003](../../../plans/PLAN-003-thing-foundation.md), 공간·공통 조작·최소 화면은 [PLAN-004](../../../plans/PLAN-004-map-and-commands.md), 한 판·저장·복원 기반은 [PLAN-007](../../../plans/PLAN-007-gameflow-and-persistence.md)에서 구현·검증했다. 세 기반 묶음과 1~3단계를 완료했다. 4단계의 세로 UI·모바일 입력과 당시 APK·직접 기기 검증은 PLAN-013·014, Editor의 운영 병목·반복·성능 검증과 개선은 PLAN-020·021에서 완료했다. 최신 Android 기준의 종합 판정은 PLAN-025에서 완료했다.
 
 1단계의 초기 건설·수집·운반·입고 흐름과 중간 저장·복원·재시작은 [PLAN-008](../../../plans/PLAN-008-initial-construction-and-logistics.md)에서 구현·검증했다. PC 최소 플레이 화면과 하네스 검사를 통과했다. 후속 단계는 별도 proposed PLAN을 작성하고 사용자 실행 승인을 받은 뒤 진행한다.
 
@@ -26,21 +36,21 @@
 
 개별 작업 상태·다음 행동·검증 증거는 [PLAN MAP](../../../plans/README.md)에서 찾는다. 작업 대상은 유일한 active PLAN이며, 이 문서는 전체 단계·기획상 완료 기준과 요약 상태를 관리한다.
 
-3단계의 잔여 종료 연결 [PLAN-011](../../../plans/PLAN-011-destruction-results-and-restart.md)은 completed다. 간단한 멸망 연출·결과 화면·다시 시작, 종료 단계 저장/복원·실패 보존과 PC 가로의 실제 두 판을 Edit 212/212·Play 10/10·오류/경고 0으로 검증하여 3단계를 완료했다. [실행 증거](../../../plans/evidence/PLAN-011/README.md)를 따른다. 4단계의 세로·모바일 직접 검증은 아래 PLAN-013에서 완료했고, 남은 종합 검증은 별도 PLAN 작성·승인 후 진행한다.
+3단계의 잔여 종료 연결 [PLAN-011](../../../plans/PLAN-011-destruction-results-and-restart.md)은 completed다. 간단한 멸망 연출·결과 화면·다시 시작, 종료 단계 저장/복원·실패 보존과 PC 가로의 실제 두 판을 Edit 212/212·Play 10/10·오류/경고 0으로 검증하여 3단계를 완료했다. [실행 증거](../../../plans/evidence/PLAN-011/README.md)를 따른다. 4단계의 세로·모바일 직접 검증은 아래 PLAN-013에서 완료했고, 종합 검증은 이후 승인된 PLAN-025에서 완료했다.
 
-데이터 기반 정비 [PLAN-012](../../../plans/PLAN-012-csv-so-data-and-game-data-store.md)는 completed다. CSV와 주제별 Registry SO를 결합한 Data를 초기 로딩하여 영속 GameDataStore에서 공유하고, 취득부 교체와 저장 호환성 검사를 구현했다. Edit 236/236·Domain Reload 양쪽 Play 각 13/13·Android 스크립트 컴파일과 CSV 참조 검사를 통과했다. 이후 PLAN-013의 완료 결과는 아래와 같다. 실제 Google Sheets 연결과 4단계 종합 판정은 남아 있다.
+데이터 기반 정비 [PLAN-012](../../../plans/PLAN-012-csv-so-data-and-game-data-store.md)는 completed다. CSV와 주제별 Registry SO를 결합한 Data를 초기 로딩하여 영속 GameDataStore에서 공유하고, 취득부 교체와 저장 호환성 검사를 구현했다. Edit 236/236·Domain Reload 양쪽 Play 각 13/13·Android 스크립트 컴파일과 CSV 참조 검사를 통과했다. 이후 PLAN-013의 완료 결과는 아래와 같다. 실제 Google Sheets 연결은 후속 범위이며, 4단계 종합 판정은 이후 PLAN-025에서 완료했다.
 
-4단계 첫 작업 [PLAN-013](../../../plans/PLAN-013-responsive-ui-and-mobile-input.md)은 completed다. 가로·세로 UI·모바일 입력·방향 전환 상태 보존을 구현하고 Edit 259/259·Play 23/23·렌더 수정 후 종료 대상 1/1 및 PC 화면 14장을 확인했다. Android ARM64 APK 빌드와 2026-10-29 SM-G977N 실기기의 오프라인 초기 진입·양방향 운영·실제 핀치/회전·앱 복귀·한 판 종료/재시작도 확인했다. [실행 증거](../../../plans/evidence/PLAN-013/README.md)를 따른다. 현재 UI·UX 작업은 아래 PLAN-014이며 병목 개선·장시간 반복·종합 성능 및 D-070 전체 완료 판정이 남아 있으므로 4단계 전체 완료로 판정하지 않는다.
+4단계 첫 작업 [PLAN-013](../../../plans/PLAN-013-responsive-ui-and-mobile-input.md)은 completed다. 가로·세로 UI·모바일 입력·방향 전환 상태 보존을 구현하고 Edit 259/259·Play 23/23·렌더 수정 후 종료 대상 1/1 및 PC 화면 14장을 확인했다. Android ARM64 APK 빌드와 2026-10-29 SM-G977N 실기기의 오프라인 초기 진입·양방향 운영·실제 핀치/회전·앱 복귀·한 판 종료/재시작도 확인했다. [실행 증거](../../../plans/evidence/PLAN-013/README.md)를 따른다. 후속 UI·UX는 PLAN-014, Editor 병목·반복·성능은 PLAN-020·021에서 검증했다. PLAN-013 당시에는 4단계 전체를 완료로 판정하지 않았으며 최신 Android·D-070 전체 판정은 이후 PLAN-025에서 완료했다.
 
-UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-status.md)는 completed다. 가로·세로 탐색·작은 아이콘 조작·시설 상태 표시 ON/OFF·표식 재탭과 운영 유스케이스를 임시 에셋으로 구현하고 PC 검사·새 APK·실기기 한 판 종료/재시작 및 원상 복원을 확인했다. JSON 전환 결과는 아래 PLAN-015에 기록했다. 정식 아트는 사용자가 제작한 뒤 별도 art PLAN으로 교체하고, 병목 개선·장시간 반복·종합 성능 및 D-070 전체 판정은 후속 범위로 남긴다.
+UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-status.md)는 completed다. 가로·세로 탐색·작은 아이콘 조작·시설 상태 표시 ON/OFF·표식 재탭과 운영 유스케이스를 임시 에셋으로 구현하고 PC 검사·새 APK·실기기 한 판 종료/재시작 및 원상 복원을 확인했다. JSON 전환 결과는 아래 PLAN-015에 기록했다. 정식 아트는 해당 요청의 지정대로 별도 art PLAN에서 교체한다. Editor 병목·장시간 검증은 PLAN-020·021에서 완료했으며 최신 Android·D-070 전체 판정은 PLAN-025에서 완료했다.
 
 데이터 기반 후속 정비 [PLAN-015](../../../plans/PLAN-015-topic-json-definition-data.md)는 completed다. CSV 원본을 전용 디렉터리의 주제별 JSON으로 전환하고 취득부 추상화·SO 결합·GameDataStore·기존 저장 호환성을 유지하는 작업이다. 사용자 지시에 따라 Editor 런타임 테스트를 포함하고 빌드 테스트는 제외한다. 두 검토 보완을 반영하고 구현·Edit 294/294·Domain Reload 양쪽 Play 각각 36/36을 확인했다. 빌드 테스트는 실행하지 않았다.
 
 최근 작업 [PLAN-016](../../../plans/PLAN-016-bootstrap-title-and-scene-flow.md)은 completed다. Bootstrap·Title·Laboratory, 공용 LoadingScreen·단일 씬 전환 관리자·Editor 직접 진입과 저장/설정 복구를 구현하고 Editor 회귀를 검증했다. 해당 완료 결과에는 새 빌드·실기기 검증과 종합 성능 최종 판정을 포함하지 않는다.
 
-최근 구조 정비 [PLAN-017](../../../plans/PLAN-017-production-storage-status-and-shared-ui.md)은 completed다. 생산 공통 판정·파일 처리·명시적 상태 계약·공용 UI와 두 검토 보완을 구현하고 Edit 302/302, ON Play 51/51, OFF 회귀와 진단 로그가 간섭한 1개 대상의 재검증, 실제 Editor 화면·이전 저장·반복 종료를 확인했다. [상세 증거](../../../plans/evidence/PLAN-017/README.md)를 따른다. 빌드 테스트는 실행하지 않았다. 4단계 종합 성능 최종 판정은 여전히 후속 범위다.
+최근 구조 정비 [PLAN-017](../../../plans/PLAN-017-production-storage-status-and-shared-ui.md)은 completed다. 생산 공통 판정·파일 처리·명시적 상태 계약·공용 UI와 두 검토 보완을 구현하고 Edit 302/302, ON Play 51/51, OFF 회귀와 진단 로그가 간섭한 1개 대상의 재검증, 실제 Editor 화면·이전 저장·반복 종료를 확인했다. [상세 증거](../../../plans/evidence/PLAN-017/README.md)를 따른다. 빌드 테스트는 실행하지 않았다. 4단계 종합 성능 최종 판정은 해당 PLAN의 범위 밖이었으며 이후 PLAN-025에서 완료했다.
 
-텍스트 정비 [PLAN-018](../../../plans/PLAN-018-localization-and-csv-text-management.md)은 completed다. Unity Localization·주제별 CSV 9개/247개 키·TextManager·앱 언어 설정과 한국어·영어 전환, 추가 언어 등록·번역 재검토 추적을 구현했다. Edit 330/330·Play 57/57·직접 씬/반복 실행·두 언어 가로/세로 화면 검증을 완료했다. [실행 증거](../../../plans/evidence/PLAN-018/README.md)를 따른다. 후속 공용 Popup 정비 PLAN-019도 completed이며 아래 연결을 따른다. 후속 Editor 검증은 PLAN-020에서 완료했다. Player·Addressables 콘텐츠 빌드·실기기는 실행하지 않았고 4단계 종합 성능 최종 판정은 후속 범위다.
+텍스트 정비 [PLAN-018](../../../plans/PLAN-018-localization-and-csv-text-management.md)은 completed다. Unity Localization·주제별 CSV 9개/247개 키·TextManager·앱 언어 설정과 한국어·영어 전환, 추가 언어 등록·번역 재검토 추적을 구현했다. Edit 330/330·Play 57/57·직접 씬/반복 실행·두 언어 가로/세로 화면 검증을 완료했다. [실행 증거](../../../plans/evidence/PLAN-018/README.md)를 따른다. 후속 공용 Popup 정비 PLAN-019도 completed이며 아래 연결을 따른다. 후속 Editor 검증은 PLAN-020에서 완료했다. PLAN-018에서는 Player·Addressables 콘텐츠 빌드·실기기를 실행하지 않았다. 최신 Android·4단계 종합 판정은 이후 PLAN-025에서 완료했다.
 
 확정한 Unity 버전·Universal 2D(URP)·Android 대상과 연동 방향은 [플레이 환경](../../04-delivery/01-platform/environment.md)을 따른다. 구현할 작업의 필수 참조를 아래에서 읽고, 승인 규칙 안에서 필요한 세부 설계를 구체화한다.
 
@@ -54,9 +64,12 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 | 1 | 초기 건설·수집·저장: 프로토타입 1개체와 초기 유기물로 획득시설·저장소를 건설하고 수집·운반·입고 연결 | [시작 상태와 진입 흐름](../../04-delivery/02-release/scope.md), [건설·배치](../../02-systems/03-space/placement.md), [획득 생산](../../02-systems/01-production/facilities.md), [저장·운반](../../02-systems/02-logistics/storage-and-transport.md), [작업 선택](../../02-systems/05-creatures/support-models.md) | 해당 시작 흐름과 규칙을 실행하고 상태·저장·하네스로 확인 |
 | 2 | 가공·배양·보급형 운용: 배양액 생산, 생명체 배양, 배정, 20%·100% 속도 전환 연결 | [생산 회차·배양](../../02-systems/01-production/facilities.md), [배정·작업 전환](../../02-systems/05-creatures/support-models.md), [공급·예약](../../02-systems/02-logistics/storage-and-transport.md) | 생산·배양·작업 전환 규칙과 추가 상태의 저장·복원 확인 |
 | 3 | 침공부터 한 판 종료: 방출·지속 활동·전과 보고·멸망 게이지·연출·결과·다시 시작 연결 | [반복 흐름과 침공](../../01-direction/02-experience/core-loop.md), [보고의 변화](../../03-player-experience/01-progression/flow.md), [GameFlow](../01-architecture/game-flow.md), [저장](../../04-delivery/01-platform/environment.md) | 가로 화면에서 한 판의 기본 흐름을 끝까지 연결하고 외부 활동·다시 시작 확인 |
-| 4 | 반복 플레이와 모바일 최종 검증: 세로 대응, 병목 개선, 전체 사이클 반복, 실제 Android 기기 확인 | [최종 완료 기준](../../04-delivery/02-release/scope.md), [병목](../../02-systems/04-optimization/bottlenecks.md), [화면·가로세로](../../03-player-experience/03-interface/controls.md), [실행·기기 검증](../../04-delivery/01-platform/environment.md) | D-070의 네 기준과 가로·세로 표시·터치·성능 확인 |
+| 4 | 반복 플레이와 모바일 최종 검증: 세로 대응, 병목 개선, 전체 사이클 반복, 실제 Android 기기 확인 | [최종 완료 기준](../../04-delivery/02-release/scope.md), [병목](../../02-systems/04-optimization/bottlenecks.md), [화면·가로세로](../../03-player-experience/03-interface/controls.md), [실행·기기 검증](../../04-delivery/01-platform/environment.md) | [PLAN-025 완료](../../../plans/PLAN-025-android-integration-and-prototype-completion.md): D-070 네 기준·양방향 표시/터치·성능 확인 |
+| 5 | 프로토타입 이후 정식 아트 제작·적용: 작은 샘플부터 연구소·개체·UI·연출을 단계적으로 확장 | [아트 로드맵](art-roadmap.md), [기존 콘셉트](../../01-direction/01-identity/concept.md), [아트 지침](../../../agents/art-assets.md) | 5-1은 [PLAN-026](../../../plans/PLAN-026-art-style-scale-and-sample-integration.md) art·completed. 전체 샘플 적용·Editor 검증·사용자 게임 화면 승인 완료. 5-2 이후와 승인된 기기 검증은 별도 |
 
 모든 단계에서 필요한 최소 화면과 상태 확인, 저장·복원 및 하네스 검증을 함께 진행한다. UI 조작은 [화면과 조작](../../03-player-experience/03-interface/controls.md), 공통 책임은 [Thing 구조](../01-architecture/thing-model.md)를 참조한다. 저장·하네스·상태 표시를 4단계에서 처음 구현하는 것으로 해석하지 않는다.
+
+5단계는 완료된 1~4단계 뒤의 표현 개선 작업이며 D-070에 새 필수 조건을 소급해서 추가하지 않는다. 상세 제작 순서와 검수 기준은 아트 로드맵에서 관리한다.
 
 ## 선행 기반의 범위와 완료 기준 (D-086)
 
@@ -131,5 +144,8 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 
 - [PLAN-023 로딩 진행률·Feel 연출과 전체 게임 UI 물마루 TMP 전환](../../../plans/PLAN-023-loading-progress-feel-and-mulmaru-tmp.md)은 completed다.
 - [PLAN-024 침공형 방출 성공 피드백과 화면 밖 시설 선택 시 지도 이동](../../../plans/PLAN-024-release-feedback-and-map-reveal.md)은 completed다.
+- [PLAN-025 최신 버전 Android 통합 검증과 프로토타입 완료 판정](../../../plans/PLAN-025-android-integration-and-prototype-completion.md)은 completed다. 승인된 최신 Editor·Android 통합 검증과 환경 복원을 마쳐 4단계·D-070 완료로 판정했다.
+- [PLAN-026 아트 5-1 스타일·크기 샘플과 연구소 적용](../../../plans/PLAN-026-art-style-scale-and-sample-integration.md)은 art·completed다. 5종 106 Sprite의 전체 적용 후 기술 검증·사용자 게임 화면 승인·환경 복원을 마쳤다.
+- [PLAN-027 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환](../../../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 development·proposed다. uGUI UI를 유지하는 지도 표현 전환 후보이며 실행하지 않았다.
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

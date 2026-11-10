@@ -1,0 +1,131 @@
+[
+  {
+    "name": "cycle1-bottleneck-before-session",
+    "elapsed": 376.7303672041744,
+    "sha256": "2cc38b47bff3d1ef52515b2359e85065edf5d5c2b62fbad8a70248b432cf0e8f",
+    "production": [
+      {
+        "definition": "facility.processing",
+        "progress": 10.0,
+        "inProgress": false,
+        "outstanding": 1,
+        "activeModel": ""
+      },
+      {
+        "definition": "facility.cultivation",
+        "progress": 0.0,
+        "inProgress": false,
+        "outstanding": 0,
+        "activeModel": ""
+      }
+    ],
+    "resources": {
+      "resource.organic": 21,
+      "resource.culture-medium": 1
+    },
+    "creatures": 1
+  },
+  {
+    "name": "cycle1-bottleneck-unchanged-session",
+    "elapsed": 442.01642047427595,
+    "sha256": "fc78b2915db932179030b5a40d9c083d3f85c8fea7e8162c92d8adcb2688aa8c",
+    "production": [
+      {
+        "definition": "facility.processing",
+        "progress": 10.0,
+        "inProgress": false,
+        "outstanding": 1,
+        "activeModel": ""
+      },
+      {
+        "definition": "facility.cultivation",
+        "progress": 0.0,
+        "inProgress": false,
+        "outstanding": 0,
+        "activeModel": ""
+      }
+    ],
+    "resources": {
+      "resource.organic": 21,
+      "resource.culture-medium": 1
+    },
+    "creatures": 1
+  },
+  {
+    "name": "cycle1-bottleneck-improved-start-session",
+    "elapsed": 502.2970789503306,
+    "sha256": "d26427715ebc2b7a15ffa95c66559d061485b120cb02a740ea9db876edf07dff",
+    "production": [
+      {
+        "definition": "facility.processing",
+        "progress": 1.6276169568300252,
+        "inProgress": true,
+        "outstanding": 0,
+        "activeModel": ""
+      },
+      {
+        "definition": "facility.cultivation",
+        "progress": 0.0,
+        "inProgress": false,
+        "outstanding": 0,
+        "activeModel": ""
+      }
+    ],
+    "resources": {
+      "resource.organic": 14,
+      "resource.culture-medium": 1
+    },
+    "creatures": 1
+  },
+  {
+    "name": "cycle1-bottleneck-improved-end-session",
+    "elapsed": 562.5788087975234,
+    "sha256": "561ff4f85e8ef19c4698909c12c46031eac65dddf41844ec171ecb242af877c8",
+    "production": [
+      {
+        "definition": "facility.processing",
+        "progress": 2.277385476231575,
+        "inProgress": true,
+        "outstanding": 0,
+        "activeModel": ""
+      },
+      {
+        "definition": "facility.cultivation",
+        "progress": 2.7462760828435404,
+        "inProgress": true,
+        "outstanding": 0,
+        "activeModel": "creature.support"
+      }
+    ],
+    "resources": {
+      "resource.organic": 24
+    },
+    "creatures": 1
+  },
+  {
+    "name": "cycle1-bottleneck-after60-session",
+    "elapsed": 627.8856925275177,
+    "sha256": "a8f48a50cb91f18fa6f3b2b78542877b27e8da286700ce1cd66812dcca9bac87",
+    "production": [
+      {
+        "definition": "facility.processing",
+        "progress": 4.1059631504118395,
+        "inProgress": true,
+        "outstanding": 0,
+        "activeModel": ""
+      },
+      {
+        "definition": "facility.cultivation",
+        "progress": 15.807652828842425,
+        "inProgress": true,
+        "outstanding": 0,
+        "activeModel": "creature.support"
+      }
+    ],
+    "resources": {
+      "resource.organic": 24,
+      "resource.culture-medium": 1
+    },
+    "creatures": 1
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 10.15,
+      "summary": {
+        "total": 4,
+        "passed": 3,
+        "failed": 1,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.ApprovedArtFacesRotatedWorkAndCapturesBothLayoutsWithoutChangingSave",
+          "Status": "Passed",
+          "Duration": 4.5552853,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.ApprovedArtFollowsRealWorkCargoPauseRestoreAndSceneLifetime",
+          "Status": "Passed",
+          "Duration": 1.3886639,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.ApprovedArtKeepsOnlyRemainingCargoAfterPartialAdmissionAndHandlesMissingArt",
+          "Status": "Failed",
+          "Duration": 0.7182193,
+          "Message": "  Expected: 3\r\n  But was:  5\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<ApprovedArtKeepsOnlyRemainingCargoAfterPartialAdmissionAndHandlesMissingArt>d__3.MoveNext () [0x00352] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Art.cs:260\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.ApprovedArtPlaysAllTwelveTagsAndOneCompletionPerBatch",
+          "Status": "Passed",
+          "Duration": 3.4719985,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

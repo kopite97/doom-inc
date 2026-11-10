@@ -1,0 +1,56 @@
+{
+  "groups": [
+    {
+      "state": "initial",
+      "finalP95MaxMs": 33.674154,
+      "diagnosticP95MaxMs": 33.688,
+      "finalMaxMs": 50.413116,
+      "diagnosticMaxMs": 50.332077,
+      "finalMedianPssKiB": 408441,
+      "diagnosticMedianPssKiB": 470832,
+      "gcMedianRangeBytes": [
+        115614,
+        115614
+      ],
+      "gcP95MaxBytes": 119790,
+      "gcMaximumBytes": 159509,
+      "gcTotalBytes": 624397642,
+      "diagnosticSamples": 5376
+    },
+    {
+      "state": "middle",
+      "finalP95MaxMs": 33.680154,
+      "diagnosticP95MaxMs": 33.710346,
+      "finalMaxMs": 50.195307,
+      "diagnosticMaxMs": 66.956384,
+      "finalMedianPssKiB": 408092,
+      "diagnosticMedianPssKiB": 456434,
+      "gcMedianRangeBytes": [
+        149530.0,
+        152486
+      ],
+      "gcP95MaxBytes": 243530,
+      "gcMaximumBytes": 518243,
+      "gcTotalBytes": 902517914,
+      "diagnosticSamples": 5377
+    },
+    {
+      "state": "heavy",
+      "finalP95MaxMs": 33.770192,
+      "diagnosticP95MaxMs": 33.688808,
+      "finalMaxMs": 66.8325,
+      "diagnosticMaxMs": 83.559154,
+      "finalMedianPssKiB": 327690,
+      "diagnosticMedianPssKiB": 470675,
+      "gcMedianRangeBytes": [
+        210308.0,
+        214114.0
+      ],
+      "gcP95MaxBytes": 751360,
+      "gcMaximumBytes": 2211984,
+      "gcTotalBytes": 1752998584,
+      "diagnosticSamples": 5366
+    }
+  ],
+  "limits": "Observed build/process footprint differences, not isolated causal probe overhead. Different process memory reclamation, evolving worker counts and normal GC affect PSS. Final GC and Unity object counts were not measured; allocation counter is not collection pause duration."
+}

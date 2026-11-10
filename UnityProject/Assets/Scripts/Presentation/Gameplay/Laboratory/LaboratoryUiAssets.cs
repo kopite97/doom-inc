@@ -12,6 +12,10 @@ namespace MobileGame.Presentation
         [SerializeField] private TextAsset fontLicense;
         [SerializeField] private AudioClip releaseSound;
         [SerializeField] private Sprite[] icons;
+        [SerializeField] private Sprite[] floorTiles;
+        [SerializeField] private LaboratoryArtAssets art;
+
+        public LaboratoryArtAssets Art => art;
 
         public AudioClip ReleaseSound => releaseSound;
         public TMP_FontAsset Font => font;
@@ -27,12 +31,22 @@ namespace MobileGame.Presentation
             }
         }
 
-        public LaboratoryUiAssets(TMP_FontAsset font, Sprite[] icons, TextAsset fontLicense, AudioClip releaseSound)
+        public LaboratoryUiAssets(TMP_FontAsset font, Sprite[] icons, TextAsset fontLicense, AudioClip releaseSound,
+            Sprite[] floorTiles = null, LaboratoryArtAssets art = null)
         {
             this.font = font;
             this.fontLicense = fontLicense;
             this.releaseSound = releaseSound;
             this.icons = icons == null ? Array.Empty<Sprite>() : (Sprite[])icons.Clone();
+            this.floorTiles = floorTiles == null ? Array.Empty<Sprite>() : (Sprite[])floorTiles.Clone();
+            this.art = art;
+        }
+
+        public Sprite GetFloorTile(int variant)
+        {
+            if (floorTiles == null || floorTiles.Length == 0) return null;
+            return variant >= 0 && variant < floorTiles.Length && floorTiles[variant] != null
+                ? floorTiles[variant] : floorTiles[0];
         }
 
         public Sprite GetIcon(LaboratoryIcon icon)

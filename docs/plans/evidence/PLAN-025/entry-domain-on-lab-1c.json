@@ -1,0 +1,62 @@
+{
+  "success": true,
+  "command": "command script",
+  "data": {
+    "command": "script",
+    "parameters": {
+      "code": "return new { snapshot = MobileGame.Foundation.Editor.Plan020Probe.Snapshot(), error = MobileGame.Presentation.SceneFlowManager.Instance?.Error, transitioning = MobileGame.Presentation.SceneFlowManager.Instance?.IsTransitioning, loading = MobileGame.Presentation.SceneFlowManager.Instance?.Loading?.Visible, slot = MobileGame.Presentation.SceneFlowManager.Instance?.SavePath, domainReloadEnabled = !UnityEditor.EditorSettings.enterPlayModeOptionsEnabled || (UnityEditor.EditorSettings.enterPlayModeOptions & UnityEditor.EnterPlayModeOptions.DisableDomainReload) == 0 };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "snapshot": {
+          "utc": "2026-11-06T12:53:44.0118651Z",
+          "frame": 25747,
+          "time": 44.14546290192766,
+          "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+          "phase": "Playing",
+          "paused": false,
+          "gameTime": 23.684079813421704,
+          "score": 0,
+          "reports": 0,
+          "things": 2,
+          "facilities": 0,
+          "creatures": 1,
+          "external": 0,
+          "saves": 5,
+          "flow": 1,
+          "data": 1,
+          "eventSystems": 1,
+          "hosts": 1,
+          "popupViews": 0,
+          "popupCount": 0,
+          "canInteract": true,
+          "objects": 461,
+          "managed": 1342238720,
+          "unityUsed": 427587776,
+          "unityReserved": 1144410112,
+          "width": 1091,
+          "height": 495,
+          "vSync": 1,
+          "fps": -1,
+          "error": null,
+          "saveError": null
+        },
+        "error": null,
+        "transitioning": false,
+        "loading": false,
+        "slot": "C:\\Users\\nellu\\AppData\\Local\\Temp\\DefaultCompany\\UnityProject\\EditorSessions\\SlotB\\session.json",
+        "domainReloadEnabled": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

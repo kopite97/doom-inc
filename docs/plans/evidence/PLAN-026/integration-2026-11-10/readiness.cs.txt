@@ -1,0 +1,25 @@
+var paths = new[] { "Assets/Sprites/World/Laboratory/LaboratoryFloorSet.png", "Assets/Sprites/Facility/Gathering/Gathering.png", "Assets/Sprites/Creature/PrototypeSupport/PrototypeSupport.png", "Assets/Sprites/Resource/OrganicMatter/OrganicMatter.png", "Assets/Sprites/UI/Laboratory/Build.png" };
+var expected = new[] { 4, 36, 64, 1, 1 }; var total = 0;
+var report = new System.Collections.Generic.List<object>();
+for (var a = 0; a < paths.Length; a++) {
+    var path = paths[a]; var importer = (UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(path);
+    var sprites = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.OfType<UnityEngine.Sprite>(UnityEditor.AssetDatabase.LoadAllAssetsAtPath(path)));
+    if (sprites.Length != expected[a]) throw new System.Exception("Wrong sprite count: " + path);
+    if (importer.textureType != UnityEditor.TextureImporterType.Sprite || importer.spritePixelsPerUnit != 32 || importer.filterMode != UnityEngine.FilterMode.Point || importer.wrapMode != UnityEngine.TextureWrapMode.Clamp || importer.textureCompression != UnityEditor.TextureImporterCompression.Uncompressed || importer.mipmapEnabled || importer.isReadable || !importer.sRGBTexture || !importer.alphaIsTransparency || importer.alphaSource != UnityEditor.TextureImporterAlphaSource.FromInput || importer.npotScale != UnityEditor.TextureImporterNPOTScale.None) throw new System.Exception("Wrong import settings: " + path);
+    foreach (var platform in new[] { "Android", "Standalone", "iPhone", "WebGL" }) if (importer.GetPlatformTextureSettings(platform).overridden) throw new System.Exception("Platform override: " + path);
+    var texture = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Texture2D>(path);
+    if (a == 1 && texture.width != 768 || a == 2 && texture.width != 512) throw new System.Exception("Sheet was resized.");
+    foreach (var sprite in sprites) if (sprite.pivot != sprite.rect.size * .5f) throw new System.Exception("Wrong pivot.");
+    total += sprites.Length; report.Add(new { path, guid = UnityEditor.AssetDatabase.AssetPathToGUID(path), spriteCount = sprites.Length, width = texture.width, height = texture.height, maxSize = importer.maxTextureSize });
+}
+var config = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Presentation.AppConfiguration>("Assets/SO/Application/AppConfiguration.asset");
+var view = UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>();
+if (view.UiAssets.Art == null || view.UiAssets.Art != config.uiAssets.Art) throw new System.Exception("Art configuration missing from scene/application.");
+for (var i = 0; i < 36; i++) if (config.uiAssets.Art.GatheringFrame(i) == null) throw new System.Exception("Gathering frame missing.");
+for (var i = 0; i < 64; i++) if (config.uiAssets.Art.PrototypeFrame(i) == null) throw new System.Exception("Prototype frame missing.");
+for (var i = 0; i < 4; i++) if (config.uiAssets.GetFloorTile(i) == null || view.UiAssets.GetFloorTile(i) != config.uiAssets.GetFloorTile(i)) throw new System.Exception("Floor reference mismatch.");
+var build = config.uiAssets.GetIcon(MobileGame.Presentation.LaboratoryIcon.Build);
+if (UnityEditor.AssetDatabase.GetAssetPath(build) != paths[4] || view.UiAssets.GetIcon(MobileGame.Presentation.LaboratoryIcon.Build) != build) throw new System.Exception("Build reference mismatch.");
+var organic = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Foundation.ThingDefinition>("Assets/SO/Resource/OrganicMatter.asset");
+if (UnityEditor.AssetDatabase.GetAssetPath(organic.Icon) != paths[3]) throw new System.Exception("Resource reference missing.");
+return new { utc = System.DateTime.UtcNow.ToString("O"), resources = 5, sprites = total, allReferencesConnected = true, gameTestsRun = false, assets = report };
