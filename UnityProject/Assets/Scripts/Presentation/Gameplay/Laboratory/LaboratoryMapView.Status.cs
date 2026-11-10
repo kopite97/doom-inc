@@ -129,7 +129,7 @@ namespace MobileGame.Presentation
             }
             var placement = thing.Placement;
             var footprint = FacilityGeometry.GetSize((FacilityData)thing.Definition, placement.Rotation);
-            var facilityRect = new Rect(Origin + (Vector2)placement.Origin * CellSize, (Vector2)footprint * CellSize);
+            var facilityRect = new Rect(LaboratoryWorldMap.WorldToLocal(LaboratoryWorldMap.CellToWorld(placement.Origin), Origin, CellSize), (Vector2)footprint * CellSize);
             if (!facilityRect.Overlaps(viewport.rect)) return;
             var selected = thing.Id == view.SelectedId;
             var showProgress = status.HasProgress && (selected || !compact);

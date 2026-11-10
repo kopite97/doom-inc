@@ -25,14 +25,14 @@ namespace MobileGame.SpatialTests
                 yield return input.Load();
                 var view = input.View;
                 var assets = view.UiAssets;
-                var tiles = FloorImages(input.Map);
+                var tiles = FloorSprites(input.Map);
                 Assert.That(tiles.Length, Is.EqualTo(view.Simulation.Map.Width * view.Simulation.Map.Height));
-                var original = tiles.Select(t => t.sprite).ToArray();
+                var original = tiles;
                 Assert.That(original.Distinct().Count(), Is.EqualTo(4));
                 Assert.That(original.Count(s => s == assets.GetFloorTile(0)) / (float)original.Length, Is.InRange(.6f, .8f));
                 Assert.That(original.Select(s => s.texture).Distinct().Count(), Is.EqualTo(1));
-                Assert.That(tiles.All(t => t.color == Color.white && !t.raycastTarget), Is.True);
-                Assert.That(tiles[0].transform.parent.GetSiblingIndex(), Is.Zero, "State graphics must render above the floor.");
+                Assert.That(input.Map.World.Floor.GetComponent<UnityEngine.Tilemaps.TilemapCollider2D>(), Is.Null);
+                Assert.That(input.Map.World.Floor.GetComponent<UnityEngine.Tilemaps.TilemapRenderer>().sortingOrder, Is.LessThan(0));
                 var codec = new SessionSnapshotCodec(GameDataStore.Instance.Catalog.Definitions.Values, true);
                 var before = codec.Serialize(codec.Capture(view.Controller.Current, view.Controller.Phase));
                 var random = UnityEngine.Random.state;
@@ -47,12 +47,11 @@ namespace MobileGame.SpatialTests
                     {
                         input.Map.Fit(); input.Map.ZoomBy(zoom);
                         yield return null; yield return null;
-                        CollectionAssert.AreEqual(original, FloorImages(input.Map).Select(t => t.sprite));
-                        var first = tiles[0].rectTransform;
-                        Assert.That(tiles[1].rectTransform.anchoredPosition.x - first.anchoredPosition.x,
-                            Is.EqualTo(first.rect.width).Within(.001f), "Adjacent floor tiles must have no gutters.");
-                        Assert.That(tiles[view.Simulation.Map.Width].rectTransform.anchoredPosition.y - first.anchoredPosition.y,
-                            Is.EqualTo(first.rect.height).Within(.001f));
+                        CollectionAssert.AreEqual(original, FloorSprites(input.Map));
+                        var floor = input.Map.World.Floor;
+                        Assert.That(floor.GetCellCenterWorld(Vector3Int.right) - floor.GetCellCenterWorld(Vector3Int.zero), Is.EqualTo(Vector3.right * 2));
+                        Assert.That(floor.GetCellCenterWorld(Vector3Int.up) - floor.GetCellCenterWorld(Vector3Int.zero), Is.EqualTo(Vector3.up * 2));
+                        Assert.That(tiles[0].bounds.size.x, Is.EqualTo(2), "Tile sprite width matches cell spacing without gutters.");
                         yield return CaptureFloorArt("mixed-" + size.x + "x" + size.y + "-zoom" + zoom);
                     }
                 }
@@ -64,11 +63,11 @@ namespace MobileGame.SpatialTests
                 {
                     view.ConfigureUiAssets(CopyFloorAssets(assets, new[] { assets.GetFloorTile(0) }));
                     yield return null; yield return null;
-                    Assert.That(FloorImages(input.Map).All(i => i.sprite == assets.GetFloorTile(0)), Is.True);
+                    Assert.That(FloorSprites(input.Map).All(i => i == assets.GetFloorTile(0)), Is.True);
                     yield return CaptureFloorArt("base-only-1280x720-zoom1");
                 }
                 finally { view.ConfigureUiAssets(assets); }
-                var evidence = Path.GetFullPath(Path.Combine(Application.dataPath, "../Logs/PLAN026-floor/distribution.txt"));
+                var evidence = Path.GetFullPath(Path.Combine(Application.dataPath, "../../docs/plans/evidence/PLAN-027/floor/distribution.txt"));
                 File.WriteAllLines(evidence, original.GroupBy(s => s.name).OrderBy(g => g.Key).Select(g => g.Key + "=" + g.Count()));
 
                 var worker = view.Simulation.Registry.Things.Single(t => t.Definition.Kind == ThingKind.Creature);
@@ -77,7 +76,7 @@ namespace MobileGame.SpatialTests
                 yield return ClickVisibleButton(input, "BuildGathering");
                 yield return input.Click(input.Map.CellScreenPoint(new Vector2Int(3, 3)));
                 Assert.That(view.Simulation.ConstructionOrigin, Is.EqualTo(new Vector2Int(3, 3)));
-                Assert.That(input.Map.GetComponentsInChildren<Image>().Any(i => i.name == "Temp_MapCell" && i.color.g > .5f && i.color.a > .9f),
+                Assert.That(input.Map.World.Root.GetComponentsInChildren<SpriteRenderer>().Any(i => i.name.StartsWith("Selection_") && i.color.g > .9f && i.color.a > .9f),
                     Is.True, "The valid construction overlay must remain visible above art.");
                 yield return CaptureFloorArt("construction-preview");
                 yield return input.Escape();
@@ -86,40 +85,45 @@ namespace MobileGame.SpatialTests
                 {
                     view.ConfigureUiAssets(CopyFloorAssets(assets, null));
                     yield return null; yield return null;
-                    Assert.That(input.Map.transform.Find("LaboratoryFloor").gameObject.activeInHierarchy, Is.False,
-                        "Missing art must hide its layer without destroying reusable cells.");
-                    Assert.That(input.Map.GetComponentsInChildren<Image>().Where(i => i.name == "Temp_MapCell").All(i => i.color.a > .9f), Is.True);
+                    Assert.That(FloorSprites(input.Map).All(i => i == input.Map.World.Solid), Is.True,
+                        "Missing floor art uses the shared solid fallback, with no UI grid behind it.");
+                    Assert.That(input.Map.GetComponentsInChildren<Image>().Any(i => i.name == "Temp_MapCell"), Is.False);
                     var taps = input.Map.AcceptedTaps;
                     yield return input.Tap(72, input.Map.CellScreenPoint(new Vector2Int(4, 4)));
                     Assert.That(input.Map.AcceptedTaps, Is.EqualTo(taps + 1));
                 }
                 finally { view.ConfigureUiAssets(assets); }
                 yield return null; yield return null;
-                CollectionAssert.AreEqual(original, FloorImages(input.Map).Select(t => t.sprite));
+                CollectionAssert.AreEqual(original, FloorSprites(input.Map));
                 Assert.That(view.Save(), Is.True);
                 var saved = File.ReadAllText(view.SavePath);
                 yield return input.Reopen();
-                CollectionAssert.AreEqual(original, FloorImages(input.Map).Select(t => t.sprite));
+                CollectionAssert.AreEqual(original, FloorSprites(input.Map));
                 Assert.That(File.ReadAllText(input.View.SavePath), Is.EqualTo(saved), "Opening the scene must not rewrite the save for art.");
                 Assert.That(input.View.Restart(), Is.True);
                 yield return null; yield return null;
-                CollectionAssert.AreEqual(original, FloorImages(input.Map).Select(t => t.sprite));
-                Assert.That(input.Map.GetComponentsInChildren<RectTransform>().Count(t => t.name == "LaboratoryFloor"), Is.EqualTo(1));
+                CollectionAssert.AreEqual(original, FloorSprites(input.Map));
+                Assert.That(input.Map.World.Root.GetComponentsInChildren<UnityEngine.Tilemaps.Tilemap>().Length, Is.EqualTo(1));
                 LogAssert.NoUnexpectedReceived();
             }
         }
 
-        private static Image[] FloorImages(LaboratoryMapView map) => map.transform.Find("LaboratoryFloor").GetComponentsInChildren<Image>();
+        private static Sprite[] FloorSprites(LaboratoryMapView map)
+        {
+            var bounds = map.World.Floor.cellBounds;
+            return Enumerable.Range(0, bounds.size.x * bounds.size.y)
+                .Select(i => map.World.Floor.GetSprite(new Vector3Int(i % bounds.size.x, i / bounds.size.x, 0))).ToArray();
+        }
 
         private static LaboratoryUiAssets CopyFloorAssets(LaboratoryUiAssets assets, Sprite[] floor)
         {
             var icons = System.Enum.GetValues(typeof(LaboratoryIcon)).Cast<LaboratoryIcon>().Select(assets.GetIcon).ToArray();
-            return new LaboratoryUiAssets(assets.Font, icons, assets.FontLicense, assets.ReleaseSound, floor);
+            return new LaboratoryUiAssets(assets.Font, icons, assets.FontLicense, assets.ReleaseSound, floor, assets.Art, assets.WorldMaterial);
         }
 
         private static IEnumerator CaptureFloorArt(string name)
         {
-            var path = Path.GetFullPath(Path.Combine(Application.dataPath, "../Logs/PLAN026-floor/" + name + ".png"));
+            var path = Path.GetFullPath(Path.Combine(Application.dataPath, "../../docs/plans/evidence/PLAN-027/floor/" + name + ".png"));
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             if (File.Exists(path)) File.Delete(path);
             ScreenCapture.CaptureScreenshot(path);

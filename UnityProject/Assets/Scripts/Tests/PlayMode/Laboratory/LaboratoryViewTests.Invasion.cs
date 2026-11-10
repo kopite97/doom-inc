@@ -47,7 +47,7 @@ namespace MobileGame.SpatialTests
                 Assert.That(source.clip.length, Is.InRange(.15f, .25f));
                 Assert.That(source.loop, Is.False);
                 Assert.That(source.isPlaying, Is.True);
-                Assert.That(Camera.main.GetComponent<AudioListener>().enabled, Is.True);
+                Assert.That(UnityEngine.Object.FindObjectsByType<AudioListener>(FindObjectsSortMode.None).Count(l => l.isActiveAndEnabled), Is.EqualTo(1));
                 yield return WaitFor(() => icon.localScale.x > 1.01f, "Invasion icon did not pulse.");
                 yield return new WaitForSecondsRealtime(.25f);
                 Assert.That(icon.localScale, Is.EqualTo(Vector3.one));

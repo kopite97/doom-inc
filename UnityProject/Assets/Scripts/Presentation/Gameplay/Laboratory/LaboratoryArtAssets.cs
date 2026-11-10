@@ -11,6 +11,15 @@ namespace MobileGame.Presentation
         [SerializeField] private Sprite[] gatheringFrames;
         [SerializeField] private Sprite[] prototypeFrames;
         [SerializeField] private Vector2[] prototypeHeads;
+        [SerializeField] private Sprite[] cargoSprites;
+        [SerializeField] private Vector2[] cargoSupports;
+        public Vector2 CargoSupport(Sprite sprite)
+        {
+            if (cargoSprites != null && cargoSupports != null)
+                for (var i = 0; i < cargoSprites.Length && i < cargoSupports.Length; i++)
+                    if (cargoSprites[i] == sprite) return cargoSupports[i];
+            return new Vector2(sprite.rect.width * .5f, sprite.rect.height);
+        }
 
         public bool HasGathering(ThingData definition) => gatheringDefinition != null
             && definition.DefinitionId == gatheringDefinition.DefinitionId && GatheringFrame(0) != null;

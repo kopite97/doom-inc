@@ -1,7 +1,7 @@
 ---
 id: PLAN-027
 type: development
-status: proposed
+status: completed
 title: 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환
 updated: 2026-11-10
 ---
@@ -12,7 +12,7 @@ updated: 2026-11-10
 
 연구소의 바닥은 Tilemap, 시설·생명체와 지도상의 자원 표현은 SpriteRenderer로 표시하고, HUD·메뉴·팝업·상태 정보는 기존 uGUI로 유지한다. 기존 배치·선택·운영·저장 동작과 제공 아트의 규격을 보존하면서 이후 아트를 연결할 표현 기반을 정리한다.
 
-주목적은 표현 구조의 전환이므로 `type: development`다. **현재는 `proposed`이며 구현·에셋 변경·설치·게임 테스트를 시작하지 않는다.** 선행 PLAN-026은 2026-11-10 `completed`이며 현재 active는 0개다. 이 후보는 별도 활성화 승인을 기다린다.
+주목적은 표현 구조의 전환이므로 `type: development`다. **2026-11-10 사용자 승인으로 활성화·구현·Editor 검증을 완료해 `completed`로 전환했다.** 현재 active는 0개이며 PLAN-028 이동 보간은 별도 proposed로 유지한다. [완료 증거](evidence/PLAN-027/README.md)를 따른다.
 
 ## 범위
 
@@ -41,14 +41,20 @@ updated: 2026-11-10
 4. 사용자가 순서 변경을 요청하면 미완료 항목·적용 책임·테스트 준비 조건·재개 조건을 먼저 문서에 남기고 단일 active를 유지한다. 이 경우에도 정식 아트의 미완료를 Temp 대체로 지우거나 PLAN-026의 시각 확인을 생략하지 않는다.
 5. PLAN-027에서 새 제작 리소스는 기본적으로 요구하지 않는다. 기존 제공본과 이미 사용하는 임시 표현을 재사용한다. 전환 중 추가 제작이 필요해지면 종류·크기·프레임/방향·필요한 모습·사용처를 기존 아트 절차에 따라 구체화하고 범위를 갱신한다.
 
+### 이동 보간 후보와의 관계
+
+- [PLAN-028 연구소 생명체 이동 보간](PLAN-028-creature-movement-interpolation.md)은 별도 development·proposed다. 권장 순서는 이 PLAN의 표현 전환 완료 후 PLAN-028 활성화이며, 이 전환에 보간 신규 구현을 자동 포함하지 않는다.
+- 사용자가 PLAN-028을 먼저 실행한 경우에는 논리 칸과 분리된 표시 위치·몸체/운반물/선택·화면 클릭·정지/복원 계약을 전환 과정에서 보존한다. 같은 이동 구간을 읽는 위치 계산을 다시 작성하거나 칸 단위 표시로 되돌리지 않는다.
+- 두 계획은 각각 별도 활성화 승인을 받으며 한 번에 하나만 실행한다.
+
 ## 작성 시 확인한 구현과 전환 경계
 
-아래는 파일 읽기로 확인한 출발점이며 Unity 실행·전환 결과가 아니다. 활성화 시 PLAN-026의 최종 구현을 다시 확인한다.
+아래는 작성 당시 파일 읽기로 확인한 출발점이다. 현행 구현·검증 결과는 완료 증거와 TECH-017을 따른다. 제거한 Floor partial의 링크는 이관된 LaboratoryWorldMap을 가리킨다.
 
 | 현재 위치 | 확인한 책임 | 전환 시 보존·변경할 경계 |
 | --- | --- | --- |
 | [LaboratoryMapView](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryMapView.cs) | 칸별 Image/TMP, 지도 중심·줌·화면 좌표, 선택/배치·겹친 후보 | 지도 입력 계약은 유지하고 월드 표시·카메라 좌표를 분리 |
-| [바닥 표시](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryMapView.Floor.cs) | 칸별 Image와 좌표 고정 해시로 4종 선택 | 같은 칸→같은 변형을 Tilemap으로 이관. 게임 난수·저장 데이터와 계속 독립 |
+| [바닥 표시 이관 위치](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryWorldMap.cs) | 칸별 Image와 좌표 고정 해시로 4종 선택 | 같은 칸→같은 변형을 Tilemap으로 이관. 게임 난수·저장 데이터와 계속 독립 |
 | [상태 표시](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryMapView.Status.cs) | Thing ID별 표식, 연결선·게이지·문구·클릭 영역 | uGUI 유지, 월드 앵커 투영·겹침 완화·클릭 우선권 연결 |
 | [연구소 UI 구성](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.Gui.cs) | 불투명 MapViewport 패널, RectMask2D, 방향별 가변 지도 영역 | 월드 카메라가 보이도록 지도 배경 역할을 변경하고 카메라 영역을 UI 레이아웃과 동기화 |
 | [UI 에셋 구성](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryUiAssets.cs)·[생성 도구](../../UnityProject/Assets/Scripts/Editor/Presentation/LaboratoryUiAssetBuilder.cs) | 바닥 4종·아이콘·음원 참조와 제공본 보존 | 월드/화면용 참조 책임을 나누되 동일 아트를 중복 원본으로 만들지 않음 |
@@ -114,14 +120,14 @@ Map/Thing/Job은 상태의 원본으로 유지한다. Tilemap 점유나 Sprite b
 
 ## 작업 목록
 
-- [ ] 활성화 승인과 선행 조건 확인. PLAN-026 최종본·아트 준비·단일 active 상태를 대조하고 사용자 저장/설정·씬·패키지 기준을 보존한다.
-- [ ] 전환 전 기준 확보. 같은 격리 저장·해상도·배율·부하의 화면/입력/상태/성능을 기록하고 좌표·viewport·카메라·sorting 설계를 기술 결정에 남긴다.
-- [ ] 월드 카메라·공유 좌표 변환·uGUI 지도 영역 연결을 구현하고 바닥 4종을 같은 분포의 Tilemap으로 이관한다.
-- [ ] 모든 기존 시설/개체의 SpriteRenderer 표시와 대체 표현, 자원 표시, 선택/배치 미리보기, 획득시설·프로토타입의 재생/운반 합성 계약을 이관한다.
-- [ ] 제스처·겹친 후보·자동 지도 이동과 상태 uGUI 투영/클릭/마스크를 연결한다.
-- [ ] 씬·공용 구성·SO/프리팹·생성 도구와 표시 수명을 정리하고 사용하지 않는 기존 지도 렌더링을 제거한다.
-- [ ] 아래 Editor 검증·전후 비교를 수행한다. 실패/미실행·시각 확인·기기 미검증을 구분하고 전환이 만든 회귀를 처리한다.
-- [ ] 기술 결정·현행 문서·요청 참조·검증 증거·환경 복원을 기록하고 필수 완료 조건 충족 후 상태를 판정한다.
+- [x] 활성화 승인과 선행 조건 확인. PLAN-026 최종본·아트 준비·단일 active 상태를 대조하고 사용자 저장/설정·씬·패키지 기준을 보존한다.
+- [x] 전환 전 기준 확보. 같은 격리 저장·해상도·배율·부하의 화면/입력/상태/성능을 기록하고 좌표·viewport·카메라·sorting 설계를 기술 결정에 남긴다.
+- [x] 월드 카메라·공유 좌표 변환·uGUI 지도 영역 연결을 구현하고 바닥 4종을 같은 분포의 Tilemap으로 이관한다.
+- [x] 모든 기존 시설/개체의 SpriteRenderer 표시와 대체 표현, 자원 표시, 선택/배치 미리보기, 획득시설·프로토타입의 재생/운반 합성 계약을 이관한다.
+- [x] 제스처·겹친 후보·자동 지도 이동과 상태 uGUI 투영/클릭/마스크를 연결한다.
+- [x] 씬·공용 구성·SO/프리팹·생성 도구와 표시 수명을 정리하고 사용하지 않는 기존 지도 렌더링을 제거한다.
+- [x] 아래 Editor 검증·전후 비교를 수행한다. 실패/미실행·시각 확인·기기 미검증을 구분하고 전환이 만든 회귀를 처리한다.
+- [x] 기술 결정·현행 문서·요청 참조·검증 증거·환경 복원을 기록하고 필수 완료 조건 충족 후 상태를 판정한다.
 
 ## 완료 기준과 검증 방법
 
@@ -148,10 +154,12 @@ Editor 측정만으로 모바일 성능 향상·실기기 터치·양방향 동�
 
 ## 현재 상황과 다음 행동
 
-- 확인한 사실: PLAN-001~026 completed, active 0개. PLAN-026에서 5종 106 Sprite·상태/방향/운반의 uGUI 연결·기술 검증·사용자 게임 화면 승인을 마쳤다. 전환 활성화 시 LaboratoryArtAssets·LaboratoryMapView.Art와 상태 표식 회피 계약까지 다시 대조한다.
-- 이번 작업: PLAN-027 후보와 관련 PLAN 목록·로드맵·MAP 연결 작성만 수행한다. 새 Sprite 요청·폴더 생성, Unity 변경·실행·패키지 설치는 하지 않는다.
-- 다음 행동: 사용자의 계획 검토·활성화 요청까지 proposed를 유지한다. 기본 선행 순서는 위 PLAN-026 완료 조건을 따른다. 승인 전에는 기준 화면 촬영이나 전환 전 성능 측정도 시작하지 않는다.
-- 남은 판단: 활성화 시점의 PLAN-026 실제 연결·현재 카메라/Renderer·상태 표시 구현을 다시 확인하고 세부 클래스/에셋 경로·sorting 및 Pixel Perfect 적합성을 확정한다.
+- 2026-11-10 승인에 따라 Tilemap·SpriteRenderer·단일 활성 월드 카메라·uGUI 상태 투영과 기존 입력을 연결했다. 칸별 Image/TMP 지도는 제거했다.
+- 원본 5 PNG·106 Sprite, 저장·밸런스 JSON을 보존했다. 씬/공용 구성/생성 도구가 같은 아트와 공용 Material을 참조하며 재생성 결과도 불변이다.
+- 최종 Edit 363/363, 연구소 Play 42/42(Domain Reload OFF), 앱 씬 Play 29/29(Domain Reload ON)을 통과했다. 화면·성능·원본 무결성과 환경 복원은 [완료 증거](evidence/PLAN-027/README.md)에 기록했다.
+- 표시 비용의 Main Thread 중앙값은 기본/고부하 약 44%/40%, GC는 약 82%/63% 감소했다. RenderLoop는 반복 분산이 겹치고 p95 악화가 없었다. 고부하 배치 수 22→58의 구조적 증가와 모바일 GPU 미검증은 별도로 기록했다.
+- Play 정지·원래 Laboratory 씬 clean·Android 선택·Domain Reload OFF·runInBackground false로 복원했다. 사용자 저장/설정은 변경하지 않았다.
+- 완료 후 active는 0개다. 권장 다음 작업은 PLAN-028 이동 보간이며 사용자 별도 활성화 전에는 실행하지 않는다. 빌드·실기기는 이번 범위에서 실행하지 않았다.
 
 ## 검증 결과
 
@@ -162,10 +170,22 @@ Editor 측정만으로 모바일 성능 향상·실기기 터치·양방향 동�
 | 2026-11-07 | Unity 임포트·구현·Edit/Play·화면/성능·빌드·실기기 | 사용자 요청에 따라 실행하지 않음 | 미실행. proposed 유지 |
 | 2026-11-07 | 머리 위 운반 슬롯·자원 정의 참조·운반 상태 판정 설계 보완 후 문서 검사 | PLAN 27개·active 1개(PLAN-026)·로컬 링크 2995개·변경 문서 공백 검사 통과 | 문서 검증만 통과. PLAN-027 proposed·구현/게임 검증 미실행 유지 |
 
+| 2026-11-10 | 사용자 승인·단일 active 확인 후 표현 전환 | Tilemap·SpriteRenderer·월드 카메라·uGUI 유지, 106 Sprite와 게임 상태/JSON 보존 | [구현·비교·수정 기록](evidence/PLAN-027/README.md) |
+| 2026-11-10 | 최종 Edit 및 Play 회귀 | Edit 363/363, 연구소 42/42 OFF, 앱 씬 29/29 ON 통과 | [Edit](evidence/PLAN-027/edit-foundation-final.json), [연구소](evidence/PLAN-027/play-domain-off-final.json), [앱 씬](evidence/PLAN-027/app-scenes-domain-on.json) |
+| 2026-11-10 | 기본/고부하 각 3회 전후 비교, 원본·설정 검사와 환경 복원 | 총 표시 CPU/GC 감소, 렌더링 지표/배치 증가의 한계 기록, 제품 저장/아트 불변, 초기 Editor 설정 복원 | [측정](evidence/PLAN-027/performance-summary.json), [무결성](evidence/PLAN-027/final-integrity.json), [환경](evidence/PLAN-027/environment-final.json) |
+
+| 2026-11-10 | 최종 문서 검사·변경 공백 검사 | PLAN 28개·active 0개·목록 28개·로컬 링크 3142개 검사 및 `git diff --check` 통과 | PLAN-027 completed, PLAN-028 proposed |
+
 ## 관련 결정과 상태 전환
 
-- 기술 결정: 활성화 후 설계 확정 시 카메라/viewport·좌표·상태 소유·sorting의 선택과 대안을 [기술 결정 MAP](../decisions/README.md)에 등록한다. 이번 문서의 제안을 구현 완료된 결정으로 기록하지 않는다.
+- 기술 결정: [TECH-017](../decisions/TECH-017-laboratory-world-rendering.md)에 카메라·viewport·좌표·수명·정렬과 Pixel Perfect 유보 이유를 기록했다.
 - 2026-11-07: 사용자 요청으로 신규 → `proposed`. 바닥 Tilemap·시설/개체 SpriteRenderer·UI uGUI 전환 후보를 작성했다. PLAN-026의 active 상태와 아트 테스트 시작 조건은 유지하며 구현·검증 실행 승인을 받지 않았다.
 - 2026-11-07: 사용자 지정에 따라 머리 위 자원 슬롯·교체 참조·실제 운반 상태·수명·검증 조건을 보완했다. PLAN-026의 uGUI 연결 계약을 보존하는 이관 계획이며 `proposed`와 미실행 상태를 유지한다.
 - 2026-11-07: 선행 PLAN-026의 프로토타입 애니메이션 추가와 시설 r003 명세에 맞춰 수량·보존할 동작/운반 계약·검증 항목을 동기화했다. 후속 전환은 계속 proposed이며 구현·테스트를 실행하지 않았다.
 - 2026-11-07: 프로토타입의 4방향·방향당 4/6/6프레임 명세에 맞춰 총 106 Sprite 셀과 방향 전환·받침·검증 계약을 동기화했다. 문서만 수정했으며 proposed를 유지한다.
+
+- 2026-11-10: 사용자 실행 요청에 따라 proposed → active. PLAN-026 완료·아트 준비와 active 1개를 전제로 구현 및 Editor 검증을 진행한다.
+
+- 2026-11-10 중간 검증 기록: [첫 Domain Reload ON 회귀](evidence/PLAN-027/play-domain-on-first.json) 40/40, [월드 좌표·종류·배양액 운반 계약](evidence/PLAN-027/world-contract-final.json) 2/2 통과. 비정수 viewport의 0.215픽셀 오차를 정수 출력 영역과 중심 보정으로 수정했다. 이후 단일 활성 카메라 성능 보완과 최종 회귀·종료 검사를 완료했다.
+
+- 2026-11-10: 필수 구현·Editor 회귀·전후 비교·환경 복원을 완료해 active → completed. PLAN-028은 proposed, active 0개로 유지한다.

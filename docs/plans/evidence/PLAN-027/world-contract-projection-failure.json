@@ -1,0 +1,42 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 2.14,
+      "summary": {
+        "total": 2,
+        "passed": 1,
+        "failed": 1,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.WorldRenderingCarriesCultureFallbackThroughActualPickupAndRestore",
+          "Status": "Passed",
+          "Duration": 1.6820074,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.WorldRenderingPreservesGridProjectionAllRotationsKindsAndLifetime",
+          "Status": "Failed",
+          "Duration": 0.4389813,
+          "Message": "  Expected: less than 0.00200000009f\r\n  But was:  0.215209961f\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<WorldRenderingPreservesGridProjectionAllRotationsKindsAndLifetime>d__94.MoveNext () [0x007b5] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.World.cs:77\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -44,9 +44,35 @@ namespace MobileGame.Foundation.Editor
             AssetDatabase.ImportAsset(FontLicensePath, ImportAssetOptions.ForceSynchronousImport);
             var binding = new LaboratoryUiAssets(font, icons, AssetDatabase.LoadAssetAtPath<TextAsset>(FontLicensePath),
                 AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Feel/FeelDemos/Duck/Sounds/FeelDuckWoosh.wav"), LoadFloorTiles(),
-                AssetDatabase.LoadAssetAtPath<LaboratoryArtAssets>(ArtPath));
+                AssetDatabase.LoadAssetAtPath<LaboratoryArtAssets>(ArtPath), EnsureWorldMaterial());
             if (!binding.IsComplete) throw new InvalidOperationException("UI asset binding is incomplete.");
             return binding;
+        }
+
+        public static Material EnsureWorldMaterial()
+        {
+            const string path = "Assets/Materials/Laboratory/LaboratoryWorld.mat";
+            var material = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (material == null)
+            {
+                FoundationDefinitionAssets.EnsureFolder("Assets/Materials/Laboratory");
+                var shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default");
+                if (shader == null) throw new InvalidOperationException("URP 2D unlit sprite shader is missing.");
+                material = new Material(shader);
+                AssetDatabase.CreateAsset(material, path);
+            }
+            var tags = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
+            var layers = tags.FindProperty("layers");
+            if (LayerMask.NameToLayer(LaboratoryWorldMap.LayerName) < 0)
+            {
+                var slot = -1;
+                for (var i = 8; i < layers.arraySize; i++)
+                    if (string.IsNullOrEmpty(layers.GetArrayElementAtIndex(i).stringValue)) { slot = i; break; }
+                if (slot < 0) throw new InvalidOperationException("No free layer for laboratory world.");
+                layers.GetArrayElementAtIndex(slot).stringValue = LaboratoryWorldMap.LayerName;
+                tags.ApplyModifiedPropertiesWithoutUndo();
+            }
+            return material;
         }
 
         public static Sprite[] LoadFloorTiles()

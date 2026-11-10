@@ -1,0 +1,41 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var view = UnityEngine.Object.FindFirstObjectByType<MobileGame.Presentation.LaboratoryView>();\nvar config = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Presentation.AppConfiguration>(MobileGame.Foundation.Editor.AppSceneAssets.ConfigurationPath);\nreturn new { editor=UnityEngine.Application.unityVersion, play=UnityEditor.EditorApplication.isPlaying, scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path, dirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty, runInBackground=UnityEngine.Application.runInBackground, domainEnabled=UnityEditor.EditorSettings.enterPlayModeOptionsEnabled, options=UnityEditor.EditorSettings.enterPlayModeOptions.ToString(), target=UnityEditor.EditorUserBuildSettings.activeBuildTarget.ToString(), layer=UnityEngine.LayerMask.NameToLayer(\"LaboratoryWorld\"), materialShared=view.UiAssets.WorldMaterial==config.uiAssets.WorldMaterial, material=UnityEditor.AssetDatabase.GetAssetPath(config.uiAssets.WorldMaterial), pipeline=UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline.name, liveWorlds=UnityEngine.Object.FindObjectsByType<UnityEngine.Transform>(UnityEngine.FindObjectsSortMode.None).Count(t=>t.name==\"LaboratoryWorld\"), graphics=UnityEngine.SystemInfo.graphicsDeviceType.ToString(), threadedGraphics=UnityEngine.SystemInfo.graphicsMultiThreaded, vSync=UnityEngine.QualitySettings.vSyncCount, targetFrameRate=UnityEngine.Application.targetFrameRate };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "editor": "6000.3.27f1",
+        "play": false,
+        "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+        "dirty": false,
+        "runInBackground": false,
+        "domainEnabled": true,
+        "options": "DisableDomainReload",
+        "target": "Android",
+        "layer": 8,
+        "materialShared": true,
+        "material": "Assets/Materials/Laboratory/LaboratoryWorld.mat",
+        "pipeline": "UniversalRP",
+        "liveWorlds": 0,
+        "graphics": "Direct3D12",
+        "threadedGraphics": false,
+        "vSync": 1,
+        "targetFrameRate": -1
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

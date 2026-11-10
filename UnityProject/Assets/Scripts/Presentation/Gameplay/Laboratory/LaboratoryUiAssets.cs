@@ -14,6 +14,8 @@ namespace MobileGame.Presentation
         [SerializeField] private Sprite[] icons;
         [SerializeField] private Sprite[] floorTiles;
         [SerializeField] private LaboratoryArtAssets art;
+        [SerializeField] private Material worldMaterial;
+        public Material WorldMaterial => worldMaterial;
 
         public LaboratoryArtAssets Art => art;
 
@@ -32,7 +34,7 @@ namespace MobileGame.Presentation
         }
 
         public LaboratoryUiAssets(TMP_FontAsset font, Sprite[] icons, TextAsset fontLicense, AudioClip releaseSound,
-            Sprite[] floorTiles = null, LaboratoryArtAssets art = null)
+            Sprite[] floorTiles = null, LaboratoryArtAssets art = null, Material worldMaterial = null)
         {
             this.font = font;
             this.fontLicense = fontLicense;
@@ -40,6 +42,7 @@ namespace MobileGame.Presentation
             this.icons = icons == null ? Array.Empty<Sprite>() : (Sprite[])icons.Clone();
             this.floorTiles = floorTiles == null ? Array.Empty<Sprite>() : (Sprite[])floorTiles.Clone();
             this.art = art;
+            this.worldMaterial = worldMaterial;
         }
 
         public Sprite GetFloorTile(int variant)

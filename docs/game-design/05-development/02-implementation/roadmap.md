@@ -2,7 +2,7 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1~4단계 및 D-070 완료 / 아트 5-1 완료 / PLAN-001~026 completed / PLAN-027 development·proposed / active 0개
+- 상태: 선행 기반 세 묶음·1~4단계 및 D-070 완료 / 아트 5-1 완료 / PLAN-001~027 completed / PLAN-027 development·completed / PLAN-028 development·proposed / active 0개
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
 - 갱신일: 2026-11-10
@@ -16,7 +16,9 @@
 
 5-1의 [PLAN-026 스타일·크기 샘플과 연구소 적용](../../../plans/PLAN-026-art-style-scale-and-sample-integration.md)은 `art` / `completed`다. 바닥 4개 포함 5개 분류·8개 샘플, PNG 5개·106 Sprite의 적용을 마쳤다. 획득시설 36프레임·보조형 4방향 64프레임·머리 위 운반·Build 교체를 전체 준비 후 검증하고 사용자가 실제 게임 화면을 승인했다. [완료 증거](../../../plans/evidence/PLAN-026/integration-2026-11-10/README.md)를 기준으로 5-1 완료를 판정하며 모바일 빌드/실기기는 이번에 실행하지 않았다.
 
-후속 표현 기반 후보 [PLAN-027 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환](../../../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 `development` / `proposed`다. UI는 uGUI로 유지하며 게임 규칙·저장·기존 아트를 보존한다. 기본 순서는 PLAN-026 완료 후 별도 활성화 승인을 받아 5-2 이후의 아트 확장 전에 전환하는 것이며, 선행 5-1은 완료했으나 별도 활성화 승인이 없어 구현·검증은 시작하지 않는다. active는 0개다.
+후속 표현 기반 완료 [PLAN-027 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환](../../../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 `development` / `completed`다. 2026-11-10 사용자 승인 후 바닥 Tilemap·시설/개체 SpriteRenderer·UI uGUI 전환과 Editor 검증을 완료했다. 원본 아트·게임 상태를 보존했고 active는 0개다. PLAN-028은 proposed로 남긴다.
+
+[PLAN-028 연구소 생명체 이동 보간과 표시 동기화](../../../plans/PLAN-028-creature-movement-interpolation.md)은 `development` / `proposed`다. 논리 칸·이동/작업 시점을 유지하면서 작업 이동·유휴 배회의 표시 위치와 운반물·선택을 부드럽게 연결한다. 선행 PLAN-027은 완료했으며 PLAN-028은 전환된 SpriteRenderer 경로를 기준으로 별도 활성화 승인 후 실행한다. 현재 PLAN-028은 미실행이다.
 
 [PLAN-024 침공형 방출 성공 피드백과 화면 밖 시설 선택 시 지도 이동](../../../plans/PLAN-024-release-feedback-and-map-reveal.md)은 completed다. 두 연출의 연결·입력 우선권과 연구소 Editor 회귀를 검증했다.
 
@@ -146,6 +148,8 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 - [PLAN-024 침공형 방출 성공 피드백과 화면 밖 시설 선택 시 지도 이동](../../../plans/PLAN-024-release-feedback-and-map-reveal.md)은 completed다.
 - [PLAN-025 최신 버전 Android 통합 검증과 프로토타입 완료 판정](../../../plans/PLAN-025-android-integration-and-prototype-completion.md)은 completed다. 승인된 최신 Editor·Android 통합 검증과 환경 복원을 마쳐 4단계·D-070 완료로 판정했다.
 - [PLAN-026 아트 5-1 스타일·크기 샘플과 연구소 적용](../../../plans/PLAN-026-art-style-scale-and-sample-integration.md)은 art·completed다. 5종 106 Sprite의 전체 적용 후 기술 검증·사용자 게임 화면 승인·환경 복원을 마쳤다.
-- [PLAN-027 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환](../../../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 development·proposed다. uGUI UI를 유지하는 지도 표현 전환 후보이며 실행하지 않았다.
+- [PLAN-027 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환](../../../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 `development` / `completed`다. 2026-11-10 사용자 승인 후 바닥 Tilemap·시설/개체 SpriteRenderer·UI uGUI 전환과 Editor 검증을 완료했다. 원본 아트·게임 상태를 보존했고 active는 0개다. PLAN-028은 proposed로 남긴다.
+
+- [PLAN-028 연구소 생명체 이동 보간과 표시 동기화](../../../plans/PLAN-028-creature-movement-interpolation.md)는 development·proposed다. 기존 이동 규칙을 보존하는 표시 개선 후보이며 실행하지 않았다.
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

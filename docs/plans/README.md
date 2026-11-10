@@ -28,4 +28,5 @@
 | [PLAN-024](PLAN-024-release-feedback-and-map-reveal.md) | 침공형 방출 성공 피드백과 화면 밖 시설 선택 시 지도 이동 | `development` | `completed` |
 | [PLAN-025](PLAN-025-android-integration-and-prototype-completion.md) | 최신 버전 Android 통합 검증과 프로토타입 완료 판정 | `development` | `completed` |
 | [PLAN-026](PLAN-026-art-style-scale-and-sample-integration.md) | 아트 5-1 스타일·크기 샘플과 연구소 적용 | `art` | `completed` |
-| [PLAN-027](PLAN-027-laboratory-tilemap-and-sprite-rendering.md) | 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환 | `development` | `proposed` |
+| [PLAN-027](PLAN-027-laboratory-tilemap-and-sprite-rendering.md) | 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환 | `development` | `completed` |
+| [PLAN-028](PLAN-028-creature-movement-interpolation.md) | 연구소 생명체 이동 보간과 표시 동기화 | `development` | `proposed` |

@@ -50,6 +50,12 @@ namespace MobileGame.Foundation.Tests
             var configured = AssetDatabase.LoadAssetAtPath<AppConfiguration>("Assets/SO/Application/AppConfiguration.asset").uiAssets;
             var rebuilt = LaboratoryUiAssetBuilder.CreateMissing();
             Assert.That(rebuilt.Art, Is.SameAs(configured.Art));
+            Assert.That(rebuilt.WorldMaterial, Is.Not.Null);
+            Assert.That(rebuilt.WorldMaterial, Is.SameAs(configured.WorldMaterial));
+            Assert.That(rebuilt.WorldMaterial.shader.name, Is.EqualTo("Universal Render Pipeline/2D/Sprite-Unlit-Default"));
+            Assert.That(LayerMask.NameToLayer(LaboratoryWorldMap.LayerName), Is.GreaterThanOrEqualTo(8));
+            var organic = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprites/Resource/OrganicMatter/OrganicMatter.png");
+            Assert.That(rebuilt.Art.CargoSupport(organic), Is.EqualTo(new Vector2(18, 28)));
             Assert.That(rebuilt.GetIcon(LaboratoryIcon.Build), Is.SameAs(configured.GetIcon(LaboratoryIcon.Build)));
             CollectionAssert.AreEqual(png, File.ReadAllBytes(path));
             Assert.That(File.ReadAllText(LaboratoryUiAssetBuilder.FloorPath + ".meta"), Is.EqualTo(floorMeta));

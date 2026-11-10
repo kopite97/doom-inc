@@ -156,7 +156,7 @@ Unity 임포트 설정·참조 연결·씬 표시·사용자 시각 검수는 �
 - 최신 적용·검수: 바닥 r003(4변형), Gathering r003(3상태 36프레임), PrototypeSupport r002(4방향 12태그 64프레임), OrganicMatter r001, Build r001. 모두 적용·기술 검증·별도 게임 화면 사용자 승인 완료다.
 - 사용자가 실제 가로/세로·운반·수집 동작 자료를 확인하고 “현재 게임 화면 승인”으로 답했다. 원본 Art 승인과 구분한 Unity 시각 검수 기록이다.
 - Play Domain Reload ON 38/38, 최종 OFF 아트 5/5, Edit 생성 도구 보완 후 관련 6/6 통과. Console 오류/경고 0. 원본 PNG/GUID와 바닥 meta, 게임 JSON·환경을 보존했다.
-- [완료 증거와 후속 제작 채택 기준](../../../../../docs/plans/evidence/PLAN-026/integration-2026-11-10/README.md). PLAN-026 completed·5-1 완료이며 후속 PLAN-027은 proposed다. Android 빌드/실기기는 이번 범위에서 실행하지 않았다.
+- [완료 증거와 후속 제작 채택 기준](../../../../../docs/plans/evidence/PLAN-026/integration-2026-11-10/README.md). PLAN-026 completed·5-1 완료이며 후속 PLAN-027의 월드 표시 이관도 별도 승인·Editor 검증 후 completed다. 원본 리비전·Sprite 식별자와 기존 아트 승인 상태는 유지한다. Android 빌드/실기기는 이번 범위에서 실행하지 않았다.
 
 ## 2026-11-10 미사용 Sprite 정리
 

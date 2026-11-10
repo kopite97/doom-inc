@@ -217,7 +217,7 @@ namespace MobileGame.SpatialTests
                     var mapTaps = map.AcceptedTaps;
                     yield return ClickVisibleButton(input, "InspectStorage_" + storage.Id.ToString("N"));
                     yield return SettleStatusLayout();
-                    yield return new WaitForSecondsRealtime(.25f);
+                    yield return WaitForRelatedReveal(input, (Vector2)storage.Placement.Origin + new Vector2(1, .5f));
                     AssertRelatedTargetSelection(input, storage, (Vector2)storage.Placement.Origin + new Vector2(1, .5f), mapTaps);
                     var allowsCulture = storage.GetComponent<StorageComponent>().AllowsCulture;
                     yield return ClickVisibleButton(input, "AllowCulture");
@@ -231,17 +231,29 @@ namespace MobileGame.SpatialTests
                     mapTaps = map.AcceptedTaps;
                     yield return ClickVisibleButton(input, "AssignedFacility_" + processor.Id.ToString("N"));
                     yield return SettleStatusLayout();
-                    yield return new WaitForSecondsRealtime(.25f);
+                    yield return WaitForRelatedReveal(input, (Vector2)processor.Placement.Origin + Vector2.one * .5f);
                     AssertRelatedTargetSelection(input, processor, (Vector2)processor.Placement.Origin + Vector2.one * .5f, mapTaps);
                     yield return ClickVisibleButton(input, "AssignedWorker_" + worker.Id.ToString("N") + "_" + worker.Id.ToString("N"));
                     yield return SettleStatusLayout();
-                    yield return new WaitForSecondsRealtime(.25f);
+                    yield return WaitForRelatedReveal(input, worker.Placement.Origin);
                     AssertRelatedTargetSelection(input, worker, worker.Placement.Origin, mapTaps);
                     Assert.That(worker.GetComponent<WorkerComponent>().AssignedFacilityId, Is.EqualTo(processor.Id), "Navigating the relationship must not change the assignment.");
                     LogStatusEvidence("PLAN014_RELATED_TARGET " + size.x + "x" + size.y + " materialWaitToStorage=true destinationControls=true assignedFacilityAndWorker=true exactId=true expanded=true revealed=true mapTapThrough=false");
                 }
                 view.Simulation.ValidateState();
                 LogAssert.NoUnexpectedReceived();
+            }
+        }
+
+        private static IEnumerator WaitForRelatedReveal(PointerScene input, Vector2 cell)
+        {
+            // A fixed real-time sleep can end before the last tween/layout frame after an Editor stall.
+            // Keep a bounded deadline and verify the actual published position, without driving the map.
+            var deadline = Time.realtimeSinceStartupAsDouble + .6;
+            while (!RectTransformUtility.RectangleContainsScreenPoint(input.View.MapViewport, input.Map.CellScreenPoint(cell)))
+            {
+                Assert.That(Time.realtimeSinceStartupAsDouble, Is.LessThan(deadline), "Related-target reveal did not finish within .6 s.");
+                yield return null;
             }
         }
 

@@ -39,7 +39,7 @@ namespace MobileGame.Presentation
         {
             if (screen != null) return;
             screen = new UiCanvas(transform, "Temp_LaboratoryCanvas", 10);
-            playRoot = UiWidgets.Panel("PlayScreen", screen.SafeRoot, UiWidgets.Background).rectTransform;
+            playRoot = UiWidgets.Panel("PlayScreen", screen.SafeRoot, Color.clear).rectTransform;
             titleText = UiWidgets.Label("Title", playRoot, 24); titleText.text = L("heading");
             hudText = UiWidgets.Label("Resources", playRoot, 17);
             organicIcon = UiWidgets.Panel("OrganicMatterQuantityIcon", playRoot, Color.white);
@@ -51,7 +51,7 @@ namespace MobileGame.Presentation
             collapseButton.GetComponentInChildren<UiText>().Initialize(14);
             SetCompactButtonLabel(collapseButton);
             collapseButton.Bind(() => { if (!CanClickScreen()) return; controlsCollapsed = !controlsCollapsed; InvalidateInput(); }, "screen");
-            var mapBackground = UiWidgets.Panel("MapViewport", playRoot, new Color(.025f, .04f, .065f));
+            var mapBackground = UiWidgets.Panel("MapViewport", playRoot, Color.clear);
             MapViewport = mapBackground.rectTransform; MapViewport.gameObject.AddComponent<RectMask2D>();
             mapScreen = MapViewport.gameObject.AddComponent<LaboratoryMapView>(); mapScreen.Initialize(this);
             cameraTools = UiWidgets.Rect("CameraTools", playRoot);

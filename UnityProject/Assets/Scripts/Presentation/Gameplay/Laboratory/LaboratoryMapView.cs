@@ -15,12 +15,13 @@ using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 namespace MobileGame.Presentation
 {
     // Presentation geometry and device input only. All edits go through LaboratoryView commands.
+    [DefaultExecutionOrder(100)]
     public sealed partial class LaboratoryMapView : MonoBehaviour
     {
         private LaboratoryView view;
         private RectTransform viewport;
-        private readonly List<Image> cells = new List<Image>();
-        private readonly List<TextMeshProUGUI> labels = new List<TextMeshProUGUI>();
+        private LaboratoryWorldMap world;
+        public LaboratoryWorldMap World => world;
         private readonly Dictionary<int, Vector2> pointers = new Dictionary<int, Vector2>();
         private readonly List<RaycastResult> hits = new List<RaycastResult>();
         private LaboratoryGesture gesture;
@@ -75,7 +76,7 @@ namespace MobileGame.Presentation
             gesture.Zoomed += (ratio, point) => ZoomAt(ratio, point);
             SubscribeTouch();
         }
-        private void OnEnable() => SubscribeTouch();
+        private void OnEnable() { SubscribeTouch(); if (world != null) world.SetVisible(true); }
         private void SubscribeTouch()
         {
             if (subscribed || gesture == null || !isActiveAndEnabled) return;
@@ -84,6 +85,7 @@ namespace MobileGame.Presentation
         }
         private void OnDisable()
         {
+            if (world != null) world.SetVisible(false);
             StopSelectionPan();
             gesture?.Cancel();
             foreach (var p in pointers) gesture?.End(p.Key, p.Value, true);
@@ -188,7 +190,7 @@ namespace MobileGame.Presentation
         }
         public Vector2 CellScreenPoint(Vector2 cell)
         {
-            var local = Origin + (cell + Vector2.one * 0.5f) * CellSize;
+            var local = LaboratoryWorldMap.WorldToLocal(LaboratoryWorldMap.CellToWorld(cell + Vector2.one * .5f), Origin, CellSize);
             return RectTransformUtility.WorldToScreenPoint(null, viewport.TransformPoint(local));
         }
         public bool TryScreenCell(Vector2 point, out Vector2Int cell)
@@ -268,57 +270,16 @@ namespace MobileGame.Presentation
         private void Draw()
         {
             var map = view.Simulation.Map; if (width != map.Width || height != map.Height) return;
-            while (cells.Count < width * height)
-            {
-                var go = new GameObject("Temp_MapCell", typeof(RectTransform), typeof(Image)); go.transform.SetParent(transform, false);
-                var graphic = go.GetComponent<Image>(); graphic.raycastTarget = false; cells.Add(graphic);
-                var labelObject = new GameObject("Temp_CellLabel", typeof(RectTransform), typeof(TextMeshProUGUI)); labelObject.transform.SetParent(go.transform, false);
-                var text = labelObject.GetComponent<TextMeshProUGUI>(); text.font = font; text.alignment = TextAlignmentOptions.Center;
-                text.raycastTarget = false; text.color = Color.white; text.textWrappingMode = TextWrappingModes.NoWrap;
-                text.richText = false; text.overflowMode = TextOverflowModes.Overflow;
-                var rect = text.rectTransform; rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one; rect.offsetMin = rect.offsetMax = Vector2.zero;
-                labels.Add(text);
-            }
-            var placements = map.GetPlacements(); var edit = map.Commands.Edit;
+            if (world == null) world = new LaboratoryWorldMap(view.transform, view.UiAssets.WorldMaterial, view.UiCanvas);
+            world.SyncCamera(viewport, center, CellSize);
+            world.UpdateFloor(width, height, view.UiAssets);
+            var edit = map.Commands.Edit;
             var constructing = view.Simulation.ConstructionDefinition != null;
             var previewOrigin = constructing ? view.Simulation.ConstructionOrigin : edit?.Origin;
             var previewDefinition = view.Simulation.ConstructionDefinition;
             if (previewDefinition == null && edit != null && view.Simulation.Registry.TryGet(edit.ThingId, out var moving)) previewDefinition = moving.Definition as FacilityData;
             var rotation = constructing ? view.Simulation.ConstructionRotation : edit?.Rotation ?? QuarterTurn.None;
             var valid = constructing ? view.Simulation.ConstructionValidation.Succeeded : edit?.Validation.Succeeded ?? false;
-            var area = previewDefinition != null && previewOrigin.HasValue ? new RectInt(previewOrigin.Value, FacilityGeometry.GetSize(previewDefinition, rotation)) : new RectInt();
-            var interaction = previewDefinition != null && previewOrigin.HasValue ? (Vector2Int?)FacilityGeometry.GetInteractionCell(previewDefinition, previewOrigin.Value, rotation) : null;
-            var size = CellSize; var origin = Origin;
-            var hasFloor = DrawFloor(size, origin);
-            for (var i = 0; i < cells.Count; i++)
-            {
-                var active = i < width * height; cells[i].gameObject.SetActive(active); if (!active) continue;
-                var point = new Vector2Int(i % width, i / width); var rect = cells[i].rectTransform;
-                rect.anchorMin = rect.anchorMax = Vector2.zero; rect.pivot = Vector2.zero;
-                rect.anchoredPosition = origin - viewport.rect.min + (Vector2)point * size; rect.sizeDelta = Vector2.one * Mathf.Max(1, size - 2);
-                var facility = placements.FirstOrDefault(p => p.Kind == ThingKind.Facility && p.Contains(point));
-                var creatures = placements.Where(p => p.Kind == ThingKind.Creature && p.Contains(point)).ToArray();
-                var label = placements.Any(p => p.InteractionCell == point) ? "I" : "";
-                var color = hasFloor ? Color.clear : new Color(.12f, .16f, .21f);
-                if (facility != null && view.Simulation.Registry.TryGet(facility.ThingId, out var thing))
-                {
-                    label = ((FacilityData)thing.Definition).Role.ToString().Substring(0, 1) + thing.CreationOrder;
-                    color = thing.GetComponent<ConstructionComponent>().IsComplete ? new Color(.18f, .42f, .62f) : new Color(.56f, .43f, .12f);
-                    if (view.SelectedId == thing.Id) color *= 1.5f;
-                    if (HasSuppliedArt(thing)) { label = ""; color = Color.clear; }
-                }
-                else if (creatures.Length > 0)
-                {
-                    var creatureThing = view.Simulation.Registry.Things.First(t => t.Id == creatures[0].ThingId);
-                    label = ((CreatureData)creatureThing.Definition).Role.ToString().Substring(0, 1) + creatureThing.CreationOrder + (creatures.Length > 1 ? "+" : "");
-                    color = new Color(.7f, .4f, .15f); if (creatures.Any(p => p.ThingId == view.SelectedId)) color *= 1.4f;
-                    if (creatures.All(p => view.Simulation.Registry.TryGet(p.ThingId, out var c) && HasSuppliedArt(c)))
-                    { label = ""; color = Color.clear; }
-                }
-                if (previewOrigin.HasValue && area.Contains(point)) { label = "+"; color = valid ? new Color(.12f, .55f, .32f) : new Color(.65f, .15f, .18f); }
-                if (interaction == point) { label = "I"; color = new Color(.5f, .4f, .65f); }
-                cells[i].color = color; labels[i].text = label; labels[i].fontSize = Mathf.Clamp((int)(size * .32f), 9, 24);
-            }
             DrawArt(previewDefinition, previewOrigin, rotation, valid);
         }
     }

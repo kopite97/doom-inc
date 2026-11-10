@@ -5,7 +5,7 @@
 - 개발 상태: **환경·선행 기반 세 묶음·1~4단계 및 D-070 완료**. 단계별 구현과 검증 근거는 [구현 로드맵](05-development/02-implementation/roadmap.md)을 따른다.
 - 3단계 완료: [PLAN-010 침공형 방출·외부 활동·성과 누적·전과 보고](../plans/PLAN-010-invasion-activity-and-reports.md)와 [PLAN-011 멸망 연출·결과 화면·한 판 종료와 재시작 완결](../plans/PLAN-011-destruction-results-and-restart.md)은 completed다. PC 가로에서 유료 생산부터 목표·연출·결과·재시작·두 번째 판 종료까지 검증했다.
 - 데이터 기반 완료: PLAN-012는 Edit 236/236·Domain Reload 양쪽 Play 각 13/13·오류/경고 0으로 데이터 이관·저장 호환성과 기존 두 판 흐름을 확인했다. Android 스크립트 컴파일·CSV 참조 검사까지 완료했다.
-- 현재 개발 상태: PLAN-001~026은 completed이며 active는 0개다. 아트 5-1의 실제 게임 화면 승인까지 완료했다. 최신 Android 통합 검증과 4단계·D-070 최종 판정은 [PLAN-025](../plans/PLAN-025-android-integration-and-prototype-completion.md)에서 완료했다. SM-G977N/Android 12·현재 임시 표현 기준이며 경미한 표시 결함과 측정 한계는 해당 증거에 남겼다. 정식 아트 교체는 후속 5단계에서 진행하며 실제 Google Sheets 연결도 별도 후속 범위다.
+- 현재 개발 상태: PLAN-001~027은 completed이며 active는 0개다. 아트 5-1의 실제 게임 화면 승인까지 완료했다. 최신 Android 통합 검증과 4단계·D-070 최종 판정은 [PLAN-025](../plans/PLAN-025-android-integration-and-prototype-completion.md)에서 완료했다. SM-G977N/Android 12·현재 임시 표현 기준이며 경미한 표시 결함과 측정 한계는 해당 증거에 남겼다. 정식 아트 교체는 후속 5단계에서 진행하며 실제 Google Sheets 연결도 별도 후속 범위다.
 - 데이터 전환 완료: [PLAN-015 주제별 JSON 정의 데이터와 초기 로딩 전환](../plans/PLAN-015-topic-json-definition-data.md)은 completed다. 전용 디렉터리의 주제별 JSON·DTO로 전환하고 SO 결합·영속 GameDataStore·저장 호환성을 유지한다. Editor 런타임 테스트는 포함하며 빌드 테스트는 사용자 지시로 제외한다. 두 검토 보완을 반영하고 구현·Edit 294/294·Domain Reload 양쪽 Play 각각 36/36을 확인했다. 빌드 테스트는 실행하지 않았다.
 - 최근 작업: [PLAN-016 Bootstrap·Title·Laboratory 씬 흐름과 Editor 직접 진입](../plans/PLAN-016-bootstrap-title-and-scene-flow.md)은 completed다. 공용 LoadingScreen·싱글톤 씬 전환·직접 실행·저장/설정 실패 복구를 구현하고 Editor 검증을 마쳤다. 빌드 테스트는 사용자 지시에 따라 실행하지 않았다.
 - 최근 구조 정비: [PLAN-017 생산 판정·파일 저장·상태 계약·공용 UI 추상화 정비](../plans/PLAN-017-production-storage-status-and-shared-ui.md)는 completed다. 두 검토 보완과 네 영역의 구현·Editor 회귀·실제 화면/저장/반복 종료 검증을 마쳤다. 빌드 테스트는 실행하지 않았다.
@@ -22,7 +22,8 @@
 - [PLAN-024 침공형 방출 성공 피드백과 화면 밖 시설 선택 시 지도 이동](../plans/PLAN-024-release-feedback-and-map-reveal.md)은 completed다.
 - 최근 완료: [PLAN-025 최신 버전 Android 통합 검증과 프로토타입 완료 판정](../plans/PLAN-025-android-integration-and-prototype-completion.md). Editor 회귀·승인된 Android 빌드/기기 검증·환경 복원을 완료했다. 다음 PLAN은 활성화하지 않았다.
 - 후속 5단계: [정식 아트 제작·적용 로드맵](05-development/02-implementation/art-roadmap.md)의 5-1은 [PLAN-026](../plans/PLAN-026-art-style-scale-and-sample-integration.md) `art` / `completed`다. 바닥 r003·획득시설 r003·프로토타입 r002·유기물/Build r001, 106 Sprite의 적용·시설/4방향 보조형 동작·머리 위 운반·Editor 검증·사용자 게임 화면 승인을 완료했다. 5-2 이후와 새 아트의 Android 검증은 별도이며 PLAN-025의 표시/GC 개선 후보는 보류한다.
-- 표현 기반 후보: [PLAN-027 연구소 Tilemap·SpriteRenderer 전환](../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 `development` / `proposed`다. 바닥·시설/개체를 월드 표현으로 전환하고 UI는 uGUI로 유지하는 계획이며 실행하지 않았다. 선행 PLAN-026은 완료했으며 별도 활성화 승인을 기다린다. 현재 active는 0개다.
+- 표현 기반 완료: [PLAN-027 연구소 Tilemap·SpriteRenderer 전환](../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 `development` / `completed`다. 2026-11-10 사용자 승인 후 바닥 Tilemap·시설/개체 SpriteRenderer·UI uGUI 전환과 Editor 검증을 완료했다. 원본 아트·게임 상태를 보존했고 active는 0개다. PLAN-028은 proposed로 남긴다.
+- 이동 표시 후보: [PLAN-028 연구소 생명체 이동 보간](../plans/PLAN-028-creature-movement-interpolation.md)은 `development` / `proposed`다. 작업 이동·유휴 배회와 몸체/운반물/선택을 동기화하며 논리 칸·저장·작업 타이밍은 유지한다. 권장 순서는 PLAN-027 → PLAN-028이며 별도 활성화 승인 전까지 실행하지 않는다.
 
 ## 에이전트의 읽기 순서
 
