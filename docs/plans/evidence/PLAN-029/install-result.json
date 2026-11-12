@@ -1,0 +1,304 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "UnityEditor.AssetDatabase.Refresh();\nvar names = new[] { \"Processing\", \"Cultivation\", \"Storage\" };\nvar before = names.Select((name, i) => new { name, guid = UnityEditor.AssetDatabase.AssetPathToGUID(\"Assets/Sprites/Require/PLAN-029/PLAN-029-SPR-00\" + (i + 1) + \"/r001/\" + name + \".png\") }).ToArray();\nMobileGame.Foundation.Editor.LaboratoryFacilityArtBuilder.InstallReceived();\nvar art = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Presentation.LaboratoryArtAssets>(MobileGame.Foundation.Editor.LaboratoryUiAssetBuilder.ArtPath);\nvar serialized = new UnityEditor.SerializedObject(art);\nreturn new { before, bindingCount = serialized.FindProperty(\"facilities\").arraySize, assets = names.Select(name => new { name, path = \"Assets/Sprites/Facility/\" + name + \"/\" + name + \".png\", guid = UnityEditor.AssetDatabase.AssetPathToGUID(\"Assets/Sprites/Facility/\" + name + \"/\" + name + \".png\"), sprites = UnityEditor.AssetDatabase.LoadAllAssetsAtPath(\"Assets/Sprites/Facility/\" + name + \"/\" + name + \".png\").OfType<UnityEngine.Sprite>().Select(sprite => new { sprite.name, rect = sprite.rect.ToString(), pivot = sprite.pivot.ToString() }).ToArray() }).ToArray(), play = UnityEditor.EditorApplication.isPlaying, dirty = UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "before": [
+          {
+            "name": "Processing",
+            "guid": "07c5e2d5f180f2c4594ab10f1948b283"
+          },
+          {
+            "name": "Cultivation",
+            "guid": "d1b9b6ca56b67af45813b98cdc13d3f4"
+          },
+          {
+            "name": "Storage",
+            "guid": "477806f127ac7184192600c8d4afea72"
+          }
+        ],
+        "bindingCount": 3,
+        "assets": [
+          {
+            "name": "Processing",
+            "path": "Assets/Sprites/Facility/Processing/Processing.png",
+            "guid": "07c5e2d5f180f2c4594ab10f1948b283",
+            "sprites": [
+              {
+                "name": "Processing_Complete_01",
+                "rect": "(x:0.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Complete_02",
+                "rect": "(x:128.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Complete_03",
+                "rect": "(x:256.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Complete_04",
+                "rect": "(x:384.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Idle_01",
+                "rect": "(x:0.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Idle_02",
+                "rect": "(x:128.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Idle_03",
+                "rect": "(x:256.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Idle_04",
+                "rect": "(x:384.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Working_01",
+                "rect": "(x:0.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Working_02",
+                "rect": "(x:128.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Working_03",
+                "rect": "(x:256.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Working_04",
+                "rect": "(x:384.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Working_05",
+                "rect": "(x:0.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Working_06",
+                "rect": "(x:128.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Working_07",
+                "rect": "(x:256.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Processing_Working_08",
+                "rect": "(x:384.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              }
+            ]
+          },
+          {
+            "name": "Cultivation",
+            "path": "Assets/Sprites/Facility/Cultivation/Cultivation.png",
+            "guid": "d1b9b6ca56b67af45813b98cdc13d3f4",
+            "sprites": [
+              {
+                "name": "Cultivation_Complete_01",
+                "rect": "(x:0.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Complete_02",
+                "rect": "(x:128.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Complete_03",
+                "rect": "(x:256.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Complete_04",
+                "rect": "(x:384.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Idle_01",
+                "rect": "(x:0.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Idle_02",
+                "rect": "(x:128.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Idle_03",
+                "rect": "(x:256.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Idle_04",
+                "rect": "(x:384.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Working_01",
+                "rect": "(x:0.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Working_02",
+                "rect": "(x:128.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Working_03",
+                "rect": "(x:256.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Working_04",
+                "rect": "(x:384.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Working_05",
+                "rect": "(x:0.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Working_06",
+                "rect": "(x:128.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Working_07",
+                "rect": "(x:256.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              },
+              {
+                "name": "Cultivation_Working_08",
+                "rect": "(x:384.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)"
+              }
+            ]
+          },
+          {
+            "name": "Storage",
+            "path": "Assets/Sprites/Facility/Storage/Storage.png",
+            "guid": "477806f127ac7184192600c8d4afea72",
+            "sprites": [
+              {
+                "name": "Storage_Idle_01",
+                "rect": "(x:0.00, y:384.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Idle_02",
+                "rect": "(x:192.00, y:384.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Idle_03",
+                "rect": "(x:384.00, y:384.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Idle_04",
+                "rect": "(x:576.00, y:384.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Receive_01",
+                "rect": "(x:0.00, y:256.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Receive_02",
+                "rect": "(x:192.00, y:256.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Receive_03",
+                "rect": "(x:384.00, y:256.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Receive_04",
+                "rect": "(x:576.00, y:256.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Receive_05",
+                "rect": "(x:0.00, y:128.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Receive_06",
+                "rect": "(x:192.00, y:128.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Send_01",
+                "rect": "(x:384.00, y:128.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Send_02",
+                "rect": "(x:576.00, y:128.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Send_03",
+                "rect": "(x:0.00, y:0.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Send_04",
+                "rect": "(x:192.00, y:0.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Send_05",
+                "rect": "(x:384.00, y:0.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              },
+              {
+                "name": "Storage_Send_06",
+                "rect": "(x:576.00, y:0.00, width:192.00, height:128.00)",
+                "pivot": "(96.00, 64.00)"
+              }
+            ]
+          }
+        ],
+        "play": false,
+        "dirty": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

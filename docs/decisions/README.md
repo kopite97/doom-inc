@@ -45,3 +45,4 @@
 | [TECH-016](TECH-016-popup-lifetime-and-presentation.md) | 공용 Popup·요청 소유 범위·표시/입력·확인 인계 | [PLAN-019](../plans/PLAN-019-shared-popup-system.md) |
 | [TECH-017](TECH-017-laboratory-world-rendering.md) | 연구소 월드 카메라·Tilemap·SpriteRenderer와 uGUI 투영 | [PLAN-027](../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md) |
 | [TECH-018](TECH-018-creature-movement-interpolation.md) | 읽기 전용 이동 관찰·화면 소유 보간·표시와 입력 게시·세션 수명 | [PLAN-028](../plans/PLAN-028-creature-movement-interpolation.md) |
+| [TECH-019](TECH-019-facility-art-and-committed-events.md) | 시설별 프레임·실제 생산/이전 성공 관찰·화면 소유 반응 | [PLAN-029](../plans/PLAN-029-laboratory-processing-cultivation-storage-art.md) |

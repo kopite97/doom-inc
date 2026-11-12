@@ -1,0 +1,42 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 2.37,
+      "summary": {
+        "total": 2,
+        "passed": 1,
+        "failed": 1,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.FacilityArtKeepsFourRotationsPreviewSelectionAndBothLayouts",
+          "Status": "Passed",
+          "Duration": 1.7482413,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.FacilityArtObservesActualProductionPauseAndCommittedTransfers",
+          "Status": "Failed",
+          "Duration": 0.5076771,
+          "Message": "  Expected: String starting with \"Storage_Receive_\"\r\n  But was:  \"Storage_Send_02\"\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<FacilityArtObservesActualProductionPauseAndCommittedTransfers>d__13.MoveNext () [0x0096f] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Facilities.cs:73\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

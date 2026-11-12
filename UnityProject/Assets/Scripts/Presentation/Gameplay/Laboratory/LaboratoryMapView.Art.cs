@@ -33,6 +33,7 @@ namespace MobileGame.Presentation
             public Vector2Int Cell;
             public bool Initialized;
             public readonly CreatureMotion Movement = new CreatureMotion();
+            public FacilityAnimation Facility;
             public Vector2 Ground;
             public Rect HitBounds;
             public bool HitVisible;
@@ -60,6 +61,8 @@ namespace MobileGame.Presentation
             {
                 world?.SetVisible(isActiveAndEnabled);
                 artSimulation.GatheringCompleted += OnGatheringCompleted;
+                artSimulation.ProductionCompleted += OnProductionCompleted;
+                artSimulation.Registry.ResourceTransferred += OnResourceTransferred;
             }
         }
         public void ReleaseDisplay()
@@ -69,7 +72,12 @@ namespace MobileGame.Presentation
         }
         private void ReleaseArtSimulation()
         {
-            if (artSimulation != null) artSimulation.GatheringCompleted -= OnGatheringCompleted;
+            if (artSimulation != null)
+            {
+                artSimulation.GatheringCompleted -= OnGatheringCompleted;
+                artSimulation.ProductionCompleted -= OnProductionCompleted;
+                artSimulation.Registry.ResourceTransferred -= OnResourceTransferred;
+            }
             foreach (var item in thingArt.Values) RemoveArt(item);
             thingArt.Clear(); placedArt.Clear(); gatheringCompletions.Clear();
             removedArt.Clear(); creatureCounts.Clear(); annotatedCreatureCells.Clear(); carriedResources.Clear();
@@ -90,7 +98,8 @@ namespace MobileGame.Presentation
             if (item.Count != null) Destroy(item.Count.gameObject);
         }
         private bool HasSuppliedArt(Thing thing) => view.UiAssets?.Art != null
-            && (view.UiAssets.Art.HasGathering(thing.Definition) || view.UiAssets.Art.HasPrototype(thing.Definition));
+            && (view.UiAssets.Art.HasGathering(thing.Definition) || view.UiAssets.Art.HasPrototype(thing.Definition)
+                || view.UiAssets.Art.TryFacility(thing.Definition, out _));
         private int CompareArt(Thing a, Thing b)
         {
             var y = thingArt[b.Id].Ground.y.CompareTo(thingArt[a.Id].Ground.y);
@@ -161,7 +170,8 @@ namespace MobileGame.Presentation
                 var worldPosition = (Vector3)LaboratoryWorldMap.CellToWorld(item.Ground + size * .5f);
                 if (item.Root.position != worldPosition) item.Root.position = worldPosition;
                 item.Body.color = Color.white;
-                if (assets != null && assets.HasGathering(thing.Definition)) DrawGathering(thing, item, assets, delta);
+                if (assets != null && assets.TryFacility(thing.Definition, out var facilityArt)) DrawFacility(thing, item, facilityArt);
+                else if (assets != null && assets.HasGathering(thing.Definition)) DrawGathering(thing, item, assets, delta);
                 else if (assets != null && assets.HasPrototype(thing.Definition)) DrawPrototype(thing, item, assets, delta);
                 else DrawFallback(thing, item);
                 DrawBorder(item, thing.Id == view.SelectedId, new Color(1, .88f, .35f));
@@ -303,8 +313,10 @@ namespace MobileGame.Presentation
             var size = (Vector2)FacilityGeometry.GetSize(definition, rotation);
             previewArt.Size = size * 2;
             previewArt.Root.position = LaboratoryWorldMap.CellToWorld((Vector2)origin.Value + size * .5f);
-            var supplied = assets != null && assets.HasGathering(definition);
-            previewArt.Body.sprite = supplied ? assets.GatheringFrame(0) : world.Solid;
+            var previewSprite = assets != null && assets.TryFacility(definition, out var facilitySet) ? facilitySet.Frame(0)
+                : assets != null && assets.HasGathering(definition) ? assets.GatheringFrame(0) : null;
+            var supplied = previewSprite != null;
+            previewArt.Body.sprite = supplied ? previewSprite : world.Solid;
             previewArt.Body.transform.localPosition = Vector3.zero;
             previewArt.Body.transform.localScale = supplied ? Vector3.one : (Vector3)(size * 2) + Vector3.forward;
             previewArt.Body.transform.localRotation = supplied ? Quaternion.Euler(0, 0, -90 * (int)rotation) : Quaternion.identity;

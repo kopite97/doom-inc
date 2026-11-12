@@ -8,6 +8,26 @@ namespace MobileGame.Foundation.Tests
     public sealed class PartialResourceTransferTests : FoundationTestFixture
     {
         [Test]
+        public void TransferObservationsReportSuccessfulDirectionsAndAmountsOnly()
+        {
+            var registry = new ThingRegistry();
+            var source = CreateHolder(registry, CreateStorageDefinition("fixture.source"));
+            var target = CreateHolder(registry, CreateStorageDefinition("fixture.target"));
+            var events = new System.Collections.Generic.List<(Guid, Guid, int)>();
+            registry.ResourceTransferred += (from, to, amount) => events.Add((from, to, amount));
+            var stock = registry.CreateResource(CreateResourceDefinition(), 5, source);
+            registry.TransferResource(stock, source);
+            Assert.Throws<ArgumentOutOfRangeException>(() => registry.TransferResource(stock, target, 0));
+            Assert.That(events, Is.Empty);
+            var split = registry.TransferResource(stock, target, 2);
+            registry.TransferResource(split, source);
+            CollectionAssert.AreEqual(new[] { (source.Owner.Id, target.Owner.Id, 2), (target.Owner.Id, source.Owner.Id, 2) }, events);
+            registry.MergeResources(stock, split);
+            registry.ConsumeResource(stock, 1);
+            Assert.That(events.Count, Is.EqualTo(2));
+        }
+
+        [Test]
         public void PartialTransferConservesQuantityAndWholeTransferKeepsIdentity()
         {
             var registry = new ThingRegistry();

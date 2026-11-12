@@ -5,7 +5,7 @@
 - 개발 상태: **환경·선행 기반 세 묶음·1~4단계 및 D-070 완료**. 단계별 구현과 검증 근거는 [구현 로드맵](05-development/02-implementation/roadmap.md)을 따른다.
 - 3단계 완료: [PLAN-010 침공형 방출·외부 활동·성과 누적·전과 보고](../plans/PLAN-010-invasion-activity-and-reports.md)와 [PLAN-011 멸망 연출·결과 화면·한 판 종료와 재시작 완결](../plans/PLAN-011-destruction-results-and-restart.md)은 completed다. PC 가로에서 유료 생산부터 목표·연출·결과·재시작·두 번째 판 종료까지 검증했다.
 - 데이터 기반 완료: PLAN-012는 Edit 236/236·Domain Reload 양쪽 Play 각 13/13·오류/경고 0으로 데이터 이관·저장 호환성과 기존 두 판 흐름을 확인했다. Android 스크립트 컴파일·CSV 참조 검사까지 완료했다.
-- 현재 개발 상태: PLAN-001~028은 completed이며 active 0개다. 아트 5-1의 실제 게임 화면 승인과 PLAN-025의 4단계·D-070 완료 판정은 유지한다. 정식 아트 후속 단계와 실제 Google Sheets 연결은 별도 범위다.
+- 현재 개발 상태: PLAN-001~029는 completed이며 active 0개다. 아트 5-1의 실제 게임 화면 승인과 PLAN-025의 4단계·D-070 완료 판정은 유지한다. 정식 아트 후속 단계와 실제 Google Sheets 연결은 별도 범위다.
 - 데이터 전환 완료: [PLAN-015 주제별 JSON 정의 데이터와 초기 로딩 전환](../plans/PLAN-015-topic-json-definition-data.md)은 completed다. 전용 디렉터리의 주제별 JSON·DTO로 전환하고 SO 결합·영속 GameDataStore·저장 호환성을 유지한다. Editor 런타임 테스트는 포함하며 빌드 테스트는 사용자 지시로 제외한다. 두 검토 보완을 반영하고 구현·Edit 294/294·Domain Reload 양쪽 Play 각각 36/36을 확인했다. 빌드 테스트는 실행하지 않았다.
 - 최근 작업: [PLAN-016 Bootstrap·Title·Laboratory 씬 흐름과 Editor 직접 진입](../plans/PLAN-016-bootstrap-title-and-scene-flow.md)은 completed다. 공용 LoadingScreen·싱글톤 씬 전환·직접 실행·저장/설정 실패 복구를 구현하고 Editor 검증을 마쳤다. 빌드 테스트는 사용자 지시에 따라 실행하지 않았다.
 - 최근 구조 정비: [PLAN-017 생산 판정·파일 저장·상태 계약·공용 UI 추상화 정비](../plans/PLAN-017-production-storage-status-and-shared-ui.md)는 completed다. 두 검토 보완과 네 영역의 구현·Editor 회귀·실제 화면/저장/반복 종료 검증을 마쳤다. 빌드 테스트는 실행하지 않았다.
@@ -24,6 +24,7 @@
 - 후속 5단계: [정식 아트 제작·적용 로드맵](05-development/02-implementation/art-roadmap.md)의 5-1은 [PLAN-026](../plans/PLAN-026-art-style-scale-and-sample-integration.md) `art` / `completed`다. 바닥 r003·획득시설 r003·프로토타입 r002·유기물/Build r001, 106 Sprite의 적용·시설/4방향 보조형 동작·머리 위 운반·Editor 검증·사용자 게임 화면 승인을 완료했다. 5-2 이후와 새 아트의 Android 검증은 별도이며 PLAN-025의 표시/GC 개선 후보는 보류한다.
 - 표현 기반 완료: [PLAN-027 연구소 Tilemap·SpriteRenderer 전환](../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 `development` / `completed`다. 2026-11-10 사용자 승인 후 바닥 Tilemap·시설/개체 SpriteRenderer·UI uGUI 전환과 Editor 검증을 완료했다. 원본 아트·게임 상태를 보존했다.
 - 이동 표시 완료: [PLAN-028 연구소 생명체 이동 보간](../plans/PLAN-028-creature-movement-interpolation.md)은 `development` / `completed`다. 빌드·고부하 제외 재개 요청에 따라 현재 구현과 기존 기능 검증 증거의 동일성을 확인했다. 추가 계측은 실행하지 않았으며 기존 GC/RenderLoop 증가와 미측정 한계는 해당 PLAN에 보존했다. 신규 Sprite 요청은 없다.
+- 최근 완료 아트 작업: [PLAN-029 세 시설 정식 아트 제작·적용](../plans/PLAN-029-laboratory-processing-cultivation-storage-art.md)은 `art` / `completed`다. 5-2 중 가공시설·배양시설·저장소의 외형·동작 3종(총 48프레임)과 표시 연결·사용자 시각 확인 범위다. 상세 외형과 제출 규격을 제안했고 빌드·고부하는 제외했다. 세 시설 r001 제작·파일 검증·Art 시각 승인·PNG 수령 완료다. 세 시설 r001의 Unity 적용·전체 참조 연결과 일반 Editor 기술 검증을 마쳤다. 2026-11-12 사용자 게임 화면·동작 승인까지 마쳤다. active 0개이며 5-2 전체와 후속 아트 단계는 별도다.
 
 ## 에이전트의 읽기 순서
 

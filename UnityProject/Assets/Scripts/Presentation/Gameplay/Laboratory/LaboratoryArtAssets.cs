@@ -13,6 +13,14 @@ namespace MobileGame.Presentation
         [SerializeField] private Vector2[] prototypeHeads;
         [SerializeField] private Sprite[] cargoSprites;
         [SerializeField] private Vector2[] cargoSupports;
+        [SerializeField] private FacilityArtSet[] facilities;
+        public bool TryFacility(ThingData definition, out FacilityArtSet result)
+        {
+            if (facilities != null)
+                foreach (var entry in facilities)
+                    if (entry != null && entry.Matches(definition)) { result = entry; return true; }
+            result = null; return false;
+        }
         public Vector2 CargoSupport(Sprite sprite)
         {
             if (cargoSprites != null && cargoSupports != null)

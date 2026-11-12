@@ -41,6 +41,7 @@ namespace MobileGame.Foundation.Editor
             }
 
             var font = EnsureFont();
+            LaboratoryFacilityArtBuilder.EnsureReferences();
             AssetDatabase.ImportAsset(FontLicensePath, ImportAssetOptions.ForceSynchronousImport);
             var binding = new LaboratoryUiAssets(font, icons, AssetDatabase.LoadAssetAtPath<TextAsset>(FontLicensePath),
                 AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Feel/FeelDemos/Duck/Sounds/FeelDuckWoosh.wav"), LoadFloorTiles(),

@@ -20,6 +20,8 @@ namespace MobileGame.Foundation
 
         // Session-local invalidation for work which depends on stock ownership or quantity.
         public long AvailabilityVersion { get; private set; }
+        // Successful ownership changes only; creation, consumption and same-holder merges are separate operations.
+        public event Action<Guid, Guid, int> ResourceTransferred;
 
         public long LastCreationOrder => lastCreationOrder;
 
@@ -58,8 +60,11 @@ namespace MobileGame.Foundation
             RequireHolder(destination);
             // All validation precedes this single source-of-truth change. Same-holder transfer is harmless.
             if (resource.HolderId == destination.Owner.Id) return;
+            var sourceId = resource.HolderId.Value;
+            var amount = resource.GetComponent<ResourceStackComponent>().Quantity;
             resource.SetHolder(destination.Owner.Id);
             AvailabilityVersion++;
+            ResourceTransferred?.Invoke(sourceId, destination.Owner.Id, amount);
         }
 
         public Thing TransferResource(Thing resource, ResourceContainerComponent destination, int amount)
@@ -76,8 +81,10 @@ namespace MobileGame.Foundation
 
             // Construct and initialize the new stack before changing the original quantity.
             // Failed validation or component creation leaves inventory and identity order intact.
+            var sourceId = resource.HolderId.Value;
             var split = Register((ResourceData)resource.Definition, destination.Owner.Id, amount);
             stack.SetQuantity(stack.Quantity - amount);
+            if (sourceId != destination.Owner.Id) ResourceTransferred?.Invoke(sourceId, destination.Owner.Id, amount);
             return split;
         }
 

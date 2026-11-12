@@ -1,0 +1,69 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "tail": "300",
+      "level": "warn"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 1,
+          "timestampUtc": "2026-11-12T13:43:08.8532888Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "[Worker2] Import Error Code:(4)\nMessage: Build asset version error: assets/sprites/require/plan-029/readme.md in SourceAssetDB has modification time of '2026-11-12T12:58:51.570429Z' while content on disk has modification time of '2026-11-12T13:42:13.1383982Z'\n",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 2,
+          "timestampUtc": "2026-11-12T13:57:04.0065184Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Facilities.cs(124,40): error CS0246: The type or namespace name 'LaboratoryGameViewSize' could not be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 3,
+          "timestampUtc": "2026-11-12T13:57:45.5282987Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Facilities.cs(129,40): error CS0246: The type or namespace name 'LaboratoryGameViewSize' could not be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        }
+      ],
+      "cursor": 59,
+      "session": "6b0dfda650e4454490e3175c7d7a2ca1",
+      "returned": 3,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 2,
+        "warn": 1,
+        "log": 56
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-12T14:06:13.8620984Z",
+        "ageMs": 144,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 5,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

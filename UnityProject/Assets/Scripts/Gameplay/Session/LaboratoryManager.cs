@@ -16,6 +16,8 @@ namespace MobileGame.Gameplay
         // Notification only: production is already committed before presentation observes it.
         public event Action<Guid> GatheringCompleted;
         internal void NotifyGatheringCompleted(Guid facilityId) => GatheringCompleted?.Invoke(facilityId);
+        public event Action<Guid> ProductionCompleted;
+        internal void NotifyProductionCompleted(Guid facilityId) => ProductionCompleted?.Invoke(facilityId);
         internal double AdvanceEnd { get; private set; }
         internal long Step { get; private set; }
         private long workChanges;

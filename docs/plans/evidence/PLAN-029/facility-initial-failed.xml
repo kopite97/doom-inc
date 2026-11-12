@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-12 13:59:30Z" end-time="2026-11-12 13:59:32Z" duration="2.3677829">
+  <test-suite type="TestSuite" id="1635" name="UnityProject" fullname="UnityProject" runstate="Runnable" testcasecount="96" result="Failed" site="Child" start-time="2026-11-12 13:59:30Z" end-time="2026-11-12 13:59:32Z" duration="2.367783" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1628" name="MobileGame.Spatial.PlayMode.Tests.dll" fullname="C:/Dev/Unity/Doom_Inc/UnityProject/Library/ScriptAssemblies/MobileGame.Spatial.PlayMode.Tests.dll" runstate="Runnable" testcasecount="95" result="Failed" site="Child" start-time="2026-11-12 13:59:30Z" end-time="2026-11-12 13:59:32Z" duration="2.361216" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="5148" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1629" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="95" result="Failed" site="Child" start-time="2026-11-12 13:59:30Z" end-time="2026-11-12 13:59:32Z" duration="2.280900" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1630" name="SpatialTests" fullname="MobileGame.SpatialTests" runstate="Runnable" testcasecount="95" result="Failed" site="Child" start-time="2026-11-12 13:59:30Z" end-time="2026-11-12 13:59:32Z" duration="2.259612" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1561" name="LaboratoryViewTests" fullname="MobileGame.SpatialTests.LaboratoryViewTests" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-11-12 13:59:30Z" end-time="2026-11-12 13:59:32Z" duration="2.258290" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1570" name="FacilityArtKeepsFourRotationsPreviewSelectionAndBothLayouts" fullname="MobileGame.SpatialTests.LaboratoryViewTests.FacilityArtKeepsFourRotationsPreviewSelectionAndBothLayouts" methodname="FacilityArtKeepsFourRotationsPreviewSelectionAndBothLayouts" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="512061452" result="Passed" start-time="2026-11-12 13:59:30Z" end-time="2026-11-12 13:59:32Z" duration="1.748241" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="FacilityAnimation" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1569" name="FacilityArtObservesActualProductionPauseAndCommittedTransfers" fullname="MobileGame.SpatialTests.LaboratoryViewTests.FacilityArtObservesActualProductionPauseAndCommittedTransfers" methodname="FacilityArtObservesActualProductionPauseAndCommittedTransfers" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="434864853" result="Failed" start-time="2026-11-12 13:59:32Z" end-time="2026-11-12 13:59:32Z" duration="0.507677" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="FacilityAnimation" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: String starting with "Storage_Receive_"
+  But was:  "Storage_Send_02"
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<FacilityArtObservesActualProductionPauseAndCommittedTransfers>d__13.MoveNext () [0x0096f] in C:\Dev\Unity\Doom_Inc\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.Facilities.cs:73
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: C:/Users/nellu/AppData/LocalLow/DefaultCompany/UnityProject\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

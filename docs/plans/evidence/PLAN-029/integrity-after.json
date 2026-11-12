@@ -1,0 +1,43 @@
+{
+  "existingFilesChecked": 259,
+  "changed": {
+    "UnityProject/Assets/SO/Facility/Cultivation.asset": {
+      "before": "ee4801ae6327f9769ed10d3a9dda315d4cdebcde8a5c6a5224cc4b83badd9e5f",
+      "after": "aadd6fa21b3b1d584ea6e9a53515063902ac2b36681d959c309163905673d049"
+    },
+    "UnityProject/Assets/SO/Facility/Processing.asset": {
+      "before": "4fd1e0fefc9e7b86d04ca7a24b1ae5590f5904fa184805f8fed3545bb0c07423",
+      "after": "7038928f5af8b322c5a48929eb76bc7dbaf91a20ee42f6e463ec4fc2059fcdf4"
+    },
+    "UnityProject/Assets/SO/Facility/Storage.asset": {
+      "before": "daa188c05a076598809b3535e0367d717697918af74f4d2fd89e55e0b6629785",
+      "after": "56fb946d3cff054be11cbde1c25ae22ed7d80273020d9c5514ea8793bc6a554f"
+    },
+    "UnityProject/Assets/SO/Laboratory/LaboratoryArt.asset": {
+      "before": "e4ba40995edbe3261fbd78a0a3b4bfad0e3044a179255542ffafefd3319fc7e4",
+      "after": "92c7e30dc8c9b4c629616e5c086cdfc72c8844156763dc121e9def0434db0c2e"
+    }
+  },
+  "unexpectedChanges": [],
+  "originalArtRevisions": [
+    {
+      "asset": "Processing",
+      "revision": 1,
+      "sha256": "f2cdfe9162fd3c018d361262b89fc0014161d25907ec1848c94361fc1a70ed04",
+      "artAndUnityHashesMatch": true
+    },
+    {
+      "asset": "Cultivation",
+      "revision": 1,
+      "sha256": "9ba14b1281bb5e65a29c53db5f37ec5c98e17f988587f556b69f69e38bb4e090",
+      "artAndUnityHashesMatch": true
+    },
+    {
+      "asset": "Storage",
+      "revision": 1,
+      "sha256": "3367eb59c6969b453060a17f1d99b046ae761c5aa7f9bb3de1e152601bfff118",
+      "artAndUnityHashesMatch": true
+    }
+  ],
+  "note": "New PLAN-029 request paths were moved to final Facility paths preserving GUIDs; empty receipt folders removed. User gameplay tests use isolated temporary save slots."
+}

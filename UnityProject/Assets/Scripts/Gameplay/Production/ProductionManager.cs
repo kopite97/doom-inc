@@ -113,6 +113,7 @@ namespace MobileGame.Gameplay
                     state.Progress = 0;
                     state.ActiveTarget = CultivationTarget.None;
                 }
+                laboratory.NotifyProductionCompleted(facility.Id);
             }
         }
 

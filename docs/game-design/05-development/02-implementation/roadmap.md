@@ -2,7 +2,7 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1~4단계 및 D-070 완료 / 아트 5-1 완료 / PLAN-001~028 completed / active 0개
+- 상태: 선행 기반 세 묶음·1~4단계 및 D-070 완료 / 아트 5-1 완료 / PLAN-001~029 completed / PLAN-029 art·completed / active 0개
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
 - 갱신일: 2026-11-12
@@ -10,7 +10,9 @@
 
 ## 현재 작업
 
-[PLAN-025 최신 버전 Android 통합 검증과 프로토타입 완료 판정](../../../plans/PLAN-025-android-integration-and-prototype-completion.md)은 completed다. Editor 회귀와 승인된 Android 통합 검증·환경 복원을 마쳐 4단계·D-070의 네 기준을 충족했다. SM-G977N 한 기종·현재 임시 표현의 판정이며 세부 측정 한계와 경미한 표시 결함은 [완료 근거](../../../plans/evidence/PLAN-025/README.md#d-070-완료-판정)를 따른다. PLAN-026~028도 완료했으며 active 0개다.
+현재 active PLAN은 0개다. 최근 완료 [PLAN-029 가공시설·배양시설·저장소 정식 아트 제작·적용](../../../plans/PLAN-029-laboratory-processing-cultivation-storage-art.md)은 `art` / `completed`다. 세 시설 r001·총 48프레임과 생산/입출고 동작·미리보기/목록 연결의 전체 적용, 일반 Editor 검증, 2026-11-12 사용자 게임 화면 승인을 마쳤다. 빌드·고부하·실기기는 제외했다. 바닥 외곽 등 5-2의 다른 후보와 전체 5-5는 별도 후속 범위다.
+
+[PLAN-025 최신 버전 Android 통합 검증과 프로토타입 완료 판정](../../../plans/PLAN-025-android-integration-and-prototype-completion.md)은 completed다. Editor 회귀와 승인된 Android 통합 검증·환경 복원을 마쳐 4단계·D-070의 네 기준을 충족했다. SM-G977N 한 기종·현재 임시 표현의 판정이며 세부 측정 한계와 경미한 표시 결함은 [완료 근거](../../../plans/evidence/PLAN-025/README.md#d-070-완료-판정)를 따른다. PLAN-026~029도 완료했으며 현재 active는 0개다.
 
 2026-11-07 사용자 요청으로 [정식 아트 제작·적용 로드맵](art-roadmap.md)을 후속 **5단계**로 추가했다. 샘플·연구소·생명체/자원·UI·동작·타이틀/종료·통합 검수 순서를 제안하며 2026-11-10 첫 5-1 샘플 묶음의 전체 적용·Editor 검증·사용자 시각 확인을 완료했다. PLAN-025의 표시/GC 개선 후보는 잠시 미뤄 두고, 완료된 프로토타입 판정과 아트 적용 완료를 구분한다.
 
@@ -151,5 +153,7 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 - [PLAN-027 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환](../../../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 `development` / `completed`다. 2026-11-10 사용자 승인 후 바닥 Tilemap·시설/개체 SpriteRenderer·UI uGUI 전환과 Editor 검증을 완료했다. 원본 아트·게임 상태를 보존했다.
 
 - [PLAN-028 연구소 생명체 이동 보간과 표시 동기화](../../../plans/PLAN-028-creature-movement-interpolation.md)는 development·completed다. 빌드·고부하 제외 조건으로 기능 완료를 판정했으며 기존 비용 증가와 미측정 한계는 실행 증거를 따른다.
+
+- [PLAN-029 세 시설 정식 아트](../../../plans/PLAN-029-laboratory-processing-cultivation-storage-art.md)는 art·completed다. 5-2의 가공·배양·저장 시설 3종 r001 제작·수령·Art 승인·Unity 전체 적용·일반 기술 검증과 2026-11-12 사용자 게임 화면 승인을 완료했다. 5-2 전체 완료는 별도 판정한다.
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.

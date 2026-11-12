@@ -1,0 +1,65 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var names = new[]{\"Processing\",\"Cultivation\",\"Storage\"};\nvar art = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Presentation.LaboratoryArtAssets>(MobileGame.Foundation.Editor.LaboratoryUiAssetBuilder.ArtPath);\nvar entries = new UnityEditor.SerializedObject(art).FindProperty(\"facilities\");\nif(entries.arraySize!=3) throw new System.Exception(\"Expected all three bindings\");\nvar result = new System.Collections.Generic.List<object>();\nfor(var k=0;k<3;k++) {\n var name=names[k]; var path=\"Assets/Sprites/Facility/\"+name+\"/\"+name+\".png\";\n var sprites = UnityEditor.AssetDatabase.LoadAllAssetsAtPath(path).OfType<UnityEngine.Sprite>().ToArray();\n var frames=entries.GetArrayElementAtIndex(k).FindPropertyRelative(\"frames\");\n if(sprites.Length!=16 || frames.arraySize!=16 || Enumerable.Range(0,16).Any(i=>frames.GetArrayElementAtIndex(i).objectReferenceValue==null)) throw new System.Exception(\"Incomplete \"+name);\n var definition = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Foundation.FacilityDefinition>(\"Assets/SO/Facility/\"+name+\".asset\");\n var icon=new UnityEditor.SerializedObject(definition).FindProperty(\"icon\").objectReferenceValue;\n if(icon!=frames.GetArrayElementAtIndex(0).objectReferenceValue) throw new System.Exception(\"Missing icon \"+name);\n var importer=(UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(path);\n result.Add(new { name,path,guid=UnityEditor.AssetDatabase.AssetPathToGUID(path),frames=sprites.Length,iconMatches=true,ppu=importer.spritePixelsPerUnit,filter=importer.filterMode.ToString(),compression=importer.textureCompression.ToString(),readable=importer.isReadable,mipmaps=importer.mipmapEnabled });\n}\nreturn new { utc=System.DateTime.UtcNow.ToString(\"o\"), play=UnityEditor.EditorApplication.isPlaying,ready=true,assets=result };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "utc": "2026-11-12T13:55:38.1458533Z",
+        "play": false,
+        "ready": true,
+        "assets": [
+          {
+            "name": "Processing",
+            "path": "Assets/Sprites/Facility/Processing/Processing.png",
+            "guid": "07c5e2d5f180f2c4594ab10f1948b283",
+            "frames": 16,
+            "iconMatches": true,
+            "ppu": 32,
+            "filter": "Point",
+            "compression": "Uncompressed",
+            "readable": false,
+            "mipmaps": false
+          },
+          {
+            "name": "Cultivation",
+            "path": "Assets/Sprites/Facility/Cultivation/Cultivation.png",
+            "guid": "d1b9b6ca56b67af45813b98cdc13d3f4",
+            "frames": 16,
+            "iconMatches": true,
+            "ppu": 32,
+            "filter": "Point",
+            "compression": "Uncompressed",
+            "readable": false,
+            "mipmaps": false
+          },
+          {
+            "name": "Storage",
+            "path": "Assets/Sprites/Facility/Storage/Storage.png",
+            "guid": "477806f127ac7184192600c8d4afea72",
+            "frames": 16,
+            "iconMatches": true,
+            "ppu": 32,
+            "filter": "Point",
+            "compression": "Uncompressed",
+            "readable": false,
+            "mipmaps": false
+          }
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

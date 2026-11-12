@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "UnityEditor.AssetDatabase.Refresh();\nreturn new { option=UnityEditor.EditorSettings.enterPlayModeOptions.ToString(),disk=System.IO.File.ReadAllText(\"ProjectSettings/EditorSettings.asset\").Split('\\n').Where(s=>s.Contains(\"m_EnterPlayModeOptions:\")).ToArray(),compiling=UnityEditor.EditorApplication.isCompiling,play=UnityEditor.EditorApplication.isPlaying };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "option": "DisableDomainReload",
+        "disk": [
+          "  m_EnterPlayModeOptions: 1"
+        ],
+        "compiling": false,
+        "play": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,34 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "if(UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode) throw new System.Exception(\"Stop Play before restoration\");\nUnityEditor.EditorSettings.enterPlayModeOptionsEnabled=true;\nUnityEditor.EditorSettings.enterPlayModeOptions=UnityEditor.EnterPlayModeOptions.DisableDomainReload;\nUnityEngine.Application.runInBackground=false;\nUnityEngine.QualitySettings.vSyncCount=1; UnityEngine.Application.targetFrameRate=-1;\nvar font=UnityEditor.AssetDatabase.LoadAssetAtPath<TMPro.TMP_FontAsset>(\"Assets/Fonts/Mulmaru/MulmaruDynamic.asset\");\nfont.ClearFontAssetData(true);\nUnityEditor.EditorUtility.SetDirty(font); UnityEditor.EditorUtility.SetDirty(font.atlasTexture);\nUnityEditor.AssetDatabase.SaveAssetIfDirty(font);\nvar requestRoot=System.IO.Path.GetFullPath(\"Assets/Sprites/Require/PLAN-029\")+System.IO.Path.DirectorySeparatorChar;\nvar removed=new System.Collections.Generic.List<string>();\nfor(var i=1;i<=3;i++) {\n var path=\"Assets/Sprites/Require/PLAN-029/PLAN-029-SPR-00\"+i;\n var full=System.IO.Path.GetFullPath(path);\n if(!full.StartsWith(requestRoot,System.StringComparison.OrdinalIgnoreCase)) throw new System.Exception(\"Outside receipt root\");\n if(System.IO.Directory.Exists(full) && System.IO.Directory.GetFiles(full,\"*\",System.IO.SearchOption.AllDirectories).All(p=>p.EndsWith(\".meta\"))) {\n  if(!UnityEditor.AssetDatabase.DeleteAsset(path)) throw new System.Exception(\"Could not remove empty receipt folder \"+path);\n  removed.Add(path);\n }\n}\nUnityEditor.AssetDatabase.Refresh();\nreturn new { removedEmptyReceiptFolders=removed, play=UnityEditor.EditorApplication.isPlaying, fontCharacters=font.characterTable.Count,fontAtlasWidth=font.atlasTexture.width,scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,dirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "removedEmptyReceiptFolders": [
+          "Assets/Sprites/Require/PLAN-029/PLAN-029-SPR-001",
+          "Assets/Sprites/Require/PLAN-029/PLAN-029-SPR-002",
+          "Assets/Sprites/Require/PLAN-029/PLAN-029-SPR-003"
+        ],
+        "play": false,
+        "fontCharacters": 0,
+        "fontAtlasWidth": 1,
+        "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+        "dirty": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
