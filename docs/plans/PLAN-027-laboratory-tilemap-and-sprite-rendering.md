@@ -3,7 +3,7 @@ id: PLAN-027
 type: development
 status: completed
 title: 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환
-updated: 2026-11-10
+updated: 2026-11-12
 ---
 
 # PLAN-027 연구소 바닥 Tilemap·시설과 개체 SpriteRenderer 전환
@@ -12,7 +12,7 @@ updated: 2026-11-10
 
 연구소의 바닥은 Tilemap, 시설·생명체와 지도상의 자원 표현은 SpriteRenderer로 표시하고, HUD·메뉴·팝업·상태 정보는 기존 uGUI로 유지한다. 기존 배치·선택·운영·저장 동작과 제공 아트의 규격을 보존하면서 이후 아트를 연결할 표현 기반을 정리한다.
 
-주목적은 표현 구조의 전환이므로 `type: development`다. **2026-11-10 사용자 승인으로 활성화·구현·Editor 검증을 완료해 `completed`로 전환했다.** 현재 active는 0개이며 PLAN-028 이동 보간은 별도 proposed로 유지한다. [완료 증거](evidence/PLAN-027/README.md)를 따른다.
+주목적은 표현 구조의 전환이므로 `type: development`다. **2026-11-10 사용자 승인으로 활성화·구현·Editor 검증을 완료해 `completed`로 전환했다.** 별도 PLAN-028도 빌드·고부하 제외 조건으로 completed가 되어 현재 active 0개다. 이 PLAN의 [완료 증거](evidence/PLAN-027/README.md)는 유지한다.
 
 ## 범위
 
@@ -43,7 +43,7 @@ updated: 2026-11-10
 
 ### 이동 보간 후보와의 관계
 
-- [PLAN-028 연구소 생명체 이동 보간](PLAN-028-creature-movement-interpolation.md)은 별도 development·proposed다. 권장 순서는 이 PLAN의 표현 전환 완료 후 PLAN-028 활성화이며, 이 전환에 보간 신규 구현을 자동 포함하지 않는다.
+- [PLAN-028 연구소 생명체 이동 보간](PLAN-028-creature-movement-interpolation.md)은 별도 development·completed다. 보간과 표시/입력·Editor 기능 검증 후 빌드·고부하 제외 재개 요청으로 완료 판정했다. 전체 성능의 한계와 과거 측정은 해당 PLAN에 보존한다.
 - 사용자가 PLAN-028을 먼저 실행한 경우에는 논리 칸과 분리된 표시 위치·몸체/운반물/선택·화면 클릭·정지/복원 계약을 전환 과정에서 보존한다. 같은 이동 구간을 읽는 위치 계산을 다시 작성하거나 칸 단위 표시로 되돌리지 않는다.
 - 두 계획은 각각 별도 활성화 승인을 받으며 한 번에 하나만 실행한다.
 
@@ -159,7 +159,7 @@ Editor 측정만으로 모바일 성능 향상·실기기 터치·양방향 동�
 - 최종 Edit 363/363, 연구소 Play 42/42(Domain Reload OFF), 앱 씬 Play 29/29(Domain Reload ON)을 통과했다. 화면·성능·원본 무결성과 환경 복원은 [완료 증거](evidence/PLAN-027/README.md)에 기록했다.
 - 표시 비용의 Main Thread 중앙값은 기본/고부하 약 44%/40%, GC는 약 82%/63% 감소했다. RenderLoop는 반복 분산이 겹치고 p95 악화가 없었다. 고부하 배치 수 22→58의 구조적 증가와 모바일 GPU 미검증은 별도로 기록했다.
 - Play 정지·원래 Laboratory 씬 clean·Android 선택·Domain Reload OFF·runInBackground false로 복원했다. 사용자 저장/설정은 변경하지 않았다.
-- 완료 후 active는 0개다. 권장 다음 작업은 PLAN-028 이동 보간이며 사용자 별도 활성화 전에는 실행하지 않는다. 빌드·실기기는 이번 범위에서 실행하지 않았다.
+- 완료 당시 active는 0개였으며 후속 PLAN-028도 빌드·고부하 제외 조건으로 완료했다. 현재 active 0개이고 이 PLAN의 완료 판정은 유지한다. 빌드·실기기는 이 PLAN 범위에서 실행하지 않았다.
 
 ## 검증 결과
 

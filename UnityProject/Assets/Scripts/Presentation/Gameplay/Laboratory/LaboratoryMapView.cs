@@ -69,6 +69,7 @@ namespace MobileGame.Presentation
             if (view != null) return;
             view = owner; viewport = (RectTransform)transform;
             BindArtSimulation();
+            compareSelectionChoices = CompareSelectionChoices;
             font = owner.UiFont;
             gesture = new LaboratoryGesture();
             gesture.Tapped += Tap;
@@ -85,6 +86,8 @@ namespace MobileGame.Presentation
         }
         private void OnDisable()
         {
+            publishedGeometry = false;
+            if (view != null && (view.Simulation == null || view.Ending?.IsEnding == true)) ReleaseArtSimulation();
             if (world != null) world.SetVisible(false);
             StopSelectionPan();
             gesture?.Cancel();
@@ -141,8 +144,9 @@ namespace MobileGame.Presentation
                 ClampCenter();
             }
         }
-        private void LateUpdate()
+        public void PublishFrame()
         {
+            if (!isActiveAndEnabled) return;
             if (view?.Simulation == null || viewport == null) return;
             // Layout may have been updated after Update (e.g. the panel was collapsed).
             if (previousSize != viewport.rect.size)
@@ -153,6 +157,11 @@ namespace MobileGame.Presentation
             EnsureSelectionVisible();
             Draw();
             RefreshStatusOverlays();
+            publishedOrigin = Origin; publishedCellSize = CellSize;
+            publishedViewport = viewport.rect; publishedScreen = new Vector2(Screen.width, Screen.height);
+            publishedMatrix = viewport.localToWorldMatrix; publishedSafeArea = Screen.safeArea;
+            publishedCanvasScale = view.UiCanvas.scaleFactor;
+            publishedGeneration = view.Controller.Generation; publishedGeometry = true;
         }
         private float CellSize => Mathf.Max(1, Mathf.Min((viewport.rect.width - 16) / Math.Max(1, width),
             (viewport.rect.height - 16) / Math.Max(1, height))) * zoom;
@@ -193,6 +202,51 @@ namespace MobileGame.Presentation
             var local = LaboratoryWorldMap.WorldToLocal(LaboratoryWorldMap.CellToWorld(cell + Vector2.one * .5f), Origin, CellSize);
             return RectTransformUtility.WorldToScreenPoint(null, viewport.TransformPoint(local));
         }
+        private readonly List<Thing> selectionChoices = new List<Thing>();
+        private readonly List<Guid> selectionIds = new List<Guid>();
+        private Comparison<Thing> compareSelectionChoices;
+        private Vector2 publishedOrigin, publishedScreen;
+        private float publishedCellSize;
+        private Rect publishedViewport;
+        private Rect publishedSafeArea;
+        private Matrix4x4 publishedMatrix;
+        private float publishedCanvasScale;
+        private int publishedGeneration;
+        private bool publishedGeometry;
+        private bool PublishedGeometryCurrent => publishedGeometry && view?.Simulation != null
+            && publishedGeneration == view.Controller.Generation && publishedViewport == viewport.rect
+            && publishedOrigin == Origin && publishedCellSize == CellSize
+            && publishedMatrix == viewport.localToWorldMatrix && publishedSafeArea == Screen.safeArea
+            && publishedCanvasScale == view.UiCanvas.scaleFactor
+            && publishedScreen == new Vector2(Screen.width, Screen.height);
+
+        private static int CompareSelectionChoices(Thing a, Thing b)
+        {
+            var kind = (a.Definition.Kind == ThingKind.Facility ? 0 : 1).CompareTo(b.Definition.Kind == ThingKind.Facility ? 0 : 1);
+            return kind != 0 ? kind : a.CreationOrder.CompareTo(b.CreationOrder);
+        }
+        public bool TryDisplayedPosition(Guid id, out Vector2 position)
+        {
+            position = default;
+            if (!PublishedGeometryCurrent || !thingArt.TryGetValue(id, out var item)
+                || !view.Simulation.Registry.TryGet(id, out var current) || !current.IsPlaced) return false;
+            position = item.Ground; return true;
+        }
+        public bool TryThingScreenPoint(Guid id, out Vector2 point)
+        {
+            point = default;
+            if (!TryDisplayedPosition(id, out _) || !thingArt.TryGetValue(id, out var item) || !item.HitVisible) return false;
+            point = item.HitBounds.center; return true;
+        }
+        private void PublishHitBounds(ThingArt item)
+        {
+            var bounds = item.Body.bounds;
+            if (item.Cargo.gameObject.activeSelf) bounds.Encapsulate(item.Cargo.bounds);
+            var min = world.Camera.WorldToScreenPoint(bounds.min);
+            var max = world.Camera.WorldToScreenPoint(bounds.max);
+            item.HitBounds = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+            item.HitVisible = world.Camera.enabled && item.HitBounds.Overlaps(world.Camera.pixelRect);
+        }
         public bool TryScreenCell(Vector2 point, out Vector2Int cell)
         {
             cell = default;
@@ -212,15 +266,28 @@ namespace MobileGame.Presentation
         }
         private void Tap(Vector2 point)
         {
-            if (!view.CanUseMap) return;
+            if (!view.CanUseMap || !PublishedGeometryCurrent || !OverMap(point)) return;
             if (!view.IsEditing && TrySelectStatus(point)) { AcceptedTaps++; return; }
-            if (!TryScreenCell(point, out var cell)) return;
+            var hasCell = TryScreenCell(point, out var cell);
+            if (view.IsEditing && !hasCell) return;
             AcceptedTaps++;
             if (view.IsEditing) { view.PreviewAt(cell); return; }
-            var choices = view.Simulation.Map.GetPlacements().Where(p => p.Kind != ThingKind.Resource && p.Contains(cell)).OrderBy(p =>
-                p.Kind == ThingKind.Facility ? 0 : 1).ThenBy(p => view.Simulation.Registry.Things.First(t => t.Id == p.ThingId).CreationOrder).ToArray();
-            if (choices.Length == 0) return;
-            view.ShowSelectionCandidates(choices.Select(p => p.ThingId));
+            selectionChoices.Clear();
+            foreach (var thing in placedArt)
+            {
+                if (!view.Simulation.Registry.TryGet(thing.Id, out var current) || !current.IsPlaced) continue;
+                if (thing.Definition.Kind == ThingKind.Facility)
+                {
+                    if (hasCell && thingArt[thing.Id].PublishedPlacement.Contains(cell)) selectionChoices.Add(thing);
+                }
+                else if (thingArt.TryGetValue(thing.Id, out var item) && item.HitVisible && item.HitBounds.Contains(point))
+                    selectionChoices.Add(thing);
+            }
+            if (selectionChoices.Count == 0) return;
+            selectionChoices.Sort(compareSelectionChoices);
+            selectionIds.Clear();
+            foreach (var thing in selectionChoices) selectionIds.Add(thing.Id);
+            view.ShowSelectionCandidates(selectionIds);
         }
         private void Pan(Vector2 pixels)
         {

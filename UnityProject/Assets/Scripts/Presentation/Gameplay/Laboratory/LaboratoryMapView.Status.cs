@@ -4,11 +4,13 @@ using MobileGame.Foundation;
 using MobileGame.Gameplay;
 using TMPro;
 using UnityEngine;
+using Unity.Profiling;
 
 namespace MobileGame.Presentation
 {
     public sealed partial class LaboratoryMapView
     {
+        private static readonly ProfilerMarker statusMarker = new ProfilerMarker("Laboratory.Status.Layout");
         private sealed class StatusMarker
         {
             public RectTransform Root;
@@ -16,6 +18,10 @@ namespace MobileGame.Presentation
             public TextMeshProUGUI Caption;
             public Rect Bounds;
             public bool Visible;
+            public Rect Viewport;
+            public Vector2 Anchor;
+            public float CellSize;
+            public bool Selected;
             // Transient map observation preference; null retains automatic selected/nearby captions.
             public bool? CaptionOverride;
         }
@@ -41,6 +47,7 @@ namespace MobileGame.Presentation
 
         private void RefreshStatusOverlays()
         {
+            using var layout = statusMarker.Auto();
             VisibleStatusCount = 0;
             var simulation = view?.Simulation;
             if (simulation == null || viewport == null)
@@ -80,7 +87,7 @@ namespace MobileGame.Presentation
             }
             statusLayer.sizeDelta = viewport.rect.size;
             statusLayer.gameObject.SetActive(true);
-            statusLayer.SetAsLastSibling();
+            if (statusLayer.GetSiblingIndex() != statusLayer.parent.childCount - 1) statusLayer.SetAsLastSibling();
             occupiedStatusBounds.Clear();
             ReserveCreatureArtBounds();
             statusFacilities.Clear();
@@ -149,7 +156,11 @@ namespace MobileGame.Presentation
             var anchor = new Vector2(Mathf.Clamp(facilityRect.center.x, viewport.rect.xMin, viewport.rect.xMax),
                 Mathf.Clamp(facilityRect.yMax, viewport.rect.yMin, viewport.rect.yMax));
             var desired = new Rect(anchor.x - markerWidth * .5f, anchor.y + 3, markerWidth, markerHeight);
-            var fits = FindFreeStatusBounds(desired, out var bounds);
+            var retain = marker.Viewport == viewport.rect && marker.Anchor == anchor && marker.CellSize == CellSize
+                && marker.Selected == selected && marker.Bounds.size == desired.size
+                && marker.Bounds == ClampStatusRect(marker.Bounds) && !StatusOverlaps(marker.Bounds);
+            var bounds = marker.Bounds;
+            var fits = retain || FindFreeStatusBounds(desired, out bounds);
             if (!fits && caption && !selected)
             {
                 // At density, discard extra words before sacrificing the progress bar or state icon.
@@ -171,6 +182,7 @@ namespace MobileGame.Presentation
                 if (!selected) return;
             }
             marker.Bounds = bounds;
+            marker.Viewport = viewport.rect; marker.Anchor = anchor; marker.CellSize = CellSize; marker.Selected = selected;
             occupiedStatusBounds.Add(bounds);
             marker.Visible = true;
             marker.Root.gameObject.SetActive(true);

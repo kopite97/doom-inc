@@ -160,6 +160,26 @@ namespace MobileGame.Gameplay
             }
         }
 
+        // Presentation can inspect the actual route without preparing a route or changing gameplay.
+        public static bool TryGetMoveSegment(LaboratoryManager simulation, Thing thing,
+            out WorkerMoveSegment segment)
+        {
+            segment = default;
+            return thing != null && thing.TryGetComponent<WorkerComponent>(out var worker)
+                && TryGetMoveSegment(simulation, thing, worker, out segment);
+        }
+
+        // A screen which already owns its worker binding need not repeat component enumeration.
+        public static bool TryGetMoveSegment(LaboratoryManager simulation, Thing thing,
+            WorkerComponent worker, out WorkerMoveSegment segment)
+        {
+            segment = default;
+            return simulation != null && thing != null && worker != null && thing.Exists
+                && ReferenceEquals(worker.Owner, thing) && ReferenceEquals(thing.Map, simulation.Map)
+                && simulation.Registry.TryGet(thing.Id, out var registered) && ReferenceEquals(registered, thing)
+                && worker.TryGetMoveSegment(simulation.Map, out segment);
+        }
+
         public static bool Move(LaboratoryManager simulation, Thing thing, Thing target, double seconds)
         {
             if (simulation == null) throw new ArgumentNullException(nameof(simulation));
@@ -201,6 +221,7 @@ namespace MobileGame.Gameplay
             {
                 if (worker.MoveProgress + 1e-9 < stepSeconds) return false;
                 var cell = path[worker.RouteIndex];
+                var previousCell = thing.Placement.Origin;
                 var result = simulation.Map.Commands.Place(thing.Id, cell);
                 if (!result.Succeeded)
                 {
@@ -210,6 +231,8 @@ namespace MobileGame.Gameplay
                 worker.RouteOrigin = cell;
                 worker.RouteIndex++;
                 worker.MoveProgress = Math.Max(0, worker.MoveProgress - stepSeconds);
+                ObserveMove(worker, previousCell, cell,
+                    Math.Max(0, simulation.Clock - worker.MoveProgress), false, simulation.Map.LayoutVersion);
             }
             worker.MoveProgress = 0;
             worker.WaitReason = WorkerWaitReason.None;
@@ -267,10 +290,19 @@ namespace MobileGame.Gameplay
                 var cell = current + Neighbours[(first + i) % Neighbours.Length];
                 if (Math.Abs(cell.x - origin.x) + Math.Abs(cell.y - origin.y) <= 1 && simulation.Map.IsWalkable(cell))
                 {
-                    simulation.Map.Commands.Place(thing.Id, cell);
+                    var placed = simulation.Map.Commands.Place(thing.Id, cell);
+                    if (placed.Succeeded)
+                        ObserveMove(worker, current, cell, simulation.Clock, true, simulation.Map.LayoutVersion);
                     break;
                 }
             }
+        }
+
+        private static void ObserveMove(WorkerComponent worker, Vector2Int from, Vector2Int to,
+            double atSeconds, bool isWander, long layoutVersion)
+        {
+            worker.LastMove = new WorkerMoveObservation(worker.LastMove.Sequence + 1,
+                from, to, atSeconds, isWander, layoutVersion);
         }
 
         private void SelectWork(Thing thing)

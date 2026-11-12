@@ -1,0 +1,1530 @@
+{
+  "generatedUtc": "2026-11-11T15:37:01.078Z",
+  "durationUnit": "milliseconds",
+  "gcUnit": "bytes/frame",
+  "workloadUnit": "observed worker count/frame",
+  "percentile": "nearest rank; median averages middle pair",
+  "note": "Main Thread, PlayerLoop and wait-marker costs overlap; never sum or subtract them as exclusive CPU work. Invalid counters stay invalid. Body visibility can change due to interpolation. Pair equality checks fixed input/model duration and aggregate logical workload, not product state identity. Missing runs and workloads must be reviewed before a pass claim. Total GC is not isolated interpolation GC.",
+  "runs": [
+    {
+      "file": "baseline-level0-run1.json",
+      "stage": "baseline",
+      "level": 0,
+      "run": 1,
+      "mostlyOffscreen": false,
+      "sampleCount": 3600,
+      "simulationSteps": 5400,
+      "warmupSeconds": 30.031429799999955,
+      "sampleSeconds": 60.0729652,
+      "modelStart": 29.999999999999577,
+      "modelEnd": 89.99999999999618,
+      "resolution": [
+        1280,
+        720
+      ],
+      "zoom": 1,
+      "vSync": 0,
+      "targetFrameRate": 60,
+      "recorderNames": [
+        "Main Thread",
+        "PlayerLoop",
+        "RenderLoop",
+        "Canvas.BuildBatch",
+        "Canvas.SendWillRenderCanvases",
+        "GC Allocated In Frame",
+        "Batches Count",
+        "Laboratory.Movement.Evaluate",
+        "Laboratory.Map.DrawArt",
+        "Laboratory.Map.Sort",
+        "Laboratory.Status.Layout",
+        "WaitForTargetFPS",
+        "Gfx.WaitForPresentOnGfxThread"
+      ],
+      "recorderValid": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true
+      ],
+      "recorderUnits": [
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        null,
+        "Bytes",
+        "Count",
+        null,
+        null,
+        null,
+        null,
+        "TimeNanoseconds",
+        "TimeNanoseconds"
+      ],
+      "metrics": {
+        "main": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.658749999999998,
+          "p95": 17.1632,
+          "max": 45.6076,
+          "mean": 16.67734844444446
+        },
+        "playerLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.5889,
+          "p95": 1.9638,
+          "max": 40.1103,
+          "mean": 1.7621604444444394
+        },
+        "render": {
+          "valid": true,
+          "samples": 3600,
+          "median": 11.2522,
+          "p95": 11.8568,
+          "max": 12.6323,
+          "mean": 11.0304948888889
+        },
+        "canvasBuild": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0047,
+          "p95": 0.0068,
+          "max": 0.0677,
+          "mean": 0.00480819444444444
+        },
+        "canvasSend": {
+          "valid": false
+        },
+        "evaluate": {
+          "valid": false
+        },
+        "draw": {
+          "valid": false
+        },
+        "sort": {
+          "valid": false
+        },
+        "status": {
+          "valid": false
+        },
+        "waitForTargetFps": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.0015,
+          "mean": 0.00024449999999998746
+        },
+        "waitForPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "gc": {
+          "valid": true,
+          "samples": 3600,
+          "median": 355044,
+          "p95": 385482,
+          "max": 3778750,
+          "mean": 346435.15305555554
+        },
+        "batches": {
+          "valid": true,
+          "samples": 3600,
+          "median": 15,
+          "p95": 15,
+          "max": 30,
+          "mean": 14.996666666666666
+        },
+        "workers": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1,
+          "p95": 1,
+          "max": 1,
+          "mean": 1
+        },
+        "moving": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "waiting": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1,
+          "p95": 1,
+          "max": 1,
+          "mean": 1
+        },
+        "carrying": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "visible": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1,
+          "p95": 1,
+          "max": 1,
+          "mean": 1
+        }
+      },
+      "pathQueries": 0,
+      "visitedCells": 0,
+      "managedMemoryChange": 55697408,
+      "unityMemoryChange": -855984,
+      "collections": [
+        7,
+        7,
+        7
+      ],
+      "activeTransforms": 62
+    },
+    {
+      "file": "baseline-level0-run2.json",
+      "stage": "baseline",
+      "level": 0,
+      "run": 2,
+      "mostlyOffscreen": false,
+      "sampleCount": 3600,
+      "simulationSteps": 5400,
+      "warmupSeconds": 30.026298199999985,
+      "sampleSeconds": 60.0541374,
+      "modelStart": 29.999999999999577,
+      "modelEnd": 89.99999999999618,
+      "resolution": [
+        1280,
+        720
+      ],
+      "zoom": 1,
+      "vSync": 0,
+      "targetFrameRate": 60,
+      "recorderNames": [
+        "Main Thread",
+        "PlayerLoop",
+        "RenderLoop",
+        "Canvas.BuildBatch",
+        "Canvas.SendWillRenderCanvases",
+        "GC Allocated In Frame",
+        "Batches Count",
+        "Laboratory.Movement.Evaluate",
+        "Laboratory.Map.DrawArt",
+        "Laboratory.Map.Sort",
+        "Laboratory.Status.Layout",
+        "WaitForTargetFPS",
+        "Gfx.WaitForPresentOnGfxThread"
+      ],
+      "recorderValid": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true
+      ],
+      "recorderUnits": [
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        null,
+        "Bytes",
+        "Count",
+        null,
+        null,
+        null,
+        null,
+        "TimeNanoseconds",
+        "TimeNanoseconds"
+      ],
+      "metrics": {
+        "main": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.6576,
+          "p95": 17.1449,
+          "max": 42.3735,
+          "mean": 16.6737955833333
+        },
+        "playerLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.587,
+          "p95": 1.986,
+          "max": 35.5328,
+          "mean": 1.7475861388888807
+        },
+        "render": {
+          "valid": true,
+          "samples": 3600,
+          "median": 11.27435,
+          "p95": 11.8287,
+          "max": 12.808,
+          "mean": 11.055954694444441
+        },
+        "canvasBuild": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0047,
+          "p95": 0.0068,
+          "max": 0.0194,
+          "mean": 0.00481283333333334
+        },
+        "canvasSend": {
+          "valid": false
+        },
+        "evaluate": {
+          "valid": false
+        },
+        "draw": {
+          "valid": false
+        },
+        "sort": {
+          "valid": false
+        },
+        "status": {
+          "valid": false
+        },
+        "waitForTargetFps": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.0013,
+          "mean": 0.00023355555555554385
+        },
+        "waitForPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "gc": {
+          "valid": true,
+          "samples": 3600,
+          "median": 355500,
+          "p95": 395020,
+          "max": 3778662,
+          "mean": 348510.9577777778
+        },
+        "batches": {
+          "valid": true,
+          "samples": 3600,
+          "median": 15,
+          "p95": 15,
+          "max": 30,
+          "mean": 14.998333333333333
+        },
+        "workers": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1,
+          "p95": 1,
+          "max": 1,
+          "mean": 1
+        },
+        "moving": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "waiting": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1,
+          "p95": 1,
+          "max": 1,
+          "mean": 1
+        },
+        "carrying": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "visible": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1,
+          "p95": 1,
+          "max": 1,
+          "mean": 1
+        }
+      },
+      "pathQueries": 0,
+      "visitedCells": 0,
+      "managedMemoryChange": 7880704,
+      "unityMemoryChange": 792553,
+      "collections": [
+        7,
+        7,
+        7
+      ],
+      "activeTransforms": 62
+    },
+    {
+      "file": "baseline-level0-run3.json",
+      "stage": "baseline",
+      "level": 0,
+      "run": 3,
+      "mostlyOffscreen": false,
+      "sampleCount": 3600,
+      "simulationSteps": 5400,
+      "warmupSeconds": 30.044402799999943,
+      "sampleSeconds": 60.08734590000006,
+      "modelStart": 29.999999999999577,
+      "modelEnd": 89.99999999999618,
+      "resolution": [
+        1280,
+        720
+      ],
+      "zoom": 1,
+      "vSync": 0,
+      "targetFrameRate": 60,
+      "recorderNames": [
+        "Main Thread",
+        "PlayerLoop",
+        "RenderLoop",
+        "Canvas.BuildBatch",
+        "Canvas.SendWillRenderCanvases",
+        "GC Allocated In Frame",
+        "Batches Count",
+        "Laboratory.Movement.Evaluate",
+        "Laboratory.Map.DrawArt",
+        "Laboratory.Map.Sort",
+        "Laboratory.Status.Layout",
+        "WaitForTargetFPS",
+        "Gfx.WaitForPresentOnGfxThread"
+      ],
+      "recorderValid": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true
+      ],
+      "recorderUnits": [
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        null,
+        "Bytes",
+        "Count",
+        null,
+        null,
+        null,
+        null,
+        "TimeNanoseconds",
+        "TimeNanoseconds"
+      ],
+      "metrics": {
+        "main": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.662149999999997,
+          "p95": 17.1171,
+          "max": 51.8618,
+          "mean": 16.68322266666667
+        },
+        "playerLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.5939,
+          "p95": 1.9555,
+          "max": 46.5821,
+          "mean": 1.7858987500000014
+        },
+        "render": {
+          "valid": true,
+          "samples": 3600,
+          "median": 11.34635,
+          "p95": 11.8318,
+          "max": 14.1639,
+          "mean": 11.140851638888895
+        },
+        "canvasBuild": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0045,
+          "p95": 0.0063,
+          "max": 0.0473,
+          "mean": 0.004639750000000026
+        },
+        "canvasSend": {
+          "valid": false
+        },
+        "evaluate": {
+          "valid": false
+        },
+        "draw": {
+          "valid": false
+        },
+        "sort": {
+          "valid": false
+        },
+        "status": {
+          "valid": false
+        },
+        "waitForTargetFps": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.0018,
+          "mean": 0.00024313888888887643
+        },
+        "waitForPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "gc": {
+          "valid": true,
+          "samples": 3600,
+          "median": 365110,
+          "p95": 395020,
+          "max": 3778662,
+          "mean": 359331.5836111111
+        },
+        "batches": {
+          "valid": true,
+          "samples": 3600,
+          "median": 15,
+          "p95": 15,
+          "max": 30,
+          "mean": 14.998333333333333
+        },
+        "workers": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1,
+          "p95": 1,
+          "max": 1,
+          "mean": 1
+        },
+        "moving": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "waiting": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1,
+          "p95": 1,
+          "max": 1,
+          "mean": 1
+        },
+        "carrying": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "visible": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1,
+          "p95": 1,
+          "max": 1,
+          "mean": 1
+        }
+      },
+      "pathQueries": 0,
+      "visitedCells": 0,
+      "managedMemoryChange": 44224512,
+      "unityMemoryChange": -4174672,
+      "collections": [
+        7,
+        7,
+        7
+      ],
+      "activeTransforms": 62
+    },
+    {
+      "file": "baseline-level2-run1.json",
+      "stage": "baseline",
+      "level": 2,
+      "run": 1,
+      "mostlyOffscreen": false,
+      "sampleCount": 3600,
+      "simulationSteps": 5400,
+      "warmupSeconds": 30.01407130000007,
+      "sampleSeconds": 60.05218500000001,
+      "modelStart": 29.999999999999392,
+      "modelEnd": 89.99999999999429,
+      "resolution": [
+        1280,
+        720
+      ],
+      "zoom": 1,
+      "vSync": 0,
+      "targetFrameRate": 60,
+      "recorderNames": [
+        "Main Thread",
+        "PlayerLoop",
+        "RenderLoop",
+        "Canvas.BuildBatch",
+        "Canvas.SendWillRenderCanvases",
+        "GC Allocated In Frame",
+        "Batches Count",
+        "Laboratory.Movement.Evaluate",
+        "Laboratory.Map.DrawArt",
+        "Laboratory.Map.Sort",
+        "Laboratory.Status.Layout",
+        "WaitForTargetFPS",
+        "Gfx.WaitForPresentOnGfxThread"
+      ],
+      "recorderValid": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true
+      ],
+      "recorderUnits": [
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        null,
+        "Bytes",
+        "Count",
+        null,
+        null,
+        null,
+        null,
+        "TimeNanoseconds",
+        "TimeNanoseconds"
+      ],
+      "metrics": {
+        "main": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.66305,
+          "p95": 17.2021,
+          "max": 38.0591,
+          "mean": 16.670812555555553
+        },
+        "playerLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 2.4451,
+          "p95": 3.5733,
+          "max": 33.2837,
+          "mean": 2.717915138888882
+        },
+        "render": {
+          "valid": true,
+          "samples": 3600,
+          "median": 10.6734,
+          "p95": 11.3769,
+          "max": 13.9835,
+          "mean": 10.534195555555554
+        },
+        "canvasBuild": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0054,
+          "p95": 0.0082,
+          "max": 0.0237,
+          "mean": 0.005722166666666664
+        },
+        "canvasSend": {
+          "valid": false
+        },
+        "evaluate": {
+          "valid": false
+        },
+        "draw": {
+          "valid": false
+        },
+        "sort": {
+          "valid": false
+        },
+        "status": {
+          "valid": false
+        },
+        "waitForTargetFps": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.0302,
+          "mean": 0.00024672222222220884
+        },
+        "waitForPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "gc": {
+          "valid": true,
+          "samples": 3600,
+          "median": 444772,
+          "p95": 663492,
+          "max": 4419791,
+          "mean": 474207.845
+        },
+        "batches": {
+          "valid": true,
+          "samples": 3600,
+          "median": 56,
+          "p95": 57,
+          "max": 114,
+          "mean": 56.04527777777778
+        },
+        "workers": {
+          "valid": true,
+          "samples": 3600,
+          "median": 24,
+          "p95": 24,
+          "max": 24,
+          "mean": 24
+        },
+        "moving": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 1,
+          "max": 20,
+          "mean": 0.14722222222222223
+        },
+        "waiting": {
+          "valid": true,
+          "samples": 3600,
+          "median": 24,
+          "p95": 24,
+          "max": 24,
+          "mean": 23.995833333333334
+        },
+        "carrying": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "visible": {
+          "valid": true,
+          "samples": 3600,
+          "median": 24,
+          "p95": 24,
+          "max": 24,
+          "mean": 24
+        }
+      },
+      "pathQueries": 1,
+      "visitedCells": 124,
+      "managedMemoryChange": 99282944,
+      "unityMemoryChange": 2639299,
+      "collections": [
+        9,
+        9,
+        9
+      ],
+      "activeTransforms": 206
+    },
+    {
+      "file": "baseline-level2-run2.json",
+      "stage": "baseline",
+      "level": 2,
+      "run": 2,
+      "mostlyOffscreen": false,
+      "sampleCount": 3600,
+      "simulationSteps": 5400,
+      "warmupSeconds": 30.03835570000001,
+      "sampleSeconds": 60.06462699999997,
+      "modelStart": 29.999999999999392,
+      "modelEnd": 89.99999999999429,
+      "resolution": [
+        1280,
+        720
+      ],
+      "zoom": 1,
+      "vSync": 0,
+      "targetFrameRate": 60,
+      "recorderNames": [
+        "Main Thread",
+        "PlayerLoop",
+        "RenderLoop",
+        "Canvas.BuildBatch",
+        "Canvas.SendWillRenderCanvases",
+        "GC Allocated In Frame",
+        "Batches Count",
+        "Laboratory.Movement.Evaluate",
+        "Laboratory.Map.DrawArt",
+        "Laboratory.Map.Sort",
+        "Laboratory.Status.Layout",
+        "WaitForTargetFPS",
+        "Gfx.WaitForPresentOnGfxThread"
+      ],
+      "recorderValid": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true
+      ],
+      "recorderUnits": [
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        null,
+        "Bytes",
+        "Count",
+        null,
+        null,
+        null,
+        null,
+        "TimeNanoseconds",
+        "TimeNanoseconds"
+      ],
+      "metrics": {
+        "main": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.655250000000002,
+          "p95": 17.1828,
+          "max": 39.8631,
+          "mean": 16.675132666666716
+        },
+        "playerLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 2.434,
+          "p95": 3.6253,
+          "max": 31.2931,
+          "mean": 2.7618863611111153
+        },
+        "render": {
+          "valid": true,
+          "samples": 3600,
+          "median": 10.67365,
+          "p95": 11.3642,
+          "max": 17.1307,
+          "mean": 10.478263166666638
+        },
+        "canvasBuild": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0053,
+          "p95": 0.0077,
+          "max": 0.0292,
+          "mean": 0.005523000000000011
+        },
+        "canvasSend": {
+          "valid": false
+        },
+        "evaluate": {
+          "valid": false
+        },
+        "draw": {
+          "valid": false
+        },
+        "sort": {
+          "valid": false
+        },
+        "status": {
+          "valid": false
+        },
+        "waitForTargetFps": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.0014,
+          "mean": 0.00024252777777776445
+        },
+        "waitForPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "gc": {
+          "valid": true,
+          "samples": 3600,
+          "median": 444848,
+          "p95": 672110,
+          "max": 4419133,
+          "mean": 474237.6330555556
+        },
+        "batches": {
+          "valid": true,
+          "samples": 3600,
+          "median": 56,
+          "p95": 57,
+          "max": 114,
+          "mean": 56.04527777777778
+        },
+        "workers": {
+          "valid": true,
+          "samples": 3600,
+          "median": 24,
+          "p95": 24,
+          "max": 24,
+          "mean": 24
+        },
+        "moving": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 1,
+          "max": 20,
+          "mean": 0.14722222222222223
+        },
+        "waiting": {
+          "valid": true,
+          "samples": 3600,
+          "median": 24,
+          "p95": 24,
+          "max": 24,
+          "mean": 23.995833333333334
+        },
+        "carrying": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "visible": {
+          "valid": true,
+          "samples": 3600,
+          "median": 24,
+          "p95": 24,
+          "max": 24,
+          "mean": 24
+        }
+      },
+      "pathQueries": 1,
+      "visitedCells": 124,
+      "managedMemoryChange": -36753408,
+      "unityMemoryChange": 928014,
+      "collections": [
+        9,
+        9,
+        9
+      ],
+      "activeTransforms": 206
+    },
+    {
+      "file": "baseline-level2-run3.json",
+      "stage": "baseline",
+      "level": 2,
+      "run": 3,
+      "mostlyOffscreen": false,
+      "sampleCount": 3600,
+      "simulationSteps": 5400,
+      "warmupSeconds": 30.03407709999999,
+      "sampleSeconds": 60.07799990000001,
+      "modelStart": 29.999999999999392,
+      "modelEnd": 89.99999999999429,
+      "resolution": [
+        1280,
+        720
+      ],
+      "zoom": 1,
+      "vSync": 0,
+      "targetFrameRate": 60,
+      "recorderNames": [
+        "Main Thread",
+        "PlayerLoop",
+        "RenderLoop",
+        "Canvas.BuildBatch",
+        "Canvas.SendWillRenderCanvases",
+        "GC Allocated In Frame",
+        "Batches Count",
+        "Laboratory.Movement.Evaluate",
+        "Laboratory.Map.DrawArt",
+        "Laboratory.Map.Sort",
+        "Laboratory.Status.Layout",
+        "WaitForTargetFPS",
+        "Gfx.WaitForPresentOnGfxThread"
+      ],
+      "recorderValid": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true
+      ],
+      "recorderUnits": [
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        null,
+        "Bytes",
+        "Count",
+        null,
+        null,
+        null,
+        null,
+        "TimeNanoseconds",
+        "TimeNanoseconds"
+      ],
+      "metrics": {
+        "main": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.6616,
+          "p95": 17.1988,
+          "max": 38.6876,
+          "mean": 16.67900141666662
+        },
+        "playerLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 2.4146,
+          "p95": 3.4015,
+          "max": 33.6714,
+          "mean": 2.681140722222214
+        },
+        "render": {
+          "valid": true,
+          "samples": 3600,
+          "median": 10.73595,
+          "p95": 11.3019,
+          "max": 14.3286,
+          "mean": 10.539186388888899
+        },
+        "canvasBuild": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0052,
+          "p95": 0.0073,
+          "max": 0.0224,
+          "mean": 0.005383416666666683
+        },
+        "canvasSend": {
+          "valid": false
+        },
+        "evaluate": {
+          "valid": false
+        },
+        "draw": {
+          "valid": false
+        },
+        "sort": {
+          "valid": false
+        },
+        "status": {
+          "valid": false
+        },
+        "waitForTargetFps": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.0012,
+          "mean": 0.0002399722222222099
+        },
+        "waitForPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "gc": {
+          "valid": true,
+          "samples": 3600,
+          "median": 454262,
+          "p95": 673358,
+          "max": 4419005,
+          "mean": 488110.9216666667
+        },
+        "batches": {
+          "valid": true,
+          "samples": 3600,
+          "median": 56,
+          "p95": 57,
+          "max": 114,
+          "mean": 56.05166666666667
+        },
+        "workers": {
+          "valid": true,
+          "samples": 3600,
+          "median": 24,
+          "p95": 24,
+          "max": 24,
+          "mean": 24
+        },
+        "moving": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 1,
+          "max": 20,
+          "mean": 0.14722222222222223
+        },
+        "waiting": {
+          "valid": true,
+          "samples": 3600,
+          "median": 24,
+          "p95": 24,
+          "max": 24,
+          "mean": 23.995833333333334
+        },
+        "carrying": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "visible": {
+          "valid": true,
+          "samples": 3600,
+          "median": 24,
+          "p95": 24,
+          "max": 24,
+          "mean": 24
+        }
+      },
+      "pathQueries": 1,
+      "visitedCells": 124,
+      "managedMemoryChange": 74051584,
+      "unityMemoryChange": 1744717,
+      "collections": [
+        9,
+        9,
+        9
+      ],
+      "activeTransforms": 206
+    }
+  ],
+  "groups": [
+    {
+      "level": 0,
+      "mostlyOffscreen": false,
+      "stages": {
+        "baseline": {
+          "runs": 3,
+          "metrics": {
+            "main": {
+              "valid": true,
+              "median": 16.658749999999998,
+              "medianMin": 16.6576,
+              "medianMax": 16.662149999999997,
+              "p95": 17.1449,
+              "p95Min": 17.1171,
+              "p95Max": 17.1632,
+              "max": 51.8618
+            },
+            "playerLoop": {
+              "valid": true,
+              "median": 1.5889,
+              "medianMin": 1.587,
+              "medianMax": 1.5939,
+              "p95": 1.9638,
+              "p95Min": 1.9555,
+              "p95Max": 1.986,
+              "max": 46.5821
+            },
+            "render": {
+              "valid": true,
+              "median": 11.27435,
+              "medianMin": 11.2522,
+              "medianMax": 11.34635,
+              "p95": 11.8318,
+              "p95Min": 11.8287,
+              "p95Max": 11.8568,
+              "max": 14.1639
+            },
+            "canvasBuild": {
+              "valid": true,
+              "median": 0.0047,
+              "medianMin": 0.0045,
+              "medianMax": 0.0047,
+              "p95": 0.0068,
+              "p95Min": 0.0063,
+              "p95Max": 0.0068,
+              "max": 0.0677
+            },
+            "canvasSend": {
+              "valid": false
+            },
+            "evaluate": {
+              "valid": false
+            },
+            "draw": {
+              "valid": false
+            },
+            "sort": {
+              "valid": false
+            },
+            "status": {
+              "valid": false
+            },
+            "waitForTargetFps": {
+              "valid": true,
+              "median": 0.0002,
+              "medianMin": 0.0002,
+              "medianMax": 0.0002,
+              "p95": 0.0004,
+              "p95Min": 0.0004,
+              "p95Max": 0.0004,
+              "max": 0.0018
+            },
+            "waitForPresent": {
+              "valid": true,
+              "median": 0,
+              "medianMin": 0,
+              "medianMax": 0,
+              "p95": 0,
+              "p95Min": 0,
+              "p95Max": 0,
+              "max": 0
+            },
+            "gc": {
+              "valid": true,
+              "median": 355500,
+              "medianMin": 355044,
+              "medianMax": 365110,
+              "p95": 395020,
+              "p95Min": 385482,
+              "p95Max": 395020,
+              "max": 3778750
+            },
+            "batches": {
+              "valid": true,
+              "median": 15,
+              "medianMin": 15,
+              "medianMax": 15,
+              "p95": 15,
+              "p95Min": 15,
+              "p95Max": 15,
+              "max": 30
+            },
+            "workers": {
+              "valid": true,
+              "median": 1,
+              "medianMin": 1,
+              "medianMax": 1,
+              "p95": 1,
+              "p95Min": 1,
+              "p95Max": 1,
+              "max": 1
+            },
+            "moving": {
+              "valid": true,
+              "median": 0,
+              "medianMin": 0,
+              "medianMax": 0,
+              "p95": 0,
+              "p95Min": 0,
+              "p95Max": 0,
+              "max": 0
+            },
+            "waiting": {
+              "valid": true,
+              "median": 1,
+              "medianMin": 1,
+              "medianMax": 1,
+              "p95": 1,
+              "p95Min": 1,
+              "p95Max": 1,
+              "max": 1
+            },
+            "carrying": {
+              "valid": true,
+              "median": 0,
+              "medianMin": 0,
+              "medianMax": 0,
+              "p95": 0,
+              "p95Min": 0,
+              "p95Max": 0,
+              "max": 0
+            },
+            "visible": {
+              "valid": true,
+              "median": 1,
+              "medianMin": 1,
+              "medianMax": 1,
+              "p95": 1,
+              "p95Min": 1,
+              "p95Max": 1,
+              "max": 1
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "run": 1,
+          "afterMissing": true
+        },
+        {
+          "run": 2,
+          "afterMissing": true
+        },
+        {
+          "run": 3,
+          "afterMissing": true
+        }
+      ],
+      "differences": {}
+    },
+    {
+      "level": 2,
+      "mostlyOffscreen": false,
+      "stages": {
+        "baseline": {
+          "runs": 3,
+          "metrics": {
+            "main": {
+              "valid": true,
+              "median": 16.6616,
+              "medianMin": 16.655250000000002,
+              "medianMax": 16.66305,
+              "p95": 17.1988,
+              "p95Min": 17.1828,
+              "p95Max": 17.2021,
+              "max": 39.8631
+            },
+            "playerLoop": {
+              "valid": true,
+              "median": 2.434,
+              "medianMin": 2.4146,
+              "medianMax": 2.4451,
+              "p95": 3.5733,
+              "p95Min": 3.4015,
+              "p95Max": 3.6253,
+              "max": 33.6714
+            },
+            "render": {
+              "valid": true,
+              "median": 10.67365,
+              "medianMin": 10.6734,
+              "medianMax": 10.73595,
+              "p95": 11.3642,
+              "p95Min": 11.3019,
+              "p95Max": 11.3769,
+              "max": 17.1307
+            },
+            "canvasBuild": {
+              "valid": true,
+              "median": 0.0053,
+              "medianMin": 0.0052,
+              "medianMax": 0.0054,
+              "p95": 0.0077,
+              "p95Min": 0.0073,
+              "p95Max": 0.0082,
+              "max": 0.0292
+            },
+            "canvasSend": {
+              "valid": false
+            },
+            "evaluate": {
+              "valid": false
+            },
+            "draw": {
+              "valid": false
+            },
+            "sort": {
+              "valid": false
+            },
+            "status": {
+              "valid": false
+            },
+            "waitForTargetFps": {
+              "valid": true,
+              "median": 0.0002,
+              "medianMin": 0.0002,
+              "medianMax": 0.0002,
+              "p95": 0.0004,
+              "p95Min": 0.0004,
+              "p95Max": 0.0004,
+              "max": 0.0302
+            },
+            "waitForPresent": {
+              "valid": true,
+              "median": 0,
+              "medianMin": 0,
+              "medianMax": 0,
+              "p95": 0,
+              "p95Min": 0,
+              "p95Max": 0,
+              "max": 0
+            },
+            "gc": {
+              "valid": true,
+              "median": 444848,
+              "medianMin": 444772,
+              "medianMax": 454262,
+              "p95": 672110,
+              "p95Min": 663492,
+              "p95Max": 673358,
+              "max": 4419791
+            },
+            "batches": {
+              "valid": true,
+              "median": 56,
+              "medianMin": 56,
+              "medianMax": 56,
+              "p95": 57,
+              "p95Min": 57,
+              "p95Max": 57,
+              "max": 114
+            },
+            "workers": {
+              "valid": true,
+              "median": 24,
+              "medianMin": 24,
+              "medianMax": 24,
+              "p95": 24,
+              "p95Min": 24,
+              "p95Max": 24,
+              "max": 24
+            },
+            "moving": {
+              "valid": true,
+              "median": 0,
+              "medianMin": 0,
+              "medianMax": 0,
+              "p95": 1,
+              "p95Min": 1,
+              "p95Max": 1,
+              "max": 20
+            },
+            "waiting": {
+              "valid": true,
+              "median": 24,
+              "medianMin": 24,
+              "medianMax": 24,
+              "p95": 24,
+              "p95Min": 24,
+              "p95Max": 24,
+              "max": 24
+            },
+            "carrying": {
+              "valid": true,
+              "median": 0,
+              "medianMin": 0,
+              "medianMax": 0,
+              "p95": 0,
+              "p95Min": 0,
+              "p95Max": 0,
+              "max": 0
+            },
+            "visible": {
+              "valid": true,
+              "median": 24,
+              "medianMin": 24,
+              "medianMax": 24,
+              "p95": 24,
+              "p95Min": 24,
+              "p95Max": 24,
+              "max": 24
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "run": 1,
+          "afterMissing": true
+        },
+        {
+          "run": 2,
+          "afterMissing": true
+        },
+        {
+          "run": 3,
+          "afterMissing": true
+        }
+      ],
+      "differences": {}
+    }
+  ]
+}

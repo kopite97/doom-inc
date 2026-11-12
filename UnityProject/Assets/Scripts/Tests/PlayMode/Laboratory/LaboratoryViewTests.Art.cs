@@ -339,8 +339,8 @@ namespace MobileGame.SpatialTests
         }
         private static IEnumerator CaptureIntegratedArt(string name)
         {
-            var path = Path.GetFullPath(Path.Combine(Application.dataPath, "../../docs/plans/evidence/PLAN-027/screens/" + name + ".png"));
-            yield return AppSceneFlowTests.Capture("PLAN027-world", path);
+            var path = Path.Combine(RegressionEvidenceRoot, "screens", name + ".png");
+            yield return AppSceneFlowTests.Capture("laboratory-art-regression", path);
         }
     }
 }

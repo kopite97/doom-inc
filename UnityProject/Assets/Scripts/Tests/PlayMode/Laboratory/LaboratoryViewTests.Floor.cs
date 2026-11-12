@@ -67,7 +67,8 @@ namespace MobileGame.SpatialTests
                     yield return CaptureFloorArt("base-only-1280x720-zoom1");
                 }
                 finally { view.ConfigureUiAssets(assets); }
-                var evidence = Path.GetFullPath(Path.Combine(Application.dataPath, "../../docs/plans/evidence/PLAN-027/floor/distribution.txt"));
+                var evidence = Path.Combine(RegressionEvidenceRoot, "floor", "distribution.txt");
+                Directory.CreateDirectory(Path.GetDirectoryName(evidence));
                 File.WriteAllLines(evidence, original.GroupBy(s => s.name).OrderBy(g => g.Key).Select(g => g.Key + "=" + g.Count()));
 
                 var worker = view.Simulation.Registry.Things.Single(t => t.Definition.Kind == ThingKind.Creature);
@@ -123,7 +124,7 @@ namespace MobileGame.SpatialTests
 
         private static IEnumerator CaptureFloorArt(string name)
         {
-            var path = Path.GetFullPath(Path.Combine(Application.dataPath, "../../docs/plans/evidence/PLAN-027/floor/" + name + ".png"));
+            var path = Path.Combine(RegressionEvidenceRoot, "floor", name + ".png");
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             if (File.Exists(path)) File.Delete(path);
             ScreenCapture.CaptureScreenshot(path);

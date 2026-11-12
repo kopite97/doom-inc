@@ -1,0 +1,16 @@
+return new {
+    editor = UnityEngine.Application.unityVersion,
+    play = UnityEditor.EditorApplication.isPlaying,
+    scenes = UnityEditor.SceneManagement.EditorSceneManager.GetSceneManagerSetup().Select(s => new { s.path, s.isLoaded, s.isActive }).ToArray(),
+    dirty = UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty,
+    persistent = UnityEngine.Application.persistentDataPath,
+    runInBackground = UnityEngine.Application.runInBackground,
+    domainEnabled = UnityEditor.EditorSettings.enterPlayModeOptionsEnabled,
+    options = UnityEditor.EditorSettings.enterPlayModeOptions.ToString(),
+    target = UnityEditor.EditorUserBuildSettings.activeBuildTarget.ToString(),
+    graphics = UnityEngine.SystemInfo.graphicsDeviceType.ToString(),
+    threadedGraphics = UnityEngine.SystemInfo.graphicsMultiThreaded,
+    vSync = UnityEngine.QualitySettings.vSyncCount,
+    targetFrameRate = UnityEngine.Application.targetFrameRate,
+    pipeline = UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline.name
+};

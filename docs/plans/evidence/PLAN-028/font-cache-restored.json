@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "if (UnityEditor.EditorApplication.isPlaying || UnityEditor.EditorApplication.isCompiling) throw new System.InvalidOperationException(\"Editor must be stopped and idle\");\nvar font = UnityEditor.AssetDatabase.LoadAssetAtPath<TMPro.TMP_FontAsset>(\"Assets/Fonts/Mulmaru/MulmaruDynamic.asset\");\nvar beforeGlyphs = font.glyphTable.Count;\nfont.ClearFontAssetData(true);\nUnityEditor.EditorUtility.SetDirty(font);\nUnityEditor.EditorUtility.SetDirty(font.atlasTexture);\nUnityEditor.AssetDatabase.SaveAssetIfDirty(font);\nreturn new { beforeGlyphs, glyphs = font.glyphTable.Count, characters = font.characterTable.Count, atlasWidth = font.atlasTexture.width, atlasHeight = font.atlasTexture.height };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "beforeGlyphs": 80,
+        "glyphs": 0,
+        "characters": 0,
+        "atlasWidth": 1,
+        "atlasHeight": 1
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

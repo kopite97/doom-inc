@@ -1,0 +1,1755 @@
+{
+  "note": "Pairs match fixed logical command step, not physical frame numbers. Durations overlap and may belong to different profiler scopes/threads; never subtract them here to invent exclusive CPU work. Pearson correlation is descriptive, not a cause. Null Pearson means invalid/unavailable or constant data. Zero/constant wait observations cannot prove absence of unmeasured Present waiting. No Gfx.PresentFrame baseline was collected.",
+  "pairs": [
+    {
+      "baseline": "baseline-level0-run1.json",
+      "after": "after-level0-run1.json",
+      "level": 0,
+      "run": 1,
+      "mostlyOffscreen": false,
+      "pairedRows": 3600,
+      "milliseconds": {
+        "main": {
+          "before": {
+            "n": 3600,
+            "mean": 16.693724055555556,
+            "median": 16.652949999999997,
+            "p95": 17.1839,
+            "min": 0.0,
+            "max": 43.494,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 16.680181333333334,
+            "median": 16.65815,
+            "p95": 17.2025,
+            "min": 0.0,
+            "max": 48.3236,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -0.013542722222222225,
+            "median": 0.004750000000001364,
+            "p95": 0.7802000000000007,
+            "min": -27.0574,
+            "max": 32.3846,
+            "constant": false
+          }
+        },
+        "playerLoop": {
+          "before": {
+            "n": 3600,
+            "mean": 1.975557638888889,
+            "median": 1.7508499999999998,
+            "p95": 2.2187,
+            "min": 0.4873,
+            "max": 37.8548,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 2.074516222222222,
+            "median": 1.8229,
+            "p95": 2.318,
+            "min": 0.5608,
+            "max": 42.6389,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.09895858333333334,
+            "median": 0.07079999999999997,
+            "p95": 0.6133999999999997,
+            "min": -36.0227,
+            "max": 41.0004,
+            "constant": false
+          }
+        },
+        "render": {
+          "before": {
+            "n": 3600,
+            "mean": 10.946238944444445,
+            "median": 11.11415,
+            "p95": 11.7282,
+            "min": 0.0,
+            "max": 34.54,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 11.061995972222222,
+            "median": 11.2295,
+            "p95": 11.8494,
+            "min": 0.9543,
+            "max": 14.7046,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.11575702777777779,
+            "median": 0.12285000000000057,
+            "p95": 1.3521999999999998,
+            "min": -23.2153,
+            "max": 10.8814,
+            "constant": false
+          }
+        },
+        "waitForTargetFps": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0002527222222222222,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0098,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.00024366666666666666,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0147,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -9.055555555555554e-06,
+            "median": 0.0,
+            "p95": 0.0002,
+            "min": -0.0095,
+            "max": 0.014499999999999999,
+            "constant": false
+          }
+        },
+        "waitForPresent": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          }
+        }
+      },
+      "pearson": {
+        "before": {
+          "render_vs_main": 0.018597092654234877,
+          "render_vs_playerLoop": -0.49551966791097274,
+          "render_vs_waitForTargetFps": -0.08479086644214175,
+          "render_vs_waitForPresent": null
+        },
+        "after": {
+          "render_vs_main": -0.051983658771401396,
+          "render_vs_playerLoop": -0.7426895539561101,
+          "render_vs_waitForTargetFps": -0.004830798258506216,
+          "render_vs_waitForPresent": null
+        },
+        "delta": {
+          "render_vs_main": -0.04717424311022723,
+          "render_vs_playerLoop": -0.6318423166726195,
+          "render_vs_waitForTargetFps": -0.04347533846286637,
+          "render_vs_waitForPresent": null
+        }
+      }
+    },
+    {
+      "baseline": "baseline-level0-run2.json",
+      "after": "after-level0-run2.json",
+      "level": 0,
+      "run": 2,
+      "mostlyOffscreen": false,
+      "pairedRows": 3600,
+      "milliseconds": {
+        "main": {
+          "before": {
+            "n": 3600,
+            "mean": 16.680188027777778,
+            "median": 16.65475,
+            "p95": 17.1663,
+            "min": 0.0,
+            "max": 40.9569,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 16.682392833333335,
+            "median": 16.6583,
+            "p95": 17.2219,
+            "min": 0.0,
+            "max": 46.2941,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.002204805555555541,
+            "median": -0.0010500000000011056,
+            "p95": 0.7385999999999981,
+            "min": -24.1788,
+            "max": 29.7762,
+            "constant": false
+          }
+        },
+        "playerLoop": {
+          "before": {
+            "n": 3600,
+            "mean": 1.897625611111111,
+            "median": 1.7237,
+            "p95": 2.0947,
+            "min": 0.5443,
+            "max": 35.7449,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 1.97770025,
+            "median": 1.8070499999999998,
+            "p95": 2.3041,
+            "min": 0.4894,
+            "max": 41.4231,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.08007463888888888,
+            "median": 0.07320000000000004,
+            "p95": 0.6143999999999998,
+            "min": -33.8521,
+            "max": 39.9111,
+            "constant": false
+          }
+        },
+        "render": {
+          "before": {
+            "n": 3600,
+            "mean": 11.04026611111111,
+            "median": 11.1967,
+            "p95": 11.7444,
+            "min": 1.1802,
+            "max": 13.2756,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 11.113188611111111,
+            "median": 11.2407,
+            "p95": 11.845,
+            "min": 0.9513,
+            "max": 14.0124,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.07292249999999999,
+            "median": 0.06314999999999937,
+            "p95": 1.2201000000000004,
+            "min": -10.504,
+            "max": 9.892900000000001,
+            "constant": false
+          }
+        },
+        "waitForTargetFps": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0002406111111111111,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0017,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0002457777777777778,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0067,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 5.166666666666667e-06,
+            "median": 0.0,
+            "p95": 0.0002,
+            "min": -0.0014,
+            "max": 0.006500000000000001,
+            "constant": false
+          }
+        },
+        "waitForPresent": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          }
+        }
+      },
+      "pearson": {
+        "before": {
+          "render_vs_main": -0.16119404090642767,
+          "render_vs_playerLoop": -0.7165531993387254,
+          "render_vs_waitForTargetFps": 0.006225796111384541,
+          "render_vs_waitForPresent": null
+        },
+        "after": {
+          "render_vs_main": -0.05838786573599294,
+          "render_vs_playerLoop": -0.6353343388630239,
+          "render_vs_waitForTargetFps": 0.0059512511518078895,
+          "render_vs_waitForPresent": null
+        },
+        "delta": {
+          "render_vs_main": -0.1525037315333757,
+          "render_vs_playerLoop": -0.6821391860153829,
+          "render_vs_waitForTargetFps": -0.020316496452898763,
+          "render_vs_waitForPresent": null
+        }
+      }
+    },
+    {
+      "baseline": "baseline-level0-run3.json",
+      "after": "after-level0-run3.json",
+      "level": 0,
+      "run": 3,
+      "mostlyOffscreen": false,
+      "pairedRows": 3600,
+      "milliseconds": {
+        "main": {
+          "before": {
+            "n": 3600,
+            "mean": 16.701581555555556,
+            "median": 16.655749999999998,
+            "p95": 17.1982,
+            "min": 0.0,
+            "max": 68.8246,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 16.68790636111111,
+            "median": 16.6556,
+            "p95": 17.2692,
+            "min": 0.0,
+            "max": 51.876,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -0.013675194444444467,
+            "median": 0.006849999999998246,
+            "p95": 0.8020999999999994,
+            "min": -52.0441,
+            "max": 35.3952,
+            "constant": false
+          }
+        },
+        "playerLoop": {
+          "before": {
+            "n": 3600,
+            "mean": 2.039992611111111,
+            "median": 1.79735,
+            "p95": 2.3324,
+            "min": 0.4865,
+            "max": 64.8913,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 2.1133505,
+            "median": 1.8505,
+            "p95": 2.3705,
+            "min": 0.608,
+            "max": 45.8345,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.07335788888888889,
+            "median": 0.03954999999999986,
+            "p95": 0.6402999999999999,
+            "min": -63.1119,
+            "max": 44.003,
+            "constant": false
+          }
+        },
+        "render": {
+          "before": {
+            "n": 3600,
+            "mean": 10.98173061111111,
+            "median": 11.18525,
+            "p95": 11.7396,
+            "min": 0.9454,
+            "max": 67.2295,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 11.040231416666668,
+            "median": 11.2287,
+            "p95": 11.9127,
+            "min": 1.0438,
+            "max": 14.6519,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.058500805555555556,
+            "median": 0.07099999999999973,
+            "p95": 1.5774000000000008,
+            "min": -56.2263,
+            "max": 10.0442,
+            "constant": false
+          }
+        },
+        "waitForTargetFps": {
+          "before": {
+            "n": 3600,
+            "mean": 0.00025791666666666666,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0091,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.00024952777777777777,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0116,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -8.388888888888888e-06,
+            "median": 0.0,
+            "p95": 0.0002,
+            "min": -0.0088,
+            "max": 0.0113,
+            "constant": false
+          }
+        },
+        "waitForPresent": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          }
+        }
+      },
+      "pearson": {
+        "before": {
+          "render_vs_main": 0.29951860307911504,
+          "render_vs_playerLoop": -0.09911403843827668,
+          "render_vs_waitForTargetFps": -0.09062756469466572,
+          "render_vs_waitForPresent": null
+        },
+        "after": {
+          "render_vs_main": -0.0839837418634363,
+          "render_vs_playerLoop": -0.6868189470072559,
+          "render_vs_waitForTargetFps": 0.0057165102352094025,
+          "render_vs_waitForPresent": null
+        },
+        "delta": {
+          "render_vs_main": 0.11543905576147785,
+          "render_vs_playerLoop": -0.35245904143042456,
+          "render_vs_waitForTargetFps": -0.03760475307261411,
+          "render_vs_waitForPresent": null
+        }
+      }
+    },
+    {
+      "baseline": "baseline-level1-run1.json",
+      "after": "after-level1-run1.json",
+      "level": 1,
+      "run": 1,
+      "mostlyOffscreen": false,
+      "pairedRows": 3600,
+      "milliseconds": {
+        "main": {
+          "before": {
+            "n": 3600,
+            "mean": 16.67775588888889,
+            "median": 16.6567,
+            "p95": 17.1673,
+            "min": 0.0,
+            "max": 42.4471,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 16.680004027777777,
+            "median": 16.65335,
+            "p95": 17.2022,
+            "min": 0.0,
+            "max": 43.9733,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0022481388888888724,
+            "median": 0.007799999999999585,
+            "p95": 0.7505000000000024,
+            "min": -25.033400000000004,
+            "max": 26.852600000000002,
+            "constant": false
+          }
+        },
+        "playerLoop": {
+          "before": {
+            "n": 3600,
+            "mean": 2.1956894444444446,
+            "median": 1.9981499999999999,
+            "p95": 2.406,
+            "min": 0.5482,
+            "max": 36.9978,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 2.1175349166666666,
+            "median": 1.93445,
+            "p95": 2.3285,
+            "min": 0.4981,
+            "max": 38.0778,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -0.07815452777777777,
+            "median": -0.06180000000000008,
+            "p95": 0.4003000000000001,
+            "min": -34.422599999999996,
+            "max": 35.851600000000005,
+            "constant": false
+          }
+        },
+        "render": {
+          "before": {
+            "n": 3600,
+            "mean": 10.803254138888889,
+            "median": 10.90845,
+            "p95": 11.5501,
+            "min": 1.1193,
+            "max": 12.1097,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 10.818715361111112,
+            "median": 10.921800000000001,
+            "p95": 11.5764,
+            "min": 0.9925,
+            "max": 30.2488,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.01546122222222221,
+            "median": -0.014350000000000307,
+            "p95": 1.030100000000001,
+            "min": -10.1143,
+            "max": 18.6485,
+            "constant": false
+          }
+        },
+        "waitForTargetFps": {
+          "before": {
+            "n": 3600,
+            "mean": 0.00025155555555555554,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0008,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.00023838888888888887,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0007,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -1.3166666666666665e-05,
+            "median": 0.0,
+            "p95": 0.0002,
+            "min": -0.0006000000000000001,
+            "max": 0.0005,
+            "constant": false
+          }
+        },
+        "waitForPresent": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          }
+        }
+      },
+      "pearson": {
+        "before": {
+          "render_vs_main": -0.06546950682929592,
+          "render_vs_playerLoop": -0.7141904789851773,
+          "render_vs_waitForTargetFps": -0.020140411661901537,
+          "render_vs_waitForPresent": null
+        },
+        "after": {
+          "render_vs_main": 0.088590617318191,
+          "render_vs_playerLoop": -0.601877688640525,
+          "render_vs_waitForTargetFps": 0.013758076147356578,
+          "render_vs_waitForPresent": null
+        },
+        "delta": {
+          "render_vs_main": -0.038897227843540674,
+          "render_vs_playerLoop": -0.679673794263987,
+          "render_vs_waitForTargetFps": -0.0232526410328159,
+          "render_vs_waitForPresent": null
+        }
+      }
+    },
+    {
+      "baseline": "baseline-level1-run2.json",
+      "after": "after-level1-run2.json",
+      "level": 1,
+      "run": 2,
+      "mostlyOffscreen": false,
+      "pairedRows": 3600,
+      "milliseconds": {
+        "main": {
+          "before": {
+            "n": 3600,
+            "mean": 16.681851527777777,
+            "median": 16.6616,
+            "p95": 17.2083,
+            "min": 0.0,
+            "max": 44.6791,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 16.68200441666667,
+            "median": 16.662399999999998,
+            "p95": 17.1191,
+            "min": 0.0,
+            "max": 45.2898,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.00015288888888890216,
+            "median": 0.013400000000000745,
+            "p95": 0.7146000000000008,
+            "min": -27.6913,
+            "max": 28.593899999999998,
+            "constant": false
+          }
+        },
+        "playerLoop": {
+          "before": {
+            "n": 3600,
+            "mean": 2.2633727222222224,
+            "median": 2.0820499999999997,
+            "p95": 2.5974,
+            "min": 0.4955,
+            "max": 39.2725,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 2.1452786666666666,
+            "median": 1.86685,
+            "p95": 2.3171,
+            "min": 0.5235,
+            "max": 40.2413,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -0.11809405555555555,
+            "median": -0.18745,
+            "p95": 0.34620000000000006,
+            "min": -37.2175,
+            "max": 37.420300000000005,
+            "constant": false
+          }
+        },
+        "render": {
+          "before": {
+            "n": 3600,
+            "mean": 10.903544638888889,
+            "median": 11.01205,
+            "p95": 11.5788,
+            "min": 0.9994,
+            "max": 13.5258,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 10.921264472222223,
+            "median": 11.09645,
+            "p95": 11.5901,
+            "min": 0.9226,
+            "max": 12.6532,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.01771983333333334,
+            "median": 0.08364999999999956,
+            "p95": 0.8922000000000008,
+            "min": -10.694,
+            "max": 10.1064,
+            "constant": false
+          }
+        },
+        "waitForTargetFps": {
+          "before": {
+            "n": 3600,
+            "mean": 0.00024694444444444444,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0009,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.00023036111111111111,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.001,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -1.658333333333333e-05,
+            "median": 0.0,
+            "p95": 0.0002,
+            "min": -0.0007,
+            "max": 0.0006000000000000001,
+            "constant": false
+          }
+        },
+        "waitForPresent": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          }
+        }
+      },
+      "pearson": {
+        "before": {
+          "render_vs_main": -0.08137343231223838,
+          "render_vs_playerLoop": -0.6858393768807414,
+          "render_vs_waitForTargetFps": -0.02299387556794539,
+          "render_vs_waitForPresent": null
+        },
+        "after": {
+          "render_vs_main": -0.033061276022551156,
+          "render_vs_playerLoop": -0.7410171396810418,
+          "render_vs_waitForTargetFps": 0.0026394049408836134,
+          "render_vs_waitForPresent": null
+        },
+        "delta": {
+          "render_vs_main": -0.09221731164429992,
+          "render_vs_playerLoop": -0.7301793962099389,
+          "render_vs_waitForTargetFps": -0.007105711011154544,
+          "render_vs_waitForPresent": null
+        }
+      }
+    },
+    {
+      "baseline": "baseline-level1-run3.json",
+      "after": "after-level1-run3.json",
+      "level": 1,
+      "run": 3,
+      "mostlyOffscreen": false,
+      "pairedRows": 3600,
+      "milliseconds": {
+        "main": {
+          "before": {
+            "n": 3600,
+            "mean": 16.679147722222222,
+            "median": 16.6697,
+            "p95": 17.223,
+            "min": 0.0,
+            "max": 44.6693,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 16.68306558333333,
+            "median": 16.664250000000003,
+            "p95": 17.1306,
+            "min": 0.0,
+            "max": 40.7965,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.00391786111111112,
+            "median": -0.006950000000001566,
+            "p95": 0.7391000000000005,
+            "min": -28.0904,
+            "max": 23.759800000000002,
+            "constant": false
+          }
+        },
+        "playerLoop": {
+          "before": {
+            "n": 3600,
+            "mean": 2.21177075,
+            "median": 2.03905,
+            "p95": 2.5016,
+            "min": 0.5032,
+            "max": 38.2867,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 2.069068722222222,
+            "median": 1.8757,
+            "p95": 2.2824,
+            "min": 0.4517,
+            "max": 37.6738,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -0.14270202777777777,
+            "median": -0.15739999999999987,
+            "p95": 0.3411000000000002,
+            "min": -36.4981,
+            "max": 35.9628,
+            "constant": false
+          }
+        },
+        "render": {
+          "before": {
+            "n": 3600,
+            "mean": 10.822808055555555,
+            "median": 10.9145,
+            "p95": 11.5575,
+            "min": 1.0004,
+            "max": 29.8346,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 11.055077916666667,
+            "median": 11.1598,
+            "p95": 11.6249,
+            "min": 0.8716,
+            "max": 12.3152,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.23226986111111114,
+            "median": 0.2577500000000006,
+            "p95": 1.1022999999999996,
+            "min": -18.295499999999997,
+            "max": 10.2843,
+            "constant": false
+          }
+        },
+        "waitForTargetFps": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0002480277777777778,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.001,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.00022680555555555556,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0007,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -2.1222222222222223e-05,
+            "median": 0.0,
+            "p95": 0.00019999999999999998,
+            "min": -0.0008,
+            "max": 0.0005,
+            "constant": false
+          }
+        },
+        "waitForPresent": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          }
+        }
+      },
+      "pearson": {
+        "before": {
+          "render_vs_main": 0.06407649715692063,
+          "render_vs_playerLoop": -0.636180119494879,
+          "render_vs_waitForTargetFps": -0.006909411045262663,
+          "render_vs_waitForPresent": null
+        },
+        "after": {
+          "render_vs_main": -0.17396456683631573,
+          "render_vs_playerLoop": -0.7920521715336885,
+          "render_vs_waitForTargetFps": -0.021153045403063845,
+          "render_vs_waitForPresent": null
+        },
+        "delta": {
+          "render_vs_main": -0.1073849430876095,
+          "render_vs_playerLoop": -0.7350691737975866,
+          "render_vs_waitForTargetFps": -0.02005351521659473,
+          "render_vs_waitForPresent": null
+        }
+      }
+    },
+    {
+      "baseline": "baseline-level2-offscreen-run1.json",
+      "after": "after-level2-offscreen-run1.json",
+      "level": 2,
+      "run": 1,
+      "mostlyOffscreen": true,
+      "pairedRows": 3600,
+      "milliseconds": {
+        "main": {
+          "before": {
+            "n": 3600,
+            "mean": 16.67649683333333,
+            "median": 16.66375,
+            "p95": 17.1725,
+            "min": 0.0,
+            "max": 38.3677,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 16.680687583333334,
+            "median": 16.66085,
+            "p95": 17.1635,
+            "min": 0.0,
+            "max": 39.1206,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.004190749999999959,
+            "median": 0.003049999999999997,
+            "p95": 0.7320999999999991,
+            "min": -21.3767,
+            "max": 22.902200000000004,
+            "constant": false
+          }
+        },
+        "playerLoop": {
+          "before": {
+            "n": 3600,
+            "mean": 2.5563915,
+            "median": 2.26415,
+            "p95": 3.2318,
+            "min": 0.5277,
+            "max": 33.3774,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 2.591629888888889,
+            "median": 2.23095,
+            "p95": 3.243,
+            "min": 0.4414,
+            "max": 34.0748,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.03523838888888888,
+            "median": -0.022299999999999764,
+            "p95": 0.5316000000000001,
+            "min": -31.1884,
+            "max": 31.7911,
+            "constant": false
+          }
+        },
+        "render": {
+          "before": {
+            "n": 3600,
+            "mean": 10.494812527777778,
+            "median": 10.71055,
+            "p95": 11.2571,
+            "min": 0.8585,
+            "max": 14.0397,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 10.561598194444445,
+            "median": 10.8067,
+            "p95": 11.3231,
+            "min": 0.8877,
+            "max": 15.9722,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.06678566666666666,
+            "median": 0.09339999999999993,
+            "p95": 1.087299999999999,
+            "min": -9.878499999999999,
+            "max": 9.5119,
+            "constant": false
+          }
+        },
+        "waitForTargetFps": {
+          "before": {
+            "n": 3600,
+            "mean": 0.00023475,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0008,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.00022744444444444445,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0007,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -7.305555555555556e-06,
+            "median": 0.0,
+            "p95": 0.0002,
+            "min": -0.0006000000000000001,
+            "max": 0.0005,
+            "constant": false
+          }
+        },
+        "waitForPresent": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          }
+        }
+      },
+      "pearson": {
+        "before": {
+          "render_vs_main": -0.008094829130206179,
+          "render_vs_playerLoop": -0.7664268439338752,
+          "render_vs_waitForTargetFps": -0.019380169919498317,
+          "render_vs_waitForPresent": null
+        },
+        "after": {
+          "render_vs_main": -0.051846588153057135,
+          "render_vs_playerLoop": -0.8262025569018994,
+          "render_vs_waitForTargetFps": -0.011264916511168335,
+          "render_vs_waitForPresent": null
+        },
+        "delta": {
+          "render_vs_main": -0.07718648728222915,
+          "render_vs_playerLoop": -0.7972091560989747,
+          "render_vs_waitForTargetFps": -0.027688583058271023,
+          "render_vs_waitForPresent": null
+        }
+      }
+    },
+    {
+      "baseline": "baseline-level2-run1.json",
+      "after": "after-level2-run1.json",
+      "level": 2,
+      "run": 1,
+      "mostlyOffscreen": false,
+      "pairedRows": 3600,
+      "milliseconds": {
+        "main": {
+          "before": {
+            "n": 3600,
+            "mean": 16.673760444444444,
+            "median": 16.653550000000003,
+            "p95": 17.1134,
+            "min": 0.0,
+            "max": 38.3313,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 16.677479777777776,
+            "median": 16.6567,
+            "p95": 17.191,
+            "min": 0.0,
+            "max": 41.409,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0037193333333332707,
+            "median": 0.009249999999999758,
+            "p95": 0.7104999999999997,
+            "min": -21.5446,
+            "max": 24.683899999999998,
+            "constant": false
+          }
+        },
+        "playerLoop": {
+          "before": {
+            "n": 3600,
+            "mean": 2.928398222222222,
+            "median": 2.607,
+            "p95": 3.8598,
+            "min": 0.5451,
+            "max": 32.6797,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 2.816871583333333,
+            "median": 2.5322,
+            "p95": 3.5991,
+            "min": 0.4962,
+            "max": 36.7425,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -0.11152663888888889,
+            "median": -0.09860000000000002,
+            "p95": 0.5169999999999999,
+            "min": -30.108699999999995,
+            "max": 34.2995,
+            "constant": false
+          }
+        },
+        "render": {
+          "before": {
+            "n": 3600,
+            "mean": 10.169263749999999,
+            "median": 10.341349999999998,
+            "p95": 10.963,
+            "min": 0.9794,
+            "max": 13.2816,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 10.343458194444445,
+            "median": 10.5059,
+            "p95": 11.1368,
+            "min": 0.9559,
+            "max": 14.2144,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.17419444444444446,
+            "median": 0.16239999999999988,
+            "p95": 1.1614000000000004,
+            "min": -9.4875,
+            "max": 9.7162,
+            "constant": false
+          }
+        },
+        "waitForTargetFps": {
+          "before": {
+            "n": 3600,
+            "mean": 0.00025008333333333333,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0054,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0002360277777777778,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0007,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -1.4055555555555556e-05,
+            "median": 0.0,
+            "p95": 0.0002,
+            "min": -0.0051,
+            "max": 0.0005,
+            "constant": false
+          }
+        },
+        "waitForPresent": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          }
+        }
+      },
+      "pearson": {
+        "before": {
+          "render_vs_main": -0.0005221088582983172,
+          "render_vs_playerLoop": -0.7558881821047077,
+          "render_vs_waitForTargetFps": -0.013531857397392509,
+          "render_vs_waitForPresent": null
+        },
+        "after": {
+          "render_vs_main": -0.04998811356687946,
+          "render_vs_playerLoop": -0.7980623854910767,
+          "render_vs_waitForTargetFps": -0.010062665207681789,
+          "render_vs_waitForPresent": null
+        },
+        "delta": {
+          "render_vs_main": -0.0860807452688384,
+          "render_vs_playerLoop": -0.7763422681506623,
+          "render_vs_waitForTargetFps": -0.032292905384871125,
+          "render_vs_waitForPresent": null
+        }
+      }
+    },
+    {
+      "baseline": "baseline-level2-run2.json",
+      "after": "after-level2-run2.json",
+      "level": 2,
+      "run": 2,
+      "mostlyOffscreen": false,
+      "pairedRows": 3600,
+      "milliseconds": {
+        "main": {
+          "before": {
+            "n": 3600,
+            "mean": 16.68860388888889,
+            "median": 16.6565,
+            "p95": 17.1197,
+            "min": 0.0,
+            "max": 61.6892,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 16.69801538888889,
+            "median": 16.659550000000003,
+            "p95": 17.1965,
+            "min": 0.0,
+            "max": 45.6063,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.009411500000000003,
+            "median": 0.005850000000000577,
+            "p95": 0.7074999999999996,
+            "min": -45.2692,
+            "max": 28.765299999999996,
+            "constant": false
+          }
+        },
+        "playerLoop": {
+          "before": {
+            "n": 3600,
+            "mean": 2.9291867222222225,
+            "median": 2.54215,
+            "p95": 3.9363,
+            "min": 0.7049,
+            "max": 34.4247,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 2.948197611111111,
+            "median": 2.5477,
+            "p95": 3.8486,
+            "min": 0.4975,
+            "max": 40.4729,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.019010888888888886,
+            "median": -0.018750000000000266,
+            "p95": 0.6530999999999993,
+            "min": -31.710900000000002,
+            "max": 37.8958,
+            "constant": false
+          }
+        },
+        "render": {
+          "before": {
+            "n": 3600,
+            "mean": 10.08706875,
+            "median": 10.3153,
+            "p95": 10.8917,
+            "min": 0.9559,
+            "max": 13.7503,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 10.280891027777777,
+            "median": 10.49995,
+            "p95": 11.2159,
+            "min": 0.0,
+            "max": 37.1078,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.19382227777777777,
+            "median": 0.20865000000000045,
+            "p95": 1.2660999999999998,
+            "min": -9.9886,
+            "max": 26.679599999999997,
+            "constant": false
+          }
+        },
+        "waitForTargetFps": {
+          "before": {
+            "n": 3600,
+            "mean": 0.000251,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0091,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0002385,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0088,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -1.2499999999999999e-05,
+            "median": 0.0,
+            "p95": 0.0002,
+            "min": -0.0089,
+            "max": 0.0086,
+            "constant": false
+          }
+        },
+        "waitForPresent": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          }
+        }
+      },
+      "pearson": {
+        "before": {
+          "render_vs_main": -0.09055295705280476,
+          "render_vs_playerLoop": -0.8134590901969595,
+          "render_vs_waitForTargetFps": -0.005889253808801399,
+          "render_vs_waitForPresent": null
+        },
+        "after": {
+          "render_vs_main": 0.03367543860871504,
+          "render_vs_playerLoop": -0.6298910424140308,
+          "render_vs_waitForTargetFps": -0.004451620473254927,
+          "render_vs_waitForPresent": null
+        },
+        "delta": {
+          "render_vs_main": -0.06022723121660827,
+          "render_vs_playerLoop": -0.7100926119893664,
+          "render_vs_waitForTargetFps": 0.004602335758297432,
+          "render_vs_waitForPresent": null
+        }
+      }
+    },
+    {
+      "baseline": "baseline-level2-run3.json",
+      "after": "after-level2-run3.json",
+      "level": 2,
+      "run": 3,
+      "mostlyOffscreen": false,
+      "pairedRows": 3600,
+      "milliseconds": {
+        "main": {
+          "before": {
+            "n": 3600,
+            "mean": 16.683400166666665,
+            "median": 16.66095,
+            "p95": 17.092,
+            "min": 0.0,
+            "max": 40.4274,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 16.682825277777777,
+            "median": 16.6526,
+            "p95": 17.18,
+            "min": 0.0,
+            "max": 42.3674,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -0.0005748888888888834,
+            "median": -0.0002999999999993008,
+            "p95": 0.7150000000000034,
+            "min": -23.5112,
+            "max": 25.371300000000005,
+            "constant": false
+          }
+        },
+        "playerLoop": {
+          "before": {
+            "n": 3600,
+            "mean": 3.05518025,
+            "median": 2.69285,
+            "p95": 4.1288,
+            "min": 0.5175,
+            "max": 35.4472,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 2.7857804444444447,
+            "median": 2.3886000000000003,
+            "p95": 3.4886,
+            "min": 0.5447,
+            "max": 37.1393,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -0.26939980555555554,
+            "median": -0.2904,
+            "p95": 0.30349999999999966,
+            "min": -32.788000000000004,
+            "max": 34.2877,
+            "constant": false
+          }
+        },
+        "render": {
+          "before": {
+            "n": 3600,
+            "mean": 10.259321805555555,
+            "median": 10.4602,
+            "p95": 11.0354,
+            "min": 1.0833,
+            "max": 28.9897,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 10.389319333333333,
+            "median": 10.68965,
+            "p95": 11.1313,
+            "min": 0.9083,
+            "max": 13.8861,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.1299975277777778,
+            "median": 0.19205000000000005,
+            "p95": 1.094199999999999,
+            "min": -17.9846,
+            "max": 9.2532,
+            "constant": false
+          }
+        },
+        "waitForTargetFps": {
+          "before": {
+            "n": 3600,
+            "mean": 0.00025308333333333335,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0008,
+            "constant": false
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0002248888888888889,
+            "median": 0.0002,
+            "p95": 0.0004,
+            "min": 0.0,
+            "max": 0.0008,
+            "constant": false
+          },
+          "delta": {
+            "n": 3600,
+            "mean": -2.819444444444444e-05,
+            "median": 0.0,
+            "p95": 0.00010000000000000005,
+            "min": -0.0006000000000000001,
+            "max": 0.0006000000000000001,
+            "constant": false
+          }
+        },
+        "waitForPresent": {
+          "before": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "after": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          },
+          "delta": {
+            "n": 3600,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "constant": true
+          }
+        }
+      },
+      "pearson": {
+        "before": {
+          "render_vs_main": 0.024655905081142702,
+          "render_vs_playerLoop": -0.7516832128819401,
+          "render_vs_waitForTargetFps": -0.026493894795947562,
+          "render_vs_waitForPresent": null
+        },
+        "after": {
+          "render_vs_main": -0.06872038660335338,
+          "render_vs_playerLoop": -0.814686066953519,
+          "render_vs_waitForTargetFps": -0.018750194648141805,
+          "render_vs_waitForPresent": null
+        },
+        "delta": {
+          "render_vs_main": -0.07887565870469503,
+          "render_vs_playerLoop": -0.7867348377633562,
+          "render_vs_waitForTargetFps": -0.021756146502220637,
+          "render_vs_waitForPresent": null
+        }
+      }
+    }
+  ]
+}

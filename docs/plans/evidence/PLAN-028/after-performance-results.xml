@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-11 16:34:17Z" end-time="2026-11-11 16:49:22Z" duration="905.3401367">
+  <test-suite type="TestSuite" id="1114" name="UnityProject" fullname="UnityProject" runstate="Runnable" testcasecount="93" result="Passed" start-time="2026-11-11 16:34:17Z" end-time="2026-11-11 16:49:22Z" duration="905.340137" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1105" name="MobileGame.Spatial.PlayMode.Tests.dll" fullname="C:/Dev/Unity/Doom_Inc/UnityProject/Library/ScriptAssemblies/MobileGame.Spatial.PlayMode.Tests.dll" runstate="Runnable" testcasecount="92" result="Passed" start-time="2026-11-11 16:34:17Z" end-time="2026-11-11 16:49:22Z" duration="905.339006" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="31096" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1106" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="92" result="Passed" start-time="2026-11-11 16:34:17Z" end-time="2026-11-11 16:49:22Z" duration="905.338119" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1107" name="SpatialTests" fullname="MobileGame.SpatialTests" runstate="Runnable" testcasecount="92" result="Passed" start-time="2026-11-11 16:34:17Z" end-time="2026-11-11 16:49:22Z" duration="905.337341" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1041" name="LaboratoryViewTests" fullname="MobileGame.SpatialTests.LaboratoryViewTests" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" testcasecount="53" result="Passed" start-time="2026-11-11 16:34:17Z" end-time="2026-11-11 16:49:22Z" duration="905.336483" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1073" name="MovementComparisonRecordsBasicFixture" fullname="MobileGame.SpatialTests.LaboratoryViewTests.MovementComparisonRecordsBasicFixture" methodname="MovementComparisonRecordsBasicFixture" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Explicit" seed="1397109500" result="Passed" start-time="2026-11-11 16:34:17Z" end-time="2026-11-11 16:38:49Z" duration="272.360951" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="MovementPerformance" />
+                <property name="_SKIPREASON" value="Select this controlled performance scenario with include_explicit=true." />
+                <property name="Timeout" value="600000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1075" name="MovementComparisonRecordsHeavyFixture" fullname="MobileGame.SpatialTests.LaboratoryViewTests.MovementComparisonRecordsHeavyFixture" methodname="MovementComparisonRecordsHeavyFixture" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Explicit" seed="278363252" result="Passed" start-time="2026-11-11 16:38:49Z" end-time="2026-11-11 16:43:20Z" duration="271.211045" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="MovementPerformance" />
+                <property name="_SKIPREASON" value="Select this controlled performance scenario with include_explicit=true." />
+                <property name="Timeout" value="600000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1074" name="MovementComparisonRecordsMediumFixture" fullname="MobileGame.SpatialTests.LaboratoryViewTests.MovementComparisonRecordsMediumFixture" methodname="MovementComparisonRecordsMediumFixture" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Explicit" seed="666472511" result="Passed" start-time="2026-11-11 16:43:20Z" end-time="2026-11-11 16:47:51Z" duration="271.073082" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="MovementPerformance" />
+                <property name="_SKIPREASON" value="Select this controlled performance scenario with include_explicit=true." />
+                <property name="Timeout" value="600000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1076" name="MovementComparisonRecordsMostlyOffscreenFixture" fullname="MobileGame.SpatialTests.LaboratoryViewTests.MovementComparisonRecordsMostlyOffscreenFixture" methodname="MovementComparisonRecordsMostlyOffscreenFixture" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Explicit" seed="190162588" result="Passed" start-time="2026-11-11 16:47:51Z" end-time="2026-11-11 16:49:22Z" duration="90.688182" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="MovementPerformance" />
+                <property name="_SKIPREASON" value="Select this controlled performance scenario with include_explicit=true." />
+                <property name="Timeout" value="300000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/nellu/AppData/LocalLow/DefaultCompany/UnityProject\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

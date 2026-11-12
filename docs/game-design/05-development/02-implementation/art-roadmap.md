@@ -2,10 +2,10 @@
 
 - 문서 ID: GD-ART-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 정식 아트 적용
-- 상태: 프로토타입 이후 5단계의 적용 순서 / 5-1 PLAN-026 art·completed / 표현 기반/이동 보간 PLAN-027 development·completed / PLAN-028 development·proposed / active 0개
+- 상태: 프로토타입 이후 5단계의 적용 순서 / 5-1 PLAN-026 art·completed / PLAN-027·028 development·completed / active 0개
 - 검색어: 아트, Aseprite, 픽셀, Sprite, 연구소, 시설, 생명체, 자원, UI, 애니메이션, 시각 검수
 - 근거: 2026-11-07 사용자 아트 후속 단계·별도 로드맵 작성 요청, [기존 콘셉트](../../01-direction/01-identity/concept.md), [아트 지침](../../../agents/art-assets.md)
-- 갱신일: 2026-11-10
+- 갱신일: 2026-11-12
 - 탐색: [기획 MAP](../../README.md), [전체 구현 로드맵](roadmap.md), [PLAN MAP](../../../plans/README.md)
 
 ## 목표와 범위
@@ -16,9 +16,9 @@
 
 5-1은 [PLAN-026 스타일·크기 샘플과 연구소 적용](../../../plans/PLAN-026-art-style-scale-and-sample-integration.md) `art` / `completed`로 완료했다. 5개 분류·8개 샘플(PNG 5파일·106 Sprite)의 전체 적용 후 Editor 기술 검증과 사용자의 실제 게임 화면 승인을 마쳤다. 획득시설 r003 36프레임과 보조형 r002 4방향 64프레임·머리 위 운반을 포함한다. 채택 규격·화면·한계는 [통합 완료 증거](../../../plans/evidence/PLAN-026/integration-2026-11-10/README.md)를 따른다.
 
-별도 표현 기반 완료 [PLAN-027 연구소 Tilemap·SpriteRenderer 전환](../../../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 `development` / `completed`다. 2026-11-10 사용자 승인 후 바닥 Tilemap·시설/개체 SpriteRenderer·UI uGUI 전환과 Editor 검증을 완료했다. 원본 아트·게임 상태를 보존했고 active는 0개다. PLAN-028은 proposed로 남긴다.
+별도 표현 기반 완료 [PLAN-027 연구소 Tilemap·SpriteRenderer 전환](../../../plans/PLAN-027-laboratory-tilemap-and-sprite-rendering.md)은 `development` / `completed`다. 2026-11-10 사용자 승인 후 바닥 Tilemap·시설/개체 SpriteRenderer·UI uGUI 전환과 Editor 검증을 완료했다. 원본 아트·게임 상태를 보존했다.
 
-[PLAN-028 이동 보간](../../../plans/PLAN-028-creature-movement-interpolation.md)은 기존 아트를 재사용하는 development·proposed 후보다. 작업 이동·유휴 배회의 칸 사이 표시와 머리 위 자원·선택을 동기화한다. 권장 순서는 PLAN-027 → PLAN-028이며 새 아트 제작을 요구하거나 완료된 5-1 검수를 되돌리지 않는다. 실행 순서는 별도 활성화 요청을 따르고 PLAN-027은 완료했으며 PLAN-028은 별도 활성화 전 미실행이다.
+[PLAN-028 이동 보간](../../../plans/PLAN-028-creature-movement-interpolation.md)은 기존 아트를 재사용하는 development·completed 작업이다. 이동 보간·표시/입력 구현과 Editor 기능 검증을 마쳤고 빌드·고부하 제외 재개 요청에 따라 현재 소스와 기존 증거를 대조해 완료했다. 추가 계측과 신규 아트 요청은 없으며 기존 성능 한계와 완료된 5-1 판정을 유지한다.
 
 현재 대상은 기존 시설 4종·생명체 4종·자원 2종과 기존 화면이다. 여러 세계·새 생명체·새 시설·전투 장면·해금 시스템은 추가하지 않는다. 외부 침공은 기존 텍스트 보고와 멸망 게이지로 표현한다. PLAN-025의 큰 글씨 안내 잘림과 GC 최적화 후보는 사용자 요청에 따라 잠시 미뤄 두며, 이 문서 작성이나 첫 아트 샘플의 선행 조건으로 삼지 않는다.
 
@@ -116,8 +116,8 @@ PLAN-025의 측정 조건과 저장을 비교 출발점으로 활용할 수 있�
 
 ## 실제 작업으로 나누는 방법
 
-- 이 로드맵은 제작 순서와 결과 단위를 정한다. 5-1의 PLAN-026은 전체 적용·검증·사용자 게임 화면 승인 후 completed이며 현재 active는 0개다. 후속 art PLAN과 표현 개선 후보는 각각 사용자 활성화 승인을 받아 단일 active로 진행한다.
-- 완료된 PLAN-026은 5개 분류·8개 샘플과 최소 표시 코드·시설/프로토타입 재생·운반 합성의 범위다. 렌더링 기반 전환은 PLAN-027, 이동 보간은 PLAN-028 development·proposed로 분리한다. 전체 5단계를 하나의 거대한 PLAN으로 묶지 않는다.
+- 이 로드맵은 제작 순서와 결과 단위를 정한다. 5-1 PLAN-026과 표현 기반/이동 보간 PLAN-027·028은 completed이며 active 0개다. 후속 PLAN은 사용자 승인을 받아 단일 active로 진행한다.
+- 완료된 PLAN-026은 5개 분류·8개 샘플과 최소 표시 코드·시설/프로토타입 재생·운반 합성의 범위다. 렌더링 기반 전환 PLAN-027과 이동 보간 PLAN-028은 별도 development·completed다. 전체 5단계를 하나의 거대한 PLAN으로 묶지 않는다.
 - 일반 Sprite 요청·수령·적용은 [독립 아트 절차](../../../agents/art-assets.md#sprite-requests)를 따른다. 별도 art PLAN으로 관리하기로 한 묶음은 그 PLAN의 승인·단일 active 규칙을 따른다. 코드 기능이나 패키지 도입은 단순 Sprite 교체에 섞지 않는다.
 - PLAN-014의 16종은 이미 별도 art PLAN 조건이 있으므로 해당 요청 README를 원본으로 유지한다. 새 요청 ID로 복제하거나 PLAN-014를 재활성화하지 않는다. 샘플의 건설 아이콘도 기존 `PLAN-014-SPR-006`과 연결한다.
 - 바닥·시설·생명체·자원 등 새 제작 후보는 실제 작업 PLAN과 표시 계약이 정해질 때 그 출처의 요청 README에 구체화한다. 이번 문서 작성으로 미정 규격의 요청 폴더나 가상의 PLAN 번호를 만들지 않는다.

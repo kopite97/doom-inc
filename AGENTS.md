@@ -25,7 +25,7 @@
 | 씬·프리팹·SO·스크립트 에셋 변경 | [Unity 에셋](docs/agents/unity-assets.md) |
 | 아트 요청·수령·임시 에셋·Sprite 설정·아트 검수 | [아트 지침](docs/agents/art-assets.md) |
 | 명령·상태 조회·시뮬레이션·검증 시나리오 | [하네스](docs/agents/harness.md) |
-| 변경 검증·완료 판정 | [검증](docs/agents/verification.md) |
+| 검증 선택·빌드/고부하 테스트 승인·완료 판정 | [검증](docs/agents/verification.md) |
 | Unity 환경·CLI·MCP·테스트·빌드 실행 | [Unity 도구](docs/agents/unity-tools.md) |
 | Git·LFS·추적 파일·원격 저장소 설정 | [저장소 관리](docs/agents/repository.md) |
 

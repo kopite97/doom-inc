@@ -1,0 +1,1303 @@
+{
+  "generatedUtc": "2026-11-11T17:25:09.644Z",
+  "comparison": "Supplementary before/after direct native frame timing at the same 1800/3600-frame logical workload as the formal 20 runs; separately collected.",
+  "durationUnit": "milliseconds",
+  "percentile": "nearest rank; medians average middle pair; stage medians/p95s are medians of per-run statistics",
+  "implementationLabels": "Each run raw label must equal its stage/run directory. Verified source manifests additionally identify the actual implementation.",
+  "performanceAcceptance": "Requires review. Scenario validity does not mean a CPU regression passed.",
+  "limitations": [
+    "Three 1800/3600-frame runs per stage and level cover logical seconds 30..90. Only levels 0 and 2 are measured here; the formal 20-run measurements remain separate.",
+    "FrameTiming API observations are delayed frames. Do not pair them to the same logical row or subtract CPU/GPU/RenderLoop samples.",
+    "No Present estimate, no unmeasured baseline reconstruction, and no ad-hoc RenderLoop subtraction.",
+    "This diagnostic contains no GC allocation locations, logical worker/cargo/path counts, or state snapshots; formal measurements and functional tests supply separate evidence.",
+    "Source and fixture hashes and successful test-run results must be verified from root-captured provenance; the implementation label alone is insufficient."
+  ],
+  "collectionComplete": false,
+  "provenanceComplete": true,
+  "missing": [
+    "baseline-run3/present-diagnostic-level0.json",
+    "baseline-run3/present-diagnostic-level2.json",
+    "after-run1",
+    "after-run2",
+    "after-run3"
+  ],
+  "globalProvenance": [
+    {
+      "name": "collection-conditions.json",
+      "sha256": "85dd4c63d4362b7ffe594aeffd5df0562eb97177c1ef0994a1ab6959f0e94137"
+    },
+    {
+      "name": "source-backup-manifest.json",
+      "sha256": "1c931d7940f2392dfb3108a5b9c86a7d89f93cacf5771922cb7c31a2792efa97"
+    },
+    {
+      "name": "sources-baseline.json",
+      "sha256": "23aadb13fe8406697c166778d464b810a4547dd55a63b572078df6f0b2496691"
+    },
+    {
+      "name": "sources-restore.json",
+      "sha256": "ebd2874f1cbea2e23437c2f25def4309bb2a3782f31f20570808d9c866ea358e"
+    }
+  ],
+  "collectionFiles": [
+    {
+      "role": "collector",
+      "path": "UnityProject/Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.PresentDiagnostics.cs",
+      "expected": "74c3d058c5b10c98a7289662e3940b7a6848a64150096b8f7df511a26a74a77a",
+      "current": "74c3d058c5b10c98a7289662e3940b7a6848a64150096b8f7df511a26a74a77a",
+      "valid": true
+    },
+    {
+      "role": "commandHelper",
+      "path": "UnityProject/Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.MovementPerformance.cs",
+      "expected": "ab755eddbfb8ea615996ef6b7da9174d8d8f267108977e630fcb3105ed680a39",
+      "current": "ab755eddbfb8ea615996ef6b7da9174d8d8f267108977e630fcb3105ed680a39",
+      "valid": true
+    },
+    {
+      "role": "fixture0",
+      "path": "docs/plans/evidence/PLAN-028/movement-fixture-0.json",
+      "expected": "906edd737b52399d4d38ecd25d1e8b69098b98117127e4fda97301f467e73480",
+      "current": "906edd737b52399d4d38ecd25d1e8b69098b98117127e4fda97301f467e73480",
+      "valid": true
+    },
+    {
+      "role": "fixture2",
+      "path": "docs/plans/evidence/PLAN-028/movement-fixture-2.json",
+      "expected": "a361cdf86e1198b2b4dfd8d99feba117add0620fc7fb87d032776cc479f2cf5c",
+      "current": "a361cdf86e1198b2b4dfd8d99feba117add0620fc7fb87d032776cc479f2cf5c",
+      "valid": true
+    },
+    {
+      "role": "originalBaselineManifest",
+      "path": "docs/plans/evidence/PLAN-028/source-baseline.json",
+      "expected": "637b918448f44d32634e489d957287a08dc0028fcf1190539b8ed90f73cc178d",
+      "current": "637b918448f44d32634e489d957287a08dc0028fcf1190539b8ed90f73cc178d",
+      "valid": true
+    },
+    {
+      "role": "nativeSourceBaselineManifest",
+      "path": "docs/plans/evidence/PLAN-028/native-comparison/sources-baseline.json",
+      "expected": "23aadb13fe8406697c166778d464b810a4547dd55a63b572078df6f0b2496691",
+      "current": "23aadb13fe8406697c166778d464b810a4547dd55a63b572078df6f0b2496691",
+      "valid": true
+    },
+    {
+      "role": "finalSourceBackupManifest",
+      "path": "docs/plans/evidence/PLAN-028/native-comparison/source-backup-manifest.json",
+      "expected": "1c931d7940f2392dfb3108a5b9c86a7d89f93cacf5771922cb7c31a2792efa97",
+      "current": "1c931d7940f2392dfb3108a5b9c86a7d89f93cacf5771922cb7c31a2792efa97",
+      "valid": true
+    }
+  ],
+  "sourceChecks": {
+    "initial137VersusBackup": {
+      "valid": true,
+      "expectedCount": 137,
+      "observedCount": 137,
+      "missing": [],
+      "different": [],
+      "extra": []
+    },
+    "initial137VersusNativeBaseline": {
+      "valid": true,
+      "expectedCount": 137,
+      "observedCount": 140,
+      "missing": [],
+      "different": [],
+      "extra": []
+    },
+    "final140VersusRestored": {
+      "valid": true,
+      "expectedCount": 140,
+      "observedCount": 140,
+      "missing": [],
+      "different": [],
+      "extra": []
+    },
+    "baselineMetaUnchanged": true,
+    "restoredMetaUnchanged": true,
+    "exactFinalByteRestore": true,
+    "protectedByteBackupCount": 26,
+    "current140VersusFinalBackup": {
+      "valid": true,
+      "expectedCount": 140,
+      "observedCount": 140,
+      "missing": [],
+      "different": [],
+      "extra": []
+    },
+    "currentProtectedBytesVersusBackup": {
+      "valid": true,
+      "expectedCount": 26,
+      "observedCount": 26,
+      "missing": [],
+      "different": [],
+      "extra": []
+    }
+  },
+  "fixtures": [
+    {
+      "name": "movement-fixture-0.json",
+      "expected": "906edd737b52399d4d38ecd25d1e8b69098b98117127e4fda97301f467e73480",
+      "actual": "906edd737b52399d4d38ecd25d1e8b69098b98117127e4fda97301f467e73480",
+      "valid": true
+    },
+    {
+      "name": "movement-fixture-2.json",
+      "expected": "a361cdf86e1198b2b4dfd8d99feba117add0620fc7fb87d032776cc479f2cf5c",
+      "actual": "a361cdf86e1198b2b4dfd8d99feba117add0620fc7fb87d032776cc479f2cf5c",
+      "valid": true
+    }
+  ],
+  "provenance": [
+    {
+      "directory": "baseline-run1",
+      "testPassed": true,
+      "testDurationSeconds": 183.36,
+      "stageSourceCheck": {
+        "valid": true,
+        "expectedCount": 140,
+        "observedCount": 140,
+        "missing": [],
+        "different": [],
+        "extra": []
+      },
+      "supportingFiles": [
+        {
+          "name": "source-state.json",
+          "sha256": "23aadb13fe8406697c166778d464b810a4547dd55a63b572078df6f0b2496691"
+        },
+        {
+          "name": "test-result.json",
+          "sha256": "c4ec2a7018932583cd1a2213c6f0273d2d45b2ed2641587fdf1dc9a68149ad61"
+        },
+        {
+          "name": "test-results.xml",
+          "sha256": "fe249f527cd559039119d8a82277a1c79a3ca428dc3db00e2926d50832e72379"
+        }
+      ]
+    },
+    {
+      "directory": "baseline-run2",
+      "testPassed": true,
+      "testDurationSeconds": 182.27,
+      "stageSourceCheck": {
+        "valid": true,
+        "expectedCount": 140,
+        "observedCount": 140,
+        "missing": [],
+        "different": [],
+        "extra": []
+      },
+      "supportingFiles": [
+        {
+          "name": "source-state.json",
+          "sha256": "23aadb13fe8406697c166778d464b810a4547dd55a63b572078df6f0b2496691"
+        },
+        {
+          "name": "test-result.json",
+          "sha256": "8b1f3c9a7a4947bee38e9e80eb13729871a499c6a8f1c0adba111bd804f2f093"
+        },
+        {
+          "name": "test-results.xml",
+          "sha256": "6d6ee74a7959efb5d511b4fc495bf5b20e27954b1c0195f2bdb51bd228a69f0d"
+        }
+      ]
+    },
+    {
+      "directory": "baseline-run3",
+      "testPassed": false,
+      "testDurationSeconds": null,
+      "stageSourceCheck": {
+        "valid": true,
+        "expectedCount": 140,
+        "observedCount": 140,
+        "missing": [],
+        "different": [],
+        "extra": []
+      },
+      "supportingFiles": [
+        {
+          "name": "source-state.json",
+          "sha256": "23aadb13fe8406697c166778d464b810a4547dd55a63b572078df6f0b2496691"
+        },
+        {
+          "name": "test-result.json",
+          "sha256": "746245f604a1ac1b883b41fef2c0a6ee21b4a8d70cbd4c7451b89b47e7587116"
+        }
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "file": "baseline-run1/present-diagnostic-level0.json",
+      "sha256": "cb98967c9dcc6aaa0c17aa520a6bc816f7ba82837a975061b02e81897dae8c1f",
+      "stage": "baseline",
+      "run": 1,
+      "level": 0,
+      "conditions": {
+        "warmupFrames": 1800,
+        "sampleFrames": 3600,
+        "fixedDelta": 0.016666666666666666,
+        "releaseEveryCommands": 600,
+        "resolution": [
+          1280,
+          720
+        ],
+        "zoom": 1,
+        "graphics": "Direct3D12",
+        "threadedGraphics": false,
+        "vSync": 0,
+        "targetFrameRate": 60,
+        "frameTimingFeatureEnabled": true,
+        "frameTimingCpuFrequency": 10000000
+      },
+      "scenarioValid": true,
+      "scenarioIssues": [],
+      "rawImplementationLabel": "baseline-run1",
+      "rawFormalComparison": false,
+      "implementationIdentity": "Stage/run directory, matching raw label, and root-captured source manifest; label alone is insufficient.",
+      "freshTimingSamples": 3600,
+      "elapsedWallSeconds": 60.30606720000014,
+      "logicalCommands": [
+        1801,
+        5400
+      ],
+      "logicalElapsed": [
+        30.016666666666243,
+        89.99999999999618
+      ],
+      "presentMarkerAllZero": true,
+      "metrics": {
+        "apiCpuFrame": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.66705,
+          "p95": 17.1497,
+          "max": 240.0974,
+          "mean": 16.754080777777784
+        },
+        "apiMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.3828,
+          "p95": 1.674,
+          "max": 36.0928,
+          "mean": 1.6424681111111106
+        },
+        "apiRender": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.8733,
+          "p95": 1.012,
+          "max": 1.5525,
+          "mean": 0.8623465833333349
+        },
+        "apiPresentWait": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.30845,
+          "p95": 0.4485,
+          "max": 0.8071,
+          "mean": 0.2745912777777779
+        },
+        "apiGpu": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.260288,
+          "p95": 1.34656,
+          "max": 1.584896,
+          "mean": 1.2438542933333303
+        },
+        "recorderRenderLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 11.6456,
+          "p95": 12.2006,
+          "max": 14.6751,
+          "mean": 11.455716472222203
+        },
+        "recorderPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "recorderCpuRender": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.8733,
+          "p95": 1.012,
+          "max": 1.5525,
+          "mean": 0.8622346275000018
+        },
+        "recorderCpuMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.3828,
+          "p95": 1.6742,
+          "max": 36.0928,
+          "mean": 1.6426195552777771
+        },
+        "recorderPlayerLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.6683,
+          "p95": 2.0177,
+          "max": 36.095,
+          "mean": 1.909524305555556
+        },
+        "recorderMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.6604,
+          "p95": 17.1415,
+          "max": 240.088,
+          "mean": 16.738523861111158
+        },
+        "recorderWaitTarget": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.006,
+          "mean": 0.00023397222222220672
+        },
+        "recorderWaitPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "recorderDeviceWait": {
+          "valid": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "file": "baseline-run1/present-diagnostic-level2.json",
+      "sha256": "c3508323fec39fadd002c1bca8c81a41cc05d38fa758843237a98d5685f9c19d",
+      "stage": "baseline",
+      "run": 1,
+      "level": 2,
+      "conditions": {
+        "warmupFrames": 1800,
+        "sampleFrames": 3600,
+        "fixedDelta": 0.016666666666666666,
+        "releaseEveryCommands": 600,
+        "resolution": [
+          1280,
+          720
+        ],
+        "zoom": 1,
+        "graphics": "Direct3D12",
+        "threadedGraphics": false,
+        "vSync": 0,
+        "targetFrameRate": 60,
+        "frameTimingFeatureEnabled": true,
+        "frameTimingCpuFrequency": 10000000
+      },
+      "scenarioValid": true,
+      "scenarioIssues": [],
+      "rawImplementationLabel": "baseline-run1",
+      "rawFormalComparison": false,
+      "implementationIdentity": "Stage/run directory, matching raw label, and root-captured source manifest; label alone is insufficient.",
+      "freshTimingSamples": 3600,
+      "elapsedWallSeconds": 60.570436099999824,
+      "logicalCommands": [
+        1801,
+        5400
+      ],
+      "logicalElapsed": [
+        30.016666666665984,
+        89.99999999999332
+      ],
+      "presentMarkerAllZero": true,
+      "metrics": {
+        "apiCpuFrame": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.66865,
+          "p95": 17.1695,
+          "max": 415.6396,
+          "mean": 16.82704458333333
+        },
+        "apiMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 2.0599,
+          "p95": 3.2054,
+          "max": 35.046,
+          "mean": 2.395869527777777
+        },
+        "apiRender": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.83995,
+          "p95": 0.9818,
+          "max": 1.5857,
+          "mean": 0.7994081388888894
+        },
+        "apiPresentWait": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.27135,
+          "p95": 0.3837,
+          "max": 404.804,
+          "mean": 0.35614380555555547
+        },
+        "apiGpu": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.248256,
+          "p95": 1.298176,
+          "max": 1.568256,
+          "mean": 1.1970254222222199
+        },
+        "recorderRenderLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 10.9954,
+          "p95": 11.7236,
+          "max": 411.6157,
+          "mean": 10.911785083333353
+        },
+        "recorderPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "recorderCpuRender": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.8399,
+          "p95": 0.9818,
+          "max": 1.5857,
+          "mean": 0.7994048002777782
+        },
+        "recorderCpuMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 2.059899,
+          "p95": 3.2054,
+          "max": 35.046,
+          "mean": 2.3958287502777766
+        },
+        "recorderPlayerLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 2.2886,
+          "p95": 3.2473,
+          "max": 406.5862,
+          "mean": 2.746797611111113
+        },
+        "recorderMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.6625,
+          "p95": 17.1632,
+          "max": 415.6311,
+          "mean": 16.8159726388889
+        },
+        "recorderWaitTarget": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.0007,
+          "mean": 0.00022788888888887335
+        },
+        "recorderWaitPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "recorderDeviceWait": {
+          "valid": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "file": "baseline-run2/present-diagnostic-level0.json",
+      "sha256": "4f4e09c6fc76a8abf5b19925ba2de06fbc60b6ef5f08550671e8f452c7c0721f",
+      "stage": "baseline",
+      "run": 2,
+      "level": 0,
+      "conditions": {
+        "warmupFrames": 1800,
+        "sampleFrames": 3600,
+        "fixedDelta": 0.016666666666666666,
+        "releaseEveryCommands": 600,
+        "resolution": [
+          1280,
+          720
+        ],
+        "zoom": 1,
+        "graphics": "Direct3D12",
+        "threadedGraphics": false,
+        "vSync": 0,
+        "targetFrameRate": 60,
+        "frameTimingFeatureEnabled": true,
+        "frameTimingCpuFrequency": 10000000
+      },
+      "scenarioValid": true,
+      "scenarioIssues": [],
+      "rawImplementationLabel": "baseline-run2",
+      "rawFormalComparison": false,
+      "implementationIdentity": "Stage/run directory, matching raw label, and root-captured source manifest; label alone is insufficient.",
+      "freshTimingSamples": 3600,
+      "elapsedWallSeconds": 60.192101300000104,
+      "logicalCommands": [
+        1801,
+        5400
+      ],
+      "logicalElapsed": [
+        30.016666666666243,
+        89.99999999999618
+      ],
+      "presentMarkerAllZero": true,
+      "metrics": {
+        "apiCpuFrame": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.665149999999997,
+          "p95": 17.1324,
+          "max": 66.3235,
+          "mean": 16.7218835277778
+        },
+        "apiMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.3507500000000001,
+          "p95": 1.6803,
+          "max": 34.7807,
+          "mean": 1.5391841111111109
+        },
+        "apiRender": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.8564,
+          "p95": 1.0067,
+          "max": 1.4397,
+          "mean": 0.8343892499999983
+        },
+        "apiPresentWait": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.28265,
+          "p95": 0.4325,
+          "max": 0.715,
+          "mean": 0.2464755555555553
+        },
+        "apiGpu": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.260288,
+          "p95": 1.364736,
+          "max": 1.53216,
+          "mean": 1.2379011555555535
+        },
+        "recorderRenderLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 11.2566,
+          "p95": 11.7157,
+          "max": 35.2463,
+          "mean": 11.032935722222215
+        },
+        "recorderPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "recorderCpuRender": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.8564,
+          "p95": 1.006699,
+          "max": 1.4397,
+          "mean": 0.8343633794444429
+        },
+        "recorderCpuMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.3507500000000001,
+          "p95": 1.6803,
+          "max": 34.7807,
+          "mean": 1.5391356386111108
+        },
+        "recorderPlayerLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.6061,
+          "p95": 1.9999,
+          "max": 34.7838,
+          "mean": 1.7829824166666701
+        },
+        "recorderMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.6597,
+          "p95": 17.1265,
+          "max": 66.316,
+          "mean": 16.711390499999993
+        },
+        "recorderWaitTarget": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.0046,
+          "mean": 0.00023263888888887306
+        },
+        "recorderWaitPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "recorderDeviceWait": {
+          "valid": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "file": "baseline-run2/present-diagnostic-level2.json",
+      "sha256": "7b1dc12570067131935c6c8fcb50477f3e2552cb473f3fbedd48e704800ce197",
+      "stage": "baseline",
+      "run": 2,
+      "level": 2,
+      "conditions": {
+        "warmupFrames": 1800,
+        "sampleFrames": 3600,
+        "fixedDelta": 0.016666666666666666,
+        "releaseEveryCommands": 600,
+        "resolution": [
+          1280,
+          720
+        ],
+        "zoom": 1,
+        "graphics": "Direct3D12",
+        "threadedGraphics": false,
+        "vSync": 0,
+        "targetFrameRate": 60,
+        "frameTimingFeatureEnabled": true,
+        "frameTimingCpuFrequency": 10000000
+      },
+      "scenarioValid": true,
+      "scenarioIssues": [],
+      "rawImplementationLabel": "baseline-run2",
+      "rawFormalComparison": false,
+      "implementationIdentity": "Stage/run directory, matching raw label, and root-captured source manifest; label alone is insufficient.",
+      "freshTimingSamples": 3600,
+      "elapsedWallSeconds": 60.09711580000021,
+      "logicalCommands": [
+        1801,
+        5400
+      ],
+      "logicalElapsed": [
+        30.016666666665984,
+        89.99999999999332
+      ],
+      "presentMarkerAllZero": true,
+      "metrics": {
+        "apiCpuFrame": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.6684,
+          "p95": 17.1891,
+          "max": 42.2071,
+          "mean": 16.695435166666684
+        },
+        "apiMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 2.1585,
+          "p95": 3.4682,
+          "max": 36.9221,
+          "mean": 2.5475237222222273
+        },
+        "apiRender": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.8291,
+          "p95": 1.0179,
+          "max": 1.572,
+          "mean": 0.7654003055555543
+        },
+        "apiPresentWait": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.14185,
+          "p95": 0.3829,
+          "max": 8.0881,
+          "mean": 0.17291613888888893
+        },
+        "apiGpu": {
+          "valid": true,
+          "samples": 3600,
+          "median": 1.217792,
+          "p95": 1.31328,
+          "max": 1.456384,
+          "mean": 1.1612324977777775
+        },
+        "recorderRenderLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 10.5846,
+          "p95": 11.1499,
+          "max": 14.481,
+          "mean": 10.247123916666666
+        },
+        "recorderPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "recorderCpuRender": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.82905,
+          "p95": 1.0179,
+          "max": 1.572,
+          "mean": 0.7652400994444432
+        },
+        "recorderCpuMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 2.1585,
+          "p95": 3.4682,
+          "max": 36.9221,
+          "mean": 2.5475602811111164
+        },
+        "recorderPlayerLoop": {
+          "valid": true,
+          "samples": 3600,
+          "median": 2.33235,
+          "p95": 3.7058,
+          "max": 36.9254,
+          "mean": 2.7160731111111134
+        },
+        "recorderMain": {
+          "valid": true,
+          "samples": 3600,
+          "median": 16.66285,
+          "p95": 17.1838,
+          "max": 42.1982,
+          "mean": 16.684433416666675
+        },
+        "recorderWaitTarget": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.0007,
+          "mean": 0.0002278611111110954
+        },
+        "recorderWaitPresent": {
+          "valid": true,
+          "samples": 3600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "recorderDeviceWait": {
+          "valid": false,
+          "samples": 0
+        }
+      }
+    }
+  ],
+  "groups": [
+    {
+      "level": 0,
+      "stages": {
+        "baseline": {
+          "runs": 2,
+          "metrics": {
+            "apiCpuFrame": {
+              "valid": true,
+              "runs": 2,
+              "median": 16.6661,
+              "p95": 17.14105,
+              "medianMin": 16.665149999999997,
+              "medianMax": 16.66705,
+              "p95Min": 17.1324,
+              "p95Max": 17.1497,
+              "max": 240.0974
+            },
+            "apiMain": {
+              "valid": true,
+              "runs": 2,
+              "median": 1.366775,
+              "p95": 1.67715,
+              "medianMin": 1.3507500000000001,
+              "medianMax": 1.3828,
+              "p95Min": 1.674,
+              "p95Max": 1.6803,
+              "max": 36.0928
+            },
+            "apiRender": {
+              "valid": true,
+              "runs": 2,
+              "median": 0.86485,
+              "p95": 1.00935,
+              "medianMin": 0.8564,
+              "medianMax": 0.8733,
+              "p95Min": 1.0067,
+              "p95Max": 1.012,
+              "max": 1.5525
+            },
+            "apiPresentWait": {
+              "valid": true,
+              "runs": 2,
+              "median": 0.29555,
+              "p95": 0.4405,
+              "medianMin": 0.28265,
+              "medianMax": 0.30845,
+              "p95Min": 0.4325,
+              "p95Max": 0.4485,
+              "max": 0.8071
+            },
+            "apiGpu": {
+              "valid": true,
+              "runs": 2,
+              "median": 1.260288,
+              "p95": 1.355648,
+              "medianMin": 1.260288,
+              "medianMax": 1.260288,
+              "p95Min": 1.34656,
+              "p95Max": 1.364736,
+              "max": 1.584896
+            },
+            "recorderRenderLoop": {
+              "valid": true,
+              "runs": 2,
+              "median": 11.4511,
+              "p95": 11.95815,
+              "medianMin": 11.2566,
+              "medianMax": 11.6456,
+              "p95Min": 11.7157,
+              "p95Max": 12.2006,
+              "max": 35.2463
+            },
+            "recorderPresent": {
+              "valid": true,
+              "runs": 2,
+              "median": 0,
+              "p95": 0,
+              "medianMin": 0,
+              "medianMax": 0,
+              "p95Min": 0,
+              "p95Max": 0,
+              "max": 0
+            },
+            "recorderCpuRender": {
+              "valid": true,
+              "runs": 2,
+              "median": 0.86485,
+              "p95": 1.0093495,
+              "medianMin": 0.8564,
+              "medianMax": 0.8733,
+              "p95Min": 1.006699,
+              "p95Max": 1.012,
+              "max": 1.5525
+            },
+            "recorderCpuMain": {
+              "valid": true,
+              "runs": 2,
+              "median": 1.366775,
+              "p95": 1.67725,
+              "medianMin": 1.3507500000000001,
+              "medianMax": 1.3828,
+              "p95Min": 1.6742,
+              "p95Max": 1.6803,
+              "max": 36.0928
+            },
+            "recorderPlayerLoop": {
+              "valid": true,
+              "runs": 2,
+              "median": 1.6372,
+              "p95": 2.0088,
+              "medianMin": 1.6061,
+              "medianMax": 1.6683,
+              "p95Min": 1.9999,
+              "p95Max": 2.0177,
+              "max": 36.095
+            },
+            "recorderMain": {
+              "valid": true,
+              "runs": 2,
+              "median": 16.66005,
+              "p95": 17.134,
+              "medianMin": 16.6597,
+              "medianMax": 16.6604,
+              "p95Min": 17.1265,
+              "p95Max": 17.1415,
+              "max": 240.088
+            },
+            "recorderWaitTarget": {
+              "valid": true,
+              "runs": 2,
+              "median": 0.0002,
+              "p95": 0.0004,
+              "medianMin": 0.0002,
+              "medianMax": 0.0002,
+              "p95Min": 0.0004,
+              "p95Max": 0.0004,
+              "max": 0.006
+            },
+            "recorderWaitPresent": {
+              "valid": true,
+              "runs": 2,
+              "median": 0,
+              "p95": 0,
+              "medianMin": 0,
+              "medianMax": 0,
+              "p95Min": 0,
+              "p95Max": 0,
+              "max": 0
+            },
+            "recorderDeviceWait": {
+              "valid": false,
+              "runs": 0
+            }
+          }
+        },
+        "after": {
+          "runs": 0,
+          "metrics": {
+            "apiCpuFrame": {
+              "valid": false,
+              "runs": 0
+            },
+            "apiMain": {
+              "valid": false,
+              "runs": 0
+            },
+            "apiRender": {
+              "valid": false,
+              "runs": 0
+            },
+            "apiPresentWait": {
+              "valid": false,
+              "runs": 0
+            },
+            "apiGpu": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderRenderLoop": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderPresent": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderCpuRender": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderCpuMain": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderPlayerLoop": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderMain": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderWaitTarget": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderWaitPresent": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderDeviceWait": {
+              "valid": false,
+              "runs": 0
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "run": 1,
+          "complete": false
+        },
+        {
+          "run": 2,
+          "complete": false
+        },
+        {
+          "run": 3,
+          "complete": false
+        }
+      ],
+      "differences": {}
+    },
+    {
+      "level": 2,
+      "stages": {
+        "baseline": {
+          "runs": 2,
+          "metrics": {
+            "apiCpuFrame": {
+              "valid": true,
+              "runs": 2,
+              "median": 16.668525,
+              "p95": 17.179299999999998,
+              "medianMin": 16.6684,
+              "medianMax": 16.66865,
+              "p95Min": 17.1695,
+              "p95Max": 17.1891,
+              "max": 415.6396
+            },
+            "apiMain": {
+              "valid": true,
+              "runs": 2,
+              "median": 2.1092,
+              "p95": 3.3368,
+              "medianMin": 2.0599,
+              "medianMax": 2.1585,
+              "p95Min": 3.2054,
+              "p95Max": 3.4682,
+              "max": 36.9221
+            },
+            "apiRender": {
+              "valid": true,
+              "runs": 2,
+              "median": 0.834525,
+              "p95": 0.99985,
+              "medianMin": 0.8291,
+              "medianMax": 0.83995,
+              "p95Min": 0.9818,
+              "p95Max": 1.0179,
+              "max": 1.5857
+            },
+            "apiPresentWait": {
+              "valid": true,
+              "runs": 2,
+              "median": 0.2066,
+              "p95": 0.3833,
+              "medianMin": 0.14185,
+              "medianMax": 0.27135,
+              "p95Min": 0.3829,
+              "p95Max": 0.3837,
+              "max": 404.804
+            },
+            "apiGpu": {
+              "valid": true,
+              "runs": 2,
+              "median": 1.233024,
+              "p95": 1.305728,
+              "medianMin": 1.217792,
+              "medianMax": 1.248256,
+              "p95Min": 1.298176,
+              "p95Max": 1.31328,
+              "max": 1.568256
+            },
+            "recorderRenderLoop": {
+              "valid": true,
+              "runs": 2,
+              "median": 10.79,
+              "p95": 11.43675,
+              "medianMin": 10.5846,
+              "medianMax": 10.9954,
+              "p95Min": 11.1499,
+              "p95Max": 11.7236,
+              "max": 411.6157
+            },
+            "recorderPresent": {
+              "valid": true,
+              "runs": 2,
+              "median": 0,
+              "p95": 0,
+              "medianMin": 0,
+              "medianMax": 0,
+              "p95Min": 0,
+              "p95Max": 0,
+              "max": 0
+            },
+            "recorderCpuRender": {
+              "valid": true,
+              "runs": 2,
+              "median": 0.834475,
+              "p95": 0.99985,
+              "medianMin": 0.82905,
+              "medianMax": 0.8399,
+              "p95Min": 0.9818,
+              "p95Max": 1.0179,
+              "max": 1.5857
+            },
+            "recorderCpuMain": {
+              "valid": true,
+              "runs": 2,
+              "median": 2.1091995,
+              "p95": 3.3368,
+              "medianMin": 2.059899,
+              "medianMax": 2.1585,
+              "p95Min": 3.2054,
+              "p95Max": 3.4682,
+              "max": 36.9221
+            },
+            "recorderPlayerLoop": {
+              "valid": true,
+              "runs": 2,
+              "median": 2.3104750000000003,
+              "p95": 3.47655,
+              "medianMin": 2.2886,
+              "medianMax": 2.33235,
+              "p95Min": 3.2473,
+              "p95Max": 3.7058,
+              "max": 406.5862
+            },
+            "recorderMain": {
+              "valid": true,
+              "runs": 2,
+              "median": 16.662675,
+              "p95": 17.1735,
+              "medianMin": 16.6625,
+              "medianMax": 16.66285,
+              "p95Min": 17.1632,
+              "p95Max": 17.1838,
+              "max": 415.6311
+            },
+            "recorderWaitTarget": {
+              "valid": true,
+              "runs": 2,
+              "median": 0.0002,
+              "p95": 0.0004,
+              "medianMin": 0.0002,
+              "medianMax": 0.0002,
+              "p95Min": 0.0004,
+              "p95Max": 0.0004,
+              "max": 0.0007
+            },
+            "recorderWaitPresent": {
+              "valid": true,
+              "runs": 2,
+              "median": 0,
+              "p95": 0,
+              "medianMin": 0,
+              "medianMax": 0,
+              "p95Min": 0,
+              "p95Max": 0,
+              "max": 0
+            },
+            "recorderDeviceWait": {
+              "valid": false,
+              "runs": 0
+            }
+          }
+        },
+        "after": {
+          "runs": 0,
+          "metrics": {
+            "apiCpuFrame": {
+              "valid": false,
+              "runs": 0
+            },
+            "apiMain": {
+              "valid": false,
+              "runs": 0
+            },
+            "apiRender": {
+              "valid": false,
+              "runs": 0
+            },
+            "apiPresentWait": {
+              "valid": false,
+              "runs": 0
+            },
+            "apiGpu": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderRenderLoop": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderPresent": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderCpuRender": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderCpuMain": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderPlayerLoop": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderMain": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderWaitTarget": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderWaitPresent": {
+              "valid": false,
+              "runs": 0
+            },
+            "recorderDeviceWait": {
+              "valid": false,
+              "runs": 0
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "run": 1,
+          "complete": false
+        },
+        {
+          "run": 2,
+          "complete": false
+        },
+        {
+          "run": 3,
+          "complete": false
+        }
+      ],
+      "differences": {}
+    }
+  ],
+  "complete": false
+}

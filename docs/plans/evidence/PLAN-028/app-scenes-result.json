@@ -1,0 +1,231 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 66.51,
+      "summary": {
+        "total": 29,
+        "passed": 29,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.ActualSceneCompletionFillsBarAndSlowPreparationAddsNoSecondDelay",
+          "Status": "Passed",
+          "Duration": 2.8312776,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.BootstrapTitleNewContinueAndReturnUseOneCatalogAndStopOldSession",
+          "Status": "Passed",
+          "Duration": 4.2859996,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.ClosingSettingsDoesNotCancelAppOwnedLanguageChange",
+          "Status": "Passed",
+          "Duration": 2.0626716,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.ColdLoadingCopySurvivesLocalizationInitializationFailure",
+          "Status": "Passed",
+          "Duration": 0.0213105,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.ColdMulmaruAtlasRendersKoreanLatinAndSymbolsWithoutFallback",
+          "Status": "Passed",
+          "Duration": 0.0432898,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.CorruptSaveAndFailedNewRunKeepBytesAndRecoveryScreen",
+          "Status": "Passed",
+          "Duration": 4.0664423,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DataFailureBeforeAnySceneCanRetryAndDoesNotCreateSave",
+          "Status": "Passed",
+          "Duration": 1.7661552,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DestinationPreparationFailureKeepsSharedRecoveryAfterSceneReplacement",
+          "Status": "Passed",
+          "Duration": 2.4449815,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DestroyedFlowCannotPublishLateSceneEntryAndDuplicateDoesNotReplaceOwner",
+          "Status": "Passed",
+          "Duration": 1.0242383,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DirectEntryCountsOnlyVisibleUnscaledTimeAcrossOverlappingFocusAndPause",
+          "Status": "Passed",
+          "Duration": 2.4515578,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.DirtyPreferencesSurviveSceneChangesAndRetryLatestValue",
+          "Status": "Passed",
+          "Duration": 3.2732869,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.LanguageChangeKeepsProductionReportsEndingAndRestartState",
+          "Status": "Passed",
+          "Duration": 3.2439888,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.OwnerDestroyedAtSceneArrivalDoesNotAutoStartANewRun",
+          "Status": "Passed",
+          "Duration": 2.7398652,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PopupAcceptedConfirmationWaitsForResumeAndRunsOnce",
+          "Status": "Passed",
+          "Duration": 2.4428656,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PopupAcceptedIntentIsInvalidatedWhenOwnerEndsInBackground",
+          "Status": "Passed",
+          "Duration": 1.4336071,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PopupLocalizationRotationAndSettingsPreserveTheOpenStack",
+          "Status": "Passed",
+          "Duration": 2.3140486,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PopupLongBodyKeepsScrollAndCapturedActionAcrossLanguageAndRotation",
+          "Status": "Passed",
+          "Duration": 2.5015589,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PopupRegistryFailureUsesIndependentLoadingRecovery",
+          "Status": "Passed",
+          "Duration": 1.934817,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PopupSceneExtensionAndFailedRegistrationPreserveUsableRegistry",
+          "Status": "Passed",
+          "Duration": 1.3796006,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PopupSettingsAndChildCloseOnceAtDestructionButResultsPromptRemains",
+          "Status": "Passed",
+          "Duration": 2.6087204,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PreparedOperatingAndNearEndingSlotsUseNormalContinueAndRestoreResults",
+          "Status": "Passed",
+          "Duration": 7.9734962,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.PreviousPressCannotConfirmNewScreenAndPauseKeepsTransitionBlocked",
+          "Status": "Passed",
+          "Duration": 2.6650444,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.RepeatedVisibleLoadingRequestsInvalidatePressEvenWithIdenticalText",
+          "Status": "Passed",
+          "Duration": 1.0357637,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.ReturnSaveFailurePreservesSessionAndCanCancel",
+          "Status": "Passed",
+          "Duration": 3.5234714,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.SceneViewDestroyedBeforePersistentOwnerCanShutDownCleanly",
+          "Status": "Passed",
+          "Duration": 2.0170307,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.SharedTextStyleKeepsBaseSizeForReusedNewAndHiddenRowsWithoutAView",
+          "Status": "Passed",
+          "Duration": 1.0213937,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.TextAnimatorWaveMovesUnscaledAndRestoresTextOnErrorAndRetry",
+          "Status": "Passed",
+          "Duration": 0.4051102,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.TitleConfirmationAndLoadingFitBothOrientationsWithLargeText",
+          "Status": "Passed",
+          "Duration": 1.9656719,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.UnreadableSaveRemainsAnErrorAndCannotSilentlyStartANewRun",
+          "Status": "Passed",
+          "Duration": 1.0134747,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

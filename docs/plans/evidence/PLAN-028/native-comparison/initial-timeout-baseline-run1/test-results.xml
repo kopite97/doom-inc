@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-11 17:11:16Z" end-time="2026-11-11 17:14:16Z" duration="180.0511126">
+  <test-suite type="TestSuite" id="1108" name="UnityProject" fullname="UnityProject" runstate="Runnable" testcasecount="89" result="Failed" site="Child" start-time="2026-11-11 17:11:16Z" end-time="2026-11-11 17:14:16Z" duration="180.051113" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1101" name="MobileGame.Spatial.PlayMode.Tests.dll" fullname="C:/Dev/Unity/Doom_Inc/UnityProject/Library/ScriptAssemblies/MobileGame.Spatial.PlayMode.Tests.dll" runstate="Runnable" testcasecount="88" result="Failed" site="Child" start-time="2026-11-11 17:11:16Z" end-time="2026-11-11 17:14:16Z" duration="180.046077" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="31096" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1102" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="88" result="Failed" site="Child" start-time="2026-11-11 17:11:16Z" end-time="2026-11-11 17:14:16Z" duration="180.044999" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1103" name="SpatialTests" fullname="MobileGame.SpatialTests" runstate="Runnable" testcasecount="88" result="Failed" site="Child" start-time="2026-11-11 17:11:16Z" end-time="2026-11-11 17:14:16Z" duration="180.044033" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1041" name="LaboratoryViewTests" fullname="MobileGame.SpatialTests.LaboratoryViewTests" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" testcasecount="49" result="Failed" site="Child" start-time="2026-11-11 17:11:16Z" end-time="2026-11-11 17:14:16Z" duration="180.042578" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1074" name="CurrentRendererPresentAndActiveCpuDiagnostic" fullname="MobileGame.SpatialTests.LaboratoryViewTests.CurrentRendererPresentAndActiveCpuDiagnostic" methodname="CurrentRendererPresentAndActiveCpuDiagnostic" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Explicit" seed="1866476946" result="Failed" start-time="2026-11-11 17:11:16Z" end-time="2026-11-11 17:14:16Z" duration="180.033776" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="PresentDiagnostic" />
+                <property name="_SKIPREASON" value="Supplementary CPU diagnosis; does not replace the formal before/after benchmark." />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Timeout value of 180000 ms was exceeded. If this is intended, increase the timeout value using a TimeoutAttribute.]]></message>
+                <stack-trace><![CDATA[]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: C:/Users/nellu/AppData/LocalLow/DefaultCompany/UnityProject\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

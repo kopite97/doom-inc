@@ -16,7 +16,7 @@ namespace MobileGame.SpatialTests
     public sealed partial class LaboratoryViewTests
     {
         // Explicit comparison scenario; same frozen fixture and deterministic simulation deltas on both renderers.
-        [UnityTest, Category("RenderingPerformance")]
+        [UnityTest, Category("RenderingPerformance"), Explicit("Historical PLAN-027 renderer comparison writes its evidence; run it only when explicitly reproducing that comparison.")]
         public IEnumerator RenderingComparisonRecordsBasicAndHeavyFixtures()
         {
             var root = Path.GetFullPath(Path.Combine(Application.dataPath, "../../docs/plans/evidence/PLAN-027"));

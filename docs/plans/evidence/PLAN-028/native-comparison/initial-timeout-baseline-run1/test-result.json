@@ -1,0 +1,35 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 180.05,
+      "summary": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.CurrentRendererPresentAndActiveCpuDiagnostic",
+          "Status": "Failed",
+          "Duration": 180.0337755,
+          "Message": "Timeout value of 180000 ms was exceeded. If this is intended, increase the timeout value using a TimeoutAttribute.",
+          "StackTrace": ""
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

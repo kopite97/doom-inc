@@ -21,6 +21,7 @@ namespace MobileGame.SpatialTests
     public sealed partial class LaboratoryViewTests
     {
         private const string ScenePath = "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity";
+        private static string RegressionEvidenceRoot => Path.Combine(Application.temporaryCachePath, "LaboratoryRegression");
 
         [UnityTest]
         public IEnumerator RealStartBuildsCollectsAndStoresWithAutomaticSaveAndMidConstructionContinue()

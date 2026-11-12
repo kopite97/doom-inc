@@ -5,7 +5,7 @@
 
 ## 실행 전
 
-1. 유일한 active PLAN이 해당 실행을 포함하는지 확인한다. [독립 Sprite 적용·검증](art-assets.md#sprite-requests)은 요청 README의 대상·범위를 확인한다.
+1. 유일한 active PLAN이 해당 실행을 포함하는지 확인한다. [독립 Sprite 적용·검증](art-assets.md#sprite-requests)은 요청 README의 대상·범위를 확인한다. 고부하 테스트는 [별도 요청 조건](verification.md#load-test-authorization)도 확인한다.
 2. [플레이 환경](../game-design/04-delivery/01-platform/environment.md)의 승인 버전·템플릿·대상을 확인한다.
 3. 실제 프로젝트 경로와 Editor·Android 모듈·CLI·패키지 설치 여부를 확인한다.
 4. 프로젝트가 있으면 ProjectVersion.txt·패키지 설정·대상 플랫폼을 읽고 승인 기준과 비교한다.

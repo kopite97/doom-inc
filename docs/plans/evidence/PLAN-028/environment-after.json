@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "return new {\n    editor = UnityEngine.Application.unityVersion,\n    play = UnityEditor.EditorApplication.isPlaying,\n    scenes = UnityEditor.SceneManagement.EditorSceneManager.GetSceneManagerSetup().Select(s => new { s.path, s.isLoaded, s.isActive }).ToArray(),\n    dirty = UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty,\n    persistent = UnityEngine.Application.persistentDataPath,\n    runInBackground = UnityEngine.Application.runInBackground,\n    domainEnabled = UnityEditor.EditorSettings.enterPlayModeOptionsEnabled,\n    options = UnityEditor.EditorSettings.enterPlayModeOptions.ToString(),\n    target = UnityEditor.EditorUserBuildSettings.activeBuildTarget.ToString(),\n    graphics = UnityEngine.SystemInfo.graphicsDeviceType.ToString(),\n    threadedGraphics = UnityEngine.SystemInfo.graphicsMultiThreaded,\n    vSync = UnityEngine.QualitySettings.vSyncCount,\n    targetFrameRate = UnityEngine.Application.targetFrameRate,\n    pipeline = UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline.name\n};\n"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "editor": "6000.3.27f1",
+        "play": false,
+        "scenes": [
+          {
+            "path": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "isLoaded": true,
+            "isActive": true
+          }
+        ],
+        "dirty": false,
+        "persistent": "C:/Users/nellu/AppData/LocalLow/DefaultCompany/UnityProject",
+        "runInBackground": false,
+        "domainEnabled": true,
+        "options": "DisableDomainReload",
+        "target": "Android",
+        "graphics": "Direct3D12",
+        "threadedGraphics": false,
+        "vSync": 1,
+        "targetFrameRate": -1,
+        "pipeline": "UniversalRP"
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

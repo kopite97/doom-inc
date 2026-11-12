@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "UnityEditor.EditorSettings.enterPlayModeOptions = UnityEditor.EnterPlayModeOptions.None; return new { cache = UnityEngine.Application.temporaryCachePath, domainEnabled = UnityEditor.EditorSettings.enterPlayModeOptionsEnabled, options = UnityEditor.EditorSettings.enterPlayModeOptions.ToString() };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "cache": "C:/Users/nellu/AppData/Local/Temp/DefaultCompany/UnityProject",
+        "domainEnabled": false,
+        "options": "None"
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

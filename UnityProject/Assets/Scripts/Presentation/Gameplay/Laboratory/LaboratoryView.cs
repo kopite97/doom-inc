@@ -97,6 +97,7 @@ namespace MobileGame.Presentation
         public void ReleaseSession()
         {
             PopupScope?.Dispose();
+            mapScreen?.ReleaseDisplay();
             SetTransitionPaused(true); Ending?.Dispose(); Ending = null;
             if (Controller != null) Controller.SessionChanged -= OnSessionChanged;
             Controller = null; Commands = null;
@@ -104,7 +105,12 @@ namespace MobileGame.Presentation
 
         private void OnEnable() { skipNextDelta = true; UpdateEndingVisibility(); SetScreenVisible(true); }
         private void OnDisable() { StopReleaseFeedback(); skipNextDelta = true; InvalidateInput(); Ending?.SetVisible(false); SetScreenVisible(false); }
-        private void LateUpdate() => UpdateScreen();
+        private void LateUpdate()
+        {
+            UpdateScreen();
+            // One owner publishes layout, world positions, overlays and hit bounds in that order.
+            if (mapScreen != null && mapScreen.isActiveAndEnabled) mapScreen.PublishFrame();
+        }
 
         private void Update()
         {

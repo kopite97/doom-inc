@@ -1,0 +1,394 @@
+{
+  "generatedUtc": "2026-11-11T17:00:21.892Z",
+  "formalComparison": false,
+  "baselineAvailable": false,
+  "durationUnit": "milliseconds",
+  "percentile": "nearest rank; median averages middle pair",
+  "interpretation": "Current implementation only, 300 warmup / 600 sample frames per condition. Direct FrameTimingManager and CPU frame-time counters are reported separately from RenderLoop. No baseline active-render CPU values were captured, so active-render CPU before/after change remains unmeasured.",
+  "runs": [
+    {
+      "file": "present-diagnostic-level0.json",
+      "implementation": "after-only",
+      "formalComparison": false,
+      "level": 0,
+      "warmupFrames": 300,
+      "sampleFrames": 600,
+      "fixedDelta": 0.016666666666666666,
+      "releaseEveryCommands": 600,
+      "elapsedWallSeconds": 10.011031199999707,
+      "resolution": [
+        1280,
+        720
+      ],
+      "zoom": 1,
+      "graphics": "Direct3D12",
+      "threadedGraphics": false,
+      "vSync": 0,
+      "targetFrameRate": 60,
+      "frameTimingFeatureEnabled": true,
+      "freshTimingSamples": 600,
+      "frameTimingCpuFrequency": 10000000,
+      "recorders": [
+        {
+          "name": "RenderLoop",
+          "category": "Render",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "Gfx.PresentFrame",
+          "category": "Render",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "CPU Render Thread Frame Time",
+          "category": "Render",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "CPU Main Thread Frame Time",
+          "category": "Render",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "PlayerLoop",
+          "category": "PlayerLoop",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "Main Thread",
+          "category": "Internal",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "WaitForTargetFPS",
+          "category": "VSync",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "Gfx.WaitForPresentOnGfxThread",
+          "category": "Render",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "GfxDeviceD3D12.WaitForLastPresent",
+          "category": null,
+          "unit": null,
+          "available": false
+        }
+      ],
+      "recorderMilliseconds": {
+        "renderLoop": {
+          "valid": true,
+          "samples": 600,
+          "median": 11.18525,
+          "p95": 11.659,
+          "max": 12.3623,
+          "mean": 10.879294000000003
+        },
+        "presentFrame": {
+          "valid": true,
+          "samples": 600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "renderCpuCounter": {
+          "valid": true,
+          "samples": 600,
+          "median": 0.8379,
+          "p95": 0.9914,
+          "max": 1.5332,
+          "mean": 0.7860603233333333
+        },
+        "mainCpuCounter": {
+          "valid": true,
+          "samples": 600,
+          "median": 1.4143,
+          "p95": 1.8924,
+          "max": 35.6538,
+          "mean": 1.706822833333334
+        },
+        "playerLoop": {
+          "valid": true,
+          "samples": 600,
+          "median": 1.6844999999999999,
+          "p95": 2.0647,
+          "max": 35.6567,
+          "mean": 1.9171368333333332
+        },
+        "main": {
+          "valid": true,
+          "samples": 600,
+          "median": 16.65745,
+          "p95": 17.1145,
+          "max": 41.3842,
+          "mean": 16.66473216666667
+        },
+        "waitTarget": {
+          "valid": true,
+          "samples": 600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.0007,
+          "mean": 0.00024366666666666574
+        },
+        "waitPresent": {
+          "valid": true,
+          "samples": 600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "deviceWait": {
+          "valid": false
+        }
+      },
+      "frameTimingMilliseconds": {
+        "cpuFrameMs": {
+          "valid": true,
+          "samples": 600,
+          "median": 16.6643,
+          "p95": 17.1225,
+          "max": 41.3934,
+          "mean": 16.698914333333327
+        },
+        "cpuMainMs": {
+          "valid": true,
+          "samples": 600,
+          "median": 1.41465,
+          "p95": 1.8924,
+          "max": 35.6538,
+          "mean": 1.7074090000000004
+        },
+        "cpuPresentWaitMs": {
+          "valid": true,
+          "samples": 600,
+          "median": 0.26425,
+          "p95": 0.4245,
+          "max": 0.7552,
+          "mean": 0.22114750000000005
+        },
+        "cpuRenderMs": {
+          "valid": true,
+          "samples": 600,
+          "median": 0.8376,
+          "p95": 0.9914,
+          "max": 1.5332,
+          "mean": 0.7855971666666668
+        },
+        "gpuMs": {
+          "valid": true,
+          "samples": 600,
+          "median": 1.261824,
+          "p95": 1.358848,
+          "max": 1.581056,
+          "mean": 1.2127918933333321
+        }
+      },
+      "presentMarkerAllZero": true,
+      "note": "API fields are already milliseconds; ProfilerRecorder durations are converted from nanoseconds. FrameTiming values describe delayed captured frames, not necessarily the current logical command. No RenderLoop subtraction or paired before/after active-CPU estimate is made. Available all-zero Present markers in this single-threaded Editor do not split RenderLoop."
+    },
+    {
+      "file": "present-diagnostic-level2.json",
+      "implementation": "after-only",
+      "formalComparison": false,
+      "level": 2,
+      "warmupFrames": 300,
+      "sampleFrames": 600,
+      "fixedDelta": 0.016666666666666666,
+      "releaseEveryCommands": 600,
+      "elapsedWallSeconds": 10.00079900000037,
+      "resolution": [
+        1280,
+        720
+      ],
+      "zoom": 1,
+      "graphics": "Direct3D12",
+      "threadedGraphics": false,
+      "vSync": 0,
+      "targetFrameRate": 60,
+      "frameTimingFeatureEnabled": true,
+      "freshTimingSamples": 600,
+      "frameTimingCpuFrequency": 10000000,
+      "recorders": [
+        {
+          "name": "RenderLoop",
+          "category": "Render",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "Gfx.PresentFrame",
+          "category": "Render",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "CPU Render Thread Frame Time",
+          "category": "Render",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "CPU Main Thread Frame Time",
+          "category": "Render",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "PlayerLoop",
+          "category": "PlayerLoop",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "Main Thread",
+          "category": "Internal",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "WaitForTargetFPS",
+          "category": "VSync",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "Gfx.WaitForPresentOnGfxThread",
+          "category": "Render",
+          "unit": "TimeNanoseconds",
+          "available": true
+        },
+        {
+          "name": "GfxDeviceD3D12.WaitForLastPresent",
+          "category": null,
+          "unit": null,
+          "available": false
+        }
+      ],
+      "recorderMilliseconds": {
+        "renderLoop": {
+          "valid": true,
+          "samples": 600,
+          "median": 10.595949999999998,
+          "p95": 11.1542,
+          "max": 11.7141,
+          "mean": 10.456458999999994
+        },
+        "presentFrame": {
+          "valid": true,
+          "samples": 600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "renderCpuCounter": {
+          "valid": true,
+          "samples": 600,
+          "median": 0.8523499999999999,
+          "p95": 1.0967,
+          "max": 1.4912,
+          "mean": 0.8004218099999998
+        },
+        "mainCpuCounter": {
+          "valid": true,
+          "samples": 600,
+          "median": 2.28095,
+          "p95": 3.005,
+          "max": 22.5003,
+          "mean": 2.458661128333333
+        },
+        "playerLoop": {
+          "valid": true,
+          "samples": 600,
+          "median": 2.4731,
+          "p95": 3.086,
+          "max": 22.5008,
+          "mean": 2.6287533333333335
+        },
+        "main": {
+          "valid": true,
+          "samples": 600,
+          "median": 16.65135,
+          "p95": 17.1589,
+          "max": 23.4302,
+          "mean": 16.644472000000025
+        },
+        "waitTarget": {
+          "valid": true,
+          "samples": 600,
+          "median": 0.0002,
+          "p95": 0.0004,
+          "max": 0.0008,
+          "mean": 0.0002408333333333323
+        },
+        "waitPresent": {
+          "valid": true,
+          "samples": 600,
+          "median": 0,
+          "p95": 0,
+          "max": 0,
+          "mean": 0
+        },
+        "deviceWait": {
+          "valid": false
+        }
+      },
+      "frameTimingMilliseconds": {
+        "cpuFrameMs": {
+          "valid": true,
+          "samples": 600,
+          "median": 16.6583,
+          "p95": 17.1646,
+          "max": 23.4376,
+          "mean": 16.67691266666667
+        },
+        "cpuMainMs": {
+          "valid": true,
+          "samples": 600,
+          "median": 2.2866999999999997,
+          "p95": 3.005,
+          "max": 22.5003,
+          "mean": 2.4591018333333334
+        },
+        "cpuPresentWaitMs": {
+          "valid": true,
+          "samples": 600,
+          "median": 0.1525,
+          "p95": 0.411,
+          "max": 0.609,
+          "mean": 0.17617249999999998
+        },
+        "cpuRenderMs": {
+          "valid": true,
+          "samples": 600,
+          "median": 0.85335,
+          "p95": 1.0969,
+          "max": 1.4912,
+          "mean": 0.8009863333333331
+        },
+        "gpuMs": {
+          "valid": true,
+          "samples": 600,
+          "median": 1.20832,
+          "p95": 1.287168,
+          "max": 1.47072,
+          "mean": 1.172339626666667
+        }
+      },
+      "presentMarkerAllZero": true,
+      "note": "API fields are already milliseconds; ProfilerRecorder durations are converted from nanoseconds. FrameTiming values describe delayed captured frames, not necessarily the current logical command. No RenderLoop subtraction or paired before/after active-CPU estimate is made. Available all-zero Present markers in this single-threaded Editor do not split RenderLoop."
+    }
+  ]
+}

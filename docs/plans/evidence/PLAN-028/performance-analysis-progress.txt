@@ -1,0 +1,720 @@
+{
+  "output": "C:\\Dev\\Unity\\Doom_Inc\\docs\\plans\\evidence\\PLAN-028\\performance-summary.json",
+  "runs": 20,
+  "groups": 4,
+  "excludedScenarios": [],
+  "comparisons": [
+    {
+      "level": 0,
+      "mostlyOffscreen": false,
+      "baselineRuns": 3,
+      "afterRuns": 3,
+      "pairs": [
+        {
+          "run": 1,
+          "comparable": true,
+          "samePathQueries": true,
+          "sameVisitedCells": true,
+          "workload": [
+            {
+              "metric": "workers",
+              "beforeMean": 1,
+              "afterMean": 1,
+              "beforeMedian": 1,
+              "afterMedian": 1
+            },
+            {
+              "metric": "moving",
+              "beforeMean": 0.7418727424284524,
+              "afterMean": 0.7418727424284524,
+              "beforeMedian": 1,
+              "afterMedian": 1
+            },
+            {
+              "metric": "waiting",
+              "beforeMean": 0,
+              "afterMean": 0,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            },
+            {
+              "metric": "carrying",
+              "beforeMean": 0.3908333333333333,
+              "afterMean": 0.3908333333333333,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            }
+          ]
+        },
+        {
+          "run": 2,
+          "comparable": true,
+          "samePathQueries": true,
+          "sameVisitedCells": true,
+          "workload": [
+            {
+              "metric": "workers",
+              "beforeMean": 1,
+              "afterMean": 1,
+              "beforeMedian": 1,
+              "afterMedian": 1
+            },
+            {
+              "metric": "moving",
+              "beforeMean": 0.7418727424284524,
+              "afterMean": 0.7418727424284524,
+              "beforeMedian": 1,
+              "afterMedian": 1
+            },
+            {
+              "metric": "waiting",
+              "beforeMean": 0,
+              "afterMean": 0,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            },
+            {
+              "metric": "carrying",
+              "beforeMean": 0.3908333333333333,
+              "afterMean": 0.3908333333333333,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            }
+          ]
+        },
+        {
+          "run": 3,
+          "comparable": true,
+          "samePathQueries": true,
+          "sameVisitedCells": true,
+          "workload": [
+            {
+              "metric": "workers",
+              "beforeMean": 1,
+              "afterMean": 1,
+              "beforeMedian": 1,
+              "afterMedian": 1
+            },
+            {
+              "metric": "moving",
+              "beforeMean": 0.7418727424284524,
+              "afterMean": 0.7418727424284524,
+              "beforeMedian": 1,
+              "afterMedian": 1
+            },
+            {
+              "metric": "waiting",
+              "beforeMean": 0,
+              "afterMean": 0,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            },
+            {
+              "metric": "carrying",
+              "beforeMean": 0.3908333333333333,
+              "afterMean": 0.3908333333333333,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            }
+          ]
+        }
+      ],
+      "differences": {
+        "main": {
+          "medianChange": 0.0033999999999991815,
+          "medianChangePercent": 0.020414596436446608,
+          "p95Change": 0.038000000000000256,
+          "allAfterP95AboveBaselineRange": true
+        },
+        "playerLoop": {
+          "medianChange": 0.07205000000000017,
+          "medianChangePercent": 4.115144072878896,
+          "p95Change": 0.09929999999999994,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "render": {
+          "medianChange": 0.0442499999999999,
+          "medianChangePercent": 0.3956102903377223,
+          "p95Change": 0.1097999999999999,
+          "allAfterP95AboveBaselineRange": true
+        },
+        "canvasBuild": {
+          "medianChange": -0.0002999999999999999,
+          "medianChangePercent": -5.769230769230771,
+          "p95Change": -0.0007999999999999995,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waitForTargetFps": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waitForPresent": {
+          "medianChange": 0,
+          "medianChangePercent": null,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "gc": {
+          "medianChange": -220,
+          "medianChangePercent": -0.06029842237400551,
+          "p95Change": -11006,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "batches": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "workers": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "moving": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waiting": {
+          "medianChange": 0,
+          "medianChangePercent": null,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "carrying": {
+          "medianChange": 0,
+          "medianChangePercent": null,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "visible": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        }
+      }
+    },
+    {
+      "level": 1,
+      "mostlyOffscreen": false,
+      "baselineRuns": 3,
+      "afterRuns": 3,
+      "pairs": [
+        {
+          "run": 1,
+          "comparable": true,
+          "samePathQueries": true,
+          "sameVisitedCells": true,
+          "workload": [
+            {
+              "metric": "workers",
+              "beforeMean": 4,
+              "afterMean": 4,
+              "beforeMedian": 4,
+              "afterMedian": 4
+            },
+            {
+              "metric": "moving",
+              "beforeMean": 1.0505696026674076,
+              "afterMean": 1.0505696026674076,
+              "beforeMedian": 1,
+              "afterMedian": 1
+            },
+            {
+              "metric": "waiting",
+              "beforeMean": 1.6883333333333332,
+              "afterMean": 1.6883333333333332,
+              "beforeMedian": 2,
+              "afterMedian": 2
+            },
+            {
+              "metric": "carrying",
+              "beforeMean": 0.4713888888888889,
+              "afterMean": 0.4713888888888889,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            }
+          ]
+        },
+        {
+          "run": 2,
+          "comparable": true,
+          "samePathQueries": true,
+          "sameVisitedCells": true,
+          "workload": [
+            {
+              "metric": "workers",
+              "beforeMean": 4,
+              "afterMean": 4,
+              "beforeMedian": 4,
+              "afterMedian": 4
+            },
+            {
+              "metric": "moving",
+              "beforeMean": 1.0505696026674076,
+              "afterMean": 1.0505696026674076,
+              "beforeMedian": 1,
+              "afterMedian": 1
+            },
+            {
+              "metric": "waiting",
+              "beforeMean": 1.6883333333333332,
+              "afterMean": 1.6883333333333332,
+              "beforeMedian": 2,
+              "afterMedian": 2
+            },
+            {
+              "metric": "carrying",
+              "beforeMean": 0.4713888888888889,
+              "afterMean": 0.4713888888888889,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            }
+          ]
+        },
+        {
+          "run": 3,
+          "comparable": true,
+          "samePathQueries": true,
+          "sameVisitedCells": true,
+          "workload": [
+            {
+              "metric": "workers",
+              "beforeMean": 4,
+              "afterMean": 4,
+              "beforeMedian": 4,
+              "afterMedian": 4
+            },
+            {
+              "metric": "moving",
+              "beforeMean": 1.0505696026674076,
+              "afterMean": 1.0505696026674076,
+              "beforeMedian": 1,
+              "afterMedian": 1
+            },
+            {
+              "metric": "waiting",
+              "beforeMean": 1.6883333333333332,
+              "afterMean": 1.6883333333333332,
+              "beforeMedian": 2,
+              "afterMedian": 2
+            },
+            {
+              "metric": "carrying",
+              "beforeMean": 0.4713888888888889,
+              "afterMean": 0.4713888888888889,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            }
+          ]
+        }
+      ],
+      "differences": {
+        "main": {
+          "medianChange": 0.0007999999999981355,
+          "medianChangePercent": 0.004801459643721806,
+          "p95Change": -0.0777000000000001,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "playerLoop": {
+          "medianChange": -0.1633500000000001,
+          "medianChangePercent": -8.011083592849621,
+          "p95Change": -0.1844999999999999,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "render": {
+          "medianChange": 0.1819500000000005,
+          "medianChangePercent": 1.667048421824191,
+          "p95Change": 0.032600000000000406,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "canvasBuild": {
+          "medianChange": -0.0010999999999999994,
+          "medianChangePercent": -18.965517241379303,
+          "p95Change": -0.0013,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waitForTargetFps": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waitForPresent": {
+          "medianChange": 0,
+          "medianChangePercent": null,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "gc": {
+          "medianChange": 19990,
+          "medianChangePercent": 5.2161070463108805,
+          "p95Change": 19800,
+          "allAfterP95AboveBaselineRange": true
+        },
+        "batches": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "workers": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "moving": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waiting": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "carrying": {
+          "medianChange": 0,
+          "medianChangePercent": null,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "visible": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        }
+      }
+    },
+    {
+      "level": 2,
+      "mostlyOffscreen": false,
+      "baselineRuns": 3,
+      "afterRuns": 3,
+      "pairs": [
+        {
+          "run": 1,
+          "comparable": true,
+          "samePathQueries": true,
+          "sameVisitedCells": true,
+          "workload": [
+            {
+              "metric": "workers",
+              "beforeMean": 24,
+              "afterMean": 24,
+              "beforeMedian": 24,
+              "afterMedian": 24
+            },
+            {
+              "metric": "moving",
+              "beforeMean": 1.8946929702695192,
+              "afterMean": 1.8946929702695192,
+              "beforeMedian": 2,
+              "afterMedian": 2
+            },
+            {
+              "metric": "waiting",
+              "beforeMean": 20.440555555555555,
+              "afterMean": 20.440555555555555,
+              "beforeMedian": 20,
+              "afterMedian": 20
+            },
+            {
+              "metric": "carrying",
+              "beforeMean": 1.043611111111111,
+              "afterMean": 1.043611111111111,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            }
+          ]
+        },
+        {
+          "run": 2,
+          "comparable": true,
+          "samePathQueries": true,
+          "sameVisitedCells": true,
+          "workload": [
+            {
+              "metric": "workers",
+              "beforeMean": 24,
+              "afterMean": 24,
+              "beforeMedian": 24,
+              "afterMedian": 24
+            },
+            {
+              "metric": "moving",
+              "beforeMean": 1.8946929702695192,
+              "afterMean": 1.8946929702695192,
+              "beforeMedian": 2,
+              "afterMedian": 2
+            },
+            {
+              "metric": "waiting",
+              "beforeMean": 20.440555555555555,
+              "afterMean": 20.440555555555555,
+              "beforeMedian": 20,
+              "afterMedian": 20
+            },
+            {
+              "metric": "carrying",
+              "beforeMean": 1.043611111111111,
+              "afterMean": 1.043611111111111,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            }
+          ]
+        },
+        {
+          "run": 3,
+          "comparable": true,
+          "samePathQueries": true,
+          "sameVisitedCells": true,
+          "workload": [
+            {
+              "metric": "workers",
+              "beforeMean": 24,
+              "afterMean": 24,
+              "beforeMedian": 24,
+              "afterMedian": 24
+            },
+            {
+              "metric": "moving",
+              "beforeMean": 1.8946929702695192,
+              "afterMean": 1.8946929702695192,
+              "beforeMedian": 2,
+              "afterMedian": 2
+            },
+            {
+              "metric": "waiting",
+              "beforeMean": 20.440555555555555,
+              "afterMean": 20.440555555555555,
+              "beforeMedian": 20,
+              "afterMedian": 20
+            },
+            {
+              "metric": "carrying",
+              "beforeMean": 1.043611111111111,
+              "afterMean": 1.043611111111111,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            }
+          ]
+        }
+      ],
+      "differences": {
+        "main": {
+          "medianChange": 0.00019999999999953388,
+          "medianChangePercent": 0.0012007324467822045,
+          "p95Change": 0.07760000000000034,
+          "allAfterP95AboveBaselineRange": true
+        },
+        "playerLoop": {
+          "medianChange": -0.0748000000000002,
+          "medianChangePercent": -2.8691983122362985,
+          "p95Change": -0.33720000000000017,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "render": {
+          "medianChange": 0.16455000000000197,
+          "medianChangePercent": 1.5911849033250158,
+          "p95Change": 0.17379999999999995,
+          "allAfterP95AboveBaselineRange": true
+        },
+        "canvasBuild": {
+          "medianChange": -0.0004000000000000002,
+          "medianChangePercent": -6.25,
+          "p95Change": -0.0011999999999999997,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waitForTargetFps": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waitForPresent": {
+          "medianChange": 0,
+          "medianChangePercent": null,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "gc": {
+          "medianChange": 12133,
+          "medianChangePercent": 2.722069787111847,
+          "p95Change": 10948,
+          "allAfterP95AboveBaselineRange": true
+        },
+        "batches": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 1,
+          "allAfterP95AboveBaselineRange": true
+        },
+        "workers": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "moving": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waiting": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "carrying": {
+          "medianChange": 0,
+          "medianChangePercent": null,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "visible": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        }
+      }
+    },
+    {
+      "level": 2,
+      "mostlyOffscreen": true,
+      "baselineRuns": 1,
+      "afterRuns": 1,
+      "pairs": [
+        {
+          "run": 1,
+          "comparable": true,
+          "samePathQueries": true,
+          "sameVisitedCells": true,
+          "workload": [
+            {
+              "metric": "workers",
+              "beforeMean": 24,
+              "afterMean": 24,
+              "beforeMedian": 24,
+              "afterMedian": 24
+            },
+            {
+              "metric": "moving",
+              "beforeMean": 1.8946929702695192,
+              "afterMean": 1.8946929702695192,
+              "beforeMedian": 2,
+              "afterMedian": 2
+            },
+            {
+              "metric": "waiting",
+              "beforeMean": 20.440555555555555,
+              "afterMean": 20.440555555555555,
+              "beforeMedian": 20,
+              "afterMedian": 20
+            },
+            {
+              "metric": "carrying",
+              "beforeMean": 1.043611111111111,
+              "afterMean": 1.043611111111111,
+              "beforeMedian": 0,
+              "afterMedian": 0
+            }
+          ]
+        }
+      ],
+      "differences": {
+        "main": {
+          "medianChange": -0.0029000000000003467,
+          "medianChangePercent": -0.017403045532971007,
+          "p95Change": -0.009000000000000341,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "playerLoop": {
+          "medianChange": -0.033199999999999896,
+          "medianChangePercent": -1.4663339443058088,
+          "p95Change": 0.011200000000000099,
+          "allAfterP95AboveBaselineRange": true
+        },
+        "render": {
+          "medianChange": 0.09614999999999974,
+          "medianChangePercent": 0.8977130026002422,
+          "p95Change": 0.06600000000000072,
+          "allAfterP95AboveBaselineRange": true
+        },
+        "canvasBuild": {
+          "medianChange": -0.0005000000000000004,
+          "medianChangePercent": -9.80392156862746,
+          "p95Change": -0.00019999999999999966,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waitForTargetFps": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waitForPresent": {
+          "medianChange": 0,
+          "medianChangePercent": null,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "gc": {
+          "medianChange": 1836,
+          "medianChangePercent": 0.39947954516772466,
+          "p95Change": 1962,
+          "allAfterP95AboveBaselineRange": true
+        },
+        "batches": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "workers": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "moving": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "waiting": {
+          "medianChange": 0,
+          "medianChangePercent": 0,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "carrying": {
+          "medianChange": 0,
+          "medianChangePercent": null,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        },
+        "visible": {
+          "medianChange": 0,
+          "medianChangePercent": null,
+          "p95Change": 0,
+          "allAfterP95AboveBaselineRange": false
+        }
+      }
+    }
+  ]
+}

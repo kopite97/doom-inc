@@ -5,11 +5,16 @@ using MobileGame.Gameplay;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Unity.Profiling;
 
 namespace MobileGame.Presentation
 {
     public sealed partial class LaboratoryMapView
     {
+        private static readonly ProfilerMarker movementMarker = new ProfilerMarker("Laboratory.Movement.Evaluate");
+        private static readonly ProfilerMarker drawArtMarker = new ProfilerMarker("Laboratory.Map.DrawArt");
+        private static readonly ProfilerMarker sortArtMarker = new ProfilerMarker("Laboratory.Map.Sort");
+        private Comparison<Thing> compareDisplayedArt;
         private enum ArtMotion { Idle, Move, Work, Complete }
         private sealed class ThingArt
         {
@@ -27,13 +32,18 @@ namespace MobileGame.Presentation
             public double Time;
             public Vector2Int Cell;
             public bool Initialized;
+            public readonly CreatureMotion Movement = new CreatureMotion();
+            public Vector2 Ground;
+            public Rect HitBounds;
+            public bool HitVisible;
+            public MapPlacement PublishedPlacement;
         }
         private readonly Dictionary<Guid, ThingArt> thingArt = new Dictionary<Guid, ThingArt>();
         private readonly Dictionary<Guid, double> gatheringCompletions = new Dictionary<Guid, double>();
         private readonly List<Guid> removedArt = new List<Guid>();
         private readonly List<Thing> placedArt = new List<Thing>();
-        private readonly Dictionary<Vector2Int, int> creatureCounts = new Dictionary<Vector2Int, int>();
-        private readonly HashSet<Vector2Int> annotatedCreatureCells = new HashSet<Vector2Int>();
+        private readonly Dictionary<Vector2, int> creatureCounts = new Dictionary<Vector2, int>();
+        private readonly HashSet<Vector2> annotatedCreatureCells = new HashSet<Vector2>();
         private readonly HashSet<Guid> carriedResources = new HashSet<Guid>();
         private LaboratoryManager artSimulation;
         private RectTransform artLabels;
@@ -43,36 +53,54 @@ namespace MobileGame.Presentation
         private void BindArtSimulation()
         {
             if (ReferenceEquals(artSimulation, view.Simulation)) return;
-            if (artSimulation != null) artSimulation.GatheringCompleted -= OnGatheringCompleted;
-            foreach (var item in thingArt.Values) RemoveArt(item);
-            thingArt.Clear(); gatheringCompletions.Clear();
-            if (previewArt != null) { RemoveArt(previewArt); previewArt = null; }
+            ReleaseArtSimulation();
             artSimulation = view.Simulation;
             artClock = artSimulation?.ElapsedSeconds ?? 0;
-            if (artSimulation != null) artSimulation.GatheringCompleted += OnGatheringCompleted;
+            if (artSimulation != null)
+            {
+                world?.SetVisible(isActiveAndEnabled);
+                artSimulation.GatheringCompleted += OnGatheringCompleted;
+            }
+        }
+        public void ReleaseDisplay()
+        {
+            ReleaseArtSimulation();
+            world?.SetVisible(false);
+        }
+        private void ReleaseArtSimulation()
+        {
+            if (artSimulation != null) artSimulation.GatheringCompleted -= OnGatheringCompleted;
+            foreach (var item in thingArt.Values) RemoveArt(item);
+            thingArt.Clear(); placedArt.Clear(); gatheringCompletions.Clear();
+            removedArt.Clear(); creatureCounts.Clear(); annotatedCreatureCells.Clear(); carriedResources.Clear();
+            selectionChoices.Clear(); selectionIds.Clear(); publishedGeometry = false;
+            if (previewArt != null) { RemoveArt(previewArt); previewArt = null; }
+            artSimulation = null; artClock = 0;
         }
         private void OnGatheringCompleted(Guid id) => gatheringCompletions[id] = artSimulation.ElapsedSeconds;
         private void OnDestroy()
         {
-            if (artSimulation != null) artSimulation.GatheringCompleted -= OnGatheringCompleted;
-            artSimulation = null;
+            ReleaseArtSimulation();
+            artLabels = null;
             world?.Dispose(); world = null;
         }
         private static void RemoveArt(ThingArt item)
         {
-            item.Root.gameObject.SetActive(false);
-            Destroy(item.Root.gameObject); Destroy(item.Count.gameObject);
+            if (item.Root != null) { item.Root.gameObject.SetActive(false); Destroy(item.Root.gameObject); }
+            if (item.Count != null) Destroy(item.Count.gameObject);
         }
         private bool HasSuppliedArt(Thing thing) => view.UiAssets?.Art != null
             && (view.UiAssets.Art.HasGathering(thing.Definition) || view.UiAssets.Art.HasPrototype(thing.Definition));
-        private static int CompareArt(Thing a, Thing b)
+        private int CompareArt(Thing a, Thing b)
         {
-            var y = b.Placement.Origin.y.CompareTo(a.Placement.Origin.y);
+            var y = thingArt[b.Id].Ground.y.CompareTo(thingArt[a.Id].Ground.y);
             return y != 0 ? y : a.CreationOrder.CompareTo(b.CreationOrder);
         }
         private void DrawArt(FacilityData previewDefinition, Vector2Int? previewOrigin, QuarterTurn rotation, bool valid)
         {
+            using var drawing = drawArtMarker.Auto();
             BindArtSimulation();
+            if (compareDisplayedArt == null) compareDisplayedArt = CompareArt;
             if (artLabels == null)
             {
                 artLabels = UiWidgets.Rect("LaboratoryAnnotations", viewport);
@@ -87,29 +115,51 @@ namespace MobileGame.Presentation
                 if (!artSimulation.Registry.TryGet(pair.Key, out var current) || !current.IsPlaced)
                     removedArt.Add(pair.Key);
             foreach (var id in removedArt) { RemoveArt(thingArt[id]); thingArt.Remove(id); gatheringCompletions.Remove(id); }
-            placedArt.Clear(); creatureCounts.Clear(); carriedResources.Clear(); annotatedCreatureCells.Clear();
+            var sortChanged = removedArt.Count > 0;
+            for (var i = placedArt.Count - 1; i >= 0; i--)
+                if (!thingArt.ContainsKey(placedArt[i].Id)) placedArt.RemoveAt(i);
+            creatureCounts.Clear(); carriedResources.Clear(); annotatedCreatureCells.Clear();
             foreach (var reservation in artSimulation.Reservations)
                 if (reservation.PickedUp) carriedResources.Add(reservation.ResourceId);
             foreach (var thing in artSimulation.Registry.Things)
             {
                 if (!thing.IsPlaced || thing.Definition.Kind == ThingKind.Resource) continue;
-                placedArt.Add(thing);
-                if (thing.Definition.Kind == ThingKind.Creature)
+                if (!thingArt.TryGetValue(thing.Id, out var item))
                 {
-                    creatureCounts.TryGetValue(thing.Placement.Origin, out var n);
-                    creatureCounts[thing.Placement.Origin] = n + 1;
+                    thingArt.Add(thing.Id, item = CreateThingArt("ThingArt_" + thing.Id.ToString("N")));
+                    placedArt.Add(thing); sortChanged = true;
                 }
             }
-            placedArt.Sort(CompareArt);
+            using (movementMarker.Auto())
+            for (var index = 0; index < placedArt.Count; index++)
+            {
+                var thing = placedArt[index];
+                var item = thingArt[thing.Id];
+                var ground = (Vector2)thing.Placement.Origin;
+                if (thing.Definition.Kind == ThingKind.Creature)
+                {
+                    item.Movement.Evaluate(artSimulation, thing);
+                    ground = item.Movement.Position;
+                }
+                if (item.Ground.y != ground.y) sortChanged = true;
+                item.Ground = ground;
+                if (thing.Definition.Kind == ThingKind.Creature)
+                {
+                    creatureCounts.TryGetValue(ground, out var n);
+                    creatureCounts[ground] = n + 1;
+                }
+            }
+            if (sortChanged)
+                using (sortArtMarker.Auto()) placedArt.Sort(compareDisplayedArt);
             for (var i = 0; i < placedArt.Count; i++)
             {
                 var thing = placedArt[i];
-                if (!thingArt.TryGetValue(thing.Id, out var item))
-                    thingArt.Add(thing.Id, item = CreateThingArt("ThingArt_" + thing.Id.ToString("N")));
+                var item = thingArt[thing.Id];
                 var facility = thing.Definition as FacilityData;
                 var size = facility == null ? Vector2.one : (Vector2)FacilityGeometry.GetSize(facility, thing.Placement.Rotation);
                 item.Size = size * LaboratoryWorldMap.UnitsPerCell;
-                item.Root.position = LaboratoryWorldMap.CellToWorld((Vector2)thing.Placement.Origin + size * .5f);
+                var worldPosition = (Vector3)LaboratoryWorldMap.CellToWorld(item.Ground + size * .5f);
+                if (item.Root.position != worldPosition) item.Root.position = worldPosition;
                 item.Body.color = Color.white;
                 if (assets != null && assets.HasGathering(thing.Definition)) DrawGathering(thing, item, assets, delta);
                 else if (assets != null && assets.HasPrototype(thing.Definition)) DrawPrototype(thing, item, assets, delta);
@@ -117,9 +167,9 @@ namespace MobileGame.Presentation
                 DrawBorder(item, thing.Id == view.SelectedId, new Color(1, .88f, .35f));
                 DrawInteraction(item, facility, thing.Placement.Origin, thing.Placement.Rotation);
                 SetArtOrder(item, i * 4);
-                creatureCounts.TryGetValue(thing.Placement.Origin, out var count);
+                creatureCounts.TryGetValue(item.Ground, out var count);
                 var supplied = HasSuppliedArt(thing);
-                var annotate = facility != null || annotatedCreatureCells.Add(thing.Placement.Origin);
+                var annotate = facility != null || annotatedCreatureCells.Add(item.Ground);
                 var showLabel = annotate && (!supplied || (facility == null && count > 1));
                 item.Count.gameObject.SetActive(showLabel);
                 if (showLabel)
@@ -139,6 +189,8 @@ namespace MobileGame.Presentation
                     item.Count.rectTransform.sizeDelta = size * CellSize;
                     item.Count.fontSize = Mathf.Clamp(CellSize * .25f, 9, 18);
                 }
+                PublishHitBounds(item);
+                item.PublishedPlacement = thing.Placement;
                 item.Initialized = true; item.Cell = thing.Placement.Origin;
             }
             removedArt.Clear();
@@ -166,40 +218,23 @@ namespace MobileGame.Presentation
         }
         private void DrawPrototype(Thing thing, ThingArt item, LaboratoryArtAssets assets, double delta)
         {
-            var worker = thing.GetComponent<WorkerComponent>();
+            var worker = item.Movement.Worker;
             if (!item.Initialized || delta > 0)
             {
-                var state = ArtMotion.Idle; Vector2Int? direction = null;
-                var nextCell = worker.NextMoveCell;
-                if (!item.Initialized && !nextCell.HasValue && worker.MoveProgress > 0 && worker.WaitReason == WorkerWaitReason.None
-                    && worker.Job != null && (worker.Job.Stage == JobStage.ToSupply || worker.Job.Stage == JobStage.ToDestination))
-                {
-                    // Route caches are intentionally absent from saves. Reconstruct this first display
-                    // with the same pathfinder without changing the worker, job or simulation position.
-                    var targetId = worker.Job.Stage == JobStage.ToSupply ? worker.Job.SourceId : worker.Job.TargetId;
-                    if (targetId.HasValue && artSimulation.Registry.TryGet(targetId.Value, out var destination))
-                    {
-                        var goal = artSimulation.TargetCell(destination);
-                        var route = goal.HasValue ? GridPathfinder.FindPath(artSimulation.Map, thing.Placement.Origin, goal.Value) : null;
-                        if (route != null && route.Count > 0) nextCell = route[0];
-                    }
-                }
-                if (nextCell.HasValue)
-                { state = ArtMotion.Move; direction = nextCell.Value - thing.Placement.Origin; }
-                else if (worker.Job != null && worker.Job.Stage == JobStage.Working && worker.WaitReason == WorkerWaitReason.None
+                var state = item.Movement.IsMoving ? ArtMotion.Move : ArtMotion.Idle;
+                Vector2Int? direction = item.Movement.Direction;
+                if (!item.Movement.IsMoving && worker.Job != null && worker.Job.Stage == JobStage.Working
+                    && worker.WaitReason == WorkerWaitReason.None
                     && (worker.Job.Kind == WorkKind.Construction || worker.Job.Kind == WorkKind.Gathering)
                     && artSimulation.Registry.TryGet(worker.Job.TargetId, out var target)
                     && target.IsPlaced && thing.Placement.Origin == artSimulation.TargetCell(target))
                 {
                     state = ArtMotion.Work;
-                    // Face the closest occupied cell, not the facility's distant origin.
                     var bounds = FacilityGeometry.GetSize((FacilityData)target.Definition, target.Placement.Rotation);
                     var cell = thing.Placement.Origin; var origin = target.Placement.Origin;
                     direction = new Vector2Int(Mathf.Clamp(cell.x, origin.x, origin.x + bounds.x - 1),
                         Mathf.Clamp(cell.y, origin.y, origin.y + bounds.y - 1)) - cell;
                 }
-                else if (item.Initialized && item.Cell != thing.Placement.Origin)
-                { state = ArtMotion.Move; direction = thing.Placement.Origin - item.Cell; }
                 if (direction.HasValue && direction.Value != Vector2Int.zero) item.Direction = ArtDirection(direction.Value);
                 AdvanceArt(item, state, delta);
                 var count = state == ArtMotion.Idle ? 4 : 6;
@@ -221,7 +256,7 @@ namespace MobileGame.Presentation
             var complete = !thing.TryGetComponent<ConstructionComponent>(out var construction) || construction.IsComplete;
             item.Body.color = thing.Definition.Kind == ThingKind.Facility
                 ? complete ? new Color(.18f, .42f, .62f) : new Color(.56f, .43f, .12f) : new Color(.7f, .4f, .15f);
-            if (thing.TryGetComponent<WorkerComponent>(out var worker)) DrawCargo(thing, item, worker, new Vector2(32, 22));
+            if (item.Movement.Worker != null) DrawCargo(thing, item, item.Movement.Worker, new Vector2(32, 22));
             else item.Cargo.gameObject.SetActive(false);
         }
         private void DrawCargo(Thing thing, ThingArt item, WorkerComponent worker, Vector2 head)
@@ -283,6 +318,7 @@ namespace MobileGame.Presentation
         {
             // A single visible sprite can batch directly. Group only composites that must stay together.
             item.Group.enabled = item.Cargo.gameObject.activeSelf || item.Interaction.gameObject.activeSelf || item.Border[0].gameObject.activeSelf;
+            if (item.Group.sortingOrder == order && item.Body.sortingOrder == order) return;
             item.Group.sortingOrder = order;
             item.Body.sortingOrder = order;
             item.Cargo.sortingOrder = order + 1;

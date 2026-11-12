@@ -1,0 +1,49 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 3.03,
+      "summary": {
+        "total": 3,
+        "passed": 2,
+        "failed": 1,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DisplayEvaluationFrequencyLeavesLogicalSimulationAndSavesIdentical",
+          "Status": "Failed",
+          "Duration": 1.8781286,
+          "Message": "  Rendering frequency must not change placements, jobs, resources, reservations or save state.\r\n  String lengths are both 23750. Strings differ at index 3113.\r\n  Expected: \"...\\n        {\\n            \"id\": \"160f49adf56e4dfd8b75fa7874fc...\"\r\n  But was:  \"...\\n        {\\n            \"id\": \"97ae932f95484c1783f1ce6dc823...\"\r\n  ----------------------------------------------^\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<DisplayEvaluationFrequencyLeavesLogicalSimulationAndSavesIdentical>d__53.MoveNext () [0x00352] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Movement.cs:116\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.MovingBodyCargoSelectionAndPauseUseOnePublishedPosition",
+          "Status": "Passed",
+          "Duration": 0.5513189,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.MovingFallbackAndPublishedSelectionFollowViewportAndLifecycle",
+          "Status": "Passed",
+          "Duration": 0.5892072,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

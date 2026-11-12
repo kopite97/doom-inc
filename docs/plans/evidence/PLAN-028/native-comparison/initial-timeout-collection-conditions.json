@@ -1,0 +1,95 @@
+{
+  "recordedUtc": "2026-11-11T17:11:47.119752+00:00",
+  "purpose": "Supplementary direct FrameTiming API before/after comparison over the same logical 30..90 second workload as the formal 20-run measurement. Formal 20-run evidence is preserved separately.",
+  "test": "MobileGame.SpatialTests.LaboratoryViewTests.CurrentRendererPresentAndActiveCpuDiagnostic",
+  "category": "PresentDiagnostic",
+  "includeExplicit": true,
+  "stages": [
+    "baseline",
+    "after"
+  ],
+  "repeatsPerStage": 3,
+  "levels": [
+    0,
+    2
+  ],
+  "warmupFrames": 1800,
+  "sampleFrames": 3600,
+  "totalCommandsPerLevel": 5400,
+  "fixedDelta": 0.016666666666666666,
+  "releaseEveryCommands": 600,
+  "releaseCommandIndices": [
+    599,
+    1199,
+    1799,
+    2399,
+    2999,
+    3599,
+    4199,
+    4799,
+    5399
+  ],
+  "sampleCommandRangeInclusive": [
+    1801,
+    5400
+  ],
+  "sampleModelSecondsRange": [
+    30,
+    90
+  ],
+  "resolution": [
+    1280,
+    720
+  ],
+  "zoom": 1,
+  "statusUi": true,
+  "largeText": false,
+  "vSync": 0,
+  "targetFrameRate": 60,
+  "captureFramerate": 0,
+  "simulationRate": 0,
+  "expectedGraphics": "Direct3D12",
+  "expectedThreadedGraphics": false,
+  "environment": "Unity 6000.3.27f1, Android-selected Windows Editor, Domain Reload OFF. Parent controls all Editor/source transitions and restores original environment.",
+  "identity": "Original 137 sources are verified against the original baseline manifest; 3 new product files and 4 directly dependent test files are temporarily excluded from compilation by the parent. Final product source and 26 exact bytes/meta backups are verified on restoration.",
+  "units": {
+    "profilerDurations": "TimeNanoseconds, converted to milliseconds during analysis",
+    "frameTimingApi": "milliseconds, already converted by Unity API"
+  },
+  "frameTiming": "Require feature enabled, 3600 fresh nonzero strictly increasing frame timestamps and finite positive CPU fields. Returned timings are delayed captured frames, not necessarily the current logical command.",
+  "limitations": [
+    "No ad-hoc RenderLoop subtraction or missing-counter imputation.",
+    "No GC allocation-location evidence is collected by this diagnostic.",
+    "Only basic and heavy workloads are diagnosed."
+  ],
+  "files": {
+    "collector": {
+      "path": "UnityProject/Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.PresentDiagnostics.cs",
+      "sha256": "7d555d827bb4c6216136df1777e31dec044ffd4c1b547afc27761ee296a4ed8a"
+    },
+    "commandHelper": {
+      "path": "UnityProject/Assets/Scripts/Tests/PlayMode/Laboratory/LaboratoryViewTests.MovementPerformance.cs",
+      "sha256": "ab755eddbfb8ea615996ef6b7da9174d8d8f267108977e630fcb3105ed680a39"
+    },
+    "fixture0": {
+      "path": "docs/plans/evidence/PLAN-028/movement-fixture-0.json",
+      "sha256": "906edd737b52399d4d38ecd25d1e8b69098b98117127e4fda97301f467e73480"
+    },
+    "fixture2": {
+      "path": "docs/plans/evidence/PLAN-028/movement-fixture-2.json",
+      "sha256": "a361cdf86e1198b2b4dfd8d99feba117add0620fc7fb87d032776cc479f2cf5c"
+    },
+    "originalBaselineManifest": {
+      "path": "docs/plans/evidence/PLAN-028/source-baseline.json",
+      "sha256": "637b918448f44d32634e489d957287a08dc0028fcf1190539b8ed90f73cc178d"
+    },
+    "nativeSourceBaselineManifest": {
+      "path": "docs/plans/evidence/PLAN-028/native-comparison/sources-baseline.json",
+      "sha256": "23aadb13fe8406697c166778d464b810a4547dd55a63b572078df6f0b2496691"
+    },
+    "finalSourceBackupManifest": {
+      "path": "docs/plans/evidence/PLAN-028/native-comparison/source-backup-manifest.json",
+      "sha256": "1c931d7940f2392dfb3108a5b9c86a7d89f93cacf5771922cb7c31a2792efa97"
+    }
+  }
+}
