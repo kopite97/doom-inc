@@ -405,6 +405,26 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 1077
+  - m_Id: 393
+    m_Key: placement_move_valid
+    m_Metadata:
+      m_Items:
+      - rid: 1151
+  - m_Id: 390
+    m_Key: placement_outside
+    m_Metadata:
+      m_Items:
+      - rid: 1152
+  - m_Id: 391
+    m_Key: placement_overlap
+    m_Metadata:
+      m_Items:
+      - rid: 1153
+  - m_Id: 392
+    m_Key: placement_unavailable
+    m_Metadata:
+      m_Items:
+      - rid: 1154
   - m_Id: 152
     m_Key: placement_valid
     m_Metadata:
@@ -1128,7 +1148,7 @@ MonoBehaviour:
     - rid: 1077
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_CommentText: Laboratory / placement_invalid
+        m_CommentText: Placement preview / specific failure reason
     - rid: 1078
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
@@ -1421,6 +1441,22 @@ MonoBehaviour:
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
         m_CommentText: Laboratory / supply_receipts
+    - rid: 1151
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Placement preview / placement_move_valid
+    - rid: 1152
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Placement preview / placement_outside
+    - rid: 1153
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Placement preview / placement_overlap
+    - rid: 1154
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Placement preview / placement_unavailable
     - rid: 2444913683439288476
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:

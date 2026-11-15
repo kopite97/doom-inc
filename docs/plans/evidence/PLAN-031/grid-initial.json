@@ -1,0 +1,168 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test run",
+    "parameters": {
+      "mode": "editor",
+      "filter": "GridMapTests"
+    },
+    "result": {
+      "Summary": {
+        "Total": 19,
+        "Passed": 15,
+        "Failed": 4,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.CorridorAndInteractionBlockingDoNotBecomePlacementRestrictions",
+          "Status": "Passed",
+          "Duration": 0.0468853,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.CreaturesOverlapWithoutBlockingButCannotBePlacedInsideFacility",
+          "Status": "Passed",
+          "Duration": 0.0019817,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.FailedConfirmationKeepsEditingAndCanBeCorrected",
+          "Status": "Passed",
+          "Duration": 0.0009235,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.InvalidMoveAndRotationAreAtomicIncludingIntegerExtremes",
+          "Status": "Passed",
+          "Duration": 0.0010986,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.MovingOneSharedDefinitionPreservesIdentityInventoryAndOtherInstance",
+          "Status": "Passed",
+          "Duration": 0.0029771,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.NewPlacementCanBeCancelledWithoutDestroyingThing",
+          "Status": "Passed",
+          "Duration": 0.0002863,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells(None)",
+          "Status": "Failed",
+          "Duration": 0.003508,
+          "Message": "System.ArgumentException : The interaction cell must adjoin one footprint edge.",
+          "StackTrace": "  at MobileGame.Foundation.FacilityData.Validate () [0x002fb] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Data\\Models\\FacilityData.cs:122 \r\n  at MobileGame.Foundation.ThingRegistry.ValidateDefinition (MobileGame.Foundation.ThingData definition) [0x0000e] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Core\\Things\\ThingRegistry.cs:184 \r\n  at MobileGame.Foundation.ThingRegistry.Create (MobileGame.Foundation.ThingData definition) [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Core\\Things\\ThingRegistry.cs:41 \r\n  at MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells (MobileGame.Foundation.QuarterTurn rotation) [0x00018] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\EditMode\\Foundation\\Spatial\\GridMapTests.cs:37 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <16ec009baa7541e7b79bc4548f1d744c>:0 "
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells(Clockwise90)",
+          "Status": "Failed",
+          "Duration": 0.0001717,
+          "Message": "System.ArgumentException : The interaction cell must adjoin one footprint edge.",
+          "StackTrace": "  at MobileGame.Foundation.FacilityData.Validate () [0x002fb] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Data\\Models\\FacilityData.cs:122 \r\n  at MobileGame.Foundation.ThingRegistry.ValidateDefinition (MobileGame.Foundation.ThingData definition) [0x0000e] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Core\\Things\\ThingRegistry.cs:184 \r\n  at MobileGame.Foundation.ThingRegistry.Create (MobileGame.Foundation.ThingData definition) [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Core\\Things\\ThingRegistry.cs:41 \r\n  at MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells (MobileGame.Foundation.QuarterTurn rotation) [0x00018] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\EditMode\\Foundation\\Spatial\\GridMapTests.cs:37 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <16ec009baa7541e7b79bc4548f1d744c>:0 "
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells(Clockwise180)",
+          "Status": "Failed",
+          "Duration": 0.0001215,
+          "Message": "System.ArgumentException : The interaction cell must adjoin one footprint edge.",
+          "StackTrace": "  at MobileGame.Foundation.FacilityData.Validate () [0x002fb] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Data\\Models\\FacilityData.cs:122 \r\n  at MobileGame.Foundation.ThingRegistry.ValidateDefinition (MobileGame.Foundation.ThingData definition) [0x0000e] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Core\\Things\\ThingRegistry.cs:184 \r\n  at MobileGame.Foundation.ThingRegistry.Create (MobileGame.Foundation.ThingData definition) [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Core\\Things\\ThingRegistry.cs:41 \r\n  at MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells (MobileGame.Foundation.QuarterTurn rotation) [0x00018] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\EditMode\\Foundation\\Spatial\\GridMapTests.cs:37 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <16ec009baa7541e7b79bc4548f1d744c>:0 "
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells(Clockwise270)",
+          "Status": "Failed",
+          "Duration": 0.0001085,
+          "Message": "System.ArgumentException : The interaction cell must adjoin one footprint edge.",
+          "StackTrace": "  at MobileGame.Foundation.FacilityData.Validate () [0x002fb] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Data\\Models\\FacilityData.cs:122 \r\n  at MobileGame.Foundation.ThingRegistry.ValidateDefinition (MobileGame.Foundation.ThingData definition) [0x0000e] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Core\\Things\\ThingRegistry.cs:184 \r\n  at MobileGame.Foundation.ThingRegistry.Create (MobileGame.Foundation.ThingData definition) [0x00000] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Core\\Things\\ThingRegistry.cs:41 \r\n  at MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells (MobileGame.Foundation.QuarterTurn rotation) [0x00018] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\EditMode\\Foundation\\Spatial\\GridMapTests.cs:37 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <16ec009baa7541e7b79bc4548f1d744c>:0 "
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.PreviewAndCancelKeepOriginalOccupancyAndSuccessfulConfirmSwitchesOnce",
+          "Status": "Passed",
+          "Duration": 0.0006469,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.QueriesAreReadOnlySnapshotsAndInvalidDefinitionIsRejected",
+          "Status": "Passed",
+          "Duration": 0.0028773,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(None,2,3,5,3)",
+          "Status": "Passed",
+          "Duration": 0.0005794,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise90,3,2,3,4)",
+          "Status": "Passed",
+          "Duration": 0.0000922,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise180,2,3,4,7)",
+          "Status": "Passed",
+          "Duration": 0.0000733,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise270,3,2,7,5)",
+          "Status": "Passed",
+          "Duration": 0.0000698,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RejectsForeignRegistryOtherMapAndResourcesWithoutSideEffects",
+          "Status": "Passed",
+          "Duration": 0.0009167,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RemovedEditedTargetCannotBeResurrectedByConfirm",
+          "Status": "Passed",
+          "Duration": 0.0009881,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.UnplacementPreservesExistenceAndInventoryAndRemovalCleansMap",
+          "Status": "Passed",
+          "Duration": 0.0005243,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 4.05,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: GridMapTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

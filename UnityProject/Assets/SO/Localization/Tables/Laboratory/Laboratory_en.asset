@@ -327,8 +327,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 143
-    m_Localized: 'Map controls: -/+ zoom out/in, corners fit the map, and the eye
-      toggles facility status.'
+    m_Localized: 'Map controls: -/+ zoom out/in, and corners fit the map.'
     m_Metadata:
       m_Items: []
   - m_Id: 317
@@ -397,7 +396,7 @@ MonoBehaviour:
       m_Items:
       - rid: 2444913683439288510
   - m_Id: 153
-    m_Localized: "{action} \xB7 {position} \xB7 Check overlaps and map boundaries"
+    m_Localized: "{action} \xB7 {position} \xB7 {reason}"
     m_Metadata:
       m_Items:
       - rid: 2444913683439288510
@@ -736,6 +735,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 2444913683439288510
+  - m_Id: 393
+    m_Localized: "{action} \xB7 {position} \xB7 Confirm to move immediately."
+    m_Metadata:
+      m_Items:
+      - rid: 2444913683439288510
+  - m_Id: 390
+    m_Localized: Outside the construction area.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 391
+    m_Localized: Overlaps another facility.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 392
+    m_Localized: Cannot place this facility. Cancel and try again.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -788,3 +804,4 @@ MonoBehaviour:
         - id: 334
         - id: 335
         - id: 389
+        - id: 393

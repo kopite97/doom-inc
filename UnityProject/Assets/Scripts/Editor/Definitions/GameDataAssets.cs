@@ -15,9 +15,9 @@ namespace MobileGame.Foundation.Editor
         public static readonly string[] DefinitionPaths = {
             "Resource/OrganicMatter", "Resource/CultureMedium", "Creature/PrototypeSupport", "Creature/Support", "Creature/Invader", "Creature/Raider",
             "Facility/Gathering", "Facility/Storage", "Facility/Processing", "Facility/Cultivation" };
-        public static JsonDataAsset[] Files() => JsonDefinitionParser.Topics.Select(topic => new JsonDataAsset(topic,
-            AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/JSON/Balance/" + char.ToUpperInvariant(topic[0]) + topic.Substring(1) + ".json")
-                ?? throw new InvalidOperationException("Missing JSON topic: " + topic))).ToArray();
+        public static JsonDataAsset[] Files() => JsonDefinitionTopics.All.Select(topic => new JsonDataAsset(topic.Key,
+            AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/JSON/Balance/" + topic.FileName)
+                ?? throw new InvalidOperationException("Missing JSON topic: " + topic.Key))).ToArray();
         public static TextAsset[] Tables() => Files().Select(f => f.asset).ToArray();
         public static T Registry<T>(string topic) where T : ScriptableObject => AssetDatabase.LoadAssetAtPath<T>(RegistryFolder + "/" + topic + ".asset")
             ?? throw new InvalidOperationException("Missing registry: " + topic);

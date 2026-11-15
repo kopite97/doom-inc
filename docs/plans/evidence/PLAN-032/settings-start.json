@@ -1,0 +1,148 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test run",
+    "parameters": {
+      "mode": "editor",
+      "filter": "UiSettingsStoreTests",
+      "filter_type": "testName"
+    },
+    "result": {
+      "Summary": {
+        "Total": 16,
+        "Passed": 16,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.EachMissingPreferenceRetainsItsOwnDefaultWithoutLosingTheOtherChoice",
+          "Status": "Passed",
+          "Duration": 0.0157286,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.FailedFileCommitRemovesTemporaryFileAndReturnsError",
+          "Status": "Passed",
+          "Duration": 0.0083433,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.FailedWriteKeepsVisibleChoiceAndPreviousPersistedValueUntilExplicitRetrySucceeds",
+          "Status": "Passed",
+          "Duration": 0.0017623,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"\")",
+          "Status": "Passed",
+          "Duration": 0.0021051,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"null\")",
+          "Status": "Passed",
+          "Duration": 0.0013347,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"{broken}\")",
+          "Status": "Passed",
+          "Duration": 0.0066379,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"{\\\"version\\\":2,\\\"facilityStatus\\\":\\\"off\\\",\\\"textSize\\\":\\\"large\\\"}\")",
+          "Status": "Passed",
+          "Duration": 0.005302,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"{\\\"version\\\":1,\\\"facilityStatus\\\":false,\\\"textSize\\\":\\\"large\\\"}\")",
+          "Status": "Passed",
+          "Duration": 0.0059257,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"{\\\"version\\\":1,\\\"facilityStatus\\\":\\\"invalid\\\",\\\"textSize\\\":\\\"large\\\"}\")",
+          "Status": "Passed",
+          "Duration": 0.0056582,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.InvalidSettingsUseDefaultsAndReportAnIndependentError(\"{\\\"version\\\":1,\\\"facilityStatus\\\":\\\"off\\\",\\\"textSize\\\":\\\"invalid\\\"}\")",
+          "Status": "Passed",
+          "Duration": 0.0052781,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.MissingOrNullPreferencesFallBackToDefaults(\"{\\\"version\\\":1}\")",
+          "Status": "Passed",
+          "Duration": 0.0061411,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.MissingOrNullPreferencesFallBackToDefaults(\"{\\\"version\\\":1,\\\"facilityStatus\\\":null,\\\"textSize\\\":null}\")",
+          "Status": "Passed",
+          "Duration": 0.0056707,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.MissingSettingsUseVisibleStatusAndNormalTextWithoutCreatingAFile",
+          "Status": "Passed",
+          "Duration": 0.0015405,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.PreferencesSurviveNewStoreAndReplacePreviousFileWithoutLeavingTemporaryFiles",
+          "Status": "Passed",
+          "Duration": 0.0060128,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.SettingsChangesDoNotTouchGameSaveSnapshotOrDefinitionHash",
+          "Status": "Passed",
+          "Duration": 0.01457,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.UiSettingsStoreTests.UnreadableSettingsUseDefaultsAndDoNotTryToOverwriteTheFile",
+          "Status": "Passed",
+          "Duration": 0.0011587,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 2.81,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: UiSettingsStoreTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

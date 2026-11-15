@@ -1,0 +1,14 @@
+var support=UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Foundation.CreatureDefinition>("Assets/SO/Creature/Support.asset");
+var w=MobileGame.Foundation.Editor.BalanceEditorWindow.OpenDefinition(support);
+if(w.Session.changes.Count!=1) throw new System.Exception("draft lost on Inspector navigation");
+var editor=UnityEditor.Editor.CreateEditor(new UnityEngine.Object[] {support,UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Foundation.CreatureDefinition>("Assets/SO/Creature/Invader.asset")});
+var root=editor.CreateInspectorGUI();
+var button=UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.Button>(root).ToList().Single(b=>b.text=="밸런스 편집창에서 열기");
+var multiDisabled=!button.enabledSelf;
+UnityEngine.Object.DestroyImmediate(editor);
+var resource=UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Foundation.ResourceDefinition>("Assets/SO/Resource/OrganicMatter.asset");
+MobileGame.Foundation.Editor.BalanceEditorWindow.OpenDefinition(resource);
+var readonlyResource=UnityEngine.UIElements.UQueryExtensions.Query<UnityEngine.UIElements.TextField>(w.rootVisualElement).ToList().Count==1;
+MobileGame.Foundation.Editor.BalanceEditorWindow.OpenDefinition(UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Foundation.FacilityDefinition>("Assets/SO/Facility/Gathering.asset"));
+w.SaveDraft();
+return new { multiDisabled, readonlyResource, dirty=w.Session.Dirty, seconds=MobileGame.Foundation.Editor.GameDataAssets.LoadCatalog().Selected<MobileGame.Foundation.FacilityData>("gatheringId").BuildSeconds };

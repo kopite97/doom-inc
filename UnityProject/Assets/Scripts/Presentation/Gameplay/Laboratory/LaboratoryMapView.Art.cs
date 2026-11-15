@@ -21,6 +21,7 @@ namespace MobileGame.Presentation
             public Transform Root, CarryAnchor;
             public SortingGroup Group;
             public SpriteRenderer Body, Cargo, Interaction;
+            public Material BodyMaterial;
             public SpriteRenderer[] Border;
             public TextMeshProUGUI Count;
             public Vector2 Size;
@@ -83,6 +84,7 @@ namespace MobileGame.Presentation
             removedArt.Clear(); creatureCounts.Clear(); annotatedCreatureCells.Clear(); carriedResources.Clear();
             selectionChoices.Clear(); selectionIds.Clear(); publishedGeometry = false;
             if (previewArt != null) { RemoveArt(previewArt); previewArt = null; }
+            previewCells.Clear(); previewDiagnosticMap = null; initializePreview = false;
             artSimulation = null; artClock = 0;
         }
         private void OnGatheringCompleted(Guid id) => gatheringCompletions[id] = artSimulation.ElapsedSeconds;
@@ -174,7 +176,9 @@ namespace MobileGame.Presentation
                 else if (assets != null && assets.HasGathering(thing.Definition)) DrawGathering(thing, item, assets, delta);
                 else if (assets != null && assets.HasPrototype(thing.Definition)) DrawPrototype(thing, item, assets, delta);
                 else DrawFallback(thing, item);
-                DrawBorder(item, thing.Id == view.SelectedId, new Color(1, .88f, .35f));
+                var bodyMaterial = thing.Id == view.SelectedId && view.UiAssets?.SelectionMaterial != null
+                    ? view.UiAssets.SelectionMaterial : item.BodyMaterial;
+                if (item.Body.sharedMaterial != bodyMaterial) item.Body.sharedMaterial = bodyMaterial;
                 DrawInteraction(item, facility, thing.Placement.Origin, thing.Placement.Rotation);
                 SetArtOrder(item, i * 4);
                 creatureCounts.TryGetValue(item.Ground, out var count);
@@ -259,7 +263,7 @@ namespace MobileGame.Presentation
         }
         private void DrawFallback(Thing thing, ThingArt item)
         {
-            item.Body.sprite = world.Solid;
+            item.Body.sprite = world.FallbackBody;
             item.Body.transform.localPosition = Vector3.zero;
             item.Body.transform.localScale = new Vector3(item.Size.x - .06f, item.Size.y - .06f, 1);
             item.Body.transform.localRotation = Quaternion.identity;
@@ -308,7 +312,7 @@ namespace MobileGame.Presentation
         {
             if (definition == null || !origin.HasValue)
             { if (previewArt != null) previewArt.Root.gameObject.SetActive(false); return; }
-            if (previewArt == null) previewArt = CreateThingArt("PlacementPreview");
+            if (previewArt == null) previewArt = CreateThingArt("PlacementPreview", true);
             previewArt.Root.gameObject.SetActive(true);
             var size = (Vector2)FacilityGeometry.GetSize(definition, rotation);
             previewArt.Size = size * 2;
@@ -325,11 +329,13 @@ namespace MobileGame.Presentation
             DrawBorder(previewArt, true, valid ? new Color(.2f, 1, .5f) : new Color(1, .25f, .25f));
             DrawInteraction(previewArt, definition, origin.Value, rotation);
             SetArtOrder(previewArt, 30000);
+            DrawPlacementCells(definition, origin.Value, rotation);
         }
         private static void SetArtOrder(ThingArt item, int order)
         {
             // A single visible sprite can batch directly. Group only composites that must stay together.
-            item.Group.enabled = item.Cargo.gameObject.activeSelf || item.Interaction.gameObject.activeSelf || item.Border[0].gameObject.activeSelf;
+            item.Group.enabled = item.Cargo.gameObject.activeSelf || item.Interaction.gameObject.activeSelf
+                || (item.Border.Length > 0 && item.Border[0].gameObject.activeSelf);
             if (item.Group.sortingOrder == order && item.Body.sortingOrder == order) return;
             item.Group.sortingOrder = order;
             item.Body.sortingOrder = order;
@@ -337,15 +343,16 @@ namespace MobileGame.Presentation
             item.Interaction.sortingOrder = order - 1;
             foreach (var border in item.Border) border.sortingOrder = order + 2;
         }
-        private ThingArt CreateThingArt(string name)
+        private ThingArt CreateThingArt(string name, bool preview = false)
         {
             var root = new GameObject(name, typeof(SortingGroup)).transform;
             root.SetParent(world.Root, false); root.gameObject.layer = world.Root.gameObject.layer;
             var anchor = new GameObject("CarryAnchor").transform; anchor.SetParent(root, false);
             var item = new ThingArt { Root = root, CarryAnchor = anchor, Group = root.GetComponent<SortingGroup>(),
                 Body = world.CreateSprite("Body", root), Cargo = world.CreateSprite("Cargo", anchor, 1),
-                Interaction = world.CreateSprite("InteractionCell", root, -1), Border = new SpriteRenderer[4] };
-            for (var i = 0; i < 4; i++) { item.Border[i] = world.CreateSprite("Selection_" + i, root, 2); item.Border[i].sprite = world.Solid; }
+                Interaction = world.CreateSprite("InteractionCell", root, -1), Border = preview ? new SpriteRenderer[4] : Array.Empty<SpriteRenderer>() };
+            item.BodyMaterial = item.Body.sharedMaterial;
+            for (var i = 0; i < item.Border.Length; i++) { item.Border[i] = world.CreateSprite("PlacementBorder_" + i, root, 2); item.Border[i].sprite = world.Solid; }
             item.Interaction.sprite = world.Solid; item.Interaction.color = new Color(.5f, .4f, .65f, .65f);
             item.Count = UiWidgets.Label("ThingAnnotation", artLabels, 14); item.Count.font = font;
             item.Count.alignment = TextAlignmentOptions.Center; item.Count.raycastTarget = false;
@@ -373,21 +380,6 @@ namespace MobileGame.Presentation
                 image.transform.localPosition = i < 2 ? new Vector3(0, (i == 0 ? -1 : 1) * (size.y - stroke) * .5f)
                     : new Vector3((i == 2 ? -1 : 1) * (size.x - stroke) * .5f, 0);
             }
-        }
-        private void ReserveCreatureArtBounds()
-        {
-            foreach (var pair in thingArt)
-            {
-                if (!artSimulation.Registry.TryGet(pair.Key, out var thing) || thing.Definition.Kind != ThingKind.Creature) continue;
-                ReserveSpriteBounds(pair.Value.Body);
-                if (pair.Value.Cargo.gameObject.activeSelf) ReserveSpriteBounds(pair.Value.Cargo);
-            }
-        }
-        private void ReserveSpriteBounds(SpriteRenderer sprite)
-        {
-            var min = LaboratoryWorldMap.WorldToLocal(sprite.bounds.min, Origin, CellSize);
-            var max = LaboratoryWorldMap.WorldToLocal(sprite.bounds.max, Origin, CellSize);
-            occupiedStatusBounds.Add(Rect.MinMaxRect(min.x, min.y, max.x, max.y));
         }
     }
 }

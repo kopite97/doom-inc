@@ -194,7 +194,7 @@ namespace MobileGame.SpatialTests
         private static UiButton FindActionButton(LaboratoryView view, string key)
         {
             var popupKey = key == "ConfirmSessionAction" ? "Confirm" : key == "CancelSessionAction" ? "Cancel"
-                : key == "StatusPreference" ? "Status" : key == "TextPreference" ? "Text" : null;
+                : key == "TextPreference" ? "Text" : null;
             if (popupKey != null)
                 return view.GetComponentsInChildren<PopupBase>().LastOrDefault()?.GetComponentsInChildren<UiButton>().SingleOrDefault(b => b.name == popupKey);
             return view.FindUiButton(key);
@@ -225,7 +225,7 @@ namespace MobileGame.SpatialTests
                 entry = thing.Definition.Kind == ThingKind.Facility ? "NavBuild" : "NavCreatures";
             else if (key == "Release" || key == "Reports" || key == "LatestReports") entry = "NavInvasion";
             else if (key == "Save" || key == "Reload" || key == "Restart" || key == "TextPreference"
-                || key == "StatusPreference" || key == "FontLicense" || key == "RetryUiSettings") entry = "GameMenu";
+                || key == "FontLicense" || key == "RetryUiSettings") entry = "GameMenu";
             else if (key.StartsWith("Preset_", StringComparison.Ordinal)) entry = "NavCreatures";
             else if (input.View.OpenedPanel == LaboratoryPanel.Selection)
             {
@@ -238,7 +238,7 @@ namespace MobileGame.SpatialTests
                 yield return input.Click(ScreenCenter((RectTransform)input.View.FindUiButton(entry).transform));
                 yield return null;
             }
-            if (key == "TextPreference" || key == "StatusPreference")
+            if (key == "TextPreference")
             {
                 yield return RevealVisibleButton(input, "Settings");
                 yield return input.Click(ScreenCenter((RectTransform)input.View.FindUiButton("Settings").transform));

@@ -72,6 +72,8 @@ namespace MobileGame.Presentation
             compareSelectionChoices = CompareSelectionChoices;
             font = owner.UiFont;
             gesture = new LaboratoryGesture();
+            gesture.CaptureDrag = CapturePreviewDrag;
+            gesture.Dragged += DragPreview;
             gesture.Tapped += Tap;
             gesture.Panned += delta => Pan(delta);
             gesture.Zoomed += (ratio, point) => ZoomAt(ratio, point);
@@ -154,6 +156,7 @@ namespace MobileGame.Presentation
                 gesture.Cancel(); previousSize = viewport.rect.size; ClampCenter();
                 if (view.CanUseMap && view.OpenedPanel == LaboratoryPanel.Selection) RequestSelectionVisibility();
             }
+            InitializePlacementPreview();
             EnsureSelectionVisible();
             Draw();
             RefreshStatusOverlays();
@@ -241,6 +244,9 @@ namespace MobileGame.Presentation
         private void PublishHitBounds(ThingArt item)
         {
             var bounds = item.Body.bounds;
+            // Transparent padding is only drawing space; retain the fallback body's original hit area.
+            if (item.Body.sprite == world.FallbackBody)
+                bounds.size = Vector3.Scale(bounds.size, new Vector3(32f / 34, 32f / 34, 1));
             if (item.Cargo.gameObject.activeSelf) bounds.Encapsulate(item.Cargo.bounds);
             var min = world.Camera.WorldToScreenPoint(bounds.min);
             var max = world.Camera.WorldToScreenPoint(bounds.max);
@@ -267,7 +273,6 @@ namespace MobileGame.Presentation
         private void Tap(Vector2 point)
         {
             if (!view.CanUseMap || !PublishedGeometryCurrent || !OverMap(point)) return;
-            if (!view.IsEditing && TrySelectStatus(point)) { AcceptedTaps++; return; }
             var hasCell = TryScreenCell(point, out var cell);
             if (view.IsEditing && !hasCell) return;
             AcceptedTaps++;
@@ -283,7 +288,11 @@ namespace MobileGame.Presentation
                 else if (thingArt.TryGetValue(thing.Id, out var item) && item.HitVisible && item.HitBounds.Contains(point))
                     selectionChoices.Add(thing);
             }
-            if (selectionChoices.Count == 0) return;
+            if (selectionChoices.Count == 0)
+            {
+                if (hasCell) view.ClearSelection();
+                return;
+            }
             selectionChoices.Sort(compareSelectionChoices);
             selectionIds.Clear();
             foreach (var thing in selectionChoices) selectionIds.Add(thing.Id);

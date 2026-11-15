@@ -68,6 +68,7 @@ PLAN의 타입별 완료 판정은 [PLAN 관리 지침](../plans/AGETNS.md)을 �
 
 README 상단에는 요청 출처 PLAN과 이 아트 지침의 실제 링크를 둔다. PPU·임포트 공통값은 복제하지 않고 이 지침을 참조한다.
 한 요청을 아래 형식으로 작성하고 필요만큼 반복한다. 요청 ID는 같은 PLAN 안에서 고유하게 유지한다.
+[PLAN 결과물 위치 기준](../plans/AGETNS.md#artifact-locations)에 맞춰 원본·제출본·수령·최종 적용·검수의 파일 경로를 대응시킨다. Unity 아트 PNG/시트의 최종 위치는 Assets/Sprites의 카테고리별로 지정한다.
 
 ```markdown
 # PLAN-NNN Sprite 요청
@@ -82,8 +83,10 @@ README 상단에는 요청 출처 PLAN과 이 아트 지침의 실제 링크를 
 - 프레임 수·배열·순서·피벗 등 필요한 규격:
 - 교체할 Temp_ 에셋 경로: 신규라면 없음
 - 사용처·교체할 참조 위치:
-- 최종 배치 예정 경로:
-- 수령 예정 경로: Require/PLAN-NNN/PLAN-NNN-SPR-001/rNNN/
+- 최종 배치 예정 파일: Assets/Sprites/<카테고리>/<주제>/Storage.png
+- 수령 예정 파일: Assets/Sprites/Require/PLAN-NNN/PLAN-NNN-SPR-001/r001/Storage.png
+- Art 작업 원본·리비전 원본·출력 PNG·제출 README의 파일 경로:
+- 원본 비교·게임 화면·검증 결과·승인 기록의 파일 경로:
 - Art 제작 기록: 해당하면 PLAN 경로·asset_id·리비전·출력 명세
 - 상태: 요청
 - 수령 파일·적용 경로·기술 검증 결과:

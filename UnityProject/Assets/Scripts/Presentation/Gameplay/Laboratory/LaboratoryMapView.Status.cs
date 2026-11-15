@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using MobileGame.Foundation;
 using MobileGame.Gameplay;
-using TMPro;
 using UnityEngine;
 using Unity.Profiling;
 
@@ -11,34 +10,26 @@ namespace MobileGame.Presentation
     public sealed partial class LaboratoryMapView
     {
         private static readonly ProfilerMarker statusMarker = new ProfilerMarker("Laboratory.Status.Layout");
+        private const float StatusWidth = 36, StatusHeight = 4, StatusGap = 2;
         private sealed class StatusMarker
         {
             public RectTransform Root;
-            public UnityEngine.UI.Image Background, Icon, Track, Fill, Connection;
-            public TextMeshProUGUI Caption;
+            public UnityEngine.UI.Image Track, Fill;
             public Rect Bounds;
             public bool Visible;
-            public Rect Viewport;
-            public Vector2 Anchor;
-            public float CellSize;
-            public bool Selected;
-            // Transient map observation preference; null retains automatic selected/nearby captions.
-            public bool? CaptionOverride;
         }
 
         private readonly Dictionary<Guid, StatusMarker> statusMarkers = new Dictionary<Guid, StatusMarker>();
         private readonly List<Guid> removedStatusIds = new List<Guid>();
-        private readonly List<Rect> occupiedStatusBounds = new List<Rect>();
-        private readonly List<Thing> statusFacilities = new List<Thing>();
         private RectTransform statusLayer;
         private int statusGeneration = -1;
-        private bool statusLayoutOverflow;
         public int VisibleStatusCount { get; private set; }
 
+        // Observation for diagnostics; the bar has no input handler or hit region.
         public bool TryStatusScreenPoint(Guid facilityId, out Vector2 point)
         {
             point = default;
-            if (view == null || !view.ShowFacilityStatus || statusGeneration != view.Controller.Generation
+            if (view == null || statusGeneration != view.Controller.Generation
                 || !statusMarkers.TryGetValue(facilityId, out var marker) || !marker.Visible || !marker.Root.gameObject.activeInHierarchy)
                 return false;
             point = RectTransformUtility.WorldToScreenPoint(null, viewport.TransformPoint(marker.Bounds.center));
@@ -73,11 +64,6 @@ namespace MobileGame.Presentation
                 RemoveStatusMarker(statusMarkers[id]);
                 statusMarkers.Remove(id);
             }
-            if (!view.ShowFacilityStatus)
-            {
-                if (statusLayer != null) statusLayer.gameObject.SetActive(false);
-                return;
-            }
             if (statusLayer == null)
             {
                 statusLayer = new GameObject("Temp_FacilityStatusLayer", typeof(RectTransform)).GetComponent<RectTransform>();
@@ -88,48 +74,21 @@ namespace MobileGame.Presentation
             statusLayer.sizeDelta = viewport.rect.size;
             statusLayer.gameObject.SetActive(true);
             if (statusLayer.GetSiblingIndex() != statusLayer.parent.childCount - 1) statusLayer.SetAsLastSibling();
-            occupiedStatusBounds.Clear();
-            ReserveCreatureArtBounds();
-            statusFacilities.Clear();
             foreach (var thing in simulation.Registry.Things)
                 if (thing.IsPlaced && thing.Definition.Kind == ThingKind.Facility && thing.TryGetComponent<ConstructionComponent>(out _))
-                    statusFacilities.Add(thing);
-            // A selected caption gets first claim on space; other identities retain creation order.
-            statusFacilities.Sort(CompareStatusFacilities);
-            statusLayoutOverflow = false;
-            foreach (var thing in statusFacilities) RefreshStatusMarker(thing, false);
-            if (statusLayoutOverflow)
-            {
-                // If the remaining icons cannot fit around existing bars, repack non-selected markers as icons.
-                occupiedStatusBounds.Clear(); VisibleStatusCount = 0;
-                ReserveCreatureArtBounds();
-                foreach (var marker in statusMarkers.Values) marker.Visible = false;
-                foreach (var thing in statusFacilities) RefreshStatusMarker(thing, true);
-            }
+                    RefreshStatusMarker(thing);
             foreach (var marker in statusMarkers.Values)
-                if (!marker.Visible)
-                {
-                    marker.Root.gameObject.SetActive(false);
-                    marker.Connection.gameObject.SetActive(false);
-                }
+                if (!marker.Visible) marker.Root.gameObject.SetActive(false);
         }
 
-        private int CompareStatusFacilities(Thing left, Thing right)
-        {
-            if (left.Id == view.SelectedId) return right.Id == left.Id ? 0 : -1;
-            if (right.Id == view.SelectedId) return 1;
-            return left.CreationOrder.CompareTo(right.CreationOrder);
-        }
-
-        private void RefreshStatusMarker(Thing thing, bool compact)
+        private void RefreshStatusMarker(Thing thing)
         {
             var status = view.StatusFor(thing);
-            // Completed storage has no production cycle. A storage construction site still has a construction bar.
-            if (status.Kind == FacilityStatusKind.Storage)
+            if (!status.HasProgress)
             {
-                if (statusMarkers.TryGetValue(thing.Id, out var completedStorage))
+                if (statusMarkers.TryGetValue(thing.Id, out var completed))
                 {
-                    RemoveStatusMarker(completedStorage);
+                    RemoveStatusMarker(completed);
                     statusMarkers.Remove(thing.Id);
                 }
                 return;
@@ -138,172 +97,38 @@ namespace MobileGame.Presentation
             var footprint = FacilityGeometry.GetSize((FacilityData)thing.Definition, placement.Rotation);
             var facilityRect = new Rect(LaboratoryWorldMap.WorldToLocal(LaboratoryWorldMap.CellToWorld(placement.Origin), Origin, CellSize), (Vector2)footprint * CellSize);
             if (!facilityRect.Overlaps(viewport.rect)) return;
-            var selected = thing.Id == view.SelectedId;
-            var showProgress = status.HasProgress && (selected || !compact);
+            // Snap the anchor to a physical pixel while keeping size independent of map zoom and text scale.
+            var position = new Vector2(facilityRect.center.x - StatusWidth * .5f, facilityRect.yMax + StatusGap);
+            var screenPoint = RectTransformUtility.WorldToScreenPoint(null, viewport.TransformPoint(position));
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(viewport,
+                new Vector2(Mathf.Round(screenPoint.x), Mathf.Round(screenPoint.y)), null, out position);
+            var bounds = new Rect(position, new Vector2(StatusWidth, StatusHeight));
+            // The viewport mask clips partial bars. Never relocate offscreen anchors to an edge.
+            if (!bounds.Overlaps(viewport.rect)) return;
             if (!statusMarkers.TryGetValue(thing.Id, out var marker))
             {
                 marker = CreateStatusMarker(thing.Id);
                 statusMarkers.Add(thing.Id, marker);
             }
-            var caption = marker.CaptionOverride ?? (selected || (!compact && zoom >= 1.65f));
-            var markerWidth = caption ? 100f : showProgress ? 72f : 26f;
-            marker.Caption.font = view.UiFont;
-            marker.Caption.fontSize = Mathf.RoundToInt(12 * view.UiTextScale);
-            marker.Caption.text = view.FormatMessage(view.StatusMessage(status));
-            PlaceStatusRect(marker.Caption.rectTransform, new Rect(4, 0, markerWidth - 8, 20));
-            var captionHeight = caption ? Mathf.Ceil(marker.Caption.preferredHeight) + 4 : 0;
-            var markerHeight = 24 + captionHeight;
-            var anchor = new Vector2(Mathf.Clamp(facilityRect.center.x, viewport.rect.xMin, viewport.rect.xMax),
-                Mathf.Clamp(facilityRect.yMax, viewport.rect.yMin, viewport.rect.yMax));
-            var desired = new Rect(anchor.x - markerWidth * .5f, anchor.y + 3, markerWidth, markerHeight);
-            var retain = marker.Viewport == viewport.rect && marker.Anchor == anchor && marker.CellSize == CellSize
-                && marker.Selected == selected && marker.Bounds.size == desired.size
-                && marker.Bounds == ClampStatusRect(marker.Bounds) && !StatusOverlaps(marker.Bounds);
-            var bounds = marker.Bounds;
-            var fits = retain || FindFreeStatusBounds(desired, out bounds);
-            if (!fits && caption && !selected)
-            {
-                // At density, discard extra words before sacrificing the progress bar or state icon.
-                caption = false; captionHeight = 0; markerHeight = 24;
-                markerWidth = showProgress ? 72 : 26;
-                desired = new Rect(anchor.x - markerWidth * .5f, anchor.y + 3, markerWidth, markerHeight);
-                fits = FindFreeStatusBounds(desired, out bounds);
-            }
-            if (!fits && !selected)
-            {
-                // Final density fallback keeps a readable state icon; selection restores its bar and exact progress.
-                caption = false; captionHeight = 0; markerHeight = 24; markerWidth = 26; showProgress = false;
-                desired = new Rect(anchor.x - markerWidth * .5f, anchor.y + 3, markerWidth, markerHeight);
-                fits = FindFreeStatusBounds(desired, out bounds);
-            }
-            if (!fits)
-            {
-                statusLayoutOverflow = true;
-                if (!selected) return;
-            }
             marker.Bounds = bounds;
-            marker.Viewport = viewport.rect; marker.Anchor = anchor; marker.CellSize = CellSize; marker.Selected = selected;
-            occupiedStatusBounds.Add(bounds);
             marker.Visible = true;
             marker.Root.gameObject.SetActive(true);
             PlaceStatusRect(marker.Root, new Rect(bounds.position - viewport.rect.min, bounds.size));
-            marker.Background.color = selected ? new Color(.14f, .24f, .34f, .98f) : new Color(.035f, .065f, .095f, .96f);
-            marker.Icon.sprite = view.UiAssets?.GetIcon(LaboratoryStatusText.Icon(status));
-            marker.Icon.color = Color.white;
-            marker.Icon.preserveAspect = true;
-            PlaceStatusRect(marker.Icon.rectTransform, new Rect(4, markerHeight - 21, 18, 18));
-            marker.Track.gameObject.SetActive(showProgress);
-            if (showProgress)
-            {
-                var barWidth = markerWidth - 28;
-                PlaceStatusRect(marker.Track.rectTransform, new Rect(24, markerHeight - 14, barWidth, 4));
-                PlaceStatusRect(marker.Fill.rectTransform, new Rect(0, 0, barWidth * (float)status.ProgressFraction, 4));
-                marker.Fill.color = StatusProgressColor(status);
-            }
-            marker.Caption.gameObject.SetActive(caption);
-            PlaceStatusRect(marker.Caption.rectTransform, new Rect(4, 2, markerWidth - 8, captionHeight));
-            UpdateStatusConnection(marker, anchor, bounds, selected);
+            var working = status.Kind == FacilityStatusKind.ConstructionWorking || status.Kind == FacilityStatusKind.GatheringWorking
+                || status.Kind == FacilityStatusKind.ProductionWorking || status.Kind == FacilityStatusKind.ProductionAutomatic;
+            marker.Track.color = working ? new Color(.08f, .11f, .14f, .9f) : new Color(.34f, .23f, .10f, .95f);
+            marker.Fill.color = working ? new Color(.38f, .88f, .7f) : new Color(.95f, .68f, .30f);
+            PlaceStatusRect(marker.Track.rectTransform, new Rect(0, 0, StatusWidth, StatusHeight));
+            PlaceStatusRect(marker.Fill.rectTransform, new Rect(1, 1, (StatusWidth - 2) * (float)status.ProgressFraction, StatusHeight - 2));
             VisibleStatusCount++;
-        }
-
-        private bool FindFreeStatusBounds(Rect desired, out Rect result)
-        {
-            result = ClampStatusRect(desired);
-            if (!StatusOverlaps(result)) return true;
-            var bestDistance = float.PositiveInfinity;
-            var found = false;
-            var stepX = desired.width + 3;
-            var stepY = desired.height + 3;
-            var rows = Mathf.CeilToInt(viewport.rect.height / stepY);
-            var columns = Mathf.CeilToInt(viewport.rect.width / stepX);
-            // Bounded, stable nearest-slot search keeps dense bars readable during pans and rotation.
-            for (var row = -rows; row <= rows; row++)
-            for (var column = -columns; column <= columns; column++)
-            {
-                var candidate = ClampStatusRect(new Rect(desired.position + new Vector2(column * stepX, row * stepY), desired.size));
-                var distance = (candidate.center - desired.center).sqrMagnitude;
-                if (distance >= bestDistance || StatusOverlaps(candidate)) continue;
-                result = candidate; bestDistance = distance; found = true;
-            }
-            return found;
-        }
-
-        private Rect ClampStatusRect(Rect rect)
-        {
-            var area = viewport.rect;
-            rect.x = Mathf.Clamp(rect.x, area.xMin + 2, Mathf.Max(area.xMin + 2, area.xMax - rect.width - 2));
-            rect.y = Mathf.Clamp(rect.y, area.yMin + 2, Mathf.Max(area.yMin + 2, area.yMax - rect.height - 2));
-            return rect;
-        }
-
-        private bool StatusOverlaps(Rect candidate)
-        {
-            var padding = new Rect(candidate.x - 1, candidate.y - 1, candidate.width + 2, candidate.height + 2);
-            foreach (var occupied in occupiedStatusBounds) if (padding.Overlaps(occupied)) return true;
-            return false;
-        }
-
-        private void UpdateStatusConnection(StatusMarker marker, Vector2 anchor, Rect bounds, bool selected)
-        {
-            var end = new Vector2(Mathf.Clamp(anchor.x, bounds.xMin + 2, bounds.xMax - 2),
-                Mathf.Clamp(anchor.y, bounds.yMin, bounds.yMax));
-            var delta = end - anchor;
-            marker.Connection.gameObject.SetActive(delta.sqrMagnitude > 4);
-            if (delta.sqrMagnitude <= 4) return;
-            var rect = marker.Connection.rectTransform;
-            rect.anchorMin = rect.anchorMax = Vector2.zero; rect.pivot = new Vector2(0, .5f);
-            rect.anchoredPosition = anchor - viewport.rect.min;
-            rect.sizeDelta = new Vector2(delta.magnitude, selected ? 2 : 1);
-            rect.localRotation = Quaternion.Euler(0, 0, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg);
-            marker.Connection.color = selected ? new Color(.65f, .9f, 1, .95f) : new Color(.48f, .64f, .75f, .8f);
-        }
-
-        private bool TrySelectStatus(Vector2 screenPoint)
-        {
-            if (view == null || !view.CanUseMap || view.IsEditing || !view.ShowFacilityStatus || statusGeneration != view.Controller.Generation
-                || !RectTransformUtility.RectangleContainsScreenPoint(viewport, screenPoint, null)) return false;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(viewport, screenPoint, null, out var point);
-            Guid selected = Guid.Empty;
-            var distance = float.PositiveInfinity;
-            foreach (var pair in statusMarkers)
-            {
-                var marker = pair.Value;
-                if (!marker.Visible || !marker.Bounds.Contains(point)) continue;
-                var candidateDistance = (marker.Bounds.center - point).sqrMagnitude;
-                if (candidateDistance >= distance) continue;
-                selected = pair.Key; distance = candidateDistance;
-            }
-            if (selected == Guid.Empty) return false;
-            var selectedMarker = statusMarkers[selected];
-            if (view.SelectedId == selected)
-            {
-                // Repeated marker taps affect only its caption, preserving the panel and its scroll context.
-                selectedMarker.CaptionOverride = !(selectedMarker.CaptionOverride ?? selectedMarker.Caption.gameObject.activeSelf);
-                return true;
-            }
-            if (!view.SelectThing(selected)) return false;
-            selectedMarker.CaptionOverride = true;
-            return true;
         }
 
         private StatusMarker CreateStatusMarker(Guid id)
         {
-            var background = CreateStatusImage("Temp_FacilityStatus_" + id.ToString("N"), statusLayer, Color.black);
-            var caption = new GameObject("Caption", typeof(RectTransform), typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
-            caption.transform.SetParent(background.transform, false);
-            caption.raycastTarget = false; caption.color = Color.white; caption.alignment = TextAlignmentOptions.Center;
-            caption.textWrappingMode = TextWrappingModes.Normal; caption.overflowMode = TextOverflowModes.Truncate;
-            caption.richText = false;
-            var track = CreateStatusImage("Track", background.transform, new Color(.2f, .27f, .33f));
-            var connection = CreateStatusImage("Temp_StatusConnection_" + id.ToString("N"), statusLayer, Color.white);
-            connection.transform.SetAsFirstSibling();
-            return new StatusMarker
-            {
-                Root = background.rectTransform, Background = background,
-                Icon = CreateStatusImage("Icon", background.transform, Color.white), Track = track,
-                Fill = CreateStatusImage("Progress", track.transform, Color.cyan), Caption = caption,
-                Connection = connection
-            };
+            var root = new GameObject("Temp_FacilityStatus_" + id.ToString("N"), typeof(RectTransform)).GetComponent<RectTransform>();
+            root.SetParent(statusLayer, false);
+            var track = CreateStatusImage("Track", root, Color.black);
+            return new StatusMarker { Root = root, Track = track, Fill = CreateStatusImage("Progress", track.transform, Color.white) };
         }
 
         private static UnityEngine.UI.Image CreateStatusImage(string name, Transform parent, Color color)
@@ -319,14 +144,10 @@ namespace MobileGame.Presentation
             transform.anchoredPosition = rect.position; transform.sizeDelta = rect.size;
         }
 
-        private static Color StatusProgressColor(FacilityStatus status) => status.Kind == FacilityStatusKind.Unreachable
-            ? new Color(1, .52f, .4f) : status.Outstanding > 0 ? new Color(.94f, .8f, .35f)
-            : status.IsAutomatic ? new Color(.65f, .78f, 1) : new Color(.38f, .88f, .7f);
-
         private static void RemoveStatusMarker(StatusMarker marker)
         {
-            marker.Root.gameObject.SetActive(false); marker.Connection.gameObject.SetActive(false);
-            UnityEngine.Object.Destroy(marker.Root.gameObject); UnityEngine.Object.Destroy(marker.Connection.gameObject);
+            marker.Root.gameObject.SetActive(false);
+            UnityEngine.Object.Destroy(marker.Root.gameObject);
         }
     }
 }

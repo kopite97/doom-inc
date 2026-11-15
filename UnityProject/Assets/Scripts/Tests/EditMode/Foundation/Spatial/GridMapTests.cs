@@ -27,6 +27,38 @@ namespace MobileGame.Foundation.Tests
             }
         }
 
+        [TestCase(QuarterTurn.None)]
+        [TestCase(QuarterTurn.Clockwise90)]
+        [TestCase(QuarterTurn.Clockwise180)]
+        [TestCase(QuarterTurn.Clockwise270)]
+        public void PlacementDiagnosticsMatchRulesAndReportAllProblemCells(QuarterTurn rotation)
+        {
+            var registry = new ThingRegistry(); var map = new GridMap(registry, 8, 8);
+            var definition = Facility(); var obstacle = CreateStorageDefinition("fixture.obstacle");
+            Configure(obstacle, new Vector2Int(2, 1), new Vector2Int(1, -1));
+            var first = registry.Create(obstacle); var second = registry.Create(obstacle);
+            Assert.That(map.Commands.Place(first.Id, new Vector2Int(0, 1)).Succeeded, Is.True);
+            Assert.That(map.Commands.Place(second.Id, new Vector2Int(0, 2)).Succeeded, Is.True);
+            var invalid = new List<Vector2Int>();
+            var origin = new Vector2Int(-1, 1); var size = FacilityGeometry.GetSize(definition, rotation);
+            var result = map.CheckPlacement(definition, origin, rotation, invalid);
+            Assert.That(result.Error, Is.EqualTo(map.CheckPlacement(definition, origin, rotation).Error));
+            Assert.That(result.Error, Is.EqualTo(PlacementError.OutsideBounds));
+            Assert.That(invalid, Does.Contain(new Vector2Int(0, 1)));
+            Assert.That(invalid, Does.Contain(new Vector2Int(0, 2)));
+            Assert.That(invalid.Count, Is.EqualTo(size.y + 2 * (size.x - 1)));
+            var moving = registry.Create(definition);
+            Assert.That(map.Commands.Place(moving.Id, new Vector2Int(3, 3), rotation).Succeeded, Is.True);
+            Assert.That(map.CheckPlacement(moving.Id, new Vector2Int(3, 3), rotation, invalid).Succeeded, Is.True);
+            Assert.That(invalid, Is.Empty, "The moving facility must not block its own candidate.");
+            Assert.That(map.CheckPlacement(moving.Id, origin, rotation, invalid).Error, Is.EqualTo(result.Error));
+            Assert.That(invalid.Count, Is.EqualTo(size.y + 2 * (size.x - 1)));
+            Assert.That(map.CheckPlacement(moving.Id, new Vector2Int(0, 1), rotation, invalid).Error, Is.EqualTo(PlacementError.FacilityOverlap));
+            Assert.That(invalid.Count, Is.EqualTo(4));
+            Assert.That(map.CheckPlacement(moving.Id, origin, (QuarterTurn)9, invalid).Error, Is.EqualTo(PlacementError.InvalidRotation));
+            Assert.That(invalid, Is.Empty, "Non-geometric failures must not leave old problem cells.");
+        }
+
         [TestCase(QuarterTurn.None, 2, 3, 5, 3)]
         [TestCase(QuarterTurn.Clockwise90, 3, 2, 3, 4)]
         [TestCase(QuarterTurn.Clockwise180, 2, 3, 4, 7)]

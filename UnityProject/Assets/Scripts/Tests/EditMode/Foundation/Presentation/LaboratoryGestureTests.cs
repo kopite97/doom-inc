@@ -25,6 +25,33 @@ namespace MobileGame.Foundation.Tests
         }
 
         [Test]
+        public void CapturedDragKeepsAbsolutePositionsAndHandsOffToPinchWithoutStaleTap()
+        {
+            var dragged = new List<Vector2>();
+            gesture.CaptureDrag = point => point.x < 30;
+            gesture.Dragged += dragged.Add;
+            gesture.Begin(1, new Vector2(10, 10), true);
+            gesture.Move(1, new Vector2(14, 10));
+            Assert.That(dragged, Is.Empty);
+            gesture.Move(1, new Vector2(40, 10));
+            Assert.That(dragged, Is.EqualTo(new[] { new Vector2(40, 10) }));
+            Assert.That(pans, Is.Empty);
+            gesture.Begin(2, new Vector2(140, 10), true);
+            gesture.Move(2, new Vector2(180, 10));
+            Assert.That(scales.Count, Is.EqualTo(1)); Assert.That(pans.Count, Is.EqualTo(1));
+            gesture.End(2, new Vector2(180, 10));
+            gesture.Move(1, new Vector2(60, 10)); gesture.End(1, new Vector2(60, 10));
+            Assert.That(dragged.Count, Is.EqualTo(1)); Assert.That(taps, Is.Empty);
+            gesture.Begin(3, new Vector2(80, 10), true);
+            gesture.Move(3, new Vector2(5, 10)); gesture.End(3, new Vector2(5, 10));
+            Assert.That(dragged.Count, Is.EqualTo(1), "A map drag must not become a captured drag midway.");
+            Assert.That(pans.Count, Is.EqualTo(2));
+            gesture.Begin(4, Vector2.zero, true); gesture.Cancel();
+            gesture.End(4, new Vector2(100, 0));
+            Assert.That(dragged.Count, Is.EqualTo(1)); Assert.That(taps, Is.Empty);
+        }
+
+        [Test]
         public void TapWaitsForReleaseAndSmallMovementRemainsATap()
         {
             gesture.Begin(1, new Vector2(20, 30), true);

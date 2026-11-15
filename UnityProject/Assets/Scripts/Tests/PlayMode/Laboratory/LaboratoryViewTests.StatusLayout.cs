@@ -14,90 +14,49 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
-using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace MobileGame.SpatialTests
 {
     public sealed partial class LaboratoryViewTests
     {
-        [UnityTest]
-        public IEnumerator DenseFacilityStatusesRemainDistinctAtFitEdgesAndMaximumZoomInBothOrientations()
+        [UnityTest, Category("FacilityProgress")]
+        public IEnumerator FacilityProgressBarsKeepSmallPassiveGeometryAcrossDisplayChanges()
         {
             using (var input = new PointerScene())
             {
                 yield return input.Load();
                 var view = input.View; var map = input.Map;
-                using (new LaboratoryGameViewSize(1280, 720))
-                {
-                    yield return SettleStatusLayoutSize(new Vector2Int(1280, 720));
-                    var normal = CreateStatusLayoutFacility(view, "processingId", new Vector2Int(6, 4), QuarterTurn.None, true);
-                    view.SelectThing(normal.Id); view.ExpandSelection(); map.Fit();
-                    Assert.That(view.SetUiPreferences(true, false), Is.True);
-                    yield return SettleStatusLayout();
-                    yield return CaptureStatusLayoutImage("normal-on");
-                    Assert.That(view.SetUiPreferences(false, false), Is.True);
-                    yield return SettleStatusLayout();
-                    yield return CaptureStatusLayoutImage("normal-off");
-                    view.Simulation.Registry.Remove(normal);
-                    yield return SettleStatusLayout();
-                }
                 var facilities = CreateStatusLayoutFacilities(view);
-                var selected = facilities[0];
-                var rotatedSite = facilities[18];
-                var completeStorage = facilities[19];
-                Assert.That(view.SelectThing(selected.Id), Is.True); view.ExpandSelection();
-                foreach (var size in new[] { new Vector2Int(1280, 720), new Vector2Int(720, 1280) })
+                foreach (var size in new[] { new Vector2Int(1280, 720), new Vector2Int(720, 1280), new Vector2Int(640, 360) })
                 using (new LaboratoryGameViewSize(size.x, size.y))
                 {
                     yield return SettleStatusLayoutSize(size);
                     foreach (var large in new[] { false, true })
                     {
-                        Assert.That(view.SetUiPreferences(true, large), Is.True);
-                        map.Fit(); yield return SettleStatusLayout();
-                        Assert.That(map.Zoom, Is.EqualTo(1));
-                        Assert.That(map.VisibleStatusCount, Is.EqualTo(19), "All fitted facility statuses must remain identifiable; completed storage is excluded.");
-                        Assert.That(map.TryStatusScreenPoint(completeStorage.Id, out _), Is.False);
-                        AssertStatusMarkerGeometry(view, map, facilities);
-                        AssertSelectedStatusCaption(view, selected.Id, large);
-                        if (!large) yield return CaptureStatusLayoutImage("dense-on");
-
                         Assert.That(view.SetUiPreferences(false, large), Is.True);
-                        yield return SettleStatusLayout();
-                        Assert.That(map.VisibleStatusCount, Is.Zero);
-                        Assert.That(StatusMarkerRoots(view, false), Is.Empty);
-                        foreach (var facility in facilities) Assert.That(map.TryStatusScreenPoint(facility.Id, out _), Is.False);
-                        Assert.That(view.SelectedId, Is.EqualTo(selected.Id));
-                        Assert.That(view.DetailsExpanded, Is.True);
-                        Assert.That(view.FindUiButton("Move").gameObject.activeInHierarchy, Is.True, "OFF only hides overhead status, not selected controls.");
-                        if (!large) yield return CaptureStatusLayoutImage("dense-off");
-
-                        Assert.That(view.SetUiPreferences(true, large), Is.True);
-                        map.ZoomBy(100); yield return SettleStatusLayout();
-                        Assert.That(map.Zoom, Is.EqualTo(8));
-                        foreach (var edge in new[] { selected, rotatedSite })
+                        view.OpenPanel(LaboratoryPanel.None); map.Fit(); yield return SettleStatusLayout();
+                        Assert.That(map.VisibleStatusCount, Is.EqualTo(19), "Legacy OFF must not hide progress; completed storage has no cycle.");
+                        Assert.That(map.TryStatusScreenPoint(facilities[19].Id, out _), Is.False);
+                        AssertStatusMarkerGeometry(view, map, facilities);
+                        Assert.That(view.FindUiButton("ToggleStatus"), Is.Null);
+                        if (!large) yield return CaptureStatusLayoutImage("fit");
+                        view.SelectThing(facilities[6].Id); view.ExpandSelection();
+                        foreach (var zoom in new[] { 1.5f, 8f })
                         {
-                            Assert.That(view.SelectThing(edge.Id), Is.True); view.ExpandSelection();
-                            yield return SettleStatusLayout();
-                            CenterStatusLayoutFixture(map, edge);
-                            yield return SettleStatusLayout();
-                            Assert.That(map.TryStatusScreenPoint(edge.Id, out _), Is.True, "Selected edge facility must retain its own status after test camera positioning.");
-                            Assert.That(map.VisibleStatusCount, Is.GreaterThan(0).And.LessThan(19), "Offscreen facilities must not leave floating statuses.");
+                            map.Fit(); map.ZoomBy(zoom); yield return SettleStatusLayout();
+                            CenterStatusLayoutFixture(map, facilities[6]); yield return SettleStatusLayout();
+                            Assert.That(map.TryStatusScreenPoint(facilities[6].Id, out _), Is.True);
                             AssertStatusMarkerGeometry(view, map, facilities);
-                            AssertSelectedStatusCaption(view, edge.Id, large);
+                            if (!large && zoom == 8) yield return CaptureStatusLayoutImage("selected-zoom8");
                         }
-                        Assert.That(view.SelectThing(selected.Id), Is.True); view.ExpandSelection();
-                        map.Fit(); yield return SettleStatusLayout();
-                        Assert.That(map.VisibleStatusCount, Is.EqualTo(19));
-                        LogStatusEvidence("PLAN014_STATUS_LAYOUT " + size.x + "x" + size.y + " large=" + large
-                            + " targets=19 fit=19 maxZoom=8 off=0 selected=" + view.SelectedId);
                     }
                 }
                 LogAssert.NoUnexpectedReceived();
             }
         }
 
-        [UnityTest]
-        public IEnumerator RepeatedStatusPanelOrientationAndSessionChangesDoNotAccumulateUiObjects()
+        [UnityTest, Category("FacilityProgress")]
+        public IEnumerator FacilityProgressBarsFollowDomainValuesAndDisposeWithFacilityAndSession()
         {
             using (var input = new PointerScene())
             using (new LaboratoryGameViewSize(1280, 720))
@@ -105,90 +64,66 @@ namespace MobileGame.SpatialTests
                 yield return input.Load();
                 yield return SettleStatusLayoutSize(new Vector2Int(1280, 720));
                 var view = input.View; var map = input.Map;
-                var facilities = CreateStatusLayoutFacilities(view);
-                var oldIds = facilities.Select(t => t.Id.ToString("N")).ToArray();
-                Assert.That(view.SetUiPreferences(true, false), Is.True);
-                Assert.That(view.SelectThing(facilities[0].Id), Is.True); view.ExpandSelection();
-                map.Fit(); yield return SettleStatusLayout();
-                var baselineButtons = StatusLayoutButtonCount(view);
-                var baselineMarkers = StatusMarkerRoots(view, true).Length;
-                Assert.That(baselineMarkers, Is.EqualTo(19));
-                for (var cycle = 0; cycle < 10; cycle++)
+                var site = CreateStatusLayoutFacility(view, "storageId", new Vector2Int(2, 3), QuarterTurn.None, false);
+                var processing = CreateStatusLayoutFacility(view, "processingId", new Vector2Int(6, 3), QuarterTurn.None, true);
+                var cultivation = CreateStatusLayoutFacility(view, "cultivationId", new Vector2Int(10, 3), QuarterTurn.None, true);
+                var gathering = CreateStatusLayoutFacility(view, "gatheringId", new Vector2Int(3, 7), QuarterTurn.None, true);
+                var facilities = new List<Thing> { site, processing, cultivation, gathering };
+                view.OpenPanel(LaboratoryPanel.None); map.Fit(); yield return SettleStatusLayout();
+                Assert.That(map.VisibleStatusCount, Is.EqualTo(4));
+                AssertProgressMatches(view, facilities);
+                var production = processing.GetComponent<ProductionComponent>();
+                typeof(ProductionComponent).GetProperty(nameof(ProductionComponent.InProgress)).SetValue(production, true);
+                typeof(ProductionComponent).GetProperty(nameof(ProductionComponent.Progress)).SetValue(production, ((FacilityData)processing.Definition).ProductionSeconds * .5);
+                var construction = site.GetComponent<ConstructionComponent>();
+                typeof(ConstructionComponent).GetProperty(nameof(ConstructionComponent.Progress)).SetValue(construction, ((FacilityData)site.Definition).BuildSeconds * .5);
+                yield return SettleStatusLayout();
+                Assert.That(view.StatusFor(processing).Kind, Is.EqualTo(FacilityStatusKind.ProductionAutomatic));
+                AssertProgressMatches(view, facilities);
+                yield return CaptureStatusLayoutImage("partial-and-waiting");
+                typeof(ProductionComponent).GetProperty(nameof(ProductionComponent.Outstanding)).SetValue(production, 1);
+                yield return SettleStatusLayout();
+                Assert.That(view.StatusFor(processing).ProgressFraction, Is.EqualTo(1));
+                AssertProgressMatches(view, facilities);
+                yield return CaptureStatusLayoutImage("output-waiting");
+                typeof(ConstructionComponent).GetProperty(nameof(ConstructionComponent.IsComplete)).SetValue(construction, true);
+                yield return SettleStatusLayout();
+                Assert.That(map.TryStatusScreenPoint(site.Id, out _), Is.False);
+                Assert.That(StatusMarkerRoots(view, true).Length, Is.EqualTo(3));
+                view.Simulation.Registry.Remove(cultivation); yield return SettleStatusLayout();
+                Assert.That(StatusMarkerRoots(view, true).Length, Is.EqualTo(2));
+                for (var cycle = 0; cycle < 3; cycle++)
                 {
-                    foreach (var panel in new[] { LaboratoryPanel.Build, LaboratoryPanel.Creatures, LaboratoryPanel.Invasion, LaboratoryPanel.Game })
-                    { view.OpenPanel(panel); yield return SettleStatusLayout(); }
-                    Assert.That(view.SetUiPreferences(false, cycle % 2 == 0), Is.True);
-                    yield return SettleStatusLayout();
-                    Assert.That(map.VisibleStatusCount, Is.Zero);
-                    using (new LaboratoryGameViewSize(720, 1280))
-                    {
-                        yield return SettleStatusLayoutSize(new Vector2Int(720, 1280));
-                        Assert.That(view.SetUiPreferences(true, true), Is.True);
-                        view.SelectThing(facilities[0].Id); view.ExpandSelection(); map.Fit();
-                        yield return SettleStatusLayout();
-                        Assert.That(StatusMarkerRoots(view, true).Length, Is.LessThanOrEqualTo(19));
-                    }
-                    yield return SettleStatusLayoutSize(new Vector2Int(1280, 720));
-                    Assert.That(view.SetUiPreferences(true, false), Is.True);
-                    view.SelectThing(facilities[0].Id); view.ExpandSelection(); map.Fit();
-                    yield return SettleStatusLayout();
-                    Assert.That(StatusMarkerRoots(view, true).Length, Is.EqualTo(baselineMarkers), "Marker objects accumulated after cycle " + cycle);
-                    Assert.That(StatusLayoutButtonCount(view), Is.EqualTo(baselineButtons), "Unused button rows accumulated after cycle " + cycle);
+                    view.OpenPanel(LaboratoryPanel.Build); yield return SettleStatusLayout();
+                    view.OpenPanel(LaboratoryPanel.None); map.Fit(); yield return SettleStatusLayout();
+                    Assert.That(StatusMarkerRoots(view, true).Length, Is.EqualTo(2));
                     AssertUniqueStatusAndButtonObjects(view);
                 }
-                for (var run = 0; run < 3; run++)
-                {
-                    Assert.That(view.Restart(), Is.True, view.Controller.LastError);
-                    yield return SettleStatusLayout();
-                    Assert.That(StatusMarkerRoots(view, true), Is.Empty, "A new initial session has no facilities and must discard all old markers.");
-                    Assert.That(view.ShowFacilityStatus, Is.True, "Run reset must preserve the separate user preference.");
-                    Assert.That(view.GetComponentsInChildren<UiButton>(true).Any(b => oldIds.Any(id => b.name.Contains(id))), Is.False);
-                    facilities = CreateStatusLayoutFacilities(view);
-                    oldIds = facilities.Select(t => t.Id.ToString("N")).ToArray();
-                    view.SelectThing(facilities[0].Id); view.ExpandSelection(); map.Fit();
-                    yield return SettleStatusLayout();
-                    Assert.That(StatusMarkerRoots(view, true).Length, Is.EqualTo(baselineMarkers));
-                    Assert.That(StatusLayoutButtonCount(view), Is.EqualTo(baselineButtons));
-                    AssertUniqueStatusAndButtonObjects(view);
-                }
-                LogStatusEvidence("PLAN014_STATUS_OBJECTS cycles=10 sessions=3 markers=" + baselineMarkers + " buttons=" + baselineButtons + " accumulated=0");
+                Assert.That(view.Restart(), Is.True); yield return SettleStatusLayout();
+                Assert.That(StatusMarkerRoots(view, true), Is.Empty);
+                Assert.That(map.VisibleStatusCount, Is.Zero);
+                CreateStatusLayoutFacility(view, "gatheringId", new Vector2Int(3, 3), QuarterTurn.None, true);
+                yield return SettleStatusLayout();
+                Assert.That(StatusMarkerRoots(view, true).Length, Is.EqualTo(1));
+                AssertUniqueStatusAndButtonObjects(view);
                 LogAssert.NoUnexpectedReceived();
             }
         }
 
-        [UnityTest]
-        public IEnumerator TwentyFacilityStatusRefreshReportsEditorCpuReferenceWithoutTimingPassClaim()
+        private static void AssertProgressMatches(LaboratoryView view, IEnumerable<Thing> facilities)
         {
-            using (var input = new PointerScene())
-            using (new LaboratoryGameViewSize(1280, 720))
+            foreach (var facility in facilities)
             {
-                yield return input.Load();
-                yield return SettleStatusLayoutSize(new Vector2Int(1280, 720));
-                var view = input.View; var map = input.Map;
-                CreateStatusLayoutFacilities(view);
-                map.Fit(); yield return SettleStatusLayout();
-                var method = typeof(LaboratoryMapView).GetMethod("RefreshStatusOverlays", BindingFlags.Instance | BindingFlags.NonPublic);
-                Assert.That(method, Is.Not.Null);
-                var refresh = (Action)Delegate.CreateDelegate(typeof(Action), map, method);
-                var off = new double[120]; var on = new double[120];
-                var evidence = new StatusCpuReference { facilities = 20, markerTargets = 19, warmupFrames = 60, sampleFrames = 120,
-                    width = Screen.width, height = Screen.height, referenceBudgetMs = 2,
-                    scope = "Editor synchronous RefreshStatusOverlays only; not total frame CPU, GPU, allocations or device performance" };
-                Assert.That(view.SetUiPreferences(false, false), Is.True);
-                yield return SampleStatusRefresh(refresh, off);
-                evidence.offMedianMs = MedianStatusSamples(off);
-                evidence.managedHeapBeforeOn = UnityEngine.Profiling.Profiler.GetMonoUsedSizeLong();
-                Assert.That(view.SetUiPreferences(true, false), Is.True);
-                yield return SampleStatusRefresh(refresh, on);
-                evidence.onMedianMs = MedianStatusSamples(on);
-                evidence.managedHeapAfterOn = UnityEngine.Profiling.Profiler.GetMonoUsedSizeLong();
-                evidence.medianIncreaseMs = evidence.onMedianMs - evidence.offMedianMs;
-                evidence.withinReferenceBudget = evidence.medianIncreaseMs <= evidence.referenceBudgetMs;
-                evidence.liveMarkerObjects = StatusMarkerRoots(view, true).Length;
-                Assert.That(evidence.liveMarkerObjects, Is.LessThanOrEqualTo(evidence.markerTargets));
-                // Timing is evidence for the owner to judge; noisy Editor measurements do not fail functional tests.
-                LogStatusEvidence("PLAN014_STATUS_CPU_REFERENCE " + JsonUtility.ToJson(evidence));
-                LogAssert.NoUnexpectedReceived();
+                var status = view.StatusFor(facility);
+                var root = StatusMarkerRoots(view, false).Single(r => r.name.EndsWith(facility.Id.ToString("N")));
+                var track = root.Find("Track").GetComponent<Image>();
+                var fill = track.transform.Find("Progress").GetComponent<Image>();
+                Assert.That(fill.rectTransform.rect.width, Is.EqualTo(34 * status.ProgressFraction).Within(.01));
+                var working = status.Kind == FacilityStatusKind.ConstructionWorking || status.Kind == FacilityStatusKind.GatheringWorking
+                    || status.Kind == FacilityStatusKind.ProductionWorking || status.Kind == FacilityStatusKind.ProductionAutomatic;
+                Assert.That(fill.color, Is.EqualTo(working ? new Color(.38f, .88f, .7f) : new Color(.95f, .68f, .30f)));
+                if (!working && status.ProgressFraction == 0)
+                    Assert.That(track.color.r, Is.GreaterThan(track.color.g), "Zero progress waits remain visible through the track, not a fake fill.");
             }
         }
 
@@ -248,35 +183,27 @@ namespace MobileGame.SpatialTests
             for (var i = 0; i < roots.Length; i++)
             {
                 var id = Guid.ParseExact(roots[i].name.Substring("Temp_FacilityStatus_".Length), "N");
-                Assert.That(facilities.Any(t => t.Id == id), Is.True, "Marker identity belongs to a different session.");
+                Assert.That(facilities.Any(t => t.Id == id), Is.True);
                 Assert.That(map.TryStatusScreenPoint(id, out var point), Is.True);
                 Assert.That(bounds[i].Contains(point), Is.True);
-                Assert.That(bounds[i].xMin, Is.GreaterThanOrEqualTo(viewport.xMin - 1));
-                Assert.That(bounds[i].xMax, Is.LessThanOrEqualTo(viewport.xMax + 1));
-                Assert.That(bounds[i].yMin, Is.GreaterThanOrEqualTo(viewport.yMin - 1));
-                Assert.That(bounds[i].yMax, Is.LessThanOrEqualTo(viewport.yMax + 1));
-                Assert.That(roots[i].GetComponentsInChildren<Graphic>().All(g => !g.raycastTarget), Is.True, "Status visuals must use the map's gesture route.");
-                for (var j = 0; j < i; j++) Assert.That(bounds[i].Overlaps(bounds[j]), Is.False, "Two facility markers obscure each other.");
+                Assert.That(bounds[i].Overlaps(viewport), Is.True, "Offscreen bars must be hidden instead of clamped to the edge.");
+                Assert.That(roots[i].rect.size, Is.EqualTo(new Vector2(36, 4)));
+                Assert.That(roots[i].GetComponentsInChildren<Graphic>().Length, Is.EqualTo(2));
+                Assert.That(roots[i].GetComponentsInChildren<Graphic>().All(g => !g.raycastTarget), Is.True);
+                Assert.That(roots[i].GetComponentsInChildren<TextMeshProUGUI>(), Is.Empty);
+                Assert.That(bounds[i].xMin, Is.EqualTo(Mathf.Round(bounds[i].xMin)).Within(.01));
+                Assert.That(bounds[i].yMin, Is.EqualTo(Mathf.Round(bounds[i].yMin)).Within(.01));
+                for (var j = 0; j < i; j++) Assert.That(bounds[i].Overlaps(bounds[j]), Is.False, "Adjacent facility bars overlap.");
             }
             Assert.That(roots.Select(r => r.name).Distinct().Count(), Is.EqualTo(roots.Length));
-        }
-
-        private static void AssertSelectedStatusCaption(LaboratoryView view, Guid id, bool large)
-        {
-            var marker = StatusMarkerRoots(view, false).Single(t => t.name == "Temp_FacilityStatus_" + id.ToString("N"));
-            var caption = marker.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "Caption");
-            Assert.That(caption.text, Does.Contain("진행"));
-            Assert.That(caption.font, Is.SameAs(view.UiFont));
-            Assert.That(caption.fontSize, Is.GreaterThanOrEqualTo(large ? 15 : 12));
-            Assert.That(caption.preferredHeight, Is.LessThanOrEqualTo(caption.rectTransform.rect.height + 1), "Selected Korean status caption is vertically clipped.");
-            Assert.That(marker.GetComponentsInChildren<RectTransform>().Any(t => t.name == "Track"), Is.True);
         }
 
         private static void CenterStatusLayoutFixture(LaboratoryMapView map, Thing facility)
         {
             // Camera positioning is test setup; device pan/pinch semantics are tested in the input fixture.
             var size = FacilityGeometry.GetSize((FacilityData)facility.Definition, facility.Placement.Rotation);
-            var center = (Vector2)facility.Placement.Origin + ((Vector2)size - Vector2.one) * .5f;
+            // At maximum zoom the footprint can exceed the viewport height. Frame its top anchor.
+            var center = (Vector2)facility.Placement.Origin + new Vector2((size.x - 1) * .5f, size.y - .5f);
             var viewportCenter = RectTransformUtility.WorldToScreenPoint(null, map.Viewport.TransformPoint(map.Viewport.rect.center));
             typeof(LaboratoryMapView).GetMethod("Pan", BindingFlags.Instance | BindingFlags.NonPublic)
                 .Invoke(map, new object[] { viewportCenter - map.CellScreenPoint(center) });
@@ -291,46 +218,11 @@ namespace MobileGame.SpatialTests
                 Assert.That(siblings.Select(b => b.name).Distinct().Count(), Is.EqualTo(siblings.Count()), "A semantic row was duplicated under one content parent.");
         }
 
-        private static IEnumerator SampleStatusRefresh(Action refresh, double[] samples)
-        {
-            var deadline = Time.realtimeSinceStartupAsDouble + 60;
-            for (var frame = 0; frame < 60; frame++) { refresh(); yield return null; }
-            var watch = new Stopwatch();
-            for (var frame = 0; frame < samples.Length; frame++)
-            {
-                Assert.That(Time.realtimeSinceStartupAsDouble, Is.LessThan(deadline), "Status sampling exceeded its bounded run; stop and inspect the Editor.");
-                watch.Restart(); refresh(); watch.Stop();
-                samples[frame] = watch.Elapsed.TotalMilliseconds;
-                yield return null;
-            }
-        }
-
-        private static double MedianStatusSamples(double[] samples)
-        { var sorted = samples.OrderBy(v => v).ToArray(); return (sorted[sorted.Length / 2 - 1] + sorted[sorted.Length / 2]) * .5; }
-
         private static void LogStatusEvidence(string message)
         { LogAssert.Expect(LogType.Log, message); Debug.Log(message); }
 
-        private static IEnumerator CaptureStatusLayoutImage(string state)
-        {
-            yield return new WaitForEndOfFrame();
-            var filename = "plan014-status-" + state + "-" + Screen.width + "x" + Screen.height + "-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss-fff") + ".png";
-            var path = Path.GetFullPath(Path.Combine(Application.dataPath, "../Logs", filename));
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
-            ScreenCapture.CaptureScreenshot(path);
-            yield return WaitFor(() => File.Exists(path) && new FileInfo(path).Length > 0, "Status screenshot was not written: " + filename);
-            LogStatusEvidence("PLAN014_STATUS_SCREENSHOT " + path);
-        }
-
-        [Serializable]
-        private sealed class StatusCpuReference
-        {
-            public string scope;
-            public int facilities, markerTargets, warmupFrames, sampleFrames, width, height, liveMarkerObjects;
-            public double offMedianMs, onMedianMs, medianIncreaseMs, referenceBudgetMs;
-            public bool withinReferenceBudget;
-            public long managedHeapBeforeOn, managedHeapAfterOn;
-        }
+        private static IEnumerator CaptureStatusLayoutImage(string state) => AppSceneFlowTests.Capture("facility-progress",
+            Path.GetFullPath(Path.Combine(Application.dataPath, "../Temp/PLAN-032/screens", state + "-" + Screen.width + "x" + Screen.height + ".png")));
     }
 }
 #endif

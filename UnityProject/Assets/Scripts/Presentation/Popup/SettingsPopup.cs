@@ -10,12 +10,9 @@ namespace MobileGame.Presentation
             var data = (SettingsPopupRequest)Request;
             var settings = data.Settings.Current;
             var enabled = Interactive && AppUiLifetime.AcceptInput;
-            Rows.Action("Status", Host.Texts.Format(new LocalizedMessage("Common", "status_setting", new TextArgument("value",
-                new LocalizedMessage("Common", settings.ShowFacilityStatus ? "on" : "off")))), () =>
-                Change(!data.Settings.Current.ShowFacilityStatus, data.Settings.Current.LargeText), enabled, Request.Key);
             Rows.Action("Text", Host.Texts.Format(new LocalizedMessage("Common", "text_setting", new TextArgument("value",
                 new LocalizedMessage("Common", settings.LargeText ? "large" : "normal")))), () =>
-                Change(data.Settings.Current.ShowFacilityStatus, !data.Settings.Current.LargeText), enabled, Request.Key);
+                Change(!data.Settings.Current.LargeText), enabled, Request.Key);
             LocalizationSettingsRows.Add(Rows, Host.Texts, enabled, Request.Key);
             if (data.Settings.LastError != null)
             {
@@ -23,10 +20,10 @@ namespace MobileGame.Presentation
                 Rows.Action("RetrySettings", Host.Texts.Format("Common", "retry_settings"), () => data.Settings.TrySave(), enabled, Request.Key);
             }
         }
-        private void Change(bool status, bool large)
+        private void Change(bool large)
         {
             var data = (SettingsPopupRequest)Request;
-            data.Settings.TrySet(status, large); data.Changed?.Invoke(); Host.Invalidate();
+            data.Settings.TrySet(data.Settings.Current.ShowFacilityStatus, large); data.Changed?.Invoke(); Host.Invalidate();
         }
     }
 }

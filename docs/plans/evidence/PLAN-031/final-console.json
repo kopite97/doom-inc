@@ -1,0 +1,86 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "level": "error"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 1,
+          "timestampUtc": "2026-11-15T13:52:20.5414163Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Selection.cs(50,81): error CS1061: 'ThingData' does not contain a definition for 'Id' and no accessible extension method 'Id' accepting a first argument of type 'ThingData' could be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 2,
+          "timestampUtc": "2026-11-15T13:52:20.5429168Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Selection.cs(81,28): error CS0246: The type or namespace name 'LaboratoryGameViewSize' could not be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 3,
+          "timestampUtc": "2026-11-15T13:52:20.5429168Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Selection.cs(121,34): error CS1061: 'LaboratoryView' does not contain a definition for 'BeginMoveSelected' and no accessible extension method 'BeginMoveSelected' accepting a first argument of type 'LaboratoryView' could be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 4,
+          "timestampUtc": "2026-11-15T13:52:20.5429168Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.Selection.cs(125,45): error CS1061: 'LaboratoryManager' does not contain a definition for 'EditPreview' and no accessible extension method 'EditPreview' accepting a first argument of type 'LaboratoryManager' could be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 79,
+          "timestampUtc": "2026-11-15T14:24:54.2741455Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\EditMode\\Foundation\\Spatial\\GridMapTests.cs(45,81): error CS1503: Argument 1: cannot convert from 'UnityEngine.Vector2Int' to 'string'",
+          "stackTrace": "",
+          "seeded": false
+        }
+      ],
+      "cursor": 248,
+      "session": "a5b462919314407e97ad077e352aca26",
+      "returned": 5,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 5,
+        "warn": 0,
+        "log": 243
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-15T14:33:36.1389766Z",
+        "ageMs": 58,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 5,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

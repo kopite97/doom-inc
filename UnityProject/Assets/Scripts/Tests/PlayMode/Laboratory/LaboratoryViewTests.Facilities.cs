@@ -185,8 +185,8 @@ namespace MobileGame.SpatialTests
                 foreach(var zoom in new[]{1f,1.5f,3f,8f})
                 {
                     input.Map.Fit(); input.Map.ZoomBy(zoom); yield return null; yield return null;
-                    Assert.That(input.Map.VisibleStatusCount, Is.Zero);
-                    yield return CaptureFacilities("status-off-zoom-"+zoom.ToString(System.Globalization.CultureInfo.InvariantCulture)); yield return null;
+                    if (zoom == 1) Assert.That(input.Map.VisibleStatusCount, Is.EqualTo(2), "Legacy OFF must not hide processing and cultivation bars.");
+                    yield return CaptureFacilities("progress-legacy-off-zoom-"+zoom.ToString(System.Globalization.CultureInfo.InvariantCulture)); yield return null;
                 }
                 view.OpenPanel(LaboratoryPanel.Game); yield return SelectLanguage(view,"en");
                 view.Popups.Top.Cancel(); yield return PopupSettled(view);
@@ -199,7 +199,7 @@ namespace MobileGame.SpatialTests
                 LogAssert.NoUnexpectedReceived();
             }
         }
-        private static IEnumerator CaptureFacilities(string name) => AppSceneFlowTests.Capture("facility-art",Path.GetFullPath(Path.Combine(Application.dataPath,"../../docs/plans/evidence/PLAN-029/screens/"+name+".png")));
+        private static IEnumerator CaptureFacilities(string name) => AppSceneFlowTests.Capture("facility-art",Path.Combine(RegressionEvidenceRoot,"facilities",name+".png"));
     }
 }
 #endif

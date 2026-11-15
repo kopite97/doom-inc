@@ -20,8 +20,9 @@ Git 루트는 AGENTS.md가 있는 최상위 폴더이고 Unity에서 여는 프�
 - Feel은 Duck 데모의 `FeelDuckWoosh.wav`까지 포함한다. 연구소 씬이 이 클립의 원래 GUID를 참조한다.
 - DOTween Pro는 함께 제공되는 DOTween을 임포트하고 DOTween Utility Panel에서 Setup DOTween을 실행한다.
 - Text Animator for Unity는 프로젝트에서 사용한 3.20.1 패키지와 기본 콘텐츠를 임포트한다. 로딩 문구는 기본 Wave 효과를 사용한다.
+- All In 1 Sprite Shader는 4.71의 `Assets/Plugins/AllIn1Assets/` 아래 `AllIn1SpriteShader`와 `AllIn1Shared`를 함께 복원한다. 현재 2D Renderer에서는 자동 URP 구성을 실행하지 않았으며 게임용 선택 재질은 프로젝트의 `Assets/Materials/Laboratory/`에 둔다. [사용 지침](external-assets/all-in-1-sprite-shader.md)
 
-세 에셋의 원본 폴더는 [Unity ignore](../../UnityProject/.gitignore)로 관리한다.
+네 에셋의 원본 폴더와 대응 meta는 [Unity ignore](../../UnityProject/.gitignore)로 관리한다. 프로젝트 소유 재질·참조·연동 코드는 추적한다.
 
 ## LFS와 텍스트
 

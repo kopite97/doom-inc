@@ -14,6 +14,8 @@ namespace MobileGame.Presentation
         public Camera Camera { get; }
         public Tilemap Floor { get; }
         public Sprite Solid { get; }
+        public Sprite FallbackBody { get; }
+        private readonly Texture2D fallbackBodyTexture;
         private readonly Material material;
         private readonly Tile[] tiles = new Tile[4];
         private readonly Vector3[] corners = new Vector3[4];
@@ -74,6 +76,15 @@ namespace MobileGame.Presentation
             renderer.sharedMaterial = material; renderer.sortingOrder = -30000;
             Solid = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 1, 1), Vector2.one * .5f, 1);
             Solid.name = "Temp_LaboratorySolid";
+            // Keep the opaque body one world unit wide, with room for a texture-pixel outline.
+            fallbackBodyTexture = new Texture2D(34, 34, TextureFormat.RGBA32, false)
+            { name = "Temp_LaboratoryBodyTexture", filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
+            var pixels = new Color32[34 * 34];
+            for (var y = 1; y <= 32; y++)
+                for (var x = 1; x <= 32; x++) pixels[y * 34 + x] = new Color32(255, 255, 255, 255);
+            fallbackBodyTexture.SetPixels32(pixels); fallbackBodyTexture.Apply(false, true);
+            FallbackBody = Sprite.Create(fallbackBodyTexture, new Rect(0, 0, 34, 34), Vector2.one * .5f, 32, 0, SpriteMeshType.FullRect);
+            FallbackBody.name = "Temp_LaboratoryBody";
             for (var i = 0; i < tiles.Length; i++)
             {
                 tiles[i] = ScriptableObject.CreateInstance<Tile>();
@@ -178,6 +189,8 @@ namespace MobileGame.Presentation
             if (outsideFrame != null) UnityEngine.Object.Destroy(outsideFrame.gameObject);
             foreach (var tile in tiles) UnityEngine.Object.Destroy(tile);
             UnityEngine.Object.Destroy(Solid);
+            UnityEngine.Object.Destroy(FallbackBody);
+            UnityEngine.Object.Destroy(fallbackBodyTexture);
         }
     }
 }

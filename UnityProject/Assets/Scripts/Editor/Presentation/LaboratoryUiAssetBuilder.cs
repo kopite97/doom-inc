@@ -45,9 +45,29 @@ namespace MobileGame.Foundation.Editor
             AssetDatabase.ImportAsset(FontLicensePath, ImportAssetOptions.ForceSynchronousImport);
             var binding = new LaboratoryUiAssets(font, icons, AssetDatabase.LoadAssetAtPath<TextAsset>(FontLicensePath),
                 AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Feel/FeelDemos/Duck/Sounds/FeelDuckWoosh.wav"), LoadFloorTiles(),
-                AssetDatabase.LoadAssetAtPath<LaboratoryArtAssets>(ArtPath), EnsureWorldMaterial());
+                AssetDatabase.LoadAssetAtPath<LaboratoryArtAssets>(ArtPath), EnsureWorldMaterial(), EnsureSelectionMaterial());
             if (!binding.IsComplete) throw new InvalidOperationException("UI asset binding is incomplete.");
             return binding;
+        }
+
+        public static Material EnsureSelectionMaterial()
+        {
+            const string path = "Assets/Materials/Laboratory/LaboratorySelection.mat";
+            var material = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (material != null) return material;
+            var shader = Shader.Find("AllIn1SpriteShader/AllIn1SpriteShader");
+            if (shader == null) throw new InvalidOperationException("Import All In 1 Sprite Shader before preparing selection art.");
+            FoundationDefinitionAssets.EnsureFolder("Assets/Materials/Laboratory");
+            material = new Material(shader);
+            material.EnableKeyword("OUTBASE_ON");
+            material.EnableKeyword("OUTBASEPIXELPERF_ON");
+            material.EnableKeyword("OUTBASE8DIR_ON");
+            material.SetFloat("_OutlinePixelWidth", 1);
+            material.SetFloat("_OutlineAlpha", 1);
+            material.SetFloat("_OutlineGlow", 1);
+            material.SetColor("_OutlineColor", new Color(.25f, .95f, 1f, 1f));
+            AssetDatabase.CreateAsset(material, path);
+            return material;
         }
 
         public static Material EnsureWorldMaterial()

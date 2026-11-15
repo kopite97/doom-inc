@@ -1,0 +1,120 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test run",
+    "parameters": {
+      "mode": "editor",
+      "filter": "FacilityStatusQueryTests",
+      "filter_type": "testName"
+    },
+    "result": {
+      "Summary": {
+        "Total": 12,
+        "Passed": 12,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.AnotherSitesReservationIsDistinctFromTotalMaterialShortage",
+          "Status": "Passed",
+          "Duration": 0.0630185,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.AssignedWorkerInTransitDoesNotDisplayStaffedProduction",
+          "Status": "Passed",
+          "Duration": 0.0061831,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.BlockedWorkTilePreservesConsumedCycleAndTargetChangeRemainsNextCycle",
+          "Status": "Passed",
+          "Duration": 0.0026632,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.CompletedProcessingOutputKeepsFullBarEvenWhenItsWorkTileBecomesBlocked",
+          "Status": "Passed",
+          "Duration": 0.0083101,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.CompletedStorageHasNoProductionBarButItsUnfinishedConstructionDoes",
+          "Status": "Passed",
+          "Duration": 0.0004384,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.GatheringNeverBecomesAutomaticAndInterruptedProgressIsPreserved",
+          "Status": "Passed",
+          "Duration": 0.0009166,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.MissingRemovedAndCreatureIdsDoNotProduceFacilityStatus",
+          "Status": "Passed",
+          "Duration": 0.0010354,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.PartialProductionInputsAndReservedDeliveryAreNotCountedTwice",
+          "Status": "Passed",
+          "Duration": 0.0053437,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.PickupAndPartialAdmissionKeepCompletedBarUntilLastActualAdmission",
+          "Status": "Passed",
+          "Duration": 0.0043844,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.SameDefinitionFacilitiesAreIndependentAndReadingDoesNotAdvanceOrReserve",
+          "Status": "Passed",
+          "Duration": 0.0014266,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.SharedProductionDecisionPreservesOverlappingBlockersWithoutMutatingCycle",
+          "Status": "Passed",
+          "Duration": 0.0006193,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.FacilityStatusQueryTests.ValidSiteWithNoMaterialsCanWaitForDeliveryAndThenConstruction",
+          "Status": "Passed",
+          "Duration": 0.0011577,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 3.98,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: FacilityStatusQueryTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

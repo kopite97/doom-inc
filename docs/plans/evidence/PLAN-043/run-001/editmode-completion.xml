@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="30" result="Passed" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:45Z" duration="0.6099496">
+  <test-suite type="TestSuite" id="1560" name="UnityProject" fullname="UnityProject" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:45Z" duration="0.609950" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1543" name="MobileGame.Foundation.EditMode.Tests.dll" fullname="C:/Dev/Unity/Doom_Inc/UnityProject/Library/ScriptAssemblies/MobileGame.Foundation.EditMode.Tests.dll" runstate="Runnable" testcasecount="451" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:45Z" duration="0.602133" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30088" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1544" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="451" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:45Z" duration="0.600747" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1545" name="Foundation" fullname="MobileGame.Foundation" runstate="Runnable" testcasecount="451" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:45Z" duration="0.600439" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1546" name="Tests" fullname="MobileGame.Foundation.Tests" runstate="Runnable" testcasecount="451" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:45Z" duration="0.600333" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1006" name="BalanceEditorTests" fullname="MobileGame.Foundation.Tests.BalanceEditorTests" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:45Z" duration="0.598424" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1025" name="ChangedDtoSignatureOrFieldRejectsRecoveredDraft" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.ChangedDtoSignatureOrFieldRejectsRecoveredDraft" methodname="ChangedDtoSignatureOrFieldRejectsRecoveredDraft" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="22323083" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:44Z" duration="0.024675" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1015" name="CrossFieldErrorIdentifiesReadOnlyReportThreshold" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.CrossFieldErrorIdentifiesReadOnlyReportThreshold" methodname="CrossFieldErrorIdentifiesReadOnlyReportThreshold" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="893586773" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:44Z" duration="0.053930" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1030" name="ExactSpansPreserveBomCrLfEscapesAndUneditedDecimal" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.ExactSpansPreserveBomCrLfEscapesAndUneditedDecimal" methodname="ExactSpansPreserveBomCrLfEscapesAndUneditedDecimal" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="748521874" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:44Z" duration="0.010120" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1028" name="ExternalDeletionBlocksSaveAndRecoveryWithoutRecreatingFile" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.ExternalDeletionBlocksSaveAndRecoveryWithoutRecreatingFile" methodname="ExternalDeletionBlocksSaveAndRecoveryWithoutRecreatingFile" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="206781839" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:44Z" duration="0.034908" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1017" name="ExternalModificationBlocksSaveAndPreservesDraft" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.ExternalModificationBlocksSaveAndPreservesDraft" methodname="ExternalModificationBlocksSaveAndPreservesDraft" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="110708025" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:44Z" duration="0.007775" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1023" name="FailedRecoveryPersistsJournalAndCanRecoverOnNextSession" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.FailedRecoveryPersistsJournalAndCanRecoverOnNextSession" methodname="FailedRecoveryPersistsJournalAndCanRecoverOnNextSession" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1376219325" result="Passed" start-time="2026-11-15 16:54:44Z" end-time="2026-11-15 16:54:45Z" duration="0.046001" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1021" name="FailuresRestoreEveryOriginalAndKeepDraft" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.FailuresRestoreEveryOriginalAndKeepDraft" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.154453" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1018" name="FailuresRestoreEveryOriginalAndKeepDraft(&quot;before-write:invasion&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.FailuresRestoreEveryOriginalAndKeepDraft(&quot;before-write:invasion&quot;)" methodname="FailuresRestoreEveryOriginalAndKeepDraft" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1323436170" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.043932" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1019" name="FailuresRestoreEveryOriginalAndKeepDraft(&quot;before-import&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.FailuresRestoreEveryOriginalAndKeepDraft(&quot;before-import&quot;)" methodname="FailuresRestoreEveryOriginalAndKeepDraft" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="600569389" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.051105" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1020" name="FailuresRestoreEveryOriginalAndKeepDraft(&quot;before-final-validation&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.FailuresRestoreEveryOriginalAndKeepDraft(&quot;before-final-validation&quot;)" methodname="FailuresRestoreEveryOriginalAndKeepDraft" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1695330457" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.054034" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1022" name="FinalValidationFailureAlsoRollsBack" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.FinalValidationFailureAlsoRollsBack" methodname="FinalValidationFailureAlsoRollsBack" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="534097688" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.046420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1029" name="GenericNewTopicProducesDiagnosticsWithoutAnEditorRegistry" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.GenericNewTopicProducesDiagnosticsWithoutAnEditorRegistry" methodname="GenericNewTopicProducesDiagnosticsWithoutAnEditorRegistry" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="2086490292" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.008273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1014" name="InvalidValueCannotWrite" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.InvalidValueCannotWrite" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.037172" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1010" name="InvalidValueCannotWrite(&quot;0&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.InvalidValueCannotWrite(&quot;0&quot;)" methodname="InvalidValueCannotWrite" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="335720611" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.009935" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1011" name="InvalidValueCannotWrite(&quot;NaN&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.InvalidValueCannotWrite(&quot;NaN&quot;)" methodname="InvalidValueCannotWrite" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1877470335" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.009015" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1012" name="InvalidValueCannotWrite(&quot;1e1000&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.InvalidValueCannotWrite(&quot;1e1000&quot;)" methodname="InvalidValueCannotWrite" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="2074122947" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.008798" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1013" name="InvalidValueCannotWrite(&quot;\&quot;2\&quot;&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.InvalidValueCannotWrite(&quot;\&quot;2\&quot;&quot;)" methodname="InvalidValueCannotWrite" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="887805303" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.008349" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1007" name="MetadataLeavesRuntimeFingerprintAndExcludedFieldsUntouched" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.MetadataLeavesRuntimeFingerprintAndExcludedFieldsUntouched" methodname="MetadataLeavesRuntimeFingerprintAndExcludedFieldsUntouched" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="879830103" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.011040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1009" name="NoChangesDoesNotWriteOrImport" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.NoChangesDoesNotWriteOrImport" methodname="NoChangesDoesNotWriteOrImport" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1763793136" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.011601" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1026" name="PresentationMetadataDoesNotEnterDraftSignature" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.PresentationMetadataDoesNotEnterDraftSignature" methodname="PresentationMetadataDoesNotEnterDraftSignature" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1275017419" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.006892" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1024" name="RecoveryNeverOverwritesOutsideChanges" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.RecoveryNeverOverwritesOutsideChanges" methodname="RecoveryNeverOverwritesOutsideChanges" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="694732879" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.028094" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1027" name="RemovedAttributeOrChangedConditionInvalidatesDraftSignature" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.RemovedAttributeOrChangedConditionInvalidatesDraftSignature" methodname="RemovedAttributeOrChangedConditionInvalidatesDraftSignature" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="710234695" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.007613" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1034" name="RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.020004" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1031" name="RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration(&quot;file&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration(&quot;file&quot;)" methodname="RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1719662893" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.006953" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1032" name="RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration(&quot;missing&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration(&quot;missing&quot;)" methodname="RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="350067690" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.006496" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1033" name="RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration(&quot;duplicate&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration(&quot;duplicate&quot;)" methodname="RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="244928546" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.005683" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1008" name="SaveOnlyChangesSelectedNumberAndPreservesOtherBytes" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.SaveOnlyChangesSelectedNumberAndPreservesOtherBytes" methodname="SaveOnlyChangesSelectedNumberAndPreservesOtherBytes" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1639276538" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.036299" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1016" name="StartingCarryConstraintUsesRealComposer" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.StartingCarryConstraintUsesRealComposer" methodname="StartingCarryConstraintUsesRealComposer" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1253176345" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.009159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1040" name="TokenLocatorRejectsMalformedJson" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.TokenLocatorRejectsMalformedJson" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.034508" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1035" name="TokenLocatorRejectsMalformedJson(&quot;{\&quot;a\&quot;:1,\&quot;a\&quot;:2}&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.TokenLocatorRejectsMalformedJson(&quot;{\&quot;a\&quot;:1,\&quot;a\&quot;:2}&quot;)" methodname="TokenLocatorRejectsMalformedJson" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1919898382" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.006040" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1036" name="TokenLocatorRejectsMalformedJson(&quot;{\&quot;a\&quot;:1,}&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.TokenLocatorRejectsMalformedJson(&quot;{\&quot;a\&quot;:1,}&quot;)" methodname="TokenLocatorRejectsMalformedJson" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="854926183" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.005785" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1037" name="TokenLocatorRejectsMalformedJson(&quot;[1,]&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.TokenLocatorRejectsMalformedJson(&quot;[1,]&quot;)" methodname="TokenLocatorRejectsMalformedJson" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1865985454" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.006652" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1038" name="TokenLocatorRejectsMalformedJson(&quot;{\&quot;a\&quot;:01}&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.TokenLocatorRejectsMalformedJson(&quot;{\&quot;a\&quot;:01}&quot;)" methodname="TokenLocatorRejectsMalformedJson" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="303274772" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.007824" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1039" name="TokenLocatorRejectsMalformedJson(&quot;\&quot;\\q\&quot;&quot;)" fullname="MobileGame.Foundation.Tests.BalanceEditorTests.TokenLocatorRejectsMalformedJson(&quot;\&quot;\\q\&quot;&quot;)" methodname="TokenLocatorRejectsMalformedJson" classname="MobileGame.Foundation.Tests.BalanceEditorTests" runstate="Runnable" seed="1858935739" result="Passed" start-time="2026-11-15 16:54:45Z" end-time="2026-11-15 16:54:45Z" duration="0.007016" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/nellu/AppData/LocalLow/DefaultCompany/UnityProject\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

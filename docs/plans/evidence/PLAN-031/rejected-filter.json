@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test run",
+    "parameters": {
+      "mode": "playmode",
+      "filter": "Device",
+      "filter_type": "name",
+      "async_tests": "true"
+    },
+    "result": {
+      "Summary": {
+        "Total": 0,
+        "Passed": 0,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [],
+      "Duration": 0,
+      "StatusPath": null,
+      "Mode": null,
+      "FilterApplied": null,
+      "success": false,
+      "error": "Invalid filterType 'name'. Valid options: testName, assembly, category"
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

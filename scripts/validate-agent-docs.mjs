@@ -37,8 +37,14 @@ for (const file of guides) {
   if (count > limit) errors.push(`Line limit exceeded: ${relative(file)} (${count}/${limit})`);
 }
 
+const planManagementFiles = new Set([
+  'README.md', 'AGETNS.md', '_template.md',
+  '_template-art-animation.md', '_template-art-ui.md', '_template-art-static.md',
+]);
 const planFiles = markdownFiles(path.join(root, 'docs/plans'))
-  .filter(file => !['README.md', 'AGETNS.md', '_template.md'].includes(path.basename(file)));
+  // Evidence documents are not PLANs; their links are still checked below.
+  .filter(file => path.dirname(file) === path.join(root, 'docs/plans'))
+  .filter(file => !planManagementFiles.has(path.basename(file)));
 const ids = new Set();
 const activePlans = [];
 const planMetadata = new Map();

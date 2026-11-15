@@ -12,14 +12,13 @@ namespace MobileGame.Foundation
 {
     public static class JsonDefinitionParser
     {
-        public static readonly IReadOnlyList<string> Topics = Array.AsReadOnly(new[] { "resources", "creatures", "facilities", "invasion", "session" });
-        private static readonly Type[] Types = { typeof(ResourceDto), typeof(CreatureDto), typeof(FacilityDto), typeof(InvasionDto), typeof(SessionDto) };
+        public static readonly IReadOnlyList<string> Topics = Array.AsReadOnly(JsonDefinitionTopics.All.Select(t => t.Key).ToArray());
         private static readonly Regex NumberToken = new Regex(@"\G-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?", RegexOptions.CultureInvariant);
 
         public static IReadOnlyDictionary<string, IReadOnlyList<DefinitionDto>> Parse(GameDataBundle bundle)
         {
             var result = new Dictionary<string, IReadOnlyList<DefinitionDto>>(StringComparer.Ordinal);
-            for (var i = 0; i < Topics.Count; i++) result.Add(Topics[i], ParseTopic(Topics[i], bundle.Tables[Topics[i]], Types[i]));
+            foreach (var topic in JsonDefinitionTopics.All) result.Add(topic.Key, ParseTopic(topic.Key, bundle.Tables[topic.Key], topic.DtoType));
             return result;
         }
 

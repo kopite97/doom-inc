@@ -63,7 +63,7 @@ namespace MobileGame.SpatialTests
                 Assert.That(view.SelectedId, Is.EqualTo(Guid.Empty), "An old logical cell must not leave an invisible creature hit area.");
                 yield return input.Tap(401, map.CellScreenPoint(displayed));
                 Assert.That(view.SelectedId, Is.EqualTo(worker.Id));
-                Assert.That(body.transform.parent.Find("Selection_0").gameObject.activeSelf, Is.True);
+                Assert.That(body.sharedMaterial, Is.SameAs(view.UiAssets.SelectionMaterial));
                 var at = view.Simulation.ElapsedSeconds;
                 var frame = body.sprite;
                 Assert.That(view.BeginGatheringConstruction(), Is.True);
@@ -154,7 +154,7 @@ namespace MobileGame.SpatialTests
                     if (Vector2.Distance(position, worker.Placement.Origin) > .1f) { sawFraction = true; break; }
                 }
                 Assert.That(sawFraction, Is.True, "A fallback creature must also show intermediate wandering positions.");
-                Assert.That(ArtSprite(map, worker, "Body").sprite, Is.SameAs(map.World.Solid));
+                Assert.That(ArtSprite(map, worker, "Body").sprite, Is.SameAs(map.World.FallbackBody));
                 Assert.That(map.TryDisplayedPosition(worker.Id, out var selectedPosition), Is.True);
                 yield return input.Tap(402, map.CellScreenPoint(selectedPosition));
                 Assert.That(view.SelectedId, Is.EqualTo(worker.Id));

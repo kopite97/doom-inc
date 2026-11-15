@@ -68,7 +68,7 @@ latest_reports,131,Laboratory / latest_reports,false,,Latest reports,최신 보�
 license_missing,118,Laboratory / license_missing,false,,The font license is unavailable.,글꼴 라이선스를 찾을 수 없습니다.,14350b0384d865c48fcfcda7bead8aa81e54e2bbeac2a34d3c945018b06e58ae
 load_error,117,Laboratory / load_error,false,,Could not load the save. Retry from the game menu.,저장을 불러오지 못했습니다. 게임 메뉴에서 재시도하세요.,cd24b7f3e28404ab34f7bccf819f23ad535db28409e791aa42b111b7d21493c7
 manage_workers,346,Laboratory / manage_workers,false,,Assign workers from the creature list,생명체 목록에서 작업자 배정,2b0eb85b4ea7a1711740b08cf5dc7b811130ea862b14e0b4c25fa95477bb17e4
-map_help,143,Laboratory / map_help,false,,"Map controls: -/+ zoom out/in, corners fit the map, and the eye toggles facility status.","지도 조작: 돋보기 -/+는 축소/확대, 네 모서리 표시는 전체 보기, 눈/가린 눈은 시설 상태 표시입니다.",ce4c09e9678f53454b1e7388adae6bd038b7cb44562e43b40dfbd972e8d98cfd
+map_help,143,Laboratory / map_help,false,,"Map controls: -/+ zoom out/in, and corners fit the map.","지도 조작: 돋보기 -/+는 축소/확대, 네 모서리 표시는 전체 보기입니다.",96428e9edd58f7f3902b2c91fd2dbc15ebb58c432f96aa65cfc4ca6b91bfd6a2
 material_arrived,317,Laboratory / material_arrived,false,,delivered,도착,96da4fc708cd3c6836a94eaff70125207998e7c226bf06a8c63156eb3245f811
 material_inserted,316,Laboratory / material_inserted,false,,inserted,투입,2671f987a0cea8035c55a4bf7c2f9d85d913d14a2c174fed94b950a94d742899
 material_stock,318,Laboratory / material_stock,true,reason:text;total:number;reserved:number,"{reason}
@@ -88,7 +88,11 @@ no_target,159,Laboratory / no_target,false,,No target,대상 없음,1c4d12ddce06
 outside,126,Laboratory / outside,false,,Outside,외부 활동,213fe86ac0e70b3a2bc4195cd90ad023343ef49b6c3bae0af9e70e5e9741fafd
 outside_detail,337,Laboratory / outside_detail,false,,Active outside the laboratory,연구소 밖에서 활동 중,f73b7a7c665ab078a833e42f41f015216485f8123eccb9449c9bc0cc899ed79e
 outstanding,313,Laboratory / outstanding,true,count:number,"Awaiting storage: {count:N0}, including completed goods in transit",실제 입고 대기 {count:N0}개 · 운반 중인 완료품 포함,a79bb4024f043e225725455aa60f809336355d3530b518612e5bead7eaf81298
-placement_invalid,153,Laboratory / placement_invalid,true,action:text;position:text,{action} · {position} · Check overlaps and map boundaries,{action} · 위치 {position} · 겹침/영역 경계를 확인하세요.,038ac15ba36844d35f6c7b87cee43eca1781d027338b53644075e0a386cd8d76
+placement_invalid,153,Placement preview / specific failure reason,true,action:text;position:text;reason:text,{action} · {position} · {reason},{action} · 위치 {position} · {reason},542069a45773abad737a13f3dc8675e57c636327cbdcd4d92b85b14fe28a598f
+placement_move_valid,393,Placement preview / placement_move_valid,true,action:text;position:text,{action} · {position} · Confirm to move immediately.,{action} · 위치 {position} · 확정하면 즉시 이동합니다.,e06f309c229ed521fcc76e58a7251aa14aa233a2ac65f89b5d6dbbcd3cd6d8b5
+placement_outside,390,Placement preview / placement_outside,false,,Outside the construction area.,건설 영역 밖입니다.,b3618fee0dfc9bd291964d3a908d8f63e4aa173160982c0a6858de6b6c87db01
+placement_overlap,391,Placement preview / placement_overlap,false,,Overlaps another facility.,다른 시설과 겹칩니다.,de5c3b68d890ffd33ffb0d0774563cb99d2c45b646b7afa1a4705cd4fe468e0f
+placement_unavailable,392,Placement preview / placement_unavailable,false,,Cannot place this facility. Cancel and try again.,배치할 수 없습니다. 취소 후 다시 시도하세요.,d7363627611a02cde48f5f5ed042ad7e21d2c909337038c19acf8b82a0253a1b
 placement_valid,152,Laboratory / placement_valid,true,action:text;position:text,{action} · {position} · Ready to confirm; materials arrive later,{action} · 위치 {position} · 확정 가능 (자재는 이후 운반),c2da953fe637953f14e33e8789622798488d50fa1477dd4d1fe1a8bfa6d10279
 placing_new,150,Laboratory / placing_new,false,,New construction,새 건설,9dcb89d8e228eb0337722f94efb1b769d6506fc4b8da097cea9f2e7d671759f2
 position,300,Laboratory / position,true,position:text,Position {position},위치 {position},120c9810fbff9345562157fc8c1f84722da9ac3b88973ded78a0cb7bfbee6abd

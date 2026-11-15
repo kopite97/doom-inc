@@ -1,0 +1,49 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 3.44,
+      "summary": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceProgressBarPassesTapsToGroundAndBothPlacementModes",
+          "Status": "Passed",
+          "Duration": 1.9925501,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.FacilityProgressBarsFollowDomainValuesAndDisposeWithFacilityAndSession",
+          "Status": "Passed",
+          "Duration": 0.5842053,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.FacilityProgressBarsKeepSmallPassiveGeometryAcrossDisplayChanges",
+          "Status": "Passed",
+          "Duration": 0.8539183,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -20,7 +20,7 @@ namespace MobileGame.Presentation
         private ScrollRect controlsScroll;
         private UiList controls;
         private UiButton collapseButton, rotateButton, confirmButton, cancelButton;
-        private UiButton zoomInButton, zoomOutButton, fitButton, statusButton, gameMenuButton;
+        private UiButton zoomInButton, zoomOutButton, fitButton, gameMenuButton;
         private UiButton buildMenuButton, creatureMenuButton, invasionMenuButton, detailsButton, closeButton;
         private MMF_Player releaseFeedback;
         private LaboratoryMapView mapScreen;
@@ -58,7 +58,6 @@ namespace MobileGame.Presentation
             zoomOutButton = IconButton("ZoomOut", cameraTools, LaboratoryIcon.ZoomOut, L("zoom_out"), () => mapScreen.ZoomBy(1 / 1.3f), true);
             zoomInButton = IconButton("ZoomIn", cameraTools, LaboratoryIcon.ZoomIn, L("zoom_in"), () => mapScreen.ZoomBy(1.3f), true);
             fitButton = IconButton("FitMap", cameraTools, LaboratoryIcon.FitMap, L("fit"), () => mapScreen.Fit(), true);
-            statusButton = IconButton("ToggleStatus", cameraTools, LaboratoryIcon.ShowStatus, L("status_on"), () => SetUiPreferences(!ShowFacilityStatus, LargeText), true);
             toolRoot = UiWidgets.Rect("PlacementTools", playRoot);
             editText = UiWidgets.Label("PlacementStatus", playRoot, 16);
             rotateButton = UiWidgets.Button("Rotate", toolRoot, L("rotate"), () => screen.LayoutEpoch);
@@ -212,7 +211,7 @@ namespace MobileGame.Presentation
             var top = screen.Portrait ? Mathf.Max(116, touch + 66) : Mathf.Max(touch + 16, 100 * UiTextScale);
             var footer = touch + feedbackHeight + 6; var cameraHeight = screen.Portrait ? touch + 6 : 0;
             var collapseX = w - touch - collapseWidth - margin - 8;
-            var cameraWidth = 4 * touch + 18;
+            var cameraWidth = 3 * touch + 12;
             var cameraX = collapseX - cameraWidth - 8;
             var headerWidth = screen.Portrait ? w - touch - collapseWidth - 42 : cameraX - margin - 12;
             // A smaller landscape title leaves two full HUD lines above the gauge, including large text.
@@ -241,7 +240,7 @@ namespace MobileGame.Presentation
             // This toolbar remains a playRoot sibling of the clipped map, never a map overlay.
             UiWidgets.Place(cameraTools, screen.Portrait ? margin + mapWidth - cameraWidth : cameraX,
                 screen.Portrait ? top + mapHeight + 4 : 8, cameraWidth, touch);
-            var cameraButtons = new[] { zoomOutButton, zoomInButton, fitButton, statusButton };
+            var cameraButtons = new[] { zoomOutButton, zoomInButton, fitButton };
             for (var i = 0; i < cameraButtons.Length; i++) UiWidgets.Place((RectTransform)cameraButtons[i].transform,
                 i * (touch + 6), 0, touch, touch);
             var panelY = top + mapHeight + cameraHeight + 10;
@@ -314,7 +313,10 @@ namespace MobileGame.Presentation
                 var edit = Simulation.Map.Commands.Edit;
                 var origin = constructing ? Simulation.ConstructionOrigin : edit.Origin;
                 var valid = constructing ? Simulation.ConstructionValidation.Succeeded : edit.Validation.Succeeded;
-                editText.text = L(valid ? "placement_valid" : "placement_invalid", A("action", M(constructing ? "placing_new" : "moving")), A("position", origin.ToString()));
+                var error = constructing ? Simulation.ConstructionValidation.Error : edit.Validation.Error;
+                editText.text = valid
+                    ? L(constructing ? "placement_valid" : "placement_move_valid", A("action", M(constructing ? "placing_new" : "moving")), A("position", origin.ToString()))
+                    : L("placement_invalid", A("action", M(constructing ? "placing_new" : "moving")), A("position", origin.ToString()), A("reason", PlacementReason(error)));
             }
             BindTool(rotateButton, () => RotatePreview(), editing);
             BindTool(confirmButton, () => ConfirmPlacement(), editing && (Simulation.ConstructionDefinition != null ? Simulation.ConstructionValidation.Succeeded : Simulation.Map.Commands.Edit.Validation.Succeeded));
@@ -322,8 +324,16 @@ namespace MobileGame.Presentation
             BindTool(zoomInButton, () => mapScreen.ZoomBy(1.3f), Simulation != null);
             BindTool(zoomOutButton, () => mapScreen.ZoomBy(1 / 1.3f), Simulation != null);
             BindTool(fitButton, () => mapScreen.Fit(), Simulation != null);
-            BindTool(statusButton, () => SetUiPreferences(!ShowFacilityStatus, LargeText), Simulation != null);
-            SetIcon(statusButton, ShowFacilityStatus ? LaboratoryIcon.ShowStatus : LaboratoryIcon.HideStatus, ShowFacilityStatus ? L("status_on") : L("status_off"), true);
+        }
+        private string PlacementReason(PlacementError error)
+        {
+            switch (error)
+            {
+                case PlacementError.OutsideBounds: return L("placement_outside");
+                case PlacementError.FacilityOverlap:
+                case PlacementError.CellBlocked: return L("placement_overlap");
+                default: return L("placement_unavailable");
+            }
         }
         private void UiAction(string key, string label, Action action, bool enabled = true, Guid? selected = null)
         {

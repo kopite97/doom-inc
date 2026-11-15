@@ -1,0 +1,266 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 0.98,
+      "summary": {
+        "total": 34,
+        "passed": 34,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.AdditionalRaiderModelReusesBehaviorWithItsOwnSettings",
+          "Status": "Passed",
+          "Duration": 0.0139853,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.BaselineHasFrozenFingerprintAndIndependentDataWithCanonicalLinks",
+          "Status": "Passed",
+          "Duration": 0.0127738,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.EditingLocalJsonChangesActualConstructionAfterReloadAndRestoresBaseline",
+          "Status": "Passed",
+          "Duration": 0.1456579,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.EveryFieldMatchesFrozenCsvBeforeRuntimeConversion",
+          "Status": "Passed",
+          "Duration": 0.1008741,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"moveSecondsPerCell\",\"0\")",
+          "Status": "Passed",
+          "Duration": 0.0040848,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"moveSecondsPerCell\",\"1e100\")",
+          "Status": "Passed",
+          "Duration": 0.0010075,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"carryCapacity\",\"1.5\")",
+          "Status": "Passed",
+          "Duration": 0.0010462,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"carryCapacity\",\"2147483648\")",
+          "Status": "Passed",
+          "Duration": 0.0013092,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"invasion\",\"targetScore\",\"9223372036854775808\")",
+          "Status": "Passed",
+          "Duration": 0.0072698,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"session\",\"mapWidth\",\"0\")",
+          "Status": "Passed",
+          "Duration": 0.002351,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"resources\",\"unknown\",\"1\")",
+          "Status": "Passed",
+          "Duration": 0.0004515,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"resources\",\"definitionId\",\"null\")",
+          "Status": "Passed",
+          "Duration": 0.000412,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"activityBehavior\",\"\\\"Unknown\\\"\")",
+          "Status": "Passed",
+          "Duration": 0.0022467,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"creatures\",\"role\",\"\\\"Unknown\\\"\")",
+          "Status": "Passed",
+          "Duration": 0.0008884,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"facilities\",\"resource\",\"\\\"resource.missing\\\"\")",
+          "Status": "Passed",
+          "Duration": 0.0021876,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"facilities\",\"gatheringSeconds\",\"1e100\")",
+          "Status": "Passed",
+          "Duration": 0.0020031,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(\"facilities\",\"gatheringSeconds\",\"1e-100\")",
+          "Status": "Passed",
+          "Duration": 0.0012687,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.LocalAndMemoryProvidersUseTheSameComposerContract",
+          "Status": "Passed",
+          "Duration": 0.2113554,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{'schemaVersion':1,'entries':[]}\")",
+          "Status": "Passed",
+          "Duration": 0.0010509,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{schemaVersion:1,\\\"entries\\\":[]}\")",
+          "Status": "Passed",
+          "Duration": 0.0003903,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":1,\\\"schemaVersion\\\":1,\\\"entries\\\":[]}\")",
+          "Status": "Passed",
+          "Duration": 0.0010373,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":1,\\\"entries\\\":[],}\")",
+          "Status": "Passed",
+          "Duration": 0.0002505,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":01,\\\"entries\\\":[]}\")",
+          "Status": "Passed",
+          "Duration": 0.0004,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":1,/*comment*/\\\"entries\\\":[]}\")",
+          "Status": "Passed",
+          "Duration": 0.0002256,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":NaN,\\\"entries\\\":[]}\")",
+          "Status": "Passed",
+          "Duration": 0.000202,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":1,\\\"entries\\\":[]} {}\")",
+          "Status": "Passed",
+          "Duration": 0.0002044,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"{\\\"schemaVersion\\\":1,\\\"entries\\\":null}\")",
+          "Status": "Passed",
+          "Duration": 0.0002165,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(\"[]\")",
+          "Status": "Passed",
+          "Duration": 0.0003587,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MissingFieldsDuplicateIdsAndComponentsReject",
+          "Status": "Passed",
+          "Duration": 0.0019854,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.MissingOrUnknownTopicAndSchemaReject",
+          "Status": "Passed",
+          "Duration": 0.0018341,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.NewSaveFingerprintRejectsChangedDataAndLegacyRequiresBaseline",
+          "Status": "Passed",
+          "Duration": 0.0182262,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.OptionalDefaultsAndNumericSpellingsPreserveHashAndLongsRemainExact",
+          "Status": "Passed",
+          "Duration": 0.0085659,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.RegistryNullDuplicateMissingAndWrongKindAreRejected",
+          "Status": "Passed",
+          "Duration": 0.0038642,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.JsonGameDataTests.RowRegistryOrderAndDisplayEditsPreserveCompatibilityButValuesDoNot",
+          "Status": "Passed",
+          "Duration": 0.0056607,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

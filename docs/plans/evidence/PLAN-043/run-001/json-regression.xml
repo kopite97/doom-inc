@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="34" result="Passed" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 16:42:22Z" end-time="2026-11-15 16:42:23Z" duration="0.9762707">
+  <test-suite type="TestSuite" id="1556" name="UnityProject" fullname="UnityProject" runstate="Runnable" testcasecount="449" result="Passed" start-time="2026-11-15 16:42:22Z" end-time="2026-11-15 16:42:23Z" duration="0.976271" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1538" name="MobileGame.Foundation.EditMode.Tests.dll" fullname="C:/Dev/Unity/Doom_Inc/UnityProject/Library/ScriptAssemblies/MobileGame.Foundation.EditMode.Tests.dll" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-11-15 16:42:22Z" end-time="2026-11-15 16:42:23Z" duration="0.975102" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30088" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1539" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-11-15 16:42:22Z" end-time="2026-11-15 16:42:23Z" duration="0.875022" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1540" name="Foundation" fullname="MobileGame.Foundation" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-11-15 16:42:22Z" end-time="2026-11-15 16:42:23Z" duration="0.874776" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1541" name="Tests" fullname="MobileGame.Foundation.Tests" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-11-15 16:42:22Z" end-time="2026-11-15 16:42:23Z" duration="0.774857" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1040" name="JsonGameDataTests" fullname="MobileGame.Foundation.Tests.JsonGameDataTests" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" testcasecount="34" result="Passed" start-time="2026-11-15 16:42:22Z" end-time="2026-11-15 16:42:23Z" duration="0.772869" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1068" name="AdditionalRaiderModelReusesBehaviorWithItsOwnSettings" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.AdditionalRaiderModelReusesBehaviorWithItsOwnSettings" methodname="AdditionalRaiderModelReusesBehaviorWithItsOwnSettings" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1113213439" result="Passed" start-time="2026-11-15 16:42:22Z" end-time="2026-11-15 16:42:22Z" duration="0.013985" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1041" name="BaselineHasFrozenFingerprintAndIndependentDataWithCanonicalLinks" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.BaselineHasFrozenFingerprintAndIndependentDataWithCanonicalLinks" methodname="BaselineHasFrozenFingerprintAndIndependentDataWithCanonicalLinks" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="40770643" result="Passed" start-time="2026-11-15 16:42:22Z" end-time="2026-11-15 16:42:22Z" duration="0.012774" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1075" name="EditingLocalJsonChangesActualConstructionAfterReloadAndRestoresBaseline" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.EditingLocalJsonChangesActualConstructionAfterReloadAndRestoresBaseline" methodname="EditingLocalJsonChangesActualConstructionAfterReloadAndRestoresBaseline" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1544770682" result="Passed" start-time="2026-11-15 16:42:22Z" end-time="2026-11-15 16:42:23Z" duration="0.145658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1070" name="EveryFieldMatchesFrozenCsvBeforeRuntimeConversion" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.EveryFieldMatchesFrozenCsvBeforeRuntimeConversion" methodname="EveryFieldMatchesFrozenCsvBeforeRuntimeConversion" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1622691043" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.100874" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1066" name="InvalidTypesNumbersRolesAndReferencesReject" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.040875" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1053" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;moveSecondsPerCell&quot;,&quot;0&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;moveSecondsPerCell&quot;,&quot;0&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="2080944919" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.004085" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1054" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;moveSecondsPerCell&quot;,&quot;1e100&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;moveSecondsPerCell&quot;,&quot;1e100&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1546719883" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.001008" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1055" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;carryCapacity&quot;,&quot;1.5&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;carryCapacity&quot;,&quot;1.5&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1877015944" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.001046" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1056" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;carryCapacity&quot;,&quot;2147483648&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;carryCapacity&quot;,&quot;2147483648&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="674099296" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.001309" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1057" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;invasion&quot;,&quot;targetScore&quot;,&quot;9223372036854775808&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;invasion&quot;,&quot;targetScore&quot;,&quot;9223372036854775808&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="555631299" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.007270" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1058" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;session&quot;,&quot;mapWidth&quot;,&quot;0&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;session&quot;,&quot;mapWidth&quot;,&quot;0&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="288110195" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.002351" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1059" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;resources&quot;,&quot;unknown&quot;,&quot;1&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;resources&quot;,&quot;unknown&quot;,&quot;1&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1711980063" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.000452" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1060" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;resources&quot;,&quot;definitionId&quot;,&quot;null&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;resources&quot;,&quot;definitionId&quot;,&quot;null&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1012817571" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.000412" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1061" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;activityBehavior&quot;,&quot;\&quot;Unknown\&quot;&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;activityBehavior&quot;,&quot;\&quot;Unknown\&quot;&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="283670415" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.002247" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1062" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;role&quot;,&quot;\&quot;Unknown\&quot;&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;creatures&quot;,&quot;role&quot;,&quot;\&quot;Unknown\&quot;&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1644804815" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.000888" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1063" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;facilities&quot;,&quot;resource&quot;,&quot;\&quot;resource.missing\&quot;&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;facilities&quot;,&quot;resource&quot;,&quot;\&quot;resource.missing\&quot;&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="689082259" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.002188" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1064" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;facilities&quot;,&quot;gatheringSeconds&quot;,&quot;1e100&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;facilities&quot;,&quot;gatheringSeconds&quot;,&quot;1e100&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="352110581" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.002003" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1065" name="InvalidTypesNumbersRolesAndReferencesReject(&quot;facilities&quot;,&quot;gatheringSeconds&quot;,&quot;1e-100&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.InvalidTypesNumbersRolesAndReferencesReject(&quot;facilities&quot;,&quot;gatheringSeconds&quot;,&quot;1e-100&quot;)" methodname="InvalidTypesNumbersRolesAndReferencesReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="603210648" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.001269" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1076" name="LocalAndMemoryProvidersUseTheSameComposerContract" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.LocalAndMemoryProvidersUseTheSameComposerContract" methodname="LocalAndMemoryProvidersUseTheSameComposerContract" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1153270737" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.211355" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1052" name="MalformedJsonFailsWithLocation" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.105390" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1042" name="MalformedJsonFailsWithLocation(&quot;{'schemaVersion':1,'entries':[]}&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(&quot;{'schemaVersion':1,'entries':[]}&quot;)" methodname="MalformedJsonFailsWithLocation" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="577882191" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.001051" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1043" name="MalformedJsonFailsWithLocation(&quot;{schemaVersion:1,\&quot;entries\&quot;:[]}&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(&quot;{schemaVersion:1,\&quot;entries\&quot;:[]}&quot;)" methodname="MalformedJsonFailsWithLocation" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="792329341" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.000390" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1044" name="MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:1,\&quot;schemaVersion\&quot;:1,\&quot;entries\&quot;:[]}&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:1,\&quot;schemaVersion\&quot;:1,\&quot;entries\&quot;:[]}&quot;)" methodname="MalformedJsonFailsWithLocation" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="588385784" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.001037" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1045" name="MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:1,\&quot;entries\&quot;:[],}&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:1,\&quot;entries\&quot;:[],}&quot;)" methodname="MalformedJsonFailsWithLocation" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1510636306" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.000251" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1046" name="MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:01,\&quot;entries\&quot;:[]}&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:01,\&quot;entries\&quot;:[]}&quot;)" methodname="MalformedJsonFailsWithLocation" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1101589300" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.000400" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1047" name="MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:1,/*comment*/\&quot;entries\&quot;:[]}&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:1,/*comment*/\&quot;entries\&quot;:[]}&quot;)" methodname="MalformedJsonFailsWithLocation" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="247513635" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.000226" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1048" name="MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:NaN,\&quot;entries\&quot;:[]}&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:NaN,\&quot;entries\&quot;:[]}&quot;)" methodname="MalformedJsonFailsWithLocation" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="359277753" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.000202" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1049" name="MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:1,\&quot;entries\&quot;:[]} {}&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:1,\&quot;entries\&quot;:[]} {}&quot;)" methodname="MalformedJsonFailsWithLocation" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="543469486" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.000204" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1050" name="MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:1,\&quot;entries\&quot;:null}&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(&quot;{\&quot;schemaVersion\&quot;:1,\&quot;entries\&quot;:null}&quot;)" methodname="MalformedJsonFailsWithLocation" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="321191074" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.000217" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1051" name="MalformedJsonFailsWithLocation(&quot;[]&quot;)" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MalformedJsonFailsWithLocation(&quot;[]&quot;)" methodname="MalformedJsonFailsWithLocation" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1490091367" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.000359" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1067" name="MissingFieldsDuplicateIdsAndComponentsReject" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MissingFieldsDuplicateIdsAndComponentsReject" methodname="MissingFieldsDuplicateIdsAndComponentsReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="323926419" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.001985" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1069" name="MissingOrUnknownTopicAndSchemaReject" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.MissingOrUnknownTopicAndSchemaReject" methodname="MissingOrUnknownTopicAndSchemaReject" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1570833070" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.001834" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1074" name="NewSaveFingerprintRejectsChangedDataAndLegacyRequiresBaseline" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.NewSaveFingerprintRejectsChangedDataAndLegacyRequiresBaseline" methodname="NewSaveFingerprintRejectsChangedDataAndLegacyRequiresBaseline" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="204128369" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.018226" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1071" name="OptionalDefaultsAndNumericSpellingsPreserveHashAndLongsRemainExact" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.OptionalDefaultsAndNumericSpellingsPreserveHashAndLongsRemainExact" methodname="OptionalDefaultsAndNumericSpellingsPreserveHashAndLongsRemainExact" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="297288126" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.008566" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1072" name="RegistryNullDuplicateMissingAndWrongKindAreRejected" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.RegistryNullDuplicateMissingAndWrongKindAreRejected" methodname="RegistryNullDuplicateMissingAndWrongKindAreRejected" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="944018044" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.003864" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1073" name="RowRegistryOrderAndDisplayEditsPreserveCompatibilityButValuesDoNot" fullname="MobileGame.Foundation.Tests.JsonGameDataTests.RowRegistryOrderAndDisplayEditsPreserveCompatibilityButValuesDoNot" methodname="RowRegistryOrderAndDisplayEditsPreserveCompatibilityButValuesDoNot" classname="MobileGame.Foundation.Tests.JsonGameDataTests" runstate="Runnable" seed="1675673730" result="Passed" start-time="2026-11-15 16:42:23Z" end-time="2026-11-15 16:42:23Z" duration="0.005661" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/nellu/AppData/LocalLow/DefaultCompany/UnityProject\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

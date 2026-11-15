@@ -1,0 +1,49 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 3.05,
+      "summary": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DisplayEvaluationFrequencyLeavesLogicalSimulationAndSavesIdentical",
+          "Status": "Passed",
+          "Duration": 1.8517633,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.MovingBodyCargoSelectionAndPauseUseOnePublishedPosition",
+          "Status": "Passed",
+          "Duration": 0.5437137,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.MovingFallbackAndPublishedSelectionFollowViewportAndLifecycle",
+          "Status": "Passed",
+          "Duration": 0.6483072,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

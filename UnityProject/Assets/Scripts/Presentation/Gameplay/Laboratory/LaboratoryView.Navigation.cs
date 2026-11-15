@@ -33,6 +33,7 @@ namespace MobileGame.Presentation
         {
             SavePanelPosition(); editReturnPanel = panel; editReturnExpanded = detailsExpanded;
             panel = LaboratoryPanel.None; InvalidateInput(); RestorePanelPosition();
+            mapScreen?.BeginPlacementPreview();
         }
         private void LeaveEditingPresentation()
         {
@@ -42,6 +43,7 @@ namespace MobileGame.Presentation
 
         public LaboratoryUiAssets UiAssets => uiAssets;
         public TMP_FontAsset UiFont => uiAssets?.Font != null ? uiAssets.Font : TMP_Settings.defaultFontAsset;
+        // Legacy preference retained for saved settings compatibility; progress bars are always visible.
         public bool ShowFacilityStatus => uiSettings?.Current.ShowFacilityStatus ?? true;
         public bool LargeText => uiSettings?.Current.LargeText ?? false;
         public float UiTextScale => LargeText ? 1.25f : 1;
@@ -60,10 +62,8 @@ namespace MobileGame.Presentation
         public bool SetUiPreferences(bool showStatus, bool largeText)
         {
             if (uiSettings == null) return false;
-            var statusChanged = ShowFacilityStatus != showStatus;
             var saved = uiSettings.TrySet(showStatus, largeText);
-            uiNotice = statusChanged ? C("status_setting", A("value", C(showStatus ? "on" : "off")))
-                : C("text_setting", A("value", C(largeText ? "large" : "normal")));
+            uiNotice = C("text_setting", A("value", C(largeText ? "large" : "normal")));
             if (!saved) uiNotice = M("setting_notice_failed", A("notice", uiNotice));
             ApplyTextStyle(); InvalidateInput(); return saved;
         }
@@ -110,6 +110,18 @@ namespace MobileGame.Presentation
             candidates.Clear(); InvalidateInput(); RestorePanelPosition();
             mapScreen?.RequestSelectionVisibility();
         }
+        public void ClearSelection()
+        {
+            if (!CanUseMap || IsEditing) return;
+            ClearSelectionState();
+        }
+        private void ClearSelectionState()
+        {
+            SavePanelPosition(); SelectedId = Guid.Empty; candidates.Clear();
+            if (panel == LaboratoryPanel.Selection || panel == LaboratoryPanel.Candidates)
+            { panel = LaboratoryPanel.None; detailsExpanded = false; }
+            InvalidateInput(); RestorePanelPosition();
+        }
         public void ShowSelectionCandidates(IEnumerable<Guid> ids)
         {
             if (!CanUseMap || IsEditing) return;
@@ -129,7 +141,7 @@ namespace MobileGame.Presentation
             if (IsEditing) { CancelPlacement(); return; }
             if (panel == LaboratoryPanel.Selection && detailsExpanded) { detailsExpanded = false; InvalidateInput(); return; }
             if (panel != LaboratoryPanel.None && panel != LaboratoryPanel.Selection) { ClosePanel(); return; }
-            if (SelectedId != Guid.Empty) { SelectedId = Guid.Empty; panel = LaboratoryPanel.None; InvalidateInput(); return; }
+            if (SelectedId != Guid.Empty) { ClearSelectionState(); return; }
             OpenPanel(LaboratoryPanel.Game);
         }
         private void ClosePanel()
@@ -164,7 +176,7 @@ namespace MobileGame.Presentation
         private void SelectionUnavailable()
         {
             if (SelectedId != Guid.Empty && Simulation != null && !Simulation.Registry.TryGet(SelectedId, out _))
-            { SelectedId = Guid.Empty; ClosePanel(); }
+                ClearSelectionState();
         }
     }
 }

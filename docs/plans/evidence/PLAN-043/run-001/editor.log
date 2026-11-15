@@ -1,0 +1,132 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "tail": "10",
+      "level": "error"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 254,
+          "timestampUtc": "2026-11-15T14:51:42.836122Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.StatusLayout.cs(98,26): error CS1061: 'LaboratoryView' does not contain a definition for 'ClosePanel' and no accessible extension method 'ClosePanel' accepting a first argument of type 'LaboratoryView' could be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 255,
+          "timestampUtc": "2026-11-15T14:51:58.3577596Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.ReadingContext.cs(91,17): error CS0103: The name 'LogStatusEvidence' does not exist in the current context",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 256,
+          "timestampUtc": "2026-11-15T14:51:58.3577596Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.ReadingContext.cs(147,21): error CS0103: The name 'LogStatusEvidence' does not exist in the current context",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 257,
+          "timestampUtc": "2026-11-15T14:51:58.3577596Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.ReadingContext.cs(241,21): error CS0103: The name 'LogStatusEvidence' does not exist in the current context",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 285,
+          "timestampUtc": "2026-11-15T14:54:51.321789Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.MobileUx.cs(86,37): error CS1061: 'LaboratoryMapView' does not contain a definition for 'Origin' and no accessible extension method 'Origin' accepting a first argument of type 'LaboratoryMapView' could be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 286,
+          "timestampUtc": "2026-11-15T14:54:51.321789Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.MobileUx.cs(90,33): error CS1061: 'LaboratoryMapView' does not contain a definition for 'Origin' and no accessible extension method 'Origin' accepting a first argument of type 'LaboratoryMapView' could be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 395,
+          "timestampUtc": "2026-11-15T16:39:35.8847713Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Editor\\Definitions\\Balance\\BalanceJsonToken.cs(64,41): error CS0433: The type 'JsonConvert' exists in both 'Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and 'Unity.Localization.ThirdParty.Editor, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null'",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 396,
+          "timestampUtc": "2026-11-15T16:39:35.886275Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Editor\\Definitions\\Balance\\BalanceDocumentStore.cs(173,60): error CS0433: The type 'JsonConvert' exists in both 'Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and 'Unity.Localization.ThirdParty.Editor, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null'",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 397,
+          "timestampUtc": "2026-11-15T16:39:35.886275Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Editor\\Definitions\\Balance\\BalanceDocumentStore.cs(174,116): error CS0433: The type 'JsonConvert' exists in both 'Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and 'Unity.Localization.ThirdParty.Editor, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null'",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 398,
+          "timestampUtc": "2026-11-15T16:39:35.886275Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Editor\\Definitions\\Balance\\BalanceDocumentStore.cs(174,153): error CS0433: The type 'Formatting' exists in both 'Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and 'Unity.Localization.ThirdParty.Editor, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null'",
+          "stackTrace": "",
+          "seeded": false
+        }
+      ],
+      "cursor": 436,
+      "session": "a5b462919314407e97ad077e352aca26",
+      "returned": 10,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 20,
+        "warn": 0,
+        "log": 416
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-15T16:55:38.6391891Z",
+        "ageMs": 51,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 5,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

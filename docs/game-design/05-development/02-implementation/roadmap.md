@@ -2,17 +2,27 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1~4단계 및 D-070 완료 / 아트 5-1 완료 / PLAN-001~029 completed / PLAN-029 art·completed / active 0개
+- 상태: 선행 기반 세 묶음·1~4단계 및 D-070 완료 / 아트 5-1 완료 / PLAN-001~032 completed / PLAN-033~042 art·proposed / PLAN-043 development·completed / active 0개
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
-- 갱신일: 2026-11-12
+- 갱신일: 2026-11-16
 - 탐색: [기획 MAP](../../README.md), [Thing과 정의 데이터](../01-architecture/thing-model.md), [GameFlow와 시스템 책임](../01-architecture/game-flow.md), [플레이 환경](../../04-delivery/01-platform/environment.md)
 
 ## 현재 작업
 
-현재 active PLAN은 0개다. 최근 완료 [PLAN-029 가공시설·배양시설·저장소 정식 아트 제작·적용](../../../plans/PLAN-029-laboratory-processing-cultivation-storage-art.md)은 `art` / `completed`다. 세 시설 r001·총 48프레임과 생산/입출고 동작·미리보기/목록 연결의 전체 적용, 일반 Editor 검증, 2026-11-12 사용자 게임 화면 승인을 마쳤다. 빌드·고부하·실기기는 제외했다. 바닥 외곽 등 5-2의 다른 후보와 전체 5-5는 별도 후속 범위다.
+2026-11-16 [PLAN-043 게임 밸런스 편집창](../../../plans/PLAN-043-game-balance-editor.md)을 `development` / `completed`로 전환했다. DTO Attribute 기반 UI·JSON 값 토큰 저장·공통 주제 등록·SO Inspector 연결과 다섯 검토 보완사항을 구현했다. EditMode 64개·PlayMode 1개(ON/OFF 각각) 통과 및 원본 70개 해시 일치를 [증거](../../../plans/evidence/PLAN-043/README.md)에 기록했다. active 0개이며 기존 단계 완료 판정과 아트 후보는 유지한다.
 
-[PLAN-025 최신 버전 Android 통합 검증과 프로토타입 완료 판정](../../../plans/PLAN-025-android-integration-and-prototype-completion.md)은 completed다. Editor 회귀와 승인된 Android 통합 검증·환경 복원을 마쳐 4단계·D-070의 네 기준을 충족했다. SM-G977N 한 기종·현재 임시 표현의 판정이며 세부 측정 한계와 경미한 표시 결함은 [완료 근거](../../../plans/evidence/PLAN-025/README.md#d-070-완료-판정)를 따른다. PLAN-026~029도 완료했으며 현재 active는 0개다.
+2026-11-16 남은 정식 아트를 PLAN-033~042의 10개 `art` / `proposed` 후보로 분리했다. [아트 로드맵의 분할 표](art-roadmap.md#남은-작업의-plan-분할--2026-11-16)에서 범위·선행 관계를 찾는다. 기존 PLAN-001~032는 completed이며 active 0개다. 이번에는 문서만 작성했고 제작·적용·게임 검증은 시작하지 않았다.
+
+최근 인게임 경험 개선 [PLAN-032 작은 시설 진행 바](../../../plans/PLAN-032-minimal-facility-progress-bars.md)는 `development` / `completed`다. 얇은 배경과 진행량만 남기고 지도 표식의 입력·설명·ON/OFF를 제거하는 작업이다. 시설 상세 패널과 생산 규칙은 유지한다. Edit 41개·Play 27개의 서로 다른 기능 테스트와 신규 Domain Reload ON 검증·실제 화면 확인을 완료했다. [검증 증거](../../../plans/evidence/PLAN-032/README.md)를 따르며 active는 0개다.
+
+최근 인게임 경험 개선 [PLAN-031 건설·시설 이동 미리보기 드래그와 배치 오류 안내](../../../plans/PLAN-031-placement-preview-drag-and-validation.md)는 `development` / `completed`다. 신규 건설과 기존 시설 이동에 드래그·즉시 미리보기·문제 칸과 배치 불가 이유 표시를 공통 적용했다. Edit 46/46·Play 25/25·신규 배치 Domain Reload ON 3/3과 실제 화면 확인을 완료했다. [검증 증거](../../../plans/evidence/PLAN-031/README.md)를 따르며 빌드·실기기·고부하는 제외했다. active는 0개다.
+
+인게임 경험 개선 작업 [PLAN-030 Sprite 외곽선 선택 강조와 빈 땅 클릭 선택 해제](../../../plans/PLAN-030-sprite-selection-outline-and-deselect.md)는 `development` / `completed`다. 2026-11-15 구현·일반 Editor 테스트 27개와 Domain Reload ON 선택 테스트 3개·실제 화면 확인을 완료했다. 상세 동작은 [화면과 조작](../../03-player-experience/03-interface/controls.md#selection-feedback), 결과는 [검증 증거](../../../plans/evidence/PLAN-030/README.md)를 따른다. 빌드·실기기·고부하는 제외했으며 아트 5-2 완료 판정과 별도인 작업이다.
+
+현재 active PLAN은 없다. 최근 완료 [PLAN-029 가공시설·배양시설·저장소 정식 아트 제작·적용](../../../plans/PLAN-029-laboratory-processing-cultivation-storage-art.md)은 `art` / `completed`다. 세 시설 r001·총 48프레임과 생산/입출고 동작·미리보기/목록 연결의 전체 적용, 일반 Editor 검증, 2026-11-12 사용자 게임 화면 승인을 마쳤다. 빌드·고부하·실기기는 제외했다. 바닥 외곽 등 5-2의 다른 후보와 전체 5-5는 별도 후속 범위다.
+
+[PLAN-025 최신 버전 Android 통합 검증과 프로토타입 완료 판정](../../../plans/PLAN-025-android-integration-and-prototype-completion.md)은 completed다. Editor 회귀와 승인된 Android 통합 검증·환경 복원을 마쳐 4단계·D-070의 네 기준을 충족했다. SM-G977N 한 기종·현재 임시 표현의 판정이며 세부 측정 한계와 경미한 표시 결함은 [완료 근거](../../../plans/evidence/PLAN-025/README.md#d-070-완료-판정)를 따른다. PLAN-026~032도 완료했으며 현재 active는 0개다.
 
 2026-11-07 사용자 요청으로 [정식 아트 제작·적용 로드맵](art-roadmap.md)을 후속 **5단계**로 추가했다. 샘플·연구소·생명체/자원·UI·동작·타이틀/종료·통합 검수 순서를 제안하며 2026-11-10 첫 5-1 샘플 묶음의 전체 적용·Editor 검증·사용자 시각 확인을 완료했다. PLAN-025의 표시/GC 개선 후보는 잠시 미뤄 두고, 완료된 프로토타입 판정과 아트 적용 완료를 구분한다.
 

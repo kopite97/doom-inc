@@ -77,7 +77,7 @@ namespace MobileGame.SpatialTests
                 yield return ClickVisibleButton(input, "BuildGathering");
                 yield return input.Click(input.Map.CellScreenPoint(new Vector2Int(3, 3)));
                 Assert.That(view.Simulation.ConstructionOrigin, Is.EqualTo(new Vector2Int(3, 3)));
-                Assert.That(input.Map.World.Root.GetComponentsInChildren<SpriteRenderer>().Any(i => i.name.StartsWith("Selection_") && i.color.g > .9f && i.color.a > .9f),
+                Assert.That(input.Map.World.Root.GetComponentsInChildren<SpriteRenderer>().Any(i => i.name.StartsWith("PlacementBorder_") && i.color.g > .9f && i.color.a > .9f),
                     Is.True, "The valid construction overlay must remain visible above art.");
                 yield return CaptureFloorArt("construction-preview");
                 yield return input.Escape();
@@ -119,7 +119,7 @@ namespace MobileGame.SpatialTests
         private static LaboratoryUiAssets CopyFloorAssets(LaboratoryUiAssets assets, Sprite[] floor)
         {
             var icons = System.Enum.GetValues(typeof(LaboratoryIcon)).Cast<LaboratoryIcon>().Select(assets.GetIcon).ToArray();
-            return new LaboratoryUiAssets(assets.Font, icons, assets.FontLicense, assets.ReleaseSound, floor, assets.Art, assets.WorldMaterial);
+            return new LaboratoryUiAssets(assets.Font, icons, assets.FontLicense, assets.ReleaseSound, floor, assets.Art, assets.WorldMaterial, assets.SelectionMaterial);
         }
 
         private static IEnumerator CaptureFloorArt(string name)

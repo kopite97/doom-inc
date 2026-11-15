@@ -16,11 +16,14 @@ namespace MobileGame.Presentation
         private readonly Dictionary<int, Pointer> pointers = new Dictionary<int, Pointer>();
         private bool blocked;
         private bool dragging;
+        private bool captured;
         private float dragThreshold = 12;
 
         public event Action<Vector2> Tapped;
         public event Action<Vector2> Panned;
         public event Action<float, Vector2> Zoomed;
+        public Func<Vector2, bool> CaptureDrag { get; set; }
+        public event Action<Vector2> Dragged;
         public bool HasPointers => pointers.Count != 0;
 
         public float DragThreshold
@@ -39,10 +42,11 @@ namespace MobileGame.Presentation
             ValidatePosition(position);
             // A second source reporting the same pointer cannot restart a gesture.
             if (pointers.ContainsKey(id)) return;
-            if (pointers.Count == 0) { blocked = false; dragging = false; }
+            if (pointers.Count == 0)
+            { blocked = false; dragging = false; captured = overMap && (CaptureDrag?.Invoke(position) ?? false); }
             pointers.Add(id, new Pointer { Origin = position, Position = position });
             if (!overMap || pointers.Count > 2) blocked = true;
-            if (pointers.Count > 1) dragging = true;
+            if (pointers.Count > 1) { dragging = true; captured = false; }
         }
 
         public void Move(int id, Vector2 position)
@@ -59,9 +63,11 @@ namespace MobileGame.Presentation
                 {
                     if (offset.sqrMagnitude < dragThreshold * dragThreshold) return;
                     dragging = true;
+                    if (captured) { Dragged?.Invoke(position); return; }
                     // Include the distance accumulated while distinguishing a tap.
                     Panned?.Invoke(offset);
                 }
+                else if (captured) Dragged?.Invoke(position);
                 else Panned?.Invoke(position - previous);
                 return;
             }
@@ -102,6 +108,7 @@ namespace MobileGame.Presentation
             // The device adapter must End(..., canceled: true) for disappeared contacts.
             blocked = true;
             dragging = true;
+            captured = false;
         }
 
         private static void ValidatePosition(Vector2 position)

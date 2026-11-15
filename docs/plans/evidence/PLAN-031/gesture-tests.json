@@ -1,0 +1,133 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test run",
+    "parameters": {
+      "mode": "editor",
+      "filter": "LaboratoryGestureTests"
+    },
+    "result": {
+      "Summary": {
+        "Total": 14,
+        "Passed": 14,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.CancelDuringPanCannotPublishAScaleForTheOldScreen",
+          "Status": "Passed",
+          "Duration": 0.0037868,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.CapturedDragKeepsAbsolutePositionsAndHandsOffToPinchWithoutStaleTap",
+          "Status": "Passed",
+          "Duration": 0.001335,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.CoincidentPinchContactsDoNotPublishInvalidScales",
+          "Status": "Passed",
+          "Duration": 0.0006134,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.DeviceCancellationSuppressesTapAndUnknownReleaseIsIgnored",
+          "Status": "Passed",
+          "Duration": 0.0001615,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.DistantReleaseWithoutAnIntermediateMoveCannotTap",
+          "Status": "Passed",
+          "Duration": 0.0001188,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.DragIncludesThresholdDistanceAndNeverTapsOnRelease",
+          "Status": "Passed",
+          "Duration": 0.000174,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.DuplicateBeginCannotResetDragOrChangeUiOwnership",
+          "Status": "Passed",
+          "Duration": 0.0001339,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.LayoutCancellationRetainsContactsButRejectsStaleRelease",
+          "Status": "Passed",
+          "Duration": 0.0002564,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.MixedUiAndMapContactsBlockUntilEveryFingerIsReleased(True)",
+          "Status": "Passed",
+          "Duration": 0.000425,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.MixedUiAndMapContactsBlockUntilEveryFingerIsReleased(False)",
+          "Status": "Passed",
+          "Duration": 0.0000787,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.PinchPublishesCenterMotionAndRatioAndSuppressesTheRemainingFinger",
+          "Status": "Passed",
+          "Duration": 0.0003755,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.TapWaitsForReleaseAndSmallMovementRemainsATap",
+          "Status": "Passed",
+          "Duration": 0.0002552,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.ThirdFingerCancelsTheWholeSequence",
+          "Status": "Passed",
+          "Duration": 0.0001619,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.LaboratoryGestureTests.UiOwnedPointerCannotBecomeAMapGestureAfterCrossingTheBoundary",
+          "Status": "Passed",
+          "Duration": 0.0001256,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 2.81,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: LaboratoryGestureTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

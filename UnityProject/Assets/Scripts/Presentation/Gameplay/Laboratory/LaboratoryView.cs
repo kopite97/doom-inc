@@ -216,6 +216,7 @@ namespace MobileGame.Presentation
         }
         public bool PreviewAt(Vector2Int origin)
         {
+            mapScreen?.PreservePlacementPreview();
             if (Simulation.ConstructionDefinition != null)
                 return Record("Preview construction", Commands.PreviewConstruction(origin, Simulation.ConstructionRotation));
             return Record("Preview move", Controller.PreviewPlacement(origin,

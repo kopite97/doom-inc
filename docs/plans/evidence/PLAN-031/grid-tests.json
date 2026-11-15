@@ -1,0 +1,168 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test run",
+    "parameters": {
+      "mode": "editor",
+      "filter": "GridMapTests"
+    },
+    "result": {
+      "Summary": {
+        "Total": 19,
+        "Passed": 19,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.CorridorAndInteractionBlockingDoNotBecomePlacementRestrictions",
+          "Status": "Passed",
+          "Duration": 0.0387436,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.CreaturesOverlapWithoutBlockingButCannotBePlacedInsideFacility",
+          "Status": "Passed",
+          "Duration": 0.001455,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.FailedConfirmationKeepsEditingAndCanBeCorrected",
+          "Status": "Passed",
+          "Duration": 0.0006498,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.InvalidMoveAndRotationAreAtomicIncludingIntegerExtremes",
+          "Status": "Passed",
+          "Duration": 0.0006986,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.MovingOneSharedDefinitionPreservesIdentityInventoryAndOtherInstance",
+          "Status": "Passed",
+          "Duration": 0.0023579,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.NewPlacementCanBeCancelledWithoutDestroyingThing",
+          "Status": "Passed",
+          "Duration": 0.0002652,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells(None)",
+          "Status": "Passed",
+          "Duration": 0.0029281,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells(Clockwise90)",
+          "Status": "Passed",
+          "Duration": 0.0001474,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells(Clockwise180)",
+          "Status": "Passed",
+          "Duration": 0.0000969,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.PlacementDiagnosticsMatchRulesAndReportAllProblemCells(Clockwise270)",
+          "Status": "Passed",
+          "Duration": 0.0000924,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.PreviewAndCancelKeepOriginalOccupancyAndSuccessfulConfirmSwitchesOnce",
+          "Status": "Passed",
+          "Duration": 0.0005868,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.QueriesAreReadOnlySnapshotsAndInvalidDefinitionIsRejected",
+          "Status": "Passed",
+          "Duration": 0.0030975,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(None,2,3,5,3)",
+          "Status": "Passed",
+          "Duration": 0.0006379,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise90,3,2,3,4)",
+          "Status": "Passed",
+          "Duration": 0.0000706,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise180,2,3,4,7)",
+          "Status": "Passed",
+          "Duration": 0.0000517,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RectangularFacilityRotatesFootprintAndFixedInteraction(Clockwise270,3,2,7,5)",
+          "Status": "Passed",
+          "Duration": 0.0000506,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RejectsForeignRegistryOtherMapAndResourcesWithoutSideEffects",
+          "Status": "Passed",
+          "Duration": 0.0006597,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.RemovedEditedTargetCannotBeResurrectedByConfirm",
+          "Status": "Passed",
+          "Duration": 0.0009606,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.GridMapTests.UnplacementPreservesExistenceAndInventoryAndRemovalCleansMap",
+          "Status": "Passed",
+          "Duration": 0.0005324,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 4.03,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: GridMapTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

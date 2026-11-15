@@ -1,0 +1,210 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 1.03,
+      "summary": {
+        "total": 26,
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.ChangedDtoSignatureOrFieldRejectsRecoveredDraft",
+          "Status": "Passed",
+          "Duration": 0.0323304,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.CrossFieldErrorIdentifiesReadOnlyReportThreshold",
+          "Status": "Passed",
+          "Duration": 0.1287491,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.ExactSpansPreserveBomCrLfEscapesAndUneditedDecimal",
+          "Status": "Passed",
+          "Duration": 0.0176812,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.ExternalModificationBlocksSaveAndPreservesDraft",
+          "Status": "Passed",
+          "Duration": 0.0143424,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.FailedRecoveryPersistsJournalAndCanRecoverOnNextSession",
+          "Status": "Passed",
+          "Duration": 0.0657407,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.FailuresRestoreEveryOriginalAndKeepDraft(\"before-write:invasion\")",
+          "Status": "Passed",
+          "Duration": 0.0508974,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.FailuresRestoreEveryOriginalAndKeepDraft(\"before-import\")",
+          "Status": "Passed",
+          "Duration": 0.0601981,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.FailuresRestoreEveryOriginalAndKeepDraft(\"before-final-validation\")",
+          "Status": "Passed",
+          "Duration": 0.0611571,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.FinalValidationFailureAlsoRollsBack",
+          "Status": "Passed",
+          "Duration": 0.0557909,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.GenericNewTopicProducesDiagnosticsWithoutAnEditorRegistry",
+          "Status": "Passed",
+          "Duration": 0.0131832,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.InvalidValueCannotWrite(\"0\")",
+          "Status": "Passed",
+          "Duration": 0.0117565,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.InvalidValueCannotWrite(\"NaN\")",
+          "Status": "Passed",
+          "Duration": 0.0097917,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.InvalidValueCannotWrite(\"1e1000\")",
+          "Status": "Passed",
+          "Duration": 0.0088642,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.InvalidValueCannotWrite(\"\\\"2\\\"\")",
+          "Status": "Passed",
+          "Duration": 0.0101442,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.MetadataLeavesRuntimeFingerprintAndExcludedFieldsUntouched",
+          "Status": "Passed",
+          "Duration": 0.0143558,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.NoChangesDoesNotWriteOrImport",
+          "Status": "Passed",
+          "Duration": 0.0125229,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.PresentationMetadataDoesNotEnterDraftSignature",
+          "Status": "Passed",
+          "Duration": 0.007326,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.RecoveryNeverOverwritesOutsideChanges",
+          "Status": "Passed",
+          "Duration": 0.0360588,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.RuntimeBindingMismatchIsDetectedWithoutChangingConfiguration",
+          "Status": "Passed",
+          "Duration": 0.0094318,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.SaveOnlyChangesSelectedNumberAndPreservesOtherBytes",
+          "Status": "Passed",
+          "Duration": 0.04667,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.StartingCarryConstraintUsesRealComposer",
+          "Status": "Passed",
+          "Duration": 0.0121367,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.TokenLocatorRejectsMalformedJson(\"{\\\"a\\\":1,\\\"a\\\":2}\")",
+          "Status": "Passed",
+          "Duration": 0.007334,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.TokenLocatorRejectsMalformedJson(\"{\\\"a\\\":1,}\")",
+          "Status": "Passed",
+          "Duration": 0.0066555,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.TokenLocatorRejectsMalformedJson(\"[1,]\")",
+          "Status": "Passed",
+          "Duration": 0.0070444,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.TokenLocatorRejectsMalformedJson(\"{\\\"a\\\":01}\")",
+          "Status": "Passed",
+          "Duration": 0.0066094,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.Foundation.Tests.BalanceEditorTests.TokenLocatorRejectsMalformedJson(\"\\\"\\\\q\\\"\")",
+          "Status": "Passed",
+          "Duration": 0.0069931,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

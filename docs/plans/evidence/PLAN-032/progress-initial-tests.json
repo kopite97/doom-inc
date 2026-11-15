@@ -1,0 +1,49 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 3.14,
+      "summary": {
+        "total": 3,
+        "passed": 2,
+        "failed": 1,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.DeviceProgressBarPassesTapsToGroundAndBothPlacementModes",
+          "Status": "Passed",
+          "Duration": 1.9146579,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.FacilityProgressBarsFollowDomainValuesAndDisposeWithFacilityAndSession",
+          "Status": "Passed",
+          "Duration": 0.5905044,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.FacilityProgressBarsKeepSmallPassiveGeometryAcrossDisplayChanges",
+          "Status": "Failed",
+          "Duration": 0.5259759,
+          "Message": "  Expected: True\r\n  But was:  False\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<FacilityProgressBarsKeepSmallPassiveGeometryAcrossDisplayChanges>d__120.MoveNext () [0x00360] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.StatusLayout.cs:48\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

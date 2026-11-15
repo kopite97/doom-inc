@@ -1,0 +1,49 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 6.09,
+      "summary": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.PlacementDragPreservesCandidateAcrossUiPinchAndCanceledInput",
+          "Status": "Passed",
+          "Duration": 2.2224959,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.PlacementPreviewShowsProblemCellsAndLocalizedReasonsForConstructionAndMove",
+          "Status": "Passed",
+          "Duration": 2.1747994,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.PlacementPreviewStartsVisibleAndDragsInBothModesAndOrientations",
+          "Status": "Passed",
+          "Duration": 1.6669269,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

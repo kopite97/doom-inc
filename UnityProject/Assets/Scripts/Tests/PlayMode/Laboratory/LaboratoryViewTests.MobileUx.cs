@@ -57,8 +57,8 @@ namespace MobileGame.SpatialTests
             }
         }
 
-        [UnityTest]
-        public IEnumerator DeviceStatusTapUsesSelectionNormallyAndPreviewInBothEditingModesWithOnAndOff()
+        [UnityTest, Category("FacilityProgress")]
+        public IEnumerator DeviceProgressBarPassesTapsToGroundAndBothPlacementModes()
         {
             using (var input = new PointerScene())
             {
@@ -66,100 +66,52 @@ namespace MobileGame.SpatialTests
                 var view = input.View; var map = input.Map;
                 var source = AddInputFacility(view, "gatheringId", new Vector2Int(3, 5));
                 var moving = AddInputFacility(view, "storageId", new Vector2Int(10, 3));
-                yield return WaitFor(() => map.TryStatusScreenPoint(source.Id, out _), "The actual facility status did not become visible.");
-                Assert.That(map.TryStatusScreenPoint(source.Id, out var selectionPoint), Is.True);
-                yield return input.Tap(61, selectionPoint);
-                Assert.That(view.SelectedId, Is.EqualTo(source.Id), "An ordinary status tap must select its own facility.");
-                Assert.That(FacilityStatusCaption(view, source.Id).gameObject.activeInHierarchy, Is.True,
-                    "The first status tap opens that facility's caption.");
+                yield return SettleStatusLayout();
+                yield return input.Tap(61, map.CellScreenPoint(source.Placement.Origin));
+                Assert.That(view.SelectedId, Is.EqualTo(source.Id));
                 yield return ExpandSelectedIfNeeded(input);
-                yield return RevealVisibleButton(input, "Move");
-                var scroll = view.UiCanvas.GetComponentsInChildren<ScrollRect>().Single(s => s.name == "Controls");
-                scroll.StopMovement(); yield return null;
-                var selectedPanel = view.OpenedPanel; var expanded = view.DetailsExpanded;
-                var scrollBeforeToggle = scroll.content.anchoredPosition;
-                var progressBeforeToggle = FacilityStatusCaption(view, source.Id).transform.parent.Find("Track").gameObject.activeSelf;
-                var acceptedBeforeToggle = map.AcceptedTaps;
-                Assert.That(map.TryStatusScreenPoint(source.Id, out selectionPoint), Is.True);
-                yield return input.Tap(68, selectionPoint);
-                Assert.That(FacilityStatusCaption(view, source.Id).gameObject.activeSelf, Is.False,
-                    "A second tap on the selected facility hides only its status caption.");
-                Assert.That(FacilityStatusCaption(view, source.Id).transform.parent.Find("Icon").gameObject.activeInHierarchy, Is.True);
-                Assert.That(FacilityStatusCaption(view, source.Id).transform.parent.Find("Track").gameObject.activeSelf, Is.EqualTo(progressBeforeToggle),
-                    "Hiding caption text must retain any existing progress bar.");
-                Assert.That(view.SelectedId, Is.EqualTo(source.Id));
-                Assert.That(view.OpenedPanel, Is.EqualTo(selectedPanel));
-                Assert.That(view.DetailsExpanded, Is.EqualTo(expanded));
-                Assert.That(Vector2.Distance(scroll.content.anchoredPosition, scrollBeforeToggle), Is.LessThan(.1f),
-                    "A status caption toggle must not reset the selected panel's reading position.");
-                Assert.That(map.AcceptedTaps, Is.EqualTo(acceptedBeforeToggle + 1));
-                Assert.That(map.TryStatusScreenPoint(source.Id, out selectionPoint), Is.True);
-                yield return input.Tap(69, selectionPoint);
-                Assert.That(FacilityStatusCaption(view, source.Id).gameObject.activeInHierarchy, Is.True,
-                    "A third tap reopens the same caption.");
-                Assert.That(view.SelectedId, Is.EqualTo(source.Id));
-                Assert.That(view.OpenedPanel, Is.EqualTo(selectedPanel));
-                Assert.That(view.DetailsExpanded, Is.EqualTo(expanded));
-                Assert.That(Vector2.Distance(scroll.content.anchoredPosition, scrollBeforeToggle), Is.LessThan(.1f));
-                Assert.That(map.AcceptedTaps, Is.EqualTo(acceptedBeforeToggle + 2));
-
-                Assert.That(map.TryStatusScreenPoint(source.Id, out selectionPoint), Is.True);
-                yield return input.Tap(70, selectionPoint);
-                yield return ClickVisibleButton(input, "ZoomIn");
-                yield return ClickVisibleButton(input, "ZoomIn");
-                Assert.That(map.Zoom, Is.GreaterThanOrEqualTo(1.65f));
+                Assert.That(view.FindUiButton("Move").gameObject.activeInHierarchy, Is.True);
+                Assert.That(map.TryStatusScreenPoint(source.Id, out var point), Is.True);
+                Assert.That(map.TryScreenCell(point, out var ground), Is.True);
+                Assert.That(ground.y, Is.GreaterThanOrEqualTo(source.Placement.Origin.y + FacilityGeometry.GetSize((FacilityData)source.Definition, source.Placement.Rotation).y));
+                var accepted = map.AcceptedTaps;
+                yield return input.Tap(62, point);
+                Assert.That(map.AcceptedTaps, Is.EqualTo(accepted + 1));
+                Assert.That(view.SelectedId, Is.EqualTo(Guid.Empty), "A bar above empty ground must not select its facility.");
                 Assert.That(map.TryStatusScreenPoint(source.Id, out _), Is.True);
-                Assert.That(FacilityStatusCaption(view, source.Id).gameObject.activeSelf, Is.False,
-                    "Explicitly collapsed captions remain hidden at the near-zoom automatic-caption threshold.");
-                var rotatedSize = Screen.width > Screen.height ? new Vector2Int(720, 1280) : new Vector2Int(1280, 720);
-                using (new LaboratoryGameViewSize(rotatedSize.x, rotatedSize.y))
-                {
-                    yield return SettleScreenStateSize(rotatedSize);
-                    Assert.That(map.TryStatusScreenPoint(source.Id, out _), Is.True);
-                    Assert.That(FacilityStatusCaption(view, source.Id).gameObject.activeSelf, Is.False);
-                    Assert.That(view.SelectedId, Is.EqualTo(source.Id));
-                    Assert.That(view.OpenedPanel, Is.EqualTo(selectedPanel));
-                    Assert.That(view.DetailsExpanded, Is.EqualTo(expanded));
-                }
-                yield return null; yield return null;
-                yield return ClickVisibleButton(input, "FitMap");
-                Assert.That(map.TryStatusScreenPoint(source.Id, out selectionPoint), Is.True);
-                yield return input.Tap(71, selectionPoint);
-                Assert.That(FacilityStatusCaption(view, source.Id).gameObject.activeInHierarchy, Is.True);
-
+                map.ZoomBy(2); yield return SettleStatusLayout();
+                Assert.That(map.TryStatusScreenPoint(source.Id, out point), Is.True);
+                yield return input.Tap(64, point);
+                Assert.That(view.SelectedId, Is.EqualTo(Guid.Empty), "Repeated bar taps do not open a caption or select the source.");
+                var panBefore = map.CellScreenPoint(Vector2.zero); accepted = map.AcceptedTaps;
+                input.Touch(65, TouchPhase.Began, point); yield return null;
+                input.Touch(65, TouchPhase.Moved, point + Vector2.right * 40); yield return null;
+                input.Touch(65, TouchPhase.Ended, point + Vector2.right * 40); yield return SettleStatusLayout();
+                Assert.That(map.CellScreenPoint(Vector2.zero), Is.Not.EqualTo(panBefore), "A drag starting on the bar pans the map.");
+                Assert.That(map.AcceptedTaps, Is.EqualTo(accepted));
+                Assert.That(StatusMarkerRoots(view, false).Single(r => r.name.EndsWith(source.Id.ToString("N"))).rect.size, Is.EqualTo(new Vector2(36, 4)));
+                map.Fit(); yield return SettleStatusLayout();
                 foreach (var move in new[] { false, true })
-                foreach (var show in new[] { true, false })
+                foreach (var legacyShow in new[] { false, true })
                 {
-                    if (!view.ShowFacilityStatus) yield return ClickVisibleButton(input, "ToggleStatus");
+                    Assert.That(view.SetUiPreferences(legacyShow, false), Is.True);
                     if (move)
                     {
                         yield return ClickVisibleButton(input, "Select_" + moving.Id.ToString("N"));
                         yield return ClickVisibleButton(input, "Move");
                     }
                     else yield return ClickVisibleButton(input, "BuildStorage");
-                    Assert.That(view.IsEditing, Is.True);
-                    yield return WaitFor(() => map.TryStatusScreenPoint(source.Id, out _), "Status disappeared from the editing viewport.");
-                    Assert.That(map.TryStatusScreenPoint(source.Id, out var previewPoint), Is.True);
-                    Assert.That(map.TryScreenCell(previewPoint, out var expectedCell), Is.True,
-                        "This fixture deliberately taps a status label above an interior map cell.");
-                    if (!show)
-                    {
-                        yield return ClickVisibleButton(input, "ToggleStatus");
-                        Assert.That(view.ShowFacilityStatus, Is.False);
-                        Assert.That(map.VisibleStatusCount, Is.Zero);
-                    }
-                    var selected = view.SelectedId; var accepted = map.AcceptedTaps;
+                    yield return SettleStatusLayout();
+                    Assert.That(map.TryStatusScreenPoint(source.Id, out point), Is.True);
+                    Assert.That(map.TryScreenCell(point, out var expectedCell), Is.True);
+                    var selected = view.SelectedId; accepted = map.AcceptedTaps;
                     var original = moving.Placement;
-                    var captionBeforePreview = FacilityStatusCaption(view, source.Id).gameObject.activeSelf;
-                    yield return input.Tap(62, previewPoint);
-                    Assert.That(map.AcceptedTaps, Is.EqualTo(accepted + 1), "A status-area tap must dispatch one map gesture.");
-                    Assert.That(view.SelectedId, Is.EqualTo(selected), "Editing status taps must not select another facility.");
+                    yield return input.Tap(63, point);
+                    Assert.That(map.AcceptedTaps, Is.EqualTo(accepted + 1));
+                    Assert.That(view.SelectedId, Is.EqualTo(selected));
                     Assert.That(view.IsEditing, Is.True);
-                    Assert.That(move ? view.Simulation.Map.Commands.Edit.Origin : view.Simulation.ConstructionOrigin,
-                        Is.EqualTo(expectedCell), "ON/OFF must not change the preview coordinate chosen by this screen tap.");
+                    Assert.That(move ? view.Simulation.Map.Commands.Edit.Origin : view.Simulation.ConstructionOrigin, Is.EqualTo(expectedCell));
                     Assert.That(view.Simulation.Registry.Things.Count(t => t.Definition.Kind == ThingKind.Facility), Is.EqualTo(2));
-                    Assert.That(FacilityStatusCaption(view, source.Id).gameObject.activeSelf, Is.EqualTo(captionBeforePreview),
-                        "A status-area tap during placement changes the draft, never the caption's expansion state.");
                     yield return ClickVisibleButton(input, "Cancel");
                     Assert.That(moving.Placement.Origin, Is.EqualTo(original.Origin));
                     Assert.That(moving.Placement.Rotation, Is.EqualTo(original.Rotation));
@@ -271,10 +223,12 @@ namespace MobileGame.SpatialTests
                 var gameBytes = File.ReadAllText(view.SavePath);
                 var dataHash = GameDataStore.Instance.Catalog.Settings.CompatibilityHash;
                 yield return ClickVisibleButton(input, "ClosePanel");
-                yield return ClickVisibleButton(input, "ToggleStatus");
+                Assert.That(view.SetUiPreferences(false, false), Is.True);
+                Assert.That(view.FindUiButton("ToggleStatus"), Is.Null);
                 Assert.That(view.ShowFacilityStatus, Is.False);
                 yield return ClickVisibleButton(input, "TextPreference");
                 Assert.That(view.LargeText, Is.True);
+                Assert.That(view.GetComponentsInChildren<SettingsPopup>().Single().GetComponentsInChildren<UiButton>().Any(b => b.name == "Status"), Is.False);
                 var preferencesPath = UiSettingsStore.PathForGameSave(view.SavePath);
                 Assert.That(File.Exists(preferencesPath), Is.True);
                 Assert.That(File.ReadAllText(view.SavePath), Is.EqualTo(gameBytes), "Display settings must not rewrite the gameplay slot.");
@@ -288,7 +242,9 @@ namespace MobileGame.SpatialTests
                 yield return input.Reopen();
                 view = input.View;
                 Assert.That(view.ShowFacilityStatus, Is.False); Assert.That(view.LargeText, Is.True);
-                Assert.That(input.Map.VisibleStatusCount, Is.Zero);
+                AddInputFacility(view, "gatheringId", new Vector2Int(3, 3));
+                yield return SettleStatusLayout();
+                Assert.That(input.Map.VisibleStatusCount, Is.EqualTo(1), "Legacy OFF survives storage but must not hide new bars.");
                 Assert.That(GameDataStore.Instance.Catalog.Settings.CompatibilityHash, Is.EqualTo(dataHash));
                 yield return ClickVisibleButton(input, "GameMenu");
                 Assert.That(view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "GameTitle").fontSize,
@@ -328,7 +284,7 @@ namespace MobileGame.SpatialTests
                 {
                     yield return SettleScreenStateSize(size);
                     Assert.That(view.LargeText, Is.True);
-                    foreach (var key in new[] { "ZoomOut", "ZoomIn", "FitMap", "ToggleStatus", "NavBuild", "NavCreatures", "NavInvasion", "GameMenu" })
+                    foreach (var key in new[] { "ZoomOut", "ZoomIn", "FitMap", "NavBuild", "NavCreatures", "NavInvasion", "GameMenu" })
                     {
                         var button = view.FindUiButton(key);
                         AssertScreenStateButtonReachable(button);
@@ -337,7 +293,7 @@ namespace MobileGame.SpatialTests
                         Assert.That(rect.rect.height, Is.GreaterThanOrEqualTo(view.MinimumTouchSize - .1f), key);
                         var icon = button.GetComponentsInChildren<Image>().SingleOrDefault(image => image.name == "Icon");
                         Assert.That(icon != null && icon.sprite != null, Is.True, "Icon reference missing: " + key);
-                        if (key == "ZoomOut" || key == "ZoomIn" || key == "FitMap" || key == "ToggleStatus")
+                        if (key == "ZoomOut" || key == "ZoomIn" || key == "FitMap")
                         {
                             var label = button.GetComponentInChildren<TextMeshProUGUI>(true);
                             Assert.That(label, Is.Not.Null);
@@ -388,9 +344,6 @@ namespace MobileGame.SpatialTests
             if (details != null && details.gameObject.activeInHierarchy) yield return ClickVisibleButton(input, "Details");
         }
 
-        private static TextMeshProUGUI FacilityStatusCaption(LaboratoryView view, Guid id) => view.MapViewport.GetComponentsInChildren<TextMeshProUGUI>(true)
-            .Single(text => text.name == "Caption" && text.transform.parent.name == "Temp_FacilityStatus_" + id.ToString("N"));
-
         private static void AssertMobileCaptionFits(LaboratoryView view, UiButton button)
         {
             Assert.That(button != null && button.gameObject.activeInHierarchy, Is.True, "Caption checks require a visible button.");
@@ -405,7 +358,7 @@ namespace MobileGame.SpatialTests
             var camera = view.UiCanvas.GetComponentsInChildren<RectTransform>().Single(rect => rect.name == "CameraTools");
             var cameraBounds = MobileScreenBounds(camera); var mapBounds = MobileScreenBounds(view.MapViewport);
             Assert.That(cameraBounds.Overlaps(mapBounds), Is.False, "Camera controls must not cover the gameplay viewport.");
-            var keys = new[] { "ZoomOut", "ZoomIn", "FitMap", "ToggleStatus" };
+            var keys = new[] { "ZoomOut", "ZoomIn", "FitMap" };
             var bounds = new Rect[keys.Length];
             for (var i = 0; i < keys.Length; i++)
             {

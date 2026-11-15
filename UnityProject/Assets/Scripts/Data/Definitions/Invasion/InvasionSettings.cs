@@ -34,6 +34,10 @@ namespace MobileGame.Foundation
         public long ScoreThrough(long rounds) => checked(rounds * smallScore + (rounds / majorEvery) * (majorScore - smallScore));
         public void Validate()
         {
+            if (detailedUntilScore > targetScore)
+                throw new ArgumentException("invasion/settings.invasion: targetScore (목표 점수)=" + targetScore
+                    + " must be >= detailedUntilScore (보고 기준 점수, 읽기 전용)=" + detailedUntilScore
+                    + ". 보고 기준 점수보다 목표 점수를 낮출 수 없습니다.");
             if (double.IsNaN(activitySeconds) || double.IsInfinity(activitySeconds) || activitySeconds < 0.01 ||
                 smallScore <= 0 || majorScore < smallScore || majorEvery < 2 || targetScore <= 0 ||
                 detailedUntilScore < 0 || detailedUntilScore > targetScore || reportLimit < 1 || reportLimit > 1000)

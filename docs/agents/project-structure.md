@@ -26,7 +26,7 @@
 | --- | --- |
 | `UnityProject/` | Unity에서 여는 프로젝트. 게임 에셋과 프로젝트 설정 |
 | `docs/game-design/` | 승인된 기획. 기존 숫자 분류와 README MAP 유지 |
-| `docs/agents/` | 작업 지침. 한 문서에 한 주제를 두고 150줄 이내 유지 |
+| `docs/agents/` | 작업 지침. 한 문서에 한 주제를 두고 150줄 이내 유지. 외부 에셋별 독립 지침은 `external-assets/`에 모으고 [외부 연출 에셋 MAP](presentation-effects.md)에서 연결 |
 | `docs/plans/` | 작업별 PLAN·상태·검증 결과. README는 PLAN 목록과 status만 표시 |
 | `docs/decisions/` | 기술 선택·이유·대체 관계 |
 | `scripts/` | 저장소 문서 검사·개발 도구 자동화. Unity C# 코드와 구분 |
