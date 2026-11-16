@@ -135,13 +135,20 @@ namespace MobileGame.SpatialTests
             return text;
         }
 
-        [UnityTest, Category("MovementPresentation")]
+        [UnityTest, Category("MovementPresentation"), Category("BatchArtIntegration")]
         public IEnumerator MovingFallbackAndPublishedSelectionFollowViewportAndLifecycle()
         {
             using (var input = new PointerScene())
             {
                 yield return input.Load(); var view = input.View; var map = input.Map;
                 view.SetUiPreferences(false, false);
+                // All creature types now have supplied art. Explicitly remove the test view's art binding
+                // to exercise fallback behavior without relying on a particular unfinished species.
+                var assets = view.UiAssets;
+                view.ConfigureUiAssets(new LaboratoryUiAssets(assets.Font,
+                    Enum.GetValues(typeof(LaboratoryIcon)).Cast<LaboratoryIcon>().Select(assets.GetIcon).ToArray(),
+                    assets.FontLicense, assets.ReleaseSound, Enumerable.Range(0,4).Select(assets.GetFloorTile).ToArray(),
+                    null, assets.WorldMaterial, assets.SelectionMaterial, assets.Skin));
                 var definition = GameDataStore.Instance.Catalog.Selected<CreatureData>("supportId");
                 var worker = view.Simulation.Registry.Create(definition);
                 Assert.That(view.Simulation.Map.Commands.Place(worker.Id, new Vector2Int(7, 4)).Succeeded, Is.True);

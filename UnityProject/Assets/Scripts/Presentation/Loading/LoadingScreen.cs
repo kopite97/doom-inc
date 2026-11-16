@@ -10,6 +10,10 @@ namespace MobileGame.Presentation
 
     public sealed class LoadingScreen : MonoBehaviour
     {
+        [SerializeField] private Sprite[] decorationFrames;
+        [SerializeField] private MobileGame.Foundation.UiSkinAssets skin;
+        private Image decoration;
+        private float animationTime;
         private UiCanvas screen;
         private TextMeshProUGUI title;
         private TextMeshProUGUI percent;
@@ -57,7 +61,7 @@ namespace MobileGame.Presentation
         }
         private void Present(LoadingScreenKind kind, Action retryAction, Action recoveryAction)
         {
-            Ensure(); Kind = kind; retry = retryAction; recover = recoveryAction;
+            Ensure(); animationTime = 0; Kind = kind; retry = retryAction; recover = recoveryAction;
             track.gameObject.SetActive(false);
             percent.gameObject.SetActive(false);
             Visible = true;
@@ -90,12 +94,14 @@ namespace MobileGame.Presentation
         private void Ensure()
         {
             if (screen != null) return;
-            screen = new UiCanvas(transform, "Temp_LoadingCanvas", 100);
+            screen = new UiCanvas(transform, "LoadingCanvas", 100, skin);
             screen.SetVisible(false);
             // The shield also covers areas outside the safe area.
             var shield = UiWidgets.Panel("InputShield", screen.Canvas.transform, new Color32(13, 24, 40, 255)).rectTransform;
             shield.anchorMin = Vector2.zero; shield.anchorMax = Vector2.one; shield.offsetMin = shield.offsetMax = Vector2.zero;
             shield.SetAsFirstSibling();
+            decoration = UiWidgets.Panel("LoadingDecoration", screen.SafeRoot, Color.white);
+            decoration.raycastTarget = false; decoration.preserveAspect = true;
             title = UiWidgets.Label("LoadingTitle", screen.SafeRoot, 24);
             title.color = new Color32(255, 244, 218, 255);
             wave = title.gameObject.AddComponent<LoadingTextWave>();
@@ -114,7 +120,7 @@ namespace MobileGame.Presentation
             scroll = UiWidgets.Scroll("LoadingContent", screen.SafeRoot, out var content);
             rows = new UiList(content, () => screen.LayoutEpoch);
         }
-        private void LateUpdate() { if (Visible) Render(); }
+        private void LateUpdate() { if (Visible) { animationTime += Time.unscaledDeltaTime; Render(); } }
         private void Render()
         {
             screen.RefreshLayout();
@@ -127,6 +133,13 @@ namespace MobileGame.Presentation
             var width = loading ? Mathf.Min(520, size.x - 48) : size.x - 40;
             var left = (size.x - width) * 0.5f;
             var top = loading ? Mathf.Max(20, size.y * 0.45f - 48) : 20;
+            var decorationSize = Mathf.Min(64, top - 12);
+            decoration.enabled = loading && decorationSize >= 32 && decorationFrames != null && decorationFrames.Length > 0;
+            if (decoration.enabled)
+            {
+                decoration.sprite = decorationFrames[(int)(animationTime / .15f) % decorationFrames.Length];
+                UiWidgets.Place(decoration.rectTransform, (size.x - decorationSize) / 2, top - 12 - decorationSize, decorationSize, decorationSize);
+            }
             title.alignment = loading ? TextAlignmentOptions.MidlineLeft : TextAlignmentOptions.TopLeft;
             UiWidgets.Place(title.rectTransform, left, top, loading ? width - 88 : width, loading ? 64 : 90);
             UiWidgets.Place(percent.rectTransform, left + width - 84, top, 84, 64);

@@ -41,6 +41,11 @@ namespace MobileGame.Presentation
             if (heading == null || scroll == null || confirm == null || cancel == null)
                 throw new InvalidOperationException("Popup prefab bindings are missing.");
             if (!Accepts(request)) throw new InvalidOperationException("Popup request type does not match its prefab.");
+            var skin = UiWidgets.Skin(transform);
+            UiWidgets.ApplySkin(GetComponent<UnityEngine.UI.Image>(), skin?.panel);
+            UiWidgets.ApplySkin(scroll.GetComponent<UnityEngine.UI.Image>(), skin?.panel);
+            UiWidgets.ApplySkin(confirm.image, skin?.button); UiWidgets.ApplySkin(cancel.image, skin?.button);
+            UiScrollIndicator.Attach(scroll, skin?.scrollThumb);
             Host = host; Request = request; choose = choice; group = GetComponent<CanvasGroup>();
             heading.GetComponent<UiText>().Initialize(26);
             confirm.GetComponentInChildren<UiText>().Initialize(18);

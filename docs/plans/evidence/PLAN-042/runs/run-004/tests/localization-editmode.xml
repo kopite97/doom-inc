@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="13" result="Passed" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 16:04:21Z" end-time="2026-11-16 16:04:26Z" duration="5.11924">
+  <test-suite type="TestSuite" id="1576" name="UnityProject" fullname="UnityProject" runstate="Runnable" testcasecount="466" result="Passed" start-time="2026-11-16 16:04:21Z" end-time="2026-11-16 16:04:26Z" duration="5.119240" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1558" name="MobileGame.Foundation.EditMode.Tests.dll" fullname="C:/Dev/Unity/Doom_Inc/UnityProject/Library/ScriptAssemblies/MobileGame.Foundation.EditMode.Tests.dll" runstate="Runnable" testcasecount="464" result="Passed" start-time="2026-11-16 16:04:21Z" end-time="2026-11-16 16:04:26Z" duration="5.112407" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="14084" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1559" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="464" result="Passed" start-time="2026-11-16 16:04:21Z" end-time="2026-11-16 16:04:26Z" duration="5.112105" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1560" name="Foundation" fullname="MobileGame.Foundation" runstate="Runnable" testcasecount="464" result="Passed" start-time="2026-11-16 16:04:21Z" end-time="2026-11-16 16:04:26Z" duration="5.112002" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1561" name="Tests" fullname="MobileGame.Foundation.Tests" runstate="Runnable" testcasecount="464" result="Passed" start-time="2026-11-16 16:04:21Z" end-time="2026-11-16 16:04:26Z" duration="5.111825" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1287" name="LocalizationCsvTests" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-11-16 16:04:21Z" end-time="2026-11-16 16:04:26Z" duration="5.110852" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1288" name="CsvRoundTripPreservesBomQuotesNewlinesContextIdsAndSmartContract" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.CsvRoundTripPreservesBomQuotesNewlinesContextIdsAndSmartContract" methodname="CsvRoundTripPreservesBomQuotesNewlinesContextIdsAndSmartContract" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="560145407" result="Passed" start-time="2026-11-16 16:04:21Z" end-time="2026-11-16 16:04:21Z" duration="0.029604" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1300" name="FailedImportRestoresPreviousEditorPlayModeSelection" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.FailedImportRestoresPreviousEditorPlayModeSelection" methodname="FailedImportRestoresPreviousEditorPlayModeSelection" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="1706023061" result="Passed" start-time="2026-11-16 16:04:21Z" end-time="2026-11-16 16:04:21Z" duration="0.412561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1301" name="ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent" methodname="ImportFailureRestoresExistingAssetsAndRepeatImportHasStableContent" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="843916586" result="Passed" start-time="2026-11-16 16:04:21Z" end-time="2026-11-16 16:04:22Z" duration="1.305961" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Localization import complete. 259 entries; no content build executed.
+]]></output>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1296" name="InvalidInputIsRejectedWithTopicAndKey" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 16:04:22Z" end-time="2026-11-16 16:04:22Z" duration="0.018507" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1289" name="InvalidInputIsRejectedWithTopicAndKey(&quot;key&quot;)" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(&quot;key&quot;)" methodname="InvalidInputIsRejectedWithTopicAndKey" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="997786500" result="Passed" start-time="2026-11-16 16:04:22Z" end-time="2026-11-16 16:04:22Z" duration="0.002048" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1290" name="InvalidInputIsRejectedWithTopicAndKey(&quot;id&quot;)" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(&quot;id&quot;)" methodname="InvalidInputIsRejectedWithTopicAndKey" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="1019447467" result="Passed" start-time="2026-11-16 16:04:22Z" end-time="2026-11-16 16:04:22Z" duration="0.000133" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1291" name="InvalidInputIsRejectedWithTopicAndKey(&quot;empty&quot;)" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(&quot;empty&quot;)" methodname="InvalidInputIsRejectedWithTopicAndKey" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="228510256" result="Passed" start-time="2026-11-16 16:04:22Z" end-time="2026-11-16 16:04:22Z" duration="0.000080" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1292" name="InvalidInputIsRejectedWithTopicAndKey(&quot;unused&quot;)" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(&quot;unused&quot;)" methodname="InvalidInputIsRejectedWithTopicAndKey" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="1802123160" result="Passed" start-time="2026-11-16 16:04:22Z" end-time="2026-11-16 16:04:22Z" duration="0.000097" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1293" name="InvalidInputIsRejectedWithTopicAndKey(&quot;unknown&quot;)" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(&quot;unknown&quot;)" methodname="InvalidInputIsRejectedWithTopicAndKey" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="1089278695" result="Passed" start-time="2026-11-16 16:04:22Z" end-time="2026-11-16 16:04:22Z" duration="0.000078" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1294" name="InvalidInputIsRejectedWithTopicAndKey(&quot;format&quot;)" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(&quot;format&quot;)" methodname="InvalidInputIsRejectedWithTopicAndKey" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="1711783144" result="Passed" start-time="2026-11-16 16:04:22Z" end-time="2026-11-16 16:04:22Z" duration="0.001273" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1295" name="InvalidInputIsRejectedWithTopicAndKey(&quot;review&quot;)" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.InvalidInputIsRejectedWithTopicAndKey(&quot;review&quot;)" methodname="InvalidInputIsRejectedWithTopicAndKey" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="1410082781" result="Passed" start-time="2026-11-16 16:04:22Z" end-time="2026-11-16 16:04:22Z" duration="0.000202" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1299" name="KeyMaintenancePreservesIdAndDetectsManualTableDrift" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.KeyMaintenancePreservesIdAndDetectsManualTableDrift" methodname="KeyMaintenancePreservesIdAndDetectsManualTableDrift" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="745598237" result="Passed" start-time="2026-11-16 16:04:22Z" end-time="2026-11-16 16:04:26Z" duration="3.320885" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Localization import complete. 260 entries; no content build executed.
+Localization import complete. 260 entries; no content build executed.
+Localization import complete. 260 entries; no content build executed.
+Localization import complete. 259 entries; no content build executed.
+]]></output>
+              </test-case>
+              <test-case id="1298" name="ReferencedKeyDeletionIsBlockedBeforeImport" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.ReferencedKeyDeletionIsBlockedBeforeImport" methodname="ReferencedKeyDeletionIsBlockedBeforeImport" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="1793484102" result="Passed" start-time="2026-11-16 16:04:26Z" end-time="2026-11-16 16:04:26Z" duration="0.014298" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1297" name="ThirdLocaleAndExplicitReviewNeedNoColumnCountChange" fullname="MobileGame.Foundation.Tests.LocalizationCsvTests.ThirdLocaleAndExplicitReviewNeedNoColumnCountChange" methodname="ThirdLocaleAndExplicitReviewNeedNoColumnCountChange" classname="MobileGame.Foundation.Tests.LocalizationCsvTests" runstate="Runnable" seed="1746722483" result="Passed" start-time="2026-11-16 16:04:26Z" end-time="2026-11-16 16:04:26Z" duration="0.002052" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Dev\Unity\Doom_Inc\docs\plans\evidence\PLAN-042\runs\run-004\tests\localization-editmode.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

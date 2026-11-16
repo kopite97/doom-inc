@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Failed(Child)" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 16:01:01Z" end-time="2026-11-16 16:01:10Z" duration="9.8299768">
+  <test-suite type="TestSuite" id="1130" name="UnityProject" fullname="UnityProject" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-11-16 16:01:01Z" end-time="2026-11-16 16:01:10Z" duration="9.829977" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1123" name="MobileGame.Spatial.PlayMode.Tests.dll" fullname="C:/Dev/Unity/Doom_Inc/UnityProject/Library/ScriptAssemblies/MobileGame.Spatial.PlayMode.Tests.dll" runstate="Runnable" testcasecount="109" result="Failed" site="Child" start-time="2026-11-16 16:01:01Z" end-time="2026-11-16 16:01:10Z" duration="9.822418" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="14084" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1124" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="109" result="Failed" site="Child" start-time="2026-11-16 16:01:01Z" end-time="2026-11-16 16:01:10Z" duration="9.820327" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1125" name="SpatialTests" fullname="MobileGame.SpatialTests" runstate="Runnable" testcasecount="109" result="Failed" site="Child" start-time="2026-11-16 16:01:01Z" end-time="2026-11-16 16:01:10Z" duration="9.818610" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1006" name="AppSceneFlowTests" fullname="MobileGame.SpatialTests.AppSceneFlowTests" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-11-16 16:01:01Z" end-time="2026-11-16 16:01:05Z" duration="4.153418" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1007" name="BatchArtTitleAndLoadingFramesAdvanceWithoutDrivingGameState" fullname="MobileGame.SpatialTests.AppSceneFlowTests.BatchArtTitleAndLoadingFramesAdvanceWithoutDrivingGameState" methodname="BatchArtTitleAndLoadingFramesAdvanceWithoutDrivingGameState" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="967594320" result="Passed" start-time="2026-11-16 16:01:01Z" end-time="2026-11-16 16:01:03Z" duration="2.008274" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="TitleConfirmationAndLoadingFitBothOrientationsWithLargeText" fullname="MobileGame.SpatialTests.AppSceneFlowTests.TitleConfirmationAndLoadingFitBothOrientationsWithLargeText" methodname="TitleConfirmationAndLoadingFitBothOrientationsWithLargeText" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="1635282215" result="Passed" start-time="2026-11-16 16:01:03Z" end-time="2026-11-16 16:01:05Z" duration="2.053543" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1044" name="LaboratoryViewTests" fullname="MobileGame.SpatialTests.LaboratoryViewTests" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" testcasecount="68" result="Failed" site="Child" start-time="2026-11-16 16:01:05Z" end-time="2026-11-16 16:01:10Z" duration="5.656314" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1052" name="BatchArtEffectSlotsHaveBoundedLifetimeAndNoCompletionSideEffects" fullname="MobileGame.SpatialTests.LaboratoryViewTests.BatchArtEffectSlotsHaveBoundedLifetimeAndNoCompletionSideEffects" methodname="BatchArtEffectSlotsHaveBoundedLifetimeAndNoCompletionSideEffects" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="180285339" result="Passed" start-time="2026-11-16 16:01:05Z" end-time="2026-11-16 16:01:05Z" duration="0.617750" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="BatchArtNonWorkersBirthReleasePauseRestoreAndBoundary" fullname="MobileGame.SpatialTests.LaboratoryViewTests.BatchArtNonWorkersBirthReleasePauseRestoreAndBoundary" methodname="BatchArtNonWorkersBirthReleasePauseRestoreAndBoundary" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="763487560" result="Failed" start-time="2026-11-16 16:01:05Z" end-time="2026-11-16 16:01:09Z" duration="3.357776" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at MobileGame.SpatialTests.LaboratoryViewTests+<BatchArtNonWorkersBirthReleasePauseRestoreAndBoundary>d__11.MoveNext () [0x0081e] in C:\Dev\Unity\Doom_Inc\UnityProject\Assets\Scripts\Tests\PlayMode\Laboratory\LaboratoryViewTests.BatchArt.cs:60
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1102" name="EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible" fullname="MobileGame.SpatialTests.LaboratoryViewTests.EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible" methodname="EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="1884640778" result="Passed" start-time="2026-11-16 16:01:09Z" end-time="2026-11-16 16:01:10Z" duration="0.847866" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1081" name="MovingFallbackAndPublishedSelectionFollowViewportAndLifecycle" fullname="MobileGame.SpatialTests.LaboratoryViewTests.MovingFallbackAndPublishedSelectionFollowViewportAndLifecycle" methodname="MovingFallbackAndPublishedSelectionFollowViewportAndLifecycle" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="201367169" result="Passed" start-time="2026-11-16 16:01:10Z" end-time="2026-11-16 16:01:10Z" duration="0.826693" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="MovementPresentation" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/nellu/AppData/LocalLow/DefaultCompany/UnityProject\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

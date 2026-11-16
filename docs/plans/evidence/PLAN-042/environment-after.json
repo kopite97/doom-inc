@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "return new { playing=UnityEditor.EditorApplication.isPlaying, background=UnityEngine.Application.runInBackground, settingsBackground=UnityEditor.PlayerSettings.runInBackground, scenes=UnityEditor.SceneManagement.EditorSceneManager.GetSceneManagerSetup().Select(s=>new{s.path,s.isLoaded,s.isActive}), reload=UnityEditor.EditorSettings.enterPlayModeOptions.ToString(),reloadEnabled=UnityEditor.EditorSettings.enterPlayModeOptionsEnabled, sourceHash=MobileGame.Foundation.Editor.GameDataAssets.LoadCatalog().SourceHash };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "playing": false,
+        "background": false,
+        "settingsBackground": false,
+        "scenes": [
+          {
+            "path": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+            "isLoaded": true,
+            "isActive": true
+          }
+        ],
+        "reload": "DisableDomainReload",
+        "reloadEnabled": true,
+        "sourceHash": "8232cfe3f4f538c86dae67282c16782259b8aa827cb620f9bf9487e1972c6609"
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

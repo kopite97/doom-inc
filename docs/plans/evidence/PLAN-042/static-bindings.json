@@ -1,0 +1,1240 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var assets=UnityEditor.AssetDatabase.FindAssets(\"t:Texture2D\",new[]{\"Assets/Sprites/Creature/Invader\",\"Assets/Sprites/Creature/Raider\",\"Assets/Sprites/World/LaboratoryBoundary\",\"Assets/Sprites/UI/Frames\",\"Assets/Sprites/UI/Title\",\"Assets/Sprites/UI/Loading\",\"Assets/Sprites/UI/Ending\",\"Assets/Sprites/VFX\"}).Select(UnityEditor.AssetDatabase.GUIDToAssetPath).Where(p=>!p.Contains(\"Temp_\")).Select(p=>new{path=p,guid=UnityEditor.AssetDatabase.AssetPathToGUID(p),sprites=UnityEditor.AssetDatabase.LoadAllAssetsAtPath(p).OfType<UnityEngine.Sprite>().Select(s=>new{s.name,rect=s.rect.ToString(),pivot=s.pivot.ToString(),s.pixelsPerUnit}).ToArray()}); var config=UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Presentation.AppConfiguration>(\"Assets/SO/Application/AppConfiguration.asset\"); return new{assets=assets.ToArray(),skin=config.uiAssets.Skin!=null,icons=System.Enum.GetValues(typeof(MobileGame.Presentation.LaboratoryIcon)).Cast<MobileGame.Presentation.LaboratoryIcon>().Where(i=>i!=MobileGame.Presentation.LaboratoryIcon.None).Select(i=>new{icon=i.ToString(),path=UnityEditor.AssetDatabase.GetAssetPath(config.uiAssets.GetIcon(i))}),background=UnityEngine.Application.runInBackground};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "assets": [
+          {
+            "path": "Assets/Sprites/Creature/Invader/Invader.png",
+            "guid": "6dcd01312c3e04f45a6b08093e13e61f",
+            "sprites": [
+              {
+                "name": "Invader_Idle_Down_01",
+                "rect": "(x:0.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Down_02",
+                "rect": "(x:64.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Down_03",
+                "rect": "(x:128.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Down_04",
+                "rect": "(x:192.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Left_01",
+                "rect": "(x:0.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Left_02",
+                "rect": "(x:64.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Left_03",
+                "rect": "(x:128.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Left_04",
+                "rect": "(x:192.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Right_01",
+                "rect": "(x:0.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Right_02",
+                "rect": "(x:64.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Right_03",
+                "rect": "(x:128.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Right_04",
+                "rect": "(x:192.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Up_01",
+                "rect": "(x:0.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Up_02",
+                "rect": "(x:64.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Up_03",
+                "rect": "(x:128.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Idle_Up_04",
+                "rect": "(x:192.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Down_01",
+                "rect": "(x:256.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Down_02",
+                "rect": "(x:320.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Down_03",
+                "rect": "(x:384.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Down_04",
+                "rect": "(x:448.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Down_05",
+                "rect": "(x:512.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Down_06",
+                "rect": "(x:576.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Left_01",
+                "rect": "(x:256.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Left_02",
+                "rect": "(x:320.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Left_03",
+                "rect": "(x:384.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Left_04",
+                "rect": "(x:448.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Left_05",
+                "rect": "(x:512.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Left_06",
+                "rect": "(x:576.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Right_01",
+                "rect": "(x:256.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Right_02",
+                "rect": "(x:320.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Right_03",
+                "rect": "(x:384.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Right_04",
+                "rect": "(x:448.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Right_05",
+                "rect": "(x:512.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Right_06",
+                "rect": "(x:576.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Up_01",
+                "rect": "(x:256.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Up_02",
+                "rect": "(x:320.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Up_03",
+                "rect": "(x:384.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Up_04",
+                "rect": "(x:448.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Up_05",
+                "rect": "(x:512.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Invader_Move_Up_06",
+                "rect": "(x:576.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/Creature/Raider/Raider.png",
+            "guid": "b9efe554049225349ba919123a28854d",
+            "sprites": [
+              {
+                "name": "Raider_Idle_Down_01",
+                "rect": "(x:0.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Down_02",
+                "rect": "(x:64.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Down_03",
+                "rect": "(x:128.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Down_04",
+                "rect": "(x:192.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Left_01",
+                "rect": "(x:0.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Left_02",
+                "rect": "(x:64.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Left_03",
+                "rect": "(x:128.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Left_04",
+                "rect": "(x:192.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Right_01",
+                "rect": "(x:0.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Right_02",
+                "rect": "(x:64.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Right_03",
+                "rect": "(x:128.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Right_04",
+                "rect": "(x:192.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Up_01",
+                "rect": "(x:0.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Up_02",
+                "rect": "(x:64.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Up_03",
+                "rect": "(x:128.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Idle_Up_04",
+                "rect": "(x:192.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Down_01",
+                "rect": "(x:256.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Down_02",
+                "rect": "(x:320.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Down_03",
+                "rect": "(x:384.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Down_04",
+                "rect": "(x:448.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Down_05",
+                "rect": "(x:512.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Down_06",
+                "rect": "(x:576.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Left_01",
+                "rect": "(x:256.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Left_02",
+                "rect": "(x:320.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Left_03",
+                "rect": "(x:384.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Left_04",
+                "rect": "(x:448.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Left_05",
+                "rect": "(x:512.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Left_06",
+                "rect": "(x:576.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Right_01",
+                "rect": "(x:256.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Right_02",
+                "rect": "(x:320.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Right_03",
+                "rect": "(x:384.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Right_04",
+                "rect": "(x:448.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Right_05",
+                "rect": "(x:512.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Right_06",
+                "rect": "(x:576.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Up_01",
+                "rect": "(x:256.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Up_02",
+                "rect": "(x:320.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Up_03",
+                "rect": "(x:384.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Up_04",
+                "rect": "(x:448.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Up_05",
+                "rect": "(x:512.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "Raider_Move_Up_06",
+                "rect": "(x:576.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 10.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/World/LaboratoryBoundary/LaboratoryBoundary.png",
+            "guid": "bd93cb9775e467746902a01ccdfc16c9",
+            "sprites": [
+              {
+                "name": "LaboratoryBoundary_Bottom",
+                "rect": "(x:128.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LaboratoryBoundary_BottomLeft",
+                "rect": "(x:192.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LaboratoryBoundary_BottomRight",
+                "rect": "(x:128.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LaboratoryBoundary_Left",
+                "rect": "(x:192.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LaboratoryBoundary_Right",
+                "rect": "(x:64.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LaboratoryBoundary_Top",
+                "rect": "(x:0.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LaboratoryBoundary_TopLeft",
+                "rect": "(x:0.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LaboratoryBoundary_TopRight",
+                "rect": "(x:64.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/UI/Frames/ButtonFrame.png",
+            "guid": "84ed511567aab3243bd63545a45bcc39",
+            "sprites": [
+              {
+                "name": "ButtonFrame",
+                "rect": "(x:0.00, y:0.00, width:32.00, height:32.00)",
+                "pivot": "(16.00, 16.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/UI/Frames/DestructionTrack.png",
+            "guid": "7b8ffb0ded5348d4b8a53fd1d849c912",
+            "sprites": [
+              {
+                "name": "DestructionTrack",
+                "rect": "(x:0.00, y:0.00, width:16.00, height:16.00)",
+                "pivot": "(8.00, 8.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/UI/Frames/HudFrame.png",
+            "guid": "d2243eaf658026745b9044e10490909b",
+            "sprites": [
+              {
+                "name": "HudFrame",
+                "rect": "(x:0.00, y:0.00, width:32.00, height:32.00)",
+                "pivot": "(16.00, 16.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/UI/Frames/PanelFrame.png",
+            "guid": "88fd9774e87b67042bb5cbeeb42acb98",
+            "sprites": [
+              {
+                "name": "PanelFrame",
+                "rect": "(x:0.00, y:0.00, width:32.00, height:32.00)",
+                "pivot": "(16.00, 16.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/UI/Frames/ScrollThumb.png",
+            "guid": "7972fdd4c68a3a649810bb6fcebfdf07",
+            "sprites": [
+              {
+                "name": "ScrollThumb",
+                "rect": "(x:0.00, y:0.00, width:32.00, height:32.00)",
+                "pivot": "(16.00, 16.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/UI/Frames/SelectionFrame.png",
+            "guid": "fd71bb55055c5e546b5625286ab64cc0",
+            "sprites": [
+              {
+                "name": "SelectionFrame",
+                "rect": "(x:0.00, y:0.00, width:32.00, height:32.00)",
+                "pivot": "(16.00, 16.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/UI/Title/TitleLandscape.png",
+            "guid": "b66e4b82dacc33740b9b5f3bf833022d",
+            "sprites": [
+              {
+                "name": "TitleLandscape_Ambient_01",
+                "rect": "(x:0.00, y:1080.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_02",
+                "rect": "(x:640.00, y:1080.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_03",
+                "rect": "(x:1280.00, y:1080.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_04",
+                "rect": "(x:1920.00, y:1080.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_05",
+                "rect": "(x:0.00, y:720.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_06",
+                "rect": "(x:640.00, y:720.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_07",
+                "rect": "(x:1280.00, y:720.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_08",
+                "rect": "(x:1920.00, y:720.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_09",
+                "rect": "(x:0.00, y:360.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_10",
+                "rect": "(x:640.00, y:360.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_11",
+                "rect": "(x:1280.00, y:360.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_12",
+                "rect": "(x:1920.00, y:360.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_13",
+                "rect": "(x:0.00, y:0.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_14",
+                "rect": "(x:640.00, y:0.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_15",
+                "rect": "(x:1280.00, y:0.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitleLandscape_Ambient_16",
+                "rect": "(x:1920.00, y:0.00, width:640.00, height:360.00)",
+                "pivot": "(320.00, 180.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/UI/Title/TitlePortrait.png",
+            "guid": "35080bbdadffb7445b3f423e4a68172e",
+            "sprites": [
+              {
+                "name": "TitlePortrait_Ambient_01",
+                "rect": "(x:0.00, y:1920.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_02",
+                "rect": "(x:360.00, y:1920.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_03",
+                "rect": "(x:720.00, y:1920.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_04",
+                "rect": "(x:1080.00, y:1920.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_05",
+                "rect": "(x:0.00, y:1280.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_06",
+                "rect": "(x:360.00, y:1280.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_07",
+                "rect": "(x:720.00, y:1280.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_08",
+                "rect": "(x:1080.00, y:1280.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_09",
+                "rect": "(x:0.00, y:640.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_10",
+                "rect": "(x:360.00, y:640.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_11",
+                "rect": "(x:720.00, y:640.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_12",
+                "rect": "(x:1080.00, y:640.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_13",
+                "rect": "(x:0.00, y:0.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_14",
+                "rect": "(x:360.00, y:0.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_15",
+                "rect": "(x:720.00, y:0.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "TitlePortrait_Ambient_16",
+                "rect": "(x:1080.00, y:0.00, width:360.00, height:640.00)",
+                "pivot": "(180.00, 320.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/UI/Loading/LoadingDecoration.png",
+            "guid": "77f9eef6c889a0b41b8b886465d3fe61",
+            "sprites": [
+              {
+                "name": "LoadingDecoration_Bubbles_01",
+                "rect": "(x:0.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_02",
+                "rect": "(x:64.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_03",
+                "rect": "(x:128.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_04",
+                "rect": "(x:192.00, y:192.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_05",
+                "rect": "(x:0.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_06",
+                "rect": "(x:64.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_07",
+                "rect": "(x:128.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_08",
+                "rect": "(x:192.00, y:128.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_09",
+                "rect": "(x:0.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_10",
+                "rect": "(x:64.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_11",
+                "rect": "(x:128.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_12",
+                "rect": "(x:192.00, y:64.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_13",
+                "rect": "(x:0.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_14",
+                "rect": "(x:64.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_15",
+                "rect": "(x:128.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "LoadingDecoration_Bubbles_16",
+                "rect": "(x:192.00, y:0.00, width:64.00, height:64.00)",
+                "pivot": "(32.00, 32.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/UI/Ending/WorldDestruction.png",
+            "guid": "e0b3cae393e39ab4aaef942c489a3a0d",
+            "sprites": [
+              {
+                "name": "WorldDestruction_Colonization_01",
+                "rect": "(x:0.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_02",
+                "rect": "(x:128.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_03",
+                "rect": "(x:256.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_04",
+                "rect": "(x:384.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_05",
+                "rect": "(x:512.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_06",
+                "rect": "(x:640.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_07",
+                "rect": "(x:768.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_08",
+                "rect": "(x:896.00, y:384.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_09",
+                "rect": "(x:0.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_10",
+                "rect": "(x:128.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_11",
+                "rect": "(x:256.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_12",
+                "rect": "(x:384.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_13",
+                "rect": "(x:512.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_14",
+                "rect": "(x:640.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_15",
+                "rect": "(x:768.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_16",
+                "rect": "(x:896.00, y:256.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_17",
+                "rect": "(x:0.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_18",
+                "rect": "(x:128.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_19",
+                "rect": "(x:256.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_20",
+                "rect": "(x:384.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_21",
+                "rect": "(x:512.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_22",
+                "rect": "(x:640.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_23",
+                "rect": "(x:768.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_24",
+                "rect": "(x:896.00, y:128.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_25",
+                "rect": "(x:0.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_26",
+                "rect": "(x:128.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_27",
+                "rect": "(x:256.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_28",
+                "rect": "(x:384.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_29",
+                "rect": "(x:512.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_30",
+                "rect": "(x:640.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_31",
+                "rect": "(x:768.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              },
+              {
+                "name": "WorldDestruction_Colonization_32",
+                "rect": "(x:896.00, y:0.00, width:128.00, height:128.00)",
+                "pivot": "(64.00, 64.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/VFX/Birth/BirthPulse.png",
+            "guid": "a77e0643c8f61a842bb1f48449c289a9",
+            "sprites": [
+              {
+                "name": "BirthPulse",
+                "rect": "(x:0.00, y:0.00, width:32.00, height:32.00)",
+                "pivot": "(16.00, 16.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          },
+          {
+            "path": "Assets/Sprites/VFX/Release/ReleaseTrail.png",
+            "guid": "d7062afe4d42f164aa25204c8752e57f",
+            "sprites": [
+              {
+                "name": "ReleaseTrail",
+                "rect": "(x:0.00, y:0.00, width:32.00, height:32.00)",
+                "pivot": "(16.00, 16.00)",
+                "pixelsPerUnit": 32
+              }
+            ]
+          }
+        ],
+        "skin": true,
+        "icons": [
+          {
+            "icon": "ZoomOut",
+            "path": "Assets/Sprites/UI/Laboratory/ZoomOut.png"
+          },
+          {
+            "icon": "ZoomIn",
+            "path": "Assets/Sprites/UI/Laboratory/ZoomIn.png"
+          },
+          {
+            "icon": "FitMap",
+            "path": "Assets/Sprites/UI/Laboratory/FitMap.png"
+          },
+          {
+            "icon": "ShowStatus",
+            "path": "Assets/Sprites/UI/Laboratory/Temp_ShowStatus.png"
+          },
+          {
+            "icon": "HideStatus",
+            "path": "Assets/Sprites/UI/Laboratory/Temp_HideStatus.png"
+          },
+          {
+            "icon": "Build",
+            "path": "Assets/Sprites/UI/Laboratory/Build.png"
+          },
+          {
+            "icon": "Creatures",
+            "path": "Assets/Sprites/UI/Laboratory/Creatures.png"
+          },
+          {
+            "icon": "Invasion",
+            "path": "Assets/Sprites/UI/Laboratory/Invasion.png"
+          },
+          {
+            "icon": "More",
+            "path": "Assets/Sprites/UI/Laboratory/More.png"
+          },
+          {
+            "icon": "Worker",
+            "path": "Assets/Sprites/UI/Laboratory/Temp_Worker.png"
+          },
+          {
+            "icon": "Automatic",
+            "path": "Assets/Sprites/UI/Laboratory/Temp_Automatic.png"
+          },
+          {
+            "icon": "Material",
+            "path": "Assets/Sprites/UI/Laboratory/Temp_Material.png"
+          },
+          {
+            "icon": "Delivery",
+            "path": "Assets/Sprites/UI/Laboratory/Temp_Delivery.png"
+          },
+          {
+            "icon": "Blocked",
+            "path": "Assets/Sprites/UI/Laboratory/Temp_Blocked.png"
+          },
+          {
+            "icon": "SelectTarget",
+            "path": "Assets/Sprites/UI/Laboratory/Temp_SelectTarget.png"
+          },
+          {
+            "icon": "Construction",
+            "path": "Assets/Sprites/UI/Laboratory/Temp_Construction.png"
+          }
+        ],
+        "background": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

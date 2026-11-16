@@ -12,7 +12,7 @@ namespace MobileGame.Presentation
         private RectTransform endingRoot;
         private TextMeshProUGUI endingTitle;
         private TextMeshProUGUI endingCaption;
-        private LaboratoryUiWorld endingWorld;
+        private UnityEngine.UI.Image endingWorld;
         private ScrollRect resultScroll;
         private UiList resultRows;
         private UiButton newRunButton;
@@ -24,8 +24,8 @@ namespace MobileGame.Presentation
             endingRoot = UiWidgets.Panel("EndingScreen", screen.SafeRoot, UiWidgets.Background).rectTransform;
             endingTitle = UiWidgets.Label("EndingTitle", endingRoot, 30); endingTitle.alignment = TextAlignmentOptions.Center;
             endingTitle.color = new Color(1f, 0.65f, 0.4f);
-            var worldRect = UiWidgets.Rect("Temp_EndingWorld", endingRoot);
-            endingWorld = worldRect.gameObject.AddComponent<LaboratoryUiWorld>(); endingWorld.raycastTarget = false;
+            var worldRect = UiWidgets.Rect("EndingWorld", endingRoot);
+            endingWorld = worldRect.gameObject.AddComponent<UnityEngine.UI.Image>(); endingWorld.raycastTarget = false;
             endingCaption = UiWidgets.Label("EndingCaption", endingRoot, 18); endingCaption.alignment = TextAlignmentOptions.Center;
             resultScroll = UiWidgets.Scroll("ResultDetails", endingRoot, out var content);
             resultRows = new UiList(content, () => screen.LayoutEpoch);
@@ -48,7 +48,9 @@ namespace MobileGame.Presentation
             endingTitle.text = results ? R("ended") : R("last_signal");
             UiWidgets.Place(endingTitle.rectTransform, 16, 14, w - 32, 74);
             var progress = results ? 1f : (float)Ending.Progress;
-            endingWorld.Progress = progress;
+            endingWorld.sprite = uiAssets?.Art?.ColonizationFrame(progress);
+            endingWorld.preserveAspect = true;
+            endingWorld.enabled = endingWorld.sprite != null;
             endingCaption.text = results ? R("signals_lost") : progress < 0.33f ? R("defenses_fall")
                 : progress < 0.72f ? R("world_falls") : R("signals_fade");
             var detailsX = 16f; var detailsY = 90f; var detailsWidth = w - 32;

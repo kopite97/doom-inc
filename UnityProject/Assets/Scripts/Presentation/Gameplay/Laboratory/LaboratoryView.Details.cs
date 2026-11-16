@@ -15,7 +15,7 @@ namespace MobileGame.Presentation
             controls.Text("SelectedPosition", selected.Placement == null ? L("outside_detail") : L("position", A("position", selected.Placement.Origin.ToString())));
             if (selected.TryGetComponent<ResourceContainerComponent>(out var container))
                 foreach (var group in container.Contents.GroupBy(t => t.Definition))
-                    controls.Text("Stored_" + group.Key.DefinitionId, L("stock", A("resource", DefinitionName(group.Key)), A("count", group.Sum(t => t.GetComponent<ResourceStackComponent>().Quantity))));
+                    controls.Text("Stored_" + group.Key.DefinitionId, L("stock", A("resource", DefinitionName(group.Key)), A("count", group.Sum(t => t.GetComponent<ResourceStackComponent>().Quantity))), icon: group.Key.Assets.Icon);
             if (selected.IsPlaced && selected.TryGetComponent<ConstructionComponent>(out var construction))
                 AddFacilityDetails(selected, construction, StatusFor(selected), canOperate);
             if (selected.TryGetComponent<StorageComponent>(out var storageState)) AddStorageDetails(selected, storageState, canOperate);
@@ -68,7 +68,7 @@ namespace MobileGame.Presentation
                         var action = model == definition.SupportOutput ? "CultivateSupport" : model == definition.InvaderOutput ? "CultivateInvader" : "Cultivate_" + modelId;
                         UiAction(action, L(status.NextTarget == modelId ? "cultivate_selected" : "cultivate",
                             A("target", DefinitionName(model)), A("resource", DefinitionName(culture)), A("count", definition.InputAmount)),
-                            () => SelectCultivation(id, modelId), canOperate && construction.IsComplete, id);
+                            () => SelectCultivation(id, modelId), canOperate && construction.IsComplete, id, model.Assets.Icon);
                     }
                     controls.Text("RaiderHint", L("raider_hint"), 16);
                     if (!construction.IsComplete) controls.Text("CultivationUnavailable", L("cultivation_unavailable"), 16);
@@ -96,7 +96,7 @@ namespace MobileGame.Presentation
             if (materials.Resource == null) return;
             if (status.InputsConsumed)
             {
-                controls.Text("MaterialState", L("inputs_consumed", A("resource", DefinitionName(materials.Resource)), A("count", materials.Required)));
+                controls.Text("MaterialState", L("inputs_consumed", A("resource", DefinitionName(materials.Resource)), A("count", materials.Required)), icon: materials.Resource.Assets.Icon);
                 return;
             }
             if (status.Outstanding > 0) return;
@@ -105,7 +105,7 @@ namespace MobileGame.Presentation
                 controls.Text("MaterialState", L("choose_material_target"));
                 return;
             }
-            controls.Text("MaterialState", L("materials", A("resource", DefinitionName(materials.Resource)), A("action", M(construction ? "material_inserted" : "material_arrived")), A("delivered", materials.Delivered), A("required", materials.Required), A("incoming", materials.Incoming), A("transit", materials.InTransit), A("uncovered", materials.Uncovered)));
+            controls.Text("MaterialState", L("materials", A("resource", DefinitionName(materials.Resource)), A("action", M(construction ? "material_inserted" : "material_arrived")), A("delivered", materials.Delivered), A("required", materials.Required), A("incoming", materials.Incoming), A("transit", materials.InTransit), A("uncovered", materials.Uncovered)), icon: materials.Resource.Assets.Icon);
             controls.Text("MaterialReason", L("material_stock", A("reason", LaboratoryStatusText.MaterialReason(materials.WaitKind)), A("total", materials.TotalStock), A("reserved", materials.ReservedElsewhere)), 16);
         }
 
@@ -117,8 +117,8 @@ namespace MobileGame.Presentation
             var incoming = Simulation.Reservations.Where(r => r.DestinationId == id).Sum(r => r.Amount);
             var outgoing = Simulation.Reservations.Where(r => r.SourceId == id && !r.PickedUp).Sum(r => r.Amount);
             controls.Text("StorageState", L("storage_state", A("stock", occupied), A("capacity", capacity), A("incoming", incoming), A("outgoing", outgoing), A("free", Math.Max(0, capacity - occupied - incoming))));
-            UiAction("AllowOrganic", L(storageState.AllowsOrganic ? "resource_allowed" : "resource_blocked", A("resource", DefinitionName(organic))), () => SetAllowed(id, organic, !storageState.AllowsOrganic), canOperate, id);
-            UiAction("AllowCulture", L(storageState.AllowsCulture ? "resource_allowed" : "resource_blocked", A("resource", DefinitionName(culture))), () => SetAllowed(id, culture, !storageState.AllowsCulture), canOperate, id);
+            UiAction("AllowOrganic", L(storageState.AllowsOrganic ? "resource_allowed" : "resource_blocked", A("resource", DefinitionName(organic))), () => SetAllowed(id, organic, !storageState.AllowsOrganic), canOperate, id, icon: organic.Assets.Icon);
+            UiAction("AllowCulture", L(storageState.AllowsCulture ? "resource_allowed" : "resource_blocked", A("resource", DefinitionName(culture))), () => SetAllowed(id, culture, !storageState.AllowsCulture), canOperate, id, icon: culture.Assets.Icon);
             controls.Text("StorageHint", L("storage_hint"), 16);
             foreach (var resource in new[] { organic, culture })
             {

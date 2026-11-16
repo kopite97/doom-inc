@@ -34,14 +34,14 @@
 | [PLAN-030](PLAN-030-sprite-selection-outline-and-deselect.md) | Sprite 외곽선 선택 강조와 빈 땅 클릭 선택 해제 | `development` | `completed` |
 | [PLAN-031](PLAN-031-placement-preview-drag-and-validation.md) | 건설·시설 이동 미리보기 드래그와 배치 오류 안내 | `development` | `completed` |
 | [PLAN-032](PLAN-032-minimal-facility-progress-bars.md) | 모바일 시설 상태 표시를 작은 읽기 전용 진행 바로 단순화 | `development` | `completed` |
-| [PLAN-033](PLAN-033-support-creature-art.md) | 보급형 보조형 외형·4방향 동작 제작·적용 | `art` | `proposed` |
-| [PLAN-034](PLAN-034-invader-raider-art.md) | 일반 침공형·약탈형 외형과 대기 동작 제작·적용 | `art` | `proposed` |
-| [PLAN-035](PLAN-035-culture-medium-art.md) | 배양액 자원·운반·UI 아트 제작·적용 | `art` | `proposed` |
-| [PLAN-036](PLAN-036-laboratory-boundary-art.md) | 연구소 바닥 외곽·공간 경계 아트 제작·적용 | `art` | `proposed` |
-| [PLAN-037](PLAN-037-laboratory-menu-icons-art.md) | 연구소 조작·메뉴 아이콘 6종 정식 아트 교체 | `art` | `proposed` |
-| [PLAN-038](PLAN-038-shared-ui-skin-art.md) | 모바일 HUD·공용 UI 프레임과 게이지 아트 적용 | `art` | `proposed` |
-| [PLAN-039](PLAN-039-birth-release-effects-art.md) | 생명체 탄생·침공형 방출 사건 연출 아트 적용 | `art` | `proposed` |
-| [PLAN-040](PLAN-040-title-loading-art.md) | 가로·세로 타이틀과 로딩 화면 아트 제작·적용 | `art` | `proposed` |
-| [PLAN-041](PLAN-041-destruction-results-art.md) | 세계 멸망 표현·결과 화면 아트 제작·적용 | `art` | `proposed` |
-| [PLAN-042](PLAN-042-art-integration-review.md) | 정식 아트 전체 통합 검수·잔여 임시 표현 정리 | `art` | `proposed` |
+| [PLAN-033](PLAN-033-support-creature-art.md) | 보급형 보조형 외형·4방향 동작 제작·적용 | `art` | `completed` |
+| [PLAN-034](PLAN-034-invader-raider-art.md) | 일반 침공형·약탈형 외형과 4방향 대기·이동 제작·적용 | `art` | `completed` |
+| [PLAN-035](PLAN-035-culture-medium-art.md) | 배양액 자원·운반·UI 아트 제작·적용 | `art` | `completed` |
+| [PLAN-036](PLAN-036-laboratory-boundary-art.md) | 연구소 바닥 외곽·공간 경계 아트 제작·적용 | `art` | `completed` |
+| [PLAN-037](PLAN-037-laboratory-menu-icons-art.md) | 연구소 조작·메뉴 아이콘 6종 정식 아트 교체 | `art` | `completed` |
+| [PLAN-038](PLAN-038-shared-ui-skin-art.md) | 모바일 HUD·공용 UI 프레임과 게이지 아트 적용 | `art` | `completed` |
+| [PLAN-039](PLAN-039-birth-release-effects-art.md) | 생명체 탄생·침공형 방출 사건 연출 아트 적용 | `art` | `completed` |
+| [PLAN-040](PLAN-040-title-loading-art.md) | 가로·세로 타이틀과 로딩 화면 아트 제작·적용 | `art` | `completed` |
+| [PLAN-041](PLAN-041-destruction-results-art.md) | 생체 군락의 행성 점령·결과 화면 아트 제작·적용 | `art` | `completed` |
+| [PLAN-042](PLAN-042-art-integration-review.md) | 정식 아트 일괄 적용·전체 통합 검증·잔여 임시 표현 정리 | `art` | `completed` |
 | [PLAN-043](PLAN-043-game-balance-editor.md) | DTO 메타데이터 기반 게임 밸런스 JSON 편집창·SO Inspector 연결 | `development` | `completed` |

@@ -1,0 +1,60 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "level": "error",
+      "tail": "5"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 1,
+          "timestampUtc": "2026-11-16T12:04:13.7118854Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.SupportArt.cs(51,31): error CS0246: The type or namespace name 'LaboratoryGameViewSize' could not be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 38,
+          "timestampUtc": "2026-11-16T13:09:37.9098054Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.CultureArt.cs(63,31): error CS0246: The type or namespace name 'LaboratoryGameViewSize' could not be found (are you missing a using directive or an assembly reference?)",
+          "stackTrace": "",
+          "seeded": false
+        }
+      ],
+      "cursor": 74,
+      "session": "a727cd44906241318fa7e1673e271dbb",
+      "returned": 2,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 2,
+        "warn": 0,
+        "log": 72
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-16T13:17:01.6710352Z",
+        "ageMs": 3,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 4,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

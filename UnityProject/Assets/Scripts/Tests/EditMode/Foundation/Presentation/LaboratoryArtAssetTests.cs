@@ -13,7 +13,9 @@ namespace MobileGame.Foundation.Tests
         [TestCase("Assets/Sprites/World/Laboratory/LaboratoryFloorSet.png", 4, 64, 4, 1)]
         [TestCase("Assets/Sprites/Facility/Gathering/Gathering.png", 36, 128, 6, 6)]
         [TestCase("Assets/Sprites/Creature/PrototypeSupport/PrototypeSupport.png", 64, 64, 8, 8)]
+        [TestCase("Assets/Sprites/Creature/Support/Support.png", 64, 64, 8, 8)]
         [TestCase("Assets/Sprites/Resource/OrganicMatter/OrganicMatter.png", 1, 32, 1, 1)]
+        [TestCase("Assets/Sprites/Resource/CultureMedium/CultureMedium.png", 1, 32, 1, 1)]
         [TestCase("Assets/Sprites/UI/Laboratory/Build.png", 1, 64, 1, 1)]
         public void DeliveredSheetsRetainEveryFullCellAndPixelImportContract(string path, int count, int cell, int columns, int rows)
         {
@@ -38,6 +40,44 @@ namespace MobileGame.Foundation.Tests
                 Assert.That(sprites[i].pivot, Is.EqualTo(Vector2.one * (cell * .5f)));
                 Assert.That(sprites[i].vertices.Length, Is.EqualTo(4), "Transparent margins must retain a full rectangular mesh.");
             }
+        }
+
+        [Test]
+        public void CultureArtRegenerationPreservesBothResourceBindingsAndSupports()
+        {
+            var art = AssetDatabase.LoadAssetAtPath<LaboratoryArtAssets>(LaboratoryUiAssetBuilder.ArtPath);
+            var medium = AssetDatabase.LoadAssetAtPath<Sprite>(LaboratoryResourceArtBuilder.CulturePath);
+            var organic = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprites/Resource/OrganicMatter/OrganicMatter.png");
+            var meta = File.ReadAllText(LaboratoryResourceArtBuilder.CulturePath + ".meta");
+            GameDataAssets.EnsureAssets(); LaboratoryUiAssetBuilder.CreateMissing();
+            var definition = AssetDatabase.LoadAssetAtPath<ResourceDefinition>("Assets/SO/Resource/CultureMedium.asset");
+            using var data = new SerializedObject(definition);
+            Assert.That(data.FindProperty("icon").objectReferenceValue, Is.SameAs(medium));
+            Assert.That(art.CargoSupport(medium), Is.EqualTo(new Vector2(16,28)));
+            Assert.That(art.CargoSupport(organic), Is.EqualTo(new Vector2(18,28)));
+            Assert.That(File.ReadAllText(LaboratoryResourceArtBuilder.CulturePath + ".meta"), Is.EqualTo(meta));
+        }
+
+        [Test]
+        public void SupportBindingSurvivesRegenerationWithStableSpriteIdsAndPrototypeData()
+        {
+            var support = GameDataAssets.LoadCatalog().Selected<CreatureData>("supportId");
+            var art = AssetDatabase.LoadAssetAtPath<LaboratoryArtAssets>(LaboratoryUiAssetBuilder.ArtPath);
+            var before = Enumerable.Range(0,64).Select(i => art.CreatureFrame(support,i)).ToArray();
+            var prototype = Enumerable.Range(0,64).Select(art.PrototypeFrame).ToArray();
+            var meta = File.ReadAllText(LaboratoryCreatureArtBuilder.SupportPath + ".meta");
+            GameDataAssets.EnsureAssets(); LaboratoryUiAssetBuilder.CreateMissing();
+            Assert.That(art.HasCreature(support), Is.True);
+            for (var i=0;i<64;i++)
+            {
+                Assert.That(art.CreatureFrame(support,i), Is.SameAs(before[i]));
+                Assert.That(before[i].name, Is.EqualTo(LaboratoryCreatureArtBuilder.FrameName(i)));
+                Assert.That(art.PrototypeFrame(i), Is.SameAs(prototype[i]));
+            }
+            Assert.That(support.Assets.Icon, Is.SameAs(before[0]));
+            Assert.That(art.CreatureHead(support,22), Is.EqualTo(new Vector2(31,20)));
+            Assert.That(art.CreatureHead(support,38), Is.EqualTo(new Vector2(33,20)));
+            Assert.That(File.ReadAllText(LaboratoryCreatureArtBuilder.SupportPath + ".meta"), Is.EqualTo(meta));
         }
 
         [Test]

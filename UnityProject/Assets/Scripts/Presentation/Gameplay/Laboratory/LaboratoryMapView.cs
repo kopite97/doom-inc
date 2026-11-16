@@ -166,8 +166,8 @@ namespace MobileGame.Presentation
             publishedCanvasScale = view.UiCanvas.scaleFactor;
             publishedGeneration = view.Controller.Generation; publishedGeometry = true;
         }
-        private float CellSize => Mathf.Max(1, Mathf.Min((viewport.rect.width - 16) / Math.Max(1, width),
-            (viewport.rect.height - 16) / Math.Max(1, height))) * zoom;
+        private float CellSize => Mathf.Max(1, Mathf.Min((viewport.rect.width - 16) / Math.Max(1, width + .4f),
+            (viewport.rect.height - 16) / Math.Max(1, height + .4f))) * zoom;
         private Vector2 Origin => viewport.rect.center - center * CellSize;
         private void EnsureSelectionVisible()
         {
@@ -177,7 +177,7 @@ namespace MobileGame.Presentation
             var size = selected.Definition is FacilityData definition
                 ? (Vector2)FacilityGeometry.GetSize(definition, selected.Placement.Rotation) : Vector2.one;
             var min = (Vector2)selected.Placement.Origin; var max = min + size;
-            if (view.UiAssets?.Art != null && view.UiAssets.Art.HasPrototype(selected.Definition)) max.y += .5f;
+            if (view.UiAssets?.Art != null && view.UiAssets.Art.HasCreature(selected.Definition)) max.y += .5f;
             var half = viewport.rect.size / (2 * CellSize) - Vector2.one * .2f;
             var target = center;
             if (size.x > half.x * 2) target.x = (min.x + max.x) * .5f;

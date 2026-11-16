@@ -15,7 +15,8 @@ namespace MobileGame.Presentation
         private UiCanvas screen;
         private RectTransform playRoot, toolRoot, cameraTools, navigationRoot, summaryRoot;
         private TextMeshProUGUI titleText, hudText, editText, summaryText, feedbackText;
-        private Image organicIcon;
+        private UnityEngine.UI.Image organicIcon, cultureIcon, hudFrame;
+        private TextMeshProUGUI organicQuantity, cultureQuantity;
         private RectTransform worldGauge, worldGaugeFill;
         private ScrollRect controlsScroll;
         private UiList controls;
@@ -38,13 +39,20 @@ namespace MobileGame.Presentation
         private void EnsureScreen()
         {
             if (screen != null) return;
-            screen = new UiCanvas(transform, "Temp_LaboratoryCanvas", 10);
+            screen = new UiCanvas(transform, "LaboratoryCanvas", 10, uiAssets?.Skin);
             playRoot = UiWidgets.Panel("PlayScreen", screen.SafeRoot, Color.clear).rectTransform;
+            hudFrame = UiWidgets.Panel("HudFrame", playRoot, Color.clear); hudFrame.raycastTarget = false;
+            UiWidgets.ApplySkin(hudFrame, uiAssets?.Skin?.hud);
             titleText = UiWidgets.Label("Title", playRoot, 24); titleText.text = L("heading");
             hudText = UiWidgets.Label("Resources", playRoot, 17);
             organicIcon = UiWidgets.Panel("OrganicMatterQuantityIcon", playRoot, Color.white);
             organicIcon.raycastTarget = false; organicIcon.preserveAspect = true;
+            cultureIcon = UiWidgets.Panel("CultureMediumQuantityIcon", playRoot, Color.white);
+            cultureIcon.raycastTarget = false; cultureIcon.preserveAspect = true;
+            organicQuantity = UiWidgets.Label("OrganicQuantity", playRoot, 17);
+            cultureQuantity = UiWidgets.Label("CultureQuantity", playRoot, 17);
             worldGauge = UiWidgets.Panel("WorldProgress", playRoot, new Color(.18f, .2f, .25f)).rectTransform;
+            UiWidgets.ApplySkin(worldGauge.GetComponent<Image>(), uiAssets?.Skin?.destructionTrack);
             worldGaugeFill = UiWidgets.Panel("Progress", worldGauge, new Color(.85f, .3f, .2f)).rectTransform;
             gameMenuButton = IconButton("GameMenu", playRoot, LaboratoryIcon.More, L("menu"), () => OpenPanel(LaboratoryPanel.Game));
             collapseButton = UiWidgets.Button("ToggleControls", playRoot, L("collapse"), () => screen.LayoutEpoch);
@@ -70,6 +78,7 @@ namespace MobileGame.Presentation
             controlsScroll = UiWidgets.Scroll("Controls", playRoot, out var content);
             controls = new UiList(content, () => screen.LayoutEpoch);
             summaryRoot = UiWidgets.Panel("SelectionSummary", playRoot, UiWidgets.PanelColor).rectTransform;
+            UiWidgets.ApplySkin(summaryRoot.GetComponent<Image>(), uiAssets?.Skin?.panel);
             summaryText = UiWidgets.Label("Summary", summaryRoot, 18);
             detailsButton = UiWidgets.Button("Details", summaryRoot, L("details"), () => screen.LayoutEpoch);
             detailsButton.Bind(ExpandSelection, "details");
@@ -226,10 +235,11 @@ namespace MobileGame.Presentation
             UiWidgets.Place(collapseButton.GetComponent<RectTransform>(), collapseX, 8, collapseWidth, touch);
             collapseButton.GetComponentInChildren<TextMeshProUGUI>(true).text = controlsCollapsed ? L("expand") : L("collapse");
             collapseButton.interactable = CanClickScreen() && pendingSessionAction == LaboratorySessionAction.None;
-            var resourceIconSize = organicIcon.gameObject.activeSelf ? 22 * UiTextScale : 0;
-            var resourceIconGap = resourceIconSize > 0 ? resourceIconSize + 4 : 0;
-            UiWidgets.Place(organicIcon.rectTransform, margin, hudY, resourceIconSize, resourceIconSize);
-            UiWidgets.Place(hudText.rectTransform, margin + resourceIconGap, hudY, headerWidth - resourceIconGap, top - hudY - 12);
+            var resourceHeight = LayoutResourceQuantities(margin, hudY, headerWidth);
+            var statusHeight = hudText.GetPreferredValues(hudText.text, headerWidth, float.PositiveInfinity).y;
+            top = Mathf.Max(top, hudY + resourceHeight + statusHeight + 18);
+            UiWidgets.Place(hudText.rectTransform, margin, hudY + resourceHeight + 2, headerWidth, statusHeight + 4);
+            UiWidgets.Place(hudFrame.rectTransform, margin - 5, hudY - 4, headerWidth + 10, resourceHeight + statusHeight + 12);
             UiWidgets.Place(worldGauge, margin, top - 10, w - margin * 2, 6);
             var panelWidth = !screen.Portrait && HasPanel ? Mathf.Clamp(w * .34f, 310, 430) : 0;
             var panelHeight = screen.Portrait && HasPanel ? Mathf.Clamp(h * .37f, 230, 470) : HasSummary ? Mathf.Max(92, touch + 24) : 0;
@@ -296,13 +306,35 @@ namespace MobileGame.Presentation
         {
             organicIcon.sprite = organic?.Assets.Icon;
             organicIcon.gameObject.SetActive(organicIcon.sprite != null && Simulation != null);
+            cultureIcon.sprite = culture?.Assets.Icon;
+            cultureIcon.gameObject.SetActive(cultureIcon.sprite != null && Simulation != null);
             UiWidgets.Place(worldGaugeFill, 0, 0, worldGauge.rect.width * (Invasion == null ? 0 : (float)Math.Min(1, (double)Invasion.Score / Invasion.Settings.TargetScore)), 6);
-            if (Simulation == null) { hudText.text = L("load_error"); panel = LaboratoryPanel.Game; return; }
+            if (Simulation == null) { organicQuantity.text = cultureQuantity.text = ""; hudText.text = L("load_error"); panel = LaboratoryPanel.Game; return; }
             var things = Simulation.Registry.Things;
             var organicCount = things.Where(t => t.Definition == organic).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
             var cultureCount = things.Where(t => t.Definition == culture).Sum(t => t.GetComponent<ResourceStackComponent>().Quantity);
-            hudText.text = L(IsEditing ? "hud_paused" : "hud", A("organic", organicCount), A("culture", cultureCount),
+            organicQuantity.text = L("hud_resource", A("resource", DefinitionName(organic)), A("count", organicCount));
+            cultureQuantity.text = L("hud_resource", A("resource", DefinitionName(culture)), A("count", cultureCount));
+            hudText.text = L(IsEditing ? "hud_summary_paused" : "hud_summary",
                 A("creatures", things.Count(t => t.Definition.Kind == ThingKind.Creature)), A("score", Invasion.Score), A("target", Invasion.Settings.TargetScore));
+        }
+        private float LayoutResourceQuantities(float x, float y, float width)
+        {
+            var size = 22 * UiTextScale;
+            var organicGap = organicIcon.gameObject.activeSelf ? size + 4 : 0;
+            var cultureGap = cultureIcon.gameObject.activeSelf ? size + 4 : 0;
+            var first = organicQuantity.preferredWidth + organicGap;
+            var second = cultureQuantity.preferredWidth + cultureGap;
+            var column = first + second + 12 <= width ? first : (width - 12) * .5f;
+            var leftWidth = Mathf.Max(1, column - organicGap);
+            var rightWidth = Mathf.Max(1, width - column - 12 - cultureGap);
+            var height = Mathf.Max(size, organicQuantity.GetPreferredValues(organicQuantity.text, leftWidth, float.PositiveInfinity).y,
+                cultureQuantity.GetPreferredValues(cultureQuantity.text, rightWidth, float.PositiveInfinity).y) + 4;
+            UiWidgets.Place(organicIcon.rectTransform, x, y, size, size);
+            UiWidgets.Place(organicQuantity.rectTransform, x + organicGap, y, leftWidth, height);
+            UiWidgets.Place(cultureIcon.rectTransform, x + column + 12, y, size, size);
+            UiWidgets.Place(cultureQuantity.rectTransform, x + column + 12 + cultureGap, y, rightWidth, height);
+            return height;
         }
         private void UpdateTools()
         {
@@ -335,7 +367,7 @@ namespace MobileGame.Presentation
                 default: return L("placement_unavailable");
             }
         }
-        private void UiAction(string key, string label, Action action, bool enabled = true, Guid? selected = null)
+        private void UiAction(string key, string label, Action action, bool enabled = true, Guid? selected = null, Sprite icon = null)
         {
             var generation = Controller.Generation; var phase = Controller.Phase; var currentPanel = panel; var confirmation = pendingSessionAction;
             controls.Action(key, label, () =>
@@ -343,7 +375,7 @@ namespace MobileGame.Presentation
                 if (!CanClickScreen() || Controller.Generation != generation || Controller.Phase != phase || panel != currentPanel
                     || confirmation != pendingSessionAction || (selected.HasValue && SelectedId != selected.Value)) return;
                 action();
-            }, enabled && CanClickScreen(), UiContext + ":" + panel + ":" + pendingSessionAction + (selected.HasValue ? ":" + selected : ""));
+            }, enabled && CanClickScreen(), UiContext + ":" + panel + ":" + pendingSessionAction + (selected.HasValue ? ":" + selected : ""), icon: icon);
         }
         private void UpdateControls()
         {
@@ -411,7 +443,7 @@ namespace MobileGame.Presentation
                 {
                     if (thing.IsPlaced) SelectThing(id);
                     else { SelectedId = id; SelectionChanged(); }
-                }, canOperate);
+                }, canOperate, icon: kind == ThingKind.Creature ? thing.Definition.Assets.Icon : null);
             }
         }
         private LocalizedMessage CreatureActivity(Thing thing) => !thing.IsPlaced ? M("outside")

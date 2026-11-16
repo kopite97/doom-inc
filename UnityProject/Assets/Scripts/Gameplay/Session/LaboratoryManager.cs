@@ -17,6 +17,8 @@ namespace MobileGame.Gameplay
         public event Action<Guid> GatheringCompleted;
         internal void NotifyGatheringCompleted(Guid facilityId) => GatheringCompleted?.Invoke(facilityId);
         public event Action<Guid> ProductionCompleted;
+        public event Action<Guid, UnityEngine.Vector2Int> CreatureBorn;
+        internal void NotifyCreatureBorn(Thing creature) => CreatureBorn?.Invoke(creature.Id, creature.Placement.Origin);
         internal void NotifyProductionCompleted(Guid facilityId) => ProductionCompleted?.Invoke(facilityId);
         internal double AdvanceEnd { get; private set; }
         internal long Step { get; private set; }

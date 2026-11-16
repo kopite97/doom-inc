@@ -2,7 +2,7 @@
 
 - 문서 ID: GD-IMPLEMENTATION-ROADMAP
 - 분류: 개발 구조 > 구현 계획 > 구현 순서
-- 상태: 선행 기반 세 묶음·1~4단계 및 D-070 완료 / 아트 5-1 완료 / PLAN-001~032 completed / PLAN-033~042 art·proposed / PLAN-043 development·completed / active 0개
+- 상태: Unity PLAN-001~043 completed / 정식 아트 일반 Editor 통합·사용자 게임 화면 확인 완료 / active0개 / 새 아트 Android·실기기 검증 미실행
 - 검색어: 개발 순서, 구현 순서, 로드맵, 기반 시스템, 선행 기반, 완료 기준, 데이터 구조, Thing, 컴포넌트, SO, Unity, GameFlow, 하네스, 저장, 복원, CLI, MCP, 에이전트, 개발 결정, 검증 기록
 - 근거: S2 / D-059·D-071·D-072~D-090 — [출처](../../00-management/04-evidence/sources.md), [결정 기록](../../00-management/02-decisions/record.md)
 - 갱신일: 2026-11-16
@@ -10,19 +10,22 @@
 
 ## 현재 작업
 
-2026-11-16 [PLAN-043 게임 밸런스 편집창](../../../plans/PLAN-043-game-balance-editor.md)을 `development` / `completed`로 전환했다. DTO Attribute 기반 UI·JSON 값 토큰 저장·공통 주제 등록·SO Inspector 연결과 다섯 검토 보완사항을 구현했다. EditMode 64개·PlayMode 1개(ON/OFF 각각) 통과 및 원본 70개 해시 일치를 [증거](../../../plans/evidence/PLAN-043/README.md)에 기록했다. active 0개이며 기존 단계 완료 판정과 아트 후보는 유지한다.
+현재 통합 상태(2026-11-17): 승인 아트21개 PNG 일괄 적용·일반 Editor 기술 검증(Edit464/Play100 최종 통과)·사용자 최종 게임 화면 확인 완료. Unity PLAN-034·036~042와 Art PLAN-011~031 모두 completed, 두 작업공간 active0개다. 플랫폼 빌드/실기기 검증은 미실행이다.
+
+
+2026-11-16 [PLAN-043 게임 밸런스 편집창](../../../plans/PLAN-043-game-balance-editor.md)을 `development` / `completed`로 전환했다. DTO Attribute 기반 UI·JSON 값 토큰 저장·공통 주제 등록·SO Inspector 연결과 다섯 검토 보완사항을 구현했다. EditMode 64개·PlayMode 1개(ON/OFF 각각) 통과 및 원본 70개 해시 일치를 [증거](../../../plans/evidence/PLAN-043/README.md)에 기록했다. 해당 완료 시점에는 active 0개였으며 기존 단계 완료 판정과 아트 후보는 유지한다.
 
 2026-11-16 남은 정식 아트를 PLAN-033~042의 10개 `art` / `proposed` 후보로 분리했다. [아트 로드맵의 분할 표](art-roadmap.md#남은-작업의-plan-분할--2026-11-16)에서 범위·선행 관계를 찾는다. 기존 PLAN-001~032는 completed이며 active 0개다. 이번에는 문서만 작성했고 제작·적용·게임 검증은 시작하지 않았다.
 
-최근 인게임 경험 개선 [PLAN-032 작은 시설 진행 바](../../../plans/PLAN-032-minimal-facility-progress-bars.md)는 `development` / `completed`다. 얇은 배경과 진행량만 남기고 지도 표식의 입력·설명·ON/OFF를 제거하는 작업이다. 시설 상세 패널과 생산 규칙은 유지한다. Edit 41개·Play 27개의 서로 다른 기능 테스트와 신규 Domain Reload ON 검증·실제 화면 확인을 완료했다. [검증 증거](../../../plans/evidence/PLAN-032/README.md)를 따르며 active는 0개다.
+최근 인게임 경험 개선 [PLAN-032 작은 시설 진행 바](../../../plans/PLAN-032-minimal-facility-progress-bars.md)는 `development` / `completed`다. 얇은 배경과 진행량만 남기고 지도 표식의 입력·설명·ON/OFF를 제거하는 작업이다. 시설 상세 패널과 생산 규칙은 유지한다. Edit 41개·Play 27개의 서로 다른 기능 테스트와 신규 Domain Reload ON 검증·실제 화면 확인을 완료했다. [검증 증거](../../../plans/evidence/PLAN-032/README.md)를 따르며 해당 완료 시점의 active는 0개였다.
 
-최근 인게임 경험 개선 [PLAN-031 건설·시설 이동 미리보기 드래그와 배치 오류 안내](../../../plans/PLAN-031-placement-preview-drag-and-validation.md)는 `development` / `completed`다. 신규 건설과 기존 시설 이동에 드래그·즉시 미리보기·문제 칸과 배치 불가 이유 표시를 공통 적용했다. Edit 46/46·Play 25/25·신규 배치 Domain Reload ON 3/3과 실제 화면 확인을 완료했다. [검증 증거](../../../plans/evidence/PLAN-031/README.md)를 따르며 빌드·실기기·고부하는 제외했다. active는 0개다.
+최근 인게임 경험 개선 [PLAN-031 건설·시설 이동 미리보기 드래그와 배치 오류 안내](../../../plans/PLAN-031-placement-preview-drag-and-validation.md)는 `development` / `completed`다. 신규 건설과 기존 시설 이동에 드래그·즉시 미리보기·문제 칸과 배치 불가 이유 표시를 공통 적용했다. Edit 46/46·Play 25/25·신규 배치 Domain Reload ON 3/3과 실제 화면 확인을 완료했다. [검증 증거](../../../plans/evidence/PLAN-031/README.md)를 따르며 빌드·실기기·고부하는 제외했다. 해당 완료 시점의 active는 0개였다.
 
 인게임 경험 개선 작업 [PLAN-030 Sprite 외곽선 선택 강조와 빈 땅 클릭 선택 해제](../../../plans/PLAN-030-sprite-selection-outline-and-deselect.md)는 `development` / `completed`다. 2026-11-15 구현·일반 Editor 테스트 27개와 Domain Reload ON 선택 테스트 3개·실제 화면 확인을 완료했다. 상세 동작은 [화면과 조작](../../03-player-experience/03-interface/controls.md#selection-feedback), 결과는 [검증 증거](../../../plans/evidence/PLAN-030/README.md)를 따른다. 빌드·실기기·고부하는 제외했으며 아트 5-2 완료 판정과 별도인 작업이다.
 
-현재 active PLAN은 없다. 최근 완료 [PLAN-029 가공시설·배양시설·저장소 정식 아트 제작·적용](../../../plans/PLAN-029-laboratory-processing-cultivation-storage-art.md)은 `art` / `completed`다. 세 시설 r001·총 48프레임과 생산/입출고 동작·미리보기/목록 연결의 전체 적용, 일반 Editor 검증, 2026-11-12 사용자 게임 화면 승인을 마쳤다. 빌드·고부하·실기기는 제외했다. 바닥 외곽 등 5-2의 다른 후보와 전체 5-5는 별도 후속 범위다.
+해당 완료 시점의 active는 0개였다. 최근 완료 [PLAN-029 가공시설·배양시설·저장소 정식 아트 제작·적용](../../../plans/PLAN-029-laboratory-processing-cultivation-storage-art.md)은 `art` / `completed`다. 세 시설 r001·총 48프레임과 생산/입출고 동작·미리보기/목록 연결의 전체 적용, 일반 Editor 검증, 2026-11-12 사용자 게임 화면 승인을 마쳤다. 빌드·고부하·실기기는 제외했다. 바닥 외곽 등 5-2의 다른 후보와 전체 5-5는 별도 후속 범위다.
 
-[PLAN-025 최신 버전 Android 통합 검증과 프로토타입 완료 판정](../../../plans/PLAN-025-android-integration-and-prototype-completion.md)은 completed다. Editor 회귀와 승인된 Android 통합 검증·환경 복원을 마쳐 4단계·D-070의 네 기준을 충족했다. SM-G977N 한 기종·현재 임시 표현의 판정이며 세부 측정 한계와 경미한 표시 결함은 [완료 근거](../../../plans/evidence/PLAN-025/README.md#d-070-완료-판정)를 따른다. PLAN-026~032도 완료했으며 현재 active는 0개다.
+[PLAN-025 최신 버전 Android 통합 검증과 프로토타입 완료 판정](../../../plans/PLAN-025-android-integration-and-prototype-completion.md)은 completed다. Editor 회귀와 승인된 Android 통합 검증·환경 복원을 마쳐 4단계·D-070의 네 기준을 충족했다. SM-G977N 한 기종·현재 임시 표현의 판정이며 세부 측정 한계와 경미한 표시 결함은 [완료 근거](../../../plans/evidence/PLAN-025/README.md#d-070-완료-판정)를 따른다. PLAN-026~032도 완료했으며 해당 완료 시점의 active는 0개였다.
 
 2026-11-07 사용자 요청으로 [정식 아트 제작·적용 로드맵](art-roadmap.md)을 후속 **5단계**로 추가했다. 샘플·연구소·생명체/자원·UI·동작·타이틀/종료·통합 검수 순서를 제안하며 2026-11-10 첫 5-1 샘플 묶음의 전체 적용·Editor 검증·사용자 시각 확인을 완료했다. PLAN-025의 표시/GC 개선 후보는 잠시 미뤄 두고, 완료된 프로토타입 판정과 아트 적용 완료를 구분한다.
 
@@ -167,3 +170,9 @@ UI·UX 정비 [PLAN-014](../../../plans/PLAN-014-mobile-ui-ux-and-facility-statu
 - [PLAN-029 세 시설 정식 아트](../../../plans/PLAN-029-laboratory-processing-cultivation-storage-art.md)는 art·completed다. 5-2의 가공·배양·저장 시설 3종 r001 제작·수령·Art 승인·Unity 전체 적용·일반 기술 검증과 2026-11-12 사용자 게임 화면 승인을 완료했다. 5-2 전체 완료는 별도 판정한다.
 
 이후 단계의 개별 PLAN은 착수할 작업 단위가 구체화되면 proposed로 작성한다.
+
+2026-11-16 후속 사용자 지정: 각 아트 제작 묶음 직후 정면·시트·재생 미리보기를 제시하고 원본 외형/동작 확인과 필요한 수정을 마친 뒤 다음 제작을 진행한다. PLAN-034 r002는 원본 확인 완료이며, Unity 일괄 적용·정식 기술 검증·최종 게임 화면 확인은 PLAN-042에 유지한다.
+
+이전 현재 작업(2026-11-16 F-001): PLAN-034 및 Art PLAN-011/012 r002 각 Idle4+Move6 ×4방향(각40프레임) 제작 후 on hold·사용자 확인 대기. active0개. 확인 전 다음 PLAN-036을 시작하지 않으며 Unity 적용·정식 검증은 PLAN-042다.
+
+이전 현재 진행(2026-11-16): PLAN-034/Art PLAN-011·012 r002 원본 확인 완료, 통합 적용/검증 대기 on hold. 사용자 요청의 PLAN-036과 Art PLAN-013을 유일한 active로 전환해 외곽8셀 제작을 진행한다.

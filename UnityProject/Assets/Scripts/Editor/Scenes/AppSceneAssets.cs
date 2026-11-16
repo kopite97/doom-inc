@@ -36,6 +36,12 @@ namespace MobileGame.Foundation.Editor
             config.facilities = GameDataAssets.Registry<FacilityDefinitionRegistry>("Facilities");
             config.jsonFiles = GameDataAssets.Files();
             config.uiAssets = LaboratoryUiAssetBuilder.CreateMissing(); config.loadingScreen = prefab;
+            if (BatchArtAssets.Ready)
+            {
+                var content = PrefabUtility.LoadPrefabContents(LoadingPath);
+                try { BatchArtAssets.BindOwner(content.GetComponent<LoadingScreen>()); PrefabUtility.SaveAsPrefabAsset(content, LoadingPath); }
+                finally { PrefabUtility.UnloadPrefabContents(content); }
+            }
             config.bootstrapScene = BootstrapPath; config.titleScene = TitlePath; config.laboratoryScene = LaboratorySceneAssets.ScenePath;
             AssetDatabase.CreateAsset(config, ConfigurationPath); AssetDatabase.SaveAssets(); return config;
         }
@@ -80,18 +86,8 @@ namespace MobileGame.Foundation.Editor
         }
         internal static void BindTitleArtwork(TitleView view)
         {
-            const string sheets = "Assets/Sprites/UI/Title/Temp_NightShift";
-            var sprites = new[] { "Landscape", "Portrait" }
-                .SelectMany(sheet => AssetDatabase.LoadAllAssetsAtPath(sheets + sheet + ".png"))
-                .OfType<Sprite>().ToDictionary(sprite => sprite.name);
-            var serialized = new SerializedObject(view);
-            serialized.FindProperty("landscapeRoom").objectReferenceValue = sprites["Temp_NightShiftRoomWide"];
-            serialized.FindProperty("portraitRoom").objectReferenceValue = sprites["Temp_NightShiftRoomTall"];
-            serialized.FindProperty("buttonFrame").objectReferenceValue = sprites["Temp_NightShiftButtonFrame"];
-            serialized.FindProperty("wordmark").objectReferenceValue = sprites["Temp_NightShiftWordmark"];
-            // Artwork metadata. A translated first line with different lettering is drawn as text.
-            serialized.FindProperty("wordmarkLine").stringValue = "DOOM INC.";
-            serialized.ApplyModifiedPropertiesWithoutUndo();
+            if (!BatchArtAssets.Ready) throw new InvalidOperationException("Install the received title artwork before creating the title scene.");
+            BatchArtAssets.BindOwner(view);
         }
         [MenuItem("Tools/Mobile Game/Open Bootstrap Scene")]
         public static void OpenBootstrap() => Open(BootstrapPath);

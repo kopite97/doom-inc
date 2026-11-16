@@ -15,6 +15,7 @@ namespace MobileGame.Presentation
             public RectTransform Rect;
             public TextMeshProUGUI Text;
             public UiButton Button;
+            public UnityEngine.UI.Image Icon;
             public bool Seen;
         }
         private readonly Dictionary<string, Row> rows = new Dictionary<string, Row>();
@@ -36,16 +37,47 @@ namespace MobileGame.Presentation
         }
         public void Begin(float availableWidth)
         { width = Mathf.Max(80, availableWidth); y = 8; foreach (var row in rows.Values) row.Seen = false; }
-        public void Text(string key, string value, int size = 18)
+        public void Text(string key, string value, int size = 18, Sprite icon = null)
         {
             var row = Get(key, false, size); row.Text.text = value ?? "";
+            var iconSize = 24 * scale;
+            if (icon != null && row.Icon == null)
+            {
+                var rect = UiWidgets.Rect("DefinitionIcon", row.Rect);
+                row.Icon = rect.gameObject.AddComponent<UnityEngine.UI.Image>();
+                row.Icon.raycastTarget = false; row.Icon.preserveAspect = true;
+            }
+            if (row.Icon != null)
+            {
+                row.Icon.sprite = icon; row.Icon.gameObject.SetActive(icon != null);
+                var rect = row.Icon.rectTransform;
+                rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0, 1);
+                rect.anchoredPosition = Vector2.zero; rect.sizeDelta = Vector2.one * iconSize;
+            }
+            row.Text.margin = new Vector4(icon != null ? iconSize + 6 : 0, 0, 0, 0);
             UiWidgets.Place(row.Rect, 4, y, width - 8, row.Rect.rect.height);
-            var height = Mathf.Max(size + 8, row.Text.preferredHeight + 10);
+            var height = Mathf.Max(icon != null ? iconSize : size + 8, row.Text.preferredHeight + 10);
             row.Rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height); y += height + 4;
         }
-        public void Action(string key, string label, Action action, bool enabled, string context, int fontSize = 18)
+        public void Action(string key, string label, Action action, bool enabled, string context, int fontSize = 18, Sprite icon = null)
         {
             var row = Get(key, true, fontSize); row.Text.text = label;
+            if (icon != null && row.Icon == null)
+            {
+                var rect = UiWidgets.Rect("DefinitionIcon", row.Rect);
+                row.Icon = rect.gameObject.AddComponent<UnityEngine.UI.Image>();
+                row.Icon.raycastTarget = false; row.Icon.preserveAspect = true;
+            }
+            var iconSize = Mathf.Min(touchSize, 48);
+            if (row.Icon != null)
+            {
+                row.Icon.gameObject.SetActive(icon != null); row.Icon.sprite = icon;
+                var rect = row.Icon.rectTransform;
+                rect.anchorMin = rect.anchorMax = new Vector2(0, .5f);
+                rect.pivot = new Vector2(0, .5f); rect.anchoredPosition = new Vector2(8, 0);
+                rect.sizeDelta = Vector2.one * iconSize;
+            }
+            row.Text.rectTransform.offsetMin = new Vector2(icon != null ? iconSize + 16 : 8, 4);
             row.Button.Bind(action, context); row.Button.interactable = enabled;
             var minimum = touchSize;
             UiWidgets.Place(row.Rect, 4, y, width - 8, row.Rect.rect.height);

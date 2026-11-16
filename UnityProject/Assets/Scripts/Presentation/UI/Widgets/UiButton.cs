@@ -8,6 +8,7 @@ namespace MobileGame.Presentation
     public sealed class UiButton : Button
     {
         public Func<int> Epoch { get; set; }
+        private Image selection;
         private Action action;
         private Action pressedAction;
         private string context;
@@ -16,6 +17,19 @@ namespace MobileGame.Presentation
         private int pressedPointer;
         private int appEpoch;
 
+        protected override void DoStateTransition(SelectionState state, bool instant)
+        {
+            base.DoStateTransition(state, instant);
+            var sprite = UiWidgets.Skin(transform)?.selection;
+            if (selection == null && sprite != null)
+            {
+                selection = UiWidgets.Panel("SelectionFrame", transform, UnityEngine.Color.white);
+                UiWidgets.ApplySkin(selection, sprite); selection.raycastTarget = false;
+                selection.rectTransform.anchorMin = UnityEngine.Vector2.zero; selection.rectTransform.anchorMax = UnityEngine.Vector2.one;
+                selection.rectTransform.offsetMin = selection.rectTransform.offsetMax = UnityEngine.Vector2.zero;
+            }
+            if (selection != null) selection.enabled = state == SelectionState.Selected || state == SelectionState.Pressed;
+        }
         public void Bind(Action value, string bindingContext)
         { action = value; context = bindingContext; }
         public override void OnPointerDown(PointerEventData data)

@@ -1,0 +1,70 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 9.83,
+      "summary": {
+        "total": 6,
+        "passed": 5,
+        "failed": 1,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.BatchArtTitleAndLoadingFramesAdvanceWithoutDrivingGameState",
+          "Status": "Passed",
+          "Duration": 2.008274,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.AppSceneFlowTests.TitleConfirmationAndLoadingFitBothOrientationsWithLargeText",
+          "Status": "Passed",
+          "Duration": 2.0535427,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.BatchArtEffectSlotsHaveBoundedLifetimeAndNoCompletionSideEffects",
+          "Status": "Passed",
+          "Duration": 0.6177498,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.BatchArtNonWorkersBirthReleasePauseRestoreAndBoundary",
+          "Status": "Failed",
+          "Duration": 3.3577762,
+          "Message": "  Expected: 1\r\n  But was:  0\r\n",
+          "StackTrace": "at MobileGame.SpatialTests.LaboratoryViewTests+<BatchArtNonWorkersBirthReleasePauseRestoreAndBoundary>d__11.MoveNext () [0x0081e] in C:\\Dev\\Unity\\Doom_Inc\\UnityProject\\Assets\\Scripts\\Tests\\PlayMode\\Laboratory\\LaboratoryViewTests.BatchArt.cs:60\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible",
+          "Status": "Passed",
+          "Duration": 0.847866,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "MobileGame.SpatialTests.LaboratoryViewTests.MovingFallbackAndPublishedSelectionFollowViewportAndLifecycle",
+          "Status": "Passed",
+          "Duration": 0.8266931,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

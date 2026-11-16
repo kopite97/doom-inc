@@ -112,6 +112,7 @@ namespace MobileGame.Gameplay
                         worker.Priorities = laboratory.Preset.ToArray();
                     state.Progress = 0;
                     state.ActiveTarget = CultivationTarget.None;
+                    laboratory.NotifyCreatureBorn(creature);
                 }
                 laboratory.NotifyProductionCompleted(facility.Id);
             }

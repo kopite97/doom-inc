@@ -1,0 +1,92 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var paths=UnityEditor.AssetDatabase.GetAllAssetPaths().Where(p=>p.StartsWith(\"Assets/SO/\")||p.StartsWith(\"Assets/Scenes/\")||p.StartsWith(\"Assets/Prefabs/\")||p.StartsWith(\"Assets/Settings/\")).Where(p=>!UnityEditor.AssetDatabase.IsValidFolder(p)).ToArray(); var used=new System.Collections.Generic.HashSet<string>(UnityEditor.AssetDatabase.GetDependencies(paths,true)); return UnityEditor.AssetDatabase.GetAllAssetPaths().Where(p=>p.StartsWith(\"Assets/Sprites/\")&&p.Contains(\"Temp_\")&&p.EndsWith(\".png\")).Select(p=>new{path=p,referenced=used.Contains(p)}).ToArray();"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": [
+        {
+          "path": "Assets/Sprites/UI/Title/Temp_NightShiftLandscape.png",
+          "referenced": false
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_ZoomOut.png",
+          "referenced": false
+        },
+        {
+          "path": "Assets/Sprites/UI/Title/Temp_NightShiftPortrait.png",
+          "referenced": false
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_HideStatus.png",
+          "referenced": true
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_FitMap.png",
+          "referenced": false
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_Construction.png",
+          "referenced": true
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_SelectTarget.png",
+          "referenced": true
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_ZoomIn.png",
+          "referenced": false
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_Blocked.png",
+          "referenced": true
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_Automatic.png",
+          "referenced": true
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_Material.png",
+          "referenced": true
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_Worker.png",
+          "referenced": true
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_Creatures.png",
+          "referenced": false
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_More.png",
+          "referenced": false
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_Delivery.png",
+          "referenced": true
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_ShowStatus.png",
+          "referenced": true
+        },
+        {
+          "path": "Assets/Sprites/UI/Laboratory/Temp_Invasion.png",
+          "referenced": false
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

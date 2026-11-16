@@ -52,6 +52,9 @@ Doom {score:N0} / {target:N0}","유기물 {organic:N0} · 배양액 {culture:N0}
 hud_paused,149,Laboratory / hud_paused,true,organic:number;culture:number;creatures:number;score:number;target:number,"Organic {organic:N0} · Medium {culture:N0} · Creatures {creatures:N0}
 Doom {score:N0} / {target:N0} · Paused","유기물 {organic:N0} · 배양액 {culture:N0} · 생명체 {creatures:N0}
 멸망 {score:N0} / {target:N0} · 일시정지",e2e0eaddc86a4661a17f647a86b238f267188b846b2c900aff802f394f9df7a3
+hud_resource,394,Resource quantity beside its icon,true,resource:text;count:number,{resource} {count:N0},{resource} {count:N0},97cc3ac041ec213620ecb3ec5ea8e7c17bb0db48898c671c1787cad6840ec6ef
+hud_summary,395,HUD summary below resource quantities,true,creatures:number;score:number;target:number,Creatures {creatures:N0} · Doom {score:N0} / {target:N0},생명체 {creatures:N0} · 멸망 {score:N0} / {target:N0},67e6e4e6f773c5a1d5e15d521b3d5f9dbc93a686997c74704c10f776fd04d2b5
+hud_summary_paused,396,HUD summary while editing,true,creatures:number;score:number;target:number,Creatures {creatures:N0} · Doom {score:N0} / {target:N0} · Paused,생명체 {creatures:N0} · 멸망 {score:N0} / {target:N0} · 진행 정지,0f2a4b06b77b1c08e60acee766b80b75cc7f823110255e4771ec9b2555f64856
 idle,127,Laboratory / idle,false,,Idle,작업 대기,4fa9c654c166e4ae525f82225faad4f66ae43363c39c10d55a21096dab466b56
 in_transit,330,Laboratory / in_transit,false,,In transit,운반 중,2e52506fb62c7e85b73aeee5dd5e63f0606631307a828aa7498ec3d8c01dcb79
 individual_priority,361,Laboratory / individual_priority,false,,Work priorities: individual settings,작업 우선순위: 이 개체의 개별 설정,61b67a8029cb9075cd4b0a8a4aeec6fa92b6e2d8c287a39bf3cc4bf152fffd4c

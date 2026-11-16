@@ -17,7 +17,7 @@ namespace MobileGame.Presentation
             var host = Instantiate(Configuration.popupHost, transform);
             try
             {
-                host.Configure(Configuration.popups, Localization, Configuration.uiAssets?.Font, () => Settings.Current.LargeText);
+                host.Configure(Configuration.popups, Localization, Configuration.uiAssets?.Font, () => Settings.Current.LargeText, Configuration.uiAssets?.Skin);
                 host.Manager.Ready = true; host.Manager.SetSuspended(IsTransitioning || Loading.Visible);
                 host.Manager.SetForeground(!paused && focused); PopupHost = host;
             }

@@ -27,6 +27,8 @@ namespace MobileGame.Presentation
         private readonly RectTransform[] frameEdges = new RectTransform[4];
         private readonly Canvas canvas;
         private int width, height;
+        private Transform boundaryRoot;
+        private Sprite[] boundarySprites;
 
         public LaboratoryWorldMap(Transform owner, Material sharedMaterial, Canvas uiCanvas)
         {
@@ -113,6 +115,7 @@ namespace MobileGame.Presentation
                 tiles[i].transform = Matrix4x4.Scale(sprite == Solid ? new Vector3(2, 2, 1) : Vector3.one);
                 changed = true;
             }
+            if (changed || boundarySprites != assets?.Art?.Boundary) UpdateBoundary(columns, rows, assets?.Art?.Boundary);
             if (!changed) return;
             width = columns; height = rows;
             Floor.ClearAllTiles();
@@ -122,6 +125,21 @@ namespace MobileGame.Presentation
             Floor.RefreshAllTiles();
         }
 
+        private void UpdateBoundary(int columns, int rows, Sprite[] sprites)
+        {
+            if (boundaryRoot != null) { boundaryRoot.gameObject.SetActive(false); UnityEngine.Object.Destroy(boundaryRoot.gameObject); }
+            boundarySprites = sprites;
+            if (sprites == null || sprites.Length != 8) return;
+            boundaryRoot = new GameObject("LaboratoryBoundary").transform; boundaryRoot.SetParent(Root, false);
+            void Place(int variant, int x, int y)
+            {
+                var renderer = CreateSprite(sprites[variant].name, boundaryRoot, -29999);
+                renderer.sprite = sprites[variant]; renderer.transform.localPosition = new Vector3((x + .5f) * 2, (y + .5f) * 2, 0);
+            }
+            for (var x = 0; x < columns; x++) { Place(0, x, rows); Place(2, x, -1); }
+            for (var y = 0; y < rows; y++) { Place(1, columns, y); Place(3, -1, y); }
+            Place(4, -1, rows); Place(5, columns, rows); Place(6, columns, -1); Place(7, -1, -1);
+        }
         public void SyncCamera(RectTransform viewport, Vector2 cellCenter, float cellSize)
         {
             viewport.GetWorldCorners(corners);

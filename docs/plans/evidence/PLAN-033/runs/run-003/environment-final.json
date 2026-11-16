@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "if (UnityEditor.EditorApplication.isPlaying || UnityEditor.EditorApplication.isCompiling) throw new System.InvalidOperationException(\"Editor must be stopped and idle\"); var font = UnityEditor.AssetDatabase.LoadAssetAtPath<TMPro.TMP_FontAsset>(\"Assets/Fonts/Mulmaru/MulmaruDynamic.asset\"); var before = font.glyphTable.Count; font.ClearFontAssetData(true); UnityEditor.EditorUtility.SetDirty(font); UnityEditor.AssetDatabase.SaveAssetIfDirty(font); return new { beforeGlyphs = before, glyphs = font.glyphTable.Count, characters = font.characterTable.Count, scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().path, sceneDirty = UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty, runInBackground = UnityEngine.Application.runInBackground };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "beforeGlyphs": 209,
+        "glyphs": 0,
+        "characters": 0,
+        "scene": "Assets/Scenes/Gameplay/Laboratory/Temp_Laboratory.unity",
+        "sceneDirty": false,
+        "runInBackground": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

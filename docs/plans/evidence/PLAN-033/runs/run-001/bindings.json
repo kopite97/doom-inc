@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var a=UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Presentation.LaboratoryArtAssets>(MobileGame.Foundation.Editor.LaboratoryUiAssetBuilder.ArtPath); var d=MobileGame.Foundation.Editor.GameDataAssets.LoadCatalog().Selected<MobileGame.Foundation.CreatureData>(\"supportId\"); for(int i=0;i<64;i++) if(a.CreatureFrame(d,i)==null) throw new System.Exception(\"Missing frame \"+i); return new { bound=a.HasCreature(d), icon=d.Assets.Icon.name, frameCount=64, source=UnityEditor.AssetDatabase.GetAssetPath(a.CreatureFrame(d,0)), head=a.CreatureHead(d,22).ToString() };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "bound": true,
+        "icon": "Support_Idle_Down_01",
+        "frameCount": 64,
+        "source": "Assets/Sprites/Creature/Support/Support.png",
+        "head": "(31.00, 20.00)"
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

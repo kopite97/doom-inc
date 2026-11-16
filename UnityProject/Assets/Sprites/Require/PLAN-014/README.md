@@ -3,7 +3,7 @@
 - 요청 출처: [PLAN-014 모바일 UI·UX와 시설 상태 표시 정비](../../../../../docs/plans/PLAN-014-mobile-ui-ux-and-facility-status.md).
 - 기준: [아트 요청·임포트 지침](../../../../../docs/agents/art-assets.md), [임의 에셋 규칙](../../../../../docs/agents/project-structure.md#temporary-assets).
 - 정식 아트는 사용자가 직접 제작한다. **이번 요청의 정식 교체는 사용자가 지정한 별도 `type: art` PLAN의 승인·실행 범위에서 진행한다.** 파일 수령만으로 PLAN-014에서 교체하지 않는다.
-- Build(PLAN-014-SPR-006)는 r001 수령·Art 승인·Unity 적용·게임 화면 사용자 승인 완료이며 나머지 15종은 `요청`이다. Art 승인을 Unity 적용·게임 화면 검수 완료로 처리하지 않는다.
+- Build(PLAN-014-SPR-006)는 r001 수령·Art 승인·Unity 적용·게임 화면 사용자 승인 완료이며 현재 메뉴6종은 PLAN-037에서 r001 제작 후 원본 확인 완료이며, 사용처가 제거된 상태9종은 필수 제작 대상에서 제외한다. Art 승인을 Unity 적용·게임 화면 검수 완료로 처리하지 않는다.
 
 ## 공통 제작·교체 명세
 
@@ -21,26 +21,26 @@
 
 | 요청 ID | 키·교체할 Temp_ 파일 | 요청 파일명 | 용도·표시 위치와 필요한 모습 | 사용처·교체 참조 | 상태 |
 | --- | --- | --- | --- | --- | --- |
-| PLAN-014-SPR-001 | `ZoomOut` / `Temp_ZoomOut.png` | `ZoomOut.png` | 맵 조작 버튼. 돋보기 안의 빼기 표식으로 축소를 구분 | `icons[1]` | 요청 |
-| PLAN-014-SPR-002 | `ZoomIn` / `Temp_ZoomIn.png` | `ZoomIn.png` | 맵 조작 버튼. 돋보기 안의 더하기 표식으로 확대를 구분 | `icons[2]` | 요청 |
-| PLAN-014-SPR-003 | `FitMap` / `Temp_FitMap.png` | `FitMap.png` | 맵 조작 버튼. 작은 맵과 네 모서리 프레임으로 전체 보기 의미 전달 | `icons[3]` | 요청 |
-| PLAN-014-SPR-004 | `ShowStatus` / `Temp_ShowStatus.png` | `ShowStatus.png` | 상태 표시 ON 토글. 열린 눈 형태, 상태 문구와 함께 사용 | `icons[4]` | 요청 |
-| PLAN-014-SPR-005 | `HideStatus` / `Temp_HideStatus.png` | `HideStatus.png` | 상태 표시 OFF 토글. 눈에 취소선으로 ON과 구분 | `icons[5]` | 요청 |
+| PLAN-014-SPR-001 | `ZoomOut` / `Temp_ZoomOut.png` | `ZoomOut.png` | 맵 조작 버튼. 돋보기 안의 빼기 표식으로 축소를 구분 | `icons[1]` | r001 원본 확인 완료 / Unity 미수령 |
+| PLAN-014-SPR-002 | `ZoomIn` / `Temp_ZoomIn.png` | `ZoomIn.png` | 맵 조작 버튼. 돋보기 안의 더하기 표식으로 확대를 구분 | `icons[2]` | r001 원본 확인 완료 / Unity 미수령 |
+| PLAN-014-SPR-003 | `FitMap` / `Temp_FitMap.png` | `FitMap.png` | 맵 조작 버튼. 작은 맵과 네 모서리 프레임으로 전체 보기 의미 전달 | `icons[3]` | r001 원본 확인 완료 / Unity 미수령 |
+| PLAN-014-SPR-004 | `ShowStatus` / `Temp_ShowStatus.png` | `ShowStatus.png` | 상태 표시 ON 토글. 열린 눈 형태, 상태 문구와 함께 사용 | `icons[4]` | PLAN-032 사용처 제거·필수 제작 제외 |
+| PLAN-014-SPR-005 | `HideStatus` / `Temp_HideStatus.png` | `HideStatus.png` | 상태 표시 OFF 토글. 눈에 취소선으로 ON과 구분 | `icons[5]` | PLAN-032 사용처 제거·필수 제작 제외 |
 | PLAN-014-SPR-006 | `Build` / `Temp_Build.png` | `Build.png` | 하단 건설 메뉴. 건물 외형으로 건설 목록 진입 의미 전달 | `icons[6]` | r001 적용·게임 화면 승인 완료 |
-| PLAN-014-SPR-007 | `Creatures` / `Temp_Creatures.png` | `Creatures.png` | 하단 생명체 메뉴. 여러 개체 목록임을 나타내는 실루엣 | `icons[7]` | 요청 |
-| PLAN-014-SPR-008 | `Invasion` / `Temp_Invasion.png` | `Invasion.png` | 하단 침공·보고 메뉴. 외부로 향하는 화살표, 열기 자체는 방출 명령이 아님 | `icons[8]` | 요청 |
-| PLAN-014-SPR-009 | `More` / `Temp_More.png` | `More.png` | 게임 메뉴/설정 진입. 점 세 개 또는 구분 가능한 메뉴 형태 | `icons[9]` | 요청 |
-| PLAN-014-SPR-010 | `Worker` / `Temp_Worker.png` | `Worker.png` | 시설 상태 표식. 실제 개체 작업 중이며 단순 배정 상태와 구분 | `icons[10]` | 요청 |
-| PLAN-014-SPR-011 | `Automatic` / `Temp_Automatic.png` | `Automatic.png` | 시설 상태 표식. 자동 생산 순환 표식. 회차 진행률과 자동 속도는 문구로 구분 | `icons[11]` | 요청 |
-| PLAN-014-SPR-012 | `Material` / `Temp_Material.png` | `Material.png` | 시설 재료 대기 표식. 재료 상자, 필요량/도착량은 상세 문구로 제공 | `icons[12]` | 요청 |
-| PLAN-014-SPR-013 | `Delivery` / `Temp_Delivery.png` | `Delivery.png` | 완료품 실제 입고 대기 표식. 보관함으로 들어가는 화살표 | `icons[13]` | 요청 |
-| PLAN-014-SPR-014 | `Blocked` / `Temp_Blocked.png` | `Blocked.png` | 작업 위치 접근 불가 표식. 금지/차단 형태로 색 이외 단서 제공 | `icons[14]` | 요청 |
-| PLAN-014-SPR-015 | `SelectTarget` / `Temp_SelectTarget.png` | `SelectTarget.png` | 배양 대상 미선택 표식. 대상 선택 필요 의미의 조준/선택 프레임 | `icons[15]` | 요청 |
-| PLAN-014-SPR-016 | `Construction` / `Temp_Construction.png` | `Construction.png` | 건설 중 시설 표식. 망치 등 시공 도구로 생산 진행과 구분 | `icons[16]` | 요청 |
+| PLAN-014-SPR-007 | `Creatures` / `Temp_Creatures.png` | `Creatures.png` | 하단 생명체 메뉴. 여러 개체 목록임을 나타내는 실루엣 | `icons[7]` | r001 원본 확인 완료 / Unity 미수령 |
+| PLAN-014-SPR-008 | `Invasion` / `Temp_Invasion.png` | `Invasion.png` | 하단 침공·보고 메뉴. 외부로 향하는 화살표, 열기 자체는 방출 명령이 아님 | `icons[8]` | r001 원본 확인 완료 / Unity 미수령 |
+| PLAN-014-SPR-009 | `More` / `Temp_More.png` | `More.png` | 게임 메뉴/설정 진입. 점 세 개 또는 구분 가능한 메뉴 형태 | `icons[9]` | r001 원본 확인 완료 / Unity 미수령 |
+| PLAN-014-SPR-010 | `Worker` / `Temp_Worker.png` | `Worker.png` | 시설 상태 표식. 실제 개체 작업 중이며 단순 배정 상태와 구분 | `icons[10]` | PLAN-032 사용처 제거·필수 제작 제외 |
+| PLAN-014-SPR-011 | `Automatic` / `Temp_Automatic.png` | `Automatic.png` | 시설 상태 표식. 자동 생산 순환 표식. 회차 진행률과 자동 속도는 문구로 구분 | `icons[11]` | PLAN-032 사용처 제거·필수 제작 제외 |
+| PLAN-014-SPR-012 | `Material` / `Temp_Material.png` | `Material.png` | 시설 재료 대기 표식. 재료 상자, 필요량/도착량은 상세 문구로 제공 | `icons[12]` | PLAN-032 사용처 제거·필수 제작 제외 |
+| PLAN-014-SPR-013 | `Delivery` / `Temp_Delivery.png` | `Delivery.png` | 완료품 실제 입고 대기 표식. 보관함으로 들어가는 화살표 | `icons[13]` | PLAN-032 사용처 제거·필수 제작 제외 |
+| PLAN-014-SPR-014 | `Blocked` / `Temp_Blocked.png` | `Blocked.png` | 작업 위치 접근 불가 표식. 금지/차단 형태로 색 이외 단서 제공 | `icons[14]` | PLAN-032 사용처 제거·필수 제작 제외 |
+| PLAN-014-SPR-015 | `SelectTarget` / `Temp_SelectTarget.png` | `SelectTarget.png` | 배양 대상 미선택 표식. 대상 선택 필요 의미의 조준/선택 프레임 | `icons[15]` | PLAN-032 사용처 제거·필수 제작 제외 |
+| PLAN-014-SPR-016 | `Construction` / `Temp_Construction.png` | `Construction.png` | 건설 중 시설 표식. 망치 등 시공 도구로 생산 진행과 구분 | `icons[16]` | PLAN-032 사용처 제거·필수 제작 제외 |
 
 ## PLAN-014-SPR-006 — 건설 메뉴 아이콘 제작 연결
 
-- 요청·파일명·사용처는 위 Build 항목 그대로 유지한다. r001 제작·수령·Art 승인·Unity 적용을 완료했고 2026-11-10 최종 게임 화면 사용자 승인까지 완료했다. 나머지 15종의 상태는 변경하지 않는다.
+- 요청·파일명·사용처는 위 Build 항목 그대로 유지한다. r001 제작·수령·Art 승인·Unity 적용을 완료했고 2026-11-10 최종 게임 화면 사용자 승인까지 완료했다. Build 승인·적용 기록은 유지하며 나머지 요청의 현재 상태는 아래 PLAN-037 제작 기록을 따른다.
 - 적용 담당은 완료된 [Unity PLAN-026](../../../../../docs/plans/PLAN-026-art-style-scale-and-sample-integration.md)의 5-1 건설 메뉴 샘플이다. 출처인 완료된 Unity PLAN-014를 다시 활성화하지 않는다.
 - 제작 계획: [Art PLAN-005](../../../../../../Art/docs/plans/PLAN-005-build-icon.md), `asset_id: Build`, completed·r001 승인·approved_revision 1. 2026-11-07 사용자 요청으로 제작·검사·전달했고 2026-11-10 사용자가 r001 승인과 PLAN-005 완료를 명시했다.
 - 제작 명세: `Build.aseprite` 1개·64×64 RGB/sRGB·정적 1프레임, `Build.png` 64×64 RGBA 투명 1개. Single·중심 피벗·Full Rect·공통 PPU 32 유지. 애니메이션·방향별 변형 없음.
@@ -77,3 +77,44 @@
 - 사용자 요청으로 교체 완료된 Temp_Build와 이전 리비전 수령 PNG 11장, 해당 메타데이터·빈 폴더를 제거했다. 이전 리비전의 Art 보관본과 Aseprite 원본, 요청·승인 이력은 유지한다.
 - 삭제 대상 참조 0, 보관본 11장 해시 일치, 남은 22 PNG의 해시/GUID 불변과 정식 아트 Edit Mode 6/6 통과를 확인했다. [삭제 목록·검증 증거](../../../../../docs/plans/evidence/PLAN-026/cleanup-2026-11-10/README.md)를 참조한다.
 - 요청 완료 상태와 PLAN 상태는 변경하지 않는다. 새 Sprite 요청은 없다.
+
+## PLAN-037 메뉴 아이콘6종 r001 제작 연결
+
+2026-11-16 사용자 PLAN-037 실행 요청. 요청 출처·ID·파일명을 유지하고 Art PLAN-014~019에서 순차 제작했다. **6종 r001 사용자 원본 확인 완료 / Unity 미수령·미적용 / 정식 검증 PLAN-042 유보**.
+기존 Build는 변경하지 않았다. 상태9종은 PLAN-032 사용처 제거에 따라 필수 제작 대상에서 제외하며 과거 요청 명세는 보존한다.
+
+| 요청 | 에셋·Art PLAN | 리비전 명세 | 원본 확인 | 수령/적용 |
+| --- | --- | --- | --- | --- |
+| PLAN-014-SPR-001 | [ZoomOut / Art PLAN-014](../../../../../../Art/docs/plans/PLAN-014-zoomout-icon.md) | [r001](../../../../../../Art/assets/ui/ZoomOut/revisions/r001/README.md) | r001 확인 완료 | 미실행 |
+| PLAN-014-SPR-002 | [ZoomIn / Art PLAN-015](../../../../../../Art/docs/plans/PLAN-015-zoomin-icon.md) | [r001](../../../../../../Art/assets/ui/ZoomIn/revisions/r001/README.md) | r001 확인 완료 | 미실행 |
+| PLAN-014-SPR-003 | [FitMap / Art PLAN-016](../../../../../../Art/docs/plans/PLAN-016-fitmap-icon.md) | [r001](../../../../../../Art/assets/ui/FitMap/revisions/r001/README.md) | r001 확인 완료 | 미실행 |
+| PLAN-014-SPR-007 | [Creatures / Art PLAN-017](../../../../../../Art/docs/plans/PLAN-017-creatures-icon.md) | [r001](../../../../../../Art/assets/ui/Creatures/revisions/r001/README.md) | r001 확인 완료 | 미실행 |
+| PLAN-014-SPR-008 | [Invasion / Art PLAN-018](../../../../../../Art/docs/plans/PLAN-018-invasion-icon.md) | [r001](../../../../../../Art/assets/ui/Invasion/revisions/r001/README.md) | r001 확인 완료 | 미실행 |
+| PLAN-014-SPR-009 | [More / Art PLAN-019](../../../../../../Art/docs/plans/PLAN-019-more-icon.md) | [r001](../../../../../../Art/assets/ui/More/revisions/r001/README.md) | r001 확인 완료 | 미실행 |
+
+- [6종 확대](../../../../../../Art/docs/plans/reviews/PLAN-019/r001/overview.png), [Build·크기 비교](../../../../../../Art/docs/plans/reviews/PLAN-019/r001/size-study-3x.png).
+- 64×64 RGBA·독립 PNG6개·정적1프레임·중심 피벗·Single/Full Rect 예정. 버튼 배경·문구·상태 PNG·입력 변경 없음.
+- Art 원본·보존본·PNG·명세·미리보기 및 Unity 수령/최종 예정 경로는 [인계 목록](../../../../../docs/plans/evidence/PLAN-037/asset-manifest.csv)에 명시한다.
+- [PLAN-037](../../../../../docs/plans/PLAN-037-laboratory-menu-icons-art.md)은 on hold. 6종 r001 원본 확인 완료 후 사용자 요청으로 PLAN-038을 진행한다. [PLAN-042](../../../../../docs/plans/PLAN-042-art-integration-review.md#batch-art-workflow)에서 원본/PNG 기술 검사 후 Unity 수령·적용·게임 검증을 진행한다.
+
+- 2026-11-16 사용자 「좋아. r001로 진행하자. 확인 완료로 기록하고 다음 PLAN-038 아트 작업을 진행해줘」. 위6종 동일 r001 원본 확인 완료, Art 승인 리비전 각1. 게임 화면 승인은 PLAN-042 대기.
+
+
+## PLAN-042 일괄 수령·적용 — 2026-11-17
+
+[통합 기록](../../../../../docs/plans/evidence/PLAN-042/README.md) · [전체 경로/GUID](../../../../../docs/plans/evidence/PLAN-042/asset-manifest.csv)
+
+| asset_id | 리비전 | 최종 적용 경로 | 상태 |
+| --- | --- | --- | --- |
+| ZoomOut | r001 | `Assets/Sprites/UI/Laboratory/ZoomOut.png` | 수령·적용·Editor 검증 / 게임 화면 사용자 확인 대기 |
+| ZoomIn | r001 | `Assets/Sprites/UI/Laboratory/ZoomIn.png` | 수령·적용·Editor 검증 / 게임 화면 사용자 확인 대기 |
+| FitMap | r001 | `Assets/Sprites/UI/Laboratory/FitMap.png` | 수령·적용·Editor 검증 / 게임 화면 사용자 확인 대기 |
+| Creatures | r001 | `Assets/Sprites/UI/Laboratory/Creatures.png` | 수령·적용·Editor 검증 / 게임 화면 사용자 확인 대기 |
+| Invasion | r001 | `Assets/Sprites/UI/Laboratory/Invasion.png` | 수령·적용·Editor 검증 / 게임 화면 사용자 확인 대기 |
+| More | r001 | `Assets/Sprites/UI/Laboratory/More.png` | 수령·적용·Editor 검증 / 게임 화면 사용자 확인 대기 |
+
+수령 후 AssetDatabase.MoveAsset으로 최종 경로에 배치했으므로 Require 아래 PNG가 없는 것은 유실이 아니다. 제출본은 Art의 해당 리비전에 보존한다. 이 기록은 위 제작 당시 미수령/미적용 기록 이후의 최신 상태다.
+
+## 통합 최종 사용자 확인 — 2026-11-17
+
+2026-11-17 사용자: “좋아. 적용된 게임 화면도 확인했어. PLAN-042와 관련 Unity·Art PLAN을 모두 완료 처리해줘. 그리고 main브랜치에 푸쉬해줘”. 이 요청의 PLAN-042 적용 리비전과 재사용 대상 모두 실제 게임 화면 확인 완료. 수령·적용·기술 검증·사용자 확인을 충족했다. [통합 완료 기록](../../../../../docs/plans/evidence/PLAN-042/completion.md). 앞선 대기 기록은 당시 이력이다.

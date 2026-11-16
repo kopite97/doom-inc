@@ -111,7 +111,7 @@ namespace MobileGame.SpatialTests
             }
         }
 
-        [UnityTest]
+        [UnityTest, Category("BatchArtIntegration")]
         public IEnumerator EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible()
         {
             var previousBackground = Application.runInBackground; Application.runInBackground = true;
@@ -150,7 +150,7 @@ namespace MobileGame.SpatialTests
                     Assert.That(view.Controller.Current, Is.SameAs(session)); Assert.That(GameDataStore.Instance, Is.SameAs(store));
                     Assert.That(store.Catalog, Is.SameAs(catalog));
                     Assert.That(view.FindUiButton("RestartFromResults").gameObject.activeInHierarchy, Is.False);
-                    Assert.That(view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "EndingTitle").text, Does.Contain("마지막 신호"));
+                    Assert.That(view.UiCanvas.GetComponentsInChildren<TextMeshProUGUI>().Single(t => t.name == "EndingTitle").text, Is.EqualTo(view.FormatMessage(new LocalizedMessage("Results", "last_signal"))));
                     AssertWorldGraphicRenders(view);
                     yield return CaptureScreenState("destruction-rotation", view, null);
                 }
@@ -199,7 +199,7 @@ namespace MobileGame.SpatialTests
         private static void AssertWorldGraphicRenders(LaboratoryView view)
         {
             Canvas.ForceUpdateCanvases();
-            var world = view.UiCanvas.GetComponentInChildren<LaboratoryUiWorld>();
+            var world = view.UiCanvas.GetComponentsInChildren<UnityEngine.UI.Image>().Single(image => image.name == "EndingWorld");
             Assert.That(world, Is.Not.Null);
             var renderer = world.GetComponent<CanvasRenderer>();
             Assert.That(renderer, Is.Not.Null, "The ending artwork needs a renderer.");
@@ -207,7 +207,9 @@ namespace MobileGame.SpatialTests
             Assert.That(renderer.materialCount, Is.GreaterThan(0));
             var mesh = renderer.GetMesh();
             Assert.That(mesh, Is.Not.Null);
-            Assert.That(mesh.vertexCount, Is.GreaterThan(100), "The world mesh must reach its CanvasRenderer.");
+            Assert.That(world.sprite, Is.Not.Null);
+            Assert.That(world.sprite.name, Does.StartWith("WorldDestruction_Colonization_"));
+            Assert.That(mesh.vertexCount, Is.EqualTo(4), "The received full-rect sprite must reach its CanvasRenderer.");
         }
 
         private static IEnumerator SettleScreenStateSize(Vector2Int size)
@@ -253,7 +255,7 @@ namespace MobileGame.SpatialTests
             var name = "plan013-screen-" + state + "-" + Screen.width + "x" + Screen.height + "-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss-fff");
             var path = Path.GetFullPath(Path.Combine(Application.dataPath, "../Logs/" + name + ".png"));
             Directory.CreateDirectory(Path.GetDirectoryName(path));
-            ScreenCapture.CaptureScreenshot(path);
+            yield return AppSceneFlowTests.Capture(name, path);
             yield return WaitFor(() => File.Exists(path) && new FileInfo(path).Length > 0, "Screen evidence was not written.");
             File.WriteAllText(Path.ChangeExtension(path, ".json"), JsonUtility.ToJson(new ScreenStateEvidence
             {

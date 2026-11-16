@@ -1,7 +1,7 @@
 ---
 id: PLAN-035
 type: art
-status: proposed
+status: completed
 title: 배양액 자원·운반·UI 아트 제작·적용
 updated: 2026-11-16
 ---
@@ -18,7 +18,7 @@ updated: 2026-11-16
 
 - [저장/운반](../game-design/02-systems/02-logistics/storage-and-transport.md), [자원 정의](../../UnityProject/Assets/JSON/Balance/Resources.json), [유기물/운반 승인본](../../UnityProject/Assets/Sprites/Require/PLAN-026/README.md).
 - [CultureMedium SO](../../UnityProject/Assets/SO/Resource/CultureMedium.asset), [지도 합성](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryMapView.Art.cs), [HUD](../../UnityProject/Assets/Scripts/Presentation/Gameplay/Laboratory/LaboratoryView.Gui.cs).
-- 현재 HUD는 OrganicMatter 전용 Image와 배양액 수치 텍스트가 있다. SO Icon만 바꿔 HUD 완료로 집계하지 않는다.
+- 기존 OrganicMatter 전용 HUD를 두 자원 Icon/수치 행으로 확장했다. 실제 자원·재료·저장 허용 행도 연결했다.
 - PLAN-033과 독립 실행 가능하며 기존 프로토타입 운반으로 검증한다.
 
 ## 디자인 의도와 원하는 모습
@@ -49,7 +49,7 @@ updated: 2026-11-16
 
 ## 결과물 저장 위치
 
-아래는 이번 PLAN에서 사용할 **예정 경로**다. 위치 지정은 제작·수령 완료를 뜻하지 않으며 파일/빈 폴더는 지금 만들지 않는다. 기준 루트와 표의 경로를 결합하면 실제 절대 경로가 된다.
+아래는 최초 지정 경로다. 현재 r001 원본·PNG·Unity 적용 파일을 생성했으며 [검수 색인](evidence/PLAN-035/README.md)과 [요청 기록](../../UnityProject/Assets/Sprites/Require/PLAN-035/README.md)이 실제 상태의 기준이다. 기준 루트와 표의 경로를 결합하면 실제 절대 경로가 된다.
 
 - Art 루트: `C:/Dev/Unity/Art/`
 - Unity 루트: `C:/Dev/Unity/Doom_Inc/UnityProject/`
@@ -97,32 +97,35 @@ updated: 2026-11-16
 
 ## 작업 책임과 문서 경계
 
-- 현재 범위는 2026-11-16 사용자가 요청한 남은 아트 PLAN 작성이다. 제작·Unity 적용·게임 테스트는 미승인/미실행이다.
+- 2026-11-16 사용자 「다음 아트 플랜 방금과 같은 플로우로 실행해줘」 요청. 권장 순서 PLAN-033 → PLAN-035에 따라 제작·연결·검증을 실행한다. Aseprite 제작 위임을 포함한 기존 흐름을 적용하며 시각 승인은 별도다.
 - 제작 작업공간은 `C:/Dev/Unity/Art`다. 정식 아트는 사용자가 Aseprite로 제작하고 에이전트는 명세·수령·연결·검증을 담당한다. 그림 제작을 별도로 위임받으면 그 근거를 기록한다.
 - [Art 디자인 MAP](../../../Art/docs/agetns/design/README.md)·[광원](../../../Art/docs/agetns/design/lighting.md)·[팔레트](../../../Art/docs/agetns/design/palette.md)·[가독성](../../../Art/docs/agetns/design/readability.md)·[출력/전달](../../../Art/docs/agetns/production/export-and-handoff.md)을 적용한다. 공통 미정값은 개별 승인값을 취소하지 않는다.
 - Art 제작 PLAN은 에셋별로 관리하며 Unity PLAN 번호와 독립이다. 기존 asset_id/리비전은 재사용한다. 이번에는 Art PLAN을 중복 생성하거나 완료 문서를 수정하지 않는다.
-- 신규 요청은 미발행이다. 제작 규격 확정 시 `UnityProject/Assets/Sprites/Require/PLAN-035/README.md`에 요청별 명세·최종 경로·상태를 기록한다. 위 표의 예정 요청 ID·파일 위치를 사용하며 경로 지정은 실제 수령을 뜻하지 않는다.
+- [PLAN-035-SPR-001 요청](../../UnityProject/Assets/Sprites/Require/PLAN-035/README.md)을 발행하고 [Art PLAN-010](../../../Art/docs/plans/PLAN-010-culture-medium.md) r001을 수령·적용했다. 2026-11-16 사용자 확인으로 원본·게임 화면 시각 승인을 완료했다.
 
 ## 리소스 준비와 진행 요약
 
 | 필수 대상 | 명세/제작 | 최신 수령 | 원본 승인 | 실제 적용 | 기술 검증 | 게임 화면 승인 |
 | --- | --- | --- | --- | --- | --- | --- |
-| CultureMedium 정적 공용 이미지 | 제안/미착수 | 미수령 | 미확인 | 미적용 | 미실행 | 미확인 |
+| CultureMedium 정적 공용 이미지 | r001 제작 완료 | r001 | 2026-11-16 승인 | r001 | Edit10·Play7 통과 | 2026-11-16 승인 |
 
-- 전체 준비 판정: 미충족. 전체 필수 리소스의 제작·수령·적용·참조 연결을 정적으로 확인한 날짜와 근거를 기록한 뒤 테스트를 시작한다.
+- 전체 준비 판정: 2026-11-16 충족. PNG 1장·Icon·CargoSupport·HUD/자원 행 연결 및 임포트/참조 정적 확인을 [증거](evidence/PLAN-035/README.md)에 기록한 후 테스트를 시작했다.
 - 준비 중에는 파일·임포트·참조 확인만 수행한다. Edit/Play·수동 게임 실행·검수 캡처는 전체 준비 후 진행한다. 원본 승인과 게임 화면 승인을 구분한다.
 - 임포트는 [아트 지침](../agents/art-assets.md)의 PPU 32·Point·원본 해상도 유지 기준을 따른다. 좌표·프레임 시간은 PNG와 별도로 기록한다.
 
 ## 작업 목록
 
 - [x] 디자인 의도·범위·현행 연결·선행 관계와 검수 기준을 제안으로 작성
-- [ ] 실행 승인/선행 조건 확인, 해당 PLAN만 active로 전환
+- [x] 실행 승인/선행 조건 확인, 해당 PLAN만 active로 전환
 - [x] 에셋별 원본·리비전·수령·최종 적용·검수 자료의 예정 경로 지정
-- [ ] 수량·사용처·규격 확정, 상세 요청/Art 제작 기록 연결
-- [ ] 전체 필수 리소스 제작·수령·원본 승인·리비전 대조
-- [ ] 정규 경로·씬/SO·생성 도구의 실제 참조 전체 연결
-- [ ] 전체 준비 판정 후 기술 검증·사용자 게임 화면 확인
-- [ ] 수정 리비전 반영·환경 복원·채택 규격·로드맵 완료 범위 기록
+- [x] 수량·사용처·규격 확정, 상세 요청/Art 제작 기록 연결
+- [x] 전체 필수 리소스 제작·수령·리비전 대조
+- [x] 원본 사용자 시각 승인
+- [x] 정규 경로·씬/SO·생성 도구의 실제 참조 전체 연결
+- [x] 전체 준비 판정 후 기술 검증
+- [x] 사용자 게임 화면 확인
+- [x] r001 적용·환경 복원·채택 규격 기록
+- [x] 사용자 승인 후 로드맵 완료 범위 기록
 
 ## 완료 기준과 검증 방법
 
@@ -143,17 +146,17 @@ updated: 2026-11-16
 ## 검증 결과와 사용자 확인
 
 - 2026-11-16: 문서·현행 코드/정의의 정적 조사로 후보 작성. 신규 리소스 제작·수령·게임 적용·게임 테스트는 미실행.
-- 원본 승인·게임 화면 승인: 모두 대기. 실행 시 대상 리비전·화면/배율·사용자 응답/날짜·수정/재확인을 각각 기록한다.
+- 원본 승인·게임 화면 승인: 2026-11-16 사용자 배양액 확인 및 두 PLAN 완료 요청으로 완료. 실행 시 대상 리비전·화면/배율·사용자 응답/날짜·수정/재확인을 각각 기록한다.
 - 문서 검사: 2026-11-16 문서 검사 통과(PLAN 42개·active 0개·목록 42개·로컬 링크 3,888개). 변경 형식 검사 통과. 기존 Unity/Art PLAN 40개가 작업 전 해시와 같음을 확인했다.
 - 경로 보완 검사(2026-11-16): 문서 검사 통과(42 PLAN·active 0·로컬 링크 3,904개), 25개 제작 후보의 원본/제출/수령/최종 적용/원본 비교 경로 누락·중복 없음, 기존 완료 PLAN 40개 해시 불변 확인. 예정 결과물은 생성하지 않았다.
 - 환경 복원: 문서만 작성하여 게임·Editor·원본 아트·저장/설정을 변경하지 않았다.
 
 ## 현재 상황과 다음 행동
 
-- status: proposed. active PLAN은 0개이며 이 문서는 실행 승인이 아니다.
-- 다음 행동: 배양액 용기 실루엣과 32px 규격을 검토하고 제작 요청을 구체화한다.
+- status: completed. PLAN-033 및 Art PLAN-009 완료 후 실행했으며, [Art PLAN-010](../../../Art/docs/plans/PLAN-010-culture-medium.md)의 제작과 Unity 적용·검증·사용자 시각 확인을 완료했다.
+- 다음 행동: 없음. 사용자 「좋아. 배양액도 확인했어. PLAN-035와 Art PLAN-010을 완료 처리」로 r001 최종 시각 확인을 기록했다. 5-3 배양액 자원 범위 완료; 다른 아트 범위는 별도다.
 - 로드맵: 5-3 자원. 이 PLAN 완료가 다른 묶음/전체 아트의 완료를 대신하지 않는다.
-- 최종 적용/승인 리비전·채택 규격·기준 화면은 실행 후 기록한다.
+- 실제 적용/원본 승인/게임 화면 승인 모두 r001 완료. 채택 규격32×32·Single·PPU32·중앙 피벗·받침(16,28), 최신 화면run-004. 기술 검사 상세는 [증거](evidence/PLAN-035/validation.md).
 
 ## 변경 이력과 상태 전환
 
@@ -161,3 +164,9 @@ updated: 2026-11-16
 | --- | --- | --- |
 | 2026-11-16 | 결과물 경로 보완 | 사용자 요청에 따라 원본·제출본·수령·최종 적용·검수 경로 지정. 파일 생성/제작/적용 없음 |
 | 2026-11-16 | 신규 proposed | 사용자: 남은 ART 관련 PLAN을 비슷한 카테고리별로 모두 작성. 제작/적용 미승인 |
+
+- 2026-11-16: proposed → active. 사용자 다음 아트 PLAN 동일 흐름 실행 요청. 권장 순서의 배양액 제작·적용, 기존 active 완료 후 전환.
+
+- 2026-11-16: r001 원본·PNG 제작 및 Unity 전체 연결. Edit10개·Play7개 통과, 캡처 조정 후 UI통합1개 재통과. 최종Console오류/경고0·원래 환경 복원, 기존 Sprite/정의 해시 보존. 원본/게임 시각 승인 대기로 active 유지.
+
+- 2026-11-16: active → completed. 사용자 r001 확인·완료 요청. 기존 Edit10·Play7 및 화면 증거로 완료하며 재실행하지 않았다. 후속 아트 제작·일괄 적용 방식 변경은 남은 PLAN에만 적용한다.

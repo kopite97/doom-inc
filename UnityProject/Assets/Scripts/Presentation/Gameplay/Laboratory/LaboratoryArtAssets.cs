@@ -14,6 +14,34 @@ namespace MobileGame.Presentation
         [SerializeField] private Sprite[] cargoSprites;
         [SerializeField] private Vector2[] cargoSupports;
         [SerializeField] private FacilityArtSet[] facilities;
+        [SerializeField] private CreatureArtSet[] creatures;
+        [SerializeField] private Sprite[] boundary;
+        [SerializeField] private Sprite birthPulse, releaseTrail;
+        [SerializeField] private Sprite[] colonization;
+        public Sprite[] Boundary => boundary;
+        public Sprite BirthPulse => birthPulse;
+        public Sprite ReleaseTrail => releaseTrail;
+        public Sprite ColonizationFrame(float progress) => At(colonization, Mathf.Min(31, Mathf.FloorToInt(Mathf.Clamp01(progress) * 32)));
+        public int CreaturePlaybackFrame(ThingData definition, int direction, int motion, double time)
+        {
+            var set = Creature(definition);
+            if (set != null) return set.PlaybackFrame(direction, motion, time);
+            return direction * 16 + (motion == 0 ? 0 : motion == 1 ? 4 : 10)
+                + (int)(time / (motion == 0 ? .25 : motion == 1 ? .1 : .12)) % (motion == 0 ? 4 : 6);
+        }
+        private CreatureArtSet Creature(ThingData definition)
+        {
+            if (creatures != null)
+                foreach (var entry in creatures)
+                    if (entry != null && entry.Matches(definition)) return entry;
+            return null;
+        }
+        // Preserve the serialized prototype binding and its existing sub-sprite identities.
+        public bool HasCreature(ThingData definition) => HasPrototype(definition) || Creature(definition) != null;
+        public Sprite CreatureFrame(ThingData definition, int index) => HasPrototype(definition)
+            ? PrototypeFrame(index) : Creature(definition)?.Frame(index);
+        public Vector2 CreatureHead(ThingData definition, int index) => HasPrototype(definition)
+            ? PrototypeHead(index) : Creature(definition)?.Head(index) ?? new Vector2(32, 22);
         public bool TryFacility(ThingData definition, out FacilityArtSet result)
         {
             if (facilities != null)

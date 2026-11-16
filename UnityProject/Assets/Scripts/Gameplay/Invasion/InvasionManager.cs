@@ -17,6 +17,7 @@ namespace MobileGame.Gameplay
         }
         public InvasionState State { get; }
         public string LastError { get; private set; }
+        public event Action<Guid, UnityEngine.Vector2Int> Released;
         public int WaitingCount => Invaders().Count(t => !t.GetComponent<InvaderComponent>().IsExternal);
         public int ExternalCount => Invaders().Count(t => t.GetComponent<InvaderComponent>().IsExternal);
         private Thing[] Invaders() => laboratory.Registry.Things.Where(t => t.TryGetComponent<InvaderComponent>(out _))
@@ -35,6 +36,7 @@ namespace MobileGame.Gameplay
             catch (InvalidDataException error) { return Reject(error.Message); }
             var waiting = Invaders().Where(t => !t.GetComponent<InvaderComponent>().IsExternal).ToArray();
             if (waiting.Length == 0) return Reject("No invaders are waiting.");
+            var origins = waiting.Select(t => t.Placement.Origin).ToArray();
             foreach (var thing in waiting)
             {
                 var result = laboratory.Map.Commands.Unplace(thing.Id);
@@ -42,6 +44,7 @@ namespace MobileGame.Gameplay
                 thing.GetComponent<InvaderComponent>().IsExternal = true;
             }
             LastError = null;
+            for (var i = 0; i < waiting.Length; i++) Released?.Invoke(waiting[i].Id, origins[i]);
             return true;
         }
 

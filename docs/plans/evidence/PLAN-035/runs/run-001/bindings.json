@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var path = MobileGame.Foundation.Editor.LaboratoryResourceArtBuilder.CulturePath; var sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Sprite>(path); var definition = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Foundation.ResourceDefinition>(\"Assets/SO/Resource/CultureMedium.asset\"); var art = UnityEditor.AssetDatabase.LoadAssetAtPath<MobileGame.Presentation.LaboratoryArtAssets>(MobileGame.Foundation.Editor.LaboratoryUiAssetBuilder.ArtPath); using var data = new UnityEditor.SerializedObject(definition); return new { iconMatches = data.FindProperty(\"icon\").objectReferenceValue == sprite, support = art.CargoSupport(sprite).ToString(), ppu = sprite.pixelsPerUnit, rect = sprite.rect.ToString(), guid = UnityEditor.AssetDatabase.AssetPathToGUID(path) };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "iconMatches": true,
+        "support": "(16.00, 28.00)",
+        "ppu": 32,
+        "rect": "(x:0.00, y:0.00, width:32.00, height:32.00)",
+        "guid": "e549f5770a7cfe04b811f4e4181a3191"
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

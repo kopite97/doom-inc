@@ -37,10 +37,11 @@ namespace MobileGame.Presentation
 #endif
         }
 
-        public UiCanvas(Transform parent, string name, int order)
+        public UiCanvas(Transform parent, string name, int order, MobileGame.Foundation.UiSkinAssets skin = null)
         {
             var host = new GameObject(name, typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             host.transform.SetParent(parent, false);
+            host.AddComponent<UiSkinContext>().Assets = skin;
             Canvas = host.GetComponent<Canvas>(); Canvas.renderMode = RenderMode.ScreenSpaceOverlay; Canvas.sortingOrder = order;
             scaler = host.GetComponent<CanvasScaler>(); scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
             SafeRoot = UiWidgets.Rect("SafeArea", host.transform);

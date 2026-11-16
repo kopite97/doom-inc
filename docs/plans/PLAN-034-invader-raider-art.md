@@ -1,18 +1,35 @@
 ---
 id: PLAN-034
 type: art
-status: proposed
-title: 일반 침공형·약탈형 외형과 대기 동작 제작·적용
-updated: 2026-11-16
+status: completed
+title: 일반 침공형·약탈형 외형과 4방향 대기·이동 제작·적용
+updated: 2026-11-17
 ---
 
-# PLAN-034 일반 침공형·약탈형 외형과 대기 동작 제작·적용
+# PLAN-034 일반 침공형·약탈형 외형과 4방향 대기·이동 제작·적용
 
-[사용 양식](_template-art-animation.md) · [PLAN 관리](AGETNS.md#art-template-records) · [전체 준비 후 테스트](../agents/verification.md#art-plan-test-readiness) · [아트 로드맵](../game-design/05-development/02-implementation/art-roadmap.md)
+## 최신 통합 상태 — 2026-11-17
+
+completed. 2026-11-17 사용자: “좋아. 적용된 게임 화면도 확인했어. PLAN-042와 관련 Unity·Art PLAN을 모두 완료 처리해줘. 그리고 main브랜치에 푸쉬해줘”. 승인 리비전의 Unity 적용·일반 Editor 기술 검증·최종 게임 화면 확인·환경 복원을 모두 마쳤다. 추가 제작/수정 요청은 없으며 다음 PLAN을 활성화하지 않는다.
+
+[완료 승인 기록](evidence/PLAN-042/completion.md) · [통합 증거](evidence/PLAN-042/README.md) · [검증 대응](evidence/PLAN-042/plan-verification-matrix.csv). Android/실기기·고부하 검증은 이번 완료 범위 밖이며 미실행이다.
+
+## 제작 우선·마지막 일괄 적용
+
+2026-11-16 사용자 「모든 아트리소스를 먼저 작업한 다음 한번에 Unity에 적용」「검증은 마지막 Art플랜에서 한번에」 요청을 반영한다. [PLAN-042 실행 절차](PLAN-042-art-integration-review.md#batch-art-workflow)를 이 묶음의 공통 운영 기준으로 사용한다.
+
+- 이 PLAN 단계는 Art 작업 원본·리비전별 PNG/시트·명세·미리보기 제작과 제출 목록 작성까지다. 파일 저장/열기·출력 누락 같은 제작 작업 확인 및 문서 검사는 가능하지만, 정식 기술 검증·통합 시각 검수의 통과로 기록하지 않는다.
+- 파일은 Art의 지정 리비전에 보관한다. Unity Assets로 PNG를 복사하지 않고, 임포트·슬라이싱·SO/씬/프리팹/재질·연결 코드·생성 도구 변경·Edit/Play·게임 캡처는 PLAN-042로 유보한다. 기존 화면/참조는 일괄 적용 전까지 유지한다.
+- 아래 디자인·파일 수·요청 ID·Art 원본/리비전·Unity 최종 경로·적용 요구·검증 항목은 유지한다. 사용처별 적용과 모든 정식 검증은 PLAN-042가 담당하며, 이 PLAN의 체크는 해당 통합 증거 링크로 충족한다.
+- 제작이 끝나면 `on hold`(일괄 적용·검증 대기)로 전환한다. 제작 완료를 Unity 아트 PLAN의 `completed`로 간주하지 않는다. 제작 묶음의 모든 에셋에 대해 아래 사용자 확인을 마친 뒤, 승인된 순차 실행 범위에서 다음 제작 PLAN으로 넘어간다. active는 최대 1개다.
+- **제작 후 사용자 확인 필수:** 에셋별 정면/시트 미리보기와 애니메이션 GIF, 리비전·변경 내용을 제시하고 사용자 응답을 기다린다. 수정 요청은 새 리비전에 반영해 다시 보여준다. 해당 묶음의 외형·동작 확인 전 다음 Unity 제작 PLAN을 시작하지 않는다. 승인된 리비전·응답·날짜를 Art PLAN과 요청 README에 기록한다. 이 원본 확인은 PLAN-042의 기술 검사·게임 화면 검증과 별도이며, 기존 승인 외형은 통합 단계에서 변경된 경우에만 재확인한다.
+- 앞 PLAN의 리소스를 참고할 때는 Art 제출본·디자인/규격을 사용한다. 앞 PLAN의 Unity 적용·게임 검증·completed 상태를 후속 제작의 선행 조건으로 요구하지 않는다.
+- 2026-11-16 후속 사용자 요청으로 제작을 실행한다. Art PLAN-011 Invader → PLAN-012 Raider 순서이며 Unity 적용·정식 검증 유보는 유지한다.
+
 ## 목표와 범위
 
-`creature.invader`와 `creature.raider`의 외형·최소 대기 동작·목록 아이콘을 적용한다. 방출 효과는 PLAN-039이며 외부 활동은 기존 텍스트 보고로 유지한다.
-현재 침공형에 없는 보조형 이동/작업·전투·공격/피격/사망·귀환·약탈품을 들고 돌아오는 동작은 추가하지 않는다.
+`creature.invader`와 `creature.raider`의 외형·4방향 대기·이동 동작·목록 아이콘을 적용한다. 방출 효과는 PLAN-039이며 외부 활동은 기존 텍스트 보고로 유지한다.
+F-001 사용자 요청으로 네 방향 Idle/Move 프레임을 제작한다. Worker·이동 AI·작업·전투·공격/피격/사망·귀환·약탈품 운반 규칙은 변경하지 않는다.
 
 ## 기준 문서와 현재 확정 사항
 
@@ -35,19 +52,25 @@ updated: 2026-11-16
 
 ## 산출물과 재생 명세
 
-| 에셋 | 방향/동작 제안 | 수량·파일 | 규격 제안 |
+2026-11-16 F-001 사용자 「침공형과 약탈형도 상하좌우 움직이는 프레임이 필요해」를 반영한 r002 명세다. r001은 보존한다.
+
+| 에셋 | 방향/동작 | 수량·파일 | 규격 |
 | --- | --- | --- | --- |
-| Invader | 대기 표시용 Down Idle | 4프레임·원본 1·PNG 1 | 64×64 셀·4×1 시트 |
-| Raider | 대기 표시용 Down Idle | 4프레임·원본 1·PNG 1 | 64×64 셀·4×1 시트 |
+| Invader | Down/Left/Right/Up 각 Idle4+Move6 | 40프레임·원본1·PNG1 | 64×64셀·10열4행·640×256 |
+| Raider | Down/Left/Right/Up 각 Idle4+Move6 | 40프레임·원본1·PNG1 | 동일 |
 
-합계 2종·8프레임·2 PNG 제안, 목록은 각 첫 셀 재사용. 접지/피벗·실제 그림 영역·여백은 제작 전에 확정한다. 이동하는 개체의 4방향 기준과 구분하며 실제 사용처에 방향 전환이 필요하면 제작 전 명세에 반영한다. 미사용 Move/Work는 만들지 않는다.
+합계80프레임·2 PNG. 행 Down/Left/Right/Up, 각 행 Idle4셀 다음 Move6셀. 목록은 첫 셀. 접지 (32,54)px·하단 원점 피벗 (0.5,0.15625). 정면 회전 대신 방향별 측면/뒷면 제작. Move는 제자리 보행이며 위치 변화는 Unity 담당이다.
 
-| 태그 | 시간 제안 | 시작·종료/정지 |
+| 태그 | 시간 | 의도 |
 | --- | --- | --- |
-| Invader_Idle_Down | 4 × 250ms = 1000ms 반복 | 연구소 배치·방출 전 대기, 외부 활동 전환 시 지도 제거 |
-| Raider_Idle_Down | 4 × 200ms = 800ms 반복 | 동일; 정지/홈 복귀에서 위상 정지, 복원 때 과거 방출 재생 금지 |
+| Invader_Idle_방향 | 250ms×4 = 1000ms | 접지 고정 호흡 |
+| Invader_Move_방향 | 120ms×6 = 720ms | 짧은 발 교대·무거운 외피 1px 반응 |
+| Raider_Idle_방향 | 200ms×4 = 800ms | 뒤 낭 호흡 |
+| Raider_Move_방향 | 100ms×6 = 600ms | 빠른 발 교대·낭의 지연 탄성 |
 
-## 사용처별 적용 계획
+실제 방향/이동 상태 연결·속도 동기화는 PLAN-042에서 확인하고 아트만으로 이동 AI를 추가하지 않는다.
+
+## PLAN-042에서 실행할 사용처별 적용 계획
 
 - 최종 경로 제안: `Assets/Sprites/Creature/Invader/Invader.png`·`Assets/Sprites/Creature/Raider/Raider.png`.
 - [Invader SO](../../UnityProject/Assets/SO/Creature/Invader.asset)·[Raider SO](../../UnityProject/Assets/SO/Creature/Raider.asset)의 Icon과 배양/생명체/침공 목록, 지도 본체·외곽선·밀집 후보 선택에 연결한다.
@@ -56,34 +79,36 @@ updated: 2026-11-16
 
 ## 결과물 저장 위치
 
-아래는 이번 PLAN에서 사용할 **예정 경로**다. 위치 지정은 제작·수령 완료를 뜻하지 않으며 파일/빈 폴더는 지금 만들지 않는다. 기준 루트와 표의 경로를 결합하면 실제 절대 경로가 된다.
+아래 Art 원본·r002 제출본은 제작했고 Unity 수령·최종 적용은 **예정 경로**다. 실제 자료는 [인계 색인](evidence/PLAN-034/README.md)에 연결했다. 기준 루트와 표의 경로를 결합하면 실제 절대 경로가 된다.
 
 - Art 루트: `C:/Dev/Unity/Art/`
 - Unity 루트: `C:/Dev/Unity/Doom_Inc/UnityProject/`
 - 검수 루트 E: `C:/Dev/Unity/Doom_Inc/docs/plans/evidence/PLAN-034/`
-- 최초 제출은 에셋별 `r001`, 수정 제출은 `r002`부터 증가한다. 승인본을 덮어쓰지 않고 실제 리비전을 요청/검수 기록에 명시한다.
+- 최초 제출 r001을 보존하고 현재 제출은 r002다. 이후 수정 제출은 r003부터 증가한다. 승인본을 덮어쓰지 않고 실제 리비전을 요청/검수 기록에 명시한다.
 
 ### Art 원본과 리비전별 제출본
 
 아래 경로는 Art 루트 기준이다. 제출 명세에는 태그/시간·좌표·출력 파일 목록·해시·Unity 요청 대응을 기록한다.
 
-| asset_id | 작업용 원본 | r001 원본 보존본 | r001 PNG 제출본 | r001 제출 명세 |
+| asset_id | 작업용 원본 | r002 원본 보존본 | r002 PNG 제출본 | r002 제출 명세 |
 | --- | --- | --- | --- | --- |
-| `Invader` | `assets/characters/Invader/source/Invader.aseprite` | `assets/characters/Invader/revisions/r001/source/Invader.aseprite` | `assets/characters/Invader/revisions/r001/export/Invader.png` | `assets/characters/Invader/revisions/r001/README.md` |
-| `Raider` | `assets/characters/Raider/source/Raider.aseprite` | `assets/characters/Raider/revisions/r001/source/Raider.aseprite` | `assets/characters/Raider/revisions/r001/export/Raider.png` | `assets/characters/Raider/revisions/r001/README.md` |
+| `Invader` | `assets/characters/Invader/source/Invader.aseprite` | `assets/characters/Invader/revisions/r002/source/Invader.aseprite` | `assets/characters/Invader/revisions/r002/export/Invader.png` | `assets/characters/Invader/revisions/r002/README.md` |
+| `Raider` | `assets/characters/Raider/source/Raider.aseprite` | `assets/characters/Raider/revisions/r002/source/Raider.aseprite` | `assets/characters/Raider/revisions/r002/export/Raider.png` | `assets/characters/Raider/revisions/r002/README.md` |
 
 ### Unity 수령과 최종 적용
 
-아래 경로는 Unity 루트 기준이다. 요청 명세/진행 기록은 `Assets/Sprites/Require/PLAN-034/README.md`에 둔다. 아래 ID는 이 PLAN의 예정 요청 ID로 배정했으며 상세 요청서는 아직 미발행이다. 재사용으로 제작하지 않는 항목은 해당 ID를 다른 에셋에 재배정하지 않는다.
+아래 경로는 PLAN-042에서 일괄 수령·적용할 Unity 루트 기준이다. 요청 명세/진행 기록은 `Assets/Sprites/Require/PLAN-034/README.md`에 둔다. 아래 ID로 상세 요청서를 발행했으며 PNG 수령은 PLAN-042까지 유보한다. 재사용으로 제작하지 않는 항목은 해당 ID를 다른 에셋에 재배정하지 않는다.
 
-| asset_id | 요청 ID | r001 수령 PNG | 최종 적용 PNG |
+| asset_id | 요청 ID | r002 수령 PNG | 최종 적용 PNG |
 | --- | --- | --- | --- |
-| `Invader` | `PLAN-034-SPR-001` | `Assets/Sprites/Require/PLAN-034/PLAN-034-SPR-001/r001/Invader.png` | `Assets/Sprites/Creature/Invader/Invader.png` |
-| `Raider` | `PLAN-034-SPR-002` | `Assets/Sprites/Require/PLAN-034/PLAN-034-SPR-002/r001/Raider.png` | `Assets/Sprites/Creature/Raider/Raider.png` |
+| `Invader` | `PLAN-034-SPR-001` | `Assets/Sprites/Require/PLAN-034/PLAN-034-SPR-001/r002/Invader.png` | `Assets/Sprites/Creature/Invader/Invader.png` |
+| `Raider` | `PLAN-034-SPR-002` | `Assets/Sprites/Require/PLAN-034/PLAN-034-SPR-002/r002/Raider.png` | `Assets/Sprites/Creature/Raider/Raider.png` |
 
 수령 PNG는 GUID/참조를 보존해 최종 경로로 옮기거나 교체한다. Require는 장기 보관/런타임 참조 위치가 아니며 과거 파일은 Art 리비전에 보존한다. 기존 완료 에셋을 재사용할 때는 원본/요청을 복제하지 않는다.
 
 ### 검수 자료
+
+원본 미리보기·리비전 인계 목록은 이 PLAN/Art 지정 위치에 보관한다. 정식 검증·게임 캡처·환경 기록은 아래 `../PLAN-042/` 경로에 한 번만 저장하고 이 PLAN에서 링크한다. 이전에 지정한 개별 게임 실행 폴더는 생성하지 않는다.
 
 이 PLAN에서 제출받아 비교하는 원본 미리보기와 Unity 적용 검수는 E 아래에서 구분한다. Art 자체 제작 PLAN의 기존 검수 증거가 있으면 그 실제 경로를 연결하고 같은 자료를 불필요하게 복사하지 않는다.
 
@@ -91,53 +116,50 @@ updated: 2026-11-16
 | --- | --- |
 | 전체 검수 색인·최신 적용/승인 대응 | `README.md` |
 | 에셋별 실제 파일·리비전·GUID/해시·사용처 목록 | `asset-manifest.csv` |
-| 기술 검증·원본/게임 화면 사용자 응답·날짜 | `validation.md` |
-| 작업 전 상태와 원본/참조·저장/설정·Editor 복원 | `environment.md` |
-| 첫 실행의 조건·언어·화면/배율·대상 리비전 | `runs/run-001/README.md` |
-| 첫 실행의 가로/세로 대표 게임 화면 | `runs/run-001/screenshots/landscape.png`, `runs/run-001/screenshots/portrait.png` |
-| 필요한 경우 실제 재생 검수 영상 | `runs/run-001/videos/playback.mp4` |
-| 실행한 검증 결과·로그 | `runs/run-001/tests/editmode.xml`, `runs/run-001/tests/playmode.xml`, `runs/run-001/logs/editor.log` |
+| 기술 검증·원본/게임 화면 사용자 응답·날짜 | `../PLAN-042/validation.md` |
+| 작업 전 상태와 원본/참조·저장/설정·Editor 복원 | `../PLAN-042/environment.md` |
+| 첫 실행의 조건·언어·화면/배율·대상 리비전 | `../PLAN-042/runs/run-001/README.md` |
+| 첫 실행의 가로/세로 대표 게임 화면 | `../PLAN-042/runs/run-001/screenshots/PLAN-034-landscape.png`, `../PLAN-042/runs/run-001/screenshots/PLAN-034-portrait.png` |
+| 필요한 경우 실제 재생 검수 영상 | `../PLAN-042/runs/run-001/videos/game-flow.mp4` |
+| 실행한 검증 결과·로그 | `../PLAN-042/runs/run-001/tests/editmode.xml`, `../PLAN-042/runs/run-001/tests/playmode.xml`, `../PLAN-042/runs/run-001/logs/editor.log` |
 
 실행하지 않는 검증의 파일은 만들지 않고 validation.md에 해당 없음/미실행을 기록한다. 다음 실행은 run-002부터 증가하여 이전 증거를 덮어쓰지 않는다. 장면/언어별 추가 캡처는 해당 실행 README에 파일명과 조건을 등록한다.
 
 | 제출받은 원본 비교 대상 | E 기준 리비전별 시각 비교 | 비교 조건·원본 승인 기록 |
 | --- | --- | --- |
-| Invader | `source-reviews/Invader/r001/design.png` | `source-reviews/Invader/r001/README.md` |
-| Raider | `source-reviews/Raider/r001/design.png` | `source-reviews/Raider/r001/README.md` |
+| Invader | `source-reviews/Invader/r002/design.png` | `source-reviews/Invader/r002/README.md` |
+| Raider | `source-reviews/Raider/r002/design.png` | `source-reviews/Raider/r002/README.md` |
 
 원본 실제 시간 재생 미리보기가 필요하면 각 위 폴더의 `motion.gif`에 보관한다. 이미지 나열과 실제 재생 검수를 구분하며 게임 화면 검수 영상은 위 playback.mp4에 둔다.
 
 ## 작업 책임과 문서 경계
 
-- 현재 범위는 2026-11-16 사용자가 요청한 남은 아트 PLAN 작성이다. 제작·Unity 적용·게임 테스트는 미승인/미실행이다.
-- 제작 작업공간은 `C:/Dev/Unity/Art`다. 정식 아트는 사용자가 Aseprite로 제작하고 에이전트는 명세·수령·연결·검증을 담당한다. 그림 제작을 별도로 위임받으면 그 근거를 기록한다.
+- 사용자 후속 실행 요청으로 Art 원본·리비전·명세·미리보기를 제작한다. Unity 적용·정식 검증은 PLAN-042까지 유보한다.
+- 제작 작업공간은 `C:/Dev/Unity/Art`다. 2026-11-16 사용자 「Art 소스폴더 지침에 따라 PLAN을 작성하고 제작해줘」에 따라 이 두 에셋의 Aseprite 제작을 에이전트에 위임했다. 최종 시각 승인은 별도다.
 - [Art 디자인 MAP](../../../Art/docs/agetns/design/README.md)·[광원](../../../Art/docs/agetns/design/lighting.md)·[팔레트](../../../Art/docs/agetns/design/palette.md)·[가독성](../../../Art/docs/agetns/design/readability.md)·[출력/전달](../../../Art/docs/agetns/production/export-and-handoff.md)을 적용한다. 공통 미정값은 개별 승인값을 취소하지 않는다.
 - Art 제작 PLAN은 에셋별로 관리하며 Unity PLAN 번호와 독립이다. 기존 asset_id/리비전은 재사용한다. 이번에는 Art PLAN을 중복 생성하거나 완료 문서를 수정하지 않는다.
-- 신규 요청은 미발행이다. 제작 규격 확정 시 `UnityProject/Assets/Sprites/Require/PLAN-034/README.md`에 요청별 명세·최종 경로·상태를 기록한다. 위 표의 예정 요청 ID·파일 위치를 사용하며 경로 지정은 실제 수령을 뜻하지 않는다.
+- [요청 README](../../UnityProject/Assets/Sprites/Require/PLAN-034/README.md)에 SPR-001/002의 명세·Art r002·최종 경로를 발행했다. PNG 미수령·미적용이다.
 
 ## 리소스 준비와 진행 요약
 
-| 필수 대상 | 명세/제작 | 최신 수령 | 원본 승인 | 실제 적용 | 기술 검증 | 게임 화면 승인 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Invader 본체·Idle·목록 대표 프레임 | 제안/미착수 | 미수령 | 미확인 | 미적용 | 미실행 | 미확인 |
-| Raider 본체·Idle·목록 대표 프레임 | 제안/미착수 | 미수령 | 미확인 | 미적용 | 미실행 | 미확인 |
-
-- 전체 준비 판정: 미충족. 전체 필수 리소스의 제작·수령·적용·참조 연결을 정적으로 확인한 날짜와 근거를 기록한 뒤 테스트를 시작한다.
-- 준비 중에는 파일·임포트·참조 확인만 수행한다. Edit/Play·수동 게임 실행·검수 캡처는 전체 준비 후 진행한다. 원본 승인과 게임 화면 승인을 구분한다.
-- 임포트는 [아트 지침](../agents/art-assets.md)의 PPU 32·Point·원본 해상도 유지 기준을 따른다. 좌표·프레임 시간은 PNG와 별도로 기록한다.
+승인본 수령·Unity 적용·일반 Editor 기술 검증·사용자 실제 게임 화면 승인 완료(2026-11-17). 리비전/수령/최종 경로는 [최종 대응표](evidence/PLAN-042/asset-manifest.csv), 개별 완료 기준은 [49개 기준 대응](evidence/PLAN-042/plan-verification-matrix.csv)에 기록했다. 기존 승인본과 저장/설정을 보존했다.
 
 ## 작업 목록
 
 - [x] 디자인 의도·범위·현행 연결·선행 관계와 검수 기준을 제안으로 작성
-- [ ] 실행 승인/선행 조건 확인, 해당 PLAN만 active로 전환
+- [x] 실행 승인/선행 조건 확인, 해당 PLAN만 active로 전환
 - [x] 에셋별 원본·리비전·수령·최종 적용·검수 자료의 예정 경로 지정
-- [ ] 수량·사용처·규격 확정, 상세 요청/Art 제작 기록 연결
-- [ ] 전체 필수 리소스 제작·수령·원본 승인·리비전 대조
-- [ ] 정규 경로·씬/SO·생성 도구의 실제 참조 전체 연결
-- [ ] 전체 준비 판정 후 기술 검증·사용자 게임 화면 확인
-- [ ] 수정 리비전 반영·환경 복원·채택 규격·로드맵 완료 범위 기록
+- [x] 수량·사용처·규격 확정, 상세 요청/Art 제작 기록 연결
+- [x] 전체 필수 Art 원본·리비전 PNG·제출 명세·미리보기 제작
+- [x] Art 파일 경로·요청 ID·리비전 인계 목록 작성, 제작 종료 후 on hold 전환
+- [x] 사용자에게 원본 미리보기·재생 GIF 제시 → 피드백 반영 → 해당 묶음의 모든 에셋 리비전 확인 기록(다음 제작 전 필수)
+- [x] PLAN-042: 원본/출력 기술 검증 후 Unity 일괄 수령·정규 경로·씬/SO·생성 도구 연결
+- [x] PLAN-042: 전체 적용 후 일괄 기술 검증·원본/게임 화면 사용자 확인
+- [x] PLAN-042: 필요한 수정본·재검증·환경 복원·완료 범위 증거 연결 후 completed 판정
 
-## 완료 기준과 검증 방법
+## PLAN-042에서 확인할 완료 기준과 검증 방법
+
+다음 항목의 검증 실행 주체는 PLAN-042다. 원본·출력·알파·시간·좌표 등 리소스 기술 검증도 마지막 단계에서 모아 수행하며, 제작 중 저장/미리보기 확인 및 제작 직후 사용자 원본 확인과 구분한다.
 
 | 기준 | 실행할 검증·기대 결과 |
 | --- | --- |
@@ -156,17 +178,18 @@ updated: 2026-11-16
 ## 검증 결과와 사용자 확인
 
 - 2026-11-16: 문서·현행 코드/정의의 정적 조사로 후보 작성. 신규 리소스 제작·수령·게임 적용·게임 테스트는 미실행.
-- 원본 승인·게임 화면 승인: 모두 대기. 실행 시 대상 리비전·화면/배율·사용자 응답/날짜·수정/재확인을 각각 기록한다.
+- 원본 승인: 2026-11-16 Invader/Raider r002 확인 완료. 게임 화면 승인: PLAN-042 적용 후 확인 예정.
 - 문서 검사: 2026-11-16 문서 검사 통과(PLAN 42개·active 0개·목록 42개·로컬 링크 3,888개). 변경 형식 검사 통과. 기존 Unity/Art PLAN 40개가 작업 전 해시와 같음을 확인했다.
 - 경로 보완 검사(2026-11-16): 문서 검사 통과(42 PLAN·active 0·로컬 링크 3,904개), 25개 제작 후보의 원본/제출/수령/최종 적용/원본 비교 경로 누락·중복 없음, 기존 완료 PLAN 40개 해시 불변 확인. 예정 결과물은 생성하지 않았다.
-- 환경 복원: 문서만 작성하여 게임·Editor·원본 아트·저장/설정을 변경하지 않았다.
+- 이번 제작의 환경: 새 Art 원본·리비전·미리보기와 요청/인계 문서만 생성했다. 기존 게임·Editor·완료 원본·저장/설정은 변경하지 않았다.
+
+- 제작 후 문서 확인: Unity PLAN43·active0·로컬 링크4087 및 공백 검사 통과. Art PLAN12·active0이며 기존 완료 PLAN의 링크 오류9건 유지. [인계 기록](evidence/PLAN-034/README.md). 아트 정식 검증은 미실행이다.
 
 ## 현재 상황과 다음 행동
 
-- status: proposed. active PLAN은 0개이며 이 문서는 실행 승인이 아니다.
-- 다음 행동: PLAN-033 표시 계약을 확인하고 두 외형과 정면 대기 세트의 제작 규격을 확정한다.
-- 로드맵: 5-3 침공형 / 5-5 최소 대기 동작. 이 PLAN 완료가 다른 묶음/전체 아트의 완료를 대신하지 않는다.
-- 최종 적용/승인 리비전·채택 규격·기준 화면은 실행 후 기록한다.
+completed. 2026-11-17 사용자: “좋아. 적용된 게임 화면도 확인했어. PLAN-042와 관련 Unity·Art PLAN을 모두 완료 처리해줘. 그리고 main브랜치에 푸쉬해줘”. 승인 리비전의 Unity 적용·일반 Editor 기술 검증·최종 게임 화면 확인·환경 복원을 모두 마쳤다. 추가 제작/수정 요청은 없으며 다음 PLAN을 활성화하지 않는다.
+
+[완료 승인 기록](evidence/PLAN-042/completion.md) · [통합 증거](evidence/PLAN-042/README.md) · [검증 대응](evidence/PLAN-042/plan-verification-matrix.csv). Android/실기기·고부하 검증은 이번 완료 범위 밖이며 미실행이다.
 
 ## 변경 이력과 상태 전환
 
@@ -174,3 +197,23 @@ updated: 2026-11-16
 | --- | --- | --- |
 | 2026-11-16 | 결과물 경로 보완 | 사용자 요청에 따라 원본·제출본·수령·최종 적용·검수 경로 지정. 파일 생성/제작/적용 없음 |
 | 2026-11-16 | 신규 proposed | 사용자: 남은 ART 관련 PLAN을 비슷한 카테고리별로 모두 작성. 제작/적용 미승인 |
+
+- 2026-11-16: 사용자 요청에 따라 제작 선행, Unity 적용·정식 검증은 PLAN-042로 통합. 미제작/proposed 유지. 제작 후 on hold 및 최종 증거에 의한 completed 전환을 구분했다.
+
+- 2026-11-16: proposed → active. 사용자 PLAN-034 및 Art PLAN 작성·제작 명시 요청. Art PLAN-011/012 순차 제작, Unity 적용·정식 검증 유보.
+
+- 2026-11-16: active → on hold. Art PLAN-011 Invader r001·PLAN-012 Raider r001 제작 및 인계 준비. 정식 기술·사용자 시각 검증과 Unity 적용은 PLAN-042에 유보. 신규 원본2·PNG시트2·총8프레임, 원본 승인 없음.
+
+- 2026-11-16: 사용자 「작업이 끝나고 내가 확인하는 과정도 필요해」 반영. 각 제작 묶음 직후 미리보기/재생 제시와 원본 확인을 필수로 두며, 응답 전 다음 제작으로 넘어가지 않는다. Unity 적용·정식 통합 검증은 PLAN-042에 유지한다.
+
+- 2026-11-16: on hold → active. 사용자 F-001 네 방향 이동 프레임 요청, Art PLAN-011/012 r002 각40프레임으로 확장. 제작 후 사용자 확인·마지막 Unity 적용/검증 유지.
+
+- 2026-11-16: active → on hold. F-001 반영: Invader/Raider r002 각40프레임·8태그·640×256 PNG. 방향별 원본·대기/이동 GIF 제시 후 사용자 응답 대기. r001 및 제작 전 작업 원본 보존. Unity 적용·정식 검증 미실행.
+
+- 2026-11-16 사용자 「좋아. r002로 진행하자. 확인 완료로 기록하고 다음 PLAN-036 아트 작업을 진행해줘」. Invader/Raider r002 원본 외형·동작 승인 완료. Unity 수령·적용·정식 검증·게임 화면 승인은 남아 on hold를 유지한다.
+
+## 최종 완료 — 2026-11-17
+
+completed. 2026-11-17 사용자: “좋아. 적용된 게임 화면도 확인했어. PLAN-042와 관련 Unity·Art PLAN을 모두 완료 처리해줘. 그리고 main브랜치에 푸쉬해줘”. 승인 리비전의 Unity 적용·일반 Editor 기술 검증·최종 게임 화면 확인·환경 복원을 모두 마쳤다. 추가 제작/수정 요청은 없으며 다음 PLAN을 활성화하지 않는다.
+
+[완료 승인 기록](evidence/PLAN-042/completion.md) · [통합 증거](evidence/PLAN-042/README.md) · [검증 대응](evidence/PLAN-042/plan-verification-matrix.csv). Android/실기기·고부하 검증은 이번 완료 범위 밖이며 미실행이다.

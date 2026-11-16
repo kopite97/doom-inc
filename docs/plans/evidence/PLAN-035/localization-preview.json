@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "return MobileGame.Foundation.Editor.LocalizationCsvTools.Preview(MobileGame.Foundation.Editor.LocalizationCsvTools.ReadAll(false));"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "ADD Laboratory/hud_resource\nVALUE Laboratory/hud_resource en\nREVIEW Laboratory/hud_resource en\nVALUE Laboratory/hud_resource ko\nADD Laboratory/hud_summary\nVALUE Laboratory/hud_summary en\nREVIEW Laboratory/hud_summary en\nVALUE Laboratory/hud_summary ko\nADD Laboratory/hud_summary_paused\nVALUE Laboratory/hud_summary_paused en\nREVIEW Laboratory/hud_summary_paused en\nVALUE Laboratory/hud_summary_paused ko"
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

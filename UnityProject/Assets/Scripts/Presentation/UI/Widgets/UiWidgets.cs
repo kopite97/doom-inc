@@ -22,6 +22,13 @@ namespace MobileGame.Presentation
             rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0, 1);
             rect.anchoredPosition = new Vector2(x, -y); rect.sizeDelta = new Vector2(Mathf.Max(0, width), Mathf.Max(0, height));
         }
+        public static MobileGame.Foundation.UiSkinAssets Skin(Transform parent) => parent.GetComponentInParent<UiSkinContext>()?.Assets;
+        public static void ApplySkin(Image image, Sprite sprite)
+        {
+            if (sprite == null) return;
+            image.sprite = sprite; image.type = Image.Type.Sliced; image.color = Color.white;
+            image.pixelsPerUnitMultiplier = (image.canvas != null ? image.canvas.referencePixelsPerUnit : 100) / sprite.pixelsPerUnit;
+        }
         public static Image Panel(string name, Transform parent, Color color)
         { var image = Rect(name, parent).gameObject.AddComponent<Image>(); image.color = color; return image; }
         public static TextMeshProUGUI Label(string name, Transform parent, int fontSize = 18)
@@ -36,6 +43,7 @@ namespace MobileGame.Presentation
         public static UiButton Button(string name, Transform parent, string text, Func<int> epoch)
         {
             var image = Panel(name, parent, new Color(0.16f, 0.23f, 0.31f));
+            ApplySkin(image, Skin(parent)?.button);
             var button = image.gameObject.AddComponent<UiButton>(); button.targetGraphic = image; button.Epoch = epoch;
             var colors = button.colors; colors.highlightedColor = new Color(0.85f, 0.93f, 1f);
             colors.pressedColor = new Color(0.55f, 0.8f, 1f); colors.disabledColor = new Color(0.42f, 0.45f, 0.5f); button.colors = colors;
@@ -47,6 +55,7 @@ namespace MobileGame.Presentation
         public static ScrollRect Scroll(string name, Transform parent, out RectTransform content)
         {
             var background = Panel(name, parent, PanelColor);
+            ApplySkin(background, Skin(parent)?.panel);
             var scroll = background.gameObject.AddComponent<ScrollRect>();
             var viewport = Rect("Viewport", background.transform);
             viewport.anchorMin = Vector2.zero; viewport.anchorMax = Vector2.one;
@@ -56,6 +65,7 @@ namespace MobileGame.Presentation
             scroll.viewport = viewport; scroll.content = content; scroll.horizontal = false; scroll.vertical = true;
             scroll.movementType = ScrollRect.MovementType.Clamped; scroll.scrollSensitivity = 36;
             scroll.decelerationRate = 0.08f;
+            UiScrollIndicator.Attach(scroll, Skin(parent)?.scrollThumb);
             return scroll;
         }
     }

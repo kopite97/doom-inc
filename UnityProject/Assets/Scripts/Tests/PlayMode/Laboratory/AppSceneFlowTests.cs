@@ -210,7 +210,7 @@ namespace MobileGame.SpatialTests
             LogAssert.NoUnexpectedReceived();
         }
 
-        [UnityTest] public IEnumerator TitleConfirmationAndLoadingFitBothOrientationsWithLargeText()
+        [UnityTest, Category("BatchArtIntegration")] public IEnumerator TitleConfirmationAndLoadingFitBothOrientationsWithLargeText()
         {
             flow.EnterCurrent(AppScene.Bootstrap); yield return Settled(); flow.Settings.TrySet(true, true);
             foreach (var size in new[] { new Vector2Int(1280, 720), new Vector2Int(720, 1280) })

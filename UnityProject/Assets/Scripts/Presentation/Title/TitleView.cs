@@ -7,6 +7,8 @@ namespace MobileGame.Presentation
 {
     public sealed class TitleView : MonoBehaviour
     {
+        [SerializeField] private Sprite[] landscapeFrames, portraitFrames;
+        private float animationTime;
         [SerializeField] private Sprite landscapeRoom;
         [SerializeField] private Sprite portraitRoom;
         [SerializeField] private Sprite wordmark;
@@ -34,7 +36,7 @@ namespace MobileGame.Presentation
             flow = owner;
             if (screen == null)
             {
-                screen = new UiCanvas(transform, "Temp_TitleCanvas", 10);
+                screen = new UiCanvas(transform, "TitleCanvas", 10, flow.Configuration.uiAssets?.Skin);
                 var background = UiWidgets.Panel("Background", screen.Canvas.transform, Ink);
                 background.raycastTarget = false;
                 background.rectTransform.anchorMin = Vector2.zero;
@@ -74,19 +76,7 @@ namespace MobileGame.Presentation
             var label = button.GetComponentInChildren<TextMeshProUGUI>(true);
             label.color = Lettering;
             label.fontStyle = FontStyles.Bold;
-            if (buttonFrame == null) return;
-
-            // Only draw the sliced edges. The center belongs to the live, localized button.
-            var frame = UiWidgets.Panel("Temp_ButtonFrame", button.transform, Color.white);
-            frame.raycastTarget = false;
-            frame.sprite = buttonFrame;
-            frame.type = Image.Type.Sliced;
-            frame.fillCenter = false;
-            frame.pixelsPerUnitMultiplier = 5;
-            frame.rectTransform.anchorMin = Vector2.zero;
-            frame.rectTransform.anchorMax = Vector2.one;
-            frame.rectTransform.offsetMin = frame.rectTransform.offsetMax = Vector2.zero;
-            frame.transform.SetAsFirstSibling();
+            UiWidgets.ApplySkin(button.image, flow.Configuration.uiAssets?.Skin?.button);
         }
 
         public void RefreshSave()
@@ -96,7 +86,8 @@ namespace MobileGame.Presentation
             SaveError = probe.Error;
         }
 
-        private void LateUpdate() { if (flow != null && screen != null) Render(); }
+        private void OnEnable() { animationTime = 0; }
+        private void LateUpdate() { if (flow != null && screen != null) { animationTime += Time.unscaledDeltaTime; Render(); } }
 
         private void Render()
         {
@@ -118,18 +109,18 @@ namespace MobileGame.Presentation
             if (!portrait) menuTop = Mathf.Min(menuTop, size.y * 0.45f);
             UiWidgets.Place((RectTransform)scroll.transform, (column - menuWidth) / 2, menuTop, menuWidth, menuHeight);
 
-            var headerHeight = Mathf.Min(portrait ? size.y * 0.225f : size.y * 0.42f, menuTop * (portrait ? 0.45f : 0.97f));
+            var headerHeight = Mathf.Min(portrait ? size.y * 0.15f : size.y * 0.42f, menuTop * (portrait ? 0.45f : 0.97f));
             UpdateHeading();
             var markHeight = emblem.enabled ? headerHeight * 0.76f : 0;
             if (emblem.enabled) FitIllustration(emblem, column * 0.025f, 0, column * 0.95f, markHeight);
             PlaceHeading(column, markHeight, headerHeight - markHeight, textScale);
 
-            room.sprite = portrait ? portraitRoom : landscapeRoom;
+            var frames = portrait ? portraitFrames : landscapeFrames;
+            room.sprite = frames != null && frames.Length > 0 ? frames[(int)(animationTime / .15f) % frames.Length] : portrait ? portraitRoom : landscapeRoom;
             room.enabled = room.sprite != null;
             if (room.enabled)
             {
-                if (portrait) FitIllustration(room, 0, headerHeight, size.x, menuTop - headerHeight);
-                else FitIllustration(room, column, 0, size.x - column, size.y);
+                FitIllustration(room, 0, 0, size.x, size.y);
             }
         }
 
@@ -154,7 +145,7 @@ namespace MobileGame.Presentation
         {
             UiWidgets.Place(heading.rectTransform, column * 0.035f, top, column * 0.93f, height);
             var style = heading.GetComponent<UiText>();
-            style.Initialize(Mathf.Max(14, Mathf.RoundToInt(height * 0.84f)));
+            style.Initialize(Mathf.Clamp(Mathf.RoundToInt(height * 0.3f), 20, 42));
             style.Apply(flow.Configuration.uiAssets?.Font, textScale);
             heading.fontSizeMax = heading.fontSize;
         }

@@ -277,11 +277,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5044bba08eddc54c9a0e6e5cf7cc393, type: 3}
   m_Name:
   m_EditorClassIdentifier: MobileGame.Presentation::MobileGame.Presentation.TitleView
-  landscapeRoom: {fileID: 1555308024, guid: 00861b3f9f444924db71268eb3118802, type: 3}
-  portraitRoom: {fileID: 157433582, guid: 21fa30d5f4ada5942a9c62c890612ec9, type: 3}
-  wordmark: {fileID: -229403106, guid: 21fa30d5f4ada5942a9c62c890612ec9, type: 3}
+  landscapeFrames:
+  - {fileID: 1532046523, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: -1224084252, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: 418278226, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: -53996934, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: -1951140227, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: -948173860, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: -1665808707, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: 68860753, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: 664920939, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: 399847620, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: 105778358, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: 1458848092, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: -778464351, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: 869602768, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: -674396008, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  - {fileID: -189329207, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  portraitFrames:
+  - {fileID: -853635496, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: -1320070821, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: 493199865, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: 967077774, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: 1976897277, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: 262445250, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: -339556792, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: -85626204, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: -1412386554, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: 571663716, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: 2047160718, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: -1565391368, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: 547233702, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: -1637917736, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: 1435110221, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  - {fileID: -244338463, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  landscapeRoom: {fileID: 1532046523, guid: b66e4b82dacc33740b9b5f3bf833022d, type: 3}
+  portraitRoom: {fileID: -853635496, guid: 35080bbdadffb7445b3f423e4a68172e, type: 3}
+  wordmark: {fileID: 0}
   wordmarkLine: DOOM INC.
-  buttonFrame: {fileID: 1234976958, guid: 00861b3f9f444924db71268eb3118802, type: 3}
+  buttonFrame: {fileID: 21300000, guid: 84ed511567aab3243bd63545a45bcc39, type: 3}
 --- !u!114 &2038448309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: MobileGame.Presentation::MobileGame.Presentation.GameBootstrap
   configuration: {fileID: 11400000, guid: 7789951e25e01ea489096806b184137c, type: 2}
   sceneRole: 1
+  popupRegistry: {fileID: 0}
 --- !u!4 &2038448310
 Transform:
   m_ObjectHideFlags: 0

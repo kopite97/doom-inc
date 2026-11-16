@@ -240,6 +240,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 1044
+  - m_Id: 394
+    m_Key: hud_resource
+    m_Metadata:
+      m_Items:
+      - rid: 1155
+  - m_Id: 395
+    m_Key: hud_summary
+    m_Metadata:
+      m_Items:
+      - rid: 1156
+  - m_Id: 396
+    m_Key: hud_summary_paused
+    m_Metadata:
+      m_Items:
+      - rid: 1157
   - m_Id: 127
     m_Key: idle
     m_Metadata:
@@ -1457,6 +1472,18 @@ MonoBehaviour:
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
         m_CommentText: Placement preview / placement_unavailable
+    - rid: 1155
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Resource quantity beside its icon
+    - rid: 1156
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: HUD summary below resource quantities
+    - rid: 1157
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: HUD summary while editing
     - rid: 2444913683439288476
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:

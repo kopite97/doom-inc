@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "MobileGame.Foundation.Editor.LocalizationCsvTools.ConfirmReview(\"Laboratory\", \"hud_resource\", \"en\"); MobileGame.Foundation.Editor.LocalizationCsvTools.ConfirmReview(\"Laboratory\", \"hud_summary\", \"en\"); MobileGame.Foundation.Editor.LocalizationCsvTools.ConfirmReview(\"Laboratory\", \"hud_summary_paused\", \"en\"); MobileGame.Foundation.Editor.LocalizationCsvTools.ValidateMenu(); MobileGame.Foundation.Editor.LocalizationCsvTools.ImportAll(); MobileGame.Foundation.Editor.LocalizationCsvTools.ValidateImported(); MobileGame.Foundation.Editor.LaboratoryResourceArtBuilder.InstallReceived(); return \"CultureMedium imported, references bound; reviewed localization matches.\";"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "CultureMedium imported, references bound; reviewed localization matches."
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Dev\\Unity\\Doom_Inc\\UnityProject"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

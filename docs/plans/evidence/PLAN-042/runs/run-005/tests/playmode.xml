@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 16:08:50Z" end-time="2026-11-16 16:08:59Z" duration="9.0157101">
+  <test-suite type="TestSuite" id="1130" name="UnityProject" fullname="UnityProject" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-11-16 16:08:50Z" end-time="2026-11-16 16:08:59Z" duration="9.015710" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1123" name="MobileGame.Spatial.PlayMode.Tests.dll" fullname="C:/Dev/Unity/Doom_Inc/UnityProject/Library/ScriptAssemblies/MobileGame.Spatial.PlayMode.Tests.dll" runstate="Runnable" testcasecount="109" result="Passed" start-time="2026-11-16 16:08:50Z" end-time="2026-11-16 16:08:59Z" duration="9.009440" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="14084" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1124" name="MobileGame" fullname="MobileGame" runstate="Runnable" testcasecount="109" result="Passed" start-time="2026-11-16 16:08:50Z" end-time="2026-11-16 16:08:59Z" duration="9.007588" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1125" name="SpatialTests" fullname="MobileGame.SpatialTests" runstate="Runnable" testcasecount="109" result="Passed" start-time="2026-11-16 16:08:50Z" end-time="2026-11-16 16:08:59Z" duration="9.005653" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1006" name="AppSceneFlowTests" fullname="MobileGame.SpatialTests.AppSceneFlowTests" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-11-16 16:08:50Z" end-time="2026-11-16 16:08:54Z" duration="4.071419" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1007" name="BatchArtTitleAndLoadingFramesAdvanceWithoutDrivingGameState" fullname="MobileGame.SpatialTests.AppSceneFlowTests.BatchArtTitleAndLoadingFramesAdvanceWithoutDrivingGameState" methodname="BatchArtTitleAndLoadingFramesAdvanceWithoutDrivingGameState" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="651854422" result="Passed" start-time="2026-11-16 16:08:50Z" end-time="2026-11-16 16:08:52Z" duration="2.056174" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="TitleConfirmationAndLoadingFitBothOrientationsWithLargeText" fullname="MobileGame.SpatialTests.AppSceneFlowTests.TitleConfirmationAndLoadingFitBothOrientationsWithLargeText" methodname="TitleConfirmationAndLoadingFitBothOrientationsWithLargeText" classname="MobileGame.SpatialTests.AppSceneFlowTests" runstate="Runnable" seed="109172229" result="Passed" start-time="2026-11-16 16:08:52Z" end-time="2026-11-16 16:08:54Z" duration="2.005616" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1044" name="LaboratoryViewTests" fullname="MobileGame.SpatialTests.LaboratoryViewTests" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" testcasecount="68" result="Passed" start-time="2026-11-16 16:08:54Z" end-time="2026-11-16 16:08:59Z" duration="4.931897" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1052" name="BatchArtEffectSlotsHaveBoundedLifetimeAndNoCompletionSideEffects" fullname="MobileGame.SpatialTests.LaboratoryViewTests.BatchArtEffectSlotsHaveBoundedLifetimeAndNoCompletionSideEffects" methodname="BatchArtEffectSlotsHaveBoundedLifetimeAndNoCompletionSideEffects" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="2139434038" result="Passed" start-time="2026-11-16 16:08:55Z" end-time="2026-11-16 16:08:55Z" duration="0.538298" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="BatchArtNonWorkersBirthReleasePauseRestoreAndBoundary" fullname="MobileGame.SpatialTests.LaboratoryViewTests.BatchArtNonWorkersBirthReleasePauseRestoreAndBoundary" methodname="BatchArtNonWorkersBirthReleasePauseRestoreAndBoundary" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="262865178" result="Passed" start-time="2026-11-16 16:08:55Z" end-time="2026-11-16 16:08:58Z" duration="2.818991" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1102" name="EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible" fullname="MobileGame.SpatialTests.LaboratoryViewTests.EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible" methodname="EndingAndResultsRotationPreserveClockRequestAndRunWithSaveRecoveryVisible" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="953564593" result="Passed" start-time="2026-11-16 16:08:58Z" end-time="2026-11-16 16:08:59Z" duration="0.791161" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1081" name="MovingFallbackAndPublishedSelectionFollowViewportAndLifecycle" fullname="MobileGame.SpatialTests.LaboratoryViewTests.MovingFallbackAndPublishedSelectionFollowViewportAndLifecycle" methodname="MovingFallbackAndPublishedSelectionFollowViewportAndLifecycle" classname="MobileGame.SpatialTests.LaboratoryViewTests" runstate="Runnable" seed="908324357" result="Passed" start-time="2026-11-16 16:08:59Z" end-time="2026-11-16 16:08:59Z" duration="0.779082" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="MovementPresentation" />
+                <property name="Category" value="BatchArtIntegration" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/nellu/AppData/LocalLow/DefaultCompany/UnityProject\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

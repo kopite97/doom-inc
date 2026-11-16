@@ -24,11 +24,11 @@ namespace MobileGame.Presentation
         public Vector2 Size { get { screen.RefreshLayout(); return screen.Size; } }
         public int LayoutEpoch => screen.LayoutEpoch;
         public float MinimumTouch => screen.MinimumTouchSize;
-        public void Configure(PopupRegistry registry, AppLocalization texts, TMP_FontAsset font, Func<bool> largeText)
+        public void Configure(PopupRegistry registry, AppLocalization texts, TMP_FontAsset font, Func<bool> largeText, UiSkinAssets skin = null)
         {
             if (Manager != null) throw new InvalidOperationException("Popup host already configured.");
             common = registry; prefabs = Validate(registry, null); Texts = texts; Font = font; large = largeText;
-            screen = new UiCanvas(transform, "Temp_PopupCanvas", 80);
+            screen = new UiCanvas(transform, "PopupCanvas", 80, skin);
             var shield = UiWidgets.Panel("ModalShield", screen.Canvas.transform, new Color(0, 0, 0, .65f)).rectTransform;
             shield.anchorMin = Vector2.zero; shield.anchorMax = Vector2.one; shield.offsetMin = shield.offsetMax = Vector2.zero;
             shield.SetAsFirstSibling();

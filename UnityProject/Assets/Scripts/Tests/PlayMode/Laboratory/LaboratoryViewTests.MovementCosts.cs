@@ -17,7 +17,7 @@ namespace MobileGame.SpatialTests
 {
     public sealed partial class LaboratoryViewTests
     {
-        [UnityTest]
+        [UnityTest, Category("MovementPerformance"), Explicit("Performance measurement requires a separate approved run.")]
         public IEnumerator MotionEvaluationHasNoSteadyAllocationsOrExtraQueriesAtTwelveTwentyFourAndFortyEightWorkers()
         {
             using (var input = new PointerScene())

@@ -51,6 +51,8 @@ namespace MobileGame.Presentation
         private RectTransform artLabels;
         private ThingArt previewArt;
         private double artClock;
+        private LaboratoryArtEffects creatureEffects;
+        public int ActiveCreatureEffects => creatureEffects?.ActiveCount ?? 0;
 
         private void BindArtSimulation()
         {
@@ -61,6 +63,8 @@ namespace MobileGame.Presentation
             if (artSimulation != null)
             {
                 world?.SetVisible(isActiveAndEnabled);
+                artSimulation.CreatureBorn += OnCreatureBorn;
+                artSimulation.Invasion.Released += OnCreatureReleased;
                 artSimulation.GatheringCompleted += OnGatheringCompleted;
                 artSimulation.ProductionCompleted += OnProductionCompleted;
                 artSimulation.Registry.ResourceTransferred += OnResourceTransferred;
@@ -75,10 +79,13 @@ namespace MobileGame.Presentation
         {
             if (artSimulation != null)
             {
+                artSimulation.CreatureBorn -= OnCreatureBorn;
+                artSimulation.Invasion.Released -= OnCreatureReleased;
                 artSimulation.GatheringCompleted -= OnGatheringCompleted;
                 artSimulation.ProductionCompleted -= OnProductionCompleted;
                 artSimulation.Registry.ResourceTransferred -= OnResourceTransferred;
             }
+            creatureEffects?.Dispose(); creatureEffects = null;
             foreach (var item in thingArt.Values) RemoveArt(item);
             thingArt.Clear(); placedArt.Clear(); gatheringCompletions.Clear();
             removedArt.Clear(); creatureCounts.Clear(); annotatedCreatureCells.Clear(); carriedResources.Clear();
@@ -86,6 +93,14 @@ namespace MobileGame.Presentation
             if (previewArt != null) { RemoveArt(previewArt); previewArt = null; }
             previewCells.Clear(); previewDiagnosticMap = null; initializePreview = false;
             artSimulation = null; artClock = 0;
+        }
+        private void OnCreatureBorn(Guid id, Vector2Int cell) => PlayCreatureEffect(true, cell);
+        private void OnCreatureReleased(Guid id, Vector2Int cell) => PlayCreatureEffect(false, cell);
+        private void PlayCreatureEffect(bool birth, Vector2Int cell)
+        {
+            if (world == null || !isActiveAndEnabled || artSimulation == null) return;
+            creatureEffects ??= new LaboratoryArtEffects(world, view.UiAssets?.Art);
+            creatureEffects.Spawn(birth, LaboratoryWorldMap.CellToWorld((Vector2)cell + Vector2.one * .5f), artSimulation.ElapsedSeconds);
         }
         private void OnGatheringCompleted(Guid id) => gatheringCompletions[id] = artSimulation.ElapsedSeconds;
         private void OnDestroy()
@@ -100,7 +115,7 @@ namespace MobileGame.Presentation
             if (item.Count != null) Destroy(item.Count.gameObject);
         }
         private bool HasSuppliedArt(Thing thing) => view.UiAssets?.Art != null
-            && (view.UiAssets.Art.HasGathering(thing.Definition) || view.UiAssets.Art.HasPrototype(thing.Definition)
+            && (view.UiAssets.Art.HasGathering(thing.Definition) || view.UiAssets.Art.HasCreature(thing.Definition)
                 || view.UiAssets.Art.TryFacility(thing.Definition, out _));
         private int CompareArt(Thing a, Thing b)
         {
@@ -121,6 +136,7 @@ namespace MobileGame.Presentation
             var assets = view.UiAssets?.Art;
             var delta = Math.Max(0, artSimulation.ElapsedSeconds - artClock);
             artClock = artSimulation.ElapsedSeconds;
+            creatureEffects?.Sample(artClock);
             removedArt.Clear();
             foreach (var pair in thingArt)
                 if (!artSimulation.Registry.TryGet(pair.Key, out var current) || !current.IsPlaced)
@@ -174,7 +190,7 @@ namespace MobileGame.Presentation
                 item.Body.color = Color.white;
                 if (assets != null && assets.TryFacility(thing.Definition, out var facilityArt)) DrawFacility(thing, item, facilityArt);
                 else if (assets != null && assets.HasGathering(thing.Definition)) DrawGathering(thing, item, assets, delta);
-                else if (assets != null && assets.HasPrototype(thing.Definition)) DrawPrototype(thing, item, assets, delta);
+                else if (assets != null && assets.HasCreature(thing.Definition)) DrawCreature(thing, item, assets, delta);
                 else DrawFallback(thing, item);
                 var bodyMaterial = thing.Id == view.SelectedId && view.UiAssets?.SelectionMaterial != null
                     ? view.UiAssets.SelectionMaterial : item.BodyMaterial;
@@ -230,18 +246,19 @@ namespace MobileGame.Presentation
             item.Body.transform.localRotation = Quaternion.Euler(0, 0, -90 * (int)thing.Placement.Rotation);
             item.Cargo.gameObject.SetActive(false);
         }
-        private void DrawPrototype(Thing thing, ThingArt item, LaboratoryArtAssets assets, double delta)
+        private void DrawCreature(Thing thing, ThingArt item, LaboratoryArtAssets assets, double delta)
         {
             var worker = item.Movement.Worker;
             if (!item.Initialized || delta > 0)
             {
                 var state = item.Movement.IsMoving ? ArtMotion.Move : ArtMotion.Idle;
                 Vector2Int? direction = item.Movement.Direction;
-                if (!item.Movement.IsMoving && worker.Job != null && worker.Job.Stage == JobStage.Working
+                if (!item.Movement.IsMoving && worker != null && worker.Job != null && worker.Job.Stage == JobStage.Working
                     && worker.WaitReason == WorkerWaitReason.None
-                    && (worker.Job.Kind == WorkKind.Construction || worker.Job.Kind == WorkKind.Gathering)
+                    && (worker.Job.Kind == WorkKind.Construction || worker.Job.Kind == WorkKind.Gathering || worker.Job.Kind == WorkKind.Production)
                     && artSimulation.Registry.TryGet(worker.Job.TargetId, out var target)
-                    && target.IsPlaced && thing.Placement.Origin == artSimulation.TargetCell(target))
+                    && target.IsPlaced && thing.Placement.Origin == artSimulation.TargetCell(target)
+                    && (worker.Job.Kind != WorkKind.Production || artSimulation.Production.CanOperate(target)))
                 {
                     state = ArtMotion.Work;
                     var bounds = FacilityGeometry.GetSize((FacilityData)target.Definition, target.Placement.Rotation);
@@ -251,15 +268,15 @@ namespace MobileGame.Presentation
                 }
                 if (direction.HasValue && direction.Value != Vector2Int.zero) item.Direction = ArtDirection(direction.Value);
                 AdvanceArt(item, state, delta);
-                var count = state == ArtMotion.Idle ? 4 : 6;
-                var seconds = state == ArtMotion.Idle ? .25 : state == ArtMotion.Move ? .1 : .12;
-                item.Frame = item.Direction * 16 + (state == ArtMotion.Idle ? 0 : state == ArtMotion.Move ? 4 : 10) + (int)(item.Time / seconds) % count;
+                item.Frame = assets.CreaturePlaybackFrame(thing.Definition, item.Direction,
+                    state == ArtMotion.Idle ? 0 : state == ArtMotion.Move ? 1 : 2, item.Time);
             }
-            item.Body.sprite = assets.PrototypeFrame(item.Frame) ?? assets.PrototypeFrame(0);
-            item.Body.transform.localPosition = new Vector3(0, 22f / 32, 0);
+            item.Body.sprite = assets.CreatureFrame(thing.Definition, item.Frame) ?? assets.CreatureFrame(thing.Definition, 0);
+            item.Body.transform.localPosition = new Vector3(0, (item.Body.sprite.pivot.y - 10) / 32, 0);
             item.Body.transform.localScale = Vector3.one;
             item.Body.transform.localRotation = Quaternion.identity;
-            DrawCargo(thing, item, worker, assets.PrototypeHead(item.Frame));
+            if (worker != null) DrawCargo(thing, item, worker, assets.CreatureHead(thing.Definition, item.Frame));
+            else item.Cargo.gameObject.SetActive(false);
         }
         private void DrawFallback(Thing thing, ThingArt item)
         {

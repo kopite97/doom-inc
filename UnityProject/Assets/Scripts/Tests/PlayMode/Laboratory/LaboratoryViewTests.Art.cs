@@ -22,13 +22,30 @@ namespace MobileGame.SpatialTests
     {
         [UnityTest]
         public IEnumerator ApprovedArtFollowsRealWorkCargoPauseRestoreAndSceneLifetime()
+            => CreatureArtFollowsRealWorkCargoPauseRestoreAndSceneLifetime(false);
+
+        [UnityTest]
+        public IEnumerator SupportArtFollowsRealWorkCargoPauseRestoreAndSceneLifetime()
+            => CreatureArtFollowsRealWorkCargoPauseRestoreAndSceneLifetime(true);
+
+        private IEnumerator CreatureArtFollowsRealWorkCargoPauseRestoreAndSceneLifetime(bool useSupport)
         {
             using (var input = new PointerScene())
             {
                 yield return input.Load();
                 var view = input.View;
                 var worker = view.Simulation.Registry.Things.Single(t => t.Definition.Kind == ThingKind.Creature);
-                Assert.That(ArtSprite(input.Map, worker, "Body").sprite.name, Is.EqualTo("PrototypeSupport_Idle_Down_01"));
+                if (useSupport)
+                {
+                    var original = worker; var cell = original.Placement.Origin;
+                    worker = view.Simulation.Registry.Create(GameDataStore.Instance.Catalog.Selected<CreatureData>("supportId"));
+                    foreach (var resource in original.GetComponent<ResourceContainerComponent>().Contents.ToArray())
+                        view.Simulation.Registry.TransferResource(resource, worker.GetComponent<ResourceContainerComponent>());
+                    view.Simulation.Registry.Remove(original);
+                    Assert.That(view.Simulation.Map.Commands.Place(worker.Id, cell).Succeeded, Is.True);
+                    view.Simulation.OnMapChanged(); yield return null; yield return null;
+                }
+                Assert.That(ArtSprite(input.Map, worker, "Body").sprite.name, Is.EqualTo((useSupport ? "Support" : "PrototypeSupport") + "_Idle_Down_01"));
                 Assert.That(ArtSprite(input.Map, worker, "Cargo").gameObject.activeSelf, Is.False, "Initial inventory is not a carried shipment.");
                 Assert.That(view.BeginGatheringConstruction(), Is.True); Place(view, 3, 3);
                 Assert.That(view.BeginStorageConstruction(), Is.True); Place(view, 8, 3);
@@ -58,8 +75,8 @@ namespace MobileGame.SpatialTests
                         Assert.That(view.Simulation.Registry.TryGet(job.ResourceId.Value, out var resource), Is.True);
                         Assert.That(resource.HolderId, Is.EqualTo(worker.Id));
                         Assert.That(cargo.sprite, Is.SameAs(resource.Definition.Assets.Icon));
-                        var frames = Enumerable.Range(0,64).Select(view.UiAssets.Art.PrototypeFrame).ToArray();
-                        var head = view.UiAssets.Art.PrototypeHead(Array.IndexOf(frames, body.sprite));
+                        var frames = Enumerable.Range(0,64).Select(i => view.UiAssets.Art.CreatureFrame(worker.Definition, i)).ToArray();
+                        var head = view.UiAssets.Art.CreatureHead(worker.Definition, Array.IndexOf(frames, body.sprite));
                         var pixel = body.sprite.bounds.size.x / 64;
                         var resourceSupport = CargoPosition(cargo) + new Vector2(2, -12) * pixel;
                         Assert.That(Vector2.Distance(resourceSupport, new Vector2(head.x - 32, 54 - head.y) * pixel), Is.LessThan(.001f));
