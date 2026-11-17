@@ -3,7 +3,7 @@
 - 날짜: 2026-10-28
 - 상태: 채택, [PLAN-010](../plans/PLAN-010-invasion-activity-and-reports.md) 실행 승인 범위.
 - 선행: [TECH-004](TECH-004-session-and-persistence.md), [TECH-006](TECH-006-production-and-manager-boundaries.md).
-- 기준: [침공 규칙](../game-design/01-direction/02-experience/core-loop.md), [상태 소유](../game-design/05-development/01-architecture/thing-model.md), [GameFlow](../game-design/05-development/01-architecture/game-flow.md).
+- 기준: [침공 규칙](../game-design-deprecated/01-direction/02-experience/core-loop.md), [상태 소유](../game-design-deprecated/05-development/01-architecture/thing-model.md), [GameFlow](../game-design-deprecated/05-development/01-architecture/game-flow.md).
 
 ## 소유와 명령
 

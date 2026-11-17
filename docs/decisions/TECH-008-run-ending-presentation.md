@@ -2,7 +2,7 @@
 
 - 결정일: 2026-10-28. [PLAN-011](../plans/PLAN-011-destruction-results-and-restart.md) 실행 승인 범위.
 - 선행: [TECH-004](TECH-004-session-and-persistence.md), [TECH-007](TECH-007-invasion-time-and-save-boundaries.md).
-- 기준: [한 판 종료](../game-design/01-direction/02-experience/core-loop.md#run-end), [GameFlow 책임](../game-design/05-development/01-architecture/game-flow.md), D-059 개발 위임.
+- 기준: [한 판 종료](../game-design-deprecated/01-direction/02-experience/core-loop.md#run-end), [GameFlow 책임](../game-design-deprecated/05-development/01-architecture/game-flow.md), D-059 개발 위임.
 
 ## 책임과 신호
 

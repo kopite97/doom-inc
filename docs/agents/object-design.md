@@ -41,7 +41,7 @@
 | 에셋 바인딩 | Sprite·Prefab 등의 참조는 정의·표현 경계에서 관리한다. 필요한 바인딩을 포함한 일반 C# Data도 허용한다. |
 | 엔진 기능 | 씬 로딩·입력 취득·오브젝트 생성·표시 갱신은 Unity 연결 책임에서 수행하고 게임 로직에는 필요한 값·명령·의존성을 전달한다. |
 
-- JSON 값 + SO 에셋 참조 → 읽기 전용 Data → 개별 Runtime의 역할은 [정의 데이터 기준](../game-design/05-development/01-architecture/thing-model.md)을 따른다.
+- JSON 값 + SO 에셋 참조 → 읽기 전용 Data → 개별 Runtime의 역할은 [정의 데이터 지침](unity-assets.md#정의-데이터와-실행-상태)을 따른다. 새 게임 규칙은 [새 기획 MAP](../game-design/README.md)에서 확인한다.
 - Unity 타입 제거를 목적으로 같은 자료형을 복제하거나 DOTS/ECS·새 프레임워크를 도입하지 않는다.
 - Unity API를 호출하는 일반 C# 객체도 해당 API의 실행 스레드·수명 제약을 따른다. Task 사용 자체를 백그라운드 실행이나 스레드 안전성의 근거로 삼지 않는다.
 

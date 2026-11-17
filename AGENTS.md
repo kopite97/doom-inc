@@ -7,11 +7,15 @@
 3. PLAN 실행은 승인된 `active` PLAN 범위만 진행한다. 2개 이상이면 먼저 상태를 정리하고, 0개이면 PLAN 실행을 시작하지 않는다. [독립 Sprite 작업](docs/agents/art-assets.md#sprite-requests)은 별도 절차를 따른다.
 4. 아래에서 해당 작업의 지침을 읽고 [기획 MAP](docs/game-design/README.md)으로 기준 규칙을 찾는다.
 
+2026-11-17부터 기획 방향을 재수립한다. [이전 기획](docs/game-design-deprecated/README.md)은 deprecated이며 새 작업의 기준으로 자동 적용하지 않는다.
+
 ## 작업별 지침
 
 | 작업 | 반드시 읽을 문서 |
 | --- | --- |
 | 모든 작업·재개·PLAN 전환 | [작업 절차](docs/agents/workflow.md) |
+| 기획 조회·작성·변경·MAP 관리 | [기획 지침](docs/agents/game-design.md) |
+| 새 기획의 기술 설계·기존 시스템 재사용 | [구현·재사용 지침](docs/agents/implementation.md) |
 | PLAN 조회·작성·상태 관리 | [PLAN 관리 지침](docs/plans/AGETNS.md) |
 | 폴더·파일·에셋 생성·배치·이동·이름 변경 | [프로젝트 구조](docs/agents/project-structure.md) |
 | 코드·폴더·에셋 명명과 기존 이름 정비 | [명명 규칙](docs/agents/naming.md) |
@@ -41,9 +45,10 @@
 | 찾는 정보 | 위치 |
 | --- | --- |
 | 승인된 게임 규칙 | [기획 MAP](docs/game-design/README.md)의 주제 문서 |
-| 전체 단계·기획상 완료 기준 | [구현 로드맵](docs/game-design/05-development/02-implementation/roadmap.md) |
+| 전체 단계·단계별 확인 기준 | [개발 로드맵](docs/game-design/development/roadmap.md). 개별 게임 규칙은 기획 MAP의 주제 문서 |
 | 현재 작업·진행·다음 행동·검증 결과 | [PLAN MAP](docs/plans/README.md)의 유일한 active PLAN |
 | 독립 Sprite 요청·수령·적용·검수 상태 | [아트 요청 절차](docs/agents/art-assets.md#sprite-requests)의 PLAN 번호별 요청 README |
 | 기술 선택·이유·대체 관계 | [기술 결정 MAP](docs/decisions/README.md) |
+| 앞으로 정할 기획과 후속 작업 요약 | [TODO](docs/todo/todo.md) |
 
 루트는 MAP으로 유지한다. 줄 수·분리·갱신 규칙은 [작업 절차](docs/agents/workflow.md)를 따른다.

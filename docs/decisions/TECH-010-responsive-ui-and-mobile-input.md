@@ -3,7 +3,7 @@
 - 결정일: 2026-10-28
 - 결정 주체·위임 근거: PLAN-013 실행에 대한 사용자 승인과 D-059의 화면·입력 구현 위임.
 - 관련 작업: [PLAN-013](../plans/PLAN-013-responsive-ui-and-mobile-input.md).
-- 기준: [화면과 조작](../game-design/03-player-experience/03-interface/controls.md)의 D-006·D-033·D-064·D-067·D-079·D-090, [플레이 환경](../game-design/04-delivery/01-platform/environment.md)의 D-068~D-070·D-089.
+- 기준: [화면과 조작](../game-design-deprecated/03-player-experience/03-interface/controls.md)의 D-006·D-033·D-064·D-067·D-079·D-090, [플레이 환경](../game-design-deprecated/04-delivery/01-platform/environment.md)의 D-068~D-070·D-089.
 - 적용: 실제 Laboratory·로딩 화면 구현과 컴파일·입력/회귀 검증 및 Android APK 빌드를 완료했다. 사용자 요청으로 유예한 실기기 확인은 PLAN의 실행 기록에서 별도로 판정한다.
 - 관계: [TECH-003](TECH-003-map-and-placement.md)의 Map·공통 명령, [TECH-008](TECH-008-run-ending-presentation.md)의 연출·종료 요청, [TECH-009](TECH-009-csv-data-catalog.md)의 Data 준비·재사용 경계를 유지한다. 기존 진단 씬의 IMGUI는 이 결정의 교체 범위에 포함하지 않는다.
 

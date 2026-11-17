@@ -5,9 +5,9 @@
 
 ## 기준 읽기
 
-1. active PLAN의 변경 범위와 [로드맵](../game-design/05-development/02-implementation/roadmap.md)의 단계 기준을 확인한다.
-2. [Thing과 정의 데이터](../game-design/05-development/01-architecture/thing-model.md)를 읽는다.
-3. 단계 전환·시작·복원 작업이면 [GameFlow](../game-design/05-development/01-architecture/game-flow.md)를 읽는다.
+1. active PLAN의 변경 범위와 [새 기획 MAP](../game-design/README.md)의 확정 방향을 확인한다. 새 로드맵이 작성됐으면 해당 단계도 확인한다.
+2. 새 기획에서 연결한 시스템 구조를 읽고 실제 코드·[기술 결정](../decisions/README.md)과 대조한다. 이전 Thing 구조는 재사용 검토 자료이며 새 기획의 규칙을 대신하지 않는다.
+3. 단계 전환·시작·복원 작업이면 새 기획의 게임 흐름과 [씬 흐름 지침](scene-flow.md)을 확인한다. 미정 게임 규칙을 이전 GameFlow로 자동 확정하지 않는다.
 4. 생산·운반·공간 등 상세 규칙은 [기획 MAP](../game-design/README.md)의 담당 문서에서 확인한다.
 5. 코드 위치·기능별 분류는 [스크립트 구조](script-structure.md)를 따른다. 폴더 분류를 상태 소유나 어셈블리 분할과 혼동하지 않는다.
 6. 클래스 역할·Manager 책임과 이름은 [명명 규칙](naming.md)을 함께 확인한다.

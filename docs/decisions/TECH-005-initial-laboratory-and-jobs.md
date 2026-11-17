@@ -3,7 +3,7 @@
 - 결정일: 2026-10-26
 - 관련 작업: [PLAN-008](../plans/PLAN-008-initial-construction-and-logistics.md).
 - 근거: PLAN-008 실행 승인, D-059의 비용·시간·용량·지급 방법·경로·작업 단계·저장 구성 위임.
-- 기준: [시작 구성](../game-design/04-delivery/02-release/scope.md), [생산](../game-design/02-systems/01-production/facilities.md), [물류](../game-design/02-systems/02-logistics/storage-and-transport.md), [보조형 작업](../game-design/02-systems/05-creatures/support-models.md).
+- 기준: [시작 구성](../game-design-deprecated/04-delivery/02-release/scope.md), [생산](../game-design-deprecated/02-systems/01-production/facilities.md), [물류](../game-design-deprecated/02-systems/02-logistics/storage-and-transport.md), [보조형 작업](../game-design-deprecated/02-systems/05-creatures/support-models.md).
 - 관계: [TECH-001](TECH-001-thing-foundation.md)·[TECH-003](TECH-003-map-and-placement.md)을 확장하고 [TECH-004](TECH-004-session-and-persistence.md)의 진단 저장 v1에 실제 플레이 v2를 추가한다. 기존 진단·실패 보존 계약은 유지한다.
 
 ## 초기 상태와 개발 값

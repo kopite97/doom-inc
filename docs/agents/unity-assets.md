@@ -6,7 +6,7 @@
 ## 변경 전 확인
 
 - 실제 Unity 프로젝트 경로와 에디터·패키지 버전을 확인한다. 경로나 도구 설치를 추정하지 않는다.
-- 승인된 환경은 [플레이 환경](../game-design/04-delivery/01-platform/environment.md)을 따른다.
+- 승인된 환경은 [새 기획 MAP](../game-design/README.md)과 현재 PLAN에서 확인한다. 실제 버전·패키지·설정은 프로젝트에서 확인하며 deprecated 플랫폼 기획을 자동 적용하지 않는다.
 - 생성·이동할 위치와 주제별 하위 분류는 [프로젝트 구조](project-structure.md), C#은 [스크립트 구조](script-structure.md)를 따른다.
 - 씬 변경 시 [씬의 역할과 포함 기준](project-structure.md#scene-roles)에 따라 Gameplay·Diagnostics·템플릿의 분류, 제품/검증 의존 관계와 빌드 씬 목록을 확인한다.
 - 씬의 초기화·진입·종료와 영구 객체 연결을 변경하면 [씬 흐름 지침](scene-flow.md)의 책임·수명·직접 실행 규칙을 함께 확인한다.
@@ -39,7 +39,7 @@
 - 같은 정의를 쓰는 Thing의 실행 상태를 독립적으로 유지한다.
 - 테스트나 Play Mode 실행이 정의 SO를 변경한 경우 원인을 확인한다. 실행 결과를 정의 변경으로 저장하지 않는다.
 - 생산 수치와 기능 설정은 JSON DTO와 SO를 결합한 Data를 참조하며, 같은 값을 프리팹·코드·하네스에 독립 복제하지 않는다.
-- 세부 구조는 [아키텍처 지침](architecture.md)과 [Thing 기준 문서](../game-design/05-development/01-architecture/thing-model.md)를 따른다.
+- 세부 구조는 [아키텍처 지침](architecture.md)과 [새 기획 MAP](../game-design/README.md)의 확정 방향을 따른다. 기존 구현은 실제 코드와 기술 결정으로 확인한다.
 - 정의 설정을 바꾸는 작업이 승인된 게임 규칙 변경인지, 개발 위임 값 조정인지 구분한다.
 
 ## 변경 후 확인과 기록

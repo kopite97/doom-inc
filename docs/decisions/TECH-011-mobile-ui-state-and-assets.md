@@ -3,7 +3,7 @@
 - 결정일: 2026-10-29
 - 결정 주체·위임 근거: 사용자의 PLAN-014 실행 승인 안에서 기존 규칙을 유지하는 구현 선택.
 - 관련 PLAN: [PLAN-014](../plans/PLAN-014-mobile-ui-ux-and-facility-status.md)
-- 기준 기획: [화면과 조작](../game-design/03-player-experience/03-interface/controls.md), [시설](../game-design/02-systems/01-production/facilities.md)
+- 기준 기획: [화면과 조작](../game-design-deprecated/03-player-experience/03-interface/controls.md), [시설](../game-design-deprecated/02-systems/01-production/facilities.md)
 - 적용 여부: 아래 코드에 적용했으며 검증 결과는 PLAN에서 관리한다.
 - 대체 관계: [TECH-010](TECH-010-responsive-ui-and-mobile-input.md)의 입력·좌표·안전 영역 경계를 유지하고 표시 책임을 확장한다.
 

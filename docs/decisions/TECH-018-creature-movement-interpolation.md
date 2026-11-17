@@ -4,7 +4,7 @@
 - 상태: 채택·구현·Editor 기능 검증 완료. 실행 PLAN은 빌드·고부하 제외 조건으로 completed다. 추가 CPU 비교는 미완료이며 기존 전체 화면 비용의 증가와 측정 한계는 유지한다.
 - 결정 주체·위임 근거: 승인된 PLAN-028의 논리/표현 분리·이동 표시 개선 범위 안에서 개발 위임으로 선택한다. 새 게임 규칙·밸런스·저장 계약은 정하지 않는다.
 - 실행 계획: [PLAN-028](../plans/PLAN-028-creature-movement-interpolation.md)
-- 기준 기획: [이동·운반·예약](../game-design/02-systems/02-logistics/storage-and-transport.md), [공통 Map·즉시 재배치·정지](../game-design/02-systems/03-space/placement.md), [Thing·표현 분리·저장](../game-design/05-development/01-architecture/thing-model.md), [입력·종료](../game-design/03-player-experience/03-interface/controls.md).
+- 기준 기획: [이동·운반·예약](../game-design-deprecated/02-systems/02-logistics/storage-and-transport.md), [공통 Map·즉시 재배치·정지](../game-design-deprecated/02-systems/03-space/placement.md), [Thing·표현 분리·저장](../game-design-deprecated/05-development/01-architecture/thing-model.md), [입력·종료](../game-design-deprecated/03-player-experience/03-interface/controls.md).
 - 관계: [TECH-017](TECH-017-laboratory-world-rendering.md)의 Tilemap·SpriteRenderer·월드 카메라와 uGUI 투영을 유지하고 생명체의 표시 위치·게시·수명 계약을 보완한다. 렌더러 전환을 대체하거나 uGUI 몸체 경로를 복구하지 않는다.
 
 ## 문제와 제약

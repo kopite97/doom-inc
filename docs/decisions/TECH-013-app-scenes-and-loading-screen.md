@@ -3,7 +3,7 @@
 - 상태: 채택
 - 날짜: 2026-11-02, 2026-11-04 보완
 - 작업: [PLAN-016](../plans/PLAN-016-bootstrap-title-and-scene-flow.md), [PLAN-023](../plans/PLAN-023-loading-progress-feel-and-mulmaru-tmp.md)
-- 기준: [씬 흐름 지침](../agents/scene-flow.md), [GameFlow](../game-design/05-development/01-architecture/game-flow.md)
+- 기준: [씬 흐름 지침](../agents/scene-flow.md), [GameFlow](../game-design-deprecated/05-development/01-architecture/game-flow.md)
 
 ## 선택과 책임
 

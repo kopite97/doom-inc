@@ -1,7 +1,7 @@
 # PLAN 관리 지침
 
 PLAN은 검증 가능한 작업 단위의 목표·범위·현재 진행·다음 행동을 기록한다.
-전체 구현 순서와 기획상 완료 기준은 [구현 로드맵](../game-design/05-development/02-implementation/roadmap.md)을 따른다.
+전체 구현 순서와 단계별 확인 기준은 [개발 로드맵](../game-design/development/roadmap.md), 게임 규칙은 [기획 MAP](../game-design/README.md)에서 확인한다. deprecated 로드맵은 자동 적용하지 않는다.
 이 지침은 [루트 MAP](../../AGENTS.md)에서 명시적으로 읽으며, PLAN 목록은 [README](README.md)에서 찾는다.
 
 ## 현재 작업 찾기
@@ -9,8 +9,8 @@ PLAN은 검증 가능한 작업 단위의 목표·범위·현재 진행·다음 
 - 실제 PLAN은 이 디렉터리의 `PLAN-NNN-주제.md` 파일이다. README·AGETNS·템플릿은 PLAN이 아니다.
 - 타입과 상태의 원본은 각 PLAN 상단의 `type`·`status` 필드다. README의 type·status 열은 원본을 보여주는 요약이다.
 - PLAN 생성·타입 변경·상태 전환 시 [PLAN 목록 README](README.md)도 반드시 함께 갱신한다.
-- PLAN 상태를 바꾸면 [구현 로드맵](../game-design/05-development/02-implementation/roadmap.md)의 현재 작업·작업 PLAN 연결과 [기획 MAP README](../game-design/README.md)의 관련 상태 요약도 같은 변경에서 반드시 반영한다. 후보·진행·완료 표기를 원본과 맞추고, 단계 완료는 검증 결과에 따라 별도로 판정한다.
-- 검사기로 PLAN 원본과 목록의 일치를 확인하고, 로드맵과 기획 MAP의 상태 표기도 직접 대조한다.
+- PLAN 상태를 바꾸면 새 로드맵 등 관련 문서에 해당 PLAN의 상태·연결이 있는 경우 함께 갱신한다. 후보·진행·완료 표기를 원본과 맞추고, 단계 완료는 검증 결과에 따라 별도로 판정한다. 이 갱신을 위해 deprecated 로드맵을 사용하지 않는다. [기획 MAP](../game-design/README.md)에는 간단한 개요와 문서 목록만 유지한다.
+- 검사기로 PLAN 원본과 목록의 일치를 확인하고, 작성된 새 로드맵의 관련 상태 표기도 대조한다. 완료된 PLAN의 과거 기획 링크는 이번 이관에서 변경하지 않는다.
 - 저장소 루트에서 `node scripts/validate-agent-docs.mjs`를 실행해 `active` PLAN이 최대 1개인지 확인한다. 0개는 정상 대기 상태이며 2개 이상은 오류다.
 - 실행 가능한 PLAN은 승인된 `active` PLAN뿐이다. 0개이면 PLAN 실행을 시작하지 않고, 2개 이상이면 상태를 정리한 뒤 진행한다. 문서·작업 관리·독립 Sprite 작업은 [작업 절차](../agents/workflow.md)를 따른다.
 - 상태 전환과 문서 체계 복구는 [작업 절차](../agents/workflow.md)에 따른다.

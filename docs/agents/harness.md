@@ -10,7 +10,7 @@
 - 입력 변환과 결과 표시는 달라도 같은 명령의 허용 여부와 상태 변화는 같아야 한다.
 - 검증을 통과시키기 위해 생산·자원·배치·진행 규칙을 하네스에 복제하거나 우회하지 않는다.
 - 화면 오브젝트의 존재 여부만으로 논리 객체의 존재·삭제·외부 활동 상태를 판단하지 않는다.
-- 공통 책임과 상태 소유는 [Thing 기준 문서](../game-design/05-development/01-architecture/thing-model.md)와 [GameFlow](../game-design/05-development/01-architecture/game-flow.md)를 따른다.
+- 공통 책임과 상태 소유는 [아키텍처 지침](architecture.md)과 [새 기획 MAP](../game-design/README.md)의 확정 방향을 따른다. 기존 구현은 실제 코드와 기술 결정으로 확인한다.
 
 ## 시나리오 구성
 
@@ -47,7 +47,7 @@
 - 선행 기반부터 정의 공유와 실행 상태 독립, Map 반영, 공통 조작, 저장·복원을 확인한다.
 - 후속 기능의 Job·예약·생산 회차·외부 활동 상태는 해당 기능을 구현할 때 검증에 추가한다.
 - 구현하지 않은 후속 기능까지 미리 하네스로 구축하지 않는다.
-- 현재 단계와 통과 조건은 [구현 로드맵](../game-design/05-development/02-implementation/roadmap.md), 실제 작업 범위는 현재 PLAN을 따른다.
+- 현재 단계와 통과 조건은 [새 기획 MAP](../game-design/README.md)에 연결된 기획·로드맵과 현재 PLAN을 따른다. deprecated 완료 기준을 자동 적용하지 않는다.
 - 하네스 통과만으로 화면 연결·터치·성능 검증을 대신하지 않는다. [검증 지침](verification.md)에 따라 필요한 통합·기기 검증을 수행한다.
 
 ## 기록

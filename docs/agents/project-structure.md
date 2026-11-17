@@ -25,14 +25,18 @@
 | 위치 | 책임 |
 | --- | --- |
 | `UnityProject/` | Unity에서 여는 프로젝트. 게임 에셋과 프로젝트 설정 |
-| `docs/game-design/` | 승인된 기획. 기존 숫자 분류와 README MAP 유지 |
+| `docs/game-design/` | 새 게임 기획. README는 개요와 MAP만 두고, 경험·규칙·상호작용·확정 상태는 주제 문서에 기록 |
+| `docs/game-design-deprecated/` | 이전 기획 보관. 원문·하위 구조를 유지하며 새 기획의 기준으로 자동 적용하지 않음 |
 | `docs/agents/` | 작업 지침. 한 문서에 한 주제를 두고 150줄 이내 유지. 외부 에셋별 독립 지침은 `external-assets/`에 모으고 [외부 연출 에셋 MAP](presentation-effects.md)에서 연결 |
 | `docs/plans/` | 작업별 PLAN·상태·검증 결과. README는 PLAN 목록과 status만 표시 |
 | `docs/decisions/` | 기술 선택·이유·대체 관계 |
+| `docs/todo/` | 앞으로 할 작업의 간단한 목록. 상세 기획·PLAN·검증 기록은 담당 문서에서 관리 |
 | `scripts/` | 저장소 문서 검사·개발 도구 자동화. Unity C# 코드와 구분 |
 
 기존 문서의 파일명·소문자·숫자 분류를 Unity 폴더 규칙에 맞추기 위해 바꾸지 않는다.
 Unity의 `Packages/`, `ProjectSettings/`, 생성 캐시의 위치와 관리 정책은 [저장소 지침](repository.md)을 따른다.
+
+새 기획은 `direction/`(방향), `systems/`(게임 시스템), `experience/`(경험·UI), `development/`(개발 순서), `management/`(기획 관리) 아래 주제별로 기록한다. 기술 설계·재사용 절차는 [구현 지침](implementation.md)에 둔다.
 
 ## Assets 분류
 

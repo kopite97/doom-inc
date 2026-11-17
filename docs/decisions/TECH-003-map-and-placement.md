@@ -3,7 +3,7 @@
 - 결정일: 2026-10-26
 - 근거: PLAN-004 사용자 실행 승인, D-059의 구조·좌표·크기·화면 구현 위임.
 - 관련 작업: [PLAN-004](../plans/PLAN-004-map-and-commands.md).
-- 기준: [Thing 모델](../game-design/05-development/01-architecture/thing-model.md)의 D-076·D-077·D-079, [시설 배치](../game-design/02-systems/03-space/placement.md)의 D-027~D-034.
+- 기준: [Thing 모델](../game-design-deprecated/05-development/01-architecture/thing-model.md)의 D-076·D-077·D-079, [시설 배치](../game-design-deprecated/02-systems/03-space/placement.md)의 D-027~D-034.
 - 관계: [TECH-001](TECH-001-thing-foundation.md)의 정의·실행 상태 분리를 공간으로 확장한다.
 
 ## 상태와 책임
