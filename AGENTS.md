@@ -15,6 +15,7 @@
 | --- | --- |
 | 모든 작업·재개·PLAN 전환 | [작업 절차](docs/agents/workflow.md) |
 | 기획 조회·작성·변경·MAP 관리 | [기획 지침](docs/agents/game-design.md) |
+| 게임 개발 사전준비·분야별 산출물 준비 | [사전준비 지침 MAP](docs/agents/pre-production/README.md)의 해당 분야 |
 | 새 기획의 기술 설계·기존 시스템 재사용 | [구현·재사용 지침](docs/agents/implementation.md) |
 | PLAN 조회·작성·상태 관리 | [PLAN 관리 지침](docs/plans/AGETNS.md) |
 | 폴더·파일·에셋 생성·배치·이동·이름 변경 | [프로젝트 구조](docs/agents/project-structure.md) |
