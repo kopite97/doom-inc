@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>시작과 결과 화면 와이어프레임</title>
+<style>
+:root{--paper:#eff1ec;--panel:#fafbf6;--ink:#26322f;--line:#b7c0b5;--wash:#dce6db;--green:#3a5c51}
+*{box-sizing:border-box}body{margin:0;background:#e5e9e3;color:var(--ink);font:18px/1.5 "Malgun Gothic",sans-serif}main{margin:auto;width:min(100%,1440px);min-height:100vh;background:var(--paper);display:grid;align-content:center;padding:5vh 7vw}
+button{font:inherit;color:inherit;cursor:pointer;background:var(--panel);border:1px solid #8c9a90;border-radius:5px;padding:12px 23px;font-weight:650;text-align:center}button:hover,button:focus-visible{outline:2px solid var(--green);outline-offset:2px}button:disabled{color:#8e9891;border-color:#c7cdc4;cursor:default;outline:0}.primary{background:var(--ink);color:white;border-color:var(--ink)}h1,h2,h3,p{margin:0}h1{font-size:48px;line-height:1.15;letter-spacing:-3px}h2{font-size:31px;line-height:1.25;letter-spacing:-1px}.sub{color:#52635a;margin-top:15px;max-width:38em}.hero{display:grid;grid-template-columns:1fr 1fr;gap:6%;align-items:center;min-height:530px}.hero h1{font-size:68px}.hero .stack{margin-top:37px;display:grid;gap:10px;max-width:250px}.figure{display:block;background:#e2e8df;width:100%;border-radius:12px;overflow:hidden}.figure svg{display:block;width:100%;height:100%}.hero .figure{height:400px}
+.steps{display:flex;gap:19px;align-items:center;margin-bottom:22px;color:#69766c;font-size:16px}.steps b{color:var(--ink);border-bottom:3px solid var(--green);padding:5px 0}.steps i{color:#8a978d;font-style:normal}
+.select{display:grid;grid-template-columns:31% 1fr;gap:24px;margin:28px 0 22px;align-items:stretch;min-height:290px}.choices{display:flex;flex-direction:column;gap:9px}.choices button{display:flex;align-items:center;justify-content:space-between;text-align:left;min-height:60px}.choices .chosen{background:var(--wash);border:2px solid var(--green)}.detail{display:grid;grid-template-columns:41% auto;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden}.detail .figure{border-radius:0;min-height:245px}.copy{align-self:center;padding:24px}.copy p{margin-top:10px;color:#52635a}.stat{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:11px;margin:14px 0 9px;font-size:16px}.compact{padding:6px 12px;font-size:15px}.actions{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:18px}.center{max-width:610px;text-align:center;justify-self:center;width:100%}.center .figure{width:270px;height:174px;margin:0 auto 28px}.center h1{font-size:43px}.track{height:7px;background:#cbd4cb;border-radius:9px;margin:26px auto 0;max-width:340px;overflow:hidden}.track i{display:block;height:100%;background:var(--green);border-radius:9px}.busy{width:35%;animation:slide 1.4s ease-in-out infinite alternate}@keyframes slide{to{transform:translateX(184%)}}.buttons{display:flex;gap:12px;margin-top:32px}.result .figure{height:350px}.result h1{font-size:55px}.label{font-size:15px;font-weight:700;color:var(--green);margin-bottom:12px}.dialog{width:min(700px,100%);padding:32px;margin:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}.dialog p,.dialog button{margin-top:18px}button:disabled:hover{outline:0}@media(max-width:780px){main{padding:26px 5vw}.hero,.select,.detail{grid-template-columns:1fr}.hero .figure,.detail .figure{min-height:0;height:140px}.hero h1{font-size:44px}.select{margin:14px 0}.hero{gap:18px}.steps{gap:8px}.buttons{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){.busy{animation:none}}
+</style>
+<main id="view"></main>
+<script>
+const query=new URLSearchParams(location.search);
+const still=query.has('still'), prototype=!location.hash.startsWith('#full/');
+const state={scenario:0,assistant:0,speeds:[104,108],tutorial:true};
+const names=['이안','서린'];
+const view=document.getElementById('view');
+let timer;
+function currentScreen(){return location.hash.slice(1).split('/').pop()||'boot'}
+function go(screen){location.hash=(prototype?'':'full/')+screen}
+function button(label,action,primary=false){return '<button type="button" data-action="'+action+'" class="'+(primary?'primary':'')+'">'+label+'</button>'}
+function figure(kind){
+  const circles=(x,y,r,fill)=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+fill+'"/>';
+  const colors=['#bdcfc0','#91ac9b','#6d9081','#48695e'];
+  const land='<path d="M35 210Q75 131 138 169T249 144T359 154" fill="none" stroke="#b3c3b5" stroke-width="3"/><path d="M14 230Q68 146 136 188T256 163T365 178" fill="none" stroke="#c8d3c6" stroke-width="2"/>';
+  const grove=Array.from({length:40},(_,i)=>{const a=i*2.39996,r=9+Math.sqrt(i)*7;const x=82+Math.cos(a)*r,y=91+Math.sin(a)*r*.7;return circles(x,y,7+i%4,colors[i%3])}).join('');
+  const capsule='<g stroke="#3a554b" stroke-width="4" stroke-linejoin="round"><rect x="143" y="40" width="74" height="130" rx="33" fill="#e6eee3"/><path d="M147 104Q166 97 180 104T213 103V132Q212 163 180 166Q148 163 147 132Z" fill="#99b6a5" stroke="none"/><rect x="150" y="37" width="60" height="19" rx="5" fill="#789386"/><rect x="149" y="160" width="62" height="15" rx="5" fill="#789386"/><path d="M158 75V96" stroke="#fff" stroke-width="6" stroke-linecap="round"/></g>';
+  let drawing;
+  if(kind==='boot'||kind==='title'||kind==='loading')drawing=land+capsule+circles(174,125,8,'#52786a')+circles(191,117,4,'#c8decf')+circles(184,141,3,'#719587');
+  if(kind==='scenario'||kind==='map')drawing=land+grove+'<path d="M3 221Q98 219 150 164T238 111T358 77" fill="none" stroke="#aab9ac" stroke-width="11"/><g fill="#6c8177"><path d="M214 77l14-24 20 24zM235 80l24-39 26 39zM259 82l14-22 18 22z"/></g><circle cx="180" cy="143" r="11" fill="#f4f6ef" stroke="#3a5c51" stroke-width="3"/><circle cx="180" cy="143" r="4" fill="#3a5c51"/>';
+  if(kind==='assistant')drawing='<ellipse cx="180" cy="191" rx="77" ry="9" fill="#c0cdc1"/><path d="M117 188q5-43 41-52h43q34 11 42 52" fill="#728d80" stroke="#405a4e" stroke-width="3"/><path d="M157 137l23 24 23-24-6 49h-32z" fill="#e8efe5"/><path d="M148 90q0-33 33-34t33 34v18q-2 29-33 34-31-7-33-34z" fill="#d6ded1" stroke="#405a4e" stroke-width="3"/><path d="M146 94q-6-45 36-45 38 1 33 46-13-4-26-21-17 18-43 20z" fill="#4a6559"/>';
+  if(kind==='clear')drawing='<circle cx="180" cy="112" r="71" fill="#9eb5a4" stroke="#48695e" stroke-width="3"/><path d="M140 63q25-18 41-10l-7 16 18 12-12 21-22 7-18-15-17 1zM197 114l31-11 17 14-12 27-25 18-9-17z" fill="#617f6e"/><ellipse cx="180" cy="112" rx="109" ry="30" transform="rotate(-25 180 112)" fill="none" stroke="#e7eee4" stroke-width="6"/>';
+  if(kind==='defeat')drawing=land+'<g transform="rotate(20 180 118)">'+capsule+'<path d="M179 54l-10 29 15 13-18 26 15 13-8 26" stroke="#eef1eb" stroke-width="7" fill="none"/></g>';
+  if(kind==='assistant'&&state.assistant===1)drawing+='<g fill="none" stroke="#405a4e" stroke-width="3"><rect x="151" y="95" width="23" height="12" rx="4"/><rect x="185" y="95" width="23" height="12" rx="4"/><path d="M174 99h11"/></g>';
+  return '<div class="figure" aria-hidden="true"><svg viewBox="0 0 360 230">'+drawing+'</svg></div>';
+}
+function steps(active){return '<div class="steps">'+['시나리오 선택','맵 선택','조수 선택'].map((s,i)=>(i?'<i>›</i>':'')+(active===i?'<b>'+s+'</b>':'<span>'+s+'</span>')).join('')+'</div>'}
+function choose(i,options,current,detail,art,next,label){return steps(i)+'<h1>'+['시나리오 선택','맵 선택','조수 선택'][i]+'</h1><div class="select"><div class="choices">'+options.map((s,j)=>'<button data-action="pick-'+j+'" class="'+(j===current?'chosen':'')+'" aria-pressed="'+(j===current)+'">'+s+(j===current?'<span>✓</span>':'')+'</button>').join('')+'</div><div class="detail">'+figure(art)+'<div class="copy">'+detail+'</div></div></div><div class="actions">'+button('이전',['title','scenario','map'][i])+button(label,next,true)+'</div>'}
+function render(){
+  clearTimeout(timer);
+  const screen=currentScreen();
+  let html='';
+  if(screen==='boot'||screen==='loading'){
+    const boot=screen==='boot';
+    html='<section class="center">'+figure(boot?'boot':'loading')+'<h1>'+(boot?'연구소 준비 중':'연구소 불러오는 중')+'</h1><p class="sub">'+(boot?'게임 데이터를 확인하고 있습니다.':'수림 평지 · 시작 위치를 준비하고 있습니다.')+'</p><div class="track"><i class="busy"></i></div></section>';
+    if(!still)timer=setTimeout(()=>go(boot?'title':'arrival'),2000);
+  }else if(screen==='title'){
+    html='<section class="hero"><div><h1>생명 연구소</h1><div class="stack">'+button('게임 시작','scenario',true)+'<button disabled>이어하기</button>'+button('설정','settings')+'</div></div>'+figure('title')+'</section>';
+  }else if(screen==='scenario'){
+    const list=prototype?['연구소 정착']:['기본','완전 무작위'];
+    const desc=prototype?'민트색 개체와 주머니 개체의 합산 전투력이 기준에 도달하면 첫 습격이 시작됩니다.':['정착할 시간을 가진 뒤 첫 토벌군의 접근을 예고합니다.','시작 직후에도 첫 토벌군의 접근 예고가 발생할 수 있습니다.'][state.scenario];
+    html=choose(0,list,state.scenario,'<h2>'+list[state.scenario]+'</h2><p>'+desc+'</p>','scenario','map','맵 선택으로');
+  }else if(screen==='map'){
+    html=choose(1,['수림 평지'],0,'<h2>수림 평지</h2><p>숲 가장자리의 중앙 터에서 시작합니다. 가까운 목재와 생체 원료를 이용할 수 있습니다.</p><div class="stat"><span>맵 크기</span><b>250 × 250칸</b></div>','map','assistant','조수 선택으로');
+  }else if(screen==='assistant'){
+    html=choose(2,names,state.assistant,'<h2>'+names[state.assistant]+'</h2><p>전문 계통 · 제조 / 연금</p><div class="stat"><span>연구 속도</span><b>'+state.speeds[state.assistant]+'%</b></div>'+button('능력치 다시 굴리기','roll'),'assistant','loading','연구소로');
+  }else if(screen==='clear'||screen==='defeat'){
+    const win=screen==='clear';
+    html='<section class="hero result"><div><h1>'+(win?'게임 클리어':'패배')+'</h1><p class="sub">'+(win?'행성 전체의 침공을 완료했습니다.':'주인공의 체력이 0이 되었습니다.')+'</p><div class="buttons">'+(win?button('계속 플레이','returnlab',true):'')+button('메인 화면으로','title',!win)+'</div></div>'+figure(screen)+'</section>';
+  }else if(screen==='settings'){
+    html='<section class="dialog"><h2>설정</h2><p>첫 플레이 튜토리얼</p>'+button(state.tutorial?'켜짐':'꺼짐','tutorial')+' '+button('돌아가기','title')+'</section>';
+  }else if(screen==='arrival'||screen==='returnlab'){
+    html='<section class="dialog"><h2>'+(screen==='arrival'?'연구소 도착':'연구소 운영 재개')+'</h2><p>'+(screen==='arrival'?'다음 장면은 수림 평지에서 주인공과 '+names[state.assistant]+'의 첫 만남 대화입니다.':'클리어한 연구소의 플레이가 이어집니다.')+'</p></section>';
+  }else{go('title');return}
+  view.innerHTML=html;
+}
+view.addEventListener('click',event=>{
+  const action=event.target.closest('button')?.dataset.action;
+  if(!action)return;
+  const screen=currentScreen();
+  if(action.startsWith('pick-')){const n=Number(action.slice(5));if(screen==='scenario')state.scenario=n;if(screen==='assistant')state.assistant=n;render();return}
+  if(action==='roll'){state.speeds[state.assistant]=90+Math.floor(Math.random()*31);render();return}
+  if(action==='tutorial'){state.tutorial=!state.tutorial;render();return}
+  go(action);
+});
+window.addEventListener('hashchange',render);
+render();
+</script>
+</html>

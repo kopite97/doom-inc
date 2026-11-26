@@ -39,7 +39,7 @@
 
 ## 기본 설정과 플레이어 개입
 
-- 2026-11-25 결정. 첫 프로토타입과 본편 모두 **운영 방침**에서 플레이어가 조정하는 작업 중요도는 개체별 작업표 한 곳에서 정한다. 새 개체는 탄생 직후 기본 작업표로 일을 시작한다. [림월드의 작업표](https://github.com/Ludeon/RimWorld-ChineseSimplified/blob/master/Core/DefInjected/ConceptDef/Concepts_NotedSelfshow.xml)를 참고해 중요도가 같은 작업 종류는 화면의 왼쪽부터 살핀다.
+- 2026-11-25 결정. 첫 프로토타입과 본편 모두 **운용 방침**에서 플레이어가 조정하는 작업 중요도는 개체별 작업표 한 곳에서 정한다. 새 개체는 탄생 직후 기본 작업표로 일을 시작한다. [림월드의 작업표](https://github.com/Ludeon/RimWorld-ChineseSimplified/blob/master/Core/DefInjected/ConceptDef/Concepts_NotedSelfshow.xml)를 참고해 중요도가 같은 작업 종류는 화면의 왼쪽부터 살핀다.
 - 중요도를 낮춘 작업도 후보로 남는다. [작업 선택 순서](#작업-선택-순서)에 따라 운반의 중요도가 건설보다 높은 개체도 옮길 짐이 없고 자재가 준비된 현장이 있으면 건설을 도울 수 있다.
 - 플레이어는 개체와 상호작용해 [강제 작업 지시](#강제-작업-지시)를 내릴 수 있다.
 - 담당 시설을 지정한 개체는 그 시설에 일이 없으면 다른 가능한 작업을 수행한다.

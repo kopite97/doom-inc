@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>건설 메뉴 와이어프레임</title>
+<style>
+  * { box-sizing: border-box }
+  body { margin: 0; padding: 12px; font: 16px "Malgun Gothic", sans-serif; color: #242925; background: #eef0ed }
+  main { width: min(390px, 100%); min-height: 327px; padding: 19px 21px; background: #fafbf8; border: 1.5px solid #59615b; border-radius: 8px; box-shadow: 0 3px 4px #333a3325 }
+  h1 { margin: 0 0 16px; font-size: 24px }
+  header { display: flex; justify-content: space-between; align-items: baseline }
+  .close { width: 29px; height: 29px; font-size: 20px; line-height: 1 }
+  h2 { margin: 0 0 10px; font-size: 17px }
+  .list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px }
+  button, .item { font: inherit; color: inherit; border: 1px solid #aeb7ad; border-radius: 5px; background: white }
+  button { cursor: pointer }
+  button:hover, button:focus-visible { background: #e3e8e1 }
+  .category, .item { padding: 13px 10px; text-align: left; font-weight: 600 }
+  .category { display: flex; justify-content: space-between; gap: 6px }
+  .category span { color: #636f64 }
+  .back { margin: 0 0 12px; padding: 5px 9px; font-size: 14px }
+  .item { display: grid; justify-items: center; align-content: center; gap: 5px; padding: 7px 4px; text-align: center; font-size: 15px }
+  .sprite { width: 48px; height: 48px; image-rendering: pixelated; background-image: url("Temp_BuildSprites.png"); background-size: auto 48px; background-repeat: no-repeat }
+  [hidden] { display: none !important }
+  @media(max-width:320px) { .list {grid-template-columns: 1fr} }
+</style>
+<main>
+  <header><h1>건설</h1><button type="button" class="close" aria-label="건설 닫기">×</button></header>
+  <section id="root">
+    <h2>카테고리</h2>
+    <div class="list" id="categories"></div>
+  </section>
+  <section id="detail" hidden>
+    <button class="back" type="button">‹ 카테고리로</button>
+    <h2 id="title" tabindex="-1"></h2>
+    <div class="list" id="items"></div>
+  </section>
+</main>
+<button type="button" id="reopen" hidden>건설</button>
+<script>
+  // 해당 연구를 완료한 시점의 배치 후보. 이 시안에서는 카테고리 간 이동을 체험한다.
+  const catalog = [
+    ['구조물', [['바닥', 0], ['벽', 1], ['문', 2]]],
+    ['생산·가공', [['건설 자재 가공대', 3], ['배양액 가공기', 4], ['시약 제조시설', 5], ['생체원료 추출기', 6]]],
+    ['배양·개체 관리', [['배양시설', 7], ['생명체 중계기', 8], ['재활용 시설', 9], ['원료 순환기', 10], ['배양 촉진기', 11]]],
+    ['보관', [['소형 창고', 12], ['중형 창고', 13]]],
+    ['연구', [['기본 연구시설', 14]]],
+    ['치료·회복', [['기본 회복시설', 15], ['재생 촉진 장치', 16]]]
+  ];
+  const root = document.getElementById('root');
+  const detail = document.getElementById('detail');
+  const categories = document.getElementById('categories');
+  const title = document.getElementById('title');
+  const items = document.getElementById('items');
+  let selected;
+  function openCategory(index) {
+    selected = index;
+    const [name, entries] = catalog[index];
+    title.textContent = name;
+    items.replaceChildren(...entries.map(([name, frame]) => {
+      const row = document.createElement('span');
+      row.className = 'item';
+      const sprite = document.createElement('span');
+      sprite.className = 'sprite';
+      sprite.setAttribute('aria-hidden', 'true');
+      sprite.style.backgroundPositionX = (-48 * frame) + 'px';
+      row.append(sprite, name);
+      return row;
+    }));
+    root.hidden = true;
+    detail.hidden = false;
+    title.focus({preventScroll: true});
+  }
+  catalog.forEach(([name], index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'category';
+    button.append(name);
+    const arrow = document.createElement('span');
+    arrow.setAttribute('aria-hidden','true');
+    arrow.textContent = '›';
+    button.append(arrow);
+    button.onclick = () => openCategory(index);
+    categories.append(button);
+  });
+  document.querySelector('.back').onclick = () => {
+    detail.hidden = true;
+    root.hidden = false;
+    categories.children[selected].focus();
+  };
+  const panel = document.querySelector('main');
+  const reopen = document.getElementById('reopen');
+  document.querySelector('.close').onclick = () => {
+    panel.hidden = true;
+    reopen.hidden = false;
+    reopen.focus();
+  };
+  reopen.onclick = () => {
+    panel.hidden = false;
+    reopen.hidden = true;
+    detail.hidden = true;
+    root.hidden = false;
+    categories.firstElementChild.focus();
+  };
+</script>
+</html>
