@@ -4,7 +4,7 @@
 
 ## 시작할 자료
 
-[연출 도구](../../presentation-effects.md)와 [음원 배치 지침](../../project-structure.md)이 출발점이다.
+[사운드 디렉션 기획](../../../game-design/experience/sound-direction.md)에서 확정한 분위기와 남은 논의를 확인한다. [연출 도구](../../presentation-effects.md)와 [음원 배치 지침](../../project-structure.md)은 제작·적용 때 참고한다.
 
 ## 준비 방법
 

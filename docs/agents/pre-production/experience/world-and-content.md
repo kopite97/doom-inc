@@ -6,6 +6,8 @@
 
 [마스코트와 조수](../../../game-design/experience/characters.md)·[외부 세계](../../../game-design/systems/external-world.md)에 등장 주체와 관계가 있다.
 
+[세계관 전달과 서사 콘텐츠](../../../game-design/experience/narrative.md)에서 확정한 전달 방향과 다음 논의를, [머리 위 말풍선](../../../game-design/experience/interface.md#머리-위-말풍선-대사)에서 대사 표시 지원 범위를 확인한다.
+
 ## 준비 방법
 
 1. 연구소, 주인공과 조수, 외부 세력이 서로 어떤 관계인지 원본에서 추려 세계관 요약을 만든다.

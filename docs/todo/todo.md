@@ -19,7 +19,7 @@
 - [ ] 맵별 자연 자원과 채취 가능한 생명체, 바닥·벽에 고를 수 있는 실제 재료와 지정 재료가 필요한 생산시설을 정한다. 생명체·시설 해금, 첫 연구 보상·첫 습격 준비와 중반 이후 공급 수단을 연결한다. [생명체](../game-design/systems/creatures.md) · [자원](../game-design/systems/resources.md) · [초반 흐름](../game-design/experience/early-game.md)
 - [ ] 맵의 크기·지형·자원 배치와 확장 이유를 구체화한다. 기후·계절은 추후 도입 여부부터 논의한다. [맵](../game-design/systems/maps.md)
 - [ ] 시설·실내·장비 손상, 건설 취소·철거, 자원 부족과 긴급 작업 충돌에서 플레이어가 겪을 결과를 정한다. [실내](../game-design/systems/rooms.md) · [건설](../game-design/systems/construction.md) · [작업](../game-design/systems/work.md)
-- [ ] PC 화면 배치·일괄 설정·명령 접근·상태와 실패 이유 표시, 일시정지·배속·저장 및 재개 경험을 정한다. [화면](../game-design/experience/interface.md) · [게임 방향](../game-design/direction/overview.md)
+- [ ] UI 기본 배치는 2026-11-26 검토 완료. 개체·시설 상세, 연구 화면, 상태·실패 이유, 대화·경고·조작, 설정·저장 흐름, 최종 스타일과 사용성 검증은 [UI 후속 작업](../game-design/experience/interface.md#ui-후속-작업)의 시점에 맞춰 이어간다.
 - [ ] Windows용 Steam 첫 출시의 콘텐츠 범위와 후반 확장 후보를 구분한다. 구체적인 밸런스 수치는 개발 중 조정하되 플레이 규칙의 미정과 구분한다. [게임 방향](../game-design/direction/overview.md) · [로드맵](../game-design/development/roadmap.md)
 
 ## 기획 마무리 후
